@@ -77,12 +77,38 @@ function check(label, ok, detail) {
     document.documentElement.scrollWidth - document.documentElement.clientWidth);
   check("la page ne deborde pas en largeur", debord <= 1, "debordement = " + debord + "px");
 
-  console.log("\n=== 7. Les donnees ne sortent pas du navigateur ===");
-  const requetes = [];
-  page.on("request", r => { if (!r.url().startsWith("https://statelinecalc.com")) requetes.push(r.url()); });
-  await page.fill("#salary", "123456");
-  await page.waitForTimeout(500);
-  check("aucune requete vers un tiers", requetes.length === 0, requetes.slice(0, 3).join(" / "));
+  console.log("\n=== 7. Les donnees SAISIES ne sortent pas du navigateur ===");
+  // Depuis l'ajout de GA4 le 22/08, il Y A des requetes tierces : la mesure
+  // d'audience. Ce qui doit rester vrai, et que la page promet noir sur
+  // blanc, c'est qu'AUCUNE requete ne transporte ce que le visiteur tape.
+  // C'est ca qu'on teste, pas l'absence de tiers.
+  const AUTORISES = [
+    "statelinecalc.com",
+    "www.googletagmanager.com",
+    "www.google-analytics.com",
+    "analytics.google.com",
+    "region1.google-analytics.com",
+  ];
+  const intrus = [];
+  const fuites = [];
+  const SALAIRE_TEMOIN = "987654";
+  page.on("request", r => {
+    const u = r.url();
+    if (!AUTORISES.some(h => u.includes(h))) intrus.push(u);
+    let corps = "";
+    try { corps = r.postData() || ""; } catch (e) { corps = ""; }
+    if (u.includes(SALAIRE_TEMOIN) || corps.includes(SALAIRE_TEMOIN)) fuites.push(u);
+  });
+  await page.fill("#salary", SALAIRE_TEMOIN);
+  await page.waitForTimeout(1500);
+  check("aucun domaine tiers hors mesure d'audience", intrus.length === 0, intrus.slice(0, 3).join(" / "));
+  check("le salaire saisi n'est envoye NULLE PART", fuites.length === 0, fuites.slice(0, 2).join(" / "));
+
+  console.log("\n=== 8. GA4 charge sans violer le CSP ===");
+  const cspGa = erreurs.filter(e => /Content Security Policy|Refused to/i.test(e));
+  check("aucun blocage CSP apres ajout de GA4", cspGa.length === 0, cspGa.slice(0, 2).join(" / "));
+  const gaCharge = await page.evaluate(() => typeof window.gtag === "function");
+  check("gtag est bien charge", gaCharge);
 
   await navigateur.close();
   console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

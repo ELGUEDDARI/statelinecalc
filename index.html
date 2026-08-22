@@ -7,8 +7,10 @@
      or image. Anything third-party is a bug until it is added here on purpose.
      When AdSense goes in (around day 120), its domains must be added to
      script-src and frame-src explicitly, never by loosening to '*'. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
+<script src="/assets/analytics.js"></script>
 <!-- Bing Webmaster Tools ownership. Public by design. Do not remove: it is
      what keeps the property verified, and Bing's index is what feeds
      ChatGPT and Copilot. -->
