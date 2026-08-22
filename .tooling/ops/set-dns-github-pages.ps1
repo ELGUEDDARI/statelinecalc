@@ -21,10 +21,31 @@ $h = @{ Authorization = "Bearer $tok"; "Content-Type" = "application/json" }
 
 # --- etat AVANT ---------------------------------------------------------
 Write-Output "=== ZONE AVANT ==="
+$zoneActuelle = $null
 try {
   $avant = Invoke-WebRequest -Uri "https://developers.hostinger.com/api/dns/v1/zones/$domaine" -Headers $h -TimeoutSec 30 -UseBasicParsing
   Write-Output $avant.Content
+  $zoneActuelle = $avant.Content | ConvertFrom-Json
 } catch { Write-Output ("lecture impossible : HTTP " + [int]$_.Exception.Response.StatusCode) }
+
+# --- GARDE-FOU ----------------------------------------------------------
+# Ce script REMPLACE la zone entiere (overwrite: true). Depuis le 22/08 la
+# zone contient deux enregistrements TXT de validation Google : celui du
+# compte de service et celui du PDG. Les effacer ferait perdre les deux
+# validations Search Console, et Google previent explicitement :
+# "Pour conserver votre statut de proprietaire confirme, ne supprimez pas
+#  l'enregistrement DNS."
+# On refuse donc de tourner si un TXT existe. Pour ajouter un
+# enregistrement, utiliser dns-add-txt.ps1, qui relit et fusionne.
+$txt = @()
+foreach ($e in $zoneActuelle) { if ($e.type -eq "TXT") { $txt += $e } }
+if ($txt.Count -gt 0) {
+  Write-Output ""
+  Write-Output "!!! ARRET VOLONTAIRE !!!"
+  Write-Output ("La zone contient " + $txt.Count + " enregistrement(s) TXT que ce script effacerait,")
+  Write-Output "dont les validations Google Search Console. Utiliser dns-add-txt.ps1 a la place."
+  exit 5
+}
 
 # --- la zone a poser ----------------------------------------------------
 $zone = @(
