@@ -5,7 +5,7 @@
 
    Lancer : node test/gen-table.js > test/table-washington.html */
 
-const R = require("../data/rates-2026.js");
+const R = require("../../data/rates-2026.js");
 const WA = R.states.washington;
 
 function progressiveTax(taxable, bands) {

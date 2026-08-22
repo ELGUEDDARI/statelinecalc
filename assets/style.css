@@ -240,3 +240,16 @@ tbody tr:nth-child(odd) { background: var(--surface); }
 @media (min-width: 1024px) { .linkgrid { grid-template-columns: repeat(5, 1fr); } }
 
 .faq h3 { margin-bottom: var(--s-1); }
+
+/* ---------- utilities ----------
+   These exist so no element needs a style="" attribute. The site ships a
+   strict Content-Security-Policy without 'unsafe-inline', which blocks
+   inline style attributes outright — so a stray style="" is not a matter of
+   taste here, it is a rendering bug. */
+.u-mt-0      { margin-top: 0; }
+.u-m-0       { margin: 0; }
+.u-mt-3      { margin-top: var(--s-3); }
+.u-fw-normal { font-weight: 400; }
+.u-on-dark   { color: var(--on-dark); }
+.caption-left { text-align: left; padding-bottom: var(--s-2); }
+.result-unit { font-size: 20px; font-weight: 400; }

@@ -166,9 +166,9 @@
 
       var html =
         '<p class="result-label">Your take-home pay</p>' +
-        '<p class="result-head num">' + v(a.net) + " <span style=\"font-size:20px;font-weight:400\">/ " +
+        '<p class="result-head num">' + v(a.net) + " <span class=\"result-unit\">/ " +
         label.toLowerCase() + "</span></p><hr>" +
-        '<dl style="margin:0">' +
+        '<dl class="u-m-0">' +
         '<div class="line"><dt>Gross pay</dt><dd class="num">' + v(a.gross) + "</dd></div>" +
         rows.map(function (r) {
           return '<div class="line"><dt>' + r[0] + '</dt><dd class="num">&minus;' + v(r[1]) + "</dd></div>";

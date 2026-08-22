@@ -3,6 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Locked down deliberately: no external script, style, font or image is
+     loaded anywhere on this site. connect-src is 'none' because the
+     calculator never sends anything: every value the visitor types stays in
+     their browser. That is enforced here, not just promised in the copy.
+     When AdSense goes in (around day 120), its domains must be added to
+     script-src and frame-src explicitly, never by loosening to '*'. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Washington Paycheck Calculator 2026 — Take-Home Pay After Taxes</title>
 <meta name="description" content="Free Washington paycheck calculator for 2026. Washington has no state income tax, so see exactly what federal tax, FICA, Paid Leave and WA Cares take from your pay.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/washington/">
@@ -106,7 +114,7 @@
 
   <!-- 3. The calculator itself -->
   <section aria-labelledby="calc-h">
-    <h2 id="calc-h" style="margin-top:0">Calculate your Washington take-home pay</h2>
+    <h2 id="calc-h" class="u-mt-0">Calculate your Washington take-home pay</h2>
 
     <form class="calc" data-paycheck-form data-state="washington" novalidate>
       <div class="field">
@@ -164,7 +172,7 @@
       <div class="field">
         <div class="checkline">
           <input type="checkbox" id="wacares" name="wacares" checked>
-          <label for="wacares" style="font-weight:400">
+          <label for="wacares" class="u-fw-normal">
             Include WA Cares (0.58%)
             <span class="help">Uncheck only if you hold an approved exemption. Most workers do not.</span>
           </label>
@@ -176,7 +184,7 @@
 
     <div class="result" data-paycheck-result aria-live="polite"></div>
 
-    <p class="caption" style="margin-top:12px">
+    <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
       There is no sign-up and no personal data is required.
     </p>
@@ -231,7 +239,7 @@
 
   <div class="table-scroll">
     <table>
-      <caption class="caption" style="text-align:left;padding-bottom:8px">
+      <caption class="caption caption-left">
         2026 Washington take-home pay, single filer
       </caption>
       <thead>
@@ -609,7 +617,7 @@
   <div class="wrap">
     <p><strong>StateLine Calc</strong> — free money calculators for all 50 states.
     No sign-up. No personal data required.</p>
-    <p class="micro" style="color:var(--on-dark)">
+    <p class="micro u-on-dark">
       <a href="/about/">About</a> ·
       <a href="/methodology/">Methodology</a> ·
       <a href="/contact/">Contact</a> ·

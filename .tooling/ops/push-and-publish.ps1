@@ -67,9 +67,12 @@ Set-Content -Path $credFile -Value ("https://" + $owner + ":" + $tok + "@github.
 $credPath = ($credFile -replace '\\','/')
 
 try {
+  $message = if ($args.Count -gt 0) { $args[0] } else { "Update site" }
+
   git add -A
+  Write-Output "=== COMMIT ==="
   git -c user.name="ELGUEDDARI" -c user.email="ELGUEDDARI@users.noreply.github.com" `
-      commit -m "Launch: Washington paycheck calculator, design system, 2026 rate data" | Out-Null
+      commit -m $message 2>&1 | ForEach-Object { Write-Output ("  " + $_) }
 
   Write-Output "=== PUSH ==="
   git -c credential.helper="store --file=$credPath" push -u origin main 2>&1 | ForEach-Object { Write-Output $_ }

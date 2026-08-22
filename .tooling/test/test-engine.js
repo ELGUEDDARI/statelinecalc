@@ -1,9 +1,9 @@
 /* Test du moteur de calcul, hors navigateur.
-   Lancer :  node test/test-engine.js
+   Lancer :  node .tooling/test/test-engine.js
    Chaque cas est recalculé A LA MAIN dans le commentaire, sinon le test ne
    prouve rien : un test qui recopie la sortie du code valide ses propres bugs. */
 
-const R = require("../data/rates-2026.js");
+const R = require("../../data/rates-2026.js");
 
 // On recharge la logique du moteur sans le DOM.
 function progressiveTax(taxable, bands) {
