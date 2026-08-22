@@ -20,9 +20,15 @@ const { chromium } = require("playwright");
     if (u.includes("google-analytics.com") || u.includes("analytics.google.com")) collectes.push(u);
     if (u.includes("googletagmanager.com")) scripts.push(u);
   });
+  const reponses = [];
   page.on("response", async r => {
     if (r.url().includes("googletagmanager.com")) {
       scripts.push("  -> reponse HTTP " + r.status());
+    }
+    // La preuve n'est pas que la requete part, c'est que Google l'ACCEPTE.
+    // Un hit valide repond 204 (parfois 200). Tout le reste est un rejet.
+    if (r.url().includes("google-analytics.com") || r.url().includes("analytics.google.com")) {
+      reponses.push(r.status());
     }
   });
   page.on("console", m => { if (m.type() === "error") erreurs.push(m.text()); });
@@ -30,7 +36,7 @@ const { chromium } = require("playwright");
 
   for (const url of ["https://statelinecalc.com/",
                      "https://statelinecalc.com/paycheck-calculator/washington/"]) {
-    collectes.length = 0; scripts.length = 0; erreurs.length = 0;
+    collectes.length = 0; scripts.length = 0; erreurs.length = 0; reponses.length = 0;
     console.log("\n=== " + url + " ===");
     await page.goto(url, { waitUntil: "networkidle" });
     await page.waitForTimeout(2500);
@@ -49,6 +55,8 @@ const { chromium } = require("playwright");
     console.log("  window.gtag       : " + (gtagPresent ? "OUI" : "NON"));
     console.log("  ID configure      : " + (idConfig || "(aucun)"));
     console.log("  requetes de mesure envoyees : " + collectes.length);
+    console.log("  REPONSES DE GOOGLE          : " + (reponses.join(", ") || "(aucune)")
+                + "   [204 ou 200 = hit accepte]");
     collectes.forEach(c => console.log("    " + c.substring(0, 130)));
     if (erreurs.length) { console.log("  ERREURS CONSOLE :"); erreurs.forEach(e => console.log("    " + e)); }
 
