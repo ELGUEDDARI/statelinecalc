@@ -1,0 +1,242 @@
+/* =========================================================================
+   statelinecalc.com — design system
+   Implements CHARTE-GRAPHIQUE-ET-ACCUEIL.md verbatim.
+   Contrast ratios were computed 2026-08-21 with the WCAG 2.1 relative
+   luminance formula — do not substitute colours without recomputing.
+   No external font. No external asset. Zero blocking requests.
+   ========================================================================= */
+
+:root {
+  /* --- colour, section 3 --- */
+  --text-primary:   #0F172A;  /* 17.85:1 on white — AAA */
+  --text-secondary: #475569;  /*  7.58:1 — AAA */
+  --text-muted:     #64748B;  /*  4.76:1 — AA  */
+  --accent:         #1D4ED8;  /*  6.70:1 — AA  */
+  --on-accent:      #FFFFFF;
+  --success:        #047857;  /*  5.48:1 — AA  */
+  --on-success:     #FFFFFF;
+  --danger:         #B91C1C;  /*  6.47:1 — AA  */
+  --warning-bg:     #FFFEF7;
+  --warning-text:   #92400E;  /*  7.01:1 on --warning-bg — AAA */
+  --surface:        #F8FAFC;
+  --dark:           #0F172A;
+  --on-dark:        #F1F5F9;  /* 16.30:1 — AAA */
+  --border-strong:  #64748B;  /* 4.76:1 — functional borders only */
+  --border-subtle:  #CBD5E1;  /* decorative separators ONLY, never a field */
+
+  /* --- type, section 4 --- */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+               "Liberation Mono", monospace;
+  --measure: 68ch;
+
+  /* --- spacing, 4px scale, section 5 --- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-6: 24px; --s-8: 32px; --s-12: 48px; --s-16: 64px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, .06);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, .08);
+
+  --content-max: 1120px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;          /* never smaller — section 4.3 */
+  line-height: 1.65;
+  color: var(--text-primary);
+  background: #FFFFFF;
+}
+
+/* Numbers are the product. Tabular figures stop the layout from twitching
+   as a value recalculates — this is CLS prevention, not decoration. */
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- layout ---------- */
+.wrap {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--s-4);
+}
+@media (min-width: 768px)  { .wrap { padding-inline: var(--s-6); } }
+@media (min-width: 1024px) { .wrap { padding-inline: var(--s-8); } }
+
+.prose { max-width: var(--measure); }
+
+/* ---------- type scale, section 4.3 ---------- */
+h1 { font-size: 28px; font-weight: 700; line-height: 1.2; margin: 0 0 var(--s-4); }
+@media (min-width: 768px) { h1 { font-size: 32px; } }
+h2 { font-size: 24px; font-weight: 600; line-height: 1.3; margin: var(--s-12) 0 var(--s-4); }
+h3 { font-size: 18px; font-weight: 600; line-height: 1.4; margin: var(--s-8) 0 var(--s-2); }
+p  { margin: 0 0 var(--s-4); }
+small, .caption { font-size: 14px; line-height: 1.5; color: var(--text-muted); }
+.micro { font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- header / footer ---------- */
+.site-header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding-block: var(--s-4);
+}
+.site-header .wrap { display: flex; align-items: center; gap: var(--s-6); flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 18px; color: var(--text-primary); text-decoration: none; }
+.site-nav { display: flex; gap: var(--s-4); flex-wrap: wrap; font-size: 15px; }
+
+.site-footer {
+  margin-top: var(--s-16);
+  background: var(--dark);
+  color: var(--on-dark);
+  padding-block: var(--s-12);
+}
+.site-footer a { color: var(--on-dark); }
+
+/* Breadcrumb */
+.crumbs { font-size: 14px; color: var(--text-muted); margin: var(--s-4) 0; }
+.crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; padding: 0; }
+.crumbs li::after { content: "/"; margin-left: var(--s-2); color: var(--border-subtle); }
+.crumbs li:last-child::after { content: ""; }
+
+/* ---------- the 40-60 word answer block, gabarit item 2 ---------- */
+.answer {
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: var(--s-4) var(--s-6);
+  margin-bottom: var(--s-8);
+  font-size: 17px;
+}
+.answer p:last-child { margin-bottom: 0; }
+
+/* ---------- form, section 6.1 ---------- */
+.calc {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--s-6);
+  box-shadow: var(--shadow-sm);
+}
+.field { margin-bottom: var(--s-6); }
+.field label {           /* visible label, never a bare placeholder */
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--s-2);
+}
+.field input, .field select {
+  width: 100%;
+  min-height: 48px;      /* touch target */
+  padding: var(--s-2) var(--s-3);
+  font: inherit;
+  color: var(--text-primary);
+  background: #FFFFFF;
+  border: 1px solid var(--border-strong);   /* functional border, >= 3:1 */
+  border-radius: var(--radius-sm);
+}
+.field .help {           /* persistent helper text, not a placeholder */
+  display: block;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: var(--s-1);
+}
+.field .error {
+  display: none;
+  align-items: center;
+  gap: var(--s-1);
+  font-size: 14px;
+  color: var(--danger);
+  margin-top: var(--s-1);
+}
+.field.is-invalid .error { display: flex; }
+.field.is-invalid input { border-color: var(--danger); border-width: 2px; }
+
+.row { display: grid; gap: var(--s-4); }
+@media (min-width: 768px) { .row-2 { grid-template-columns: 1fr 1fr; } }
+
+.checkline { display: flex; align-items: flex-start; gap: var(--s-2); }
+.checkline input { width: 20px; min-height: 20px; margin-top: 3px; flex: none; }
+
+/* ---------- button, section 6.2 ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding-inline: var(--s-6);
+  font: inherit; font-weight: 600;
+  border: 1px solid transparent; border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 150ms ease;   /* colour only — never layout */
+}
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: #1A45BE; }
+
+/* ---------- result block, section 6.3 ---------- */
+/* Minimum height is reserved even when empty so the first calculation
+   cannot shift the page. */
+.result {
+  margin-top: var(--s-8);
+  min-height: 320px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: var(--s-6);
+}
+.result-label { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+.result-head {
+  font-size: 40px; line-height: 1.1; font-weight: 700;
+  color: var(--success);
+  margin: var(--s-1) 0 var(--s-4);
+}
+.result hr { border: 0; border-top: 1px solid var(--border-subtle); margin: var(--s-4) 0; }
+.line { display: flex; justify-content: space-between; gap: var(--s-4); padding: var(--s-1) 0; }
+.line dt { color: var(--text-secondary); }
+.line dd { margin: 0; text-align: right; }
+.line-total { font-weight: 700; color: var(--text-primary); }
+
+/* ---------- 14-bracket table, section 6.4 ---------- */
+/* The table is the server-rendered, crawlable version of the calculator.
+   AI crawlers do not run JavaScript — without this table the tool is
+   invisible to them. This is the most important markup on the page. */
+.table-scroll { overflow-x: auto; }        /* never scroll the whole page */
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { padding: var(--s-2) var(--s-3); text-align: right; border-bottom: 1px solid var(--border-subtle); }
+th:first-child, td:first-child { text-align: left; }
+thead th { background: var(--surface); font-weight: 600; white-space: nowrap; }
+tbody tr:nth-child(odd) { background: var(--surface); }
+
+/* ---------- ad slots, section 7 ---------- */
+/* Height is reserved in CSS before anything loads. An unreserved ad slot is
+   the number one cause of CLS on a monetised site. */
+.ad-slot { display: block; margin: var(--s-8) auto; background: var(--surface); overflow: hidden; }
+.ad-leaderboard { min-height: 90px; }
+.ad-rectangle   { min-height: 250px; }
+.ad-mobile      { min-height: 100px; }
+@media (max-width: 767px) { .ad-leaderboard { min-height: 100px; } }
+
+/* ---------- misc blocks ---------- */
+.callout {
+  background: var(--warning-bg);
+  border: 1px solid #E7D9B0;
+  border-radius: var(--radius-sm);
+  color: var(--warning-text);
+  padding: var(--s-4);
+  margin: var(--s-6) 0;
+}
+.dates { font-size: 14px; color: var(--text-muted); margin-top: var(--s-8); }
+.disclaimer { font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: var(--s-4); margin-top: var(--s-8); }
+
+.linkgrid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
+@media (min-width: 640px)  { .linkgrid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .linkgrid { grid-template-columns: repeat(5, 1fr); } }
+
+.faq h3 { margin-bottom: var(--s-1); }

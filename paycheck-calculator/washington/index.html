@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Washington Paycheck Calculator 2026 — Take-Home Pay After Taxes</title>
+<meta name="description" content="Free Washington paycheck calculator for 2026. Washington has no state income tax, so see exactly what federal tax, FICA, Paid Leave and WA Cares take from your pay.">
+<link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/washington/">
+<link rel="stylesheet" href="/assets/style.css">
+
+<meta property="og:title" content="Washington Paycheck Calculator 2026 — Take-Home Pay After Taxes">
+<meta property="og:description" content="Washington has no state income tax. See what federal tax, FICA, Paid Leave and WA Cares actually take from your paycheck in 2026.">
+<meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/washington/">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Washington Paycheck Calculator",
+      "url": "https://statelinecalc.com/paycheck-calculator/washington/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculates 2026 Washington take-home pay after federal income tax, Social Security, Medicare, WA Paid Family and Medical Leave, and WA Cares."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Paycheck Calculator", "item": "https://statelinecalc.com/paycheck-calculator/" },
+        { "@type": "ListItem", "position": 3, "name": "Washington", "item": "https://statelinecalc.com/paycheck-calculator/washington/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Washington have a state income tax?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Washington is one of nine states with no personal income tax on wages. Your paycheck still has federal income tax, Social Security, Medicare, WA Paid Family and Medical Leave, and in most cases WA Cares withheld." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is take-home pay on a $75,000 salary in Washington?",
+          "acceptedAnswer": { "@type": "Answer", "text": "About $60,552 a year, or roughly $5,046 a month, for a single filer taking the standard deduction in 2026. Total withholding is about $14,448, an effective rate of 19.3 percent." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the WA Cares deduction on my paycheck?",
+          "acceptedAnswer": { "@type": "Answer", "text": "WA Cares is Washington's long-term care program. Employees pay 0.58 percent of gross wages with no wage cap. On a $75,000 salary that is $435 a year, about $36.25 a month." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my Washington paycheck smaller than the calculator says?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The most common reasons are health insurance premiums, retirement contributions beyond what you entered, and a W-4 that does not match your situation. This calculator covers taxes and state payroll programs, not employer benefit deductions." }
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "StateLine Calc",
+      "url": "https://statelinecalc.com/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">StateLine Calc</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/paycheck-calculator/">Paycheck</a>
+      <a href="/tax-calculator/federal/">Federal tax</a>
+      <a href="/salary-calculator/">Salary</a>
+      <a href="/methodology/">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/paycheck-calculator/">Paycheck Calculator</a></li>
+      <li aria-current="page">Washington</li>
+    </ol>
+  </nav>
+
+  <!-- 1. H1 = the exact query -->
+  <h1>Washington Paycheck Calculator</h1>
+
+  <!-- 2. Direct answer, 40-60 words, before the calculator -->
+  <div class="answer">
+    <p><strong>Washington has no state income tax.</strong> On a $75,000 salary, a single
+    filer takes home about <span class="num">$60,552</span> a year, or
+    <span class="num">$5,046</span> a month, in 2026. The deductions are federal income
+    tax, Social Security, Medicare, WA Paid Family and Medical Leave (0.807%), and
+    WA Cares (0.58%).</p>
+  </div>
+
+  <!-- 3. The calculator itself -->
+  <section aria-labelledby="calc-h">
+    <h2 id="calc-h" style="margin-top:0">Calculate your Washington take-home pay</h2>
+
+    <form class="calc" data-paycheck-form data-state="washington" novalidate>
+      <div class="field">
+        <label for="salary">Your gross pay</label>
+        <input type="text" id="salary" name="salary" inputmode="decimal" value="75000"
+               autocomplete="off">
+        <span class="help">Before any taxes or deductions. Do not include tips paid in cash.</span>
+        <span class="error" role="alert">Enter an amount greater than zero.</span>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="period">How often you are paid</label>
+          <select id="period" name="period">
+            <option value="annual" selected>Per year</option>
+            <option value="monthly">Per month</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">This tells us what the amount above represents.</span>
+        </div>
+
+        <div class="field">
+          <label for="filing">Filing status</label>
+          <select id="filing" name="filing">
+            <option value="single" selected>Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+          <span class="help">Sets your standard deduction and federal brackets.</span>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="retirement">401(k) contribution</label>
+          <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
+          <span class="help">Percent of gross pay, before tax. Enter 0 if you do not contribute.</span>
+        </div>
+
+        <div class="field">
+          <label for="display">Show results</label>
+          <select id="display" name="display">
+            <option value="monthly" selected>Per month</option>
+            <option value="annual">Per year</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">Changes the period, not the calculation.</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="checkline">
+          <input type="checkbox" id="wacares" name="wacares" checked>
+          <label for="wacares" style="font-weight:400">
+            Include WA Cares (0.58%)
+            <span class="help">Uncheck only if you hold an approved exemption. Most workers do not.</span>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+
+    <div class="result" data-paycheck-result aria-live="polite"></div>
+
+    <p class="caption" style="margin-top:12px">
+      Everything is calculated in your browser. Nothing you type is sent to us or stored.
+      There is no sign-up and no personal data is required.
+    </p>
+  </section>
+
+  <!-- Ad slot A: after the result, never before the tool -->
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <!-- 4. How it works + sources -->
+    <h2>How this calculator works</h2>
+    <p>Washington is one of nine states that does not tax wage income, so there is no state
+    line on your paystub the way there is in Oregon or California. What remains is federal
+    withholding, the two federal payroll taxes, and two state programs that are funded
+    directly out of employee wages.</p>
+
+    <p>The calculator applies five deductions, in this order:</p>
+    <ul>
+      <li><strong>Federal income tax.</strong> Your gross pay minus the standard deduction
+      for your filing status, run through the 2026 federal brackets. For 2026 the standard
+      deduction is <span class="num">$16,100</span> for a single filer,
+      <span class="num">$32,200</span> for married filing jointly, and
+      <span class="num">$24,150</span> for head of household.</li>
+      <li><strong>Social Security</strong> at 6.2% of gross wages, up to the 2026 wage base
+      of <span class="num">$184,500</span>. Earnings above that are not subject to it.</li>
+      <li><strong>Medicare</strong> at 1.45% of all wages, with no cap, plus the 0.9%
+      Additional Medicare Tax on wages above <span class="num">$200,000</span>.</li>
+      <li><strong>WA Paid Family and Medical Leave.</strong> The 2026 premium is 1.13% of
+      gross wages, of which employees pay 71.43% — an effective employee rate of
+      <strong>0.807%</strong>, capped at the same <span class="num">$184,500</span> wage base.</li>
+      <li><strong>WA Cares</strong> at 0.58% of gross wages, with <strong>no wage cap at
+      all</strong>. This is the deduction that surprises high earners most.</li>
+    </ul>
+
+    <p>Rates come directly from the agencies that set them: the IRS for federal brackets,
+    the standard deduction and FICA; the Washington State Employment Security Department for
+    the Paid Leave premium; and the WA Cares Fund for the long-term care premium. Every figure
+    was verified on <time datetime="2026-08-22">August 22, 2026</time>. Our full sourcing is
+    on the <a href="/methodology/">methodology page</a>.</p>
+
+    <p>What the calculator deliberately does not do: it does not itemize deductions, apply tax
+    credits, model multiple jobs, or account for health insurance premiums and other employer
+    benefit deductions. Those are personal to your W-4 and your benefits election, and guessing
+    at them would make the number look precise while being wrong.</p>
+  </div>
+
+  <!-- 5. The 14-bracket table: the crawlable version of the calculator -->
+  <h2>Washington take-home pay by salary</h2>
+  <p class="prose">Single filer, standard deduction, no retirement contribution, 2026 rates.
+  Use it to place yourself without typing anything.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption" style="text-align:left;padding-bottom:8px">
+        2026 Washington take-home pay, single filer
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Gross salary</th>
+          <th scope="col">Federal tax</th>
+          <th scope="col">FICA</th>
+          <th scope="col">WA programs</th>
+          <th scope="col">Take-home</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$40,000</td>
+            <td class="num">$2,620</td>
+            <td class="num">$3,060</td>
+            <td class="num">$555</td>
+            <td class="num"><strong>$33,765</strong></td>
+            <td class="num">$2,813.76</td>
+            <td class="num">15.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$50,000</td>
+            <td class="num">$3,820</td>
+            <td class="num">$3,825</td>
+            <td class="num">$694</td>
+            <td class="num"><strong>$41,661</strong></td>
+            <td class="num">$3,471.79</td>
+            <td class="num">16.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$60,000</td>
+            <td class="num">$5,020</td>
+            <td class="num">$4,590</td>
+            <td class="num">$832</td>
+            <td class="num"><strong>$49,558</strong></td>
+            <td class="num">$4,129.81</td>
+            <td class="num">17.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$70,000</td>
+            <td class="num">$6,570</td>
+            <td class="num">$5,355</td>
+            <td class="num">$971</td>
+            <td class="num"><strong>$57,104</strong></td>
+            <td class="num">$4,758.67</td>
+            <td class="num">18.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$75,000</td>
+            <td class="num">$7,670</td>
+            <td class="num">$5,738</td>
+            <td class="num">$1,040</td>
+            <td class="num"><strong>$60,552</strong></td>
+            <td class="num">$5,046.01</td>
+            <td class="num">19.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$80,000</td>
+            <td class="num">$8,770</td>
+            <td class="num">$6,120</td>
+            <td class="num">$1,110</td>
+            <td class="num"><strong>$64,000</strong></td>
+            <td class="num">$5,333.36</td>
+            <td class="num">20.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$90,000</td>
+            <td class="num">$10,970</td>
+            <td class="num">$6,885</td>
+            <td class="num">$1,248</td>
+            <td class="num"><strong>$70,897</strong></td>
+            <td class="num">$5,908.05</td>
+            <td class="num">21.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$100,000</td>
+            <td class="num">$13,170</td>
+            <td class="num">$7,650</td>
+            <td class="num">$1,387</td>
+            <td class="num"><strong>$77,793</strong></td>
+            <td class="num">$6,482.74</td>
+            <td class="num">22.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$110,000</td>
+            <td class="num">$15,370</td>
+            <td class="num">$8,415</td>
+            <td class="num">$1,526</td>
+            <td class="num"><strong>$84,689</strong></td>
+            <td class="num">$7,057.43</td>
+            <td class="num">23.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$125,000</td>
+            <td class="num">$18,734</td>
+            <td class="num">$9,563</td>
+            <td class="num">$1,734</td>
+            <td class="num"><strong>$94,970</strong></td>
+            <td class="num">$7,914.13</td>
+            <td class="num">24.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$140,000</td>
+            <td class="num">$22,334</td>
+            <td class="num">$10,710</td>
+            <td class="num">$1,942</td>
+            <td class="num"><strong>$105,014</strong></td>
+            <td class="num">$8,751.16</td>
+            <td class="num">25.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$150,000</td>
+            <td class="num">$24,734</td>
+            <td class="num">$11,475</td>
+            <td class="num">$2,081</td>
+            <td class="num"><strong>$111,710</strong></td>
+            <td class="num">$9,309.19</td>
+            <td class="num">25.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$175,000</td>
+            <td class="num">$30,734</td>
+            <td class="num">$13,388</td>
+            <td class="num">$2,428</td>
+            <td class="num"><strong>$128,451</strong></td>
+            <td class="num">$10,704.25</td>
+            <td class="num">26.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$200,000</td>
+            <td class="num">$36,734</td>
+            <td class="num">$14,339</td>
+            <td class="num">$2,649</td>
+            <td class="num"><strong>$146,278</strong></td>
+            <td class="num">$12,189.82</td>
+            <td class="num">26.9%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ad slot B -->
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <!-- 6. Key facts -->
+    <h2>Key facts that affect your take-home pay in Washington</h2>
+
+    <p><strong>No state income tax is worth more than most people assume.</strong> A single
+    filer earning $100,000 keeps about <span class="num">$77,793</span> in Washington. The same
+    salary in a state with a 5% flat income tax would lose roughly $4,200 more. Over a decade
+    that difference buys a car.</p>
+
+    <p><strong>The Social Security cap makes your effective rate fall, not rise, past
+    $184,500.</strong> Once your wages pass the 2026 wage base, the 6.2% stops. It is the one
+    point where earning more money genuinely lowers your marginal payroll burden — which is why
+    the effective rate in the table above climbs steeply to $150,000 and then flattens.</p>
+
+    <p><strong>WA Cares has no cap, and that is unusual.</strong> Every other line on a
+    Washington paystub either caps out or is federal. WA Cares takes 0.58% of every dollar,
+    forever. On $200,000 that is $1,160 a year. Workers who bought qualifying private long-term
+    care insurance before the deadline could apply for an exemption; if you hold one, uncheck
+    the box in the calculator.</p>
+
+    <p><strong>Washington has no local income taxes either.</strong> Seattle, Spokane and
+    Tacoma do not levy a city wage tax, so your ZIP code does not change the arithmetic. This
+    is not true in Ohio, Pennsylvania, or New York City, where local tax can be several
+    percent.</p>
+
+    <p><strong>The trade-off is on the other side of the ledger.</strong> Washington funds
+    itself with a sales tax that runs above 10% in much of the Puget Sound region, and with
+    property taxes. A high earner comes out well ahead; the picture is less lopsided for
+    someone spending most of what they earn.</p>
+
+    <!-- 7. Common mistakes -->
+    <h2>Common mistakes people make</h2>
+
+    <p><strong>Comparing gross salaries across state lines.</strong> A $95,000 offer in Seattle
+    and a $95,000 offer in Portland are not the same offer. Oregon's top marginal rate reaches
+    9.9%, and the Portland metro adds its own taxes on top. Compare take-home, not headline.</p>
+
+    <p><strong>Forgetting that WA Cares and Paid Leave are not taxes you get back.</strong>
+    They are insurance premiums. Nothing is refunded at filing time, and they do not appear as
+    withholding on your federal return.</p>
+
+    <p><strong>Assuming a bonus is taxed at a higher rate.</strong> Supplemental wages are
+    usually <em>withheld</em> at a flat 22% federally, which is often more than your actual
+    marginal rate. The excess comes back when you file. The bonus was never taxed at a
+    penalty rate — it was over-withheld.</p>
+
+    <p><strong>Entering take-home pay instead of gross.</strong> The single most common reason
+    a calculator result looks wrong. The first field wants the number before anything is
+    taken out.</p>
+
+    <p><strong>Ignoring the 401(k) lever.</strong> Contributions reduce federal taxable income
+    but not FICA, Paid Leave, or WA Cares. Putting 10% into a 401(k) on a $100,000 salary cuts
+    roughly $2,200 from federal tax while leaving the state programs untouched. Try it in the
+    calculator above.</p>
+
+    <!-- 8. Worked example -->
+    <h2>Example calculation</h2>
+
+    <p>Take a single filer in Tacoma earning <span class="num">$75,000</span> a year in 2026,
+    with no retirement contribution. Here is every step.</p>
+
+    <p><strong>Federal income tax.</strong> Taxable income is $75,000 minus the $16,100
+    standard deduction, or <span class="num">$58,900</span>. That is taxed in three slices:
+    10% on the first $12,400 = <span class="num">$1,240</span>; 12% on the next $38,000
+    (from $12,400 to $50,400) = <span class="num">$4,560</span>; 22% on the remaining $8,500
+    (from $50,400 to $58,900) = <span class="num">$1,870</span>. Federal tax is
+    <strong><span class="num">$7,670</span></strong>. Note that the 22% applies only to that
+    last $8,500 — not to the whole salary.</p>
+
+    <p><strong>Social Security.</strong> $75,000 is below the $184,500 wage base, so the full
+    salary is taxed at 6.2% = <strong><span class="num">$4,650</span></strong>.</p>
+
+    <p><strong>Medicare.</strong> 1.45% of $75,000 =
+    <strong><span class="num">$1,087.50</span></strong>. The salary is below $200,000, so no
+    Additional Medicare Tax applies.</p>
+
+    <p><strong>WA Paid Family and Medical Leave.</strong> 0.807% of $75,000 =
+    <strong><span class="num">$605.37</span></strong>.</p>
+
+    <p><strong>WA Cares.</strong> 0.58% of $75,000 =
+    <strong><span class="num">$435</span></strong>.</p>
+
+    <p><strong>The result.</strong> Total withholding is
+    <span class="num">$14,447.87</span>, leaving take-home pay of
+    <strong><span class="num">$60,552.13</span></strong> a year —
+    <span class="num">$5,046.01</span> a month, or
+    <span class="num">$2,329.00</span> every two weeks. The effective rate is
+    <strong>19.3%</strong>, even though the top marginal federal bracket touched is 22%.</p>
+
+    <!-- 9. FAQ -->
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+
+      <h3>Does Washington have a state income tax?</h3>
+      <p>No. Washington is one of nine states with no personal income tax on wages. Your
+      paycheck still has federal income tax, Social Security, Medicare, WA Paid Family and
+      Medical Leave, and in most cases WA Cares withheld. A 7% capital gains tax exists on
+      certain long-term gains above a threshold, but it does not touch wage income.</p>
+
+      <h3>What is take-home pay on a $75,000 salary in Washington?</h3>
+      <p>About <span class="num">$60,552</span> a year, or roughly
+      <span class="num">$5,046</span> a month, for a single filer taking the standard
+      deduction in 2026. Total withholding is about <span class="num">$14,448</span>, an
+      effective rate of 19.3%.</p>
+
+      <h3>What is the WA Cares deduction on my paycheck?</h3>
+      <p>WA Cares is Washington's long-term care program. Employees pay 0.58% of gross wages
+      with no wage cap. On a $75,000 salary that is $435 a year, about $36.25 a month. It buys
+      a lifetime benefit for long-term care costs, subject to vesting rules.</p>
+
+      <h3>Why is my Washington paycheck smaller than the calculator says?</h3>
+      <p>Usually health insurance premiums, retirement contributions beyond what you entered,
+      or a W-4 that does not match your situation — for example a second job, or a spouse who
+      also works. This calculator covers taxes and state payroll programs, not employer
+      benefit deductions, which vary by employer.</p>
+    </section>
+
+    <!-- 10a. Neighboring states -->
+    <h2>Compare with neighboring states</h2>
+    <p>Washington's advantage only shows up in comparison. These are the states people
+    actually weigh it against:</p>
+    <ul>
+      <li><a href="/paycheck-calculator/oregon/">Oregon</a> — no sales tax, but income tax
+      reaching 9.9%. The mirror image of Washington.</li>
+      <li><a href="/paycheck-calculator/idaho/">Idaho</a> — a flat state income tax, lower
+      cost of living.</li>
+      <li><a href="/paycheck-calculator/california/">California</a> — the most common
+      relocation comparison for tech workers, and the largest gap.</li>
+      <li><a href="/paycheck-calculator/nevada/">Nevada</a> — also no income tax, and without
+      Washington's Paid Leave and WA Cares premiums.</li>
+      <li><a href="/paycheck-calculator/texas/">Texas</a> — no income tax, higher property
+      tax.</li>
+    </ul>
+
+    <h2>Related calculators</h2>
+    <ul>
+      <li><a href="/bonus-tax-calculator/">Bonus tax calculator</a> — what actually lands from
+      a bonus after supplemental withholding.</li>
+      <li><a href="/hourly-pay-calculator/">Hourly pay calculator</a> — for hourly and shift
+      work rather than salary.</li>
+      <li><a href="/salary-calculator/">Salary calculator</a> — convert between hourly, weekly,
+      monthly and annual pay.</li>
+      <li><a href="/tax-calculator/federal/">Federal tax calculator</a> — the federal portion
+      on its own.</li>
+    </ul>
+  </div>
+
+  <!-- Ad slot C -->
+  <div class="ad-slot ad-leaderboard" aria-hidden="true"></div>
+
+  <!-- 10b. Browse by state -->
+  <h2>Browse paycheck calculators by state</h2>
+  <ul class="linkgrid">
+    <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
+    <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
+    <li><a href="/paycheck-calculator/arizona/">Arizona</a></li>
+    <li><a href="/paycheck-calculator/arkansas/">Arkansas</a></li>
+    <li><a href="/paycheck-calculator/california/">California</a></li>
+    <li><a href="/paycheck-calculator/colorado/">Colorado</a></li>
+    <li><a href="/paycheck-calculator/connecticut/">Connecticut</a></li>
+    <li><a href="/paycheck-calculator/delaware/">Delaware</a></li>
+    <li><a href="/paycheck-calculator/florida/">Florida</a></li>
+    <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
+    <li><a href="/paycheck-calculator/hawaii/">Hawaii</a></li>
+    <li><a href="/paycheck-calculator/idaho/">Idaho</a></li>
+    <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
+    <li><a href="/paycheck-calculator/indiana/">Indiana</a></li>
+    <li><a href="/paycheck-calculator/iowa/">Iowa</a></li>
+    <li><a href="/paycheck-calculator/kansas/">Kansas</a></li>
+    <li><a href="/paycheck-calculator/kentucky/">Kentucky</a></li>
+    <li><a href="/paycheck-calculator/louisiana/">Louisiana</a></li>
+    <li><a href="/paycheck-calculator/maine/">Maine</a></li>
+    <li><a href="/paycheck-calculator/maryland/">Maryland</a></li>
+    <li><a href="/paycheck-calculator/massachusetts/">Massachusetts</a></li>
+    <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
+    <li><a href="/paycheck-calculator/minnesota/">Minnesota</a></li>
+    <li><a href="/paycheck-calculator/mississippi/">Mississippi</a></li>
+    <li><a href="/paycheck-calculator/missouri/">Missouri</a></li>
+    <li><a href="/paycheck-calculator/montana/">Montana</a></li>
+    <li><a href="/paycheck-calculator/nebraska/">Nebraska</a></li>
+    <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
+    <li><a href="/paycheck-calculator/new-hampshire/">New Hampshire</a></li>
+    <li><a href="/paycheck-calculator/new-jersey/">New Jersey</a></li>
+    <li><a href="/paycheck-calculator/new-mexico/">New Mexico</a></li>
+    <li><a href="/paycheck-calculator/new-york/">New York</a></li>
+    <li><a href="/paycheck-calculator/north-carolina/">North Carolina</a></li>
+    <li><a href="/paycheck-calculator/north-dakota/">North Dakota</a></li>
+    <li><a href="/paycheck-calculator/ohio/">Ohio</a></li>
+    <li><a href="/paycheck-calculator/oklahoma/">Oklahoma</a></li>
+    <li><a href="/paycheck-calculator/oregon/">Oregon</a></li>
+    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
+    <li><a href="/paycheck-calculator/rhode-island/">Rhode Island</a></li>
+    <li><a href="/paycheck-calculator/south-carolina/">South Carolina</a></li>
+    <li><a href="/paycheck-calculator/south-dakota/">South Dakota</a></li>
+    <li><a href="/paycheck-calculator/tennessee/">Tennessee</a></li>
+    <li><a href="/paycheck-calculator/texas/">Texas</a></li>
+    <li><a href="/paycheck-calculator/utah/">Utah</a></li>
+    <li><a href="/paycheck-calculator/vermont/">Vermont</a></li>
+    <li><a href="/paycheck-calculator/virginia/">Virginia</a></li>
+    <li><a href="/paycheck-calculator/washington/" aria-current="page">Washington</a></li>
+    <li><a href="/paycheck-calculator/west-virginia/">West Virginia</a></li>
+    <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
+    <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
+  </ul>
+
+  <!-- 11. Dates -->
+  <p class="dates">
+    Published <time datetime="2026-08-22">August 22, 2026</time> ·
+    Last updated <time datetime="2026-08-22">August 22, 2026</time> ·
+    Rates verified against IRS, Washington State Employment Security Department and
+    WA Cares Fund sources on August 22, 2026.
+    See our <a href="/methodology/">methodology</a>.
+  </p>
+
+  <!-- 12. Disclaimer -->
+  <p class="disclaimer">
+    StateLine Calc provides general information for educational purposes only. It is not
+    financial, tax or legal advice, and it does not account for every circumstance. Results are
+    estimates based on published 2026 rates and the standard deduction. Your actual paycheck
+    depends on your W-4, your employer's benefit deductions and your full tax situation. Consult
+    a qualified tax professional before making decisions.
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>StateLine Calc</strong> — free money calculators for all 50 states.
+    No sign-up. No personal data required.</p>
+    <p class="micro" style="color:var(--on-dark)">
+      <a href="/about/">About</a> ·
+      <a href="/methodology/">Methodology</a> ·
+      <a href="/contact/">Contact</a> ·
+      <a href="/privacy/">Privacy</a> ·
+      <a href="/terms/">Terms</a> ·
+      <a href="/disclaimer/">Disclaimer</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/data/rates-2026.js"></script>
+<script src="/assets/calc-paycheck.js"></script>
+</body>
+</html>
