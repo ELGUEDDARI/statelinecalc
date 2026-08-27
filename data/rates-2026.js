@@ -48,6 +48,21 @@ const RATES_2026 = {
         [512450, 0.32],
         [768700, 0.35],
         [Infinity, 0.37]
+      ],
+      /* Added 2026-08-27. The form has always offered "Head of household",
+         but this table was missing, so the engine silently fell back to the
+         single bands and overstated federal tax for every HoH visitor.
+         Read verbatim from Rev. Proc. 2025-32, TABLE 2 - Section 1(j)(2)(B),
+         "Heads of Households". Note the thresholds are NOT the single ones:
+         $201,750 and $256,200 here, against $201,775 and $256,225 for single. */
+      headOfHousehold: [
+        [17700, 0.10],
+        [67450, 0.12],
+        [105700, 0.22],
+        [201750, 0.24],
+        [256200, 0.32],
+        [640600, 0.35],
+        [Infinity, 0.37]
       ]
     }
   },

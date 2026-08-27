@@ -1,0 +1,34 @@
+# ============================================================================
+# CE DEPOT EST PUBLIC. Tout ce qui est commite est lisible par n'importe qui.
+#
+# Le script .tooling/ops/git-push.ps1 fait un `git add -A`. Sans ce fichier,
+# les notes de travail internes (strategie, concurrents, chiffres d'affaires,
+# autres projets) partiraient en ligne au premier push.
+#
+# Regle : aucun document de travail a la racine ne doit etre publie.
+# Seuls le site lui-meme et l'outillage sans secret le sont.
+# ============================================================================
+
+# Notes de travail, etat du projet, journaux, plans, veille
+00-*.md
+*-PLAN*.md
+*-ETAT*.md
+*-VEILLE*.md
+NOTES*.md
+MEMORY.md
+*.bak
+*.bak-*
+
+# Secrets et identifiants, quelle qu'en soit la forme
+.env
+*.env
+secrets*
+*token*
+*.pem
+*.key
+
+# Bruit systeme
+Thumbs.db
+desktop.ini
+.DS_Store
+node_modules/

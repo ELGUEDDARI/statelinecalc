@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
+<script src="/assets/analytics.js"></script>
+<title>Methodology — How StateLine Calc Works Out Your Take-Home Pay</title>
+<meta name="description" content="Exactly how our paycheck calculators work: the formula, the 2026 federal and state figures we use, where each one comes from, what we deliberately leave out, and when we check them again.">
+<link rel="canonical" href="https://statelinecalc.com/methodology/">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "name": "StateLine Calc Methodology",
+      "url": "https://statelinecalc.com/methodology/",
+      "datePublished": "2026-08-27",
+      "dateModified": "2026-08-27",
+      "publisher": { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/" },
+      "about": "How take-home pay is calculated, and the official sources used for every rate."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Methodology", "item": "https://statelinecalc.com/methodology/" }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "StateLine Calc",
+      "url": "https://statelinecalc.com/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">StateLine Calc</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/paycheck-calculator/">Paycheck</a>
+      <a href="/methodology/">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li>Methodology</li>
+  </ol>
+</nav>
+
+<h1>Methodology</h1>
+
+<div class="answer">
+  <p>Every figure on this site is copied from an official source &mdash; the IRS, the Social
+  Security Administration, or the state agency that sets the rate &mdash; and every page records
+  the date it was checked. This page shows the arithmetic, names the sources, and states plainly
+  what our calculators do not model.</p>
+</div>
+
+<div class="prose">
+
+<h2>The calculation, step by step</h2>
+
+<p>A paycheck calculator is not a mystery box. It is a short sequence of subtractions in a fixed
+order, and the order matters, because some are taken from your gross pay and some from a smaller,
+already-reduced number. Here is the sequence we use for every state.</p>
+
+<h3>Step 1 &mdash; Start from annual gross pay</h3>
+<p>Everything begins with gross wages for the year, before anything is withheld. If you are paid
+hourly, that is your hourly rate multiplied by the hours you actually work in a year, not a
+notional 2,080.</p>
+
+<h3>Step 2 &mdash; Subtract the federal standard deduction</h3>
+<p>Federal income tax is charged on taxable income, not gross income. For the 2026 tax year the
+standard deduction is <strong>$16,100</strong> for a single filer, <strong>$32,200</strong> for a
+married couple filing jointly, and <strong>$24,150</strong> for a head of household. We subtract it
+first. If the result would be below zero, taxable income is zero, never negative.</p>
+
+<h3>Step 3 &mdash; Apply the federal brackets one band at a time</h3>
+<p>This is where most mental estimates go wrong. A marginal rate applies only to the dollars inside
+its band, not to your whole income. Someone in the 22&nbsp;percent bracket does not pay
+22&nbsp;percent of their salary. They pay 10&nbsp;percent on the first slice, 12&nbsp;percent on
+the next, and 22&nbsp;percent only on what is left above the threshold. We walk the bands in order
+and add up the tax owed in each.</p>
+
+<h3>Step 4 &mdash; Add Social Security, up to the wage base</h3>
+<p>Social Security is withheld at <strong>6.2&nbsp;percent</strong> of gross wages, not of taxable
+income, and it stops once you have earned <strong>$184,500</strong> in 2026. Above that ceiling,
+nothing more comes out for Social Security for the rest of the year. Your employer pays a matching
+6.2&nbsp;percent, which never appears on your pay stub and is not part of your take-home
+calculation.</p>
+
+<h3>Step 5 &mdash; Add Medicare, which has no ceiling</h3>
+<p>Medicare is <strong>1.45&nbsp;percent</strong> of all gross wages, with no wage base at all.
+Above <strong>$200,000</strong> in wages, an <strong>Additional Medicare Tax of
+0.9&nbsp;percent</strong> applies to the excess. That surtax is on the employee only. Employers do
+not match it.</p>
+
+<h3>Step 6 &mdash; Add whatever the state takes</h3>
+<p>This is the part that differs by state, and it is the reason this site exists. Some states levy
+a progressive income tax with their own brackets and their own deductions. Some levy a flat rate.
+Nine levy no tax on wage income at all &mdash; but several of those still withhold payroll
+contributions that people forget about, which is exactly why <em>no income tax</em> does not mean
+<em>nothing comes out</em>. Washington is the clearest example: no income tax, yet Paid Family and
+Medical Leave and WA Cares are both withheld from every check.</p>
+
+<h2>Where each 2026 figure comes from</h2>
+
+<p>These are the federal figures used across every state page, with the source we read and the date
+we read it. If you find one of them out of date, that is a defect and we want to hear about it.</p>
+
+<div class="table-scroll">
+<table>
+  <caption class="caption-left">Federal figures used on every page, tax year 2026</caption>
+  <thead>
+    <tr><th>Figure</th><th>Value</th><th>Source</th><th>Checked</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Standard deduction, single</td><td>$16,100</td><td>IRS Rev. Proc. 2025-32</td><td>Aug 22, 2026</td></tr>
+    <tr><td>Standard deduction, married filing jointly</td><td>$32,200</td><td>IRS Rev. Proc. 2025-32</td><td>Aug 22, 2026</td></tr>
+    <tr><td>Standard deduction, head of household</td><td>$24,150</td><td>IRS Rev. Proc. 2025-32</td><td>Aug 22, 2026</td></tr>
+    <tr><td>Social Security rate, employee</td><td>6.2%</td><td>IRS Topic 751</td><td>Aug 22, 2026</td></tr>
+    <tr><td>Social Security wage base</td><td>$184,500</td><td>IRS Topic 751 and SSA</td><td>Aug 22, 2026</td></tr>
+    <tr><td>Medicare rate, employee</td><td>1.45%</td><td>IRS Topic 751</td><td>Aug 22, 2026</td></tr>
+    <tr><td>Additional Medicare Tax</td><td>0.9% above $200,000</td><td>IRS Topic 751</td><td>Aug 22, 2026</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>The 2026 federal brackets, single filer</h3>
+<p>Read each row as &ldquo;this rate applies to taxable income up to this amount.&rdquo; Taxable
+income means gross pay after the standard deduction, not gross pay.</p>
+
+<div class="table-scroll">
+<table>
+  <caption class="caption-left">Federal income tax brackets, 2026, single filer</caption>
+  <thead><tr><th>Rate</th><th>Taxable income up to</th></tr></thead>
+  <tbody>
+    <tr><td>10%</td><td>$12,400</td></tr>
+    <tr><td>12%</td><td>$50,400</td></tr>
+    <tr><td>22%</td><td>$105,700</td></tr>
+    <tr><td>24%</td><td>$201,775</td></tr>
+    <tr><td>32%</td><td>$256,225</td></tr>
+    <tr><td>35%</td><td>$640,600</td></tr>
+    <tr><td>37%</td><td>above $640,600</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>State figures</h3>
+<p>State rates come from the agency that actually sets them, not from a secondary summary, and they
+are listed on each state&rsquo;s own page rather than here. For Washington that means the
+Employment Security Department for the Paid Family and Medical Leave premium
+(<strong>1.13&nbsp;percent</strong> in total for 2026, of which the employee pays
+<strong>71.43&nbsp;percent</strong>) and the WA Cares Fund for long-term care
+(<strong>0.58&nbsp;percent</strong> of gross wages, with no wage cap). Both were read on
+August&nbsp;22, 2026. See the <a href="/paycheck-calculator/washington/">Washington paycheck
+calculator</a> for how they land on a real salary.</p>
+
+<h2>What our calculators deliberately do not model</h2>
+
+<p>An estimate that pretends to be exact is worse than one that admits its limits. Ours assume a
+straightforward situation: one job, the standard deduction, wages only. They do not account
+for:</p>
+
+<ul>
+  <li><strong>Itemized deductions</strong> &mdash; mortgage interest, large charitable gifts, state
+  and local taxes above the standard deduction.</li>
+  <li><strong>Tax credits</strong> &mdash; the Child Tax Credit, the Earned Income Tax Credit,
+  education credits. Credits cut tax owed dollar for dollar and can move the result
+  substantially.</li>
+  <li><strong>Pre-tax payroll deductions</strong> &mdash; 401(k) and 403(b) contributions, HSA and
+  FSA contributions, and most employer health insurance premiums. These reduce taxable income, so a
+  real pay stub often shows less federal tax than our figure.</li>
+  <li><strong>Multiple jobs, or a working spouse&rsquo;s separate withholding</strong>, which
+  routinely causes under-withholding over the course of a year.</li>
+  <li><strong>Non-wage income</strong> &mdash; self-employment, dividends, capital gains, rental
+  income.</li>
+  <li><strong>Local and city taxes</strong>, which exist in a number of states and are set at the
+  municipal level.</li>
+  <li><strong>Your employer&rsquo;s actual W-4 withholding.</strong> Withholding is a running
+  estimate your employer makes; your true liability is settled when you file.</li>
+</ul>
+
+<div class="callout">
+  <p><strong>This matters for how you read the result.</strong> Our number estimates tax liability
+  on a simple wage situation. It does not predict the exact figure on your next pay stub. Treat a
+  difference of a few percent as normal.</p>
+</div>
+
+<h2>How we keep the numbers current</h2>
+
+<p>Federal brackets, the standard deduction and the Social Security wage base are re-set every
+year, usually announced in the fall for the following tax year. State payroll rates move on their
+own schedules. Our rate file carries a review date of <strong>January 15, 2027</strong>, at which
+point every figure is read again from its official source rather than rolled forward.</p>
+
+<p>We do not copy rates from other calculator sites. Where two official sources exist for the same
+figure, we check both and publish only when they agree. The 2026 Social Security wage base, for
+instance, is confirmed independently by the IRS and the Social Security Administration.</p>
+
+<h2>Why the numbers are published as a table too</h2>
+
+<p>Every calculator page includes a full table of results across a range of salaries, not just an
+interactive tool. There are two reasons. The first is that plenty of people would rather glance at
+a number than type one. The second is that an interactive calculator is invisible to search engines
+and to AI assistants &mdash; they read the page, not the JavaScript &mdash; so a page with only a
+tool on it is a page with no answer on it.</p>
+
+<h2>Your data</h2>
+
+<p>The calculators run entirely in your browser. Salary figures you type are never sent anywhere,
+and we verified that by watching the network traffic during a real calculation rather than by
+simply asserting it. There is no account, no email capture and no salary database. See the
+<a href="/privacy/">privacy policy</a> for what our analytics do collect.</p>
+
+<h2>Corrections</h2>
+
+<p>If a figure here is wrong or out of date, it is a defect, and we would rather hear about it than
+leave it sitting on the site. See the <a href="/contact/">contact page</a>.</p>
+
+</div>
+
+<p class="dates">Published August 27, 2026. Last updated August 27, 2026. Rate data verified
+August 22, 2026. Next scheduled review January 15, 2027.</p>
+
+<p class="disclaimer">
+  StateLine Calc provides general information for educational purposes only. It is not financial,
+  tax or legal advice. Results are estimates based on published rates.
+</p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>StateLine Calc</strong> &mdash; free money calculators for all 50 states.
+    No sign-up. No personal data required.</p>
+    <p class="micro u-on-dark">
+      <a href="/about/">About</a> &middot;
+      <a href="/methodology/">Methodology</a> &middot;
+      <a href="/contact/">Contact</a> &middot;
+      <a href="/privacy/">Privacy</a> &middot;
+      <a href="/terms/">Terms</a> &middot;
+      <a href="/disclaimer/">Disclaimer</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

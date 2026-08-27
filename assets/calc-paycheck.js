@@ -57,8 +57,12 @@
 
     /* --- federal income tax --- */
     var stdDed = R.federal.standardDeduction[input.filingStatus];
-    var bands = R.federal.brackets[input.filingStatus === "marriedJoint"
-      ? "marriedJoint" : "single"];
+    /* Look the bands up by filing status directly. The old form of this line
+       tested only for "marriedJoint" and sent everything else to the single
+       bands, which silently overstated federal tax for head-of-household
+       filers. Fixed 2026-08-27. The fallback stays, but a missing table is
+       now a bug to fix in rates, not a wrong answer served quietly. */
+    var bands = R.federal.brackets[input.filingStatus] || R.federal.brackets.single;
     var taxable = Math.max(0, afterPretax - stdDed);
     var federal = progressiveTax(taxable, bands);
 

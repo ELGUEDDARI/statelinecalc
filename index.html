@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Locked down deliberately: this site loads no external script, style, font
-     or image. Anything third-party is a bug until it is added here on purpose.
+<!-- Locked down deliberately. Exactly ONE third party is loaded anywhere on
+     this site: Google Analytics, added 2026-08-22, allowed by name below.
+     No external style, font or image. Anything else third-party is a bug
+     until it is named here on purpose.
      When AdSense goes in (around day 120), its domains must be added to
      script-src and frame-src explicitly, never by loosening to '*'. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
@@ -35,7 +37,7 @@
   <div class="wrap">
     <a class="brand" href="/">StateLine Calc</a>
     <nav class="site-nav" aria-label="Main">
-      <a href="/paycheck-calculator/washington/">Paycheck</a>
+      <a href="/paycheck-calculator/">Paycheck</a>
       <a href="/methodology/">Methodology</a>
     </nav>
   </div>
@@ -60,7 +62,8 @@
       <li><a href="/paycheck-calculator/washington/">Washington paycheck calculator</a> — no
       state income tax, but Paid Leave and WA Cares still come out of every check.</li>
     </ul>
-    <p class="caption">More states are being added. Washington is live now.</p>
+    <p class="caption">More states are being added. Washington is live now — see the
+    <a href="/paycheck-calculator/">full state index</a> for what is coming.</p>
 
     <h2>How this site is different</h2>
 
@@ -82,7 +85,10 @@
     <p>We do not give financial, tax or legal advice, and we do not pretend a calculator can
     replace an accountant. These tools use the standard deduction and published rates. They do
     not model itemized deductions, tax credits, multiple jobs, or your employer's benefit
-    plan. For anything consequential, talk to a qualified professional.</p>
+    plan. For anything consequential, talk to a qualified professional. The
+    <a href="/methodology/">methodology page</a> lists every assumption and every source, and the
+    <a href="/disclaimer/">disclaimer</a> explains why your pay stub will not match to the
+    dollar.</p>
   </div>
 
   <p class="disclaimer">
@@ -96,6 +102,14 @@
   <div class="wrap">
     <p><strong>StateLine Calc</strong> — free money calculators for all 50 states.
     No sign-up. No personal data required.</p>
+    <p class="micro u-on-dark">
+      <a href="/about/">About</a> &middot;
+      <a href="/methodology/">Methodology</a> &middot;
+      <a href="/contact/">Contact</a> &middot;
+      <a href="/privacy/">Privacy</a> &middot;
+      <a href="/terms/">Terms</a> &middot;
+      <a href="/disclaimer/">Disclaimer</a>
+    </p>
   </div>
 </footer>
 

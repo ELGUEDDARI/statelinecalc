@@ -3,10 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Locked down deliberately: no external script, style, font or image is
-     loaded anywhere on this site. connect-src is 'none' because the
-     calculator never sends anything: every value the visitor types stays in
-     their browser. That is enforced here, not just promised in the copy.
+<!-- Locked down deliberately. connect-src was 'none' until 2026-08-22; it now
+     names the Google Analytics endpoints and nothing else, so page views go
+     out and nothing else can. What the visitor TYPES still never leaves the
+     browser: the calculator runs locally and no salary value is ever passed
+     to the analytics layer. That is checked by test-live.js on every deploy,
+     with a marker amount, against both the URL and the request body.
      When AdSense goes in (around day 120), its domains must be added to
      script-src and frame-src explicitly, never by loosening to '*'. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
@@ -14,7 +16,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
 <title>Washington Paycheck Calculator 2026 — Take-Home Pay After Taxes</title>
-<meta name="description" content="Free Washington paycheck calculator for 2026. Washington has no state income tax, so see exactly what federal tax, FICA, Paid Leave and WA Cares take from your pay.">
+<meta name="description" content="Free Washington paycheck calculator, 2026. No state income tax — see what federal tax, FICA, Paid Leave and WA Cares take from your check.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/washington/">
 <link rel="stylesheet" href="/assets/style.css">
 
@@ -50,7 +52,7 @@
         {
           "@type": "Question",
           "name": "Does Washington have a state income tax?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. Washington is one of nine states with no personal income tax on wages. Your paycheck still has federal income tax, Social Security, Medicare, WA Paid Family and Medical Leave, and in most cases WA Cares withheld." }
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Washington is one of nine states with no personal income tax on wages. Your paycheck still has federal income tax, Social Security, Medicare, WA Paid Family and Medical Leave, and in most cases WA Cares withheld. A capital gains excise tax exists on certain long-term gains above a threshold - 7% up to $1 million in gains and 9.9% above that, since 2025 - but it does not touch wage income." }
         },
         {
           "@type": "Question",
@@ -85,8 +87,6 @@
     <a class="brand" href="/">StateLine Calc</a>
     <nav class="site-nav" aria-label="Main">
       <a href="/paycheck-calculator/">Paycheck</a>
-      <a href="/tax-calculator/federal/">Federal tax</a>
-      <a href="/salary-calculator/">Salary</a>
       <a href="/methodology/">Methodology</a>
     </nav>
   </div>
@@ -486,8 +486,9 @@
       <h3>Does Washington have a state income tax?</h3>
       <p>No. Washington is one of nine states with no personal income tax on wages. Your
       paycheck still has federal income tax, Social Security, Medicare, WA Paid Family and
-      Medical Leave, and in most cases WA Cares withheld. A 7% capital gains tax exists on
-      certain long-term gains above a threshold, but it does not touch wage income.</p>
+      Medical Leave, and in most cases WA Cares withheld. A capital gains excise tax exists on
+      certain long-term gains above a threshold — 7% up to $1 million in gains and 9.9% above
+      that, since 2025 — but it does not touch wage income.</p>
 
       <h3>What is take-home pay on a $75,000 salary in Washington?</h3>
       <p>About <span class="num">$60,552</span> a year, or roughly
@@ -512,29 +513,29 @@
     <p>Washington's advantage only shows up in comparison. These are the states people
     actually weigh it against:</p>
     <ul>
-      <li><a href="/paycheck-calculator/oregon/">Oregon</a> — no sales tax, but income tax
-      reaching 9.9%. The mirror image of Washington.</li>
-      <li><a href="/paycheck-calculator/idaho/">Idaho</a> — a flat state income tax, lower
-      cost of living.</li>
-      <li><a href="/paycheck-calculator/california/">California</a> — the most common
-      relocation comparison for tech workers, and the largest gap.</li>
-      <li><a href="/paycheck-calculator/nevada/">Nevada</a> — also no income tax, and without
-      Washington's Paid Leave and WA Cares premiums.</li>
-      <li><a href="/paycheck-calculator/texas/">Texas</a> — no income tax, higher property
-      tax.</li>
+      <li><strong>Oregon</strong> — no sales tax, but a state income tax reaching 9.9%. The
+      mirror image of Washington.</li>
+      <li><strong>Idaho</strong> — a flat state income tax, lower cost of living.</li>
+      <li><strong>California</strong> — the most common relocation comparison for tech workers,
+      and the largest gap.</li>
+      <li><strong>Nevada</strong> — also no income tax, and without Washington's Paid Leave and
+      WA Cares premiums.</li>
+      <li><strong>Texas</strong> — no income tax, higher property tax.</li>
     </ul>
+    <p class="caption">Calculators for these states are being written. Each one needs its own
+    rates read from that state's own agency before it goes live — see the
+    <a href="/paycheck-calculator/">state index</a>.</p>
 
-    <h2>Related calculators</h2>
+    <h2>Related reading</h2>
     <ul>
-      <li><a href="/bonus-tax-calculator/">Bonus tax calculator</a> — what actually lands from
-      a bonus after supplemental withholding.</li>
-      <li><a href="/hourly-pay-calculator/">Hourly pay calculator</a> — for hourly and shift
-      work rather than salary.</li>
-      <li><a href="/salary-calculator/">Salary calculator</a> — convert between hourly, weekly,
-      monthly and annual pay.</li>
-      <li><a href="/tax-calculator/federal/">Federal tax calculator</a> — the federal portion
-      on its own.</li>
+      <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> — the full index,
+      including which states have no income tax at all.</li>
+      <li><a href="/methodology/">Methodology</a> — the exact formula, every 2026 figure with its
+      official source, and what these calculators deliberately do not model.</li>
+      <li><a href="/disclaimer/">Why your pay stub will differ</a> — pre-tax deductions, credits
+      and W-4 settings, and how much difference is normal.</li>
     </ul>
+    <p class="caption">Bonus, hourly and federal-only calculators are on the way.</p>
   </div>
 
   <!-- Ad slot C -->
@@ -543,56 +544,56 @@
   <!-- 10b. Browse by state -->
   <h2>Browse paycheck calculators by state</h2>
   <ul class="linkgrid">
-    <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
-    <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
-    <li><a href="/paycheck-calculator/arizona/">Arizona</a></li>
-    <li><a href="/paycheck-calculator/arkansas/">Arkansas</a></li>
-    <li><a href="/paycheck-calculator/california/">California</a></li>
-    <li><a href="/paycheck-calculator/colorado/">Colorado</a></li>
-    <li><a href="/paycheck-calculator/connecticut/">Connecticut</a></li>
-    <li><a href="/paycheck-calculator/delaware/">Delaware</a></li>
-    <li><a href="/paycheck-calculator/florida/">Florida</a></li>
-    <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
-    <li><a href="/paycheck-calculator/hawaii/">Hawaii</a></li>
-    <li><a href="/paycheck-calculator/idaho/">Idaho</a></li>
-    <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
-    <li><a href="/paycheck-calculator/indiana/">Indiana</a></li>
-    <li><a href="/paycheck-calculator/iowa/">Iowa</a></li>
-    <li><a href="/paycheck-calculator/kansas/">Kansas</a></li>
-    <li><a href="/paycheck-calculator/kentucky/">Kentucky</a></li>
-    <li><a href="/paycheck-calculator/louisiana/">Louisiana</a></li>
-    <li><a href="/paycheck-calculator/maine/">Maine</a></li>
-    <li><a href="/paycheck-calculator/maryland/">Maryland</a></li>
-    <li><a href="/paycheck-calculator/massachusetts/">Massachusetts</a></li>
-    <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
-    <li><a href="/paycheck-calculator/minnesota/">Minnesota</a></li>
-    <li><a href="/paycheck-calculator/mississippi/">Mississippi</a></li>
-    <li><a href="/paycheck-calculator/missouri/">Missouri</a></li>
-    <li><a href="/paycheck-calculator/montana/">Montana</a></li>
-    <li><a href="/paycheck-calculator/nebraska/">Nebraska</a></li>
-    <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
-    <li><a href="/paycheck-calculator/new-hampshire/">New Hampshire</a></li>
-    <li><a href="/paycheck-calculator/new-jersey/">New Jersey</a></li>
-    <li><a href="/paycheck-calculator/new-mexico/">New Mexico</a></li>
-    <li><a href="/paycheck-calculator/new-york/">New York</a></li>
-    <li><a href="/paycheck-calculator/north-carolina/">North Carolina</a></li>
-    <li><a href="/paycheck-calculator/north-dakota/">North Dakota</a></li>
-    <li><a href="/paycheck-calculator/ohio/">Ohio</a></li>
-    <li><a href="/paycheck-calculator/oklahoma/">Oklahoma</a></li>
-    <li><a href="/paycheck-calculator/oregon/">Oregon</a></li>
-    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
-    <li><a href="/paycheck-calculator/rhode-island/">Rhode Island</a></li>
-    <li><a href="/paycheck-calculator/south-carolina/">South Carolina</a></li>
-    <li><a href="/paycheck-calculator/south-dakota/">South Dakota</a></li>
-    <li><a href="/paycheck-calculator/tennessee/">Tennessee</a></li>
-    <li><a href="/paycheck-calculator/texas/">Texas</a></li>
-    <li><a href="/paycheck-calculator/utah/">Utah</a></li>
-    <li><a href="/paycheck-calculator/vermont/">Vermont</a></li>
-    <li><a href="/paycheck-calculator/virginia/">Virginia</a></li>
+    <li>Alabama</li>
+    <li>Alaska</li>
+    <li>Arizona</li>
+    <li>Arkansas</li>
+    <li>California</li>
+    <li>Colorado</li>
+    <li>Connecticut</li>
+    <li>Delaware</li>
+    <li>Florida</li>
+    <li>Georgia</li>
+    <li>Hawaii</li>
+    <li>Idaho</li>
+    <li>Illinois</li>
+    <li>Indiana</li>
+    <li>Iowa</li>
+    <li>Kansas</li>
+    <li>Kentucky</li>
+    <li>Louisiana</li>
+    <li>Maine</li>
+    <li>Maryland</li>
+    <li>Massachusetts</li>
+    <li>Michigan</li>
+    <li>Minnesota</li>
+    <li>Mississippi</li>
+    <li>Missouri</li>
+    <li>Montana</li>
+    <li>Nebraska</li>
+    <li>Nevada</li>
+    <li>New Hampshire</li>
+    <li>New Jersey</li>
+    <li>New Mexico</li>
+    <li>New York</li>
+    <li>North Carolina</li>
+    <li>North Dakota</li>
+    <li>Ohio</li>
+    <li>Oklahoma</li>
+    <li>Oregon</li>
+    <li>Pennsylvania</li>
+    <li>Rhode Island</li>
+    <li>South Carolina</li>
+    <li>South Dakota</li>
+    <li>Tennessee</li>
+    <li>Texas</li>
+    <li>Utah</li>
+    <li>Vermont</li>
+    <li>Virginia</li>
     <li><a href="/paycheck-calculator/washington/" aria-current="page">Washington</a></li>
-    <li><a href="/paycheck-calculator/west-virginia/">West Virginia</a></li>
-    <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
-    <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
+    <li>West Virginia</li>
+    <li>Wisconsin</li>
+    <li>Wyoming</li>
   </ul>
 
   <!-- 11. Dates -->

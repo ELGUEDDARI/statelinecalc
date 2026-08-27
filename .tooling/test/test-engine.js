@@ -109,5 +109,54 @@ check("net annuel", 75000 - total, 60552.13);
 check("net mensuel", (75000 - total) / 12, 5046.01);
 check("taux effectif x100", (total / 75000) * 100, 19.26, 0.01);
 
+console.log("\n=== 5. Head of household — la regression du 27/08/2026 ===");
+
+/* Ce bloc existe parce que le formulaire proposait "Head of household" alors
+   que le bareme n'existait pas : le moteur retombait sur les tranches
+   "single" et surestimait l'impot federal. Trouve par controle-copy le
+   27/08/2026, sur une page DEJA EN LIGNE.
+
+   Bareme HoH lu VERBATIM dans IRS Rev. Proc. 2025-32, TABLE 2 -
+   Section 1(j)(2)(B) "Heads of Households", le 27/08/2026.
+
+   Cas — 75 000 $ brut, head of household, pas de 401(k) :
+   Revenu imposable = 75 000 - 24 150 (deduction standard HoH) = 50 850
+   10% sur 0 -> 17 700        = 1 770,00
+   12% sur 17 700 -> 50 850   = 33 150 x 0,12 = 3 978,00
+   TOTAL federal                              = 5 748,00
+
+   A comparer : avec les tranches "single" le meme contribuable se voyait
+   afficher 7 670,00 $ - soit 1 922,00 $ de trop. */
+const fedHoH = progressiveTax(75000 - 24150, R.federal.brackets.headOfHousehold);
+check("federal HoH sur 50 850 imposable", fedHoH, 5748.00);
+
+/* Le bareme HoH doit exister et differer de celui du celibataire. */
+check("les tranches HoH existent", R.federal.brackets.headOfHousehold ? 1 : 0, 1, 0);
+check("HoH != single (1re tranche)",
+  R.federal.brackets.headOfHousehold[0][0], 17700, 0);
+
+/* La selection par statut ne doit plus retomber silencieusement sur single.
+   On rejoue ici la ligne exacte du moteur. */
+function bandsFor(status) { return R.federal.brackets[status] || R.federal.brackets.single; }
+check("selection: headOfHousehold -> ses propres tranches",
+  bandsFor("headOfHousehold")[0][0], 17700, 0);
+check("selection: single -> tranches single",
+  bandsFor("single")[0][0], 12400, 0);
+check("selection: marriedJoint -> tranches couple",
+  bandsFor("marriedJoint")[0][0], 24800, 0);
+
+/* Net complet HoH a 75 000 $ dans l'Etat de Washington, recalcul a la main :
+   federal        5 748,00
+   SS             4 650,00   (75 000 x 0,062)
+   Medicare       1 087,50   (75 000 x 0,0145)
+   Paid Leave       605,37   (75 000 x 0,00807159)
+   WA Cares         435,00   (75 000 x 0,0058)
+   ---------------------------
+   total impots  12 525,87
+   net           62 474,13 */
+const totalHoH = fedHoH + ss + med + pl + wc;
+check("total des prelevements HoH", totalHoH, 12525.87);
+check("net annuel HoH", 75000 - totalHoH, 62474.13);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
