@@ -30,11 +30,14 @@ try {
 }
 
 # --- les URLs a signaler ------------------------------------------------
-$urls = @(
-  "https://$hote/",
-  "https://$hote/paycheck-calculator/washington/",
-  "https://$hote/sitemap.xml"
-)
+# Lues dans sitemap.xml, pas ecrites en dur : une liste figee ici serait
+# oubliee a chaque nouvelle page. Le sitemap est la seule liste a tenir.
+$sitemap = Join-Path $racine "sitemap.xml"
+if (-not (Test-Path $sitemap)) { Write-Output "SITEMAP INTROUVABLE : $sitemap"; exit 5 }
+$urls = @(([xml](Get-Content $sitemap -Raw)).urlset.url.loc)
+$urls += "https://$hote/sitemap.xml"
+if ($urls.Count -lt 2) { Write-Output "SITEMAP VIDE - rien a signaler"; exit 6 }
+Write-Output ("=== " + $urls.Count + " URL lues dans sitemap.xml ===")
 
 $corps = @{
   host = $hote

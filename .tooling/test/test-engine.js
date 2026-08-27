@@ -158,5 +158,41 @@ const totalHoH = fedHoH + ss + med + pl + wc;
 check("total des prelevements HoH", totalHoH, 12525.87);
 check("net annuel HoH", 75000 - totalHoH, 62474.13);
 
+console.log("\n=== 6. Nevada — l'Etat qui ne prend RIEN ===");
+
+/* Le Nevada est le cas limite du moteur : aucune retenue d'Etat du tout.
+   Sources lues le 27/08/2026 :
+     - tax.nv.gov : pas d'impot sur le revenu des personnes
+     - Constitution du Nevada, Art. 10 Sec. 1(9)
+     - tax.nv.gov : Modified Business Tax = EMPLOYEUR
+     - detr.nv.gov : assurance chomage = EMPLOYEUR
+   Donc : ni paidLeave ni waCares dans la fiche. Le moteur doit rendre zero
+   sur ces deux lignes SANS planter, et ne doit rien inventer.
+
+   Cas — 75 000 $ brut, celibataire, pas de 401(k) :
+   federal    7 670,00   (identique a Washington : c'est du federal)
+   SS         4 650,00
+   Medicare   1 087,50
+   Etat           0,00
+   ---------------------
+   total     13 407,50
+   net       61 592,50  ->  5 132,71 $/mois  ->  taux 17,88 % */
+const NV = R.states.nevada;
+check("la fiche Nevada existe", NV ? 1 : 0, 1, 0);
+check("Nevada : pas d'impot sur le revenu", NV.incomeTax.hasIncomeTax ? 1 : 0, 0, 0);
+check("Nevada : aucun programme Paid Leave", NV.paidLeave ? 1 : 0, 0, 0);
+check("Nevada : aucun programme type WA Cares", NV.waCares ? 1 : 0, 0, 0);
+
+const fedNV = progressiveTax(75000 - 16100, R.federal.brackets.single);
+const totalNV = fedNV + ss + med;           // ss et med sont deja calcules plus haut
+check("total des prelevements Nevada", totalNV, 13407.50);
+check("net annuel Nevada", 75000 - totalNV, 61592.50);
+check("net mensuel Nevada", (75000 - totalNV) / 12, 5132.71);
+check("taux effectif Nevada x100", (totalNV / 75000) * 100, 17.88, 0.01);
+
+/* L'ecart Washington / Nevada doit valoir EXACTEMENT Paid Leave + WA Cares.
+   Si ce test casse, c'est qu'une retenue s'est glissee quelque part. */
+check("ecart WA -> NV = Paid Leave + WA Cares", (75000 - totalNV) - (75000 - total), pl + wc, 0.02);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

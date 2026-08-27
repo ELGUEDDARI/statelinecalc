@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Locked down deliberately. connect-src names the Google Analytics endpoints
+     and nothing else, so page views go out and nothing else can. What the
+     visitor TYPES still never leaves the browser: the calculator runs locally
+     and no salary value is ever passed to the analytics layer. Checked by
+     test-live.js on every deploy, with a marker amount, against both the URL
+     and the request body.
+     When AdSense goes in (around day 120), its domains must be added to
+     script-src and frame-src explicitly, never by loosening to '*'. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
+<script src="/assets/analytics.js"></script>
+<title>Nevada Paycheck Calculator 2026 — Take-Home Pay After Taxes</title>
+<meta name="description" content="Free Nevada paycheck calculator, 2026. Nevada withholds nothing at state level — see exactly what federal tax, Social Security and Medicare take from your check.">
+<link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/nevada/">
+<link rel="stylesheet" href="/assets/style.css">
+
+<meta property="og:title" content="Nevada Paycheck Calculator 2026 — Take-Home Pay After Taxes">
+<meta property="og:description" content="Nevada takes nothing out of your paycheck at state level. See what federal tax, Social Security and Medicare leave you with in 2026.">
+<meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/nevada/">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Nevada Paycheck Calculator",
+      "url": "https://statelinecalc.com/paycheck-calculator/nevada/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculates 2026 Nevada take-home pay after federal income tax, Social Security and Medicare. Nevada levies no state income tax and no employee-paid payroll programs."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Paycheck Calculator", "item": "https://statelinecalc.com/paycheck-calculator/" },
+        { "@type": "ListItem", "position": 3, "name": "Nevada", "item": "https://statelinecalc.com/paycheck-calculator/nevada/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does Nevada have a state income tax?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The Nevada Department of Taxation states that Nevada residents do not pay state tax on income earned from salaries, wages, or similar compensation, and that the State of Nevada does not impose a state income tax on individuals. Nothing at state level is withheld from your paycheck." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is take-home pay on a $75,000 salary in Nevada?",
+          "acceptedAnswer": { "@type": "Answer", "text": "About $61,593 a year, or roughly $5,133 a month, for a single filer taking the standard deduction in 2026. Total withholding is $13,407.50, an effective rate of 17.9 percent, and every dollar of it is federal." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is anything at all withheld from a Nevada paycheck at state level?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Nevada's Modified Business Tax and its unemployment insurance contributions are both paid by the employer, not withheld from wages. Nevada has no state disability insurance and no paid family leave premium, so a Nevada paystub shows federal income tax, Social Security and Medicare and nothing else from the state." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is take-home pay higher in Nevada than in Washington?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, slightly. Neither state taxes wage income, but Washington withholds Paid Family and Medical Leave and WA Cares from every check. On a $75,000 salary that is about $1,040 a year, so a Nevada worker keeps roughly $61,593 against $60,552 in Washington." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my Nevada paycheck smaller than the calculator says?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Almost always because of things that are personal to you rather than to Nevada: health insurance premiums, a 401(k) contribution, extra withholding on your W-4, or a second job. The calculator models one job, the standard deduction and wages only." }
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "StateLine Calc",
+      "url": "https://statelinecalc.com/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">StateLine Calc</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/paycheck-calculator/">Paycheck</a>
+      <a href="/methodology/">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/paycheck-calculator/">Paycheck Calculator</a></li>
+    <li aria-current="page">Nevada</li>
+  </ol>
+</nav>
+
+  <!-- 1. H1 = the exact query -->
+  <h1>Nevada Paycheck Calculator</h1>
+
+  <!-- 2. Direct answer, 40-60 words, before the calculator -->
+  <div class="answer">
+    <p>Nevada takes nothing out of your paycheck. There is no state income tax, no state
+    disability insurance and no paid leave premium, so every dollar withheld from a Nevada
+    check is federal: income tax, Social Security and Medicare. On $75,000, a single filer
+    keeps about <span class="num">$61,593</span> a year.</p>
+  </div>
+
+  <!-- 3. The calculator itself -->
+  <section aria-labelledby="calc-h">
+    <h2 id="calc-h" class="u-mt-0">Calculate your Nevada take-home pay</h2>
+
+    <form class="calc" data-paycheck-form data-state="nevada" novalidate>
+      <div class="field">
+        <label for="salary">Your gross pay</label>
+        <input type="text" id="salary" name="salary" inputmode="decimal" value="75000"
+               autocomplete="off">
+        <span class="help">Before any taxes or deductions. Do not include tips paid in cash.</span>
+        <span class="error" role="alert">Enter an amount greater than zero.</span>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="period">How often you are paid</label>
+          <select id="period" name="period">
+            <option value="annual" selected>Per year</option>
+            <option value="monthly">Per month</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">This tells us what the amount above represents.</span>
+        </div>
+
+        <div class="field">
+          <label for="filing">Filing status</label>
+          <select id="filing" name="filing">
+            <option value="single" selected>Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+          <span class="help">Sets your standard deduction and federal brackets.</span>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="retirement">401(k) contribution</label>
+          <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
+          <span class="help">Percent of gross pay, before tax. Enter 0 if you do not contribute.</span>
+        </div>
+
+        <div class="field">
+          <label for="display">Show results</label>
+          <select id="display" name="display">
+            <option value="monthly" selected>Per month</option>
+            <option value="annual">Per year</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">Changes the period, not the calculation.</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+
+    <div class="result" data-paycheck-result aria-live="polite"></div>
+
+    <p class="caption u-mt-3">
+      Everything is calculated in your browser. Nothing you type is sent to us or stored.
+    </p>
+  </section>
+
+  <!-- Ad slot A -->
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <!-- 4. How it works + sources -->
+    <h2>How this calculator works</h2>
+    <p>Nevada is the simplest paycheck in the country to work out, because the state takes no
+    part in it. There is no state income tax line on a Nevada paystub, and unlike Washington
+    &mdash; the other big no-income-tax state in the West &mdash; there is no state payroll
+    program deducted from wages either. What is left is federal, and only federal.</p>
+
+    <p>The calculator applies three deductions, in this order:</p>
+    <ul>
+      <li><strong>Federal income tax.</strong> Your gross pay minus the standard deduction for
+      your filing status, run through the 2026 federal brackets. For 2026 the standard deduction
+      is <span class="num">$16,100</span> for a single filer, <span class="num">$32,200</span>
+      for married filing jointly, and <span class="num">$24,150</span> for head of
+      household.</li>
+      <li><strong>Social Security</strong> at 6.2% of gross wages, up to the 2026 wage base of
+      <span class="num">$184,500</span>. Earnings above that are not subject to it.</li>
+      <li><strong>Medicare</strong> at 1.45% of all wages, with no cap, plus the 0.9% Additional
+      Medicare Tax on wages above <span class="num">$200,000</span>.</li>
+    </ul>
+
+    <p>That is the whole list. Rates come from the agencies that set them: the IRS for the
+    federal brackets, the standard deduction and FICA, cross-checked against the Social Security
+    Administration for the wage base; and the Nevada Department of Taxation for the confirmation
+    that no state income tax exists. Every figure was verified on
+    <time datetime="2026-08-27">August 27, 2026</time>. Our full sourcing is on the
+    <a href="/methodology/">methodology page</a>.</p>
+
+    <p>What the calculator deliberately does not do: it does not itemize deductions, apply tax
+    credits, model multiple jobs, or account for health insurance premiums and other employer
+    benefit deductions. Those are personal to your W-4 and your benefits election, and guessing
+    at them would make the number look precise while being wrong.</p>
+  </div>
+
+  <!-- 5. The 14-bracket table: the crawlable version of the calculator -->
+  <h2>Nevada take-home pay by salary</h2>
+  <p class="prose">Single filer, standard deduction, no retirement contribution, 2026 rates.
+  Use it to place yourself without typing anything. The state column is zero on every row, and
+  that is the point.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Nevada take-home pay, single filer
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Gross salary</th>
+          <th scope="col">Federal tax</th>
+          <th scope="col">FICA</th>
+          <th scope="col">NV state</th>
+          <th scope="col">Take-home</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$40,000</td>
+            <td class="num">$2,620</td>
+            <td class="num">$3,060</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$34,320</strong></td>
+            <td class="num">$2,860.00</td>
+            <td class="num">14.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$50,000</td>
+            <td class="num">$3,820</td>
+            <td class="num">$3,825</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$42,355</strong></td>
+            <td class="num">$3,529.58</td>
+            <td class="num">15.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$60,000</td>
+            <td class="num">$5,020</td>
+            <td class="num">$4,590</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$50,390</strong></td>
+            <td class="num">$4,199.17</td>
+            <td class="num">16.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$70,000</td>
+            <td class="num">$6,570</td>
+            <td class="num">$5,355</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$58,075</strong></td>
+            <td class="num">$4,839.58</td>
+            <td class="num">17.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$75,000</td>
+            <td class="num">$7,670</td>
+            <td class="num">$5,738</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$61,593</strong></td>
+            <td class="num">$5,132.71</td>
+            <td class="num">17.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$80,000</td>
+            <td class="num">$8,770</td>
+            <td class="num">$6,120</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$65,110</strong></td>
+            <td class="num">$5,425.83</td>
+            <td class="num">18.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$90,000</td>
+            <td class="num">$10,970</td>
+            <td class="num">$6,885</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$72,145</strong></td>
+            <td class="num">$6,012.08</td>
+            <td class="num">19.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$100,000</td>
+            <td class="num">$13,170</td>
+            <td class="num">$7,650</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$79,180</strong></td>
+            <td class="num">$6,598.33</td>
+            <td class="num">20.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$110,000</td>
+            <td class="num">$15,370</td>
+            <td class="num">$8,415</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$86,215</strong></td>
+            <td class="num">$7,184.58</td>
+            <td class="num">21.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$125,000</td>
+            <td class="num">$18,734</td>
+            <td class="num">$9,563</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$96,704</strong></td>
+            <td class="num">$8,058.63</td>
+            <td class="num">22.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$140,000</td>
+            <td class="num">$22,334</td>
+            <td class="num">$10,710</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$106,956</strong></td>
+            <td class="num">$8,913.00</td>
+            <td class="num">23.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$150,000</td>
+            <td class="num">$24,734</td>
+            <td class="num">$11,475</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$113,791</strong></td>
+            <td class="num">$9,482.58</td>
+            <td class="num">24.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$175,000</td>
+            <td class="num">$30,734</td>
+            <td class="num">$13,388</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$130,879</strong></td>
+            <td class="num">$10,906.54</td>
+            <td class="num">25.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$200,000</td>
+            <td class="num">$36,734</td>
+            <td class="num">$14,339</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$148,927</strong></td>
+            <td class="num">$12,410.58</td>
+            <td class="num">25.5%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ad slot B -->
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <!-- 6. Key facts -->
+    <h2>Key facts that affect your take-home pay in Nevada</h2>
+
+    <h3>Nevada has no personal income tax, and it is in the state constitution</h3>
+    <p>This is not a rate that happens to sit at zero and could be nudged upward in a budget
+    session. The prohibition is constitutional: Article 10, Section 1 of the Nevada Constitution
+    provides that <em>no income tax shall be levied upon the wages or personal income of natural
+    persons</em>. Changing that takes a constitutional amendment, not an ordinary bill. In
+    practical terms, the zero on your paystub is more durable than a low rate somewhere
+    else.</p>
+
+    <p>Note the wording: it protects <em>natural persons</em>. The same article allows taxes on
+    the income or revenue of a business, which is why Nevada can levy the Modified Business Tax
+    described below while your wages stay untouched.</p>
+
+    <h3>The Modified Business Tax is paid by your employer, not by you</h3>
+    <p>Nevada does levy a payroll tax, the Modified Business Tax, and people sometimes assume it
+    comes out of wages. It does not. The Department of Taxation is explicit that it falls on
+    employers who are subject to Nevada&rsquo;s unemployment compensation law, charged on total
+    gross wages. The general business rate is 1.17%, with the first $50,000 of quarterly wages
+    exempt. None of it is withheld from an employee.</p>
+
+    <h3>Unemployment insurance is also employer-only</h3>
+    <p>Nevada&rsquo;s unemployment insurance contributions are paid entirely by the employer, at
+    2.95% of wages up to the taxable limit for a new employer, plus a small Career Enhancement
+    Program charge. Several states fund part of their unemployment or disability systems from
+    employee wages. Nevada does not.</p>
+
+    <h3>No state disability insurance and no paid family leave premium</h3>
+    <p>A handful of states &mdash; California, New Jersey, New York, Rhode Island, Washington
+    among them &mdash; withhold a percentage of wages for disability or paid family leave.
+    Nevada has neither. This is the single biggest reason a Nevada paycheck edges out a
+    Washington one on the same salary.</p>
+
+    <h3>Social Security stops, Medicare does not</h3>
+    <p>Once you have earned <span class="num">$184,500</span> in 2026, Social Security stops
+    coming out for the rest of the year, and your checks get visibly bigger. Medicare never
+    stops, and above <span class="num">$200,000</span> it gets slightly larger with the 0.9%
+    surtax. High earners in Nevada feel both of these more clearly than elsewhere, because there
+    is no state tax layered on top to blur the effect.</p>
+
+    <h3>Your effective rate is lower than your bracket</h3>
+    <p>A single filer on $75,000 in Nevada sits in the 22% federal bracket but pays an effective
+    rate of about 17.9% on everything, federal tax and FICA combined. The bracket applies only to
+    the dollars inside it, never to your whole salary.</p>
+
+    <h3>Tipped work is common in Nevada, and tips are taxable</h3>
+    <p>Casinos, hotels and restaurants employ a large share of the Nevada workforce, so tipped
+    pay is ordinary here rather than exceptional. Tips are wages for tax purposes: reported tips
+    are subject to federal income tax, Social Security and Medicare exactly like your hourly
+    rate. Enter your gross pay including reported tips, and
+    leave out cash tips you have not reported &mdash; those are outside what an employer
+    withholds, not outside what you owe.</p>
+
+    <!-- 7. Common mistakes -->
+    <h2>Common mistakes people make</h2>
+
+    <h3>Assuming no income tax means a huge difference</h3>
+    <p>Moving from a state with a 5% flat tax to Nevada on $75,000 saves you somewhere around
+    $3,000 a year, not a third of your salary. Federal tax and FICA are the same everywhere and
+    make up the overwhelming majority of what comes out. State income tax is the smaller half of
+    the equation almost everywhere.</p>
+
+    <h3>Forgetting that Nevada makes up the revenue elsewhere</h3>
+    <p>A state with no income tax still has to fund itself. Nevada leans on sales tax and on
+    gaming and tourism revenue. If you are comparing a job offer across state lines, compare
+    the whole cost picture &mdash; sales tax, housing, insurance &mdash; not just the paycheck
+    line.</p>
+
+    <h3>Confusing the Modified Business Tax with a wage deduction</h3>
+    <p>It is a tax on the employer measured by payroll, not a deduction from pay. If you see it
+    quoted as a &ldquo;Nevada payroll tax&rdquo; and wonder where it went on your paystub, the
+    answer is that it was never there.</p>
+
+    <h3>Using an annual figure when you are paid hourly</h3>
+    <p>Multiplying an hourly rate by 2,080 assumes exactly 40 hours a week, every week, all
+    year. In shift work with variable hours it usually overstates the annual figure. Enter what
+    you actually expect to earn.</p>
+
+    <h3>Expecting the calculator to match the paystub to the dollar</h3>
+    <p>Withholding is a running estimate your employer makes from your W-4. Our figure estimates
+    liability on a simple wage situation. A difference of a few percent is normal &mdash; see the
+    <a href="/disclaimer/">disclaimer</a> for the full list of reasons.</p>
+
+    <!-- 8. Worked example -->
+    <h2>Example calculation</h2>
+    <p>A single filer earning <span class="num">$75,000</span> a year in Las Vegas, taking the
+    standard deduction, with no 401(k) contribution:</p>
+
+    <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">$75,000 salary, single filer, Nevada, 2026</caption>
+      <thead><tr><th scope="col">Line</th><th scope="col">Amount</th><th scope="col">How it is worked out</th></tr></thead>
+      <tbody>
+        <tr><td>Gross salary</td><td class="num">$75,000</td><td>Starting point</td></tr>
+        <tr><td>Standard deduction</td><td class="num">&minus;$16,100</td><td>Single filer, 2026</td></tr>
+        <tr><td>Taxable income</td><td class="num">$58,900</td><td>$75,000 &minus; $16,100</td></tr>
+        <tr><td>Federal income tax</td><td class="num">&minus;$7,670</td><td>10% to $12,400, 12% to $50,400, 22% on the rest</td></tr>
+        <tr><td>Social Security</td><td class="num">&minus;$4,650</td><td>6.2% of $75,000</td></tr>
+        <tr><td>Medicare</td><td class="num">&minus;$1,087.50</td><td>1.45% of $75,000</td></tr>
+        <tr><td>Nevada state tax</td><td class="num">$0</td><td>Nevada levies none</td></tr>
+        <tr><td><strong>Total withheld</strong></td><td class="num"><strong>$13,407.50</strong></td><td>17.9% effective rate</td></tr>
+        <tr><td><strong>Take-home pay</strong></td><td class="num"><strong>$61,592.50</strong></td><td><span class="num">$5,132.71</span> a month</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>The same salary in Washington leaves <span class="num">$60,552.13</span>, because Washington
+    withholds Paid Family and Medical Leave and WA Cares. The gap is
+    <span class="num">$1,040</span> a year &mdash; small, but it is the entire practical
+    difference between the two states&rsquo; paychecks.</p>
+
+    <!-- 9. FAQ -->
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+
+      <h3>Does Nevada have a state income tax?</h3>
+      <p>No. The Nevada Department of Taxation states plainly that Nevada residents do not pay
+      state tax on income earned from salaries, wages, or similar compensation, and that the
+      state does not impose a personal income tax at all. Nothing at state level comes out of
+      your paycheck.</p>
+
+      <h3>What is take-home pay on a $75,000 salary in Nevada?</h3>
+      <p>About <span class="num">$61,593</span> a year, or roughly
+      <span class="num">$5,133</span> a month, for a single filer taking the standard deduction
+      in 2026. Total withholding is <span class="num">$13,407.50</span>, an effective rate of
+      17.9% &mdash; and every dollar of it is federal.</p>
+
+      <h3>Is anything at all withheld from a Nevada paycheck at state level?</h3>
+      <p>No. The Modified Business Tax and unemployment insurance are both employer obligations,
+      not wage deductions, and Nevada has no disability insurance or paid family leave premium.
+      A Nevada paystub shows federal income tax, Social Security and Medicare, and nothing else
+      from the state.</p>
+
+      <h3>Is take-home pay higher in Nevada than in Washington?</h3>
+      <p>Yes, slightly. Neither state taxes wages, but Washington still withholds Paid Family and
+      Medical Leave and WA Cares. On $75,000 that is about <span class="num">$1,040</span> a
+      year. Compare it directly on the
+      <a href="/paycheck-calculator/washington/">Washington paycheck calculator</a>.</p>
+
+      <h3>Why is my Nevada paycheck smaller than the calculator says?</h3>
+      <p>Almost always because of something personal rather than something about Nevada: health
+      insurance premiums, a 401(k) contribution, extra withholding you set on your W-4, or a
+      second job. The calculator models one job, the standard deduction and wages only.</p>
+
+      <h3>Do I pay Nevada tax if I live in Nevada and work in California?</h3>
+      <p>California will tax the income you earn there, and Nevada has no income tax to credit it
+      against, so you do not get the benefit of Nevada&rsquo;s rate on that income. This is one of
+      the most common and most expensive misunderstandings in the region. If it applies to you,
+      it is worth an hour with a professional.</p>
+    </div>
+
+    <!-- 10a. Neighboring states -->
+    <h2>Compare with neighboring states</h2>
+    <p>Nevada&rsquo;s advantage only shows up in comparison. These are the states people
+    actually weigh it against:</p>
+    <ul>
+      <li><strong><a href="/paycheck-calculator/washington/">Washington</a></strong> &mdash; also
+      no income tax, but two state payroll programs come out of every check. Nevada is the
+      cleaner of the two.</li>
+      <li><strong>California</strong> &mdash; the comparison that drives most moves into Nevada,
+      and the largest gap of any pair in the West.</li>
+      <li><strong>Arizona</strong> &mdash; a low flat state income tax, and a common alternative
+      for the same relocation.</li>
+      <li><strong>Utah</strong> &mdash; a flat state income tax, with the state line an hour from
+      Las Vegas.</li>
+      <li><strong>Oregon</strong> &mdash; no sales tax, but a state income tax reaching 9.9%.
+      The mirror image of Nevada.</li>
+    </ul>
+    <p class="caption">Calculators for these states are being written. Each one needs its own
+    rates read from that state&rsquo;s own agency before it goes live &mdash; see the
+    <a href="/paycheck-calculator/">state index</a>.</p>
+
+    <h2>Related reading</h2>
+    <ul>
+      <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
+      index, including which states have no income tax at all.</li>
+      <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
+      with its official source, and what these calculators deliberately do not model.</li>
+      <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,
+      credits and W-4 settings, and how much difference is normal.</li>
+    </ul>
+
+  </div>
+
+  <!-- Ad slot C -->
+  <div class="ad-slot ad-leaderboard" aria-hidden="true"></div>
+
+
+  <!-- 10b. Browse by state -->
+  <h2>Browse paycheck calculators by state</h2>
+  <p class="prose caption">Live calculators are linked. The rest are being written one at a time,
+  each with its rates read from that state&rsquo;s own agency before it goes live.</p>
+  <ul class="linkgrid">
+    <li>Alabama</li>
+    <li>Alaska</li>
+    <li>Arizona</li>
+    <li>Arkansas</li>
+    <li>California</li>
+    <li>Colorado</li>
+    <li>Connecticut</li>
+    <li>Delaware</li>
+    <li>Florida</li>
+    <li>Georgia</li>
+    <li>Hawaii</li>
+    <li>Idaho</li>
+    <li>Illinois</li>
+    <li>Indiana</li>
+    <li>Iowa</li>
+    <li>Kansas</li>
+    <li>Kentucky</li>
+    <li>Louisiana</li>
+    <li>Maine</li>
+    <li>Maryland</li>
+    <li>Massachusetts</li>
+    <li>Michigan</li>
+    <li>Minnesota</li>
+    <li>Mississippi</li>
+    <li>Missouri</li>
+    <li>Montana</li>
+    <li>Nebraska</li>
+    <li><a href="/paycheck-calculator/nevada/" aria-current="page">Nevada</a></li>
+    <li>New Hampshire</li>
+    <li>New Jersey</li>
+    <li>New Mexico</li>
+    <li>New York</li>
+    <li>North Carolina</li>
+    <li>North Dakota</li>
+    <li>Ohio</li>
+    <li>Oklahoma</li>
+    <li>Oregon</li>
+    <li>Pennsylvania</li>
+    <li>Rhode Island</li>
+    <li>South Carolina</li>
+    <li>South Dakota</li>
+    <li>Tennessee</li>
+    <li>Texas</li>
+    <li>Utah</li>
+    <li>Vermont</li>
+    <li>Virginia</li>
+    <li><a href="/paycheck-calculator/washington/">Washington</a></li>
+    <li>West Virginia</li>
+    <li>Wisconsin</li>
+    <li>Wyoming</li>
+  </ul>
+
+  <!-- 11. Dates -->
+  <p class="dates">
+    Published <time datetime="2026-08-27">August 27, 2026</time> &middot;
+    Last updated <time datetime="2026-08-27">August 27, 2026</time> &middot;
+    Rates verified against IRS, Social Security Administration, Nevada Department of Taxation
+    and Nevada DETR sources on August 27, 2026.
+    See our <a href="/methodology/">methodology</a>.
+  </p>
+
+  <!-- 12. Disclaimer -->
+  <p class="disclaimer">
+    StateLine Calc provides general information for educational purposes only. It is not
+    financial, tax or legal advice, and it does not account for every circumstance. Results are
+    estimates based on published 2026 rates and the standard deduction. Your actual paycheck
+    depends on your W-4, your employer's benefit deductions and your full tax situation. Consult
+    a qualified tax professional before making decisions.
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>StateLine Calc</strong> &mdash; free money calculators for all 50 states.
+    No sign-up. No personal data required.</p>
+    <p class="micro u-on-dark">
+      <a href="/about/">About</a> &middot;
+      <a href="/methodology/">Methodology</a> &middot;
+      <a href="/contact/">Contact</a> &middot;
+      <a href="/privacy/">Privacy</a> &middot;
+      <a href="/terms/">Terms</a> &middot;
+      <a href="/disclaimer/">Disclaimer</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/data/rates-2026.js"></script>
+<script src="/assets/calc-paycheck.js"></script>
+
+</body>
+</html>

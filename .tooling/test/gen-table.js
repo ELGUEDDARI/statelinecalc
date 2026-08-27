@@ -3,10 +3,27 @@
    crawlers d'IA n'executent pas le JS, donc sans lui l'outil leur est
    invisible. C'est le bloc le plus important de la page.
 
-   Lancer : node test/gen-table.js > test/table-washington.html */
+   Lancer :
+     node .tooling/test/gen-table.js washington > .tooling/test/table-washington.html
+     node .tooling/test/gen-table.js nevada     > .tooling/test/table-nevada.html
+
+   Generalise le 27/08/2026, apres avoir ecrit Washington entierement a la
+   main (regle E : jamais d'outil avant d'avoir fait la tache une fois).
+   Le state est lu dans rates-2026.js : les retenues d'Etat qui n'existent
+   pas dans la fiche de l'Etat valent zero, elles ne sont pas supposees.
+   Les 84 nombres ne sont jamais saisis a la main.
+
+   Colonne "state" = TOUTES les retenues salariales d'Etat cumulees.
+   Washington : Paid Leave + WA Cares. Nevada : rien, donc $0. */
 
 const R = require("../../data/rates-2026.js");
-const WA = R.states.washington;
+
+const cle = process.argv[2] || "washington";
+const S = R.states[cle];
+if (!S) {
+  console.error("Etat inconnu : " + cle + "\nDisponibles : " + Object.keys(R.states).join(", "));
+  process.exit(2);
+}
 
 function progressiveTax(taxable, bands) {
   let tax = 0, lower = 0;
@@ -30,12 +47,23 @@ const rows = salaries.map(gross => {
   const ss = Math.min(gross, R.fica.socialSecurity.wageBase) * R.fica.socialSecurity.rate;
   const med = gross * R.fica.medicare.rate
             + Math.max(0, gross - R.fica.additionalMedicare.threshold) * R.fica.additionalMedicare.rate;
-  const pl = Math.min(gross, WA.paidLeave.wageCap) * WA.paidLeave.employeeRate;
-  const wc = gross * WA.waCares.rate;
-  const total = federal + ss + med + pl + wc;
+
+  // Impot sur le revenu de l'Etat, s'il en a un.
+  const stateIncome = S.incomeTax.hasIncomeTax
+    ? progressiveTax(Math.max(0, gross - (S.incomeTax.standardDeduction || 0)),
+                     S.incomeTax.brackets.single)
+    : 0;
+
+  // Programmes de paie de l'Etat : absents = zero, jamais devines.
+  const pl = S.paidLeave
+    ? (S.paidLeave.wageCap ? Math.min(gross, S.paidLeave.wageCap) : gross) * S.paidLeave.employeeRate
+    : 0;
+  const wc = S.waCares ? gross * S.waCares.rate : 0;
+
+  const total = federal + ss + med + stateIncome + pl + wc;
   const net = gross - total;
-  return { gross, federal, fica: ss + med, state: pl + wc, net, monthly: net / 12,
-           rate: total / gross };
+  return { gross, federal, fica: ss + med, state: stateIncome + pl + wc, net,
+           monthly: net / 12, rate: total / gross };
 });
 
 console.log(rows.map(r =>

@@ -126,6 +126,46 @@ const RATES_2026 = {
         wageCap: null,
         exemptionPossible: true
       }
+    },
+
+    /* -----------------------------------------------------------------------
+       NEVADA — added 2026-08-27
+       The point of this page: Nevada withholds NOTHING at state level. Not
+       even the payroll programmes that make Washington's "no income tax"
+       claim only half true. Three official sources read on 2026-08-27:
+
+       1. No personal income tax, and it is constitutional, not statutory.
+          tax.nv.gov, "Income Tax in Nevada", verbatim:
+          "Nevada residents do not pay state tax on income earned from
+           salaries, wages, or similar compensation." and "The State of
+           Nevada does not impose a state income tax on individuals".
+          Nevada Constitution, Article 10, Section 1, subsection 9:
+          "No income tax shall be levied upon the wages or personal income
+           of natural persons." Read via FindLaw's text of the article on
+          2026-08-27; leg.state.nv.us refuses automated requests (HTTP 403).
+          The same article permits taxing business income, which is how the
+          Modified Business Tax below coexists with it.
+
+       2. Modified Business Tax — EMPLOYER only, never withheld from wages.
+          tax.nv.gov, "Modified Business Tax": "Every employer who is subject
+          to Nevada Unemployment Compensation Law (NRS 612) is also subject to
+          the Modified Business Tax on total gross wages." General business
+          rate 1.17% since 2023-07-01, first $50,000 of wages non-taxable.
+          It is a tax ON the employer, not a deduction FROM the employee.
+
+       3. Unemployment insurance — EMPLOYER only.
+          detr.nv.gov: employer rate 2.95% of wages up to the taxable limit
+          for new employers, plus 0.05% Career Enhancement Program. Nothing
+          comes out of the employee's side.
+
+       Consequence for the engine: no paidLeave object, no waCares object.
+       computeAnnual already guards on both, so a Nevada paycheck is federal
+       income tax + Social Security + Medicare, and nothing else.
+       ----------------------------------------------------------------------- */
+    nevada: {
+      name: "Nevada",
+      abbr: "NV",
+      incomeTax: { hasIncomeTax: false }
     }
   }
 };
