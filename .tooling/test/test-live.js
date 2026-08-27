@@ -66,9 +66,17 @@ function check(label, ok, detail) {
   check("recalcul a 100 000 $ -> $77,793", /\$77,79[0-9]/.test(r2),
     (r2.match(/\$[\d,]+\.\d\d/) || ["rien"])[0]);
 
-  console.log("\n=== 5. Le tableau HTML est bien dans la page (lisible par les IA) ===");
-  const lignes = await page.locator("table tbody tr").count();
-  check("14 lignes de tranches", lignes === 14, lignes + " lignes");
+  console.log("\n=== 5. Les tableaux HTML sont dans la page (lisibles par les IA) ===");
+  /* Depuis le 27/08/2026 la page porte DEUX tableaux de 14 lignes : par
+     salaire annuel, et par taux horaire. Le test comptait 14 lignes en tout
+     et cassait donc a l'ajout du second — c'etait le test qui etait perime,
+     pas la page. On compte desormais chaque tableau separement, ce qui
+     detecte aussi la disparition d'un seul des deux. */
+  const tableaux = await page.evaluate(() =>
+    [...document.querySelectorAll("table")].map(t => t.querySelectorAll("tbody tr").length));
+  const de14 = tableaux.filter(n => n === 14).length;
+  check("2 tableaux de 14 lignes (salaire annuel + taux horaire)",
+    de14 >= 2, "tableaux : " + tableaux.join(", "));
 
   console.log("\n=== 6. Mobile : pas de defilement horizontal ===");
   await page.setViewportSize({ width: 375, height: 812 });
