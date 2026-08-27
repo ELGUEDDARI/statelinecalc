@@ -18,6 +18,23 @@
     annual: 1, monthly: 12, semimonthly: 24, biweekly: 26, weekly: 52
   };
 
+  /* "hourly" is deliberately NOT in PERIODS: it has no fixed multiplier.
+     How many times an hour fits in a year depends on how many hours the
+     visitor actually works, which is why we ask instead of assuming 2,080.
+     Added 2026-08-27 to cover the "hourly paycheck calculator" and
+     "$X an hour is how much a year" query families in one page, rather
+     than in a second thin page per state. */
+  var HOURS_DEFAULT = 40;
+  function periodsPerYear(period, hoursPerWeek) {
+    if (period === "hourly") {
+      var h = parseFloat(hoursPerWeek);
+      if (!isFinite(h) || h <= 0) h = HOURS_DEFAULT;
+      if (h > 168) h = 168;              // there are 168 hours in a week
+      return h * 52;
+    }
+    return PERIODS[period];
+  }
+
   var usd = new Intl.NumberFormat("en-US", {
     style: "currency", currency: "USD",
     minimumFractionDigits: 2, maximumFractionDigits: 2
@@ -129,10 +146,23 @@
 
     var stateKey = form.getAttribute("data-state");
 
+    var hoursField = form.querySelector("[data-hours-field]");
+
+    /* The hours-per-week question only makes sense when something on the
+       page is expressed per hour. Showing it the rest of the time is noise;
+       hiding it when it IS needed silently changes the answer. */
+    function syncHours() {
+      if (!hoursField) return;
+      var needed = form.elements.period.value === "hourly" ||
+                   form.elements.display.value === "hourly";
+      hoursField.hidden = !needed;
+    }
+
     function read() {
       var salary = parseFloat(form.elements.salary.value);
       var per = form.elements.period.value;
       var field = form.elements.salary.closest(".field");
+      var hours = form.elements.hours ? form.elements.hours.value : HOURS_DEFAULT;
 
       if (!isFinite(salary) || salary <= 0) {
         field.classList.add("is-invalid");
@@ -141,7 +171,8 @@
       field.classList.remove("is-invalid");
 
       return {
-        grossAnnual: salary * PERIODS[per],
+        grossAnnual: salary * periodsPerYear(per, hours),
+        hoursPerWeek: hours,
         filingStatus: form.elements.filing.value,
         retirementPct: (parseFloat(form.elements.retirement.value) || 0) / 100,
         state: stateKey,
@@ -150,11 +181,12 @@
     }
 
     function render() {
+      syncHours();
       var input = read();
       if (!input) return;
 
       var a = computeAnnual(input, RATES_2026);
-      var div = PERIODS[form.elements.display.value];
+      var div = periodsPerYear(form.elements.display.value, input.hoursPerWeek);
       var v = function (n) { return usd.format(n / div); };
       var label = form.elements.display.options[form.elements.display.selectedIndex].text;
 
@@ -197,5 +229,12 @@
     init();
   }
 
-  window.StateLineCalc = { computeAnnual: computeAnnual, PERIODS: PERIODS };
+  /* Expose exprès, pour que les tests puissent verifier le calcul sans
+     passer par le DOM. periodsPerYear en fait partie : c'est lui qui porte
+     la conversion horaire, donc c'est lui qu'il faut pouvoir tester. */
+  window.StateLineCalc = {
+    computeAnnual: computeAnnual,
+    PERIODS: PERIODS,
+    periodsPerYear: periodsPerYear
+  };
 })();

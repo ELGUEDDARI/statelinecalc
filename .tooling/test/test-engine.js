@@ -194,5 +194,51 @@ check("taux effectif Nevada x100", (totalNV / 75000) * 100, 17.88, 0.01);
    Si ce test casse, c'est qu'une retenue s'est glissee quelque part. */
 check("ecart WA -> NV = Paid Leave + WA Cares", (75000 - totalNV) - (75000 - total), pl + wc, 0.02);
 
+console.log("\n=== 7. Paie horaire — arithmetique ===");
+
+/* Ajoute le 27/08/2026. On ne suppose PAS 2 080 heures par an : on demande
+   les heures reellement travaillees. 2 080 suppose 40 h par semaine, 52
+   semaines, sans exception - ce qui est faux pour la plupart des gens payes
+   a l'heure, justement.
+
+   ⚠️ Ce bloc teste l'ARITHMETIQUE. La fonction periodsPerYear elle-meme vit
+   dans calc-paycheck.js, qui est un IIFE navigateur et n'est pas requerable
+   ici : elle est testee sur la vraie page par test-hourly-live.js. Un test
+   qui recopie la fonction ne prouve rien sur la fonction.
+
+   Cas — 30 $/h, 40 h/semaine, Nevada, celibataire, pas de 401(k) :
+   annuel     = 30 x 40 x 52          = 62 400
+   imposable  = 62 400 - 16 100       = 46 300
+   10% sur 0 -> 12 400                =  1 240,00
+   12% sur 12 400 -> 46 300 (33 900)  =  4 068,00
+   federal                            =  5 308,00
+   SS   62 400 x 0,062                =  3 868,80
+   Med  62 400 x 0,0145               =    904,80
+   Etat (Nevada)                      =      0,00
+   -------------------------------------------------
+   total                              = 10 081,60
+   net annuel                         = 52 318,40
+   net PAR HEURE = 52 318,40 / 2 080  =     25,15 */
+const brutHoraire = 30, heures = 40;
+const annuelH = brutHoraire * heures * 52;
+check("30 $/h x 40 h x 52 = brut annuel", annuelH, 62400, 0);
+
+const fedH = progressiveTax(annuelH - 16100, R.federal.brackets.single);
+check("federal sur 46 300 imposable", fedH, 5308.00);
+
+const ssH = Math.min(annuelH, R.fica.socialSecurity.wageBase) * R.fica.socialSecurity.rate;
+const medH = annuelH * R.fica.medicare.rate;
+const totalH = fedH + ssH + medH;
+check("total des prelevements (Nevada)", totalH, 10081.60);
+check("net annuel", annuelH - totalH, 52318.40);
+check("net PAR HEURE", (annuelH - totalH) / (heures * 52), 25.15, 0.005);
+
+/* Le piege des 2 080 heures : quelqu'un a 35 h/semaine n'a pas le meme
+   brut annuel, et donc pas la meme tranche marginale. */
+const annuel35 = brutHoraire * 35 * 52;
+check("30 $/h x 35 h x 52 = brut annuel", annuel35, 54600, 0);
+check("35 h/sem donne bien un brut different de 2 080 h",
+  Math.abs(annuel35 - annuelH) > 0 ? 1 : 0, 1, 0);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

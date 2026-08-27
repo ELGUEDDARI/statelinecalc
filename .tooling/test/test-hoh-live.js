@@ -21,7 +21,7 @@
 */
 const { chromium } = require("playwright");
 
-const URL = "https://statelinecalc.com/paycheck-calculator/washington/";
+const URL = (process.argv[2] || "https://statelinecalc.com") + "/paycheck-calculator/washington/";
 const ATTENDU_MENSUEL = 5206.18;
 const AVANT_CORRECTIF = 5046.01;
 

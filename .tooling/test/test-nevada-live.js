@@ -18,7 +18,7 @@
 */
 const { chromium } = require("playwright");
 
-const URL = "https://statelinecalc.com/paycheck-calculator/nevada/";
+const URL = (process.argv[2] || "https://statelinecalc.com") + "/paycheck-calculator/nevada/";
 const NET_MENSUEL = 5132.71;
 const NET_WASHINGTON = 5046.01;   // ne doit JAMAIS apparaitre ici
 

@@ -15,12 +15,12 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
-<title>Nevada Paycheck Calculator 2026 — Take-Home Pay After Taxes</title>
-<meta name="description" content="Free Nevada paycheck calculator, 2026. Nevada withholds nothing at state level — see exactly what federal tax, Social Security and Medicare take from your check.">
+<title>Nevada Paycheck Calculator 2026 — Hourly and Salary Take-Home Pay</title>
+<meta name="description" content="Free Nevada paycheck calculator, 2026. Hourly or salary. Nevada withholds nothing at state level, so see exactly what federal tax, Social Security and Medicare take.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/nevada/">
 <link rel="stylesheet" href="/assets/style.css">
 
-<meta property="og:title" content="Nevada Paycheck Calculator 2026 — Take-Home Pay After Taxes">
+<meta property="og:title" content="Nevada Paycheck Calculator 2026 — Hourly and Salary Take-Home Pay">
 <meta property="og:description" content="Nevada takes nothing out of your paycheck at state level. See what federal tax, Social Security and Medicare leave you with in 2026.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/nevada/">
 <meta property="og:type" content="website">
@@ -49,6 +49,11 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is $20 an hour after taxes in Nevada?",
+          "acceptedAnswer": { "@type": "Answer", "text": "About $35,606 a year, or $2,967.13 a month, at 40 hours a week for a single filer in 2026. That is a real take-home rate of $17.12 an hour, an effective rate of 14.4 percent. Nevada withholds nothing at state level, so all of it is federal." }
+        },
         {
           "@type": "Question",
           "name": "Does Nevada have a state income tax?",
@@ -124,11 +129,19 @@
 
     <form class="calc" data-paycheck-form data-state="nevada" novalidate>
       <div class="field">
-        <label for="salary">Your gross pay</label>
+        <label for="salary">Your gross pay or hourly rate</label>
         <input type="text" id="salary" name="salary" inputmode="decimal" value="75000"
                autocomplete="off">
         <span class="help">Before any taxes or deductions. Do not include tips paid in cash.</span>
         <span class="error" role="alert">Enter an amount greater than zero.</span>
+      </div>
+
+      <div class="field" data-hours-field hidden>
+        <label for="hours">Hours per week</label>
+        <input type="text" id="hours" name="hours" inputmode="decimal" value="40"
+               autocomplete="off">
+        <span class="help">Only asked when something here is per hour. We use the hours you
+        actually work, not an assumed 2,080 a year.</span>
       </div>
 
       <div class="row row-2">
@@ -136,6 +149,7 @@
           <label for="period">How often you are paid</label>
           <select id="period" name="period">
             <option value="annual" selected>Per year</option>
+            <option value="hourly">Per hour</option>
             <option value="monthly">Per month</option>
             <option value="semimonthly">Twice a month</option>
             <option value="biweekly">Every two weeks</option>
@@ -166,6 +180,7 @@
           <label for="display">Show results</label>
           <select id="display" name="display">
             <option value="monthly" selected>Per month</option>
+            <option value="hourly">Per hour</option>
             <option value="annual">Per year</option>
             <option value="semimonthly">Twice a month</option>
             <option value="biweekly">Every two weeks</option>
@@ -376,6 +391,205 @@
     </table>
   </div>
 
+
+  <!-- 5b. Paie horaire : la moitie du creneau que les pages "salary" ignorent -->
+  <h2>Nevada hourly paycheck: what your rate is worth after tax</h2>
+
+  <div class="prose">
+    <p>Many of the people asking this question are paid by the hour, not by the year. The
+    calculator above takes an hourly rate directly &mdash; switch <strong>How often you are
+    paid</strong> to <strong>Per hour</strong>, tell it how many hours a week you actually work,
+    and it will show your take-home pay per hour, per week or per year.</p>
+
+    <p>Nevada makes this arithmetic unusually clean. Because the state withholds nothing, your net hourly rate is your gross rate minus federal tax and FICA, and nothing else. The same $25 an hour in Washington nets $20.79 after Paid Leave and WA Cares come out, against <span class="num">$21.14</span> here.</p>
+
+    <p>It also matters more here than in most states, because so much of the Nevada workforce is paid hourly rather than salaried. Casino floors, hotels, restaurants and warehouses run on shift work, and shift work means your real annual income depends on hours you do not fully control.</p>
+
+    <h3>Why we ask your hours instead of assuming 2,080</h3>
+    <p>Most hourly calculators multiply your rate by 2,080 and call it your salary. That number
+    assumes exactly 40 hours a week, 52 weeks a year, with no unpaid time off and no slow weeks
+    &mdash; which is precisely what hourly work often is not. At 35 hours a week the same rate
+    produces a materially smaller annual figure, and sometimes a lower tax bracket with it. We ask
+    rather than assume.</p>
+
+    <h3>What $20 an hour comes to in Nevada</h3>
+    <p>At 40 hours a week, $20 an hour is <span class="num">$35,606</span> a year after tax, or
+    about <span class="num">$2,967.13</span> a month. Your effective rate is
+    <strong>14.4%</strong>, and your real take-home rate is
+    <strong class="num">$17.12</strong> an hour. That is the number worth carrying in your
+    head when you are comparing job offers.</p>
+
+    <h3>What $25 and $30 an hour come to</h3>
+    <p>At $25 an hour you take home about <span class="num">$43,962</span> a year, a real rate
+    of <span class="num">$21.14</span>. At $30 it is <span class="num">$52,318</span>, a
+    real rate of <span class="num">$25.15</span>. Notice that a $5 raise on paper is worth
+    less than $5 in your pocket &mdash; that is progressive taxation doing exactly what it is
+    designed to do.</p>
+
+    <h3>Overtime, tips and shift differentials</h3>
+    <p>For <strong>withholding</strong> purposes, overtime, reported tips and shift or holiday
+    differentials are ordinary wages: your employer withholds federal income tax, Social Security
+    and Medicare on them exactly as on your base rate. A big overtime week can even push that
+    single paycheck into a higher withholding band, which is why it sometimes looks disappointing
+    on the stub. Enter your realistic average hours, including overtime, for the most useful
+    figure.</p>
+
+    <p>For what you finally <strong>owe</strong>, 2026 is different, and this calculator does not
+    model it. Two deductions created by the One, Big, Beautiful Bill run from
+    <strong>2025 through 2028</strong>:</p>
+    <ul>
+      <li><strong>Qualified tips</strong> &mdash; up to <span class="num">$25,000</span> a year
+      deductible, for people in occupations that customarily and regularly receive tips.</li>
+      <li><strong>Qualified overtime</strong> &mdash; up to <span class="num">$12,500</span> a
+      year (<span class="num">$25,000</span> filing jointly). It covers only the premium half of
+      time-and-a-half required by the Fair Labor Standards Act, not the whole overtime
+      paycheck.</li>
+    </ul>
+    <p>Both phase out above <span class="num">$150,000</span> of modified adjusted gross income
+    (<span class="num">$300,000</span> filing jointly), and both are available whether you itemize
+    or take the standard deduction. They are claimed <strong>on your return</strong>, on Schedule
+    1-A &mdash; not through your paycheck. So the figure above still reflects what comes out
+    during the year; if a meaningful part of your pay is tips or FLSA overtime, your final tax
+    bill may be lower than it implies. Source: IRS, <em>Working Families Tax Cuts</em>, read
+    <time datetime="2026-08-27">August 27, 2026</time>.</p>
+  </div>
+
+  <h3>Nevada take-home pay by hourly rate</h3>
+  <p class="prose">Single filer, standard deduction, 40 hours a week (2,080 hours a year),
+  2026 rates.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Nevada take-home pay by hourly rate, single filer, 40 hours a week
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Hourly rate</th>
+          <th scope="col">Gross a year</th>
+          <th scope="col">Take-home a year</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Real hourly rate</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$15.00</td>
+            <td class="num">$31,200</td>
+            <td class="num"><strong>$27,249</strong></td>
+            <td class="num">$2,270.77</td>
+            <td class="num">$13.10</td>
+            <td class="num">12.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$16.00</td>
+            <td class="num">$33,280</td>
+            <td class="num"><strong>$28,920</strong></td>
+            <td class="num">$2,410.04</td>
+            <td class="num">$13.90</td>
+            <td class="num">13.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$18.00</td>
+            <td class="num">$37,440</td>
+            <td class="num"><strong>$32,263</strong></td>
+            <td class="num">$2,688.59</td>
+            <td class="num">$15.51</td>
+            <td class="num">13.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$20.00</td>
+            <td class="num">$41,600</td>
+            <td class="num"><strong>$35,606</strong></td>
+            <td class="num">$2,967.13</td>
+            <td class="num">$17.12</td>
+            <td class="num">14.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$22.00</td>
+            <td class="num">$45,760</td>
+            <td class="num"><strong>$38,948</strong></td>
+            <td class="num">$3,245.68</td>
+            <td class="num">$18.73</td>
+            <td class="num">14.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$25.00</td>
+            <td class="num">$52,000</td>
+            <td class="num"><strong>$43,962</strong></td>
+            <td class="num">$3,663.50</td>
+            <td class="num">$21.14</td>
+            <td class="num">15.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$28.00</td>
+            <td class="num">$58,240</td>
+            <td class="num"><strong>$48,976</strong></td>
+            <td class="num">$4,081.32</td>
+            <td class="num">$23.55</td>
+            <td class="num">15.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$30.00</td>
+            <td class="num">$62,400</td>
+            <td class="num"><strong>$52,318</strong></td>
+            <td class="num">$4,359.87</td>
+            <td class="num">$25.15</td>
+            <td class="num">16.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$35.00</td>
+            <td class="num">$72,800</td>
+            <td class="num"><strong>$60,045</strong></td>
+            <td class="num">$5,003.73</td>
+            <td class="num">$28.87</td>
+            <td class="num">17.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$40.00</td>
+            <td class="num">$83,200</td>
+            <td class="num"><strong>$67,361</strong></td>
+            <td class="num">$5,613.43</td>
+            <td class="num">$32.39</td>
+            <td class="num">19.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$45.00</td>
+            <td class="num">$93,600</td>
+            <td class="num"><strong>$74,678</strong></td>
+            <td class="num">$6,223.13</td>
+            <td class="num">$35.90</td>
+            <td class="num">20.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$50.00</td>
+            <td class="num">$104,000</td>
+            <td class="num"><strong>$81,994</strong></td>
+            <td class="num">$6,832.83</td>
+            <td class="num">$39.42</td>
+            <td class="num">21.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$60.00</td>
+            <td class="num">$124,800</td>
+            <td class="num"><strong>$96,567</strong></td>
+            <td class="num">$8,047.23</td>
+            <td class="num">$46.43</td>
+            <td class="num">22.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$75.00</td>
+            <td class="num">$156,000</td>
+            <td class="num"><strong>$117,892</strong></td>
+            <td class="num">$9,824.33</td>
+            <td class="num">$56.68</td>
+            <td class="num">24.4%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- Ad slot B -->
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
@@ -496,6 +710,9 @@
     <!-- 9. FAQ -->
     <div class="faq">
       <h2>Frequently asked questions</h2>
+
+      <h3>What is $20 an hour after taxes in Nevada?</h3>
+      <p>About $35,606 a year, or $2,967.13 a month, at 40 hours a week for a single filer in 2026. That is a real take-home rate of $17.12 an hour, an effective rate of 14.4 percent. Nevada withholds nothing at state level, so all of it is federal.</p>
 
       <h3>Does Nevada have a state income tax?</h3>
       <p>No. The Nevada Department of Taxation states plainly that Nevada residents do not pay

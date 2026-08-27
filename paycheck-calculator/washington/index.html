@@ -15,12 +15,12 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
-<title>Washington Paycheck Calculator 2026 — Take-Home Pay After Taxes</title>
-<meta name="description" content="Free Washington paycheck calculator, 2026. No state income tax — see what federal tax, FICA, Paid Leave and WA Cares take from your check.">
+<title>Washington Paycheck Calculator 2026 — Hourly and Salary Take-Home Pay</title>
+<meta name="description" content="Free Washington paycheck calculator, 2026. Hourly or salary. No state income tax — see what federal tax, FICA, Paid Leave and WA Cares take from your check.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/washington/">
 <link rel="stylesheet" href="/assets/style.css">
 
-<meta property="og:title" content="Washington Paycheck Calculator 2026 — Take-Home Pay After Taxes">
+<meta property="og:title" content="Washington Paycheck Calculator 2026 — Hourly and Salary Take-Home Pay">
 <meta property="og:description" content="Washington has no state income tax. See what federal tax, FICA, Paid Leave and WA Cares actually take from your paycheck in 2026.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/washington/">
 <meta property="og:type" content="website">
@@ -49,6 +49,11 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is $20 an hour after taxes in Washington?",
+          "acceptedAnswer": { "@type": "Answer", "text": "About $35,029 a year, or $2,919.05 a month, at 40 hours a week for a single filer in 2026. That is a real take-home rate of $16.84 an hour, an effective rate of 15.8 percent, after federal tax, FICA, WA Paid Leave and WA Cares." }
+        },
         {
           "@type": "Question",
           "name": "Does Washington have a state income tax?",
@@ -120,11 +125,19 @@
 
     <form class="calc" data-paycheck-form data-state="washington" novalidate>
       <div class="field">
-        <label for="salary">Your gross pay</label>
+        <label for="salary">Your gross pay or hourly rate</label>
         <input type="text" id="salary" name="salary" inputmode="decimal" value="75000"
                autocomplete="off">
         <span class="help">Before any taxes or deductions. Do not include tips paid in cash.</span>
         <span class="error" role="alert">Enter an amount greater than zero.</span>
+      </div>
+
+      <div class="field" data-hours-field hidden>
+        <label for="hours">Hours per week</label>
+        <input type="text" id="hours" name="hours" inputmode="decimal" value="40"
+               autocomplete="off">
+        <span class="help">Only asked when something here is per hour. We use the hours you
+        actually work, not an assumed 2,080 a year.</span>
       </div>
 
       <div class="row row-2">
@@ -132,6 +145,7 @@
           <label for="period">How often you are paid</label>
           <select id="period" name="period">
             <option value="annual" selected>Per year</option>
+            <option value="hourly">Per hour</option>
             <option value="monthly">Per month</option>
             <option value="semimonthly">Twice a month</option>
             <option value="biweekly">Every two weeks</option>
@@ -162,6 +176,7 @@
           <label for="display">Show results</label>
           <select id="display" name="display">
             <option value="monthly" selected>Per month</option>
+            <option value="hourly">Per hour</option>
             <option value="annual">Per year</option>
             <option value="semimonthly">Twice a month</option>
             <option value="biweekly">Every two weeks</option>
@@ -386,6 +401,209 @@
     </table>
   </div>
 
+
+  <!-- 5b. Paie horaire : la moitie du creneau que les pages "salary" ignorent -->
+  <h2>Washington hourly paycheck: what your rate is worth after tax</h2>
+
+  <div class="prose">
+    <p>Many of the people asking this question are paid by the hour, not by the year. The
+    calculator above takes an hourly rate directly &mdash; switch <strong>How often you are
+    paid</strong> to <strong>Per hour</strong>, tell it how many hours a week you actually work,
+    and it will show your take-home pay per hour, per week or per year.</p>
+
+    <p>Washington has no state income tax, so most of the gap between your gross rate and your net rate is federal. But two state programs still come out of every hour you work: Paid Family and Medical Leave at 0.807% and WA Cares at 0.58%. Together they take about 1.4% off the top, before federal tax touches anything.</p>
+
+    <p>On $25 an hour that is roughly $721 a year. Small in percentage terms, and the reason the same rate nets <span class="num">$20.79</span> here against $21.14 in Nevada.</p>
+
+    <h3>Why we ask your hours instead of assuming 2,080</h3>
+    <p>Most hourly calculators multiply your rate by 2,080 and call it your salary. That number
+    assumes exactly 40 hours a week, 52 weeks a year, with no unpaid time off and no slow weeks
+    &mdash; which is precisely what hourly work often is not. At 35 hours a week the same rate
+    produces a materially smaller annual figure, and sometimes a lower tax bracket with it. We ask
+    rather than assume.</p>
+
+    <h3>What $20 an hour comes to in Washington</h3>
+    <p>At 40 hours a week, $20 an hour is <span class="num">$35,029</span> a year after tax, or
+    about <span class="num">$2,919.05</span> a month. Your effective rate is
+    <strong>15.8%</strong>, and your real take-home rate is
+    <strong class="num">$16.84</strong> an hour. That is the number worth carrying in your
+    head when you are comparing job offers.</p>
+
+    <h3>What $25 and $30 an hour come to</h3>
+    <p>At $25 an hour you take home about <span class="num">$43,241</span> a year, a real rate
+    of <span class="num">$20.79</span>. At $30 it is <span class="num">$51,453</span>, a
+    real rate of <span class="num">$24.74</span>. Notice that a $5 raise on paper is worth
+    less than $5 in your pocket &mdash; that is progressive taxation doing exactly what it is
+    designed to do.</p>
+
+    <h3>Overtime, tips and shift differentials</h3>
+    <p>For <strong>withholding</strong> purposes, overtime, reported tips and shift or holiday
+    differentials are ordinary wages: your employer withholds federal income tax, Social Security
+    and Medicare on them exactly as on your base rate. A big overtime week can even push that
+    single paycheck into a higher withholding band, which is why it sometimes looks disappointing
+    on the stub. Enter your realistic average hours, including overtime, for the most useful
+    figure.</p>
+
+    <p>One Washington quirk worth knowing: Paid Leave and WA Cares are charged on gross wages, so
+    they come out of overtime and reported tips at the same rate as your base hours. A heavy
+    overtime month costs you a little more in state programs as well as in federal tax.</p>
+
+    <p>For what you finally <strong>owe</strong>, 2026 is different, and this calculator does not
+    model it. Two deductions created by the One, Big, Beautiful Bill run from
+    <strong>2025 through 2028</strong>:</p>
+    <ul>
+      <li><strong>Qualified tips</strong> &mdash; up to <span class="num">$25,000</span> a year
+      deductible, for people in occupations that customarily and regularly receive tips.</li>
+      <li><strong>Qualified overtime</strong> &mdash; up to <span class="num">$12,500</span> a
+      year (<span class="num">$25,000</span> filing jointly). It covers only the premium half of
+      time-and-a-half required by the Fair Labor Standards Act, not the whole overtime
+      paycheck.</li>
+    </ul>
+    <p>Both phase out above <span class="num">$150,000</span> of modified adjusted gross income
+    (<span class="num">$300,000</span> filing jointly), and both are available whether you itemize
+    or take the standard deduction. They are claimed <strong>on your return</strong>, on Schedule
+    1-A &mdash; not through your paycheck. So the figure above still reflects what comes out
+    during the year; if a meaningful part of your pay is tips or FLSA overtime, your final tax
+    bill may be lower than it implies. Source: IRS, <em>Working Families Tax Cuts</em>, read
+    <time datetime="2026-08-27">August 27, 2026</time>.</p>
+  </div>
+
+  <h3>Washington take-home pay by hourly rate</h3>
+  <p class="prose">Single filer, standard deduction, 40 hours a week (2,080 hours a year),
+  2026 rates.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Washington take-home pay by hourly rate, single filer, 40 hours a week
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Hourly rate</th>
+          <th scope="col">Gross a year</th>
+          <th scope="col">Take-home a year</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Real hourly rate</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$15.00</td>
+            <td class="num">$31,200</td>
+            <td class="num"><strong>$26,816</strong></td>
+            <td class="num">$2,234.70</td>
+            <td class="num">$12.89</td>
+            <td class="num">14.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$16.00</td>
+            <td class="num">$33,280</td>
+            <td class="num"><strong>$28,459</strong></td>
+            <td class="num">$2,371.57</td>
+            <td class="num">$13.68</td>
+            <td class="num">14.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$18.00</td>
+            <td class="num">$37,440</td>
+            <td class="num"><strong>$31,744</strong></td>
+            <td class="num">$2,645.31</td>
+            <td class="num">$15.26</td>
+            <td class="num">15.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$20.00</td>
+            <td class="num">$41,600</td>
+            <td class="num"><strong>$35,029</strong></td>
+            <td class="num">$2,919.05</td>
+            <td class="num">$16.84</td>
+            <td class="num">15.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$22.00</td>
+            <td class="num">$45,760</td>
+            <td class="num"><strong>$38,313</strong></td>
+            <td class="num">$3,192.78</td>
+            <td class="num">$18.42</td>
+            <td class="num">16.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$25.00</td>
+            <td class="num">$52,000</td>
+            <td class="num"><strong>$43,241</strong></td>
+            <td class="num">$3,603.39</td>
+            <td class="num">$20.79</td>
+            <td class="num">16.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$28.00</td>
+            <td class="num">$58,240</td>
+            <td class="num"><strong>$48,168</strong></td>
+            <td class="num">$4,014.00</td>
+            <td class="num">$23.16</td>
+            <td class="num">17.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$30.00</td>
+            <td class="num">$62,400</td>
+            <td class="num"><strong>$51,453</strong></td>
+            <td class="num">$4,287.73</td>
+            <td class="num">$24.74</td>
+            <td class="num">17.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$35.00</td>
+            <td class="num">$72,800</td>
+            <td class="num"><strong>$59,035</strong></td>
+            <td class="num">$4,919.58</td>
+            <td class="num">$28.38</td>
+            <td class="num">18.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$40.00</td>
+            <td class="num">$83,200</td>
+            <td class="num"><strong>$66,207</strong></td>
+            <td class="num">$5,517.26</td>
+            <td class="num">$31.83</td>
+            <td class="num">20.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$45.00</td>
+            <td class="num">$93,600</td>
+            <td class="num"><strong>$73,379</strong></td>
+            <td class="num">$6,114.93</td>
+            <td class="num">$35.28</td>
+            <td class="num">21.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$50.00</td>
+            <td class="num">$104,000</td>
+            <td class="num"><strong>$80,551</strong></td>
+            <td class="num">$6,712.61</td>
+            <td class="num">$38.73</td>
+            <td class="num">22.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$60.00</td>
+            <td class="num">$124,800</td>
+            <td class="num"><strong>$94,836</strong></td>
+            <td class="num">$7,902.97</td>
+            <td class="num">$45.59</td>
+            <td class="num">24.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$75.00</td>
+            <td class="num">$156,000</td>
+            <td class="num"><strong>$115,728</strong></td>
+            <td class="num">$9,644.00</td>
+            <td class="num">$55.64</td>
+            <td class="num">25.8%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- Ad slot B -->
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
@@ -482,6 +700,9 @@
     <!-- 9. FAQ -->
     <section class="faq">
       <h2>Frequently asked questions</h2>
+
+      <h3>What is $20 an hour after taxes in Washington?</h3>
+      <p>About $35,029 a year, or $2,919.05 a month, at 40 hours a week for a single filer in 2026. That is a real take-home rate of $16.84 an hour, an effective rate of 15.8 percent, after federal tax, FICA, WA Paid Leave and WA Cares.</p>
 
       <h3>Does Washington have a state income tax?</h3>
       <p>No. Washington is one of nine states with no personal income tax on wages. Your
@@ -599,7 +820,7 @@
   <!-- 11. Dates -->
   <p class="dates">
     Published <time datetime="2026-08-22">August 22, 2026</time> ·
-    Last updated <time datetime="2026-08-22">August 22, 2026</time> ·
+    Last updated <time datetime="2026-08-27">August 27, 2026</time> ·
     Rates verified against IRS, Washington State Employment Security Department and
     WA Cares Fund sources on August 22, 2026.
     See our <a href="/methodology/">methodology</a>.
