@@ -17,9 +17,15 @@ PROPRIETE = "sc-domain:" + DOMAINE
 SITEMAP = "https://statelinecalc.com/sitemap.xml"
 CLE = r"C:/Users/sland/.config/claude-seo/service_account.json"
 
-# Hypothese nommee : c'est le compte Google du PDG. A corriger s'il en
-# utilise un autre pour Search Console.
-PROPRIETAIRE_PDG = "bruitblancsommeil1@gmail.com"
+# L'adresse du PDG ne doit PAS etre ecrite ici : ce depot est PUBLIC, et une
+# adresse personnelle en clair sur GitHub finit dans les moissonneuses a spam.
+# Elle se passe par variable d'environnement au lancement :
+#   $env:GSC_OWNER = "..." ; python .tooling/ops/gsc_2_verify.py
+# Corrige le 27/08/2026, apres l'avoir trouvee en dur dans un fichier suivi.
+import os
+PROPRIETAIRE_PDG = os.environ.get("GSC_OWNER", "").strip()
+if not PROPRIETAIRE_PDG:
+    raise SystemExit("GSC_OWNER non defini : exporter l'adresse avant de lancer.")
 
 SCOPES = [
     "https://www.googleapis.com/auth/siteverification",
