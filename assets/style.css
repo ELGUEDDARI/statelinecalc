@@ -47,10 +47,14 @@
 
 html { -webkit-text-size-adjust: 100%; }
 
+/* 17px, not 16px. Measured on real competitor pages at 390px on 2026-08-27:
+   jupid.com 20px, adp 20px, paycheckcity 16px, smartasset 15px. The two that
+   read comfortably on a phone are the big ones. 17px is the smallest size
+   that closes the gap without reflowing the tables. Never go below it. */
 body {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 16px;          /* never smaller — section 4.3 */
+  font-size: 17px;
   line-height: 1.65;
   color: var(--text-primary);
   background: #FFFFFF;
