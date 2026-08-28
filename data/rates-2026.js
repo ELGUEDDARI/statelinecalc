@@ -259,7 +259,7 @@ const RATES_2026 = {
         of each may be exempted from the calculation of taxable net income."
        So the federal deduction reaches $25,000 of tips while Georgia stops at
        $1,750. That divergence is claimed on the return, not through payroll,
-       so it is not modelled here - it is explained on the page.
+       so it is not modeled here - it is explained on the page.
        ----------------------------------------------------------------------- */
     georgia: {
       name: "Georgia",
