@@ -29,6 +29,21 @@ readable without running any JavaScript.
 - [Georgia paycheck calculator 2026](https://statelinecalc.com/paycheck-calculator/georgia/): A flat 4.99% state income tax after a standard deduction of $15,000 single or $30,000 married filing jointly. Georgia did not conform to the federal treatment of tips and overtime for 2026: it exempts up to $1,750 of each, against $25,000 of qualified tips federally. A $75,000 single filer keeps about $58,599.
 - [All states index](https://statelinecalc.com/paycheck-calculator/): Which states levy no income tax, and which calculators are live.
 
+## Salary to hourly, after tax
+
+Every other converter answers "$60,000 a year is how much an hour?" with $28.85, which is
+just $60,000 divided by 2,080 and is the same in every state. These pages give the figure
+that reaches the account, which is not: $24.23 an hour in Texas, $22.87 in Illinois.
+
+- [Salary to hourly calculator, all states](https://statelinecalc.com/salary-to-hourly-calculator/): The same $60,000 converted in six states, before and after tax, side by side.
+- [Texas](https://statelinecalc.com/salary-to-hourly-calculator/texas/), [Florida](https://statelinecalc.com/salary-to-hourly-calculator/florida/) and [Nevada](https://statelinecalc.com/salary-to-hourly-calculator/nevada/): $60,000 a year is $24.23 an hour after tax. No state withholding at all, so the figure is identical in the three.
+- [Washington](https://statelinecalc.com/salary-to-hourly-calculator/washington/): $23.83 an hour after tax. No income tax, but two state payroll programs come out.
+- [Georgia](https://statelinecalc.com/salary-to-hourly-calculator/georgia/): $23.15 an hour after tax, after a flat 4.99% state income tax.
+- [Illinois](https://statelinecalc.com/salary-to-hourly-calculator/illinois/): $22.87 an hour after tax, after a flat 4.95% and a personal exemption of only $2,925.
+
+Each state page carries a 30-row table converting salaries from $25,000 to $500,000, giving
+the gross hourly rate, the after-tax hourly rate, and the yearly, monthly and weekly figures.
+
 ## Reference
 
 - [Methodology](https://statelinecalc.com/methodology/): The exact formula, every 2026 federal figure with its official source and the date it was verified, and what the calculators deliberately do not model.
