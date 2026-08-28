@@ -84,6 +84,20 @@ function page(cle) {
   const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
   const titre = nom + " Salary to Hourly Calculator 2026 &mdash; After Tax";
 
+  /* Le tableau des autres Etats. Il existe pour deux raisons, dans cet ordre :
+     il repond a la question que se pose vraiment le visiteur - "et ailleurs ?" -
+     et il relie chaque page de la famille aux six autres. Au 28/08/2026 ces
+     pages n'avaient que DEUX liens entrants chacune, contre 11 a 24 pour les
+     pages de paie ; elles etaient de loin les moins reliees du site. */
+  const AUTRES = Object.keys(FICHES).filter(k => k !== cle).map(k => {
+    const r = net(k, 60000);
+    return `        <tr>
+          <td><a href="/salary-to-hourly-calculator/${k}/">${FICHES[k].nom}</a></td>
+          <td class="num"><strong>$${c2(r.net / HEURES)}</strong></td>
+          <td class="num">$${c0(r.net)}</td>
+        </tr>`;
+  }).join(String.fromCharCode(10));
+
   return `<!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -92,7 +106,7 @@ function page(cle) {
 <!-- Meme politique de securite que le reste du site : les points de collecte
      analytics sont nommes, rien d'autre ne peut sortir, et ce que le visiteur
      tape ne quitte jamais son navigateur. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
@@ -317,6 +331,21 @@ ${tableau}
 
   <h2>What ${nom} changes</h2>
   <p>${f.specifique}</p>
+
+  <h2>The same $60,000 in the other states</h2>
+  <p>The gross hourly rate is $28.85 everywhere. What changes is what reaches your account, and on
+  an identical salary the spread is wider than most people expect.</p>
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">$60,000 a year as a real hourly rate, 2026, single filer</caption>
+      <thead>
+        <tr><th scope="col">State</th><th scope="col">Hourly AFTER tax</th><th scope="col">Take-home a year</th></tr>
+      </thead>
+      <tbody>
+${AUTRES}
+      </tbody>
+    </table>
+  </div>
 
   <h2>Common questions</h2>
   <div class="faq">

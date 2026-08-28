@@ -15,9 +15,10 @@ const { chromium } = require("playwright");
 const R = require("../../data/rates-2026.js");
 
 const BASE = process.argv[2] || "https://statelinecalc.com";
-const ETATS = ["texas", "florida", "nevada", "washington", "georgia", "illinois"];
+const ETATS = ["texas", "florida", "nevada", "washington", "pennsylvania", "georgia", "illinois"];
 const NOMS = { texas: "Texas", florida: "Florida", nevada: "Nevada",
-               washington: "Washington", georgia: "Georgia", illinois: "Illinois" };
+               washington: "Washington", pennsylvania: "Pennsylvania",
+               georgia: "Georgia", illinois: "Illinois" };
 const HEURES = 2080;
 
 function progressiveTax(t, bands) {
@@ -53,7 +54,17 @@ function netHoraire(cle, brut) {
   const pl = S.paidLeave
     ? (S.paidLeave.wageCap ? Math.min(brut, S.paidLeave.wageCap) : brut) * S.paidLeave.employeeRate : 0;
   const wc = S.waCares ? brut * S.waCares.rate : 0;
-  return (brut - (fed + ss + med + etat + pl + wc)) / HEURES;
+  /* Programmes salaries generiques. Ecrit a la main ICI, et non importe de la
+     bibliotheque : tout l'interet de cette suite est d'etre une SECONDE
+     implementation. Le 28/08/2026 son absence a fait diverger le test de la
+     page de 0,02 $ l'heure sur la Pennsylvanie - c'etait le test qui avait
+     tort, mais la divergence etait exactement ce qu'on lui demande de voir. */
+  const prog = (S.employeePrograms || []).reduce((t, pg) =>
+    t + (pg.wageCap ? Math.min(brut, pg.wageCap) : brut) * pg.rate, 0);
+  /* La Pennsylvanie taxe le versement 401(k) ; les tableaux publies supposent
+     un versement nul, donc l'assiette est la meme, mais la regle est ecrite
+     pour que ce test reste juste le jour ou un tableau supposera autre chose. */
+  return (brut - (fed + ss + med + etat + pl + wc + prog)) / HEURES;
 }
 const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -80,7 +91,8 @@ const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFra
   dire(/\$28\.85/.test(texteHub), "le brut horaire de 60 000 $ est bien 28,85 $");
   const lignesHub = await page.evaluate(() =>
     document.querySelectorAll("tbody tr").length);
-  dire(lignesHub === 6, "le hub compare bien les 6 Etats", lignesHub + " lignes");
+  dire(lignesHub === ETATS.length,
+       "le hub compare bien les " + ETATS.length + " Etats", lignesHub + " lignes");
 
   // --- chaque Etat ---
   for (const cle of ETATS) {
@@ -96,8 +108,11 @@ const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFra
     dire(!/\$NaN/.test(t), NOMS[cle] + " : aucun NaN");
 
     // La ligne 60 000 du tableau doit porter le MEME net horaire que la prose.
+    /* Depuis le 28/08/2026 la page porte DEUX tableaux : celui des salaires et
+       celui des autres Etats. On vise explicitement le premier, sinon le test
+       compte les deux et echoue pour une raison qui n'est pas un defaut. */
     const ligne = await page.evaluate(() => {
-      const tr = [...document.querySelectorAll("tbody tr")]
+      const tr = [...document.querySelectorAll("table")[0].querySelectorAll("tbody tr")]
         .find(r => r.cells[0] && r.cells[0].innerText.trim() === "$60,000");
       return tr ? [...tr.cells].map(c => c.innerText.trim()) : null;
     });
@@ -105,8 +120,32 @@ const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFra
          NOMS[cle] + " : le tableau et la prose donnent le meme chiffre",
          ligne ? ligne.join(" | ") : "ligne 60 000 introuvable");
 
-    const nbLignes = await page.evaluate(() => document.querySelectorAll("tbody tr").length);
+    const nbLignes = await page.evaluate(() =>
+      document.querySelectorAll("table")[0].querySelectorAll("tbody tr").length);
     dire(nbLignes === 30, NOMS[cle] + " : tableau de 30 lignes", nbLignes + " lignes");
+
+    /* Le second tableau relie la page aux autres Etats de la famille, et chacun
+       de ses chiffres doit etre le meme que celui servi par la page visee. */
+    const voisins = await page.evaluate(() => {
+      const t = document.querySelectorAll("table")[1];
+      if (!t) return null;
+      return [...t.querySelectorAll("tbody tr")].map(r => ({
+        lien: r.querySelector("a") ? r.querySelector("a").getAttribute("href") : null,
+        net: r.cells[1].innerText.trim()
+      }));
+    });
+    dire(voisins && voisins.length === ETATS.length - 1,
+         NOMS[cle] + " : le tableau des autres Etats en compte " + (ETATS.length - 1),
+         voisins ? voisins.length + " lignes" : "tableau absent");
+    if (voisins) {
+      const faux = voisins.filter(v => {
+        const k = (v.lien || "").split("/").filter(Boolean).pop();
+        return !R.states[k] || v.net !== "$" + c2(netHoraire(k, 60000));
+      });
+      dire(faux.length === 0,
+           NOMS[cle] + " : chaque Etat voisin porte son vrai taux horaire net",
+           faux.length ? JSON.stringify(faux) : "les " + voisins.length + " concordent");
+    }
 
     // Le calculateur doit tomber sur la meme valeur que le tableau.
     await page.fill("#salary", "60000");

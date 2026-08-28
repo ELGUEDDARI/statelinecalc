@@ -99,6 +99,12 @@
        state, because most states that tax income work this way. */
     var stateTax = 0;
     if (state.incomeTax.hasIncomeTax) {
+      /* Most states start from pay after pre-tax contributions, as the federal
+         government does. Pennsylvania does not: a 401(k) deferral is taxable
+         compensation there the moment it is made, so its base is gross pay.
+         Reading afterPretax for Pennsylvania would understate its tax for
+         every visitor who saves for retirement. Added 2026-08-28. */
+      var baseEtat = state.incomeTax.taxesRetirementDeferrals ? gross : afterPretax;
       var sd = state.incomeTax.standardDeduction;
       if (sd && typeof sd === "object") {
         sd = (input.filingStatus in sd) ? sd[input.filingStatus] : sd.single;
@@ -114,10 +120,10 @@
       var po = state.incomeTax.deductionPhaseOut;
       if (po) {
         var seuil = (input.filingStatus in po) ? po[input.filingStatus] : po.single;
-        if (isFinite(seuil) && afterPretax > seuil) sd = 0;
+        if (isFinite(seuil) && baseEtat > seuil) sd = 0;
       }
       stateTax = progressiveTax(
-        Math.max(0, afterPretax - (sd || 0)),
+        Math.max(0, baseEtat - (sd || 0)),
         state.incomeTax.brackets[input.filingStatus] || state.incomeTax.brackets.single
       );
     }
@@ -133,7 +139,21 @@
       waCares = gross * state.waCares.rate;
     }
 
-    var totalTax = federal + ss + medicare + addlMedicare + stateTax + paidLeave + waCares;
+    /* Generic employee-paid state programmes, each with its own label so the
+       breakdown can name it honestly. Washington keeps its two named fields
+       because its WA Cares row can be switched off by an exempt worker;
+       everything else added from here on uses this list. Pennsylvania is the
+       first: its 0.07% unemployment contribution comes out of every check.
+       Added 2026-08-28, and it is what New Jersey's four programmes will need. */
+    var programmes = [];
+    (state.employeePrograms || []).forEach(function (pg) {
+      var base = pg.wageCap ? Math.min(gross, pg.wageCap) : gross;
+      programmes.push({ label: pg.label, amount: base * pg.rate });
+    });
+    var totalProgrammes = programmes.reduce(function (t, pg) { return t + pg.amount; }, 0);
+
+    var totalTax = federal + ss + medicare + addlMedicare + stateTax
+                 + paidLeave + waCares + totalProgrammes;
     var net = gross - totalTax - pretax;
 
     return {
@@ -143,6 +163,7 @@
       socialSecurity: ss,
       medicare: medicare + addlMedicare,
       stateTax: stateTax,
+      programmes: programmes,
       paidLeave: paidLeave,
       waCares: waCares,
       totalTax: totalTax,
@@ -222,6 +243,9 @@
       if (a.stateTax > 0) rows.push(["State income tax", a.stateTax]);
       if (a.paidLeave > 0) rows.push(["WA Paid Leave (0.807%)", a.paidLeave]);
       if (a.waCares > 0) rows.push(["WA Cares (0.58%)", a.waCares]);
+      (a.programmes || []).forEach(function (pg) {
+        if (pg.amount > 0) rows.push([pg.label, pg.amount]);
+      });
       if (a.pretax > 0) rows.push(["401(k) contribution", a.pretax]);
 
       var html =

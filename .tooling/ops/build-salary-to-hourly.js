@@ -13,6 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const R = require("../../data/rates-2026.js");
+const LIB = require("../lib/paie.js");
 
 const RACINE = path.join(__dirname, "..", "..");
 const HEURES = 2080;
@@ -68,6 +69,18 @@ const FICHES = {
       first overtime hour of the year and your last.`,
     lienEtat: "/paycheck-calculator/georgia/"
   },
+  pennsylvania: {
+    nom: "Pennsylvania",
+    retenue: "Pennsylvania takes a flat 3.07% plus a 0.07% unemployment contribution",
+    specifique: `Pennsylvania applies a flat 3.07% with no standard deduction and no personal
+      exemption at all, so the state takes exactly 3.07% of every hour you work - the advertised
+      rate and the real rate are the same number, which is rare. It also withholds 0.07% for
+      unemployment, which most states take only from the employer. And one rule catches savers
+      out: a 401(k) contribution cuts your federal tax but not your Pennsylvania tax, because the
+      state counts the deferral as compensation the moment it is made.`,
+    lienEtat: "/paycheck-calculator/pennsylvania/"
+  },
+
   illinois: {
     nom: "Illinois",
     retenue: "Illinois takes a flat 4.95%",
@@ -101,21 +114,15 @@ function deductionEtat(S, statut, revenu) {
   }
   return v;
 }
+/* Delegue a la bibliotheque unique. Avant le 28/08/2026 ce fichier avait sa
+   propre copie du calcul, qui ne connaissait ni les programmes salaries ni la
+   regle 401(k) de la Pennsylvanie : elle aurait sous-estime la retenue PA sans
+   rien signaler. Une seule implementation, dans .tooling/lib/paie.js. */
 function net(cle, brut) {
-  const S = R.states[cle];
-  const federal = progressiveTax(Math.max(0, brut - R.federal.standardDeduction.single),
-                                 R.federal.brackets.single);
-  const ss  = Math.min(brut, R.fica.socialSecurity.wageBase) * R.fica.socialSecurity.rate;
-  const med = brut * R.fica.medicare.rate
-            + Math.max(0, brut - R.fica.additionalMedicare.threshold) * R.fica.additionalMedicare.rate;
-  const etat = S.incomeTax.hasIncomeTax
-    ? progressiveTax(Math.max(0, brut - deductionEtat(S, "single", brut)), S.incomeTax.brackets.single) : 0;
-  const pl = S.paidLeave
-    ? (S.paidLeave.wageCap ? Math.min(brut, S.paidLeave.wageCap) : brut) * S.paidLeave.employeeRate : 0;
-  const wc = S.waCares ? brut * S.waCares.rate : 0;
-  const total = federal + ss + med + etat + pl + wc;
-  return { total, net: brut - total, taux: total / brut };
+  const r = LIB.calcul(cle, brut);
+  return { total: r.total, net: r.net, taux: r.taux };
 }
+
 const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const c0 = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 

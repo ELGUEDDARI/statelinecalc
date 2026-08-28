@@ -13,6 +13,14 @@
  * Lancer : node .tooling/test/gen-salary-to-hourly.js <etat>
  */
 const R = require("../../data/rates-2026.js");
+/* Delegue le calcul a la bibliotheque unique .tooling/lib/paie.js.
+   Avant le 28/08/2026 ce generateur avait sa propre copie de l'arithmetique.
+   Elle ignorait les programmes salaries et la regle 401(k) de la Pennsylvanie,
+   et a produit un tableau faux de 0,02 $ l'heure - publie sans rien signaler,
+   trouve seulement parce qu'une suite de test compare le tableau SERVI a une
+   seconde implementation. Une seule copie du calcul, desormais. */
+const LIB = require("../lib/paie.js");
+
 
 const cle = (process.argv[2] || "").toLowerCase();
 const S = R.states[cle];
@@ -21,31 +29,12 @@ if (!S) {
   process.exit(1);
 }
 
-function progressiveTax(taxable, bands) {
-  let du = 0, bas = 0;
-  for (const [plafond, taux] of bands) {
-    const haut = (plafond === null || plafond === undefined) ? Infinity : plafond;
-    if (taxable > bas) du += (Math.min(taxable, haut) - bas) * taux;
-    bas = haut;
-    if (taxable <= haut) break;
-  }
-  return du;
-}
+const progressiveTax = LIB.progressiveTax;
 
 /* Meme regle que dans le moteur et dans les deux autres generateurs : la
    deduction d'un Etat peut etre une table par situation de famille, et
    certains Etats la retirent entierement au-dela d'un seuil. */
-function deductionEtat(S, statut, revenu) {
-  const d = S.incomeTax.standardDeduction;
-  if (!d) return 0;
-  let v = (typeof d === "object") ? ((statut in d) ? d[statut] : d.single) : d;
-  const po = S.incomeTax.deductionPhaseOut;
-  if (po && revenu !== undefined) {
-    const seuil = (statut in po) ? po[statut] : po.single;
-    if (isFinite(seuil) && revenu > seuil) v = 0;
-  }
-  return v;
-}
+const deductionEtat = LIB.deductionEtat;
 
 const HEURES = 2080;   // 40 h x 52 semaines, l'hypothese que tout le monde emploie
 
@@ -60,28 +49,15 @@ const argent = n => "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 }
 const cents  = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
 const lignes = salaires.map(brut => {
-  const federal = progressiveTax(Math.max(0, brut - R.federal.standardDeduction.single),
-                                 R.federal.brackets.single);
-  const ss  = Math.min(brut, R.fica.socialSecurity.wageBase) * R.fica.socialSecurity.rate;
-  const med = brut * R.fica.medicare.rate
-            + Math.max(0, brut - R.fica.additionalMedicare.threshold) * R.fica.additionalMedicare.rate;
-  const etat = S.incomeTax.hasIncomeTax
-    ? progressiveTax(Math.max(0, brut - deductionEtat(S, "single", brut)), S.incomeTax.brackets.single)
-    : 0;
-  const pl = S.paidLeave
-    ? (S.paidLeave.wageCap ? Math.min(brut, S.paidLeave.wageCap) : brut) * S.paidLeave.employeeRate
-    : 0;
-  const wc = S.waCares ? brut * S.waCares.rate : 0;
-  const total = federal + ss + med + etat + pl + wc;
-  const net = brut - total;
+  const r = LIB.calcul(cle, brut);
   return {
     brut,
-    brutHoraire: brut / HEURES,
-    netAnnuel: net,
-    netHoraire: net / HEURES,
-    netMensuel: net / 12,
-    netHebdo: net / 52,
-    taux: total / brut
+    brutHoraire: r.brutHoraire,
+    netAnnuel: r.net,
+    netHoraire: r.netHoraire,
+    netMensuel: r.net / 12,
+    netHebdo: r.net / 52,
+    taux: r.taux
   };
 });
 

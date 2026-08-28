@@ -389,6 +389,53 @@ const RATES_2026 = {
           headOfHousehold: [[Infinity, 0.0499]]
         }
       }
+    },
+
+    /* Pennsylvania — flat 3.07%, and the only state here that taxes a 401(k).
+       Rate, source: PA Department of Revenue, REV-413 (I), "2026 Instructions
+       for Estimating PA Personal Income Tax". Read 2026-08-28. The 2026
+       worksheet says, in its own words, "2026 ESTIMATED TAX — Multiply Line 1
+       by 3.07 percent (0.0307)". That is the state's own 2026 form, not a
+       carried-over prior-year figure.
+
+       No deduction and no exemption: Line 1 of that same worksheet is
+       "expected PA-taxable income" and is multiplied by the rate directly.
+       Pennsylvania taxes compensation from the first dollar. Low earners are
+       relieved by the Special Tax Forgiveness Credit, which is a credit and
+       not a deduction, so it cannot be modelled as one — it is explained on
+       the page instead.
+
+       taxesRetirementDeferrals: PA does NOT let a 401(k) contribution reduce
+       state tax. Source, verbatim: PA Personal Income Tax Guide, "Gross
+       Compensation", DSM-12 (08-2025), p.51 — contributions to a "401(k) Plan
+       or 403(b) plan or other program on behalf of the employee ... are not
+       excludable from the employee's Pennsylvania income." Read 2026-08-28.
+       Without this flag the calculator would understate PA tax for every
+       visitor who saves for retirement, which is precisely the class of quiet
+       error this site exists to avoid. */
+    pennsylvania: {
+      name: "Pennsylvania",
+      abbr: "PA",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: 0,
+        taxesRetirementDeferrals: true,
+        brackets: {
+          single:          [[Infinity, 0.0307]],
+          marriedJoint:    [[Infinity, 0.0307]],
+          headOfHousehold: [[Infinity, 0.0307]]
+        }
+      },
+
+      /* Unemployment Compensation, employee share. Source: PA Department of
+         Labor & Industry, "Employee Withholding". Read 2026-08-28: the table
+         gives 0.07% (.0007) for "2023 and thereafter", and the page states
+         that employee contributions "are based on an individual's total
+         (gross) wages and are not limited to the taxable wage base in effect
+         for employer contributions" — so there is no cap. */
+      employeePrograms: [
+        { label: "PA Unemployment (0.07%)", rate: 0.0007, wageCap: null }
+      ]
     }
   }
 };

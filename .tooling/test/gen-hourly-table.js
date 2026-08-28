@@ -15,6 +15,14 @@
      node .tooling/test/gen-hourly-table.js washington > .tooling/test/table-hourly-washington.html
 */
 const R = require("../../data/rates-2026.js");
+/* Delegue le calcul a la bibliotheque unique .tooling/lib/paie.js.
+   Avant le 28/08/2026 ce generateur avait sa propre copie de l'arithmetique.
+   Elle ignorait les programmes salaries et la regle 401(k) de la Pennsylvanie,
+   et a produit un tableau faux de 0,02 $ l'heure - publie sans rien signaler,
+   trouve seulement parce qu'une suite de test compare le tableau SERVI a une
+   seconde implementation. Une seule copie du calcul, desormais. */
+const LIB = require("../lib/paie.js");
+
 
 const cle = process.argv[2] || "washington";
 const S = R.states[cle];
@@ -25,15 +33,7 @@ if (!S) {
 
 const HEURES_AN = 40 * 52;   // 2 080
 
-function progressiveTax(taxable, bands) {
-  let tax = 0, lower = 0;
-  for (const [upper, rate] of bands) {
-    if (taxable <= lower) break;
-    tax += (Math.min(taxable, upper) - lower) * rate;
-    lower = upper;
-  }
-  return tax;
-}
+const progressiveTax = LIB.progressiveTax;
 
 const money = n => "$" + Math.round(n).toLocaleString("en-US");
 const money2 = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -42,21 +42,7 @@ const money2 = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, 
    deduction d'un Etat peut etre une table par situation de famille (Georgie :
    15 000 $ seul, 30 000 $ en couple). Lue sans tester le type, elle donnait
    NaN, et le generateur ecrivait "$NaN" dans du HTML pret a publier. */
-function deductionEtat(S, statut, revenu) {
-  const d = S.incomeTax.standardDeduction;
-  if (!d) return 0;
-  let v = (typeof d === "object") ? ((statut in d) ? d[statut] : d.single) : d;
-  /* Certains Etats retirent la deduction au-dela d'un seuil au lieu de la
-     reduire progressivement (Illinois : plus d'exoneration au-dela de
-     250 000 $, 500 000 $ en couple). Sans ca le tableau donnerait une
-     deduction que l'Etat n'accorde pas. Ajoute le 28/08/2026. */
-  const po = S.incomeTax.deductionPhaseOut;
-  if (po && revenu !== undefined) {
-    const seuil = (statut in po) ? po[statut] : po.single;
-    if (isFinite(seuil) && revenu > seuil) v = 0;
-  }
-  return v;
-}
+const deductionEtat = LIB.deductionEtat;
 
 const taux = [
   /* 30 taux au lieu de 14, meme raison que pour le tableau des salaires.

@@ -338,5 +338,76 @@ check("un couple a 300 000 garde son exoneration",
 check("la Georgie n'a pas de seuil de suppression",
   R.states.georgia.incomeTax.deductionPhaseOut === undefined ? 1 : 0, 1, 0);
 
+console.log("\n=== 10. Pennsylvanie : forfait 3,07 %, et le 401(k) NE reduit PAS l'impot ===");
+
+/* Bareme lu le 28/08/2026 sur le formulaire 2026 de l'Etat lui-meme :
+   REV-413 (I), "2026 Instructions for Estimating PA Personal Income Tax",
+   ligne 2 du calcul : "Multiply Line 1 by 3.07 percent (0.0307)".
+   Ligne 1 = "expected PA-taxable income" : AUCUNE deduction, AUCUNE exoneration.
+
+   Cas - 75 000 $ brut, celibataire, calcule a la main :
+     impot d'Etat = 75 000 x 3,07 %                    =  2 302,50
+     chomage salarie = 75 000 x 0,07 %                 =     52,50
+     federal (identique aux autres Etats)              =  7 670,00
+     Social Security 75 000 x 6,2 %                    =  4 650,00
+     Medicare 75 000 x 1,45 %                          =  1 087,50
+     total                                             = 15 762,50
+     net                                               = 59 237,50 */
+const PA = R.states.pennsylvania;
+
+check("le taux 2026 est bien 3,07 %", PA.incomeTax.brackets.single[0][1], 0.0307, 0);
+check("aucune deduction standard en Pennsylvanie", PA.incomeTax.standardDeduction, 0, 0);
+check("un couple est taxe au meme taux qu'un celibataire",
+  PA.incomeTax.brackets.marriedJoint[0][1], PA.incomeTax.brackets.single[0][1], 0);
+check("impot d'Etat sur 75 000", 75000 * 0.0307, 2302.50, 0.01);
+check("chomage salarie sur 75 000", 75000 * PA.employeePrograms[0].rate, 52.50, 0.01);
+
+/* Le chomage salarie n'a PAS de plafond : la source de l'Etat dit que les
+   cotisations salariees "are not limited to the taxable wage base". Un
+   plafond glisse ici sous-estimerait la retenue des hauts salaires. */
+check("le chomage salarie n'a pas de plafond",
+  PA.employeePrograms[0].wageCap === null ? 1 : 0, 1, 0);
+check("sur 500 000, le chomage suit tout le salaire", 500000 * 0.0007, 350, 0.01);
+
+/* LE POINT QUI REND LA PAGE UTILE. En Pennsylvanie, un versement 401(k) est
+   une remuneration imposable au moment ou il est fait - source verbatim :
+   PA Personal Income Tax Guide, "Gross Compensation", DSM-12 (08-2025), p.51.
+   L'assiette d'Etat reste donc le BRUT, quel que soit le versement. Si le
+   calcul l'oubliait, il sous-estimerait l'impot de tout visiteur qui epargne,
+   et la page mentirait sur son propre sujet. */
+function etatPA(brut, pct) {
+  const base = PA.incomeTax.taxesRetirementDeferrals ? brut : brut * (1 - pct);
+  return base * 0.0307;
+}
+check("PA sans 401(k)", etatPA(75000, 0), 2302.50, 0.01);
+check("PA avec 6 % au 401(k) : le MEME impot", etatPA(75000, 0.06), 2302.50, 0.01);
+
+/* Le meme versement en Illinois fait bien baisser l'impot. Ce test existe pour
+   prouver que le drapeau vise la Pennsylvanie et n'a pas ete applique a tous
+   par megarde. */
+function etatIL(brut, pct) {
+  const base = IL.incomeTax.taxesRetirementDeferrals ? brut : brut * (1 - pct);
+  return Math.max(0, base - 2925) * 0.0495;
+}
+check("l'Illinois, lui, accorde bien le rabais",
+  etatIL(75000, 0) - etatIL(75000, 0.06), 222.75, 0.01);
+check("ce que le PA-epargnant ne recupere pas : 4 500 x 3,07 %",
+  75000 * 0.06 * 0.0307, 138.15, 0.01);
+
+/* Le drapeau ne doit exister QUE la ou la loi le dit. */
+["texas", "florida", "nevada", "washington", "georgia", "illinois"].forEach(function (k) {
+  check(k + " ne taxe pas le 401(k)",
+    R.states[k].incomeTax.taxesRetirementDeferrals === undefined ? 1 : 0, 1, 0);
+});
+
+/* Le moteur du navigateur et la bibliotheque node doivent tomber sur le meme
+   chiffre. Deux implementations qui divergent, c'est la panne silencieuse que
+   la duplication a produite le 28/08 au matin. */
+const { calcul } = require("../lib/paie.js");
+check("bibliotheque node : total des prelevements PA",
+  calcul("pennsylvania", 75000).total, 15762.50, 0.01);
+check("bibliotheque node : net annuel PA",
+  calcul("pennsylvania", 75000).net, 59237.50, 0.01);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

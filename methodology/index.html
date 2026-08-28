@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
@@ -132,6 +132,16 @@ contributions that people forget about, which is exactly why <em>no income tax</
 <em>nothing comes out</em>. Washington is the clearest example: no income tax, yet Paid Family and
 Medical Leave and WA Cares are both withheld from every check.</p>
 
+<p>One state also changes what Step&nbsp;1 means. Most states start, as the federal government
+does, from your pay <em>after</em> a 401(k) contribution. Pennsylvania does not: it treats an
+elective deferral as compensation at the moment it is made, so its 3.07&nbsp;percent applies to
+your gross pay whether you save for retirement or not. Our engine carries a per-state flag for
+this rather than assuming the federal treatment everywhere, because the difference is invisible
+in the result and would otherwise understate the tax for every Pennsylvanian who contributes.
+Source, read on August&nbsp;28, 2026: the Pennsylvania Personal Income Tax Guide, <em>Gross
+Compensation</em>, which states that such contributions &ldquo;are not excludable from the
+employee&rsquo;s Pennsylvania income&rdquo;.</p>
+
 <h2>Where each 2026 figure comes from</h2>
 
 <p>These are the federal figures used across every state page, with the source we read and the date
@@ -184,6 +194,15 @@ Employment Security Department for the Paid Family and Medical Leave premium
 (<strong>0.58&nbsp;percent</strong> of gross wages, with no wage cap). Both were read on
 August&nbsp;22, 2026. See the <a href="/paycheck-calculator/washington/">Washington paycheck
 calculator</a> for how they land on a real salary.</p>
+
+<p>For Pennsylvania it means the Department of Revenue for the flat income tax rate &mdash;
+<strong>3.07&nbsp;percent</strong>, taken from the state&rsquo;s own 2026 form REV-413&nbsp;(I),
+whose worksheet reads &ldquo;Multiply Line 1 by 3.07 percent (0.0307)&rdquo; &mdash; and the
+Department of Labor&nbsp;&amp; Industry for the employee unemployment contribution
+(<strong>0.07&nbsp;percent</strong> of gross wages, with no wage cap, in force for
+&ldquo;2023 and thereafter&rdquo;). Both were read on August&nbsp;28, 2026. See the
+<a href="/paycheck-calculator/pennsylvania/">Pennsylvania paycheck calculator</a> for what they
+come to on a real salary, and for the local earned income tax we deliberately do not model.</p>
 
 <h2>What our calculators deliberately do not model</h2>
 

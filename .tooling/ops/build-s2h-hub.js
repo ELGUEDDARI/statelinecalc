@@ -12,7 +12,7 @@ const fs = require("fs");
 const path = require("path");
 const { FICHES, net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
 
-const ordre = ["texas", "florida", "nevada", "washington", "georgia", "illinois"];
+const ordre = ["texas", "florida", "nevada", "washington", "pennsylvania", "georgia", "illinois"];
 const TX = c2(net("texas", 60000).net / HEURES);
 const IL = c2(net("illinois", 60000).net / HEURES);
 
@@ -54,7 +54,7 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>

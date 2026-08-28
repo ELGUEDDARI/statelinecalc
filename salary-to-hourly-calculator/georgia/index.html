@@ -6,7 +6,7 @@
 <!-- Meme politique de securite que le reste du site : les points de collecte
      analytics sont nommes, rien d'autre ne peut sortir, et ce que le visiteur
      tape ne quitte jamais son navigateur. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
@@ -117,7 +117,6 @@
     <a class="brand" href="/"><svg class="brand-mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0F172A"/><rect x="30" y="10" width="4" height="44" rx="2" fill="#1D4ED8"/><rect x="12" y="34" width="12" height="20" rx="2" fill="#FFFFFF"/><rect x="40" y="22" width="12" height="32" rx="2" fill="#FFFFFF"/></svg>StateLine Calc</a>
     <nav class="site-nav" aria-label="Main">
       <a href="/paycheck-calculator/">Paycheck</a>
-      <a href="/salary-to-hourly-calculator/">Salary&nbsp;to&nbsp;Hourly</a>
       <a href="/methodology/">Methodology</a>
     </nav>
   </div>
@@ -544,6 +543,50 @@
       takes the same share of every extra hour you work once you are past that threshold. That
       makes the conversion predictable: no bracket to cross, no cliff, the same 4.99% on your
       first overtime hour of the year and your last.</p>
+
+  <h2>The same $60,000 in the other states</h2>
+  <p>The gross hourly rate is $28.85 everywhere. What changes is what reaches your account, and on
+  an identical salary the spread is wider than most people expect.</p>
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">$60,000 a year as a real hourly rate, 2026, single filer</caption>
+      <thead>
+        <tr><th scope="col">State</th><th scope="col">Hourly AFTER tax</th><th scope="col">Take-home a year</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="/salary-to-hourly-calculator/texas/">Texas</a></td>
+          <td class="num"><strong>$24.23</strong></td>
+          <td class="num">$50,390</td>
+        </tr>
+        <tr>
+          <td><a href="/salary-to-hourly-calculator/florida/">Florida</a></td>
+          <td class="num"><strong>$24.23</strong></td>
+          <td class="num">$50,390</td>
+        </tr>
+        <tr>
+          <td><a href="/salary-to-hourly-calculator/nevada/">Nevada</a></td>
+          <td class="num"><strong>$24.23</strong></td>
+          <td class="num">$50,390</td>
+        </tr>
+        <tr>
+          <td><a href="/salary-to-hourly-calculator/washington/">Washington</a></td>
+          <td class="num"><strong>$23.83</strong></td>
+          <td class="num">$49,558</td>
+        </tr>
+        <tr>
+          <td><a href="/salary-to-hourly-calculator/pennsylvania/">Pennsylvania</a></td>
+          <td class="num"><strong>$23.32</strong></td>
+          <td class="num">$48,506</td>
+        </tr>
+        <tr>
+          <td><a href="/salary-to-hourly-calculator/illinois/">Illinois</a></td>
+          <td class="num"><strong>$22.87</strong></td>
+          <td class="num">$47,565</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <h2>Common questions</h2>
   <div class="faq">
