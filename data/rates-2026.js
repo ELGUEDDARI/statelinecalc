@@ -261,6 +261,58 @@ const RATES_2026 = {
        $1,750. That divergence is claimed on the return, not through payroll,
        so it is not modeled here - it is explained on the page.
        ----------------------------------------------------------------------- */
+    /* -----------------------------------------------------------------------
+       FLORIDA - added 2026-08-28. Fourth by real traffic on the competitor we
+       measured, and the reason it is here rather than a state with an emptier
+       search page: choosing states by how contested the results looked was a
+       bad criterion, and it cost us a page on Nevada, which turns out to sit
+       near the bottom of the traffic list.
+
+       1. No personal income tax - but NOT the flat prohibition Texas has, and
+          the difference is worth stating precisely rather than lumping the two
+          together. Florida Constitution, Article VII, Section 5(a), read
+          verbatim on flsenate.gov on 2026-08-28:
+
+            "NATURAL PERSONS. No tax upon estates or inheritances or upon the
+             income of natural persons who are residents or citizens of the
+             state shall be levied by the state, or under its authority, in
+             excess of the aggregate of amounts which may be allowed to be
+             credited upon or deducted from any similar tax levied by the
+             United States or any state."
+
+          That is a ceiling tied to what federal law allows to be credited, not
+          the outright "may not impose" of Texas Article 8 Section 24-a. The
+          practical result today is the same - nothing is withheld from a
+          Florida paycheck - and the page says exactly that and no more. Do not
+          write anything about WHY the ceiling comes to zero without reading a
+          source for it first.
+
+          Subsection (b) caps tax on non-natural persons at 5% of net income.
+          That is the corporate income tax and has nothing to do with a wage
+          earner's paycheck.
+
+       2. Reemployment tax - EMPLOYER only, never withheld.
+          floridarevenue.com, "Florida Reemployment Tax", read 2026-08-28,
+          verbatim: "Reemployment tax is paid by employers" and "Only the first
+          $7,000 of wages paid to each employee by their employer in a calendar
+          year is taxable."
+          $7,000 is the federal floor for a state wage base - no state uses a
+          lower one. Same page: Florida renamed its Unemployment Compensation
+          Law the Reemployment Assistance Program Law in 2012, which is why the
+          tax is called something different here than everywhere else.
+
+       3. No state disability insurance, no state paid family leave deduction.
+
+       Consequence for the engine: like Nevada and Texas, no paidLeave and no
+       waCares object. A Florida paycheck is federal income tax + Social
+       Security + Medicare, and nothing else.
+       ----------------------------------------------------------------------- */
+    florida: {
+      name: "Florida",
+      abbr: "FL",
+      incomeTax: { hasIncomeTax: false }
+    },
+
     georgia: {
       name: "Georgia",
       abbr: "GA",
