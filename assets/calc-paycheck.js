@@ -103,6 +103,19 @@
       if (sd && typeof sd === "object") {
         sd = (input.filingStatus in sd) ? sd[input.filingStatus] : sd.single;
       }
+      /* Some states withdraw the deduction entirely above an income threshold
+         rather than tapering it. Illinois is the first one here: its personal
+         exemption is "not allowed" above $250,000, or $500,000 filing jointly.
+         Without this, a high earner would be handed a deduction the state does
+         not give them, and the error would be silent. Added 2026-08-28.
+         The threshold is written against federal AGI; for a wage-only filer
+         with no other income, pay after pre-tax contributions is the closest
+         thing this calculator has to AGI, and that is what we compare. */
+      var po = state.incomeTax.deductionPhaseOut;
+      if (po) {
+        var seuil = (input.filingStatus in po) ? po[input.filingStatus] : po.single;
+        if (isFinite(seuil) && afterPretax > seuil) sd = 0;
+      }
       stateTax = progressiveTax(
         Math.max(0, afterPretax - (sd || 0)),
         state.incomeTax.brackets[input.filingStatus] || state.incomeTax.brackets.single

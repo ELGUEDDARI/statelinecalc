@@ -42,11 +42,20 @@ const money2 = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, 
    deduction d'un Etat peut etre une table par situation de famille (Georgie :
    15 000 $ seul, 30 000 $ en couple). Lue sans tester le type, elle donnait
    NaN, et le generateur ecrivait "$NaN" dans du HTML pret a publier. */
-function deductionEtat(S, statut) {
+function deductionEtat(S, statut, revenu) {
   const d = S.incomeTax.standardDeduction;
   if (!d) return 0;
-  if (typeof d === "object") return (statut in d) ? d[statut] : d.single;
-  return d;
+  let v = (typeof d === "object") ? ((statut in d) ? d[statut] : d.single) : d;
+  /* Certains Etats retirent la deduction au-dela d'un seuil au lieu de la
+     reduire progressivement (Illinois : plus d'exoneration au-dela de
+     250 000 $, 500 000 $ en couple). Sans ca le tableau donnerait une
+     deduction que l'Etat n'accorde pas. Ajoute le 28/08/2026. */
+  const po = S.incomeTax.deductionPhaseOut;
+  if (po && revenu !== undefined) {
+    const seuil = (statut in po) ? po[statut] : po.single;
+    if (isFinite(seuil) && revenu > seuil) v = 0;
+  }
+  return v;
 }
 
 const taux = [15, 16, 18, 20, 22, 25, 28, 30, 35, 40, 45, 50, 60, 75];
@@ -59,7 +68,7 @@ const rows = taux.map(h => {
   const med = gross * R.fica.medicare.rate
             + Math.max(0, gross - R.fica.additionalMedicare.threshold) * R.fica.additionalMedicare.rate;
   const stateIncome = S.incomeTax.hasIncomeTax
-    ? progressiveTax(Math.max(0, gross - deductionEtat(S, "single")),
+    ? progressiveTax(Math.max(0, gross - deductionEtat(S, "single", gross)),
                      S.incomeTax.brackets.single)
     : 0;
   const pl = S.paidLeave

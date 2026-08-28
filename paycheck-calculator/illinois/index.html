@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Locked down deliberately. connect-src names the Google Analytics endpoints
+     and nothing else, so page views go out and nothing else can. What the
+     visitor TYPES still never leaves the browser: the calculator runs locally
+     and no salary value is ever passed to the analytics layer. Checked by
+     test-live.js on every deploy, with a marker amount, against both the URL
+     and the request body.
+     When AdSense goes in (around day 120), its domains must be added to
+     script-src and frame-src explicitly, never by loosening to '*'. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
+<script src="/assets/analytics.js"></script>
+<title>Illinois Paycheck Calculator 2026 — Hourly and Salary Take-Home Pay</title>
+<meta name="description" content="Free Illinois paycheck calculator, 2026. Hourly or salary. Illinois taxes income at a flat 4.95% after a $2,925 personal exemption that disappears entirely above $250,000.">
+<link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/illinois/">
+<link rel="stylesheet" href="/assets/style.css">
+
+<meta property="og:title" content="Illinois Paycheck Calculator 2026 — Hourly and Salary Take-Home Pay">
+<meta property="og:description" content="Illinois taxes income at a flat 4.95%, after a personal exemption of $2,925 that is withdrawn entirely above $250,000. See what reaches your account in 2026.">
+<meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/illinois/">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Illinois Paycheck Calculator",
+      "url": "https://statelinecalc.com/paycheck-calculator/illinois/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculates 2026 Illinois take-home pay after federal income tax, Social Security, Medicare and Illinois's flat 4.95 percent income tax, including the personal exemption and the income threshold above which it is withdrawn."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Paycheck Calculator", "item": "https://statelinecalc.com/paycheck-calculator/" },
+        { "@type": "ListItem", "position": 3, "name": "Illinois", "item": "https://statelinecalc.com/paycheck-calculator/illinois/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the Illinois income tax rate in 2026?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A flat 4.95 percent. The Illinois Department of Revenue lists individual income tax as 4.95 percent of net income, effective July 1, 2017 and unchanged since. There are no brackets, so the rate on your first taxable dollar and your last is the same." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is $20 an hour after taxes in Illinois?",
+          "acceptedAnswer": { "@type": "Answer", "text": "About $33,691 a year, or $2,807.60 a month, at 40 hours a week for a single filer in 2026. That is a real take-home rate of $16.20 an hour, an effective rate of 19.0 percent, after federal tax, Social Security, Medicare and the Illinois 4.95 percent." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is take-home pay on a $75,000 salary in Illinois?",
+          "acceptedAnswer": { "@type": "Answer", "text": "About $58,025 a year, or $4,835.40 a month, for a single filer in 2026. Illinois takes $3,567.71, which is 4.95 percent of the $72,075 left after the $2,925 personal exemption. Total withholding is $16,975.21, an effective rate of 22.6 percent." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Illinois have a standard deduction?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Illinois grants a personal exemption instead, which works differently. For 2026 it is $2,925 per exemption, meaning one for you, one for a spouse on a joint return, and one for each dependent. A standard deduction is a single amount per return; a personal exemption is counted per person." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my Illinois exemption disappear at a high income?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Because Illinois withdraws it completely rather than reducing it. The Department of Revenue states that the Illinois exemption allowance is not allowed if adjusted gross income exceeds $500,000 for married filing jointly or $250,000 for all other returns. It is a cliff, not a taper: one dollar over the threshold costs a single filer the whole $2,925 exemption, which is $144.79 in extra tax." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Illinois unemployment insurance taken out of my paycheck?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The Illinois Department of Employment Security states that benefits are financed by employer payroll taxes, not by any deductions from your wages. Nothing for unemployment insurance appears on an Illinois employee's pay stub." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my Illinois paycheck smaller than the calculator says?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Almost always because of things that are personal to you rather than to Illinois: health insurance premiums, a 401(k) contribution, extra withholding on your W-4, or a second job. The calculator models one job, one personal exemption and wages only." }
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "StateLine Calc",
+      "url": "https://statelinecalc.com/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">StateLine Calc</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/paycheck-calculator/">Paycheck</a>
+      <a href="/methodology/">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/paycheck-calculator/">Paycheck Calculator</a></li>
+    <li aria-current="page">Illinois</li>
+  </ol>
+</nav>
+
+  <!-- 1. H1 = the exact query -->
+  <h1>Illinois Paycheck Calculator 2026</h1>
+
+  <!-- 2. Direct answer, 40-60 words, before the calculator -->
+  <div class="answer">
+    <p>Illinois taxes income at a <strong>flat 4.95%</strong> in 2026, after a personal exemption
+    of <span class="num">$2,925</span> per person. There are no brackets. On $75,000, a single
+    filer pays <span class="num">$3,567.71</span> to Illinois and keeps about
+    <span class="num">$58,025</span> a year. Above $250,000 the exemption is withdrawn
+    entirely.</p>
+  </div>
+
+  <!-- 3. The calculator itself -->
+  <section aria-labelledby="calc-h">
+    <h2 id="calc-h" class="u-mt-0">Calculate your Illinois take-home pay</h2>
+
+    <form class="calc" data-paycheck-form data-state="illinois" novalidate>
+      <div class="field">
+        <label for="salary">Your gross pay or hourly rate</label>
+        <input type="text" id="salary" name="salary" inputmode="decimal" value="75000"
+               autocomplete="off">
+        <span class="help">Before any taxes or deductions. Do not include tips paid in cash.</span>
+        <span class="error" role="alert">Enter an amount greater than zero.</span>
+      </div>
+
+      <div class="field" data-hours-field hidden>
+        <label for="hours">Hours per week</label>
+        <input type="text" id="hours" name="hours" inputmode="decimal" value="40"
+               autocomplete="off">
+        <span class="help">Only asked when something here is per hour. We use the hours you
+        actually work, not an assumed 2,080 a year.</span>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="period">How often you are paid</label>
+          <select id="period" name="period">
+            <option value="annual" selected>Per year</option>
+            <option value="hourly">Per hour</option>
+            <option value="monthly">Per month</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">This tells us what the amount above represents.</span>
+        </div>
+
+        <div class="field">
+          <label for="filing">Filing status</label>
+          <select id="filing" name="filing">
+            <option value="single" selected>Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+          <span class="help">Sets your federal brackets, and how many Illinois exemptions you
+          are counted for.</span>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="retirement">401(k) contribution</label>
+          <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
+          <span class="help">Percent of gross pay, before tax. Enter 0 if you do not contribute.</span>
+        </div>
+
+        <div class="field">
+          <label for="display">Show results</label>
+          <select id="display" name="display">
+            <option value="monthly" selected>Per month</option>
+            <option value="hourly">Per hour</option>
+            <option value="annual">Per year</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">Changes the period, not the calculation.</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+
+    <div class="result" data-paycheck-result aria-live="polite"></div>
+
+    <p class="caption u-mt-3">
+      Everything is calculated in your browser. Nothing you type is sent to us or stored.
+    </p>
+  </section>
+
+  <!-- Ad slot A -->
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <!-- 4. How it works + sources -->
+    <h2>How this calculator works</h2>
+    <p>Illinois is simple in one way and unusual in another. Simple, because the rate is flat: one
+    percentage, no brackets. Unusual, because what you subtract before applying it is a
+    <em>personal exemption</em> counted per person, not a standard deduction granted per return
+    &mdash; and because that exemption is taken away entirely above a certain income rather than
+    tapered.</p>
+
+    <p>The calculator applies four deductions, in this order:</p>
+    <ul>
+      <li><strong>Federal income tax.</strong> Your gross pay minus the federal standard deduction
+      for your filing status, run through the 2026 federal brackets. For 2026 that deduction is
+      <span class="num">$16,100</span> single, <span class="num">$32,200</span> married filing
+      jointly, <span class="num">$24,150</span> head of household.</li>
+      <li><strong>Social Security</strong> at 6.2% of gross wages, up to the 2026 wage base of
+      <span class="num">$184,500</span>.</li>
+      <li><strong>Medicare</strong> at 1.45% of all wages, with no cap, plus the 0.9% Additional
+      Medicare Tax on wages above <span class="num">$200,000</span>.</li>
+      <li><strong>Illinois income tax</strong> at a flat <strong>4.95%</strong> on your pay above
+      the personal exemption &mdash; <span class="num">$2,925</span> for one person,
+      <span class="num">$5,850</span> for a couple filing jointly, and nothing at all above the
+      income threshold described below.</li>
+    </ul>
+
+    <p>Rates come from the agencies that set them: the IRS for the federal brackets, the standard
+    deduction and FICA, cross-checked against the Social Security Administration for the wage
+    base; the <strong>Illinois Department of Revenue</strong> for the rate, the exemption and the
+    threshold; and the <strong>Illinois Department of Employment Security</strong> for who pays
+    unemployment insurance. Every Illinois figure was read on the agency&rsquo;s own page on
+    <time datetime="2026-08-28">August 28, 2026</time>. Our full sourcing is on the
+    <a href="/methodology/">methodology page</a>.</p>
+
+    <p><strong>One assumption worth stating plainly:</strong> because the exemption is granted per
+    person and this calculator does not ask about dependents, it counts you alone, or you and a
+    spouse on a joint return. If you claim dependents your Illinois exemption is larger than the
+    one used here, so your real state tax is lower than we show. The figure errs against you, not
+    in your favor.</p>
+
+    <p>What the calculator deliberately does not do: it does not itemize deductions, apply tax
+    credits, model multiple jobs, or account for health insurance premiums and other employer
+    benefit deductions.</p>
+  </div>
+
+  <!-- 5. The 14-bracket table -->
+  <h2>Illinois take-home pay by salary</h2>
+  <p class="prose">Single filer, one personal exemption, no retirement contribution, 2026 rates.
+  Use it to place yourself without typing anything. Because the rate is flat, the Illinois column
+  rises in a straight line while the federal column accelerates.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Illinois take-home pay, single filer
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Gross salary</th>
+          <th scope="col">Federal tax</th>
+          <th scope="col">FICA</th>
+          <th scope="col">IL state tax</th>
+          <th scope="col">Take-home</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$40,000</td>
+            <td class="num">$2,620</td>
+            <td class="num">$3,060</td>
+            <td class="num">$1,835</td>
+            <td class="num"><strong>$32,485</strong></td>
+            <td class="num">$2,707.07</td>
+            <td class="num">18.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$50,000</td>
+            <td class="num">$3,820</td>
+            <td class="num">$3,825</td>
+            <td class="num">$2,330</td>
+            <td class="num"><strong>$40,025</strong></td>
+            <td class="num">$3,335.40</td>
+            <td class="num">20.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$60,000</td>
+            <td class="num">$5,020</td>
+            <td class="num">$4,590</td>
+            <td class="num">$2,825</td>
+            <td class="num"><strong>$47,565</strong></td>
+            <td class="num">$3,963.73</td>
+            <td class="num">20.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$70,000</td>
+            <td class="num">$6,570</td>
+            <td class="num">$5,355</td>
+            <td class="num">$3,320</td>
+            <td class="num"><strong>$54,755</strong></td>
+            <td class="num">$4,562.90</td>
+            <td class="num">21.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$75,000</td>
+            <td class="num">$7,670</td>
+            <td class="num">$5,738</td>
+            <td class="num">$3,568</td>
+            <td class="num"><strong>$58,025</strong></td>
+            <td class="num">$4,835.40</td>
+            <td class="num">22.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$80,000</td>
+            <td class="num">$8,770</td>
+            <td class="num">$6,120</td>
+            <td class="num">$3,815</td>
+            <td class="num"><strong>$61,295</strong></td>
+            <td class="num">$5,107.90</td>
+            <td class="num">23.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$90,000</td>
+            <td class="num">$10,970</td>
+            <td class="num">$6,885</td>
+            <td class="num">$4,310</td>
+            <td class="num"><strong>$67,835</strong></td>
+            <td class="num">$5,652.90</td>
+            <td class="num">24.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$100,000</td>
+            <td class="num">$13,170</td>
+            <td class="num">$7,650</td>
+            <td class="num">$4,805</td>
+            <td class="num"><strong>$74,375</strong></td>
+            <td class="num">$6,197.90</td>
+            <td class="num">25.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$110,000</td>
+            <td class="num">$15,370</td>
+            <td class="num">$8,415</td>
+            <td class="num">$5,300</td>
+            <td class="num"><strong>$80,915</strong></td>
+            <td class="num">$6,742.90</td>
+            <td class="num">26.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$125,000</td>
+            <td class="num">$18,734</td>
+            <td class="num">$9,563</td>
+            <td class="num">$6,043</td>
+            <td class="num"><strong>$90,661</strong></td>
+            <td class="num">$7,555.07</td>
+            <td class="num">27.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$140,000</td>
+            <td class="num">$22,334</td>
+            <td class="num">$10,710</td>
+            <td class="num">$6,785</td>
+            <td class="num"><strong>$100,171</strong></td>
+            <td class="num">$8,347.57</td>
+            <td class="num">28.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$150,000</td>
+            <td class="num">$24,734</td>
+            <td class="num">$11,475</td>
+            <td class="num">$7,280</td>
+            <td class="num"><strong>$106,511</strong></td>
+            <td class="num">$8,875.90</td>
+            <td class="num">29.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$175,000</td>
+            <td class="num">$30,734</td>
+            <td class="num">$13,388</td>
+            <td class="num">$8,518</td>
+            <td class="num"><strong>$122,361</strong></td>
+            <td class="num">$10,196.73</td>
+            <td class="num">30.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$200,000</td>
+            <td class="num">$36,734</td>
+            <td class="num">$14,339</td>
+            <td class="num">$9,755</td>
+            <td class="num"><strong>$139,172</strong></td>
+            <td class="num">$11,597.65</td>
+            <td class="num">30.4%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- 5b. Paie horaire -->
+  <h2>Illinois hourly paycheck: what your rate is worth after tax</h2>
+
+  <div class="prose">
+    <p>Many of the people asking this question are paid by the hour, not by the year. The
+    calculator above takes an hourly rate directly &mdash; switch <strong>How often you are
+    paid</strong> to <strong>Per hour</strong>, tell it how many hours a week you actually work,
+    and it will show your take-home pay per hour, per week or per year.</p>
+
+    <p>The flat rate makes the arithmetic easy to carry in your head. Above the exemption, every
+    extra hour is taxed by Illinois at the same 4.95%, whether it is your first overtime hour of
+    the year or your last. The same $25 an hour nets <span class="num">$19.97</span> here against
+    <span class="num">$21.14</span> in <a href="/paycheck-calculator/texas/">Texas</a>, which
+    taxes no income at all.</p>
+
+    <h3>Why we ask your hours instead of assuming 2,080</h3>
+    <p>Most hourly calculators multiply your rate by 2,080 and call it your salary. That number
+    assumes exactly 40 hours a week, 52 weeks a year, with no unpaid time off and no slow weeks
+    &mdash; which is precisely what hourly work often is not. At 35 hours a week the same rate
+    produces a materially smaller annual figure, and sometimes a lower federal bracket with it.
+    We ask rather than assume.</p>
+
+    <h3>What $20 an hour comes to in Illinois</h3>
+    <p>At 40 hours a week, $20 an hour is <span class="num">$33,691</span> a year after tax, or
+    about <span class="num">$2,807.60</span> a month. Your effective rate is
+    <strong>19.0%</strong>, and your real take-home rate is
+    <strong class="num">$16.20</strong> an hour. That is the number worth carrying in your head
+    when you are comparing job offers.</p>
+
+    <h3>What $25 and $30 an hour come to</h3>
+    <p>At $25 an hour you take home about <span class="num">$41,533</span> a year, a real rate of
+    <span class="num">$19.97</span>. At $30 it is <span class="num">$49,374</span>, a real rate of
+    <span class="num">$23.74</span>. A $5 raise on paper is worth less than $5 in your pocket, and
+    in Illinois a fixed 4.95% of it goes to the state on top of the federal share.</p>
+
+    <h3>Overtime, tips and shift differentials</h3>
+    <p>For withholding purposes, overtime, reported tips and shift or holiday differentials are
+    ordinary wages: your employer withholds federal income tax, FICA and Illinois tax on them
+    exactly as on your base rate. A big overtime week can push that single paycheck into a higher
+    federal withholding band, which is why it sometimes looks disappointing on the stub. Enter
+    your realistic average hours, including overtime, for the most useful figure.</p>
+
+    <p>For what you finally owe, the federal picture changed for 2026 and this calculator does not
+    model it. Deductions created by the One, Big, Beautiful Bill run from
+    <strong>2025 through 2028</strong>: up to <span class="num">$25,000</span> of qualified tips
+    and up to <span class="num">$12,500</span> of qualified overtime
+    (<span class="num">$25,000</span> filing jointly), both phasing out above
+    <span class="num">$150,000</span> of modified adjusted gross income. They are claimed on your
+    return, on Schedule 1-A, not through payroll. Source: IRS,
+    <em>Working Families Tax Cuts</em>, read
+    <time datetime="2026-08-28">August 28, 2026</time>.</p>
+  </div>
+
+  <h3>Illinois take-home pay by hourly rate</h3>
+  <p class="prose">Single filer, one personal exemption, 40 hours a week (2,080 hours a year),
+  2026 rates.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Illinois take-home pay by hourly rate, single filer, 40 hours a week
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Hourly rate</th>
+          <th scope="col">Gross a year</th>
+          <th scope="col">Take-home a year</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Real hourly rate</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$15.00</td>
+            <td class="num">$31,200</td>
+            <td class="num"><strong>$25,850</strong></td>
+            <td class="num">$2,154.13</td>
+            <td class="num">$12.43</td>
+            <td class="num">17.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$16.00</td>
+            <td class="num">$33,280</td>
+            <td class="num"><strong>$27,418</strong></td>
+            <td class="num">$2,284.83</td>
+            <td class="num">$13.18</td>
+            <td class="num">17.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$18.00</td>
+            <td class="num">$37,440</td>
+            <td class="num"><strong>$30,555</strong></td>
+            <td class="num">$2,546.21</td>
+            <td class="num">$14.69</td>
+            <td class="num">18.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$20.00</td>
+            <td class="num">$41,600</td>
+            <td class="num"><strong>$33,691</strong></td>
+            <td class="num">$2,807.60</td>
+            <td class="num">$16.20</td>
+            <td class="num">19.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$22.00</td>
+            <td class="num">$45,760</td>
+            <td class="num"><strong>$36,828</strong></td>
+            <td class="num">$3,068.99</td>
+            <td class="num">$17.71</td>
+            <td class="num">19.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$25.00</td>
+            <td class="num">$52,000</td>
+            <td class="num"><strong>$41,533</strong></td>
+            <td class="num">$3,461.07</td>
+            <td class="num">$19.97</td>
+            <td class="num">20.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$28.00</td>
+            <td class="num">$58,240</td>
+            <td class="num"><strong>$46,238</strong></td>
+            <td class="num">$3,853.15</td>
+            <td class="num">$22.23</td>
+            <td class="num">20.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$30.00</td>
+            <td class="num">$62,400</td>
+            <td class="num"><strong>$49,374</strong></td>
+            <td class="num">$4,114.53</td>
+            <td class="num">$23.74</td>
+            <td class="num">20.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$35.00</td>
+            <td class="num">$72,800</td>
+            <td class="num"><strong>$56,586</strong></td>
+            <td class="num">$4,715.50</td>
+            <td class="num">$27.20</td>
+            <td class="num">22.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$40.00</td>
+            <td class="num">$83,200</td>
+            <td class="num"><strong>$63,388</strong></td>
+            <td class="num">$5,282.30</td>
+            <td class="num">$30.47</td>
+            <td class="num">23.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$45.00</td>
+            <td class="num">$93,600</td>
+            <td class="num"><strong>$70,189</strong></td>
+            <td class="num">$5,849.10</td>
+            <td class="num">$33.74</td>
+            <td class="num">25.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$50.00</td>
+            <td class="num">$104,000</td>
+            <td class="num"><strong>$76,991</strong></td>
+            <td class="num">$6,415.90</td>
+            <td class="num">$37.01</td>
+            <td class="num">26.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$60.00</td>
+            <td class="num">$124,800</td>
+            <td class="num"><strong>$90,534</strong></td>
+            <td class="num">$7,544.50</td>
+            <td class="num">$43.53</td>
+            <td class="num">27.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$75.00</td>
+            <td class="num">$156,000</td>
+            <td class="num"><strong>$110,315</strong></td>
+            <td class="num">$9,192.90</td>
+            <td class="num">$53.04</td>
+            <td class="num">29.3%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ad slot B -->
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+  <!-- 6. Key facts -->
+  <h2>Key facts that affect your take-home pay in Illinois</h2>
+
+  <h3>The rate is flat, and it has not moved since 2017</h3>
+  <p>The Illinois Department of Revenue lists individual income tax as
+  <em>&ldquo;4.95 percent of net income&rdquo;</em>, effective July 1, 2017. Flat means there is
+  nothing to climb: the same percentage applies to your first taxable dollar and your last.
+  Unlike Georgia, which has been stepping its rate down year by year, Illinois has held the same
+  number for nearly a decade.</p>
+
+  <h3>It is a personal exemption, not a standard deduction</h3>
+  <p>This distinction gets flattened on most calculator pages, and it changes the answer. A
+  standard deduction is one amount per return. A personal exemption is counted <strong>per
+  person</strong>: one for you, one for a spouse on a joint return, one for each dependent. For
+  2026 the Department of Revenue puts it at <span class="num">$2,925</span>.</p>
+
+  <h3>The exemption vanishes above $250,000 &mdash; it is not reduced</h3>
+  <p>The wording matters. The Department of Revenue states the exemption allowance is
+  <em>&ldquo;not allowed if the taxpayer&rsquo;s adjusted gross income for the taxable year
+  exceeds $500,000 for returns with a federal filing status of married filing jointly, or
+  $250,000 for all other returns&rdquo;</em>. Not tapered. Not phased. Gone.</p>
+
+  <h3>What crossing that line actually costs</h3>
+  <p>Exactly <span class="num">$144.79</span> for a single filer: the whole
+  <span class="num">$2,925</span> exemption multiplied by 4.95%. One dollar of extra income at
+  the threshold costs you that amount in Illinois tax. It is a small number in absolute terms,
+  but it is a genuine cliff, and almost no calculator models it.</p>
+
+  <h3>Unemployment insurance is paid by your employer</h3>
+  <p>The Illinois Department of Employment Security is explicit:
+  <em>&ldquo;Benefits are financed by employer payroll taxes &ndash; not by any deductions from
+  your wages.&rdquo;</em> Nothing for unemployment appears on an Illinois pay stub, even though
+  employer-side rates are often quoted as though workers paid them.</p>
+
+  <h3>No state disability insurance and no paid family leave premium</h3>
+  <p>Several states deduct a percentage for short-term disability or paid family leave. Illinois
+  has neither program, so there is no such line. Compare that with
+  <a href="/paycheck-calculator/washington/">Washington</a>, where two state programs come out of
+  every check.</p>
+
+  <h3>Social Security stops, Medicare does not</h3>
+  <p>Social Security is charged at 6.2% only up to <span class="num">$184,500</span> of wages in
+  2026. Cross that line and your take-home pay jumps mid-year, because the deduction simply stops.
+  Medicare has no such cap, and adds 0.9% above <span class="num">$200,000</span>.</p>
+
+  <h3>Your Illinois effective rate is never quite 4.95%</h3>
+  <p>Because the first <span class="num">$2,925</span> escapes, the share of your whole salary
+  that goes to Illinois sits just below the headline rate. On $75,000 the state takes
+  <span class="num">$3,567.71</span>, which is <strong>4.76%</strong> of gross. The exemption is
+  small, so the gap is small &mdash; much smaller than in Georgia, where a $15,000 deduction
+  pulls the effective rate a full point below the headline.</p>
+
+  <h3>What a 401(k) does, and does not do</h3>
+  <p>A pre-tax contribution lowers the income both the federal government and Illinois tax, so it
+  cuts two bills at once. It does <strong>not</strong> reduce Social Security or Medicare, which
+  are charged on gross wages regardless. Try 10% in the calculator and watch which lines move.</p>
+
+  <!-- 7. Common mistakes -->
+  <h2>Common mistakes people make</h2>
+
+  <h3>Treating the exemption as a standard deduction</h3>
+  <p>They are not the same thing, and the difference grows with your household. A family of four
+  counts four exemptions in Illinois. A standard deduction would not multiply that way. If you
+  have dependents, your real Illinois tax is lower than this page shows.</p>
+
+  <h3>Assuming the exemption tapers off gradually</h3>
+  <p>It does not. Illinois says &ldquo;not allowed&rdquo; above the threshold, which is a cliff.
+  Planning around a gentle phase-out that does not exist is how people get a surprise on their
+  return.</p>
+
+  <h3>Comparing an Illinois offer with a no-tax state on gross pay alone</h3>
+  <p>A $75,000 offer in Chicago and a $75,000 offer in Dallas are not the same offer: the
+  difference is <span class="num">$3,568</span> a year, exactly the Illinois tax, because the
+  federal tax and FICA are identical. Compare take-home, then compare cost of living, which often
+  runs the other way.</p>
+
+  <h3>Confusing the employer&rsquo;s unemployment tax with a deduction</h3>
+  <p>Illinois employers pay unemployment contributions on your wages, and those rates are
+  sometimes quoted as though they were payroll deductions. They are not. The state says so
+  plainly.</p>
+
+  <h3>Using an annual figure when you are paid hourly</h3>
+  <p>Multiplying an hourly rate by 2,080 assumes a full year of full weeks. If your hours vary,
+  set the calculator to <strong>Per hour</strong> and enter your realistic average instead.</p>
+
+  <h3>Expecting the calculator to match the paystub to the dollar</h3>
+  <p>It will not, and no calculator can. Your employer withholds from your W-4, including any
+  extra amount you asked for; we estimate your liability on a simplified wage situation. A gap of
+  a few percent is normal. See the <a href="/disclaimer/">disclaimer</a>.</p>
+
+  <!-- 8. Worked example -->
+    <h2>Example calculation</h2>
+    <p>A single filer earning <span class="num">$75,000</span> a year in Chicago, with one
+    personal exemption and no 401(k) contribution:</p>
+
+    <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">$75,000 salary, single filer, Illinois, 2026</caption>
+      <thead><tr><th scope="col">Line</th><th scope="col">Amount</th><th scope="col">How it is worked out</th></tr></thead>
+      <tbody>
+        <tr><td>Gross salary</td><td class="num">$75,000</td><td>Starting point</td></tr>
+        <tr><td>Federal standard deduction</td><td class="num">&minus;$16,100</td><td>Single filer, 2026</td></tr>
+        <tr><td>Federal taxable income</td><td class="num">$58,900</td><td>$75,000 &minus; $16,100</td></tr>
+        <tr><td>Federal income tax</td><td class="num">&minus;$7,670</td><td>10% to $12,400, 12% to $50,400, 22% on the rest</td></tr>
+        <tr><td>Social Security</td><td class="num">&minus;$4,650</td><td>6.2% of $75,000</td></tr>
+        <tr><td>Medicare</td><td class="num">&minus;$1,087.50</td><td>1.45% of $75,000</td></tr>
+        <tr><td>Illinois personal exemption</td><td class="num">&minus;$2,925</td><td>One exemption, 2026</td></tr>
+        <tr><td>Illinois taxable income</td><td class="num">$72,075</td><td>$75,000 &minus; $2,925</td></tr>
+        <tr><td>Illinois income tax</td><td class="num">&minus;$3,567.71</td><td>4.95% of $72,075, flat</td></tr>
+        <tr><td><strong>Total withheld</strong></td><td class="num"><strong>$16,975.21</strong></td><td>22.6% effective rate</td></tr>
+        <tr><td><strong>Take-home pay</strong></td><td class="num"><strong>$58,024.79</strong></td><td><span class="num">$4,835.40</span> a month</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>The same salary in <a href="/paycheck-calculator/georgia/">Georgia</a> leaves
+    <span class="num">$58,598.50</span>, and in <a href="/paycheck-calculator/texas/">Texas</a>
+    <span class="num">$61,592.50</span>. Illinois has the higher headline rate of the two states
+    that tax income here, but a much smaller allowance to subtract first, which is why the gap
+    with Georgia is only <span class="num">$574</span> a year.</p>
+
+    <!-- 9. FAQ -->
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+
+      <h3>What is the Illinois income tax rate in 2026?</h3>
+      <p>A flat <strong>4.95%</strong>. The Illinois Department of Revenue lists individual income
+      tax as 4.95 percent of net income, effective July 1, 2017 and unchanged since. There are no
+      brackets, so the rate on your first taxable dollar and your last is the same.</p>
+
+      <h3>What is $20 an hour after taxes in Illinois?</h3>
+      <p>About <span class="num">$33,691</span> a year, or <span class="num">$2,807.60</span> a
+      month, at 40 hours a week for a single filer in 2026. That is a real take-home rate of
+      <span class="num">$16.20</span> an hour, an effective rate of 19.0 percent, after federal
+      tax, Social Security, Medicare and the Illinois 4.95%.</p>
+
+      <h3>What is take-home pay on a $75,000 salary in Illinois?</h3>
+      <p>About <span class="num">$58,025</span> a year, or <span class="num">$4,835.40</span> a
+      month, for a single filer in 2026. Illinois takes <span class="num">$3,567.71</span>, which
+      is 4.95% of the <span class="num">$72,075</span> left after the
+      <span class="num">$2,925</span> personal exemption. Total withholding is
+      <span class="num">$16,975.21</span>, an effective rate of 22.6 percent.</p>
+
+      <h3>Does Illinois have a standard deduction?</h3>
+      <p>No. Illinois grants a personal exemption instead, which works differently. For 2026 it is
+      <span class="num">$2,925</span> per exemption, meaning one for you, one for a spouse on a
+      joint return, and one for each dependent. A standard deduction is a single amount per
+      return; a personal exemption is counted per person.</p>
+
+      <h3>Why does my Illinois exemption disappear at a high income?</h3>
+      <p>Because Illinois withdraws it completely rather than reducing it. The Department of
+      Revenue states that the exemption allowance is not allowed if adjusted gross income exceeds
+      <span class="num">$500,000</span> for married filing jointly or
+      <span class="num">$250,000</span> for all other returns. It is a cliff, not a taper: one
+      dollar over the threshold costs a single filer the whole $2,925 exemption, which is
+      <span class="num">$144.79</span> in extra tax.</p>
+
+      <h3>Is Illinois unemployment insurance taken out of my paycheck?</h3>
+      <p>No. The Illinois Department of Employment Security states that benefits are financed by
+      employer payroll taxes, not by any deductions from your wages. Nothing for unemployment
+      insurance appears on an Illinois employee&rsquo;s pay stub.</p>
+
+      <h3>Why is my Illinois paycheck smaller than the calculator says?</h3>
+      <p>Almost always because of things that are personal to you rather than to Illinois: health
+      insurance premiums, a 401(k) contribution, extra withholding on your W-4, or a second job.
+      The calculator models one job, one personal exemption and wages only.</p>
+    </div>
+
+    <!-- 10a. Neighboring states -->
+    <h2>Compare with neighboring states</h2>
+    <p>Illinois&rsquo;s flat rate only means something next to what surrounds it:</p>
+    <ul>
+      <li><strong><a href="/paycheck-calculator/texas/">Texas</a></strong> &mdash; no income tax
+      at all. On $75,000 that is <span class="num">$3,568</span> a year more in your pocket.</li>
+      <li><strong><a href="/paycheck-calculator/georgia/">Georgia</a></strong> &mdash; a lower
+      flat rate at 4.99%&hellip; but a far larger allowance, which is why a Georgia worker keeps
+      slightly more.</li>
+      <li><strong><a href="/paycheck-calculator/florida/">Florida</a></strong> &mdash; nothing at
+      state level, and the most common destination in this comparison.</li>
+      <li><strong>Indiana</strong> &mdash; a lower flat state rate, but county income taxes on top
+      of it, immediately across the eastern line.</li>
+      <li><strong>Wisconsin</strong> &mdash; a progressive state income tax to the north.</li>
+      <li><strong>Missouri</strong> &mdash; a progressive state income tax across the western
+      line.</li>
+    </ul>
+    <p class="caption">Calculators for the unlinked states are being written. Each one needs its
+    own rates read from that state&rsquo;s own agency before it goes live &mdash; see the
+    <a href="/paycheck-calculator/">state index</a>.</p>
+
+    <h2>Related reading</h2>
+    <ul>
+      <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
+      index, including which states have no income tax at all.</li>
+      <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
+      with its official source, and what these calculators deliberately do not model.</li>
+      <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,
+      credits and W-4 settings, and how much difference is normal.</li>
+    </ul>
+
+  </div>
+
+  <!-- Ad slot C -->
+  <div class="ad-slot ad-leaderboard" aria-hidden="true"></div>
+
+
+  <!-- 10b. Browse by state -->
+  <h2>Browse paycheck calculators by state</h2>
+  <p class="prose caption">Live calculators are linked. The rest are being written one at a time,
+  each with its rates read from that state&rsquo;s own agency before it goes live.</p>
+  <ul class="linkgrid">
+    <li>Alabama</li>
+    <li>Alaska</li>
+    <li>Arizona</li>
+    <li>Arkansas</li>
+    <li>California</li>
+    <li>Colorado</li>
+    <li>Connecticut</li>
+    <li>Delaware</li>
+    <li><a href="/paycheck-calculator/florida/">Florida</a></li>
+    <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
+    <li>Hawaii</li>
+    <li>Idaho</li>
+    <li><a href="/paycheck-calculator/illinois/" aria-current="page">Illinois</a></li>
+    <li>Indiana</li>
+    <li>Iowa</li>
+    <li>Kansas</li>
+    <li>Kentucky</li>
+    <li>Louisiana</li>
+    <li>Maine</li>
+    <li>Maryland</li>
+    <li>Massachusetts</li>
+    <li>Michigan</li>
+    <li>Minnesota</li>
+    <li>Mississippi</li>
+    <li>Missouri</li>
+    <li>Montana</li>
+    <li>Nebraska</li>
+    <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
+    <li>New Hampshire</li>
+    <li>New Jersey</li>
+    <li>New Mexico</li>
+    <li>New York</li>
+    <li>North Carolina</li>
+    <li>North Dakota</li>
+    <li>Ohio</li>
+    <li>Oklahoma</li>
+    <li>Oregon</li>
+    <li>Pennsylvania</li>
+    <li>Rhode Island</li>
+    <li>South Carolina</li>
+    <li>South Dakota</li>
+    <li>Tennessee</li>
+    <li><a href="/paycheck-calculator/texas/">Texas</a></li>
+    <li>Utah</li>
+    <li>Vermont</li>
+    <li>Virginia</li>
+    <li><a href="/paycheck-calculator/washington/">Washington</a></li>
+    <li>West Virginia</li>
+    <li>Wisconsin</li>
+    <li>Wyoming</li>
+  </ul>
+
+  <!-- 11. Dates -->
+  <p class="dates">
+    Published <time datetime="2026-08-28">August 28, 2026</time> &middot;
+    Last updated <time datetime="2026-08-28">August 28, 2026</time> &middot;
+    Rates verified against IRS and Social Security Administration figures, the Illinois
+    Department of Revenue and the Illinois Department of Employment Security on
+    August 28, 2026.
+    See our <a href="/methodology/">methodology</a>.
+  </p>
+
+  <!-- 12. Disclaimer -->
+  <p class="disclaimer">
+    StateLine Calc provides general information for educational purposes only. It is not
+    financial, tax or legal advice, and it does not account for every circumstance. Results are
+    estimates based on published 2026 rates, the federal standard deduction and a single Illinois
+    personal exemption. Your actual paycheck depends on your W-4, your dependents, your
+    employer's benefit deductions and your full tax situation. Consult a qualified tax
+    professional before making decisions.
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>StateLine Calc</strong> &mdash; free money calculators for all 50 states.
+    No sign-up. No personal data required.</p>
+    <p class="micro u-on-dark">
+      <a href="/about/">About</a> &middot;
+      <a href="/methodology/">Methodology</a> &middot;
+      <a href="/contact/">Contact</a> &middot;
+      <a href="/privacy/">Privacy</a> &middot;
+      <a href="/terms/">Terms</a> &middot;
+      <a href="/disclaimer/">Disclaimer</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/data/rates-2026.js"></script>
+<script src="/assets/calc-paycheck.js"></script>
+
+</body>
+</html>

@@ -291,5 +291,52 @@ check("taux unique : 4,99 % pile quel que soit le montant",
     R.states[nom].incomeTax.hasIncomeTax ? 1 : 0, 0, 0);
 });
 
+
+/* ---------------------------------------------------------------------------
+   9. ILLINOIS - taux unique 4,95 % ET une exoneration qui DISPARAIT.
+   L'Illinois n'accorde pas une deduction reduite au-dela du seuil : il ne
+   l'accorde plus du tout. "not allowed", pas "reduced". C'est une falaise,
+   pas une pente, et c'est le premier Etat du site dans ce cas.
+
+   Recalcule A LA MAIN, celibataire, 75 000 $, 2026 :
+     federal 7 670,00 + SS 4 650,00 + Medicare 1 087,50
+     Illinois = (75 000 - 2 925) x 0,0495 = 72 075 x 0,0495 = 3 567,71
+     total = 16 975,21 ; net = 58 024,79 ; mensuel = 4 835,40
+--------------------------------------------------------------------------- */
+console.log("\n=== 9. Illinois : taux unique + exoneration a falaise ===");
+const IL = R.states.illinois;
+check("l'Illinois preleve bien un impot", IL.incomeTax.hasIncomeTax ? 1 : 0, 1, 0);
+check("exoneration 2026 = 2 925 $", IL.incomeTax.standardDeduction.single, 2925, 0);
+check("un couple compte DEUX exonerations", IL.incomeTax.standardDeduction.marriedJoint, 5850, 0);
+check("impot Illinois sur 75 000",
+  progressiveTax(75000 - 2925, IL.incomeTax.brackets.single), 3567.71);
+
+const ilTotal = 7670 + 4650 + 1087.50 + 3567.7125;
+check("total des prelevements en Illinois", ilTotal, 16975.21);
+check("net annuel Illinois", 75000 - ilTotal, 58024.79);
+check("net mensuel Illinois", (75000 - ilTotal) / 12, 4835.40, 0.01);
+
+/* LA FALAISE. Sous le seuil l'exoneration s'applique, au-dessus elle
+   disparait entierement. On teste des deux cotes, et on verifie que le
+   franchissement coute bien 2 925 x 4,95 % = 144,79 $ de plus. */
+function deductionIL(statut, revenu) {
+  const d = IL.incomeTax.standardDeduction[statut];
+  const seuil = IL.incomeTax.deductionPhaseOut[statut];
+  return revenu > seuil ? 0 : d;
+}
+check("a 250 000 pile, l'exoneration s'applique encore",
+  deductionIL("single", 250000), 2925, 0);
+check("a 250 001, elle a totalement disparu",
+  deductionIL("single", 250001), 0, 0);
+check("franchir le seuil coute 2 925 x 4,95 %",
+  (deductionIL("single", 250000) - deductionIL("single", 250001)) * 0.0495, 144.79, 0.01);
+check("le seuil du couple est le double", IL.incomeTax.deductionPhaseOut.marriedJoint, 500000, 0);
+check("un couple a 300 000 garde son exoneration",
+  deductionIL("marriedJoint", 300000), 5850, 0);
+
+/* Les Etats sans seuil ne doivent surtout pas heriter de ce comportement. */
+check("la Georgie n'a pas de seuil de suppression",
+  R.states.georgia.incomeTax.deductionPhaseOut === undefined ? 1 : 0, 1, 0);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

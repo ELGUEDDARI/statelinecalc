@@ -313,6 +313,66 @@ const RATES_2026 = {
       incomeTax: { hasIncomeTax: false }
     },
 
+    /* -----------------------------------------------------------------------
+       ILLINOIS - added 2026-08-28. Sixth by real traffic on smartasset, and the
+       first state here whose deduction can vanish entirely, which is why the
+       engine had to learn deductionPhaseOut before this block could exist.
+
+       1. Flat rate. tax.illinois.gov, "Income Tax Rates", read 2026-08-28,
+          verbatim: "Individual Income Tax  Effective July 1, 2017:
+          4.95 percent of net income". Unchanged since 2017.
+
+       2. Personal exemption, NOT a standard deduction. Illinois Department of
+          Revenue bulletin FY 2026-15, "What is coming in 2026?", verbatim:
+          "Personal Exemption - The personal exemption amount for tax year 2026
+          will increase to $2,925."
+          It is granted PER EXEMPTION - the filer, a spouse, each dependent -
+          not per return. This calculator does not ask about dependents, so it
+          counts the filer only, and two for a joint return. Anyone with
+          dependents gets a larger exemption than we show, which makes our
+          figure conservative rather than flattering. The page says so.
+
+       3. The exemption DISAPPEARS above a threshold. Same bulletin, verbatim:
+          "The Illinois exemption allowance, Illinois Property Tax Credit, and
+          the K-12 Education Expense Credit are not allowed if the taxpayer's
+          adjusted gross income for the taxable year exceeds $500,000 for
+          returns with a federal filing status of married filing jointly, or
+          $250,000 for all other returns."
+          Note "not allowed", not "reduced": it is a cliff, not a taper. Without
+          deductionPhaseOut the calculator would hand a high earner an exemption
+          Illinois does not give them, and would do it silently.
+
+       4. Unemployment insurance - EMPLOYER only. ides.illinois.gov, "What Every
+          Worker Should Know About Unemployment Insurance", read 2026-08-28,
+          verbatim: "Benefits are financed by employer payroll taxes - not by
+          any deductions from your wages."
+
+       NOT VERIFIED, so the page claims nothing about it: whether any Illinois
+       municipality levies its own income tax.
+       ----------------------------------------------------------------------- */
+    illinois: {
+      name: "Illinois",
+      abbr: "IL",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 2925,
+          marriedJoint: 5850,          // two exemptions, filer and spouse
+          headOfHousehold: 2925
+        },
+        deductionPhaseOut: {
+          single: 250000,
+          marriedJoint: 500000,
+          headOfHousehold: 250000
+        },
+        brackets: {
+          single:          [[Infinity, 0.0495]],
+          marriedJoint:    [[Infinity, 0.0495]],
+          headOfHousehold: [[Infinity, 0.0495]]
+        }
+      }
+    },
+
     georgia: {
       name: "Georgia",
       abbr: "GA",
