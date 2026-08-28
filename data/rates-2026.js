@@ -131,7 +131,7 @@ const RATES_2026 = {
     /* -----------------------------------------------------------------------
        NEVADA — added 2026-08-27
        The point of this page: Nevada withholds NOTHING at state level. Not
-       even the payroll programmes that make Washington's "no income tax"
+       even the payroll programs that make Washington's "no income tax"
        claim only half true. Three official sources read on 2026-08-27:
 
        1. No personal income tax, and it is constitutional, not statutory.
