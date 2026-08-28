@@ -1,0 +1,12 @@
+{
+  "name": "statelinecalc",
+  "private": true,
+  "description": "Outils de test et de verification du site statelinecalc.com. Le site lui-meme est du HTML statique et ne depend de rien.",
+  "scripts": {
+    "test": "node .tooling/test/test-engine.js",
+    "test:live": "node .tooling/test/test-live.js"
+  },
+  "devDependencies": {
+    "playwright": "1.60.0"
+  }
+}
