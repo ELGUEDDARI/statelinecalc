@@ -73,7 +73,7 @@ const NET_WASHINGTON = 5046.01;   // ne doit JAMAIS apparaitre ici
   // Le tableau des 14 salaires doit etre dans le HTML, lisible sans JS.
   const lignes = await page.evaluate(() =>
     document.querySelectorAll(".table-scroll table tbody tr").length);
-  dire(lignes >= 14, "le tableau des salaires est dans le HTML", lignes + " lignes tbody");
+  dire(lignes >= 30, "le tableau des salaires est dans le HTML", lignes + " lignes tbody");
 
   // Mobile : pas de debordement horizontal.
   await page.setViewportSize({ width: 375, height: 800 });

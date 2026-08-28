@@ -87,12 +87,12 @@ const NET_WASHINGTON = 5046.01;   // ne doit JAMAIS apparaitre ici
   dire(/43,96\d/.test(blocH), "25 $/h a 40 h donne bien ~43 962 $ net par an",
        blocH.replace(/\s+/g, " ").slice(0, 120));
 
-  // Les DEUX tableaux de 14 lignes doivent exister sans JS : c'est la version
+  // Les DEUX tableaux de 30 lignes doivent exister sans JS : c'est la version
   // lisible par les IA, qui n'executent pas de JavaScript.
   const tableaux = await page.evaluate(() =>
     [...document.querySelectorAll("table")].map(t => t.querySelectorAll("tbody tr").length));
-  dire(tableaux.filter(n => n === 14).length >= 2,
-       "2 tableaux de 14 lignes (salaire annuel + taux horaire)", "lignes: " + tableaux.join(", "));
+  dire(tableaux.filter(n => n === 30).length >= 2,
+       "2 tableaux de 30 lignes (salaire annuel + taux horaire)", "lignes: " + tableaux.join(", "));
 
   // Ce qui fait la valeur propre de cette page : les citations de la loi.
   // Sans elles, la page Floride redevient un clone du Texas.

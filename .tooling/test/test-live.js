@@ -12,8 +12,13 @@
 
 const { chromium } = require("playwright");
 
-const URL_PAGE = "https://statelinecalc.com/paycheck-calculator/washington/";
-const URL_HOME = "https://statelinecalc.com/";
+/* La base est prise en argument, comme dans toutes les autres suites. Avant le
+   28/08 elle etait ecrite en dur sur la production : passer une URL locale ne
+   faisait rien, et "les tests locaux passent" pouvait donc etre faux sans que
+   rien ne le signale. C'est le pire genre de defaut dans un harnais de test. */
+const BASE = process.argv[2] || "https://statelinecalc.com";
+const URL_PAGE = BASE + "/paycheck-calculator/washington/";
+const URL_HOME = BASE + "/";
 
 let pass = 0, fail = 0;
 function check(label, ok, detail) {
@@ -67,15 +72,15 @@ function check(label, ok, detail) {
     (r2.match(/\$[\d,]+\.\d\d/) || ["rien"])[0]);
 
   console.log("\n=== 5. Les tableaux HTML sont dans la page (lisibles par les IA) ===");
-  /* Depuis le 27/08/2026 la page porte DEUX tableaux de 14 lignes : par
-     salaire annuel, et par taux horaire. Le test comptait 14 lignes en tout
+  /* Depuis le 27/08/2026 la page porte DEUX tableaux de 30 lignes : par
+     salaire annuel, et par taux horaire. Le test comptait 30 lignes en tout
      et cassait donc a l'ajout du second — c'etait le test qui etait perime,
      pas la page. On compte desormais chaque tableau separement, ce qui
      detecte aussi la disparition d'un seul des deux. */
   const tableaux = await page.evaluate(() =>
     [...document.querySelectorAll("table")].map(t => t.querySelectorAll("tbody tr").length));
-  const de14 = tableaux.filter(n => n === 14).length;
-  check("2 tableaux de 14 lignes (salaire annuel + taux horaire)",
+  const de14 = tableaux.filter(n => n === 30).length;
+  check("2 tableaux de 30 lignes (salaire annuel + taux horaire)",
     de14 >= 2, "tableaux : " + tableaux.join(", "));
 
   console.log("\n=== 6. Mobile : pas de defilement horizontal ===");

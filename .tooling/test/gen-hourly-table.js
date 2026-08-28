@@ -58,7 +58,13 @@ function deductionEtat(S, statut, revenu) {
   return v;
 }
 
-const taux = [15, 16, 18, 20, 22, 25, 28, 30, 35, 40, 45, 50, 60, 75];
+const taux = [
+  /* 30 taux au lieu de 14, meme raison que pour le tableau des salaires.
+     On descend a 12 $ : c'est en dessous du salaire minimum de plusieurs
+     Etats mais au-dessus du minimum federal, et c'est une requete reelle. */
+  12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+  22, 23, 24, 25, 26, 28, 30, 32, 35, 38,
+  40, 45, 50, 55, 60, 65, 70, 75, 85, 100];
 
 const rows = taux.map(h => {
   const gross = h * HEURES_AN;

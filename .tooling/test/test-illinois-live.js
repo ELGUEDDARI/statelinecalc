@@ -111,8 +111,8 @@ const NET_SANS_IMPOT = 5132.71;   // le net d'un Etat a zero : ne doit PAS appar
 
   const tableaux = await page.evaluate(() =>
     [...document.querySelectorAll("table")].map(t => t.querySelectorAll("tbody tr").length));
-  dire(tableaux.filter(n => n === 14).length >= 2,
-       "2 tableaux de 14 lignes lisibles sans JS", "lignes: " + tableaux.join(", "));
+  dire(tableaux.filter(n => n === 30).length >= 2,
+       "2 tableaux de 30 lignes lisibles sans JS", "lignes: " + tableaux.join(", "));
 
   const texte = await page.evaluate(() => document.body.innerText);
   dire(/4\.95 percent of net income/i.test(texte), "le taux est cite comme l\'Etat l\'ecrit");
