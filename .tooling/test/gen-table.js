@@ -38,6 +38,19 @@ function progressiveTax(taxable, bands) {
 const money = n => "$" + Math.round(n).toLocaleString("en-US");
 const money2 = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
+/* La deduction d'un Etat peut etre un montant unique ou une table par situation
+   de famille : la Georgie deduit 15 000 $ pour un celibataire et 30 000 $ pour
+   un couple. Les tableaux de cette page sont tous en celibataire, mais lire la
+   valeur sans tester le type donnait "gross - {objet}" = NaN, et le generateur
+   ecrivait tranquillement "$NaN" dans du HTML destine a la mise en ligne.
+   Ajoute le 28/08/2026, en meme temps que le meme correctif dans le moteur. */
+function deductionEtat(S, statut) {
+  const d = S.incomeTax.standardDeduction;
+  if (!d) return 0;
+  if (typeof d === "object") return (statut in d) ? d[statut] : d.single;
+  return d;
+}
+
 const salaries = [40000, 50000, 60000, 70000, 75000, 80000, 90000,
                   100000, 110000, 125000, 140000, 150000, 175000, 200000];
 
@@ -50,7 +63,7 @@ const rows = salaries.map(gross => {
 
   // Impot sur le revenu de l'Etat, s'il en a un.
   const stateIncome = S.incomeTax.hasIncomeTax
-    ? progressiveTax(Math.max(0, gross - (S.incomeTax.standardDeduction || 0)),
+    ? progressiveTax(Math.max(0, gross - deductionEtat(S, "single")),
                      S.incomeTax.brackets.single)
     : 0;
 
@@ -64,6 +77,19 @@ const rows = salaries.map(gross => {
   const net = gross - total;
   return { gross, federal, fica: ss + med, state: stateIncome + pl + wc, net,
            monthly: net / 12, rate: total / gross };
+});
+
+/* Un tableau faux ne doit JAMAIS pouvoir etre publie. Avant le 28/08 le
+   generateur ecrivait "$NaN" sans broncher ; c'est exactement le genre de
+   sortie qu'on colle dans une page sans la relire. On s'arrete en erreur. */
+rows.forEach(function (r) {
+  Object.keys(r).forEach(function (k) {
+    if (!isFinite(r[k])) {
+      console.error("ARRET : valeur non finie pour " + k + " sur " + r.gross +
+                    " — le barème de cet Etat est incomplet ou mal lu.");
+      process.exit(2);
+    }
+  });
 });
 
 console.log(rows.map(r =>

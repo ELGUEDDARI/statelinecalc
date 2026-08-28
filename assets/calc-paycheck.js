@@ -89,11 +89,22 @@
     var addlMedicare = Math.max(0, gross - R.fica.additionalMedicare.threshold)
       * R.fica.additionalMedicare.rate;
 
-    /* --- state income tax --- */
+    /* --- state income tax ---
+       standardDeduction accepts either a single number, for a state whose
+       deduction does not vary, or a table keyed by filing status. Georgia
+       needs the table: $15,000 single but $30,000 married filing jointly.
+       Before 2026-08-28 only the number was read, so a state like that would
+       have been given the wrong deduction for half its visitors without any
+       error being raised. Added the table form rather than hard-coding a
+       state, because most states that tax income work this way. */
     var stateTax = 0;
     if (state.incomeTax.hasIncomeTax) {
+      var sd = state.incomeTax.standardDeduction;
+      if (sd && typeof sd === "object") {
+        sd = (input.filingStatus in sd) ? sd[input.filingStatus] : sd.single;
+      }
       stateTax = progressiveTax(
-        Math.max(0, afterPretax - (state.incomeTax.standardDeduction || 0)),
+        Math.max(0, afterPretax - (sd || 0)),
         state.incomeTax.brackets[input.filingStatus] || state.incomeTax.brackets.single
       );
     }

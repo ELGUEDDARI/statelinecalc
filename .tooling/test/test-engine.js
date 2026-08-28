@@ -240,5 +240,56 @@ check("30 $/h x 35 h x 52 = brut annuel", annuel35, 54600, 0);
 check("35 h/sem donne bien un brut different de 2 080 h",
   Math.abs(annuel35 - annuelH) > 0 ? 1 : 0, 1, 0);
 
+
+/* ---------------------------------------------------------------------------
+   8. GEORGIE - le premier Etat du site qui preleve vraiment un impot.
+   Tout ce qui precede testait des Etats a zero : une erreur de cablage sur
+   l'impot d'Etat n'aurait donc jamais pu etre vue. Ici elle le serait.
+
+   Recalcule A LA MAIN, celibataire, 75 000 $, 2026 :
+     imposable federal = 75 000 - 16 100 = 58 900
+     federal = 1 240 + 4 560 + 1 870                 =  7 670,00
+     SS 4 650,00 + Medicare 1 087,50                 =  5 737,50
+     imposable Georgie = 75 000 - 15 000 = 60 000
+     Georgie = 60 000 x 0,0499                       =  2 994,00
+     -------------------------------------------------------------
+     total                                           = 16 401,50
+     net annuel                                      = 58 598,50
+     net mensuel = 58 598,50 / 12                    =  4 883,21
+     taux effectif = 16 401,50 / 75 000              =    21,87 %
+--------------------------------------------------------------------------- */
+console.log("\n=== 8. Georgie : le premier Etat qui preleve ===");
+const GA = R.states.georgia;
+check("la Georgie preleve bien un impot", GA.incomeTax.hasIncomeTax ? 1 : 0, 1, 0);
+
+const gaImposable = 75000 - GA.incomeTax.standardDeduction.single;
+check("assiette Georgie celibataire (75 000 - 15 000)", gaImposable, 60000, 0);
+check("impot Georgie a 4,99 %",
+  progressiveTax(gaImposable, GA.incomeTax.brackets.single), 2994.00);
+
+const gaTotal = 7670 + 4650 + 1087.50 + 2994;
+check("total des prelevements en Georgie", gaTotal, 16401.50);
+check("net annuel Georgie", 75000 - gaTotal, 58598.50);
+check("net mensuel Georgie", (75000 - gaTotal) / 12, 4883.21, 0.01);
+
+/* La deduction d'Etat n'est PAS la meme selon la situation de famille, et
+   c'est exactement le piege que le moteur ne savait pas gerer avant le
+   28/08 : il lisait un montant unique. Un couple deduit le double. */
+check("deduction d'un couple = le double d'un celibataire",
+  GA.incomeTax.standardDeduction.marriedJoint, 30000, 0);
+check("un chef de famille deduit comme un celibataire, PAS entre les deux",
+  GA.incomeTax.standardDeduction.headOfHousehold, 15000, 0);
+
+/* Preuve que le taux unique passe bien par le meme code que les tranches :
+   sur 200 000, un taux unique ne doit produire aucune cassure. */
+check("taux unique : 4,99 % pile quel que soit le montant",
+  progressiveTax(200000, GA.incomeTax.brackets.single) / 200000, 0.0499, 0.00001);
+
+/* Non-regression : les trois Etats a zero doivent rester a zero. */
+["washington", "nevada", "texas"].forEach(function (nom) {
+  check(nom + " ne preleve toujours aucun impot sur le revenu",
+    R.states[nom].incomeTax.hasIncomeTax ? 1 : 0, 0, 0);
+});
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

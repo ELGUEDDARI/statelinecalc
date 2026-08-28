@@ -38,6 +38,17 @@ function progressiveTax(taxable, bands) {
 const money = n => "$" + Math.round(n).toLocaleString("en-US");
 const money2 = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
+/* Meme correctif que dans gen-table.js et dans le moteur, le 28/08/2026 : la
+   deduction d'un Etat peut etre une table par situation de famille (Georgie :
+   15 000 $ seul, 30 000 $ en couple). Lue sans tester le type, elle donnait
+   NaN, et le generateur ecrivait "$NaN" dans du HTML pret a publier. */
+function deductionEtat(S, statut) {
+  const d = S.incomeTax.standardDeduction;
+  if (!d) return 0;
+  if (typeof d === "object") return (statut in d) ? d[statut] : d.single;
+  return d;
+}
+
 const taux = [15, 16, 18, 20, 22, 25, 28, 30, 35, 40, 45, 50, 60, 75];
 
 const rows = taux.map(h => {
@@ -48,7 +59,7 @@ const rows = taux.map(h => {
   const med = gross * R.fica.medicare.rate
             + Math.max(0, gross - R.fica.additionalMedicare.threshold) * R.fica.additionalMedicare.rate;
   const stateIncome = S.incomeTax.hasIncomeTax
-    ? progressiveTax(Math.max(0, gross - (S.incomeTax.standardDeduction || 0)),
+    ? progressiveTax(Math.max(0, gross - deductionEtat(S, "single")),
                      S.incomeTax.brackets.single)
     : 0;
   const pl = S.paidLeave
@@ -58,6 +69,17 @@ const rows = taux.map(h => {
   const total = federal + ss + med + stateIncome + pl + wc;
   const net = gross - total;
   return { h, gross, net, mensuel: net / 12, netHoraire: net / HEURES_AN, taux: total / gross };
+});
+
+/* Un tableau faux ne doit jamais pouvoir etre publie : on s'arrete en erreur
+   plutot que d'ecrire "$NaN" dans une page. */
+rows.forEach(function (r) {
+  Object.keys(r).forEach(function (k) {
+    if (!isFinite(r[k])) {
+      console.error("ARRET : valeur non finie pour " + k + " — bareme incomplet.");
+      process.exit(2);
+    }
+  });
 });
 
 console.log(rows.map(r =>

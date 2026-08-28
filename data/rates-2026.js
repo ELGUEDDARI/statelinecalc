@@ -218,6 +218,65 @@ const RATES_2026 = {
       name: "Texas",
       abbr: "TX",
       incomeTax: { hasIncomeTax: false }
+    },
+
+    /* -----------------------------------------------------------------------
+       GEORGIA - added 2026-08-28. The first state on this site that actually
+       taxes wages, so this block is where the pattern for the other 40 gets
+       set. Read verbatim on dor.georgia.gov, page "Important Tax Updates",
+       section "2026 Income Tax Changes", on 2026-08-28:
+
+         "The Georgia income tax rate has been reduced to a flat rate of 4.99%."
+
+         "The Georgia standard deduction has been increased to $15,000 for
+          single taxpayers, heads of households, and married taxpayers filing
+          separately, or $30,000 for married taxpayers filing jointly"
+
+       Note the deduction is NOT the same for every filer, which is why the
+       engine had to learn to read a table here and not a single number.
+       Head of household takes $15,000, the same as single - do not assume it
+       sits between the two the way the federal one does.
+
+       A flat tax is expressed as a single band running to Infinity. That is
+       not a workaround: progressiveTax already handles it, and writing it this
+       way means a future rate change is a one-line edit.
+
+       Unemployment insurance - EMPLOYER only, never withheld.
+       dol.georgia.gov, "Learn About Unemployment Taxes and Benefits",
+       read 2026-08-28, verbatim: "In Georgia, employers pay the entire cost
+       of unemployment insurance benefits." Taxable on the first $9,500 per
+       employee per year. Nothing reaches the employee's stub.
+
+       NOT YET VERIFIED, so the page must not claim it: whether any Georgia
+       county or city levies its own income tax. Two attempts on dor.georgia.gov
+       found no local withholding schedule, but absence of a page is not proof
+       of absence of a tax. Until it is read on a source, the page says only
+       what the calculator does, which is model the state tax.
+
+       Also read on the same DOR page, and worth a section of its own:
+       "Georgia did not conform to the exemptions from income for overtime and
+        tipped wages in the One Big Beautiful Bill Act. However, up to $1,750
+        of each may be exempted from the calculation of taxable net income."
+       So the federal deduction reaches $25,000 of tips while Georgia stops at
+       $1,750. That divergence is claimed on the return, not through payroll,
+       so it is not modelled here - it is explained on the page.
+       ----------------------------------------------------------------------- */
+    georgia: {
+      name: "Georgia",
+      abbr: "GA",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 15000,
+          marriedJoint: 30000,
+          headOfHousehold: 15000
+        },
+        brackets: {
+          single:          [[Infinity, 0.0499]],
+          marriedJoint:    [[Infinity, 0.0499]],
+          headOfHousehold: [[Infinity, 0.0499]]
+        }
+      }
     }
   }
 };
