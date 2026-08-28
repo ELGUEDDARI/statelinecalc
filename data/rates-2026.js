@@ -166,6 +166,58 @@ const RATES_2026 = {
       name: "Nevada",
       abbr: "NV",
       incomeTax: { hasIncomeTax: false }
+    },
+
+    /* -----------------------------------------------------------------------
+       TEXAS - added 2026-08-27.
+
+       Texas takes nothing out of a paycheck, and unlike most no-tax states it
+       is not a matter of policy that a future legislature could reverse. It is
+       written into the state constitution. Every line below was read verbatim
+       on statutes.capitol.texas.gov on 2026-08-27, in a real browser: the site
+       serves a JavaScript shell, so plain fetching returns byte-identical
+       files for different laws and proves nothing.
+
+       1. No individual income tax - CONSTITUTIONAL, not statutory.
+          Texas Constitution, Article 8, Section 24-a, "INDIVIDUAL INCOME TAX
+          PROHIBITED": "The legislature may not impose a tax on the net incomes
+          of individuals, including an individual's share of partnership and
+          unincorporated association income." (Added Nov. 5, 2019.)
+          Section 24, which had merely required a referendum, was repealed the
+          same day. The ban is now flat.
+
+       2. No capital gains tax - added very recently.
+          Article 8, Section 24-b, "CAPITAL GAINS TAX PROHIBITED", covers
+          "realized or unrealized capital gains of an individual, family,
+          estate, or trust". (Added Nov. 4, 2025.) Nine months old at the time
+          of writing. It explicitly does NOT touch property tax, sales tax or
+          use tax - which is exactly how Texas funds itself instead.
+          Worth contrasting with Washington, which does levy a capital gains
+          tax: same "no income tax" headline, opposite answer here.
+
+       3. Unemployment insurance - EMPLOYER only, never withheld.
+          Texas Labor Code Sec. 204.003, "CONTRIBUTION NOT DEDUCTED FROM
+          WAGES": "An employer may not deduct any part of a contribution from
+          the wages of an individual in the employer's employ."
+          The taxable ceiling is in Sec. 201.082(1): the part of pay "that
+          exceeds ... $9,000" per employee per calendar year.
+          Note for anyone updating this: the 2026 employer rate range lives on
+          twc.texas.gov, which answers HTTP 403 to automated requests AND to a
+          real headless browser - it blocks at the firewall. It does not matter
+          here: an employer-paid tax never appears on an employee's paycheck
+          and changes no figure in this calculator.
+
+       4. No state disability insurance, no state paid family leave payroll
+          deduction. Texas has neither program.
+
+       Consequence for the engine: like Nevada, no paidLeave and no waCares
+       object. A Texas paycheck is federal income tax + Social Security +
+       Medicare, and nothing else.
+       ----------------------------------------------------------------------- */
+    texas: {
+      name: "Texas",
+      abbr: "TX",
+      incomeTax: { hasIncomeTax: false }
     }
   }
 };
