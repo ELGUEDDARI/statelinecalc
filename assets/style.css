@@ -257,3 +257,10 @@ tbody tr:nth-child(odd) { background: var(--surface); }
 .u-on-dark   { color: var(--on-dark); }
 .caption-left { text-align: left; padding-bottom: var(--s-2); }
 .result-unit { font-size: 20px; font-weight: 400; }
+
+/* Marque de l'en-tete. Le SVG est inline dans le HTML : rien a telecharger,
+   donc aucun decalage de mise en page au chargement, et rien a autoriser dans
+   la politique de securite. Ajoutee le 28/08/2026 - jusque-la le site n'avait
+   ni logo ni favicon, ce qui le rendait litteralement anonyme. */
+.brand { display: inline-flex; align-items: center; gap: .5rem; }
+.brand-mark { flex: 0 0 auto; display: block; }

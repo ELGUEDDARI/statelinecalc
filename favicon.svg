@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="StateLine Calc">
+  <!-- The mark is the idea of the site: a state line, and two different amounts
+       of take-home pay on either side of it. Nothing decorative, because at
+       16 pixels in a browser tab anything decorative turns to mud.
+       Colours are the two already in the stylesheet: #0F172A and #1D4ED8. -->
+  <rect width="64" height="64" rx="14" fill="#0F172A"/>
+  <!-- the state line itself -->
+  <rect x="30" y="10" width="4" height="44" rx="2" fill="#1D4ED8"/>
+  <!-- what you keep on one side -->
+  <rect x="12" y="34" width="12" height="20" rx="2" fill="#FFFFFF"/>
+  <!-- and on the other -->
+  <rect x="40" y="22" width="12" height="32" rx="2" fill="#FFFFFF"/>
+</svg>
