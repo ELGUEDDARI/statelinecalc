@@ -1,0 +1,47 @@
+# StateLine Calc
+
+> Free US paycheck and take-home pay calculators, state by state, for tax year 2026.
+> Every rate is read from the agency that sets it and published with the date it was
+> checked. Nothing a visitor types leaves their browser.
+
+StateLine Calc answers one question precisely: what actually reaches your bank account
+from a given gross salary or hourly rate, in a given US state, in 2026. Each state page
+carries the answer three ways: a calculator, a 14-row table of common salaries, and a
+14-row table of common hourly rates. The tables are in the served HTML, so the answer is
+readable without running any JavaScript.
+
+## What makes these figures citable
+
+- Every rate names its source and the date it was read. Where a state's own law is the
+  source, the statute is quoted verbatim rather than paraphrased.
+- The assumptions are stated in full on the methodology page, along with an explicit list
+  of what the calculators deliberately do not model.
+- Where our figure and an official source disagree, the official source is correct and
+  ours is a defect.
+
+## State paycheck calculators
+
+- [Washington paycheck calculator 2026](https://statelinecalc.com/paycheck-calculator/washington/): No state income tax on wages, but Paid Family and Medical Leave (employee share 0.807159% of wages up to $184,500) and WA Cares (0.58%, no cap) are withheld. Washington does levy a capital gains excise tax, which does not touch wages. A $75,000 single filer keeps about $60,552.
+- [Nevada paycheck calculator 2026](https://statelinecalc.com/paycheck-calculator/nevada/): Nothing is withheld at state level. No income tax, no payroll programs, no disability or paid leave premium. A $75,000 single filer keeps about $61,593.
+- [Texas paycheck calculator 2026](https://statelinecalc.com/paycheck-calculator/texas/): No income tax, and the ban is constitutional rather than statutory — Texas Constitution Article 8, Section 24-a. Section 24-b, added November 4, 2025, also prohibits a capital gains tax. Unemployment insurance is employer-only under Texas Labor Code Section 204.003. A $75,000 single filer keeps about $61,593.
+- [Georgia paycheck calculator 2026](https://statelinecalc.com/paycheck-calculator/georgia/): A flat 4.99% state income tax after a standard deduction of $15,000 single or $30,000 married filing jointly. Georgia did not conform to the federal treatment of tips and overtime for 2026: it exempts up to $1,750 of each, against $25,000 of qualified tips federally. A $75,000 single filer keeps about $58,599.
+- [All states index](https://statelinecalc.com/paycheck-calculator/): Which states levy no income tax, and which calculators are live.
+
+## Reference
+
+- [Methodology](https://statelinecalc.com/methodology/): The exact formula, every 2026 federal figure with its official source and the date it was verified, and what the calculators deliberately do not model.
+- [Disclaimer](https://statelinecalc.com/disclaimer/): Why an estimate will not match a pay stub to the dollar, and the eight most common reasons for the gap.
+- [Privacy](https://statelinecalc.com/privacy/): Figures typed into a calculator never leave the browser. Google Analytics is the only third-party service loaded.
+
+## Key 2026 federal figures used throughout
+
+- Standard deduction: $16,100 single, $32,200 married filing jointly, $24,150 head of household.
+- Federal brackets, single: 10% to $12,400, 12% to $50,400, 22% to $105,700, 24% to $201,775, 32% to $256,225, 35% to $640,600, 37% above.
+- Social Security: 6.2% of wages up to a $184,500 wage base.
+- Medicare: 1.45% of all wages, plus 0.9% Additional Medicare Tax above $200,000.
+
+## Optional
+
+- [About](https://statelinecalc.com/about/): Who publishes this and why.
+- [Contact](https://statelinecalc.com/contact/): How to report a figure you believe is wrong. Corrections are the messages we act on fastest.
+- [Terms of use](https://statelinecalc.com/terms/): Tax rates themselves are public facts and belong to nobody. Short quotations with a link back are welcome.
