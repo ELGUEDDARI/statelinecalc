@@ -394,8 +394,10 @@ check("l'Illinois, lui, accorde bien le rabais",
 check("ce que le PA-epargnant ne recupere pas : 4 500 x 3,07 %",
   75000 * 0.06 * 0.0307, 138.15, 0.01);
 
-/* Le drapeau ne doit exister QUE la ou la loi le dit. */
-["texas", "florida", "nevada", "washington", "georgia", "illinois"].forEach(function (k) {
+/* Le drapeau ne doit exister QUE la ou la loi le dit. La liste est DERIVEE des
+   baremes : ecrite a la main, elle aurait laisse le Michigan hors du controle
+   le jour de sa publication. La Pennsylvanie est la seule exception attendue. */
+Object.keys(R.states).filter(function (k) { return k !== "pennsylvania"; }).forEach(function (k) {
   check(k + " ne taxe pas le 401(k)",
     R.states[k].incomeTax.taxesRetirementDeferrals === undefined ? 1 : 0, 1, 0);
 });
@@ -408,6 +410,42 @@ check("bibliotheque node : total des prelevements PA",
   calcul("pennsylvania", 75000).total, 15762.50, 0.01);
 check("bibliotheque node : net annuel PA",
   calcul("pennsylvania", 75000).net, 59237.50, 0.01);
+
+
+/* Une SECONDE implementation, volontairement naive, de l'impot du Michigan.
+   Elle n'appelle pas paie.js : c'est tout l'interet d'un controle croise. */
+function calculMI(brut, pct401k) {
+  var base = brut - brut * pct401k;               // le MI part de l'AGI federal
+  return Math.max(0, base - 5900) * 0.0425;
+}
+
+/* --- MICHIGAN ------------------------------------------------------------
+   Source : form 446 (Rev. 10-25), "2026 Michigan Income Tax Withholding
+   Guide" : "Withholding Rate: 4.25%  Personal Exemption Amount: $5,900".
+   Les attendus sont poses a la main, pas repris du moteur : un test qui
+   redemande au moteur ce qu'il vient de dire ne teste rien. */
+check("MI : le taux est bien 4,25 %",
+  R.states.michigan.incomeTax.brackets.single[0][1], 0.0425, 0);
+check("MI : l'exoneration d'un celibataire vaut 5 900",
+  R.states.michigan.incomeTax.standardDeduction.single, 5900, 0);
+check("MI : un couple en compte DEUX, soit 11 800",
+  R.states.michigan.incomeTax.standardDeduction.marriedJoint, 11800, 0);
+check("MI : impot d'Etat sur 75 000 = (75000 - 5900) x 4,25 %",
+  calculMI(75000, 0), 2936.75, 0.01);
+check("MI : impot d'Etat sur 25 000 = (25000 - 5900) x 4,25 %",
+  calculMI(25000, 0), 811.75, 0.01);
+check("MI : le taux effectif est SOUS le taux affiche a 25 000",
+  calculMI(25000, 0) / 25000 < 0.0425 ? 1 : 0, 1, 0);
+check("MI : et il monte avec le revenu",
+  calculMI(250000, 0) / 250000 > calculMI(25000, 0) / 25000 ? 1 : 0, 1, 0);
+check("MI : le 401(k) reduit bien l'impot d'Etat, contrairement a la PA",
+  calculMI(75000, 0) - calculMI(75000, 0.06), 75000 * 0.06 * 0.0425, 0.01);
+check("MI : aucun programme salarie retenu",
+  (R.states.michigan.employeePrograms || []).length, 0, 0);
+check("MI : bibliotheque node, net annuel sur 75 000",
+  calcul("michigan", 75000).net, 58655.75, 0.01);
+check("MI : les deux implementations s'accordent sur l'impot d'Etat",
+  calcul("michigan", 75000).etat, calculMI(75000, 0), 0.01);
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

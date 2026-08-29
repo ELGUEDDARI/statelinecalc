@@ -12,7 +12,19 @@ const fs = require("fs");
 const path = require("path");
 const { FICHES, net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
 
-const ordre = ["texas", "florida", "nevada", "washington", "pennsylvania", "georgia", "illinois"];
+/* L'ordre est deliberé — les Etats sans impot d'abord — mais une liste ecrite
+   a la main est exactement ce qui a fait oublier la Pennsylvanie dans le
+   sitemap de lancement. On s'arrete en erreur si un Etat a une fiche et
+   n'apparait pas ici, plutot que de publier un index incomplet en silence. */
+const ordre = ["texas", "florida", "nevada", "washington", "pennsylvania", "georgia",
+               "illinois", "michigan"];
+const MOTS = { 6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten",
+               11: "eleven", 12: "twelve" };
+const oublies = Object.keys(FICHES).filter(k => ordre.indexOf(k) === -1);
+if (oublies.length) {
+  console.error("ARRET : Etat(s) avec une fiche mais absent(s) de l'index : " + oublies.join(", "));
+  process.exit(2);
+}
 const TX = c2(net("texas", 60000).net / HEURES);
 const IL = c2(net("illinois", 60000).net / HEURES);
 
@@ -144,7 +156,7 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
     <span class="num">$${IL}</span> in Illinois.</p>
   </div>
 
-  <h2>The same $60,000, converted in six states</h2>
+  <h2>The same $60,000, converted in ${MOTS[ordre.length] || ordre.length} states</h2>
   <p class="prose">Single filer, 40 hours a week, 2026 rates. The gross column is identical
   everywhere, which is exactly why it is the useless one.</p>
 

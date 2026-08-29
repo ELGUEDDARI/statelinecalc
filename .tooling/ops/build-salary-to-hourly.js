@@ -89,6 +89,18 @@ const FICHES = {
       you work - much closer to it than in Georgia, where a $15,000 deduction pulls the real
       share well below the advertised one.`,
     lienEtat: "/paycheck-calculator/illinois/"
+  },
+
+  michigan: {
+    nom: "Michigan",
+    retenue: "Michigan takes a flat 4.25% above a $5,900 exemption per person",
+    specifique: `Michigan applies a flat 4.25% above a personal exemption of $5,900 for each
+      exemption you claim. That exemption sits between Illinois's small one and Georgia's large
+      deduction, so the share Michigan actually takes of each hour is meaningfully below its
+      headline rate on a modest salary and creeps towards it as the salary rises. The bigger
+      caveat is local: about two dozen Michigan cities levy their own income tax, and Detroit
+      takes 2.4% from residents on top of everything below - none of which is in these figures.`,
+    lienEtat: "/paycheck-calculator/michigan/"
   }
 };
 

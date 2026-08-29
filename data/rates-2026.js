@@ -436,6 +436,68 @@ const RATES_2026 = {
       employeePrograms: [
         { label: "PA Unemployment (0.07%)", rate: 0.0007, wageCap: null }
       ]
+    },
+
+    /* MICHIGAN.
+       Source officielle : Michigan Department of Treasury, form 446
+       (Rev. 10-25), "2026 Michigan Income Tax Withholding Guide". Lue le
+       2026-08-29. Sa toute premiere ligne de donnees, verbatim :
+       "Withholding Rate: 4.25%  Personal Exemption Amount: $5,900", et p.2 :
+       "The withholding rate is 4.25 percent of compensation after deducting
+       the personal and dependency exemption allowance."
+
+       ⚠️ COMMENT CETTE SOURCE A ETE LUE. www.michigan.gov renvoie HTTP 403 a
+       toute requete automatique — WebFetch, curl avec un User-Agent de
+       navigateur, et Chrome pilote y echouent tous les trois (Akamai
+       "Access Denied"). legislature.mi.gov bloque de meme (Check Point WAF).
+       Le PDF officiel a donc ete lu dans l'instantane du 2026-01-15 conserve
+       par la Wayback Machine :
+       web.archive.org/web/20260115184933/https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/SUW/TY2026/446_Withholding-Guide_2026.pdf
+       C'est le fichier PDF de l'Etat lui-meme, 406 043 octets, pas la
+       paraphrase d'un tiers. Le detour est note ici parce qu'il devra etre
+       refait a chaque mise a jour du barème.
+
+       La deduction est une EXONERATION PAR PERSONNE, pas un forfait : 5 900 $
+       multiplies par le nombre d'exonerations declarees sur le MI-W4. Meme
+       mecanique que l'Illinois, et modelisee de la meme facon :
+       une exoneration pour un celibataire, deux pour un couple depose
+       conjointement. Aucune suppression au-dela d'un seuil de revenu :
+       le guide n'en mentionne aucune, et rien n'est ajoute sans source.
+
+       Pas de taxesRetirementDeferrals : l'impot du Michigan part du revenu
+       brut ajuste federal, dont un versement 401(k) est deja exclu. La
+       Pennsylvanie reste le seul Etat du site a taxer ces versements.
+
+       Pas d'employeePrograms : le guide 446 ne prevoit aucune retenue
+       salariale autre que l'impot sur le revenu. L'assurance chomage du
+       Michigan est payee par l'employeur.
+
+       ⚠️ NON MODELISE, ET DIT SUR LA PAGE : environ deux douzaines de villes
+       du Michigan levent leur propre impot. Detroit prend 2,4 % aux residents
+       et 1,2 % aux non-residents, apres une exoneration de 600 $ par personne.
+       Source : Michigan Department of Treasury, form 5469 (Rev. 05-25),
+       "2026 City of Detroit Income Tax Withholding Guide", p.2, verbatim :
+       "The City of Detroit income tax rate for residents is 2.4% (multiply by
+       0.024). The City of Detroit income tax rate for nonresidents is 1.2%
+       (multiply by 0.012)." Lue le 2026-08-29 par le meme detour Wayback.
+       Comme pour Philadelphie, le calculateur ne modelise que la couche Etat
+       et l'ecrit noir sur blanc. */
+    michigan: {
+      name: "Michigan",
+      abbr: "MI",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 5900,
+          marriedJoint: 11800,         // deux exonerations, le declarant et le conjoint
+          headOfHousehold: 5900
+        },
+        brackets: {
+          single:          [[Infinity, 0.0425]],
+          marriedJoint:    [[Infinity, 0.0425]],
+          headOfHousehold: [[Infinity, 0.0425]]
+        }
+      }
     }
   }
 };

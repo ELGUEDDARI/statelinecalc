@@ -1,5 +1,5 @@
 /* Preuve, dans un VRAI navigateur, que la famille "salaire -> taux horaire"
-   dit la verite sur les six Etats.
+   dit la verite sur tous les Etats publies de la famille.
 
    Ce que cette suite protege : la page entiere repose sur une promesse unique,
    donner le taux horaire APRES impot quand tout le monde s'arrete au brut. Si
@@ -15,10 +15,15 @@ const { chromium } = require("playwright");
 const R = require("../../data/rates-2026.js");
 
 const BASE = process.argv[2] || "https://statelinecalc.com";
-const ETATS = ["texas", "florida", "nevada", "washington", "pennsylvania", "georgia", "illinois"];
-const NOMS = { texas: "Texas", florida: "Florida", nevada: "Nevada",
-               washington: "Washington", pennsylvania: "Pennsylvania",
-               georgia: "Georgia", illinois: "Illinois" };
+/* La liste est DERIVEE des fiches du generateur, plus ecrite a la main.
+   Le 29/08/2026 la publication du Michigan a fait echouer huit controles de
+   cette suite : la famille comptait 8 Etats, la liste en annoncait 7, et
+   c'est le TEST qui avait tort. Un test qui doit etre corrige a chaque
+   publication finit par etre corrige sans etre lu. */
+const { FICHES } = require("../ops/build-salary-to-hourly.js");
+const ETATS = Object.keys(FICHES);
+const NOMS = {};
+ETATS.forEach(k => { NOMS[k] = FICHES[k].nom; });
 const HEURES = 2080;
 
 function progressiveTax(t, bands) {

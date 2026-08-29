@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Locked down deliberately. connect-src names the Google Analytics endpoints
+     and nothing else, so page views go out and nothing else can. What the
+     visitor TYPES still never leaves the browser: the calculator runs locally
+     and no salary value is ever passed to the analytics layer. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
+<script src="/assets/analytics.js"></script>
+<title>Michigan Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay</title>
+<meta name="description" content="Free Michigan paycheck calculator, 2026. Hourly or salary. Michigan taxes income at a flat 4.25% after a $5,900 personal exemption per person &mdash; and about two dozen Michigan cities, Detroit included, add their own tax on top.">
+<link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/michigan/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0F172A">
+<link rel="stylesheet" href="/assets/style.css">
+
+<meta property="og:title" content="Michigan Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay">
+<meta property="og:description" content="Michigan taxes income at a flat 4.25% after a $5,900 exemption per person &mdash; and Detroit takes 2.4% more on top.">
+<meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/michigan/">
+<meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Michigan Paycheck Calculator",
+      "url": "https://statelinecalc.com/paycheck-calculator/michigan/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculates 2026 Michigan take-home pay after federal income tax, Social Security, Medicare and Michigan's flat 4.25 percent income tax, applied after the state's $5,900 personal exemption for each exemption claimed."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Paycheck Calculator", "item": "https://statelinecalc.com/paycheck-calculator/" },
+        { "@type": "ListItem", "position": 3, "name": "Michigan", "item": "https://statelinecalc.com/paycheck-calculator/michigan/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the Michigan income tax rate in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "A flat 4.25%. Michigan has no brackets: the same rate applies whether you earn $25,000 or $250,000. What it does have is a personal exemption of $5,900 per person for 2026, subtracted from your pay before the rate is applied. Both figures come from the state's own form 446, the 2026 Michigan Income Tax Withholding Guide, whose first line reads “Withholding Rate: 4.25%  Personal Exemption Amount: $5,900”." } },
+        { "@type": "Question", "name": "How much is the Michigan personal exemption worth?", "acceptedAnswer": { "@type": "Answer", "text": "$5,900 of your pay escapes the 4.25% rate, which is $250.75 a year in your pocket for a single filer claiming one exemption. A married couple filing jointly and claiming two exemptions shelters $11,800, worth $501.50. Every dependant you claim on your MI-W4 adds another exemption. This is the figure people most often leave out when they work out their own Michigan tax, and leaving it out overstates the tax by exactly $250.75 per exemption." } },
+        { "@type": "Question", "name": "What is take-home pay on a $75,000 salary in Michigan?", "acceptedAnswer": { "@type": "Answer", "text": "About $58,656 a year, or $4,887.98 a month, for a single filer with one exemption and no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and $2,936.75 of Michigan income tax — an effective rate of 21.8%. City income tax is not included; about two dozen Michigan cities levy one, and Detroit's is the largest." } },
+        { "@type": "Question", "name": "Does a 401(k) contribution lower my Michigan tax?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Michigan starts from your federal adjusted gross income, and an elective deferral is already out of that figure, so the contribution reduces your state tax as well as your federal tax. On $75,000 with 6% going into a 401(k), your Michigan tax falls by $191.25. This is worth stating because the rule is not universal: in Pennsylvania the same worker's state tax falls by $0.00 — nothing at all." } },
+        { "@type": "Question", "name": "What is $20 an hour after taxes in Michigan?", "acceptedAnswer": { "@type": "Answer", "text": "At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,088 after tax, which works out at $16.39 an hour in real terms. Michigan takes $1,517.25 of that, because the $5,900 exemption shelters a larger share of a small salary than a large one." } },
+        { "@type": "Question", "name": "How much is Detroit's city income tax in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "2.4% for residents and 1.2% for non-residents who work in the city, after an exemption of $600 per person. The rates are set out in the Michigan Treasury's form 5469, the 2026 City of Detroit Income Tax Withholding Guide. On a $60,000 salary a Detroit resident pays $1,425.60 to the city on top of $2,299.25 to the state — the city adds 62% again on top of the state layer. This calculator models the state layer only." } },
+        { "@type": "Question", "name": "Which Michigan cities have an income tax?", "acceptedAnswer": { "@type": "Answer", "text": "About two dozen, and Detroit is by far the largest. A Michigan city income tax is levied under the state's Uniform City Income Tax Ordinance and is withheld by your employer alongside the state tax, so it is genuinely additional money. Detroit is the one this page quotes a rate for, because its rate is published in a Treasury withholding guide we can cite. If you live or work in a city that levies one, check your pay stub or your city's own income tax office — no statewide calculator can know which city applies to you." } },
+        { "@type": "Question", "name": "Why is my Michigan paycheck smaller than this calculator says?", "acceptedAnswer": { "@type": "Answer", "text": "The usual reason is city income tax, which is not modelled here. After that: health insurance premiums and other benefit deductions come out before tax and are not included, your MI-W4 may claim a different number of exemptions than assumed, and a second job pushes your withholding up. The state layer itself is the simplest part of a Michigan paycheck and the least likely to be the surprise." } }
+      ]
+    },
+    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><svg class="brand-mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0F172A"/><rect x="30" y="10" width="4" height="44" rx="2" fill="#1D4ED8"/><rect x="12" y="34" width="12" height="20" rx="2" fill="#FFFFFF"/><rect x="40" y="22" width="12" height="32" rx="2" fill="#FFFFFF"/></svg>StateLine Calc</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/paycheck-calculator/">Paycheck</a>
+      <a href="/salary-to-hourly-calculator/">Salary&nbsp;to&nbsp;Hourly</a>
+      <a href="/methodology/">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/paycheck-calculator/">Paycheck Calculator</a></li>
+    <li aria-current="page">Michigan</li>
+  </ol>
+</nav>
+
+  <h1>Michigan Paycheck Calculator 2026</h1>
+
+  <div class="answer">
+    <p>Michigan taxes income at a <strong>flat 4.25%</strong> in 2026, applied after a
+    <strong>personal exemption of <span class="num">$5,900</span> for each exemption you claim</strong>. On
+    $75,000, a single filer pays <span class="num">$2,936.75</span> to the state and keeps about
+    <span class="num">$58,656</span> a year. About two dozen Michigan cities levy their own income tax on top;
+    Detroit takes <span class="num">2.4%</span> from residents.</p>
+  </div>
+
+  <section aria-labelledby="calc-h">
+    <h2 id="calc-h" class="u-mt-0">Calculate your Michigan take-home pay</h2>
+
+    <form class="calc" data-paycheck-form data-state="michigan" novalidate>
+      <div class="field">
+        <label for="salary">Your gross pay or hourly rate</label>
+        <input type="text" id="salary" name="salary" inputmode="decimal" value="75000"
+               autocomplete="off">
+        <span class="help">Before any taxes or deductions. Do not include tips paid in cash.</span>
+        <span class="error" role="alert">Enter an amount greater than zero.</span>
+      </div>
+
+      <div class="field" data-hours-field hidden>
+        <label for="hours">Hours per week</label>
+        <input type="text" id="hours" name="hours" inputmode="decimal" value="40"
+               autocomplete="off">
+        <span class="help">Only asked when something here is per hour. We use the hours you
+        actually work, not an assumed 2,080 a year.</span>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="period">How often you are paid</label>
+          <select id="period" name="period">
+            <option value="annual" selected>Per year</option>
+            <option value="hourly">Per hour</option>
+            <option value="monthly">Per month</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">This tells us what the amount above represents.</span>
+        </div>
+
+        <div class="field">
+          <label for="filing">Filing status</label>
+          <select id="filing" name="filing">
+            <option value="single" selected>Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+          <span class="help">Sets your federal brackets. In Michigan it changes how many
+          <span class="num">$5,900</span> exemptions are assumed, not the 4.25% rate.</span>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="retirement">401(k) contribution</label>
+          <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
+          <span class="help">Percent of gross pay. It lowers your federal tax, and in Michigan it
+          lowers your state tax too.</span>
+        </div>
+
+        <div class="field">
+          <label for="display">Show results</label>
+          <select id="display" name="display">
+            <option value="monthly" selected>Per month</option>
+            <option value="hourly">Per hour</option>
+            <option value="annual">Per year</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">Changes the period, not the calculation.</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+
+    <div class="result" data-paycheck-result aria-live="polite"></div>
+
+    <p class="caption u-mt-3">
+      Everything is calculated in your browser. Nothing you type is sent to us or stored.
+    </p>
+  </section>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <h2>How this calculator works</h2>
+    <p>Michigan has one of the shorter state tax rules in the country: one flat rate, one
+    exemption, no brackets. Your pay minus <span class="num">$5,900</span> for each exemption you claim,
+    multiplied by 4.25%. That is the whole state income tax. What makes a Michigan paycheck harder
+    to predict than the rule suggests is the layer underneath it &mdash; roughly two dozen Michigan
+    cities levy their own income tax, and whether one applies to you depends on where you live and
+    where you work rather than on anything about your salary.</p>
+
+    <p>The calculator applies four deductions, in this order:</p>
+    <ul>
+      <li><strong>Federal income tax.</strong> Your gross pay minus the federal standard deduction
+      for your filing status, run through the 2026 federal brackets. For 2026 that deduction is
+      <span class="num">$16,100</span> single, <span class="num">$32,200</span> married filing jointly, <span class="num">$24,150</span> head of
+      household.</li>
+      <li><strong>Social Security</strong> at 6.2% of gross wages, up to the 2026 wage base of
+      <span class="num">$184,500</span>.</li>
+      <li><strong>Medicare</strong> at 1.45% of all wages, with no cap, plus the 0.9% Additional
+      Medicare Tax on wages above <span class="num">$200,000</span>.</li>
+      <li><strong>Michigan income tax</strong> at a flat <strong>4.25%</strong>, applied after
+      subtracting <span class="num">$5,900</span> for each exemption. A single filer is modelled with one
+      exemption; married filing jointly with two.</li>
+    </ul>
+
+    <p>Rates come from the agencies that set them: the IRS for the federal brackets, the standard
+    deduction and FICA, cross-checked against the Social Security Administration for the wage base;
+    and the <strong>Michigan Department of Treasury</strong> for the state rate and the exemption,
+    read on form 446, the <em>2026 Michigan Income Tax Withholding Guide</em>, whose header line
+    states both figures. The Detroit rates quoted further down come from the Treasury&rsquo;s form
+    5469, the <em>2026 City of Detroit Income Tax Withholding Guide</em>. Both were read on
+    <time datetime="2026-08-29">August 29, 2026</time>. Our full sourcing is on the
+    <a href="/methodology/">methodology page</a>.</p>
+
+    <p><strong>The one thing this calculator does not model:</strong> city income tax. It is the
+    single biggest reason a Michigan pay stub comes in under a statewide estimate, and in Detroit
+    it is a large number rather than a rounding difference. Read the Detroit section below before
+    trusting these figures if you live or work in a city that levies one.</p>
+
+    <p>What the calculator deliberately does not do: it does not itemize deductions, model
+    dependants beyond the exemption count implied by your filing status, handle multiple jobs, or
+    account for health insurance premiums and other employer benefit deductions.</p>
+  </div>
+
+  <h2>Michigan take-home pay by salary</h2>
+  <p class="prose">Single filer with one exemption, no retirement contribution, 2026 state and
+  federal rates, city income tax excluded. The Michigan column is 4.25% of the first column minus
+  <span class="num">$5,900</span> &mdash; which is why it never quite reaches 4.25% of your salary.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Michigan take-home pay, single filer
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Gross salary</th>
+          <th scope="col">Federal tax</th>
+          <th scope="col">FICA</th>
+          <th scope="col">MI state tax</th>
+          <th scope="col">Take-home</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$25,000</td>
+            <td class="num">$890</td>
+            <td class="num">$1,913</td>
+            <td class="num">$812</td>
+            <td class="num"><strong>$21,386</strong></td>
+            <td class="num">$1,782.15</td>
+            <td class="num">14.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$30,000</td>
+            <td class="num">$1,420</td>
+            <td class="num">$2,295</td>
+            <td class="num">$1,024</td>
+            <td class="num"><strong>$25,261</strong></td>
+            <td class="num">$2,105.06</td>
+            <td class="num">15.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$35,000</td>
+            <td class="num">$2,020</td>
+            <td class="num">$2,678</td>
+            <td class="num">$1,237</td>
+            <td class="num"><strong>$29,066</strong></td>
+            <td class="num">$2,422.15</td>
+            <td class="num">17.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$40,000</td>
+            <td class="num">$2,620</td>
+            <td class="num">$3,060</td>
+            <td class="num">$1,449</td>
+            <td class="num"><strong>$32,871</strong></td>
+            <td class="num">$2,739.23</td>
+            <td class="num">17.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$45,000</td>
+            <td class="num">$3,220</td>
+            <td class="num">$3,443</td>
+            <td class="num">$1,662</td>
+            <td class="num"><strong>$36,676</strong></td>
+            <td class="num">$3,056.31</td>
+            <td class="num">18.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$50,000</td>
+            <td class="num">$3,820</td>
+            <td class="num">$3,825</td>
+            <td class="num">$1,874</td>
+            <td class="num"><strong>$40,481</strong></td>
+            <td class="num">$3,373.40</td>
+            <td class="num">19.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$55,000</td>
+            <td class="num">$4,420</td>
+            <td class="num">$4,208</td>
+            <td class="num">$2,087</td>
+            <td class="num"><strong>$44,286</strong></td>
+            <td class="num">$3,690.48</td>
+            <td class="num">19.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$60,000</td>
+            <td class="num">$5,020</td>
+            <td class="num">$4,590</td>
+            <td class="num">$2,299</td>
+            <td class="num"><strong>$48,091</strong></td>
+            <td class="num">$4,007.56</td>
+            <td class="num">19.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$65,000</td>
+            <td class="num">$5,620</td>
+            <td class="num">$4,973</td>
+            <td class="num">$2,512</td>
+            <td class="num"><strong>$51,896</strong></td>
+            <td class="num">$4,324.65</td>
+            <td class="num">20.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$70,000</td>
+            <td class="num">$6,570</td>
+            <td class="num">$5,355</td>
+            <td class="num">$2,724</td>
+            <td class="num"><strong>$55,351</strong></td>
+            <td class="num">$4,612.56</td>
+            <td class="num">20.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$75,000</td>
+            <td class="num">$7,670</td>
+            <td class="num">$5,738</td>
+            <td class="num">$2,937</td>
+            <td class="num"><strong>$58,656</strong></td>
+            <td class="num">$4,887.98</td>
+            <td class="num">21.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$80,000</td>
+            <td class="num">$8,770</td>
+            <td class="num">$6,120</td>
+            <td class="num">$3,149</td>
+            <td class="num"><strong>$61,961</strong></td>
+            <td class="num">$5,163.40</td>
+            <td class="num">22.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$85,000</td>
+            <td class="num">$9,870</td>
+            <td class="num">$6,503</td>
+            <td class="num">$3,362</td>
+            <td class="num"><strong>$65,266</strong></td>
+            <td class="num">$5,438.81</td>
+            <td class="num">23.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$90,000</td>
+            <td class="num">$10,970</td>
+            <td class="num">$6,885</td>
+            <td class="num">$3,574</td>
+            <td class="num"><strong>$68,571</strong></td>
+            <td class="num">$5,714.23</td>
+            <td class="num">23.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$95,000</td>
+            <td class="num">$12,070</td>
+            <td class="num">$7,268</td>
+            <td class="num">$3,787</td>
+            <td class="num"><strong>$71,876</strong></td>
+            <td class="num">$5,989.65</td>
+            <td class="num">24.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$100,000</td>
+            <td class="num">$13,170</td>
+            <td class="num">$7,650</td>
+            <td class="num">$3,999</td>
+            <td class="num"><strong>$75,181</strong></td>
+            <td class="num">$6,265.06</td>
+            <td class="num">24.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$110,000</td>
+            <td class="num">$15,370</td>
+            <td class="num">$8,415</td>
+            <td class="num">$4,424</td>
+            <td class="num"><strong>$81,791</strong></td>
+            <td class="num">$6,815.90</td>
+            <td class="num">25.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$120,000</td>
+            <td class="num">$17,570</td>
+            <td class="num">$9,180</td>
+            <td class="num">$4,849</td>
+            <td class="num"><strong>$88,401</strong></td>
+            <td class="num">$7,366.73</td>
+            <td class="num">26.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$125,000</td>
+            <td class="num">$18,734</td>
+            <td class="num">$9,563</td>
+            <td class="num">$5,062</td>
+            <td class="num"><strong>$91,642</strong></td>
+            <td class="num">$7,636.81</td>
+            <td class="num">26.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$130,000</td>
+            <td class="num">$19,934</td>
+            <td class="num">$9,945</td>
+            <td class="num">$5,274</td>
+            <td class="num"><strong>$94,847</strong></td>
+            <td class="num">$7,903.90</td>
+            <td class="num">27.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$140,000</td>
+            <td class="num">$22,334</td>
+            <td class="num">$10,710</td>
+            <td class="num">$5,699</td>
+            <td class="num"><strong>$101,257</strong></td>
+            <td class="num">$8,438.06</td>
+            <td class="num">27.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$150,000</td>
+            <td class="num">$24,734</td>
+            <td class="num">$11,475</td>
+            <td class="num">$6,124</td>
+            <td class="num"><strong>$107,667</strong></td>
+            <td class="num">$8,972.23</td>
+            <td class="num">28.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$160,000</td>
+            <td class="num">$27,134</td>
+            <td class="num">$12,240</td>
+            <td class="num">$6,549</td>
+            <td class="num"><strong>$114,077</strong></td>
+            <td class="num">$9,506.40</td>
+            <td class="num">28.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$175,000</td>
+            <td class="num">$30,734</td>
+            <td class="num">$13,388</td>
+            <td class="num">$7,187</td>
+            <td class="num"><strong>$123,692</strong></td>
+            <td class="num">$10,307.65</td>
+            <td class="num">29.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$200,000</td>
+            <td class="num">$36,734</td>
+            <td class="num">$14,339</td>
+            <td class="num">$8,249</td>
+            <td class="num"><strong>$140,678</strong></td>
+            <td class="num">$11,723.15</td>
+            <td class="num">29.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$225,000</td>
+            <td class="num">$43,304</td>
+            <td class="num">$14,927</td>
+            <td class="num">$9,312</td>
+            <td class="num"><strong>$157,458</strong></td>
+            <td class="num">$13,121.48</td>
+            <td class="num">30.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$250,000</td>
+            <td class="num">$51,304</td>
+            <td class="num">$15,514</td>
+            <td class="num">$10,374</td>
+            <td class="num"><strong>$172,808</strong></td>
+            <td class="num">$14,400.65</td>
+            <td class="num">30.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$300,000</td>
+            <td class="num">$68,134</td>
+            <td class="num">$16,689</td>
+            <td class="num">$12,499</td>
+            <td class="num"><strong>$202,678</strong></td>
+            <td class="num">$16,889.79</td>
+            <td class="num">32.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$400,000</td>
+            <td class="num">$103,134</td>
+            <td class="num">$19,039</td>
+            <td class="num">$16,749</td>
+            <td class="num"><strong>$261,078</strong></td>
+            <td class="num">$21,756.46</td>
+            <td class="num">34.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$500,000</td>
+            <td class="num">$138,134</td>
+            <td class="num">$21,389</td>
+            <td class="num">$20,999</td>
+            <td class="num"><strong>$319,478</strong></td>
+            <td class="num">$26,623.13</td>
+            <td class="num">36.1%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <h2>Michigan hourly paycheck: what your rate is worth after tax</h2>
+
+    <h3>Why we ask your hours instead of assuming 2,080</h3>
+    <p>Most hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
+    week for 52 weeks, which describes a full-time salaried schedule rather than most hourly work.
+    If you are on 32 hours, or 45 with overtime, the assumed figure is wrong before any tax is
+    applied. The calculator above asks for your hours and uses them.</p>
+
+    <h3>What $20 an hour comes to in Michigan</h3>
+    <p>At 40 hours a week, $20 an hour is <span class="num">$41,600</span> a year gross. After federal tax, Social
+    Security, Medicare and Michigan&rsquo;s 4.25%, that leaves about <span class="num">$34,088</span> a year, or
+    <span class="num">$2,840.70</span> a month. Your real hourly rate &mdash; what an hour of work actually puts
+    in your account &mdash; is <span class="num">$16.39</span>. Michigan&rsquo;s share of it is
+    <span class="num">$1,517.25</span> for the year.</p>
+
+    <h3>What $25 and $30 an hour come to</h3>
+    <p>$25 an hour is <span class="num">$52,000</span> gross and about <span class="num">$42,003</span> after tax, a real rate of
+    <span class="num">$20.19</span>. $30 an hour is <span class="num">$62,400</span> gross and about <span class="num">$49,917</span>
+    after tax, a real rate of <span class="num">$24.00</span>. The state layer moves very little between
+    them: every extra hour is taxed at the same 4.25%, so almost all of the rise in your effective
+    rate comes from the federal brackets.</p>
+
+    <h3>Overtime, tips and shift differentials</h3>
+    <p>Michigan taxes overtime, tips and shift differentials at exactly the same 4.25% as your base
+    pay, because there is only one rate and the exemption has already been used up by your regular
+    earnings. The common complaint that &ldquo;overtime is taxed more&rdquo; is a federal effect:
+    extra pay is withheld against a higher federal bracket, and nothing about the state layer
+    changes. Enter your usual hours to see the base position, then add the overtime hours.</p>
+
+    <h3>Michigan take-home pay by hourly rate</h3>
+    <p>Single filer with one exemption, 40 hours a week (2,080 hours a year), 2026 rates, city
+    income tax excluded.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Michigan take-home pay by hourly rate, single filer, 40 hours a week
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Hourly rate</th>
+          <th scope="col">Gross a year</th>
+          <th scope="col">Take-home a year</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Real hourly rate</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$12.00</td>
+            <td class="num">$24,960</td>
+            <td class="num"><strong>$21,355</strong></td>
+            <td class="num">$1,779.54</td>
+            <td class="num">$10.27</td>
+            <td class="num">14.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$13.00</td>
+            <td class="num">$27,040</td>
+            <td class="num"><strong>$22,979</strong></td>
+            <td class="num">$1,914.92</td>
+            <td class="num">$11.05</td>
+            <td class="num">15.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$14.00</td>
+            <td class="num">$29,120</td>
+            <td class="num"><strong>$24,591</strong></td>
+            <td class="num">$2,049.26</td>
+            <td class="num">$11.82</td>
+            <td class="num">15.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$15.00</td>
+            <td class="num">$31,200</td>
+            <td class="num"><strong>$26,174</strong></td>
+            <td class="num">$2,181.16</td>
+            <td class="num">$12.58</td>
+            <td class="num">16.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$16.00</td>
+            <td class="num">$33,280</td>
+            <td class="num"><strong>$27,757</strong></td>
+            <td class="num">$2,313.07</td>
+            <td class="num">$13.34</td>
+            <td class="num">16.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$17.00</td>
+            <td class="num">$35,360</td>
+            <td class="num"><strong>$29,340</strong></td>
+            <td class="num">$2,444.98</td>
+            <td class="num">$14.11</td>
+            <td class="num">17.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$18.00</td>
+            <td class="num">$37,440</td>
+            <td class="num"><strong>$30,923</strong></td>
+            <td class="num">$2,576.88</td>
+            <td class="num">$14.87</td>
+            <td class="num">17.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$19.00</td>
+            <td class="num">$39,520</td>
+            <td class="num"><strong>$32,505</strong></td>
+            <td class="num">$2,708.79</td>
+            <td class="num">$15.63</td>
+            <td class="num">17.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$20.00</td>
+            <td class="num">$41,600</td>
+            <td class="num"><strong>$34,088</strong></td>
+            <td class="num">$2,840.70</td>
+            <td class="num">$16.39</td>
+            <td class="num">18.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$21.00</td>
+            <td class="num">$43,680</td>
+            <td class="num"><strong>$35,671</strong></td>
+            <td class="num">$2,972.60</td>
+            <td class="num">$17.15</td>
+            <td class="num">18.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$22.00</td>
+            <td class="num">$45,760</td>
+            <td class="num"><strong>$37,254</strong></td>
+            <td class="num">$3,104.51</td>
+            <td class="num">$17.91</td>
+            <td class="num">18.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$23.00</td>
+            <td class="num">$47,840</td>
+            <td class="num"><strong>$38,837</strong></td>
+            <td class="num">$3,236.42</td>
+            <td class="num">$18.67</td>
+            <td class="num">18.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$24.00</td>
+            <td class="num">$49,920</td>
+            <td class="num"><strong>$40,420</strong></td>
+            <td class="num">$3,368.32</td>
+            <td class="num">$19.43</td>
+            <td class="num">19.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$25.00</td>
+            <td class="num">$52,000</td>
+            <td class="num"><strong>$42,003</strong></td>
+            <td class="num">$3,500.23</td>
+            <td class="num">$20.19</td>
+            <td class="num">19.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$26.00</td>
+            <td class="num">$54,080</td>
+            <td class="num"><strong>$43,586</strong></td>
+            <td class="num">$3,632.14</td>
+            <td class="num">$20.95</td>
+            <td class="num">19.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$28.00</td>
+            <td class="num">$58,240</td>
+            <td class="num"><strong>$46,751</strong></td>
+            <td class="num">$3,895.95</td>
+            <td class="num">$22.48</td>
+            <td class="num">19.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$30.00</td>
+            <td class="num">$62,400</td>
+            <td class="num"><strong>$49,917</strong></td>
+            <td class="num">$4,159.76</td>
+            <td class="num">$24.00</td>
+            <td class="num">20.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$32.00</td>
+            <td class="num">$66,560</td>
+            <td class="num"><strong>$53,077</strong></td>
+            <td class="num">$4,423.08</td>
+            <td class="num">$25.52</td>
+            <td class="num">20.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$35.00</td>
+            <td class="num">$72,800</td>
+            <td class="num"><strong>$57,202</strong></td>
+            <td class="num">$4,766.80</td>
+            <td class="num">$27.50</td>
+            <td class="num">21.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$38.00</td>
+            <td class="num">$79,040</td>
+            <td class="num"><strong>$61,326</strong></td>
+            <td class="num">$5,110.52</td>
+            <td class="num">$29.48</td>
+            <td class="num">22.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$40.00</td>
+            <td class="num">$83,200</td>
+            <td class="num"><strong>$64,076</strong></td>
+            <td class="num">$5,339.66</td>
+            <td class="num">$30.81</td>
+            <td class="num">23.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$45.00</td>
+            <td class="num">$93,600</td>
+            <td class="num"><strong>$70,950</strong></td>
+            <td class="num">$5,912.53</td>
+            <td class="num">$34.11</td>
+            <td class="num">24.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$50.00</td>
+            <td class="num">$104,000</td>
+            <td class="num"><strong>$77,825</strong></td>
+            <td class="num">$6,485.40</td>
+            <td class="num">$37.42</td>
+            <td class="num">25.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$55.00</td>
+            <td class="num">$114,400</td>
+            <td class="num"><strong>$84,699</strong></td>
+            <td class="num">$7,058.26</td>
+            <td class="num">$40.72</td>
+            <td class="num">26.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$60.00</td>
+            <td class="num">$124,800</td>
+            <td class="num"><strong>$91,514</strong></td>
+            <td class="num">$7,626.13</td>
+            <td class="num">$44.00</td>
+            <td class="num">26.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$65.00</td>
+            <td class="num">$135,200</td>
+            <td class="num"><strong>$98,180</strong></td>
+            <td class="num">$8,181.66</td>
+            <td class="num">$47.20</td>
+            <td class="num">27.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$70.00</td>
+            <td class="num">$145,600</td>
+            <td class="num"><strong>$104,846</strong></td>
+            <td class="num">$8,737.20</td>
+            <td class="num">$50.41</td>
+            <td class="num">28.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$75.00</td>
+            <td class="num">$156,000</td>
+            <td class="num"><strong>$111,513</strong></td>
+            <td class="num">$9,292.73</td>
+            <td class="num">$53.61</td>
+            <td class="num">28.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$85.00</td>
+            <td class="num">$176,800</td>
+            <td class="num"><strong>$124,846</strong></td>
+            <td class="num">$10,403.80</td>
+            <td class="num">$60.02</td>
+            <td class="num">29.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$100.00</td>
+            <td class="num">$208,000</td>
+            <td class="num"><strong>$146,230</strong></td>
+            <td class="num">$12,185.81</td>
+            <td class="num">$70.30</td>
+            <td class="num">29.7%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+  <h2>Key facts that affect your take-home pay in Michigan</h2>
+
+  <h3>One rate, no brackets, for everyone</h3>
+  <p>Michigan applies a single rate of 4.25% to taxable income. There is no bracket structure: a
+  worker on <span class="num">$25,000</span> and a worker on <span class="num">$250,000</span> face the same percentage on every
+  dollar above their exemption, and no amount of extra earnings moves you into a higher state rate.
+  The only part of your paycheck that changes shape as you earn more is the federal share.</p>
+
+  <h3>The <span class="num">$5,900</span> personal exemption is per person, not per household</h3>
+  <p>Michigan does not have a standard deduction. It has a personal and dependency exemption, and
+  the 2026 value is <span class="num">$5,900</span> for each exemption you claim on your MI-W4. One for
+  yourself, one for a spouse who is not claiming their own, one for each dependant. Every exemption
+  takes <span class="num">$5,900</span> out of the reach of the 4.25% rate, which is <span class="num">$250.75</span> a year
+  in your pocket. A married couple claiming two shelters <span class="num">$11,800</span>, worth
+  <span class="num">$501.50</span>.</p>
+  <p>This is the figure most often missing when someone works out their own Michigan tax. Multiply
+  your salary by 4.25% and you overstate the tax by <span class="num">$250.75</span> for every exemption you
+  forgot.</p>
+
+  <h3>Your effective Michigan rate is always below 4.25%, and rises as you earn more</h3>
+  <p>Because the exemption is a fixed dollar amount rather than a percentage, it shelters a larger
+  share of a small salary than a large one. On <span class="num">$25,000</span> the state takes
+  <span class="num">$811.75</span>, an effective state rate of <span class="num">3.25%</span>. On
+  <span class="num">$75,000</span> it takes <span class="num">$2,936.75</span>, or <span class="num">3.92%</span>. On
+  <span class="num">$250,000</span> it is <span class="num">4.15%</span>. The headline rate is a ceiling the state
+  approaches but never reaches &mdash; the opposite of
+  <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a>, where the headline rate and the
+  real rate are the same number at every income.</p>
+
+  <h3>Your 401(k) contribution does reduce your Michigan tax</h3>
+  <p>Michigan taxable income starts from your federal adjusted gross income, and an elective
+  deferral to a 401(k) or 403(b) is already excluded from that figure. So the contribution cuts
+  your state tax as well as your federal tax. On <span class="num">$75,000</span> with 6% going in, your Michigan
+  tax falls by <span class="num">$191.25</span> a year.</p>
+  <p>It is worth saying explicitly because the rule is not universal, and the exception is close by:
+  a Pennsylvania worker making the same contribution on the same salary sees their state tax fall
+  by <span class="num">$0.00</span> &mdash; Pennsylvania treats the deferral as compensation the moment it is
+  made. Michigan does not.</p>
+
+  <h3>Detroit takes 2.4%, and it is not in these figures</h3>
+  <p>Detroit levies its own income tax on top of the state&rsquo;s. Per the Michigan Treasury&rsquo;s
+  own 2026 withholding guide for the city, the rate is <strong>2.4%</strong>
+  for residents and <strong>1.2%</strong> for non-residents whose
+  predominant place of employment is Detroit, after an exemption of <span class="num">$600</span> per
+  person &mdash; a much smaller exemption than the state&rsquo;s.</p>
+  <p>The scale is easy to underestimate. On a <span class="num">$60,000</span> salary, a Detroit resident pays
+  <span class="num">$1,425.60</span> to the city while paying <span class="num">$2,299.25</span> to the state: the city adds
+  <strong><span class="num">62%</span> again</strong> on top of the state layer. A
+  non-resident working in the city pays <span class="num">$712.80</span>. Nothing on this page models either.</p>
+
+  <h3>About two dozen Michigan cities levy an income tax</h3>
+  <p>Detroit is the largest but not the only one. Michigan cities may levy an income tax under the
+  state&rsquo;s Uniform City Income Tax Ordinance, and roughly two dozen do. It is withheld by your
+  employer alongside the state tax, it applies to residents wherever they work and to non-residents
+  on the work they perform in the city, and it is genuinely additional money. Your city&rsquo;s
+  income tax office is the only reliable source for its rate; a statewide calculator cannot know
+  which city applies to you.</p>
+
+  <h3>Michigan does not tax your pension the way it taxes your paycheck</h3>
+  <p>Worth knowing if you are close to retirement, though it does not affect a working paycheck.
+  Michigan phases retirement and pension income out of tax by birth year: the Treasury&rsquo;s 2026
+  withholding guide sets the subtraction for recipients born 1946 through 1966 at
+  <span class="num">$49,423</span> single and <span class="num">$98,846</span> married filing jointly, and a larger allowance again
+  for those born before 1946. Wages are not part of that scheme &mdash; everything on this page is
+  the working-age calculation.</p>
+
+  <h3>Social Security stops, Medicare does not</h3>
+  <p>Social Security is withheld at 6.2% until your wages reach <span class="num">$184,500</span> in 2026, then
+  stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
+  extra 0.9% on wages above <span class="num">$200,000</span>. This is why take-home pay rises unevenly through the
+  year for high earners &mdash; the paycheck after you cross the Social Security wage base is
+  visibly larger.</p>
+
+  <h2>Common mistakes people make</h2>
+
+  <h3>Multiplying the whole salary by 4.25%</h3>
+  <p>The most common error, and it always goes the same way: it overstates your Michigan tax by
+  <span class="num">$250.75</span> per exemption. The rate applies to your pay <em>after</em> the
+  <span class="num">$5,900</span> exemption comes off, not before.</p>
+
+  <h3>Looking for a Michigan standard deduction</h3>
+  <p>There is not one. Michigan gives a personal and dependency exemption instead, and the two are
+  not interchangeable: an exemption is claimed per person, so a family of four shelters
+  <span class="num">$23,600</span> where a single filer shelters <span class="num">$5,900</span>. Searching for a
+  standard deduction and finding the federal figure leads people to subtract <span class="num">$16,100</span>, which
+  understates their Michigan tax by <span class="num">$433.50</span>.</p>
+
+  <h3>Using a state figure while living in Detroit</h3>
+  <p>A Detroit resident who budgets on the state rate alone is out by <span class="num">$1,425.60</span> a year on a
+  <span class="num">$60,000</span> salary. If a city tax applies to you, add it to everything on this page.</p>
+
+  <h3>Assuming a city tax only applies where you live</h3>
+  <p>It applies both ways. A Michigan city taxes its residents on all their earnings wherever they
+  work, and non-residents on the work they perform inside the city. Commuting into Detroit from a
+  suburb does not put you outside the city tax; it puts you on the lower non-resident rate.</p>
+
+  <h3>Expecting the calculator to match the paystub to the dollar</h3>
+  <p>It will not, and no calculator can. Your employer withholds from the MI-W4 you filed, which may
+  claim a different number of exemptions than assumed here; health premiums and benefit deductions
+  come out first; and city tax varies. Treat this as an accurate model of the federal and state
+  layers, and read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
+
+  <h2>Example calculation</h2>
+  <p>A single filer earning <span class="num">$75,000</span> in Michigan in 2026, claiming one exemption, with no
+  retirement contribution and outside a city that levies an income tax:</p>
+  <ul>
+    <li>Federal taxable income: <span class="num">$75,000</span> &minus; <span class="num">$16,100</span> =
+    <span class="num">$58,900</span></li>
+    <li>Federal income tax: <span class="num">$7,670.00</span></li>
+    <li>Social Security: <span class="num">$75,000</span> &times; 6.2% = <span class="num">$4,650.00</span></li>
+    <li>Medicare: <span class="num">$75,000</span> &times; 1.45% = <span class="num">$1,087.50</span></li>
+    <li>Michigan taxable income: <span class="num">$75,000</span> &minus; <span class="num">$5,900</span> =
+    <span class="num">$69,100</span></li>
+    <li>Michigan income tax: <span class="num">$69,100</span> &times; 4.25% = <span class="num">$2,936.75</span></li>
+    <li><strong>Total withheld: <span class="num">$16,344.25</span></strong></li>
+    <li><strong>Take-home pay: <span class="num">$58,655.75</span> a year</strong>, or
+    <span class="num">$4,887.98</span> a month</li>
+    <li>Effective tax rate: <span class="num">21.8%</span></li>
+  </ul>
+  <p>The same worker living in Detroit pays <span class="num">$1,785.60</span> more to the city, taking the
+  effective rate to about
+  <span class="num">24.2%</span>.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <h3>What is the Michigan income tax rate in 2026?</h3>
+    <p>A flat 4.25%. Michigan has no brackets: the same rate applies whether you earn $25,000 or $250,000. What it does have is a personal exemption of $5,900 per person for 2026, subtracted from your pay before the rate is applied. Both figures come from the state's own form 446, the 2026 Michigan Income Tax Withholding Guide, whose first line reads “Withholding Rate: 4.25%  Personal Exemption Amount: $5,900”.</p>
+
+    <h3>How much is the Michigan personal exemption worth?</h3>
+    <p>$5,900 of your pay escapes the 4.25% rate, which is $250.75 a year in your pocket for a single filer claiming one exemption. A married couple filing jointly and claiming two exemptions shelters $11,800, worth $501.50. Every dependant you claim on your MI-W4 adds another exemption. This is the figure people most often leave out when they work out their own Michigan tax, and leaving it out overstates the tax by exactly $250.75 per exemption.</p>
+
+    <h3>What is take-home pay on a $75,000 salary in Michigan?</h3>
+    <p>About $58,656 a year, or $4,887.98 a month, for a single filer with one exemption and no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and $2,936.75 of Michigan income tax — an effective rate of 21.8%. City income tax is not included; about two dozen Michigan cities levy one, and Detroit's is the largest.</p>
+
+    <h3>Does a 401(k) contribution lower my Michigan tax?</h3>
+    <p>Yes. Michigan starts from your federal adjusted gross income, and an elective deferral is already out of that figure, so the contribution reduces your state tax as well as your federal tax. On $75,000 with 6% going into a 401(k), your Michigan tax falls by $191.25. This is worth stating because the rule is not universal: in Pennsylvania the same worker's state tax falls by $0.00 — nothing at all.</p>
+
+    <h3>What is $20 an hour after taxes in Michigan?</h3>
+    <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,088 after tax, which works out at $16.39 an hour in real terms. Michigan takes $1,517.25 of that, because the $5,900 exemption shelters a larger share of a small salary than a large one.</p>
+
+    <h3>How much is Detroit's city income tax in 2026?</h3>
+    <p>2.4% for residents and 1.2% for non-residents who work in the city, after an exemption of $600 per person. The rates are set out in the Michigan Treasury's form 5469, the 2026 City of Detroit Income Tax Withholding Guide. On a $60,000 salary a Detroit resident pays $1,425.60 to the city on top of $2,299.25 to the state — the city adds 62% again on top of the state layer. This calculator models the state layer only.</p>
+
+    <h3>Which Michigan cities have an income tax?</h3>
+    <p>About two dozen, and Detroit is by far the largest. A Michigan city income tax is levied under the state's Uniform City Income Tax Ordinance and is withheld by your employer alongside the state tax, so it is genuinely additional money. Detroit is the one this page quotes a rate for, because its rate is published in a Treasury withholding guide we can cite. If you live or work in a city that levies one, check your pay stub or your city's own income tax office — no statewide calculator can know which city applies to you.</p>
+
+    <h3>Why is my Michigan paycheck smaller than this calculator says?</h3>
+    <p>The usual reason is city income tax, which is not modelled here. After that: health insurance premiums and other benefit deductions come out before tax and are not included, your MI-W4 may claim a different number of exemptions than assumed, and a second job pushes your withholding up. The state layer itself is the simplest part of a Michigan paycheck and the least likely to be the surprise.</p>
+  </div>
+
+  <h2>Compare with other states</h2>
+  <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates, state layer only:</p>
+  <ul>
+    <li><a href="/paycheck-calculator/illinois/">Illinois</a> &mdash; $58,025 take-home, an effective rate of 22.6%. A Illinois worker keeps $630.96 less than a Michigander on the same salary.</li>
+    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> &mdash; $59,238 take-home, an effective rate of 21.0%. A Pennsylvania worker keeps $581.75 more than a Michigander on the same salary.</li>
+    <li><a href="/paycheck-calculator/georgia/">Georgia</a> &mdash; $58,599 take-home, an effective rate of 21.9%. A Georgia worker keeps $57.25 less than a Michigander on the same salary.</li>
+    <li><a href="/paycheck-calculator/texas/">Texas</a> &mdash; $61,593 take-home, an effective rate of 17.9%. A Texas worker keeps $2,936.75 more than a Michigander on the same salary.</li>
+  </ul>
+  <p>Michigan sits in the middle of the states published here: its rate is higher than
+  Pennsylvania&rsquo;s but its exemption gives back what Pennsylvania does not, and it is well
+  behind the states that levy nothing at all. What the comparison cannot show is city tax, which in
+  Detroit is large enough to change the ranking on its own.</p>
+
+  <h2>Related reading</h2>
+  <ul>
+    <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
+    index, including which states have no income tax at all.</li>
+    <li><a href="/salary-to-hourly-calculator/michigan/">Michigan salary to hourly</a>
+    &mdash; what an annual salary is worth per hour in Michigan, after tax and not just
+    before.</li>
+    <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
+    with its official source, and what these calculators deliberately do not model.</li>
+    <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,
+    credits and W-4 settings, and how much difference is normal.</li>
+  </ul>
+
+  </div>
+
+  <h2>Browse paycheck calculators by state</h2>
+  <ul class="state-grid">
+    <li>Alabama</li>
+    <li>Alaska</li>
+    <li>Arizona</li>
+    <li>Arkansas</li>
+    <li>California</li>
+    <li>Colorado</li>
+    <li>Connecticut</li>
+    <li>Delaware</li>
+    <li><a href="/paycheck-calculator/florida/">Florida</a></li>
+    <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
+    <li>Hawaii</li>
+    <li>Idaho</li>
+    <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
+    <li>Indiana</li>
+    <li>Iowa</li>
+    <li>Kansas</li>
+    <li>Kentucky</li>
+    <li>Louisiana</li>
+    <li>Maine</li>
+    <li>Maryland</li>
+    <li>Massachusetts</li>
+    <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
+    <li>Minnesota</li>
+    <li>Mississippi</li>
+    <li>Missouri</li>
+    <li>Montana</li>
+    <li>Nebraska</li>
+    <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
+    <li>New Hampshire</li>
+    <li>New Jersey</li>
+    <li>New Mexico</li>
+    <li>New York</li>
+    <li>North Carolina</li>
+    <li>North Dakota</li>
+    <li>Ohio</li>
+    <li>Oklahoma</li>
+    <li>Oregon</li>
+    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
+    <li>Rhode Island</li>
+    <li>South Carolina</li>
+    <li>South Dakota</li>
+    <li>Tennessee</li>
+    <li><a href="/paycheck-calculator/texas/">Texas</a></li>
+    <li>Utah</li>
+    <li>Vermont</li>
+    <li>Virginia</li>
+    <li><a href="/paycheck-calculator/washington/">Washington</a></li>
+    <li>West Virginia</li>
+    <li>Wisconsin</li>
+    <li>Wyoming</li>
+  </ul>
+
+  <p class="dates">
+    Published <time datetime="2026-08-29">August 29, 2026</time> &middot;
+    Last updated <time datetime="2026-08-29">August 29, 2026</time>.
+  </p>
+
+  <p class="disclaimer">
+    StateLine Calc provides general information for educational purposes only. It is not
+    financial, tax or legal advice. Results are estimates based on published 2026 federal and
+    Michigan rates and exclude city income tax.
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>StateLine Calc</strong> &mdash; free money calculators for all 50 states.
+    No sign-up. No personal data required.</p>
+    <p class="micro u-on-dark">
+      <a href="/about/">About</a> &middot;
+      <a href="/methodology/">Methodology</a> &middot;
+      <a href="/contact/">Contact</a> &middot;
+      <a href="/privacy/">Privacy</a> &middot;
+      <a href="/terms/">Terms</a> &middot;
+      <a href="/disclaimer/">Disclaimer</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/data/rates-2026.js"></script>
+<script src="/assets/calc-paycheck.js"></script>
+</body>
+</html>
