@@ -32,3 +32,9 @@ Thumbs.db
 desktop.ini
 .DS_Store
 node_modules/
+
+# Exports SEMrush / Ahrefs : donnees sous licence, achetees par abonnement.
+# Elles n'ont rien a faire dans un depot public, et elles pesent 1,7 Mo piece.
+data/semrush-*.csv
+data/ahrefs-*.csv
+00-*.txt
