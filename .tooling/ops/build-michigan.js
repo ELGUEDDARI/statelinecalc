@@ -143,19 +143,13 @@ const faq = [
 ];
 
 const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
-const ETATS_50 = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut",
-  "Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky",
-  "Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri",
-  "Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York",
-  "North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island",
-  "South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington",
-  "West Virginia","Wisconsin","Wyoming"];
-const PUBLIES = { Florida: "florida", Georgia: "georgia", Illinois: "illinois",
-  Michigan: "michigan", Nevada: "nevada", Pennsylvania: "pennsylvania", Texas: "texas",
-  Washington: "washington" };
-const listeEtats = ETATS_50.map(n => PUBLIES[n]
-  ? `    <li><a href="/paycheck-calculator/${PUBLIES[n]}/">${n}</a></li>`
-  : `    <li>${n}</li>`).join("\n");
+/* La liste des Etats publies vit dans .tooling/lib/etats-publies.js, et nulle
+   part ailleurs. Chaque generateur en portait sa copie ; relancer celui-ci le
+   02/09/2026 a silencieusement efface de la page ses liens vers trois Etats
+   publies apres sa derniere execution. Un generateur ne doit pas pouvoir
+   defaire le maillage en etant simplement relance. */
+const { grilleEtats } = require("../lib/etats-publies.js");
+const listeEtats = grilleEtats();
 
 const html = `<!DOCTYPE html>
 <html lang="en-US">
@@ -629,7 +623,7 @@ ${voisins.map(v => {
   </div>
 
   <h2>Browse paycheck calculators by state</h2>
-  <ul class="state-grid">
+  <ul class="linkgrid">
 ${listeEtats}
   </ul>
 
