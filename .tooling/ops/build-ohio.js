@@ -274,7 +274,7 @@ const html = `<!DOCTYPE html>
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
-<title>Ohio Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay</title>
+<title>Ohio Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
 <meta name="description" content="Free Ohio paycheck calculator, 2026. Hourly or salary. Ohio taxes nothing on the first $26,050 of taxable income, then 2.75% &mdash; but the dollar that crosses that line costs $332, because the law says so.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/ohio/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -284,7 +284,7 @@ const html = `<!DOCTYPE html>
 <meta name="theme-color" content="#0F172A">
 <link rel="stylesheet" href="/assets/style.css">
 
-<meta property="og:title" content="Ohio Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay">
+<meta property="og:title" content="Ohio Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
 <meta property="og:description" content="Ohio charges nothing on the first $26,050 of taxable income, then 2.75% &mdash; and $332 the moment you cross the line.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/ohio/">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
@@ -355,10 +355,11 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
     then <strong>${N($(MARCHE))} plus 2.75%</strong> of everything above it &mdash; so state tax
     does not start until about ${N($(DEPART))} of salary for a single filer. On $75,000 you pay
     the state ${N($$(a75.etat))} and keep about ${N($(a75.net))} a year, a state rate of
-    ${N(effet75.toFixed(2) + "%")}. The dollar that crosses the line costs ${N($$(coutDuDollar))},
-    because the law adds ${N($(MARCHE))} at once. Your city is the bigger number:
-    ${N(String(MUNI_NB)) + " Ohio municipalities"} levy their own income tax on top, and it is not
-    included here.</p>
+    ${N(effet75.toFixed(2) + "%")}. The dollar that crosses the line costs ${N($$(coutDuDollar))}.
+    ${N(String(MUNI_NB)) + " Ohio municipalities"} levy their own income tax on top, not counted
+    here.</p>
+  
+    <p class="answer-jump"><a href="#calc-h">Calculate my pay &darr;</a></p>
   </div>
 
   <section aria-labelledby="calc-h">

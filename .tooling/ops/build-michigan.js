@@ -164,7 +164,7 @@ const html = `<!DOCTYPE html>
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
-<title>Michigan Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay</title>
+<title>Michigan Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
 <meta name="description" content="Free Michigan paycheck calculator, 2026. Hourly or salary. Michigan taxes income at a flat 4.25% after a $5,900 personal exemption per person &mdash; and about two dozen Michigan cities, Detroit included, add their own tax on top.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/michigan/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -174,7 +174,7 @@ const html = `<!DOCTYPE html>
 <meta name="theme-color" content="#0F172A">
 <link rel="stylesheet" href="/assets/style.css">
 
-<meta property="og:title" content="Michigan Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay">
+<meta property="og:title" content="Michigan Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
 <meta property="og:description" content="Michigan taxes income at a flat 4.25% after a $5,900 exemption per person &mdash; and Detroit takes 2.4% more on top.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/michigan/">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
@@ -246,6 +246,8 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
     $75,000, a single filer pays ${N($$(a75.etat))} to the state and keeps about
     ${N($(a75.net))} a year. About two dozen Michigan cities levy their own income tax on top;
     Detroit takes ${N("2.4%")} from residents.</p>
+  
+    <p class="answer-jump"><a href="#calc-h">Calculate my pay &darr;</a></p>
   </div>
 
   <section aria-labelledby="calc-h">

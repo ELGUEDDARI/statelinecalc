@@ -269,3 +269,23 @@ tbody tr:nth-child(odd) { background: var(--surface); }
    ni logo ni favicon, ce qui le rendait litteralement anonyme. */
 .brand { display: inline-flex; align-items: center; gap: .5rem; }
 .brand-mark { flex: 0 0 auto; display: block; }
+
+/* Le raccourci vers le calculateur.
+   Sur un iPhone, le champ de saisie est a 827 px du haut : il faut defiler une
+   page entiere avant de pouvoir calculer, parce que le bloc « reponse » passe
+   avant. Ce bloc est notre actif GEO — c'est lui que les moteurs generatifs
+   citent — donc on ne le raccourcit pas : on donne un raccourci. Mesure et
+   arbitrage du 02/09/2026. */
+.answer-jump { margin: var(--s-3) 0 0; }
+/* Sur petit ecran chaque pixel compte : le bouton doit tenir ENTIEREMENT
+   dans le premier ecran, sur la page la plus longue du site (Ohio). */
+@media (max-width: 420px) {
+  .answer-jump { margin-top: var(--s-2); }
+  .answer-jump a { padding: var(--s-2) var(--s-3); }
+}
+.answer-jump a {
+  display: inline-block; font-weight: 600; text-decoration: none;
+  padding: var(--s-2) var(--s-4); border-radius: 8px;
+  background: var(--accent); color: var(--on-accent);
+}
+.answer-jump a:hover, .answer-jump a:focus { text-decoration: underline; }

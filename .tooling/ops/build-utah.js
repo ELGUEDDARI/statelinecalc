@@ -193,7 +193,7 @@ const html = `<!DOCTYPE html>
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
-<title>Utah Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay</title>
+<title>Utah Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
 <meta name="description" content="Free Utah paycheck calculator, 2026. Hourly or salary. Utah taxes income at a flat 4.45% with no standard deduction &mdash; instead a taxpayer credit of $485 that fades out and is gone by $46,656.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/utah/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -203,7 +203,7 @@ const html = `<!DOCTYPE html>
 <meta name="theme-color" content="#0F172A">
 <link rel="stylesheet" href="/assets/style.css">
 
-<meta property="og:title" content="Utah Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay">
+<meta property="og:title" content="Utah Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
 <meta property="og:description" content="Utah taxes income at a flat 4.45% in 2026 &mdash; but there is no deduction, only a taxpayer credit that fades out as you earn more.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/utah/">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
@@ -276,6 +276,8 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
     1.3 cents per dollar earned above ${N($(SEUIL))} and gone by ${N($(Math.round(FIN)))}. On
     $75,000, a single filer pays ${N($$(a75.etat))} to the state and keeps about
     ${N($(a75.net))} a year.</p>
+  
+    <p class="answer-jump"><a href="#calc-h">Calculate my pay &darr;</a></p>
   </div>
 
   <section aria-labelledby="calc-h">
