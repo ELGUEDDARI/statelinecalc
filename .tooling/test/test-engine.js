@@ -447,5 +447,67 @@ check("MI : bibliotheque node, net annuel sur 75 000",
 check("MI : les deux implementations s'accordent sur l'impot d'Etat",
   calcul("michigan", 75000).etat, calculMI(75000, 0), 0.01);
 
+/* --- UTAH ----------------------------------------------------------------
+   Sources, lues le 2026-09-02 :
+   - Utah Code 59-10-104 (le.utah.gov), verbatim : « (b) 4.45% », suivi de
+     « Amended by Chapter 250, 2026 General Session » ;
+   - Publication 14, Rev. 4/26, « effective for pay periods beginning on or
+     after June 1, 2026 », Schedule 7 (ANNUAL) : « Multiply line 1 by .0445 »,
+     « Base allowance 485 », « Line 1 minus $9,348 », « Multiply line 4 by
+     .013 », « line 2 minus line 6 (not less than 0) ».
+   L'Utah ne deduit rien du revenu : il credite. Les attendus sont poses a la
+   main d'apres le texte du guide, pas repris du moteur. */
+function calculUT(brut, pct401k, statut) {
+  var base = brut - brut * pct401k;
+  var socle = (statut === "marriedJoint") ? 970 : 485;
+  var seuil = (statut === "marriedJoint") ? 18696 : 9348;
+  var credit = Math.max(0, socle - Math.max(0, base - seuil) * 0.013);
+  return Math.max(0, base * 0.0445 - credit);
+}
+
+check("UT : le taux est bien 4,45 %",
+  R.states.utah.incomeTax.brackets.single[0][1], 0.0445, 0);
+check("UT : aucune deduction standard — l'Utah credite, il ne deduit pas",
+  R.states.utah.incomeTax.standardDeduction, 0, 0);
+check("UT : allocation de base annuelle, celibataire",
+  R.states.utah.incomeTax.taxCredit.base.single, 485, 0);
+check("UT : allocation de base annuelle, couple — le double",
+  R.states.utah.incomeTax.taxCredit.base.marriedJoint, 970, 0);
+check("UT : seuil d'effacement du credit, celibataire",
+  R.states.utah.incomeTax.taxCredit.phaseOutStart.single, 9348, 0);
+check("UT : seuil d'effacement du credit, couple",
+  R.states.utah.incomeTax.taxCredit.phaseOutStart.marriedJoint, 18696, 0);
+
+/* Le controle qui vaut tous les autres : l'exemple publie par l'Utah lui-meme.
+   Publication 14, « Example 5 - Use Schedule 5, Quarterly/Single », salaire
+   trimestriel 9 000 $, retenue publiee 367 $. Le guide arrondit chaque ligne,
+   nous non : l'ecart admis est d'un dollar. */
+check("UT : l'exemple 5 du Pub 14 (9 000 $ au trimestre) donne bien 367 $",
+  9000 * 0.0445 - Math.max(0, 121 - Math.max(0, 9000 - 2337) * 0.013), 367, 1);
+
+check("UT : impot d'Etat sur 30 000 = 4,45 % moins le credit restant",
+  calcul("utah", 30000).etat, 1118.48, 0.01);
+check("UT : a 75 000 le credit est entierement efface — 4,45 % plein",
+  calcul("utah", 75000).etat, 75000 * 0.0445, 0.01);
+check("UT : le credit s'annule exactement a 46 656 $",
+  Math.max(0, 485 - Math.max(0, 46656 - 9348) * 0.013), 0, 0.01);
+check("UT : sous ce seuil le taux effectif est INFERIEUR a 4,45 %",
+  calcul("utah", 30000).etat / 30000 < 0.0445 ? 1 : 0, 1, 0);
+check("UT : un couple garde le credit plus longtemps qu'un celibataire",
+  calculUT(40000, 0, "marriedJoint") < calculUT(40000, 0, "single") ? 1 : 0, 1, 0);
+check("UT : le 401(k) reduit bien l'impot d'Etat",
+  calcul("utah", 75000).etat - calcul("utah", 75000, "single", 0.06).etat,
+  75000 * 0.06 * 0.0445, 0.01);
+check("UT : aucun programme salarie retenu",
+  (R.states.utah.employeePrograms || []).length, 0, 0);
+check("UT : les deux implementations s'accordent sur l'impot d'Etat",
+  calcul("utah", 30000).etat, calculUT(30000, 0, "single"), 0.01);
+check("UT : et elles s'accordent aussi pour un couple",
+  calcul("utah", 120000, "marriedJoint").etat,
+  calculUT(120000, 0, "marriedJoint"), 0.01);
+check("UT : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
+  calcul("utah", 5000).etat >= 0 ? 1 : 0, 1, 0);
+
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

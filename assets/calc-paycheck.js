@@ -126,6 +126,22 @@
         Math.max(0, baseEtat - (sd || 0)),
         state.incomeTax.brackets[input.filingStatus] || state.incomeTax.brackets.single
       );
+      /* Some states do not shrink the taxable income at all: they charge the
+         full rate, then subtract a CREDIT that fades out as pay rises. Utah is
+         the first one here - Publication 14, schedules 1 to 8: tax is 4.45% of
+         wages, less (a base allowance minus 1.3% of the wages above a
+         threshold), and never below zero. Modelling that credit as a deduction
+         would give a wrong answer at every income, not only at the edges.
+         Added 2026-09-02. */
+      var cr = state.incomeTax.taxCredit;
+      if (cr) {
+        var pick = function (t) {
+          return (input.filingStatus in t) ? t[input.filingStatus] : t.single;
+        };
+        var credit = Math.max(0, pick(cr.base)
+          - Math.max(0, baseEtat - pick(cr.phaseOutStart)) * cr.phaseOutRate);
+        stateTax = Math.max(0, stateTax - credit);
+      }
     }
 
     /* --- state payroll programmes --- */

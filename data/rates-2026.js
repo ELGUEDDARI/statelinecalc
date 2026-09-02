@@ -498,6 +498,70 @@ const RATES_2026 = {
           headOfHousehold: [[Infinity, 0.0425]]
         }
       }
+    },
+
+    /* UTAH — taux 2026 verifie sur DEUX sources officielles independantes le
+       2026-09-02, parce que la premiere page consultee etait perimee.
+
+       1. Utah Code Section 59-10-104, lu sur le.utah.gov, verbatim :
+          « (a) the resident individual's state taxable income for that taxable
+          year; and (b) 4.45%. » — suivi de « Amended by Chapter 250, 2026
+          General Session ». C'est la loi elle-meme, dans sa version 2026.
+       2. Utah State Tax Commission, Publication 14, « Withholding Tax Guide »,
+          Rev. 4/26, en-tete verbatim : « The income tax withholding tables in
+          this revision are effective for pay periods beginning on or after
+          June 1, 2026 ». Chaque schedule dit « Multiply line 1 by .0445
+          (4.45%) ».
+
+       ⚠️ CE QUI A FAILLI PASSER : incometax.utah.gov/paying/tax-rates affichait
+       encore, le 2026-09-02, « January 1, 2025 – current: 4.5% or .045 ».
+       Cette page est perimee ; la loi et le guide de retenue disent 4,45 %.
+       Un taux lu sur une seule page d'agence aurait ete faux.
+
+       ⚠️ Le lien officiel du Pub 14 (files.tax.utah.gov/tax/forms/pubs/pub-14.pdf)
+       repondait HTTP 404 le 2026-09-02, y compris depuis la page qui le publie.
+       Le PDF a donc ete lu dans l'instantane de l'Internet Archive du
+       2026-07-16 : web.archive.org/web/20260716180416/https://files.tax.utah.gov/tax/forms/pubs/pub-14.pdf
+       (meme detour que pour le Michigan).
+
+       L'UTAH NE DEDUIT RIEN — IL CREDITE. Il n'y a ni deduction standard ni
+       exoneration personnelle : l'impot est 4,45 % du salaire entier, duquel on
+       retranche un credit qui s'efface. Publication 14, Schedule 7 (ANNUAL),
+       verbatim, colonne Single :
+         « 2. Multiply line 1 by .0445 (4.45%) »
+         « 3. Base allowance  485 »
+         « 4. Line 1 minus $9,348 (not less than 0) »
+         « 5. Multiply line 4 by .013 (1.3%) »
+         « 6. Line 3 minus line 5 (not less than 0) »
+         « 7. Withholding tax — line 2 minus line 6 (not less than 0) »
+       Colonne Married : allocation de base 970, seuil 18 696 $ — les deux
+       exactement le double du celibataire, comme a chaque periode de paie.
+
+       ⚠️ HEAD OF HOUSEHOLD : la Publication 14 ne connait que deux colonnes,
+       Single et Married. Le chef de famille est donc calcule sur la colonne
+       Single, qui est ce que l'employeur retiendrait. C'est une hypothese
+       assumee, ecrite sur la page — la declaration annuelle TC-40 lui accorde
+       un seuil plus favorable, non publie pour 2026 a ce jour.
+
+       Pas d'employeePrograms : le Pub 14 ne prevoit aucune retenue salariale
+       autre que l'impot sur le revenu. */
+    utah: {
+      name: "Utah",
+      abbr: "UT",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: 0,
+        brackets: {
+          single:          [[Infinity, 0.0445]],
+          marriedJoint:    [[Infinity, 0.0445]],
+          headOfHousehold: [[Infinity, 0.0445]]
+        },
+        taxCredit: {
+          base:          { single: 485,  marriedJoint: 970,   headOfHousehold: 485 },
+          phaseOutStart: { single: 9348, marriedJoint: 18696, headOfHousehold: 9348 },
+          phaseOutRate:  0.013
+        }
+      }
     }
   }
 };

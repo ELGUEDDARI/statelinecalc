@@ -39,6 +39,22 @@ function deductionEtat(S, statut, base) {
   return v;
 }
 
+/* Certains Etats ne reduisent pas le revenu imposable : ils calculent l'impot
+   plein, puis en retranchent un CREDIT qui s'efface a mesure que le revenu
+   monte. L'Utah est le premier ici - Publication 14, schedules 1 a 8 :
+   impot = 4,45 % des salaires, moins (allocation de base - 1,3 % de la part
+   des salaires au-dessus d'un seuil), le tout jamais negatif. Traiter ce
+   credit comme une deduction donnerait un resultat faux a tous les niveaux
+   de revenu, pas seulement aux extremes. */
+function creditEtat(S, statut, base) {
+  const c = S.incomeTax.taxCredit;
+  if (!c) return 0;
+  const pick = (t) => (statut in t) ? t[statut] : t.single;
+  const socle = pick(c.base);
+  const seuil = pick(c.phaseOutStart);
+  return Math.max(0, socle - Math.max(0, base - seuil) * c.phaseOutRate);
+}
+
 /* retraitePct : part du brut versee au 401(k). Zero par defaut, parce que les
    tableaux publies supposent un salarie sans versement - l'hypothese est
    ecrite sur chaque page. */
@@ -61,8 +77,9 @@ function calcul(cle, brut, statut = "single", retraitePct = 0) {
   /* La Pennsylvanie taxe le versement 401(k) : sa base est le brut. */
   const baseEtat = S.incomeTax.taxesRetirementDeferrals ? brut : apresPretax;
   const etat = S.incomeTax.hasIncomeTax
-    ? progressiveTax(Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat)),
-                     S.incomeTax.brackets[statut] || S.incomeTax.brackets.single)
+    ? Math.max(0, progressiveTax(Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat)),
+                                 S.incomeTax.brackets[statut] || S.incomeTax.brackets.single)
+                  - creditEtat(S, statut, baseEtat))
     : 0;
 
   const pl = S.paidLeave
@@ -93,4 +110,4 @@ function calcul(cle, brut, statut = "single", retraitePct = 0) {
 const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const c0 = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
-module.exports = { R, HEURES, progressiveTax, deductionEtat, calcul, c2, c0 };
+module.exports = { R, HEURES, progressiveTax, deductionEtat, creditEtat, calcul, c2, c0 };

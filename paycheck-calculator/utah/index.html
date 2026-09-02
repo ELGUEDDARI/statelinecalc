@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Locked down deliberately. connect-src names the Google Analytics endpoints
+     and nothing else, so page views go out and nothing else can. What the
+     visitor TYPES still never leaves the browser: the calculator runs locally
+     and no salary value is ever passed to the analytics layer. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
+<script src="/assets/analytics.js"></script>
+<title>Utah Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay</title>
+<meta name="description" content="Free Utah paycheck calculator, 2026. Hourly or salary. Utah taxes income at a flat 4.45% with no standard deduction &mdash; instead a taxpayer credit of $485 that fades out and is gone by $46,656.">
+<link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/utah/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0F172A">
+<link rel="stylesheet" href="/assets/style.css">
+
+<meta property="og:title" content="Utah Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay">
+<meta property="og:description" content="Utah taxes income at a flat 4.45% in 2026 &mdash; but there is no deduction, only a taxpayer credit that fades out as you earn more.">
+<meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/utah/">
+<meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Utah Paycheck Calculator",
+      "url": "https://statelinecalc.com/paycheck-calculator/utah/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculates 2026 Utah take-home pay after federal income tax, Social Security, Medicare and Utah's flat 4.45 percent income tax, including the Utah taxpayer credit of $485 for a single filer and its 1.3 percent phase-out above $9,348."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Paycheck Calculator", "item": "https://statelinecalc.com/paycheck-calculator/" },
+        { "@type": "ListItem", "position": 3, "name": "Utah", "item": "https://statelinecalc.com/paycheck-calculator/utah/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the Utah income tax rate in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "A flat 4.45%. Utah cut the rate from 4.5% for 2026, and the figure is written into the law itself: Utah Code section 59-10-104 sets the tax at the taxpayer's state taxable income multiplied by “4.45%”, amended by Chapter 250 of the 2026 General Session. The Tax Commission's own withholding guide, Publication 14 revision 4/26, uses the same number on every schedule: “Multiply line 1 by .0445 (4.45%)”. Be careful with the rate page on the state's website, which still showed 4.5% in September 2026." } },
+        { "@type": "Question", "name": "Does Utah have a standard deduction?", "acceptedAnswer": { "@type": "Answer", "text": "No, and this is the part almost every Utah calculation gets wrong. Utah does not shrink your taxable income at all: it charges 4.45% on your full wages, then subtracts a taxpayer credit. For 2026 the credit starts at $485 a year for a single filer, and it fades by 1.3 cents for every dollar you earn above $9,348. It is gone completely at $46,656. A married couple filing jointly gets $970, fading above $18,696 and gone at $93,311." } },
+        { "@type": "Question", "name": "What is take-home pay on a $75,000 salary in Utah?", "acceptedAnswer": { "@type": "Answer", "text": "About $58,255 a year, or $4,854.58 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and $3,337.50 of Utah income tax — an effective rate of 22.3%. At this salary the taxpayer credit is long gone, so the Utah figure is a clean 4.45% of gross pay." } },
+        { "@type": "Question", "name": "Why is my Utah effective tax rate lower than 4.45%?", "acceptedAnswer": { "@type": "Answer", "text": "Because the taxpayer credit has not run out yet. Below $46,656 single, the credit still takes something off your bill, so your real state rate sits under the headline one. On $25,000 Utah takes $830.98, which is 3.32%. On $40,000 it takes $1,693.48, or 4.23%. From $46,656 upwards it is exactly 4.45% and stays there — Utah is only a true flat tax above that line." } },
+        { "@type": "Question", "name": "Does a 401(k) contribution lower my Utah tax?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Publication 14 defines the base plainly: “Utah calculates withholding tax based on wages subject to federal withholding tax (as defined by the IRS).” An elective deferral to a 401(k) or 403(b) is already out of that figure, so it reduces your Utah tax as well as your federal tax. On $75,000 with 6% going in, your Utah tax falls by $200.25. The rule is not universal: in Pennsylvania the same worker's state tax falls by $0.00 — nothing at all." } },
+        { "@type": "Question", "name": "What is $20 an hour after taxes in Utah?", "acceptedAnswer": { "@type": "Answer", "text": "At 40 hours a week, $20 an hour is $41,600 a year gross and about $33,820 after tax, which works out at $16.26 an hour in real terms. Utah takes $1,785.48 of that. At this salary the taxpayer credit is still worth $65.72, which is why the state's share is below 4.45% of gross." } },
+        { "@type": "Question", "name": "Do any Utah cities charge their own income tax?", "acceptedAnswer": { "@type": "Answer", "text": "Publication 14 provides for one withholding only — the state income tax — and sets out no city or county income tax withholding anywhere in its schedules. That is a meaningful difference from states like Michigan, where Detroit adds 2.4% on top of the state layer, or Pennsylvania, where local earned income tax is normal. Utah's sales and property taxes do vary a great deal by locality, but neither comes out of your paycheck." } },
+        { "@type": "Question", "name": "How does head of household work in Utah?", "acceptedAnswer": { "@type": "Answer", "text": "Utah's withholding schedules have only two columns, Single and Married, so an employer withholds from a head of household on the Single schedule. That is what this calculator does, and it is the number that will appear on your pay stub. When you file your annual TC-40 return, the taxpayer credit phase-out threshold for head of household sits between the single and married figures, so your final bill may come out slightly lower than shown here." } },
+        { "@type": "Question", "name": "Why is my Utah paycheck smaller than this calculator says?", "acceptedAnswer": { "@type": "Answer", "text": "Health insurance premiums and other benefit deductions come out before tax and are not included here; your federal W-4 may be set differently from the filing status assumed; and a second job pushes your withholding up. Note also that Utah withholding does not respond to allowances at all — Publication 14 states that “No subtraction is made for personal or other withholding allowances claimed on federal form W-4”, so the state layer is the same for everyone on the same wage and filing status." } }
+      ]
+    },
+    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><svg class="brand-mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0F172A"/><rect x="30" y="10" width="4" height="44" rx="2" fill="#1D4ED8"/><rect x="12" y="34" width="12" height="20" rx="2" fill="#FFFFFF"/><rect x="40" y="22" width="12" height="32" rx="2" fill="#FFFFFF"/></svg>StateLine Calc</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/paycheck-calculator/">Paycheck</a>
+      <a href="/salary-to-hourly-calculator/">Salary&nbsp;to&nbsp;Hourly</a>
+      <a href="/methodology/">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/paycheck-calculator/">Paycheck Calculator</a></li>
+    <li aria-current="page">Utah</li>
+  </ol>
+</nav>
+
+  <h1>Utah Paycheck Calculator 2026</h1>
+
+  <div class="answer">
+    <p>Utah taxes income at a <strong>flat 4.45%</strong> in 2026, down from 4.5%. There is
+    <strong>no standard deduction</strong>: the rate applies to your whole wage, and a
+    <strong>taxpayer credit of <span class="num">$485</span></strong> comes off the tax afterwards, fading by
+    1.3 cents per dollar earned above <span class="num">$9,348</span> and gone by <span class="num">$46,656</span>. On
+    $75,000, a single filer pays <span class="num">$3,337.50</span> to the state and keeps about
+    <span class="num">$58,255</span> a year.</p>
+  </div>
+
+  <section aria-labelledby="calc-h">
+    <h2 id="calc-h" class="u-mt-0">Calculate your Utah take-home pay</h2>
+
+    <form class="calc" data-paycheck-form data-state="utah" novalidate>
+      <div class="field">
+        <label for="salary">Your gross pay or hourly rate</label>
+        <input type="text" id="salary" name="salary" inputmode="decimal" value="75000"
+               autocomplete="off">
+        <span class="help">Before any taxes or deductions. Do not include tips paid in cash.</span>
+        <span class="error" role="alert">Enter an amount greater than zero.</span>
+      </div>
+
+      <div class="field" data-hours-field hidden>
+        <label for="hours">Hours per week</label>
+        <input type="text" id="hours" name="hours" inputmode="decimal" value="40"
+               autocomplete="off">
+        <span class="help">Only asked when something here is per hour. We use the hours you
+        actually work, not an assumed 2,080 a year.</span>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="period">How often you are paid</label>
+          <select id="period" name="period">
+            <option value="annual" selected>Per year</option>
+            <option value="hourly">Per hour</option>
+            <option value="monthly">Per month</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">This tells us what the amount above represents.</span>
+        </div>
+
+        <div class="field">
+          <label for="filing">Filing status</label>
+          <select id="filing" name="filing">
+            <option value="single" selected>Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+          <span class="help">Sets your federal brackets. In Utah it doubles the taxpayer credit
+          for a couple; it never changes the 4.45% rate.</span>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="retirement">401(k) contribution</label>
+          <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
+          <span class="help">Percent of gross pay. It lowers your federal tax, and in Utah it
+          lowers your state tax too.</span>
+        </div>
+
+        <div class="field">
+          <label for="display">Show results</label>
+          <select id="display" name="display">
+            <option value="monthly" selected>Per month</option>
+            <option value="hourly">Per hour</option>
+            <option value="annual">Per year</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">Changes the period, not the calculation.</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+
+    <div class="result" data-paycheck-result aria-live="polite"></div>
+
+    <p class="caption u-mt-3">
+      Everything is calculated in your browser. Nothing you type is sent to us or stored.
+    </p>
+  </section>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <h2>How this calculator works</h2>
+    <p>Utah looks like the simplest state tax in the country and is not quite. There is one rate,
+    4.45%, and no brackets. But there is also no deduction and no personal exemption: the rate is
+    applied to your entire wage, and relief arrives afterwards as a <strong>credit against the tax
+    itself</strong>. That credit shrinks as you earn more, which means Utah&rsquo;s real rate rises
+    with income even though its headline rate never moves.</p>
+
+    <p>The calculator applies four deductions, in this order:</p>
+    <ul>
+      <li><strong>Federal income tax.</strong> Your gross pay minus the federal standard deduction
+      for your filing status, run through the 2026 federal brackets. For 2026 that deduction is
+      <span class="num">$16,100</span> single, <span class="num">$32,200</span> married filing jointly, <span class="num">$24,150</span> head of
+      household.</li>
+      <li><strong>Social Security</strong> at 6.2% of gross wages, up to the 2026 wage base of
+      <span class="num">$184,500</span>.</li>
+      <li><strong>Medicare</strong> at 1.45% of all wages, with no cap, plus the 0.9% Additional
+      Medicare Tax on wages above <span class="num">$200,000</span>.</li>
+      <li><strong>Utah income tax</strong> at a flat <strong>4.45%</strong> of your whole wage,
+      less the taxpayer credit: <span class="num">$485</span> for a single filer, reduced by 1.3% of every dollar
+      above <span class="num">$9,348</span>, and never taken below zero.</li>
+    </ul>
+
+    <p>Rates come from the agencies that set them: the IRS for the federal brackets, the standard
+    deduction and FICA, cross-checked against the Social Security Administration for the wage base.
+    The Utah rate was verified on <strong>two independent official sources</strong>, because the
+    first one we read was out of date. <strong>Utah Code section 59-10-104</strong>, the statute
+    itself, sets the tax at your state taxable income multiplied by &ldquo;4.45%&rdquo;, and is
+    marked &ldquo;Amended by Chapter 250, 2026 General Session&rdquo;. The <strong>Utah State Tax
+    Commission&rsquo;s Publication 14</strong>, <em>Withholding Tax Guide</em>, revision 4/26 and
+    effective for pay periods beginning on or after June 1, 2026, uses the same rate on every one
+    of its eight schedules and supplies the credit figures. Both were read on
+    <time datetime="2026-09-02">September 2, 2026</time>. Our full sourcing is on the
+    <a href="/methodology/">methodology page</a>.</p>
+
+    <p><strong>A warning about the state&rsquo;s own rate page.</strong> On the day we wrote this,
+    the Tax Commission&rsquo;s income tax rate page still read &ldquo;January 1, 2025 &ndash;
+    current: 4.5% or .045&rdquo;. That page had not been updated for the 2026 cut. The law and the
+    withholding guide agree on 4.45%, and that is the figure used here. If another calculator shows
+    you 4.5% for 2026, this is almost certainly why.</p>
+
+    <p>What the calculator deliberately does not do: it does not itemize deductions, model the
+    dependant exemption or the Utah retirement credit, handle multiple jobs, or account for health
+    insurance premiums and other employer benefit deductions.</p>
+  </div>
+
+  <h2>Utah take-home pay by salary</h2>
+  <p class="prose">Single filer, no retirement contribution, 2026 state and federal rates. The Utah
+  column is 4.45% of the first column, less whatever is left of the <span class="num">$485</span> taxpayer credit
+  &mdash; which is why it climbs faster than the salary does up to <span class="num">$46,656</span>, and in
+  a straight line after that.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Utah take-home pay, single filer
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Gross salary</th>
+          <th scope="col">Federal tax</th>
+          <th scope="col">FICA</th>
+          <th scope="col">UT state tax</th>
+          <th scope="col">Take-home</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$25,000</td>
+            <td class="num">$890</td>
+            <td class="num">$1,913</td>
+            <td class="num">$1,113</td>
+            <td class="num"><strong>$21,085</strong></td>
+            <td class="num">$1,757.08</td>
+            <td class="num">15.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$30,000</td>
+            <td class="num">$1,420</td>
+            <td class="num">$2,295</td>
+            <td class="num">$1,335</td>
+            <td class="num"><strong>$24,950</strong></td>
+            <td class="num">$2,079.17</td>
+            <td class="num">16.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$35,000</td>
+            <td class="num">$2,020</td>
+            <td class="num">$2,678</td>
+            <td class="num">$1,558</td>
+            <td class="num"><strong>$28,745</strong></td>
+            <td class="num">$2,395.42</td>
+            <td class="num">17.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$40,000</td>
+            <td class="num">$2,620</td>
+            <td class="num">$3,060</td>
+            <td class="num">$1,780</td>
+            <td class="num"><strong>$32,540</strong></td>
+            <td class="num">$2,711.67</td>
+            <td class="num">18.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$45,000</td>
+            <td class="num">$3,220</td>
+            <td class="num">$3,443</td>
+            <td class="num">$2,003</td>
+            <td class="num"><strong>$36,335</strong></td>
+            <td class="num">$3,027.92</td>
+            <td class="num">19.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$50,000</td>
+            <td class="num">$3,820</td>
+            <td class="num">$3,825</td>
+            <td class="num">$2,225</td>
+            <td class="num"><strong>$40,130</strong></td>
+            <td class="num">$3,344.17</td>
+            <td class="num">19.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$55,000</td>
+            <td class="num">$4,420</td>
+            <td class="num">$4,208</td>
+            <td class="num">$2,448</td>
+            <td class="num"><strong>$43,925</strong></td>
+            <td class="num">$3,660.42</td>
+            <td class="num">20.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$60,000</td>
+            <td class="num">$5,020</td>
+            <td class="num">$4,590</td>
+            <td class="num">$2,670</td>
+            <td class="num"><strong>$47,720</strong></td>
+            <td class="num">$3,976.67</td>
+            <td class="num">20.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$65,000</td>
+            <td class="num">$5,620</td>
+            <td class="num">$4,973</td>
+            <td class="num">$2,893</td>
+            <td class="num"><strong>$51,515</strong></td>
+            <td class="num">$4,292.92</td>
+            <td class="num">20.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$70,000</td>
+            <td class="num">$6,570</td>
+            <td class="num">$5,355</td>
+            <td class="num">$3,115</td>
+            <td class="num"><strong>$54,960</strong></td>
+            <td class="num">$4,580.00</td>
+            <td class="num">21.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$75,000</td>
+            <td class="num">$7,670</td>
+            <td class="num">$5,738</td>
+            <td class="num">$3,338</td>
+            <td class="num"><strong>$58,255</strong></td>
+            <td class="num">$4,854.58</td>
+            <td class="num">22.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$80,000</td>
+            <td class="num">$8,770</td>
+            <td class="num">$6,120</td>
+            <td class="num">$3,560</td>
+            <td class="num"><strong>$61,550</strong></td>
+            <td class="num">$5,129.17</td>
+            <td class="num">23.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$85,000</td>
+            <td class="num">$9,870</td>
+            <td class="num">$6,503</td>
+            <td class="num">$3,783</td>
+            <td class="num"><strong>$64,845</strong></td>
+            <td class="num">$5,403.75</td>
+            <td class="num">23.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$90,000</td>
+            <td class="num">$10,970</td>
+            <td class="num">$6,885</td>
+            <td class="num">$4,005</td>
+            <td class="num"><strong>$68,140</strong></td>
+            <td class="num">$5,678.33</td>
+            <td class="num">24.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$95,000</td>
+            <td class="num">$12,070</td>
+            <td class="num">$7,268</td>
+            <td class="num">$4,228</td>
+            <td class="num"><strong>$71,435</strong></td>
+            <td class="num">$5,952.92</td>
+            <td class="num">24.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$100,000</td>
+            <td class="num">$13,170</td>
+            <td class="num">$7,650</td>
+            <td class="num">$4,450</td>
+            <td class="num"><strong>$74,730</strong></td>
+            <td class="num">$6,227.50</td>
+            <td class="num">25.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$110,000</td>
+            <td class="num">$15,370</td>
+            <td class="num">$8,415</td>
+            <td class="num">$4,895</td>
+            <td class="num"><strong>$81,320</strong></td>
+            <td class="num">$6,776.67</td>
+            <td class="num">26.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$120,000</td>
+            <td class="num">$17,570</td>
+            <td class="num">$9,180</td>
+            <td class="num">$5,340</td>
+            <td class="num"><strong>$87,910</strong></td>
+            <td class="num">$7,325.83</td>
+            <td class="num">26.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$125,000</td>
+            <td class="num">$18,734</td>
+            <td class="num">$9,563</td>
+            <td class="num">$5,563</td>
+            <td class="num"><strong>$91,141</strong></td>
+            <td class="num">$7,595.08</td>
+            <td class="num">27.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$130,000</td>
+            <td class="num">$19,934</td>
+            <td class="num">$9,945</td>
+            <td class="num">$5,785</td>
+            <td class="num"><strong>$94,336</strong></td>
+            <td class="num">$7,861.33</td>
+            <td class="num">27.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$140,000</td>
+            <td class="num">$22,334</td>
+            <td class="num">$10,710</td>
+            <td class="num">$6,230</td>
+            <td class="num"><strong>$100,726</strong></td>
+            <td class="num">$8,393.83</td>
+            <td class="num">28.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$150,000</td>
+            <td class="num">$24,734</td>
+            <td class="num">$11,475</td>
+            <td class="num">$6,675</td>
+            <td class="num"><strong>$107,116</strong></td>
+            <td class="num">$8,926.33</td>
+            <td class="num">28.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$160,000</td>
+            <td class="num">$27,134</td>
+            <td class="num">$12,240</td>
+            <td class="num">$7,120</td>
+            <td class="num"><strong>$113,506</strong></td>
+            <td class="num">$9,458.83</td>
+            <td class="num">29.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$175,000</td>
+            <td class="num">$30,734</td>
+            <td class="num">$13,388</td>
+            <td class="num">$7,788</td>
+            <td class="num"><strong>$123,091</strong></td>
+            <td class="num">$10,257.58</td>
+            <td class="num">29.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$200,000</td>
+            <td class="num">$36,734</td>
+            <td class="num">$14,339</td>
+            <td class="num">$8,900</td>
+            <td class="num"><strong>$140,027</strong></td>
+            <td class="num">$11,668.92</td>
+            <td class="num">30.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$225,000</td>
+            <td class="num">$43,304</td>
+            <td class="num">$14,927</td>
+            <td class="num">$10,013</td>
+            <td class="num"><strong>$156,757</strong></td>
+            <td class="num">$13,063.08</td>
+            <td class="num">30.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$250,000</td>
+            <td class="num">$51,304</td>
+            <td class="num">$15,514</td>
+            <td class="num">$11,125</td>
+            <td class="num"><strong>$172,057</strong></td>
+            <td class="num">$14,338.08</td>
+            <td class="num">31.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$300,000</td>
+            <td class="num">$68,134</td>
+            <td class="num">$16,689</td>
+            <td class="num">$13,350</td>
+            <td class="num"><strong>$201,827</strong></td>
+            <td class="num">$16,818.90</td>
+            <td class="num">32.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$400,000</td>
+            <td class="num">$103,134</td>
+            <td class="num">$19,039</td>
+            <td class="num">$17,800</td>
+            <td class="num"><strong>$260,027</strong></td>
+            <td class="num">$21,668.90</td>
+            <td class="num">35.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$500,000</td>
+            <td class="num">$138,134</td>
+            <td class="num">$21,389</td>
+            <td class="num">$22,250</td>
+            <td class="num"><strong>$318,227</strong></td>
+            <td class="num">$26,518.90</td>
+            <td class="num">36.4%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <h2>Utah hourly paycheck: what your rate is worth after tax</h2>
+
+    <h3>Why we ask your hours instead of assuming 2,080</h3>
+    <p>Most hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
+    week for 52 weeks, which describes a full-time salaried schedule rather than most hourly work.
+    If you are on 32 hours, or 45 with overtime, the assumed figure is wrong before any tax is
+    applied. The calculator above asks for your hours and uses them.</p>
+
+    <h3>What $20 an hour comes to in Utah</h3>
+    <p>At 40 hours a week, $20 an hour is <span class="num">$41,600</span> a year gross. After federal tax, Social
+    Security, Medicare and Utah&rsquo;s 4.45%, that leaves about <span class="num">$33,820</span> a year, or
+    <span class="num">$2,818.34</span> a month. Your real hourly rate &mdash; what an hour of work actually
+    puts in your account &mdash; is <span class="num">$16.26</span>. Utah&rsquo;s share is
+    <span class="num">$1,785.48</span> for the year, which is less than 4.45% of your gross because the taxpayer
+    credit is still worth <span class="num">$65.72</span> at this salary.</p>
+
+    <h3>What $25 and $30 an hour come to</h3>
+    <p>$25 an hour is <span class="num">$52,000</span> gross and about <span class="num">$41,648</span> after tax, a real rate of
+    <span class="num">$20.02</span>. $30 an hour is <span class="num">$62,400</span> gross and about <span class="num">$49,542</span>
+    after tax, a real rate of <span class="num">$24</span>. Utah&rsquo;s credit runs out between
+    the two lower rates: <span class="num">$46,656</span> a year falls between $20 an hour
+    (<span class="num">$41,600</span>) and $25 an hour (<span class="num">$52,000</span>). So a worker on $25 or $30 an hour pays
+    a clean 4.45% on every dollar, while a worker on $20 an hour still has
+    <span class="num">$66</span> of credit left.</p>
+
+    <h3>Overtime, tips and shift differentials</h3>
+    <p>Utah taxes overtime, tips and shift differentials at the same 4.45% as your base pay. There
+    is a second, quieter effect: overtime raises your annual wage, which shrinks whatever is left
+    of the taxpayer credit at 1.3 cents on the dollar. Below <span class="num">$46,656</span> a year, an
+    extra hour of overtime is effectively taxed by Utah at 5.75% rather than 4.45% &mdash; the rate
+    plus the credit you lose. Above that line the credit is already gone and the marginal rate is
+    the headline one.</p>
+
+    <h3>Utah take-home pay by hourly rate</h3>
+    <p>Single filer, 40 hours a week (2,080 hours a year), 2026 rates.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Utah take-home pay by hourly rate, single filer, 40 hours a week
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Hourly rate</th>
+          <th scope="col">Gross a year</th>
+          <th scope="col">Take-home a year</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Real hourly rate</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$12.00</td>
+            <td class="num">$24,960</td>
+            <td class="num"><strong>$21,054</strong></td>
+            <td class="num">$1,754.49</td>
+            <td class="num">$10.12</td>
+            <td class="num">15.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$13.00</td>
+            <td class="num">$27,040</td>
+            <td class="num"><strong>$22,674</strong></td>
+            <td class="num">$1,889.51</td>
+            <td class="num">$10.90</td>
+            <td class="num">16.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$14.00</td>
+            <td class="num">$29,120</td>
+            <td class="num"><strong>$24,282</strong></td>
+            <td class="num">$2,023.51</td>
+            <td class="num">$11.67</td>
+            <td class="num">16.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$15.00</td>
+            <td class="num">$31,200</td>
+            <td class="num"><strong>$25,861</strong></td>
+            <td class="num">$2,155.07</td>
+            <td class="num">$12.43</td>
+            <td class="num">17.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$16.00</td>
+            <td class="num">$33,280</td>
+            <td class="num"><strong>$27,440</strong></td>
+            <td class="num">$2,286.63</td>
+            <td class="num">$13.19</td>
+            <td class="num">17.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$17.00</td>
+            <td class="num">$35,360</td>
+            <td class="num"><strong>$29,018</strong></td>
+            <td class="num">$2,418.19</td>
+            <td class="num">$13.95</td>
+            <td class="num">17.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$18.00</td>
+            <td class="num">$37,440</td>
+            <td class="num"><strong>$30,597</strong></td>
+            <td class="num">$2,549.75</td>
+            <td class="num">$14.71</td>
+            <td class="num">18.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$19.00</td>
+            <td class="num">$39,520</td>
+            <td class="num"><strong>$32,176</strong></td>
+            <td class="num">$2,681.31</td>
+            <td class="num">$15.47</td>
+            <td class="num">18.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$20.00</td>
+            <td class="num">$41,600</td>
+            <td class="num"><strong>$33,754</strong></td>
+            <td class="num">$2,812.87</td>
+            <td class="num">$16.23</td>
+            <td class="num">18.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$21.00</td>
+            <td class="num">$43,680</td>
+            <td class="num"><strong>$35,333</strong></td>
+            <td class="num">$2,944.43</td>
+            <td class="num">$16.99</td>
+            <td class="num">19.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$22.00</td>
+            <td class="num">$45,760</td>
+            <td class="num"><strong>$36,912</strong></td>
+            <td class="num">$3,075.99</td>
+            <td class="num">$17.75</td>
+            <td class="num">19.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$23.00</td>
+            <td class="num">$47,840</td>
+            <td class="num"><strong>$38,491</strong></td>
+            <td class="num">$3,207.55</td>
+            <td class="num">$18.51</td>
+            <td class="num">19.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$24.00</td>
+            <td class="num">$49,920</td>
+            <td class="num"><strong>$40,069</strong></td>
+            <td class="num">$3,339.11</td>
+            <td class="num">$19.26</td>
+            <td class="num">19.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$25.00</td>
+            <td class="num">$52,000</td>
+            <td class="num"><strong>$41,648</strong></td>
+            <td class="num">$3,470.67</td>
+            <td class="num">$20.02</td>
+            <td class="num">19.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$26.00</td>
+            <td class="num">$54,080</td>
+            <td class="num"><strong>$43,227</strong></td>
+            <td class="num">$3,602.23</td>
+            <td class="num">$20.78</td>
+            <td class="num">20.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$28.00</td>
+            <td class="num">$58,240</td>
+            <td class="num"><strong>$46,384</strong></td>
+            <td class="num">$3,865.35</td>
+            <td class="num">$22.30</td>
+            <td class="num">20.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$30.00</td>
+            <td class="num">$62,400</td>
+            <td class="num"><strong>$49,542</strong></td>
+            <td class="num">$4,128.47</td>
+            <td class="num">$23.82</td>
+            <td class="num">20.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$32.00</td>
+            <td class="num">$66,560</td>
+            <td class="num"><strong>$52,693</strong></td>
+            <td class="num">$4,391.09</td>
+            <td class="num">$25.33</td>
+            <td class="num">20.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$35.00</td>
+            <td class="num">$72,800</td>
+            <td class="num"><strong>$56,805</strong></td>
+            <td class="num">$4,733.77</td>
+            <td class="num">$27.31</td>
+            <td class="num">22.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$38.00</td>
+            <td class="num">$79,040</td>
+            <td class="num"><strong>$60,917</strong></td>
+            <td class="num">$5,076.45</td>
+            <td class="num">$29.29</td>
+            <td class="num">22.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$40.00</td>
+            <td class="num">$83,200</td>
+            <td class="num"><strong>$63,659</strong></td>
+            <td class="num">$5,304.90</td>
+            <td class="num">$30.61</td>
+            <td class="num">23.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$45.00</td>
+            <td class="num">$93,600</td>
+            <td class="num"><strong>$70,512</strong></td>
+            <td class="num">$5,876.03</td>
+            <td class="num">$33.90</td>
+            <td class="num">24.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$50.00</td>
+            <td class="num">$104,000</td>
+            <td class="num"><strong>$77,366</strong></td>
+            <td class="num">$6,447.17</td>
+            <td class="num">$37.20</td>
+            <td class="num">25.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$55.00</td>
+            <td class="num">$114,400</td>
+            <td class="num"><strong>$84,220</strong></td>
+            <td class="num">$7,018.30</td>
+            <td class="num">$40.49</td>
+            <td class="num">26.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$60.00</td>
+            <td class="num">$124,800</td>
+            <td class="num"><strong>$91,013</strong></td>
+            <td class="num">$7,584.43</td>
+            <td class="num">$43.76</td>
+            <td class="num">27.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$65.00</td>
+            <td class="num">$135,200</td>
+            <td class="num"><strong>$97,659</strong></td>
+            <td class="num">$8,138.23</td>
+            <td class="num">$46.95</td>
+            <td class="num">27.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$70.00</td>
+            <td class="num">$145,600</td>
+            <td class="num"><strong>$104,304</strong></td>
+            <td class="num">$8,692.03</td>
+            <td class="num">$50.15</td>
+            <td class="num">28.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$75.00</td>
+            <td class="num">$156,000</td>
+            <td class="num"><strong>$110,950</strong></td>
+            <td class="num">$9,245.83</td>
+            <td class="num">$53.34</td>
+            <td class="num">28.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$85.00</td>
+            <td class="num">$176,800</td>
+            <td class="num"><strong>$124,241</strong></td>
+            <td class="num">$10,353.43</td>
+            <td class="num">$59.73</td>
+            <td class="num">29.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$100.00</td>
+            <td class="num">$208,000</td>
+            <td class="num"><strong>$145,563</strong></td>
+            <td class="num">$12,130.25</td>
+            <td class="num">$69.98</td>
+            <td class="num">30.0%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+  <h2>Key facts that affect your take-home pay in Utah</h2>
+
+  <h3>The rate is 4.45% in 2026, not 4.5%</h3>
+  <p>Utah has cut its income tax rate almost every year, and 2026 is another cut: from 4.5% to
+  <strong>4.45%</strong>. The number is in the statute &mdash; Utah Code 59-10-104, amended by
+  Chapter 250 of the 2026 General Session &mdash; and in Publication 14, the Tax
+  Commission&rsquo;s own withholding guide, on all eight of its payroll schedules. On a
+  <span class="num">$75,000</span> salary the cut is worth <span class="num">$37.50</span> a year, which is real money but
+  smaller than most people expect a rate cut to be.</p>
+
+  <h3>Utah has no deduction and no exemption &mdash; it has a credit</h3>
+  <p>This is the structural fact that makes Utah different from every other state published here,
+  and the one most calculators get wrong. Michigan subtracts <span class="num">$5,900</span> from your income before
+  taxing it. Illinois subtracts <span class="num">$2,925</span>. Utah subtracts <em>nothing</em>: the 4.45% applies
+  to your whole wage. Relief comes afterwards, as a <strong>taxpayer credit</strong> deducted from
+  the tax itself.</p>
+  <p>For 2026 the credit is <span class="num">$485</span> a year for a single filer and <span class="num">$970</span> for a
+  married couple filing jointly &mdash; exactly double, at every payroll period. It is reduced by
+  1.3 cents for every dollar of wages above <span class="num">$9,348</span> single or <span class="num">$18,696</span> joint, and it
+  is never allowed to push your tax below zero. Publication 14&rsquo;s annual schedule states it in
+  six lines: multiply wages by .0445, take a base allowance of 485, subtract 1.3% of wages over
+  $9,348 from that allowance, then subtract what is left from the tax.</p>
+
+  <h3>The credit runs out at <span class="num">$46,656</span>, and that is where Utah becomes a flat tax</h3>
+  <p>Because the credit fades at a fixed 1.3 cents on the dollar, the point where it hits zero is
+  arithmetic rather than policy: <span class="num">$485</span> divided by 1.3% is <span class="num">$37,308</span>,
+  added to the <span class="num">$9,348</span> threshold, gives <strong><span class="num">$46,656</span></strong> for a
+  single filer and <strong><span class="num">$93,311</span></strong> for a couple. Below that line your
+  effective Utah rate is under 4.45%. Above it, Utah is exactly the flat tax it advertises, for
+  everyone, forever.</p>
+
+  <h3>Your effective Utah rate rises with income, then stops dead</h3>
+  <p>On <span class="num">$25,000</span> the state takes <span class="num">$830.98</span>, an effective state rate of
+  <span class="num">3.32%</span>. On <span class="num">$40,000</span> it takes <span class="num">$1,693.48</span>, or
+  <span class="num">4.23%</span>. On <span class="num">$75,000</span> it is <span class="num">4.45%</span>, and on
+  <span class="num">$250,000</span> it is still <span class="num">4.45%</span> &mdash; the same, because the credit
+  ran out long before. That flat top is unusual: in
+  <a href="/paycheck-calculator/michigan/">Michigan</a>, where relief is a fixed-dollar exemption,
+  the effective rate keeps creeping toward the headline rate at every income and never quite
+  arrives.</p>
+
+  <h3>Your 401(k) contribution does reduce your Utah tax</h3>
+  <p>Publication 14 defines the base without ambiguity: &ldquo;Utah calculates withholding tax
+  based on wages subject to federal withholding tax (as defined by the IRS).&rdquo; An elective
+  deferral to a 401(k) or 403(b) is excluded from those wages, so it cuts your state tax as well as
+  your federal tax. On <span class="num">$75,000</span> with 6% going in, your Utah tax falls by <span class="num">$200.25</span> a
+  year.</p>
+  <p>It is worth saying explicitly because the rule is not universal:
+  <a href="/paycheck-calculator/pennsylvania/">a Pennsylvania worker</a> making the same
+  contribution on the same salary sees their state tax fall by <span class="num">$0.00</span> &mdash;
+  Pennsylvania treats the deferral as compensation the moment it is made. Utah does not.</p>
+
+  <h3>Utah withholding ignores your W-4 allowances entirely</h3>
+  <p>Publication 14 is explicit: &ldquo;No subtraction is made for personal or other withholding
+  allowances claimed on federal form W-4.&rdquo; Two Utah workers on the same wage and the same
+  filing status have the same state withholding, whatever their household looks like. Dependants
+  affect your annual TC-40 return, not the amount the employer takes out each payday.</p>
+
+  <h3>No city or county income tax comes out of a Utah paycheck</h3>
+  <p>Publication 14 sets out one withholding and one only, the state income tax, with no local
+  layer anywhere in its schedules. That is a real difference from several of the states published
+  here: a Detroit resident pays 2.4% to the city on top of Michigan&rsquo;s state rate, and local
+  earned income tax is routine in Pennsylvania. Utah&rsquo;s sales and property tax rates do vary a
+  great deal between cities and counties, but neither is withheld from your pay.</p>
+
+  <h3>Social Security stops, Medicare does not</h3>
+  <p>Social Security is withheld at 6.2% until your wages reach <span class="num">$184,500</span> in 2026, then
+  stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
+  extra 0.9% on wages above <span class="num">$200,000</span>. This is why take-home pay rises unevenly through the
+  year for high earners &mdash; the paycheck after you cross the Social Security wage base is
+  visibly larger.</p>
+
+  <h2>Common mistakes people make</h2>
+
+  <h3>Using 4.5% because that is what the state&rsquo;s rate page says</h3>
+  <p>It is out of date. The Tax Commission&rsquo;s rate page still showed &ldquo;January 1, 2025
+  &ndash; current: 4.5%&rdquo; in September 2026, while the statute and the withholding guide both
+  say 4.45%. On <span class="num">$75,000</span> the difference is <span class="num">$37.50</span> a year &mdash; small, but
+  wrong in the direction that makes you budget for less than you get.</p>
+
+  <h3>Looking for a Utah standard deduction</h3>
+  <p>There is not one, and the search usually ends badly. People find the federal figure and
+  subtract <span class="num">$16,100</span> from their wage before applying 4.45%, which understates their Utah tax
+  by <span class="num">$716.45</span>. Utah taxes the whole wage and gives the relief back as a credit
+  instead.</p>
+
+  <h3>Multiplying the whole salary by 4.45% and stopping there</h3>
+  <p>The opposite error, and it only bites below <span class="num">$46,656</span>. On <span class="num">$25,000</span> that
+  arithmetic gives <span class="num">$1,112.50</span> when the real figure is <span class="num">$830.98</span> &mdash; you have
+  forgotten <span class="num">$281.52</span> of credit. On <span class="num">$40,000</span> it gives <span class="num">$1,780.00</span> against a real
+  <span class="num">$1,693.48</span>, forgetting <span class="num">$86.52</span>. Above <span class="num">$46,656</span> the shortcut is
+  exactly right, which is part of why the mistake survives.</p>
+
+  <h3>Giving a married couple a single filer&rsquo;s credit</h3>
+  <p>A couple filing jointly gets <span class="num">$970</span>, not <span class="num">$485</span>, and their phase-out does
+  not start until <span class="num">$18,696</span>. On a <span class="num">$60,000</span> joint income the credit is still worth
+  <span class="num">$433.05</span>, where a single filer on the same wage has had nothing left for years. Halving
+  the household figures is the most expensive shortcut on this page.</p>
+
+  <h3>Expecting the calculator to match the paystub to the dollar</h3>
+  <p>It will not, and no calculator can. Health premiums and benefit deductions come out first,
+  your federal W-4 settings drive the federal share, and a second job changes everything. Treat
+  this as an accurate model of the federal and state layers, and read
+  <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
+
+  <h2>Example calculation</h2>
+  <p>A single filer earning <span class="num">$75,000</span> in Utah in 2026, with no retirement contribution:</p>
+  <ul>
+    <li>Federal taxable income: <span class="num">$75,000</span> &minus; <span class="num">$16,100</span> =
+    <span class="num">$58,900</span></li>
+    <li>Federal income tax: <span class="num">$7,670.00</span></li>
+    <li>Social Security: <span class="num">$75,000</span> &times; 6.2% = <span class="num">$4,650.00</span></li>
+    <li>Medicare: <span class="num">$75,000</span> &times; 1.45% = <span class="num">$1,087.50</span></li>
+    <li>Utah tax before credit: <span class="num">$75,000</span> &times; 4.45% = <span class="num">$3,337.50</span></li>
+    <li>Taxpayer credit: <span class="num">$485</span> &minus; 1.3% &times;
+    (<span class="num">$75,000</span> &minus; <span class="num">$9,348</span>) = <span class="num">$0</span>, fully phased out</li>
+    <li>Utah income tax: <span class="num">$3,337.50</span></li>
+    <li><strong>Total withheld: <span class="num">$16,745.00</span></strong></li>
+    <li><strong>Take-home pay: <span class="num">$58,255.00</span> a year</strong>, or
+    <span class="num">$4,854.58</span> a month</li>
+    <li>Effective tax rate: <span class="num">22.3%</span></li>
+  </ul>
+  <p>The same worker on <span class="num">$25,000</span> would keep <span class="num">$281.52</span> of the credit, paying
+  <span class="num">$830.98</span> to Utah instead of the <span class="num">$1,112.50</span> a flat 4.45% would suggest.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <h3>What is the Utah income tax rate in 2026?</h3>
+    <p>A flat 4.45%. Utah cut the rate from 4.5% for 2026, and the figure is written into the law itself: Utah Code section 59-10-104 sets the tax at the taxpayer's state taxable income multiplied by “4.45%”, amended by Chapter 250 of the 2026 General Session. The Tax Commission's own withholding guide, Publication 14 revision 4/26, uses the same number on every schedule: “Multiply line 1 by .0445 (4.45%)”. Be careful with the rate page on the state's website, which still showed 4.5% in September 2026.</p>
+
+    <h3>Does Utah have a standard deduction?</h3>
+    <p>No, and this is the part almost every Utah calculation gets wrong. Utah does not shrink your taxable income at all: it charges 4.45% on your full wages, then subtracts a taxpayer credit. For 2026 the credit starts at $485 a year for a single filer, and it fades by 1.3 cents for every dollar you earn above $9,348. It is gone completely at $46,656. A married couple filing jointly gets $970, fading above $18,696 and gone at $93,311.</p>
+
+    <h3>What is take-home pay on a $75,000 salary in Utah?</h3>
+    <p>About $58,255 a year, or $4,854.58 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and $3,337.50 of Utah income tax — an effective rate of 22.3%. At this salary the taxpayer credit is long gone, so the Utah figure is a clean 4.45% of gross pay.</p>
+
+    <h3>Why is my Utah effective tax rate lower than 4.45%?</h3>
+    <p>Because the taxpayer credit has not run out yet. Below $46,656 single, the credit still takes something off your bill, so your real state rate sits under the headline one. On $25,000 Utah takes $830.98, which is 3.32%. On $40,000 it takes $1,693.48, or 4.23%. From $46,656 upwards it is exactly 4.45% and stays there — Utah is only a true flat tax above that line.</p>
+
+    <h3>Does a 401(k) contribution lower my Utah tax?</h3>
+    <p>Yes. Publication 14 defines the base plainly: “Utah calculates withholding tax based on wages subject to federal withholding tax (as defined by the IRS).” An elective deferral to a 401(k) or 403(b) is already out of that figure, so it reduces your Utah tax as well as your federal tax. On $75,000 with 6% going in, your Utah tax falls by $200.25. The rule is not universal: in Pennsylvania the same worker's state tax falls by $0.00 — nothing at all.</p>
+
+    <h3>What is $20 an hour after taxes in Utah?</h3>
+    <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $33,820 after tax, which works out at $16.26 an hour in real terms. Utah takes $1,785.48 of that. At this salary the taxpayer credit is still worth $65.72, which is why the state's share is below 4.45% of gross.</p>
+
+    <h3>Do any Utah cities charge their own income tax?</h3>
+    <p>Publication 14 provides for one withholding only — the state income tax — and sets out no city or county income tax withholding anywhere in its schedules. That is a meaningful difference from states like Michigan, where Detroit adds 2.4% on top of the state layer, or Pennsylvania, where local earned income tax is normal. Utah's sales and property taxes do vary a great deal by locality, but neither comes out of your paycheck.</p>
+
+    <h3>How does head of household work in Utah?</h3>
+    <p>Utah's withholding schedules have only two columns, Single and Married, so an employer withholds from a head of household on the Single schedule. That is what this calculator does, and it is the number that will appear on your pay stub. When you file your annual TC-40 return, the taxpayer credit phase-out threshold for head of household sits between the single and married figures, so your final bill may come out slightly lower than shown here.</p>
+
+    <h3>Why is my Utah paycheck smaller than this calculator says?</h3>
+    <p>Health insurance premiums and other benefit deductions come out before tax and are not included here; your federal W-4 may be set differently from the filing status assumed; and a second job pushes your withholding up. Note also that Utah withholding does not respond to allowances at all — Publication 14 states that “No subtraction is made for personal or other withholding allowances claimed on federal form W-4”, so the state layer is the same for everyone on the same wage and filing status.</p>
+  </div>
+
+  <h2>Compare with other states</h2>
+  <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates, state layer only:</p>
+  <ul>
+    <li><a href="/paycheck-calculator/michigan/">Michigan</a> &mdash; $58,656 take-home, an effective rate of 21.8%. A Michigan worker keeps $400.75 more than a Utahn on the same salary.</li>
+    <li><a href="/paycheck-calculator/illinois/">Illinois</a> &mdash; $58,025 take-home, an effective rate of 22.6%. An Illinois worker keeps $230.21 less than a Utahn on the same salary.</li>
+    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> &mdash; $59,238 take-home, an effective rate of 21.0%. A Pennsylvania worker keeps $982.50 more than a Utahn on the same salary.</li>
+    <li><a href="/paycheck-calculator/nevada/">Nevada</a> &mdash; $61,593 take-home, an effective rate of 17.9%. A Nevada worker keeps $3,337.50 more than a Utahn on the same salary.</li>
+  </ul>
+  <p>At <span class="num">$75,000</span> only <a href="/paycheck-calculator/illinois/">Illinois</a> takes more of the
+  states published here, because Utah&rsquo;s credit has run out by this salary and the full
+  4.45% applies to every dollar. Lower down the scale the ranking changes: the credit is
+  worth more, proportionally, to a worker on <span class="num">$25,000</span> than Michigan&rsquo;s exemption is
+  worth to the same worker. The states that levy nothing at all remain in a category of their own.</p>
+
+  <h2>Related reading</h2>
+  <ul>
+    <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
+    index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/michigan/">Michigan paycheck calculator</a> &mdash; the
+    same idea built the other way round, with an exemption instead of a credit.</li>
+    <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
+    with its official source, and what these calculators deliberately do not model.</li>
+    <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,
+    credits and W-4 settings, and how much difference is normal.</li>
+  </ul>
+
+  </div>
+
+  <h2>Browse paycheck calculators by state</h2>
+  <ul class="state-grid">
+    <li>Alabama</li>
+    <li>Alaska</li>
+    <li>Arizona</li>
+    <li>Arkansas</li>
+    <li>California</li>
+    <li>Colorado</li>
+    <li>Connecticut</li>
+    <li>Delaware</li>
+    <li><a href="/paycheck-calculator/florida/">Florida</a></li>
+    <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
+    <li>Hawaii</li>
+    <li>Idaho</li>
+    <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
+    <li>Indiana</li>
+    <li>Iowa</li>
+    <li>Kansas</li>
+    <li>Kentucky</li>
+    <li>Louisiana</li>
+    <li>Maine</li>
+    <li>Maryland</li>
+    <li>Massachusetts</li>
+    <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
+    <li>Minnesota</li>
+    <li>Mississippi</li>
+    <li>Missouri</li>
+    <li>Montana</li>
+    <li>Nebraska</li>
+    <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
+    <li>New Hampshire</li>
+    <li>New Jersey</li>
+    <li>New Mexico</li>
+    <li>New York</li>
+    <li>North Carolina</li>
+    <li>North Dakota</li>
+    <li>Ohio</li>
+    <li>Oklahoma</li>
+    <li>Oregon</li>
+    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
+    <li>Rhode Island</li>
+    <li>South Carolina</li>
+    <li>South Dakota</li>
+    <li>Tennessee</li>
+    <li><a href="/paycheck-calculator/texas/">Texas</a></li>
+    <li><a href="/paycheck-calculator/utah/">Utah</a></li>
+    <li>Vermont</li>
+    <li>Virginia</li>
+    <li><a href="/paycheck-calculator/washington/">Washington</a></li>
+    <li>West Virginia</li>
+    <li>Wisconsin</li>
+    <li>Wyoming</li>
+  </ul>
+
+  <p class="dates">
+    Published <time datetime="2026-09-02">September 2, 2026</time> &middot;
+    Last updated <time datetime="2026-09-02">September 2, 2026</time>.
+  </p>
+
+  <p class="disclaimer">
+    StateLine Calc provides general information for educational purposes only. It is not
+    financial, tax or legal advice. Results are estimates based on published 2026 federal and
+    Utah rates.
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>StateLine Calc</strong> &mdash; free money calculators for all 50 states.
+    No sign-up. No personal data required.</p>
+    <p class="micro u-on-dark">
+      <a href="/about/">About</a> &middot;
+      <a href="/methodology/">Methodology</a> &middot;
+      <a href="/contact/">Contact</a> &middot;
+      <a href="/privacy/">Privacy</a> &middot;
+      <a href="/terms/">Terms</a> &middot;
+      <a href="/disclaimer/">Disclaimer</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/data/rates-2026.js"></script>
+<script src="/assets/calc-paycheck.js"></script>
+</body>
+</html>
