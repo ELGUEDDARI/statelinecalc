@@ -180,8 +180,8 @@ const ETATS_50 = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado
   "South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington",
   "West Virginia","Wisconsin","Wyoming"];
 const PUBLIES = { Florida: "florida", Georgia: "georgia", Illinois: "illinois",
-  Michigan: "michigan", Nevada: "nevada", Pennsylvania: "pennsylvania", Texas: "texas",
-  Utah: "utah", Washington: "washington" };
+  Michigan: "michigan", Nevada: "nevada", Ohio: "ohio", Pennsylvania: "pennsylvania",
+  Texas: "texas", Utah: "utah", Washington: "washington" };
 const listeEtats = ETATS_50.map(n => PUBLIES[n]
   ? `    <li><a href="/paycheck-calculator/${PUBLIES[n]}/">${n}</a></li>`
   : `    <li>${n}</li>`).join("\n");

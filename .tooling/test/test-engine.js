@@ -509,5 +509,96 @@ check("UT : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("utah", 5000).etat >= 0 ? 1 : 0, 1, 0);
 
 
+/* --- OHIO -----------------------------------------------------------------
+   Sources, lues le 2026-09-02 :
+   - Ohio Revised Code 5747.02(A)(3), instantane Wayback du 2026-08-04, verbatim :
+     « If the balance thus obtained is equal to or less than twenty-six thousand
+     fifty dollars, no tax shall be imposed on that balance. » puis « (c) For
+     taxable years beginning in 2026 and thereafter, $332.00 plus 2.75% of the
+     amount in excess of $26,050. »
+   - ORC 5747.025 (Wayback 2026-06-09) et la notice « 2025 Ohio IT 1040 » p.17,
+     servie par dam.assets.ohio.gov, pour l'exoneration par personne et par
+     palier de revenu : 2 400 / 2 150 / 1 900 $, et 0 $ au-dela du plafond.
+   Les attendus sont poses a la main d'apres ces textes, pas repris du moteur. */
+function calculOH(brut, pct401k, statut) {
+  var base = brut - brut * pct401k;
+  var parPersonne = base <= 40000 ? 2400 : (base <= 80000 ? 2150 : 1900);
+  if (base > 500000) parPersonne = 0;
+  var exo = parPersonne * (statut === "marriedJoint" ? 2 : 1);
+  var imposable = Math.max(0, base - exo);
+  return imposable <= 26050 ? 0 : 332 + 0.0275 * (imposable - 26050);
+}
+
+check("OH : le taux au-dessus du seuil est 2,75 %",
+  R.states.ohio.incomeTax.brackets.single[1][1], 0.0275, 0);
+check("OH : rien n'est du jusqu'a 26 050 $ d'imposable",
+  R.states.ohio.incomeTax.brackets.single[0][0], 26050, 0);
+check("OH : la marche vaut 332 $ en 2026",
+  R.states.ohio.incomeTax.notch.add, 332, 0);
+check("OH : et elle se declenche a 26 050 $",
+  R.states.ohio.incomeTax.notch.over, 26050, 0);
+check("OH : exoneration par personne, revenu <= 40 000",
+  R.states.ohio.incomeTax.deductionByIncome[0].amounts.single, 2400, 0);
+check("OH : un couple en compte DEUX",
+  R.states.ohio.incomeTax.deductionByIncome[0].amounts.marriedJoint, 4800, 0);
+check("OH : elle tombe a 2 150 entre 40 001 et 80 000",
+  R.states.ohio.incomeTax.deductionByIncome[1].amounts.single, 2150, 0);
+check("OH : et a 1 900 au-dela de 80 000",
+  R.states.ohio.incomeTax.deductionByIncome[2].amounts.single, 1900, 0);
+check("OH : le plafond 2026 descend a 500 000, contre 750 000 en 2025",
+  R.states.ohio.incomeTax.deductionPhaseOut.single, 500000, 0);
+
+/* Le controle qui vaut tous les autres : l'exemple publie par l'Ohio lui-meme.
+   Notice « 2025 Ohio IT 1040 » p.19, « Nonbusiness Income Tax Liability
+   Calculation Example » : imposable 68 050 $, « he owes $342 on the first
+   $26,050 of income. The rest is taxed at 2.75% » -> 1 497 $ en 2025.
+   Notre annee est 2026 et la base est passee de 342 a 332 : meme arithmetique,
+   10 $ de moins. On verifie la STRUCTURE, qui est ce que le moteur implemente. */
+check("OH : l'exemple Mitchell du IT 1040, recalcule au socle 2026",
+  332 + 0.0275 * (68050 - 26050), 1487, 0.01);
+check("OH : le meme exemple au socle 2025 redonne bien les 1 497 $ publies",
+  342 + 0.0275 * (68050 - 26050), 1497, 0.01);
+
+/* LA MARCHE. Ce n'est pas une pente : le dollar qui franchit le seuil coute
+   332 $ d'un coup. Le test existe pour que personne ne « corrige » ca un jour
+   en croyant a un bug. Le seuil tombe a 28 450 $ de salaire pour un
+   celibataire : 26 050 $ d'imposable + 2 400 $ d'exoneration. */
+check("OH : a 28 450 $ de salaire, l'impot d'Etat est encore nul",
+  calcul("ohio", 28450).etat, 0, 0.01);
+check("OH : un dollar de plus, et il saute a 332,03 $",
+  calcul("ohio", 28451).etat, 332.03, 0.01);
+check("OH : ce dollar coute donc 332 $ — la marche est dans la loi",
+  calcul("ohio", 28451).etat - calcul("ohio", 28450).etat, 332.03, 0.01);
+
+check("OH : impot d'Etat sur 40 000 (exoneration 2 400)",
+  calcul("ohio", 40000).etat, 649.63, 0.01);
+check("OH : impot d'Etat sur 75 000 (exoneration 2 150)",
+  calcul("ohio", 75000).etat, 1619.00, 0.01);
+check("OH : impot d'Etat sur 250 000 (exoneration 1 900)",
+  calcul("ohio", 250000).etat, 6438.38, 0.01);
+check("OH : au-dela de 500 000, l'exoneration disparait entierement",
+  calcul("ohio", 600000).etat, 332 + 0.0275 * (600000 - 26050), 0.01);
+check("OH : le palier d'exoneration change bien a 40 000",
+  calcul("ohio", 40001).etat - calcul("ohio", 40000).etat > 0 ? 1 : 0, 1, 0);
+check("OH : le 401(k) reduit bien l'impot d'Etat",
+  calcul("ohio", 75000).etat - calcul("ohio", 75000, "single", 0.06).etat,
+  75000 * 0.06 * 0.0275, 0.01);
+check("OH : aucun programme salarie retenu",
+  (R.states.ohio.employeePrograms || []).length, 0, 0);
+check("OH : les deux implementations s'accordent, salaire moyen",
+  calcul("ohio", 75000).etat, calculOH(75000, 0, "single"), 0.01);
+check("OH : et elles s'accordent aussi pour un couple",
+  calcul("ohio", 120000, "marriedJoint").etat, calculOH(120000, 0, "marriedJoint"), 0.01);
+check("OH : l'impot d'Etat n'est jamais negatif, meme a 10 000 $",
+  calcul("ohio", 10000).etat >= 0 ? 1 : 0, 1, 0);
+
+/* La marche ne doit exister QUE pour l'Ohio : aucun autre Etat ne declare la
+   cle "notch", et aucun ne doit avoir change de resultat en l'introduisant. */
+check("OH : aucun autre Etat n'a de marche",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.notch).length, 1, 0);
+check("OH : aucun autre Etat n'a d'exoneration par palier de revenu",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.deductionByIncome).length, 1, 0);
+
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

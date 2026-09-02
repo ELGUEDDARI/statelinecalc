@@ -29,14 +29,37 @@ function progressiveTax(taxable, bands) {
    seuil (Illinois). */
 function deductionEtat(S, statut, base) {
   const d = S.incomeTax.standardDeduction;
-  if (!d) return 0;
-  let v = (typeof d === "object") ? ((statut in d) ? d[statut] : d.single) : d;
+  const paliers = S.incomeTax.deductionByIncome;
+  if (!d && !paliers) return 0;
+  let v;
+  /* L'Ohio est le premier Etat ou le MONTANT de l'exoneration depend du
+     revenu et pas seulement du foyer : 2 400 $ par personne jusqu'a 40 000 $
+     de revenu, 2 150 $ jusqu'a 80 000 $, 1 900 $ au-dela. Une table par
+     situation de famille ne peut pas exprimer ca. */
+  if (paliers && base !== undefined) {
+    const p = paliers.find(x => x.upTo === null || base <= x.upTo);
+    v = (statut in p.amounts) ? p.amounts[statut] : p.amounts.single;
+  } else {
+    v = (typeof d === "object") ? ((statut in d) ? d[statut] : d.single) : d;
+  }
   const po = S.incomeTax.deductionPhaseOut;
   if (po && base !== undefined) {
     const seuil = (statut in po) ? po[statut] : po.single;
     if (isFinite(seuil) && base > seuil) v = 0;
   }
   return v;
+}
+
+/* Une MARCHE, pas une pente. L'Ohio ne taxe rien jusqu'a 26 050 $ de revenu
+   imposable, puis doit « $332.00 plus 2.75% of the amount in excess of
+   $26,050 » (ORC 5747.02(A)(3)(c), pour 2026 et au-dela). Le dollar
+   26 051 declenche donc 332 $ d'impot d'un coup. Ce n'est pas une erreur de
+   lecture : la loi ecrit la meme structure pour 2024 (360,69 $) et 2025
+   (342,00 $). Un bareme marginal ordinaire ne peut pas exprimer ce saut. */
+function marcheEtat(S, imposable) {
+  const m = S.incomeTax.notch;
+  if (!m) return 0;
+  return imposable > m.over ? m.add : 0;
 }
 
 /* Certains Etats ne reduisent pas le revenu imposable : ils calculent l'impot
@@ -76,9 +99,11 @@ function calcul(cle, brut, statut = "single", retraitePct = 0) {
 
   /* La Pennsylvanie taxe le versement 401(k) : sa base est le brut. */
   const baseEtat = S.incomeTax.taxesRetirementDeferrals ? brut : apresPretax;
+  const imposableEtat = Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat));
   const etat = S.incomeTax.hasIncomeTax
-    ? Math.max(0, progressiveTax(Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat)),
+    ? Math.max(0, progressiveTax(imposableEtat,
                                  S.incomeTax.brackets[statut] || S.incomeTax.brackets.single)
+                  + marcheEtat(S, imposableEtat)
                   - creditEtat(S, statut, baseEtat))
     : 0;
 
@@ -110,4 +135,5 @@ function calcul(cle, brut, statut = "single", retraitePct = 0) {
 const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const c0 = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
-module.exports = { R, HEURES, progressiveTax, deductionEtat, creditEtat, calcul, c2, c0 };
+module.exports = { R, HEURES, progressiveTax, deductionEtat, creditEtat, marcheEtat,
+                   calcul, c2, c0 };

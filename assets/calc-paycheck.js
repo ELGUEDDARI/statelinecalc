@@ -106,7 +106,21 @@
          every visitor who saves for retirement. Added 2026-08-28. */
       var baseEtat = state.incomeTax.taxesRetirementDeferrals ? gross : afterPretax;
       var sd = state.incomeTax.standardDeduction;
-      if (sd && typeof sd === "object") {
+      /* Ohio is the first state here whose exemption AMOUNT depends on income
+         rather than only on the household: $2,400 a person up to $40,000 of
+         income, $2,150 up to $80,000, $1,900 above. A table keyed on filing
+         status cannot say that, so income tiers are read first when a state
+         declares them. Added 2026-09-02. */
+      var tiers = state.incomeTax.deductionByIncome;
+      if (tiers) {
+        for (var ti = 0; ti < tiers.length; ti++) {
+          if (tiers[ti].upTo === null || baseEtat <= tiers[ti].upTo) {
+            var am = tiers[ti].amounts;
+            sd = (input.filingStatus in am) ? am[input.filingStatus] : am.single;
+            break;
+          }
+        }
+      } else if (sd && typeof sd === "object") {
         sd = (input.filingStatus in sd) ? sd[input.filingStatus] : sd.single;
       }
       /* Some states withdraw the deduction entirely above an income threshold
@@ -122,10 +136,18 @@
         var seuil = (input.filingStatus in po) ? po[input.filingStatus] : po.single;
         if (isFinite(seuil) && baseEtat > seuil) sd = 0;
       }
+      var imposableEtat = Math.max(0, baseEtat - (sd || 0));
       stateTax = progressiveTax(
-        Math.max(0, baseEtat - (sd || 0)),
+        imposableEtat,
         state.incomeTax.brackets[input.filingStatus] || state.incomeTax.brackets.single
       );
+      /* A STEP, not a slope. Ohio owes nothing up to $26,050 of taxable income
+         and then "$332.00 plus 2.75% of the amount in excess of $26,050"
+         (Ohio Revised Code 5747.02, for 2026 and thereafter), so the dollar
+         above the threshold costs $332 at once. A marginal bracket table
+         cannot express that jump. Added 2026-09-02. */
+      var nt = state.incomeTax.notch;
+      if (nt && imposableEtat > nt.over) stateTax += nt.add;
       /* Some states do not shrink the taxable income at all: they charge the
          full rate, then subtract a CREDIT that fades out as pay rises. Utah is
          the first one here - Publication 14, schedules 1 to 8: tax is 4.45% of

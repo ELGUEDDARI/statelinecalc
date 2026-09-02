@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Locked down deliberately. connect-src names the Google Analytics endpoints
+     and nothing else, so page views go out and nothing else can. What the
+     visitor TYPES still never leaves the browser: the calculator runs locally
+     and no salary value is ever passed to the analytics layer. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
+<script src="/assets/analytics.js"></script>
+<title>Ohio Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay</title>
+<meta name="description" content="Free Ohio paycheck calculator, 2026. Hourly or salary. Ohio taxes nothing on the first $26,050 of taxable income, then 2.75% &mdash; but the dollar that crosses that line costs $332, because the law says so.">
+<link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/ohio/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0F172A">
+<link rel="stylesheet" href="/assets/style.css">
+
+<meta property="og:title" content="Ohio Paycheck Calculator 2026 &mdash; Hourly and Salary Take-Home Pay">
+<meta property="og:description" content="Ohio charges nothing on the first $26,050 of taxable income, then 2.75% &mdash; and $332 the moment you cross the line.">
+<meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/ohio/">
+<meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Ohio Paycheck Calculator",
+      "url": "https://statelinecalc.com/paycheck-calculator/ohio/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculates 2026 Ohio take-home pay after federal income tax, Social Security, Medicare and Ohio's income tax, which charges nothing on the first $26,050 of taxable income and then $332 plus 2.75 percent of the excess, after a personal exemption of $2,400, $2,150 or $1,900 per person depending on income."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Paycheck Calculator", "item": "https://statelinecalc.com/paycheck-calculator/" },
+        { "@type": "ListItem", "position": 3, "name": "Ohio", "item": "https://statelinecalc.com/paycheck-calculator/ohio/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the Ohio income tax rate in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "2.75%, and it applies only to the part of your taxable income above $26,050. Below that, Ohio charges nothing. The rate sits in the statute itself, Ohio Revised Code section 5747.02: “For taxable years beginning in 2026 and thereafter, $332.00 plus 2.75% of the amount in excess of $26,050.” Ohio used to have five brackets topping out near 4%; that structure is gone, and calculators still showing it are years out of date." } },
+        { "@type": "Question", "name": "At what salary does Ohio income tax actually start?", "acceptedAnswer": { "@type": "Answer", "text": "About $28,450 for a single filer, and $30,850 for a married couple filing jointly with two exemptions. Ohio taxes nothing on the first $26,050 of taxable income, and taxable income is your pay minus $2,400 for every exemption you claim. Add the two together and you have the point where the state starts taking anything at all. On $25,000 a single Ohioan pays the state $0.00." } },
+        { "@type": "Question", "name": "Is it true that one extra dollar can cost $332 in Ohio?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it is in the law rather than a rounding artefact. The statute says nothing is owed at or below $26,050 of taxable income, then “$332.00 plus 2.75% of the amount in excess of $26,050”. So at $28,450 of salary a single filer owes $0.00, and at $28,451 they owe $332.03. That one dollar costs $332.03. Ohio's own IT 1040 booklet describes it the same way: its worked example says the taxpayer “owes $342 on the first $26,050 of income” for 2025, even though the row above it reads 0.000%. The base falls to $332 for 2026." } },
+        { "@type": "Question", "name": "What is take-home pay on a $75,000 salary in Ohio?", "acceptedAnswer": { "@type": "Answer", "text": "About $59,974 a year, or $4,997.79 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and only $1,619.00 of Ohio income tax — a state rate of 2.16%. Of the states published here that levy an income tax at all, Ohio leaves you the most. School district and municipal income taxes are not included." } },
+        { "@type": "Question", "name": "Why does my Ohio employer withhold more than I owe?", "acceptedAnswer": { "@type": "Answer", "text": "Because the withholding tables and the tax are two different things in Ohio. The Department's own withholding tables effective August 1, 2026 say: “If the wages exceed $1,923, use the last row of the table plus 3.400% of the excess over $1,923.” That is a 3.4% withholding rate against a 2.75% tax. On $75,000 the gap is roughly $931 over a year. It comes back as a refund when you file, but it is money you do not have during the year." } },
+        { "@type": "Question", "name": "Does a 401(k) contribution lower my Ohio tax?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ohio taxable income starts from your federal adjusted gross income, and an elective deferral is already out of that figure. On $75,000 with 6% going into a 401(k), your Ohio tax falls by $123.75. That is a small number because the rate is small — the same contribution saves far more federal tax. The rule is not universal either: in Pennsylvania the same worker's state tax falls by $0.00, nothing at all." } },
+        { "@type": "Question", "name": "How much is the Ohio personal exemption in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "$2,400 per person if your income is $40,000 or less, $2,150 between $40,001 and $80,000, and $1,900 above that — claimed for yourself, your spouse and each dependant. Two things to know. The amount falls as you earn more, which no other state on this site does. And for 2026 the exemption disappears entirely above $500,000 of income, down from $750,000 in 2025." } },
+        { "@type": "Question", "name": "What is $20 an hour after taxes in Ohio?", "acceptedAnswer": { "@type": "Answer", "text": "At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,905 after tax, which works out at $16.78 an hour in real terms. Ohio takes only $700.50 of that for the year — 1.68% of gross. Federal tax and FICA take far more." } },
+        { "@type": "Question", "name": "Do Ohio school districts charge their own income tax?", "acceptedAnswer": { "@type": "Answer", "text": "Many do, and it is separate from both the state tax and any city tax. The Department's IT 1040 booklet lists the rate for each district as a four-digit decimal; the rates run from 0.25% to 2%. Districts also use one of two bases: a “traditional” base of modified adjusted gross income less exemptions, or an “earned income” base that looks only at wages. It is filed on a separate return, the SD 100. On $75,000 a school district levy is worth between $187.50 and $1,500.00 a year, and none of it is in the figures on this page. Use the Department's Finder tool at tax.ohio.gov/Finder to see which district you are in." } },
+        { "@type": "Question", "name": "Why is my Ohio paycheck smaller than this calculator says?", "acceptedAnswer": { "@type": "Answer", "text": "In Ohio there are usually three reasons, in this order. Your city almost certainly levies a municipal income tax, which is administered by the city rather than the state and is not modelled here. Your school district may levy one too. And the state withholding tables take more than the tax you owe, which you get back only at filing. After that come the ordinary causes: health premiums and other benefit deductions come out before tax, and a second job pushes federal withholding up." } }
+      ]
+    },
+    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><svg class="brand-mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0F172A"/><rect x="30" y="10" width="4" height="44" rx="2" fill="#1D4ED8"/><rect x="12" y="34" width="12" height="20" rx="2" fill="#FFFFFF"/><rect x="40" y="22" width="12" height="32" rx="2" fill="#FFFFFF"/></svg>StateLine Calc</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/paycheck-calculator/">Paycheck</a>
+      <a href="/salary-to-hourly-calculator/">Salary&nbsp;to&nbsp;Hourly</a>
+      <a href="/methodology/">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/paycheck-calculator/">Paycheck Calculator</a></li>
+    <li aria-current="page">Ohio</li>
+  </ol>
+</nav>
+
+  <h1>Ohio Paycheck Calculator 2026</h1>
+
+  <div class="answer">
+    <p>Ohio taxes <strong>nothing</strong> on the first <span class="num">$26,050</span> of taxable income in 2026,
+    then <strong><span class="num">$332</span> plus 2.75%</strong> of everything above it &mdash; so state tax
+    does not start until about <span class="num">$28,450</span> of salary for a single filer. On $75,000 you pay
+    the state <span class="num">$1,619.00</span> and keep about <span class="num">$59,974</span> a year, a state rate of
+    <span class="num">2.16%</span>. The dollar that crosses the line costs <span class="num">$332.03</span>,
+    because the law adds <span class="num">$332</span> at once.</p>
+  </div>
+
+  <section aria-labelledby="calc-h">
+    <h2 id="calc-h" class="u-mt-0">Calculate your Ohio take-home pay</h2>
+
+    <form class="calc" data-paycheck-form data-state="ohio" novalidate>
+      <div class="field">
+        <label for="salary">Your gross pay or hourly rate</label>
+        <input type="text" id="salary" name="salary" inputmode="decimal" value="75000"
+               autocomplete="off">
+        <span class="help">Before any taxes or deductions. Do not include tips paid in cash.</span>
+        <span class="error" role="alert">Enter an amount greater than zero.</span>
+      </div>
+
+      <div class="field" data-hours-field hidden>
+        <label for="hours">Hours per week</label>
+        <input type="text" id="hours" name="hours" inputmode="decimal" value="40"
+               autocomplete="off">
+        <span class="help">Only asked when something here is per hour. We use the hours you
+        actually work, not an assumed 2,080 a year.</span>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="period">How often you are paid</label>
+          <select id="period" name="period">
+            <option value="annual" selected>Per year</option>
+            <option value="hourly">Per hour</option>
+            <option value="monthly">Per month</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">This tells us what the amount above represents.</span>
+        </div>
+
+        <div class="field">
+          <label for="filing">Filing status</label>
+          <select id="filing" name="filing">
+            <option value="single" selected>Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+          <span class="help">Sets your federal brackets. In Ohio it changes how many exemptions
+          are assumed, not the 2.75% rate.</span>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="retirement">401(k) contribution</label>
+          <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
+          <span class="help">Percent of gross pay. It lowers your federal tax, and in Ohio it
+          lowers your state tax too.</span>
+        </div>
+
+        <div class="field">
+          <label for="display">Show results</label>
+          <select id="display" name="display">
+            <option value="monthly" selected>Per month</option>
+            <option value="hourly">Per hour</option>
+            <option value="annual">Per year</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">Changes the period, not the calculation.</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+
+    <div class="result" data-paycheck-result aria-live="polite"></div>
+
+    <p class="caption u-mt-3">
+      Everything is calculated in your browser. Nothing you type is sent to us or stored.
+    </p>
+  </section>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <h2>How this calculator works</h2>
+    <p>Ohio has the lowest state income tax of any state on this site that levies one, and the
+    strangest shape. There are no brackets in the usual sense. Instead the statute says that
+    nothing is owed at or below <span class="num">$26,050</span> of taxable income, and that above it you owe
+    <strong><span class="num">$332</span> plus 2.75%</strong> of the excess. Taxable income is your pay less a
+    personal exemption for every person in the household &mdash; and the size of that exemption
+    itself depends on how much you earn.</p>
+
+    <p>The calculator applies four deductions, in this order:</p>
+    <ul>
+      <li><strong>Federal income tax.</strong> Your gross pay minus the federal standard deduction
+      for your filing status, run through the 2026 federal brackets. For 2026 that deduction is
+      <span class="num">$16,100</span> single, <span class="num">$32,200</span> married filing jointly, <span class="num">$24,150</span> head of
+      household.</li>
+      <li><strong>Social Security</strong> at 6.2% of gross wages, up to the 2026 wage base of
+      <span class="num">$184,500</span>.</li>
+      <li><strong>Medicare</strong> at 1.45% of all wages, with no cap, plus the 0.9% Additional
+      Medicare Tax on wages above <span class="num">$200,000</span>.</li>
+      <li><strong>Ohio income tax</strong>: your pay less <span class="num">$2,400</span>,
+      <span class="num">$2,150</span> or <span class="num">$1,900</span> per exemption depending on income; then
+      nothing on the first <span class="num">$26,050</span> of what is left, and <span class="num">$332</span> plus 2.75% above
+      it.</li>
+    </ul>
+
+    <p>Rates come from the agencies that set them: the IRS for the federal brackets, the standard
+    deduction and FICA, cross-checked against the Social Security Administration for the wage base.
+    The Ohio figures come from <strong>the statute and the Department&rsquo;s own booklet</strong>,
+    because the Department&rsquo;s rate page does not publish 2026 at all. <em>Ohio Revised Code</em>
+    section 5747.02 supplies the threshold and the rate; section 5747.025 and the
+    <em>2025 Ohio IT 1040</em> instruction booklet supply the exemption amounts. Both were read on
+    <time datetime="2026-09-02">September 2, 2026</time>. Our full sourcing is on the
+    <a href="/methodology/">methodology page</a>.</p>
+
+    <p><strong>Two things this calculator does not model, and in Ohio they matter more than
+    anywhere else on this site.</strong> Ohio cities levy their own municipal income tax, collected
+    by the city rather than the state, and most working Ohioans pay one. Ohio school districts may
+    levy one too, on a separate return. Read both sections below before treating these figures as
+    your whole tax bill.</p>
+
+    <p>What the calculator deliberately does not do: it does not itemize deductions, model
+    dependants beyond the exemption count implied by your filing status, handle Ohio&rsquo;s
+    separate 3% rate on business income, handle multiple jobs, or account for health insurance
+    premiums and other employer benefit deductions.</p>
+  </div>
+
+  <h2>Ohio take-home pay by salary</h2>
+  <p class="prose">Single filer with one exemption, no retirement contribution, 2026 state and
+  federal rates, municipal and school district income tax excluded. Notice the Ohio column: it is
+  zero until about <span class="num">$28,450</span>, jumps to <span class="num">$332.03</span> the moment it starts, and
+  then climbs slowly.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Ohio take-home pay, single filer
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Gross salary</th>
+          <th scope="col">Federal tax</th>
+          <th scope="col">FICA</th>
+          <th scope="col">OH state tax</th>
+          <th scope="col">Take-home</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$25,000</td>
+            <td class="num">$890</td>
+            <td class="num">$1,913</td>
+            <td class="num">$0</td>
+            <td class="num"><strong>$22,198</strong></td>
+            <td class="num">$1,849.79</td>
+            <td class="num">11.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$30,000</td>
+            <td class="num">$1,420</td>
+            <td class="num">$2,295</td>
+            <td class="num">$43</td>
+            <td class="num"><strong>$26,242</strong></td>
+            <td class="num">$2,186.86</td>
+            <td class="num">12.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$35,000</td>
+            <td class="num">$2,020</td>
+            <td class="num">$2,678</td>
+            <td class="num">$180</td>
+            <td class="num"><strong>$30,122</strong></td>
+            <td class="num">$2,510.20</td>
+            <td class="num">13.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$40,000</td>
+            <td class="num">$2,620</td>
+            <td class="num">$3,060</td>
+            <td class="num">$318</td>
+            <td class="num"><strong>$34,002</strong></td>
+            <td class="num">$2,833.53</td>
+            <td class="num">15.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$45,000</td>
+            <td class="num">$3,220</td>
+            <td class="num">$3,443</td>
+            <td class="num">$462</td>
+            <td class="num"><strong>$37,876</strong></td>
+            <td class="num">$3,156.29</td>
+            <td class="num">15.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$50,000</td>
+            <td class="num">$3,820</td>
+            <td class="num">$3,825</td>
+            <td class="num">$600</td>
+            <td class="num"><strong>$41,756</strong></td>
+            <td class="num">$3,479.63</td>
+            <td class="num">16.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$55,000</td>
+            <td class="num">$4,420</td>
+            <td class="num">$4,208</td>
+            <td class="num">$737</td>
+            <td class="num"><strong>$45,636</strong></td>
+            <td class="num">$3,802.96</td>
+            <td class="num">17.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$60,000</td>
+            <td class="num">$5,020</td>
+            <td class="num">$4,590</td>
+            <td class="num">$875</td>
+            <td class="num"><strong>$49,516</strong></td>
+            <td class="num">$4,126.29</td>
+            <td class="num">17.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$65,000</td>
+            <td class="num">$5,620</td>
+            <td class="num">$4,973</td>
+            <td class="num">$1,012</td>
+            <td class="num"><strong>$53,396</strong></td>
+            <td class="num">$4,449.63</td>
+            <td class="num">17.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$70,000</td>
+            <td class="num">$6,570</td>
+            <td class="num">$5,355</td>
+            <td class="num">$1,150</td>
+            <td class="num"><strong>$56,926</strong></td>
+            <td class="num">$4,743.79</td>
+            <td class="num">18.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$75,000</td>
+            <td class="num">$7,670</td>
+            <td class="num">$5,738</td>
+            <td class="num">$1,287</td>
+            <td class="num"><strong>$60,306</strong></td>
+            <td class="num">$5,025.46</td>
+            <td class="num">19.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$80,000</td>
+            <td class="num">$8,770</td>
+            <td class="num">$6,120</td>
+            <td class="num">$1,425</td>
+            <td class="num"><strong>$63,686</strong></td>
+            <td class="num">$5,307.13</td>
+            <td class="num">20.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$85,000</td>
+            <td class="num">$9,870</td>
+            <td class="num">$6,503</td>
+            <td class="num">$1,569</td>
+            <td class="num"><strong>$67,059</strong></td>
+            <td class="num">$5,588.22</td>
+            <td class="num">21.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$90,000</td>
+            <td class="num">$10,970</td>
+            <td class="num">$6,885</td>
+            <td class="num">$1,706</td>
+            <td class="num"><strong>$70,439</strong></td>
+            <td class="num">$5,869.89</td>
+            <td class="num">21.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$95,000</td>
+            <td class="num">$12,070</td>
+            <td class="num">$7,268</td>
+            <td class="num">$1,844</td>
+            <td class="num"><strong>$73,819</strong></td>
+            <td class="num">$6,151.55</td>
+            <td class="num">22.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$100,000</td>
+            <td class="num">$13,170</td>
+            <td class="num">$7,650</td>
+            <td class="num">$1,981</td>
+            <td class="num"><strong>$77,199</strong></td>
+            <td class="num">$6,433.22</td>
+            <td class="num">22.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$110,000</td>
+            <td class="num">$15,370</td>
+            <td class="num">$8,415</td>
+            <td class="num">$2,256</td>
+            <td class="num"><strong>$83,959</strong></td>
+            <td class="num">$6,996.55</td>
+            <td class="num">23.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$120,000</td>
+            <td class="num">$17,570</td>
+            <td class="num">$9,180</td>
+            <td class="num">$2,531</td>
+            <td class="num"><strong>$90,719</strong></td>
+            <td class="num">$7,559.89</td>
+            <td class="num">24.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$125,000</td>
+            <td class="num">$18,734</td>
+            <td class="num">$9,563</td>
+            <td class="num">$2,669</td>
+            <td class="num"><strong>$94,035</strong></td>
+            <td class="num">$7,836.22</td>
+            <td class="num">24.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$130,000</td>
+            <td class="num">$19,934</td>
+            <td class="num">$9,945</td>
+            <td class="num">$2,806</td>
+            <td class="num"><strong>$97,315</strong></td>
+            <td class="num">$8,109.55</td>
+            <td class="num">25.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$140,000</td>
+            <td class="num">$22,334</td>
+            <td class="num">$10,710</td>
+            <td class="num">$3,081</td>
+            <td class="num"><strong>$103,875</strong></td>
+            <td class="num">$8,656.22</td>
+            <td class="num">25.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$150,000</td>
+            <td class="num">$24,734</td>
+            <td class="num">$11,475</td>
+            <td class="num">$3,356</td>
+            <td class="num"><strong>$110,435</strong></td>
+            <td class="num">$9,202.89</td>
+            <td class="num">26.4%</td>
+          </tr>
+          <tr>
+            <td class="num">$160,000</td>
+            <td class="num">$27,134</td>
+            <td class="num">$12,240</td>
+            <td class="num">$3,631</td>
+            <td class="num"><strong>$116,995</strong></td>
+            <td class="num">$9,749.55</td>
+            <td class="num">26.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$175,000</td>
+            <td class="num">$30,734</td>
+            <td class="num">$13,388</td>
+            <td class="num">$4,044</td>
+            <td class="num"><strong>$126,835</strong></td>
+            <td class="num">$10,569.55</td>
+            <td class="num">27.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$200,000</td>
+            <td class="num">$36,734</td>
+            <td class="num">$14,339</td>
+            <td class="num">$4,731</td>
+            <td class="num"><strong>$144,196</strong></td>
+            <td class="num">$12,016.30</td>
+            <td class="num">27.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$225,000</td>
+            <td class="num">$43,304</td>
+            <td class="num">$14,927</td>
+            <td class="num">$5,419</td>
+            <td class="num"><strong>$161,351</strong></td>
+            <td class="num">$13,445.89</td>
+            <td class="num">28.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$250,000</td>
+            <td class="num">$51,304</td>
+            <td class="num">$15,514</td>
+            <td class="num">$6,106</td>
+            <td class="num"><strong>$177,076</strong></td>
+            <td class="num">$14,756.30</td>
+            <td class="num">29.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$300,000</td>
+            <td class="num">$68,134</td>
+            <td class="num">$16,689</td>
+            <td class="num">$7,481</td>
+            <td class="num"><strong>$207,695</strong></td>
+            <td class="num">$17,307.95</td>
+            <td class="num">30.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$400,000</td>
+            <td class="num">$103,134</td>
+            <td class="num">$19,039</td>
+            <td class="num">$10,231</td>
+            <td class="num"><strong>$267,595</strong></td>
+            <td class="num">$22,299.61</td>
+            <td class="num">33.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$500,000</td>
+            <td class="num">$138,134</td>
+            <td class="num">$21,389</td>
+            <td class="num">$12,981</td>
+            <td class="num"><strong>$327,495</strong></td>
+            <td class="num">$27,291.28</td>
+            <td class="num">34.5%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+    <h2>Ohio hourly paycheck: what your rate is worth after tax</h2>
+
+    <h3>Why we ask your hours instead of assuming 2,080</h3>
+    <p>Most hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
+    week for 52 weeks, which describes a full-time salaried schedule rather than most hourly work.
+    If you are on 32 hours, or 45 with overtime, the assumed figure is wrong before any tax is
+    applied. The calculator above asks for your hours and uses them.</p>
+
+    <h3>What $20 an hour comes to in Ohio</h3>
+    <p>At 40 hours a week, $20 an hour is <span class="num">$41,600</span> a year gross. After federal tax, Social
+    Security, Medicare and Ohio&rsquo;s share, that leaves about <span class="num">$34,905</span> a year, or
+    <span class="num">$2,908.76</span> a month. Your real hourly rate &mdash; what an hour of work actually
+    puts in your account &mdash; is <span class="num">$16.78</span>. Ohio takes only <span class="num">$700.50</span>
+    of that for the whole year, which is <span class="num">1.68%</span> of
+    gross. Federal tax and FICA take many times more.</p>
+
+    <h3>What $25 and $30 an hour come to</h3>
+    <p>$25 an hour is <span class="num">$52,000</span> gross and about <span class="num">$42,976</span> after tax, a real rate of
+    <span class="num">$20.66</span>. $30 an hour is <span class="num">$62,400</span> gross and about <span class="num">$51,046</span>
+    after tax, a real rate of <span class="num">$24.54</span>. The whole state layer moves from
+    <span class="num">$986.50</span> to <span class="num">$1,272.50</span> across that gap &mdash; less than a single week of
+    the pay rise itself. In Ohio the state is rarely the reason a raise disappoints.</p>
+
+    <h3>Working a few hours a week? Ohio may take nothing at all</h3>
+    <p>A single filer does not owe the state anything until about <span class="num">$28,450</span> a year, which at
+    40 hours a week is <span class="num">$13.68 an hour</span>. Below that the exemption and
+    the <span class="num">$26,050</span> threshold together cover the whole wage. Federal tax and FICA still apply
+    &mdash; FICA from the first dollar &mdash; so a small paycheck is never untaxed. It is only
+    untaxed <em>by Ohio</em>.</p>
+
+    <h3>Overtime, tips and shift differentials</h3>
+    <p>Ohio taxes overtime, tips and shift differentials at the same 2.75% as base pay. There is
+    one case where extra hours cost far more than 2.75%, and it is the <span class="num">$332</span> step: if
+    your annual pay lands just under <span class="num">$28,450</span>, the overtime that pushes you past it brings
+    the whole <span class="num">$332</span> with it. Above that point the step is behind you and never
+    reappears.</p>
+
+    <h3>Ohio take-home pay by hourly rate</h3>
+    <p>Single filer with one exemption, 40 hours a week (2,080 hours a year), 2026 rates,
+    municipal and school district income tax excluded.</p>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">
+        2026 Ohio take-home pay by hourly rate, single filer, 40 hours a week
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Hourly rate</th>
+          <th scope="col">Gross a year</th>
+          <th scope="col">Take-home a year</th>
+          <th scope="col">Per month</th>
+          <th scope="col">Real hourly rate</th>
+          <th scope="col">Effective rate</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="num">$12.00</td>
+            <td class="num">$24,960</td>
+            <td class="num"><strong>$22,165</strong></td>
+            <td class="num">$1,847.05</td>
+            <td class="num">$10.66</td>
+            <td class="num">11.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$13.00</td>
+            <td class="num">$27,040</td>
+            <td class="num"><strong>$23,877</strong></td>
+            <td class="num">$1,989.79</td>
+            <td class="num">$11.48</td>
+            <td class="num">11.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$14.00</td>
+            <td class="num">$29,120</td>
+            <td class="num"><strong>$25,559</strong></td>
+            <td class="num">$2,129.96</td>
+            <td class="num">$12.29</td>
+            <td class="num">12.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$15.00</td>
+            <td class="num">$31,200</td>
+            <td class="num"><strong>$27,174</strong></td>
+            <td class="num">$2,264.46</td>
+            <td class="num">$13.06</td>
+            <td class="num">12.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$16.00</td>
+            <td class="num">$33,280</td>
+            <td class="num"><strong>$28,788</strong></td>
+            <td class="num">$2,398.97</td>
+            <td class="num">$13.84</td>
+            <td class="num">13.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$17.00</td>
+            <td class="num">$35,360</td>
+            <td class="num"><strong>$30,402</strong></td>
+            <td class="num">$2,533.48</td>
+            <td class="num">$14.62</td>
+            <td class="num">14.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$18.00</td>
+            <td class="num">$37,440</td>
+            <td class="num"><strong>$32,016</strong></td>
+            <td class="num">$2,667.98</td>
+            <td class="num">$15.39</td>
+            <td class="num">14.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$19.00</td>
+            <td class="num">$39,520</td>
+            <td class="num"><strong>$33,630</strong></td>
+            <td class="num">$2,802.49</td>
+            <td class="num">$16.17</td>
+            <td class="num">14.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$20.00</td>
+            <td class="num">$41,600</td>
+            <td class="num"><strong>$35,237</strong></td>
+            <td class="num">$2,936.42</td>
+            <td class="num">$16.94</td>
+            <td class="num">15.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$21.00</td>
+            <td class="num">$43,680</td>
+            <td class="num"><strong>$36,851</strong></td>
+            <td class="num">$3,070.93</td>
+            <td class="num">$17.72</td>
+            <td class="num">15.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$22.00</td>
+            <td class="num">$45,760</td>
+            <td class="num"><strong>$38,465</strong></td>
+            <td class="num">$3,205.44</td>
+            <td class="num">$18.49</td>
+            <td class="num">15.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$23.00</td>
+            <td class="num">$47,840</td>
+            <td class="num"><strong>$40,079</strong></td>
+            <td class="num">$3,339.94</td>
+            <td class="num">$19.27</td>
+            <td class="num">16.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$24.00</td>
+            <td class="num">$49,920</td>
+            <td class="num"><strong>$41,693</strong></td>
+            <td class="num">$3,474.45</td>
+            <td class="num">$20.04</td>
+            <td class="num">16.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$25.00</td>
+            <td class="num">$52,000</td>
+            <td class="num"><strong>$43,308</strong></td>
+            <td class="num">$3,608.96</td>
+            <td class="num">$20.82</td>
+            <td class="num">16.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$26.00</td>
+            <td class="num">$54,080</td>
+            <td class="num"><strong>$44,922</strong></td>
+            <td class="num">$3,743.47</td>
+            <td class="num">$21.60</td>
+            <td class="num">16.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$28.00</td>
+            <td class="num">$58,240</td>
+            <td class="num"><strong>$48,150</strong></td>
+            <td class="num">$4,012.48</td>
+            <td class="num">$23.15</td>
+            <td class="num">17.3%</td>
+          </tr>
+          <tr>
+            <td class="num">$30.00</td>
+            <td class="num">$62,400</td>
+            <td class="num"><strong>$51,378</strong></td>
+            <td class="num">$4,281.49</td>
+            <td class="num">$24.70</td>
+            <td class="num">17.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$32.00</td>
+            <td class="num">$66,560</td>
+            <td class="num"><strong>$54,600</strong></td>
+            <td class="num">$4,550.01</td>
+            <td class="num">$26.25</td>
+            <td class="num">18.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$35.00</td>
+            <td class="num">$72,800</td>
+            <td class="num"><strong>$58,818</strong></td>
+            <td class="num">$4,901.53</td>
+            <td class="num">$28.28</td>
+            <td class="num">19.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$38.00</td>
+            <td class="num">$79,040</td>
+            <td class="num"><strong>$63,037</strong></td>
+            <td class="num">$5,253.05</td>
+            <td class="num">$30.31</td>
+            <td class="num">20.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$40.00</td>
+            <td class="num">$83,200</td>
+            <td class="num"><strong>$65,842</strong></td>
+            <td class="num">$5,486.82</td>
+            <td class="num">$31.65</td>
+            <td class="num">20.9%</td>
+          </tr>
+          <tr>
+            <td class="num">$45.00</td>
+            <td class="num">$93,600</td>
+            <td class="num"><strong>$72,872</strong></td>
+            <td class="num">$6,072.69</td>
+            <td class="num">$35.03</td>
+            <td class="num">22.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$50.00</td>
+            <td class="num">$104,000</td>
+            <td class="num"><strong>$79,903</strong></td>
+            <td class="num">$6,658.55</td>
+            <td class="num">$38.41</td>
+            <td class="num">23.2%</td>
+          </tr>
+          <tr>
+            <td class="num">$55.00</td>
+            <td class="num">$114,400</td>
+            <td class="num"><strong>$86,933</strong></td>
+            <td class="num">$7,244.42</td>
+            <td class="num">$41.79</td>
+            <td class="num">24.0%</td>
+          </tr>
+          <tr>
+            <td class="num">$60.00</td>
+            <td class="num">$124,800</td>
+            <td class="num"><strong>$93,903</strong></td>
+            <td class="num">$7,825.29</td>
+            <td class="num">$45.15</td>
+            <td class="num">24.8%</td>
+          </tr>
+          <tr>
+            <td class="num">$65.00</td>
+            <td class="num">$135,200</td>
+            <td class="num"><strong>$100,726</strong></td>
+            <td class="num">$8,393.82</td>
+            <td class="num">$48.43</td>
+            <td class="num">25.5%</td>
+          </tr>
+          <tr>
+            <td class="num">$70.00</td>
+            <td class="num">$145,600</td>
+            <td class="num"><strong>$107,548</strong></td>
+            <td class="num">$8,962.35</td>
+            <td class="num">$51.71</td>
+            <td class="num">26.1%</td>
+          </tr>
+          <tr>
+            <td class="num">$75.00</td>
+            <td class="num">$156,000</td>
+            <td class="num"><strong>$114,371</strong></td>
+            <td class="num">$9,530.89</td>
+            <td class="num">$54.99</td>
+            <td class="num">26.7%</td>
+          </tr>
+          <tr>
+            <td class="num">$85.00</td>
+            <td class="num">$176,800</td>
+            <td class="num"><strong>$128,015</strong></td>
+            <td class="num">$10,667.95</td>
+            <td class="num">$61.55</td>
+            <td class="num">27.6%</td>
+          </tr>
+          <tr>
+            <td class="num">$100.00</td>
+            <td class="num">$208,000</td>
+            <td class="num"><strong>$149,868</strong></td>
+            <td class="num">$12,488.97</td>
+            <td class="num">$72.05</td>
+            <td class="num">27.9%</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+  <div class="prose">
+
+  <h2>Key facts that affect your take-home pay in Ohio</h2>
+
+  <h3>Ohio no longer has five brackets, and the top rate is not 4%</h3>
+  <p>This is the single most common piece of stale information about Ohio pay. The state used to
+  run a multi-bracket schedule topping out near 4%; it has been collapsed year after year. For
+  <strong>2026 and thereafter</strong> the statute reads, in full, &ldquo;$332.00 plus 2.75% of the
+  amount in excess of $26,050&rdquo;. One rate, one threshold. If a calculator shows you an Ohio
+  rate near 4%, or a table of five brackets, it has not been updated.</p>
+
+  <h3>The first <span class="num">$26,050</span> of taxable income is not taxed &mdash; but the next dollar costs
+  <span class="num">$332.03</span></h3>
+  <p>Read the statute closely and there is a step in it, not a slope. Nothing is owed at or below
+  <span class="num">$26,050</span> of taxable income. Above it, you owe <span class="num">$332</span> <em>plus</em> 2.75% of the
+  excess. So a single filer on <span class="num">$28,450</span> of salary owes Ohio <span class="num">$0.00</span>, and
+  the same filer on <span class="num">$28,451</span> owes <span class="num">$332.03</span>. One dollar of pay,
+  <span class="num">$332.03</span> of tax.</p>
+  <p>This is not our reading of an ambiguity. Ohio&rsquo;s own IT 1040 booklet prints a bracket row
+  reading &ldquo;0.000%&rdquo; up to $26,050 and then, in its worked example, says the taxpayer
+  &ldquo;owes $342 on the first $26,050 of income&rdquo; &mdash; the 2025 figure, which becomes
+  <span class="num">$332</span> for 2026. The same structure appears in the statute for 2024 and 2025 as well.
+  A married couple filing jointly reaches the step later, at about <span class="num">$30,850</span> of salary,
+  because they claim two exemptions.</p>
+
+  <h3>The personal exemption shrinks as you earn more</h3>
+  <p>Ohio has no standard deduction. It has a personal and dependency exemption claimed for
+  yourself, your spouse and each dependant &mdash; and unlike every other state on this site, the
+  <em>amount</em> depends on your income:</p>
+  <ul>
+    <li><span class="num">$2,400</span> per person if your income is <span class="num">$40,000</span> or less;</li>
+    <li><span class="num">$2,150</span> per person between <span class="num">$40,001</span> and <span class="num">$80,000</span>;</li>
+    <li><span class="num">$1,900</span> per person above <span class="num">$80,000</span>;</li>
+    <li>and for 2026, <strong>nothing at all</strong> above <span class="num">$500,000</span> of income &mdash;
+    a threshold the legislature lowered from $750,000, so it now catches far more people.</li>
+  </ul>
+  <p>Each tier boundary is a small step of its own: crossing <span class="num">$40,000</span> costs about
+  <span class="num">$6.88</span> of extra tax, and crossing <span class="num">$80,000</span> about
+  <span class="num">$6.88</span>. Small, but they are why your Ohio tax rises slightly
+  faster than 2.75% of each extra dollar.</p>
+
+  <h3>Your effective Ohio rate never reaches 2.75%</h3>
+  <p>Because the first <span class="num">$26,050</span> escapes and the exemption comes off first, the share Ohio
+  actually takes stays well under the headline rate at every salary. On <span class="num">$30,000</span> the state
+  takes <span class="num">$374.63</span>, an effective state rate of <span class="num">1.25%</span>. On
+  <span class="num">$75,000</span> it is <span class="num">2.16%</span>. Even on <span class="num">$250,000</span> it is only
+  <span class="num">2.58%</span>. The headline rate is a ceiling Ohio approaches and never
+  reaches.</p>
+
+  <h3>Your employer withholds at 3.4%, not 2.75%</h3>
+  <p>The Department&rsquo;s withholding tables effective <time datetime="2026-08-01">August 1,
+  2026</time> instruct employers, verbatim: &ldquo;If the wages exceed
+  <span class="num">$1,923</span>, use the last row of the table plus
+  <strong>3.400%</strong> of the excess over
+  <span class="num">$1,923</span>.&rdquo; That is a withholding rate well above the 2.75% tax.
+  Withholding is designed to overshoot so that nobody owes at filing, and in Ohio it overshoots by
+  a wide margin.</p>
+  <p>The practical effect: your pay stub will show more Ohio tax than this page says you owe, and
+  the difference comes back as a refund. On <span class="num">$75,000</span> the state tax we calculate is
+  <span class="num">$1,619.00</span>; a full year withheld at <span class="num">3.4%</span> would be
+  roughly <span class="num">$2,550</span>. We show what you <strong>owe</strong>, which is what your
+  after-tax income actually is over a full year.</p>
+
+  <h3>Your 401(k) contribution does reduce your Ohio tax</h3>
+  <p>Ohio taxable income starts from your federal adjusted gross income, so an elective deferral to
+  a 401(k) or 403(b) is already excluded. On <span class="num">$75,000</span> with 6% going in, your Ohio tax falls
+  by <span class="num">$123.75</span> a year. That is a small sum, and it is small for the right reason: the rate
+  itself is small. The same contribution is worth many times more against your federal tax.</p>
+  <p>It is worth stating because the rule is not universal:
+  <a href="/paycheck-calculator/pennsylvania/">a Pennsylvania worker</a> making the same
+  contribution sees their state tax fall by <span class="num">$0.00</span> &mdash; nothing at all.</p>
+
+  <h3>Your city almost certainly takes more than the state does</h3>
+  <p>Ohio municipal income tax is levied and collected by cities themselves rather than by the
+  state, which is why it appears on your pay stub as a separate line and never on your Ohio IT
+  1040. For a great many Ohio workers the city takes a larger share of their pay than the state
+  does &mdash; a consequence of a 2.75% state rate rather than of unusually high city rates.</p>
+  <p>We do not quote a rate here, because there is no single statewide figure we can source: each
+  city sets its own, and residents and non-residents may be treated differently. Your pay stub and
+  your city&rsquo;s income tax office are the reliable sources. Nothing on this page includes it.</p>
+
+  <h3>Ohio school districts levy their own income tax too</h3>
+  <p>Separately from any city tax, Ohio school districts may levy an income tax on residents, filed
+  on its own return, the SD 100. The Department&rsquo;s IT 1040 booklet lists the rate for every
+  taxing district as a four-digit decimal; the rates run from
+  <span class="num">0.25%</span> to <span class="num">2%</span>. Districts use one
+  of two bases, and the booklet marks which: a <strong>&ldquo;traditional&rdquo;</strong> base of
+  modified adjusted gross income less exemptions, or an <strong>&ldquo;earned income&rdquo;</strong>
+  base that counts only wages and self-employment income.</p>
+  <p>On a <span class="num">$75,000</span> salary that is between <span class="num">$187.50</span> and <span class="num">$1,500.00</span> a year,
+  depending on the district &mdash; at the top of the range, more than the state itself takes. The
+  Department&rsquo;s Finder tool at <span class="num">tax.ohio.gov/Finder</span> tells you which
+  district you live in. None of it is in the figures on this page.</p>
+
+  <h3>Social Security stops, Medicare does not</h3>
+  <p>Social Security is withheld at 6.2% until your wages reach <span class="num">$184,500</span> in 2026, then
+  stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
+  extra 0.9% on wages above <span class="num">$200,000</span>. This is why take-home pay rises unevenly through the
+  year for high earners &mdash; the paycheck after you cross the Social Security wage base is
+  visibly larger.</p>
+
+  <h2>Common mistakes people make</h2>
+
+  <h3>Using an old Ohio bracket table</h3>
+  <p>The most expensive error, and the easiest to make, because Ohio changed its schedule several
+  years running. A table showing five brackets and a top rate near 4% describes a law that no
+  longer exists. For 2026 there is one rate, 2.75%, above one threshold, <span class="num">$26,050</span>.</p>
+
+  <h3>Multiplying the whole salary by 2.75%</h3>
+  <p>It overstates the tax at every income, because the exemption and the <span class="num">$26,050</span> threshold
+  both come off first. On <span class="num">$50,000</span> that arithmetic gives <span class="num">$1,375.00</span> where the
+  real figure is <span class="num">$931.50</span>. On <span class="num">$75,000</span> it gives <span class="num">$2,062.50</span> against
+  <span class="num">$1,619.00</span>.</p>
+
+  <h3>Forgetting the <span class="num">$332</span> step</h3>
+  <p>The opposite error, and it only bites near the threshold. Someone earning just over
+  <span class="num">$28,450</span> who applies 2.75% to the excess alone gets a few cents where the true answer is
+  <span class="num">$332.03</span>. The <span class="num">$332</span> is owed in full the moment the threshold is
+  passed.</p>
+
+  <h3>Treating the state tax as the whole tax</h3>
+  <p>In Ohio this is the mistake that costs the most. The state layer is genuinely small &mdash;
+  <span class="num">$1,619.00</span> on <span class="num">$75,000</span>. Your city&rsquo;s tax and, if you have one, your school
+  district&rsquo;s can each be comparable or larger. An Ohio budget built on the state figure alone
+  will be wrong by more than the state figure itself.</p>
+
+  <h3>Expecting the calculator to match the paystub to the dollar</h3>
+  <p>It will not, and in Ohio it particularly will not, because the state withholding tables take
+  <span class="num">3.4%</span> where the tax is 2.75%, and because city tax is
+  withheld alongside it. Treat this as an accurate model of what you <em>owe</em> at the federal
+  and state level, and read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
+
+  <h2>Example calculation</h2>
+  <p>A single filer earning <span class="num">$75,000</span> in Ohio in 2026, claiming one exemption, with no
+  retirement contribution:</p>
+  <ul>
+    <li>Federal taxable income: <span class="num">$75,000</span> &minus; <span class="num">$16,100</span> =
+    <span class="num">$58,900</span></li>
+    <li>Federal income tax: <span class="num">$7,670.00</span></li>
+    <li>Social Security: <span class="num">$75,000</span> &times; 6.2% = <span class="num">$4,650.00</span></li>
+    <li>Medicare: <span class="num">$75,000</span> &times; 1.45% = <span class="num">$1,087.50</span></li>
+    <li>Ohio exemption at this income: <span class="num">$2,150</span> (one person, income between
+    <span class="num">$40,001</span> and <span class="num">$80,000</span>)</li>
+    <li>Ohio taxable income: <span class="num">$75,000</span> &minus; <span class="num">$2,150</span> =
+    <span class="num">$72,850</span></li>
+    <li>Ohio income tax: <span class="num">$332</span> + 2.75% &times;
+    (<span class="num">$72,850</span> &minus; <span class="num">$26,050</span>) = <span class="num">$1,619.00</span></li>
+    <li><strong>Total withheld: <span class="num">$15,026.50</span></strong></li>
+    <li><strong>Take-home pay: <span class="num">$59,973.50</span> a year</strong>, or
+    <span class="num">$4,997.79</span> a month</li>
+    <li>Effective tax rate: <span class="num">20.0%</span></li>
+  </ul>
+  <p>Add a city income tax and, if your district levies one, a school district tax, and the picture
+  changes materially &mdash; which is exactly why both are called out above rather than buried.</p>
+
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+    <h3>What is the Ohio income tax rate in 2026?</h3>
+    <p>2.75%, and it applies only to the part of your taxable income above $26,050. Below that, Ohio charges nothing. The rate sits in the statute itself, Ohio Revised Code section 5747.02: “For taxable years beginning in 2026 and thereafter, $332.00 plus 2.75% of the amount in excess of $26,050.” Ohio used to have five brackets topping out near 4%; that structure is gone, and calculators still showing it are years out of date.</p>
+
+    <h3>At what salary does Ohio income tax actually start?</h3>
+    <p>About $28,450 for a single filer, and $30,850 for a married couple filing jointly with two exemptions. Ohio taxes nothing on the first $26,050 of taxable income, and taxable income is your pay minus $2,400 for every exemption you claim. Add the two together and you have the point where the state starts taking anything at all. On $25,000 a single Ohioan pays the state $0.00.</p>
+
+    <h3>Is it true that one extra dollar can cost $332 in Ohio?</h3>
+    <p>Yes, and it is in the law rather than a rounding artefact. The statute says nothing is owed at or below $26,050 of taxable income, then “$332.00 plus 2.75% of the amount in excess of $26,050”. So at $28,450 of salary a single filer owes $0.00, and at $28,451 they owe $332.03. That one dollar costs $332.03. Ohio's own IT 1040 booklet describes it the same way: its worked example says the taxpayer “owes $342 on the first $26,050 of income” for 2025, even though the row above it reads 0.000%. The base falls to $332 for 2026.</p>
+
+    <h3>What is take-home pay on a $75,000 salary in Ohio?</h3>
+    <p>About $59,974 a year, or $4,997.79 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and only $1,619.00 of Ohio income tax — a state rate of 2.16%. Of the states published here that levy an income tax at all, Ohio leaves you the most. School district and municipal income taxes are not included.</p>
+
+    <h3>Why does my Ohio employer withhold more than I owe?</h3>
+    <p>Because the withholding tables and the tax are two different things in Ohio. The Department's own withholding tables effective August 1, 2026 say: “If the wages exceed $1,923, use the last row of the table plus 3.400% of the excess over $1,923.” That is a 3.4% withholding rate against a 2.75% tax. On $75,000 the gap is roughly $931 over a year. It comes back as a refund when you file, but it is money you do not have during the year.</p>
+
+    <h3>Does a 401(k) contribution lower my Ohio tax?</h3>
+    <p>Yes. Ohio taxable income starts from your federal adjusted gross income, and an elective deferral is already out of that figure. On $75,000 with 6% going into a 401(k), your Ohio tax falls by $123.75. That is a small number because the rate is small — the same contribution saves far more federal tax. The rule is not universal either: in Pennsylvania the same worker's state tax falls by $0.00, nothing at all.</p>
+
+    <h3>How much is the Ohio personal exemption in 2026?</h3>
+    <p>$2,400 per person if your income is $40,000 or less, $2,150 between $40,001 and $80,000, and $1,900 above that — claimed for yourself, your spouse and each dependant. Two things to know. The amount falls as you earn more, which no other state on this site does. And for 2026 the exemption disappears entirely above $500,000 of income, down from $750,000 in 2025.</p>
+
+    <h3>What is $20 an hour after taxes in Ohio?</h3>
+    <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,905 after tax, which works out at $16.78 an hour in real terms. Ohio takes only $700.50 of that for the year — 1.68% of gross. Federal tax and FICA take far more.</p>
+
+    <h3>Do Ohio school districts charge their own income tax?</h3>
+    <p>Many do, and it is separate from both the state tax and any city tax. The Department's IT 1040 booklet lists the rate for each district as a four-digit decimal; the rates run from 0.25% to 2%. Districts also use one of two bases: a “traditional” base of modified adjusted gross income less exemptions, or an “earned income” base that looks only at wages. It is filed on a separate return, the SD 100. On $75,000 a school district levy is worth between $187.50 and $1,500.00 a year, and none of it is in the figures on this page. Use the Department's Finder tool at tax.ohio.gov/Finder to see which district you are in.</p>
+
+    <h3>Why is my Ohio paycheck smaller than this calculator says?</h3>
+    <p>In Ohio there are usually three reasons, in this order. Your city almost certainly levies a municipal income tax, which is administered by the city rather than the state and is not modelled here. Your school district may levy one too. And the state withholding tables take more than the tax you owe, which you get back only at filing. After that come the ordinary causes: health premiums and other benefit deductions come out before tax, and a second job pushes federal withholding up.</p>
+  </div>
+
+  <h2>Compare with other states</h2>
+  <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates, state layer only:</p>
+  <ul>
+    <li><a href="/paycheck-calculator/utah/">Utah</a> &mdash; $58,255 take-home, an effective rate of 22.3%. An Utah worker keeps $1,718.50 less than an Ohioan on the same salary.</li>
+    <li><a href="/paycheck-calculator/michigan/">Michigan</a> &mdash; $58,656 take-home, an effective rate of 21.8%. A Michigan worker keeps $1,317.75 less than an Ohioan on the same salary.</li>
+    <li><a href="/paycheck-calculator/illinois/">Illinois</a> &mdash; $58,025 take-home, an effective rate of 22.6%. An Illinois worker keeps $1,948.71 less than an Ohioan on the same salary.</li>
+    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> &mdash; $59,238 take-home, an effective rate of 21.0%. A Pennsylvania worker keeps $736.00 less than an Ohioan on the same salary.</li>
+  </ul>
+  <p>Of every state published here that levies an income tax, <strong>Ohio leaves you the
+  most</strong>. The comparison comes with a warning, though, and it runs the other way from the
+  ranking: the states above are compared on their state layer alone, and Ohio&rsquo;s state layer
+  is the smallest part of an Ohio tax bill. Add a city income tax &mdash; which most working
+  Ohioans pay and which Utah workers do not &mdash; and the gap narrows or reverses. Only the
+  states with no income tax at all are unambiguously cheaper.</p>
+
+  <h2>Related reading</h2>
+  <ul>
+    <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
+    index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/michigan/">Michigan paycheck calculator</a> &mdash; the
+    nearest neighbour, and the other state here where a city tax changes the answer.</li>
+    <li><a href="/paycheck-calculator/utah/">Utah paycheck calculator</a> &mdash; the mirror
+    image: a higher flat rate, but no local layer on top of it at all.</li>
+    <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
+    with its official source, and what these calculators deliberately do not model.</li>
+    <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,
+    credits and W-4 settings, and how much difference is normal.</li>
+  </ul>
+
+  </div>
+
+  <h2>Browse paycheck calculators by state</h2>
+  <ul class="state-grid">
+    <li>Alabama</li>
+    <li>Alaska</li>
+    <li>Arizona</li>
+    <li>Arkansas</li>
+    <li>California</li>
+    <li>Colorado</li>
+    <li>Connecticut</li>
+    <li>Delaware</li>
+    <li><a href="/paycheck-calculator/florida/">Florida</a></li>
+    <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
+    <li>Hawaii</li>
+    <li>Idaho</li>
+    <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
+    <li>Indiana</li>
+    <li>Iowa</li>
+    <li>Kansas</li>
+    <li>Kentucky</li>
+    <li>Louisiana</li>
+    <li>Maine</li>
+    <li>Maryland</li>
+    <li>Massachusetts</li>
+    <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
+    <li>Minnesota</li>
+    <li>Mississippi</li>
+    <li>Missouri</li>
+    <li>Montana</li>
+    <li>Nebraska</li>
+    <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
+    <li>New Hampshire</li>
+    <li>New Jersey</li>
+    <li>New Mexico</li>
+    <li>New York</li>
+    <li>North Carolina</li>
+    <li>North Dakota</li>
+    <li><a href="/paycheck-calculator/ohio/">Ohio</a></li>
+    <li>Oklahoma</li>
+    <li>Oregon</li>
+    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
+    <li>Rhode Island</li>
+    <li>South Carolina</li>
+    <li>South Dakota</li>
+    <li>Tennessee</li>
+    <li><a href="/paycheck-calculator/texas/">Texas</a></li>
+    <li><a href="/paycheck-calculator/utah/">Utah</a></li>
+    <li>Vermont</li>
+    <li>Virginia</li>
+    <li><a href="/paycheck-calculator/washington/">Washington</a></li>
+    <li>West Virginia</li>
+    <li>Wisconsin</li>
+    <li>Wyoming</li>
+  </ul>
+
+  <p class="dates">
+    Published <time datetime="2026-09-02">September 2, 2026</time> &middot;
+    Last updated <time datetime="2026-09-02">September 2, 2026</time>.
+  </p>
+
+  <p class="disclaimer">
+    StateLine Calc provides general information for educational purposes only. It is not
+    financial, tax or legal advice. Results are estimates based on published 2026 federal and
+    Ohio rates and exclude municipal and school district income tax.
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>StateLine Calc</strong> &mdash; free money calculators for all 50 states.
+    No sign-up. No personal data required.</p>
+    <p class="micro u-on-dark">
+      <a href="/about/">About</a> &middot;
+      <a href="/methodology/">Methodology</a> &middot;
+      <a href="/contact/">Contact</a> &middot;
+      <a href="/privacy/">Privacy</a> &middot;
+      <a href="/terms/">Terms</a> &middot;
+      <a href="/disclaimer/">Disclaimer</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/data/rates-2026.js"></script>
+<script src="/assets/calc-paycheck.js"></script>
+</body>
+</html>

@@ -562,6 +562,106 @@ const RATES_2026 = {
           phaseOutRate:  0.013
         }
       }
+    },
+
+    /* OHIO — l'Etat le plus difficile a sourcer du fichier, et celui qui a
+       oblige le moteur a apprendre deux mecanismes nouveaux.
+
+       ⚠️ CE QUI NE MARCHE PAS, pour ne pas le refaire :
+       - tax.ohio.gov/individual/resources/annual-tax-rates repond bien HTTP 200
+         mais dit, verbatim, le 2026-09-02 : « The following are the Ohio
+         individual income tax brackets for 2005 through 2025. » Le fisc de
+         l'Ohio NE PUBLIE PAS 2026 sur cette page.
+       - codes.ohio.gov : ERR_CONNECTION_TIMED_OUT au navigateur pilote,
+         ECONNREFUSED a WebFetch. legislature.ohio.gov : ECONNREFUSED.
+
+       ⚠️ CE QUI MARCHE :
+       - la LOI, dans l'instantane Wayback du 2026-08-04 de codes.ohio.gov ;
+       - le CDN de l'Etat, dam.assets.ohio.gov, qui repond HTTP 200 la ou
+         tax.ohio.gov ne sert rien. C'est de la que viennent les tables de
+         retenue 2026 et la notice IT 1040.
+
+       LE BAREME. Source : Ohio Revised Code 5747.02(A)(3), lu le 2026-09-02
+       dans web.archive.org/web/20260804141655/https://codes.ohio.gov/ohio-revised-code/section-5747.02
+       Verbatim, sur le revenu hors activite professionnelle, apres exonerations :
+         « If the balance thus obtained is equal to or less than twenty-six
+           thousand fifty dollars, no tax shall be imposed on that balance. »
+         « (c) For taxable years beginning in 2026 and thereafter, $332.00 plus
+           2.75% of the amount in excess of $26,050. »
+
+       ⚠️ CE N'EST PAS UNE PENTE, C'EST UNE MARCHE. A 26 050 $ d'imposable
+       l'impot est nul ; a 26 051 $ il est de 332,03 $. Le saut est dans la loi,
+       pas dans notre lecture : la meme structure vaut pour 2024 (360,69 $) et
+       2025 (342,00 $), toutes deux lues sur la meme page. D'ou la cle "notch".
+
+       L'EXONERATION. Source : Ohio Revised Code 5747.025, « Effective:
+       September 30, 2025 », « Latest Legislation: House Bill 96 », lue dans
+       l'instantane Wayback du 2026-06-09. Elle vaut PAR PERSONNE — le
+       declarant, le conjoint, et chaque personne a charge — et son MONTANT
+       depend du revenu. D'ou la cle "deductionByIncome", que le moteur ne
+       savait pas faire avant l'Ohio.
+
+       ⚠️ LE CHIFFRE 2026 N'EST PAS PUBLIE, ET ON ECRIT POURQUOI ON PREND
+       CELUI-LA. La loi fixe un socle (2 350 / 2 100 / 1 850 $) puis ordonne,
+       division (C), une indexation annuelle « in August of each year » sur le
+       deflateur du PIB, arrondie au multiple de 50 $ superieur — avec cette
+       phrase qui decide tout, verbatim : « The commissioner shall not make a
+       new adjustment in any calendar year in which the amount resulting from
+       the adjustment would be less than the amount resulting from the
+       adjustment in the preceding calendar year. » L'exoneration ne peut donc
+       PAS baisser.
+       Les montants 2025 REELLEMENT appliques sont lus verbatim dans la notice
+       officielle « 2025 Ohio IT 1040 », p.17, servie par dam.assets.ohio.gov :
+         « $40,000 or less  $2,400 » · « $40,001 - $80,000  $2,150 » ·
+         « $80,001 - $749,999  $1,900 » · « $750,000 or greater  $0 ».
+       On retient ces montants pour 2026. C'est le PLANCHER que la loi garantit.
+       Erreur maximale possible : un cran d'indexation, soit 50 $ d'exoneration,
+       soit 1,38 $ d'impot. C'est ecrit sur la page.
+
+       ⚠️ LE PLAFOND CHANGE EN 2026, LUI, ET IL EST DANS LA LOI : l'exoneration
+       n'est accordee que si le revenu modifie est inferieur a « seven hundred
+       fifty thousand dollars for taxable years beginning in 2025 or FIVE
+       HUNDRED THOUSAND dollars for taxable years beginning in 2026 or
+       thereafter ». D'ou deductionPhaseOut a 500 000 et non 750 000.
+
+       Pas d'employeePrograms : aucune retenue salariale autre que l'impot sur
+       le revenu dans les tables de retenue 2026.
+
+       ⚠️ NON MODELISE, ET DIT SUR LA PAGE : l'impot de district scolaire.
+       La notice IT 1040 en donne le taux district par district, verbatim :
+       « The tax rate for each district is listed as a four-digit decimal.
+       Districts with a "T" use the traditional tax base. Districts with an "E"
+       use the "earned income" tax base. » Les taux lus vont de .0025 a .0200,
+       soit 0,25 % a 2 %. Comme Detroit pour le Michigan, le calculateur ne
+       modelise que la couche Etat et l'ecrit noir sur blanc.
+
+       ⚠️ A SAVOIR AUSSI, ET C'EST L'ANGLE DE LA PAGE : la RETENUE de l'Ohio
+       n'est pas l'IMPOT. Les tables 2026 (dam.assets.ohio.gov,
+       « Withholding Tables (Effective August 1, 2026) ») disent, verbatim :
+       « If the wages exceed $1,923, use the last row of the table plus 3.400%
+       of the excess over $1,923. » 3,4 % de retenue pour un impot a 2,75 % :
+       l'employeur prend plus que le du. Notre calculateur donne l'IMPOT
+       REELLEMENT DU, comme pour tous les autres Etats. */
+    ohio: {
+      name: "Ohio",
+      abbr: "OH",
+      incomeTax: {
+        hasIncomeTax: true,
+        deductionByIncome: [
+          { upTo: 40000, amounts: { single: 2400, marriedJoint: 4800, headOfHousehold: 2400 } },
+          { upTo: 80000, amounts: { single: 2150, marriedJoint: 4300, headOfHousehold: 2150 } },
+          { upTo: null,  amounts: { single: 1900, marriedJoint: 3800, headOfHousehold: 1900 } }
+        ],
+        deductionPhaseOut: {
+          single: 500000, marriedJoint: 500000, headOfHousehold: 500000
+        },
+        brackets: {
+          single:          [[26050, 0], [Infinity, 0.0275]],
+          marriedJoint:    [[26050, 0], [Infinity, 0.0275]],
+          headOfHousehold: [[26050, 0], [Infinity, 0.0275]]
+        },
+        notch: { over: 26050, add: 332 }
+      }
     }
   }
 };
