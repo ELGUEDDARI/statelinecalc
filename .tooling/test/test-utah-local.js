@@ -9,11 +9,12 @@
  * navigateur qu'on ne peut pas require. Un ecart entre les deux ne se verrait
  * donc nulle part : la page publierait un tableau juste et un calculateur faux.
  *
- * Ce test pilote le formulaire pour de vrai, a quatre salaires choisis de part
- * et d'autre du point ou le credit disparait, et compare ce qui est RENDU a
+ * Ce test pilote le formulaire pour de vrai, a six salaires choisis de part et
+ * d'autre du point ou le credit disparait, et compare ce qui est RENDU a
  * l'ecran a ce que dit la bibliotheque Node.
  *
- * Lancer : node .tooling/test/test-utah-local.js
+ * Lancer : node .tooling/test/test-utah-local.js           (fichier local)
+ *          node .tooling/test/test-utah-local.js --servi   (le site EN LIGNE)
  */
 const http = require("http");
 const fs = require("fs");
@@ -75,7 +76,12 @@ const CAS = [
     }
   });
 
-  await page.goto(`http://localhost:${PORT}/paycheck-calculator/utah/`, { waitUntil: "networkidle" });
+  /* Sans argument : le fichier local, avant publication. Avec --servi : le
+     site REELLEMENT servi, pour le controle du dernier kilometre. */
+  const BASE = process.argv.includes("--servi")
+    ? "https://statelinecalc.com" : "http://localhost:" + PORT;
+  console.log("\ncible : " + BASE + "/paycheck-calculator/utah/");
+  await page.goto(BASE + "/paycheck-calculator/utah/", { waitUntil: "networkidle" });
 
   console.log("\n--- la page s'affiche ---");
   dit("le titre H1 est celui de l'Utah",
