@@ -102,7 +102,7 @@ const faq = [
    + "one exemption and no retirement contribution. That is after " + $(a75.federal) + " of federal "
    + "income tax, $" + c0(a75.ss + a75.med) + " of Social Security and Medicare and "
    + $$(a75.etat) + " of Michigan income tax — an effective rate of "
-   + (a75.taux * 100).toFixed(1) + "%. City income tax is not included; about two dozen Michigan "
+   + (a75.taux * 100).toFixed(1) + "%. City income tax is not included; a number of Michigan "
    + "cities levy one, and Detroit's is the largest."],
 
   ["Does a 401(k) contribution lower my Michigan tax?",
@@ -127,7 +127,7 @@ const faq = [
    + "models the state layer only."],
 
   ["Which Michigan cities have an income tax?",
-   "About two dozen, and Detroit is by far the largest. A Michigan city income tax is levied under "
+   "A number of them, and Detroit is by far the largest. A Michigan city income tax is levied under "
    + "the state's Uniform City Income Tax Ordinance and is withheld by your employer alongside the "
    + "state tax, so it is genuinely additional money. Detroit is the one this page quotes a rate "
    + "for, because its rate is published in a Treasury withholding guide we can cite. If you live "
@@ -165,7 +165,7 @@ const html = `<!DOCTYPE html>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
 <title>Michigan Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
-<meta name="description" content="Free Michigan paycheck calculator, 2026. Hourly or salary. Michigan taxes income at a flat 4.25% after a $5,900 personal exemption per person &mdash; and about two dozen Michigan cities, Detroit included, add their own tax on top.">
+<meta name="description" content="Free Michigan paycheck calculator, 2026. Hourly or salary. Michigan taxes income at a flat 4.25% after a $5,900 personal exemption per person &mdash; and Michigan cities, Detroit included, may add their own tax on top.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/michigan/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -244,7 +244,7 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
     <p>Michigan taxes income at a <strong>flat 4.25%</strong> in 2026, applied after a
     <strong>personal exemption of ${N("$" + c0(EXO))} for each exemption you claim</strong>. On
     $75,000, a single filer pays ${N($$(a75.etat))} to the state and keeps about
-    ${N($(a75.net))} a year. About two dozen Michigan cities levy their own income tax on top;
+    ${N($(a75.net))} a year. A number of Michigan cities levy their own income tax on top;
     Detroit takes ${N("2.4%")} from residents.</p>
   
     <p class="answer-jump"><a href="#calc-h">Calculate my pay &darr;</a></p>
@@ -336,7 +336,7 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
     <p>Michigan has one of the shorter state tax rules in the country: one flat rate, one
     exemption, no brackets. Your pay minus ${N("$" + c0(EXO))} for each exemption you claim,
     multiplied by 4.25%. That is the whole state income tax. What makes a Michigan paycheck harder
-    to predict than the rule suggests is the layer underneath it &mdash; roughly two dozen Michigan
+    to predict than the rule suggests is the layer underneath it &mdash; a number of Michigan
     cities levy their own income tax, and whether one applies to you depends on where you live and
     where you work rather than on anything about your salary.</p>
 
@@ -514,9 +514,9 @@ ${tableHoraire}
   <strong>${N(Math.round(partDetroit * 100) + "%")} again</strong> on top of the state layer. A
   non-resident working in the city pays ${N($$(detNon60))}. Nothing on this page models either.</p>
 
-  <h3>About two dozen Michigan cities levy an income tax</h3>
+  <h3>Michigan cities may levy an income tax, and a number do</h3>
   <p>Detroit is the largest but not the only one. Michigan cities may levy an income tax under the
-  state&rsquo;s Uniform City Income Tax Ordinance, and roughly two dozen do. It is withheld by your
+  state&rsquo;s Uniform City Income Tax Ordinance, and and a number do. It is withheld by your
   employer alongside the state tax, it applies to residents wherever they work and to non-residents
   on the work they perform in the city, and it is genuinely additional money. Your city&rsquo;s
   income tax office is the only reliable source for its rate; a statewide calculator cannot know
