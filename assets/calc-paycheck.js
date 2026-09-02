@@ -241,11 +241,35 @@
       hoursField.hidden = !needed;
     }
 
+    /* Lit un montant comme un LECTEUR le lit, pas comme parseFloat le lit.
+       Trouve le 02/09/2026 en se mettant a la place d'un visiteur : on tape
+       "75,000", la forme que tout Americain ecrit, et parseFloat s'arrete a la
+       virgule. Le site repondait alors "votre net : $5.77 par mois" - un
+       resultat FAUX, affiche sans le moindre avertissement, sur un salaire de
+       75 000 $ lu comme 75 $. "$75000" etait de son cote purement REFUSE.
+       Un calculateur d'argent qui se trompe en silence sur la saisie la plus
+       courante est pire qu'un calculateur qui refuse.
+
+       On accepte donc ce que les gens ecrivent : le signe dollar, les espaces
+       (y compris l'insecable que collent les copier-coller), et la virgule des
+       milliers. Convention americaine, assumee : la virgule separe les
+       milliers, le point les decimales. On refuse tout le reste. */
+    function montantSaisi(texte) {
+      if (typeof texte !== "string") return NaN;
+      var net = texte.replace(/[\s\u00a0\u202f]/g, "").replace(/^[$]/, "").replace(/,/g, "");
+      /* Apres nettoyage il ne reste qu'un nombre, sinon on refuse. Sans ce
+         controle, "12abc" passerait pour 12. */
+      if (!/^\d*\.?\d+$/.test(net)) return NaN;
+      return parseFloat(net);
+    }
+
     function read() {
-      var salary = parseFloat(form.elements.salary.value);
+      var salary = montantSaisi(form.elements.salary.value);
       var per = form.elements.period.value;
       var field = form.elements.salary.closest(".field");
-      var hours = form.elements.hours ? form.elements.hours.value : HOURS_DEFAULT;
+      var hoursBrut = form.elements.hours ? form.elements.hours.value : String(HOURS_DEFAULT);
+      var hours = montantSaisi(hoursBrut);
+      if (!isFinite(hours) || hours <= 0) hours = HOURS_DEFAULT;
 
       if (!isFinite(salary) || salary <= 0) {
         field.classList.add("is-invalid");
@@ -253,11 +277,14 @@
       }
       field.classList.remove("is-invalid");
 
+      var retraite = montantSaisi(form.elements.retirement.value);
+      if (!isFinite(retraite) || retraite < 0) retraite = 0;
+
       return {
         grossAnnual: salary * periodsPerYear(per, hours),
         hoursPerWeek: hours,
         filingStatus: form.elements.filing.value,
-        retirementPct: (parseFloat(form.elements.retirement.value) || 0) / 100,
+        retirementPct: retraite / 100,
         state: stateKey,
         waCaresApplies: form.elements.wacares ? form.elements.wacares.checked : true
       };
@@ -288,7 +315,12 @@
 
       var html =
         '<p class="result-label">Your take-home pay</p>' +
-        '<p class="result-head num">' + v(a.net) + " <span class=\"result-unit\">/ " +
+        /* « $59,973.50 / per year » : la barre ET « per » disaient la meme
+           chose, et aucun anglophone n'ecrit les deux. On garde le libelle
+           seul, qui se lit tel quel pour chacune des six periodes : per year,
+           per month, twice a month, every two weeks, per week, per hour.
+           Corrige le 02/09/2026, sur la ligne la plus lue du site. */
+        '<p class="result-head num">' + v(a.net) + " <span class=\"result-unit\">" +
         label.toLowerCase() + "</span></p><hr>" +
         '<dl class="u-m-0">' +
         '<div class="line"><dt>Gross pay</dt><dd class="num">' + v(a.gross) + "</dd></div>" +
@@ -303,7 +335,27 @@
       out.innerHTML = html;
     }
 
-    form.addEventListener("submit", function (e) { e.preventDefault(); render(); });
+    /* Sur un telephone, le resultat vit sous le bouton et donc SOUS l'ecran :
+       le visiteur appuie sur « Calculate » et rien ne bouge devant lui. Vu en
+       capture le 02/09/2026 sur un iPhone 13 — il faut deviner qu'il faut
+       faire defiler pour trouver sa reponse. On l'amene donc au resultat,
+       mais seulement s'il n'est pas deja visible : deplacer la page sous les
+       yeux de quelqu'un qui voyait deja sa reponse serait pire que le
+       probleme. Le clavier virtuel se referme au passage. */
+    function montrerLeResultat() {
+      if (!out) return;
+      var r = out.getBoundingClientRect();
+      var dejaVu = r.top >= 0 && r.bottom <= (window.innerHeight || 0);
+      if (dejaVu) return;
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      out.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      render();
+      montrerLeResultat();
+    });
     form.addEventListener("input", render);
     form.addEventListener("change", render);
     render();   // the block is never empty, so it never grows on first use

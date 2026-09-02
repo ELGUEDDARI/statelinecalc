@@ -256,7 +256,12 @@ tbody tr:nth-child(odd) { background: var(--surface); }
 .u-fw-normal { font-weight: 400; }
 .u-on-dark   { color: var(--on-dark); }
 .caption-left { text-align: left; padding-bottom: var(--s-2); }
-.result-unit { font-size: 20px; font-weight: 400; }
+/* L'unite reste collee au montant. Sur un iPhone, « $59,973.50 / per year »
+   se coupait entre « per » et « year », laissant « year » seul sur une ligne
+   sous le seul chiffre que le visiteur regarde. Constate en capture le
+   02/09/2026. */
+.result-unit { font-size: 20px; font-weight: 400; white-space: nowrap; }
+@media (max-width: 420px) { .result-head { font-size: 32px; } }
 
 /* Marque de l'en-tete. Le SVG est inline dans le HTML : rien a telecharger,
    donc aucun decalage de mise en page au chargement, et rien a autoriser dans

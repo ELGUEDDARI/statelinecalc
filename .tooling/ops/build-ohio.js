@@ -357,7 +357,7 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
     the state ${N($$(a75.etat))} and keep about ${N($(a75.net))} a year, a state rate of
     ${N(effet75.toFixed(2) + "%")}. The dollar that crosses the line costs ${N($$(coutDuDollar))},
     because the law adds ${N($(MARCHE))} at once. Your city is the bigger number:
-    ${N(MUNI_NB + " Ohio municipalities")} levy their own income tax on top, and it is not
+    ${N(String(MUNI_NB)) + " Ohio municipalities"} levy their own income tax on top, and it is not
     included here.</p>
   </div>
 
@@ -659,8 +659,8 @@ ${tableHoraire}
 
   <h3>Your city can easily take more than the state does</h3>
   <p>This is the fact that matters most on this page, and it is the one usually left out.
-  <strong>${N(MUNI_NB + " Ohio municipalities")}</strong> &mdash; ${N(MUNI_VILLES + " cities")}
-  and ${N(MUNI_VILLAGES + " villages")} &mdash; levied their own income tax, according to the
+  <strong>${N(String(MUNI_NB)) + " Ohio municipalities"}</strong> &mdash; ${N(String(MUNI_VILLES)) + " cities"}
+  and ${N(String(MUNI_VILLAGES)) + " villages"} &mdash; levied their own income tax, according to the
   Department of Taxation&rsquo;s own Table LG-11, and between them they collected
   ${N("$" + MUNI_COLLECTE.toLocaleString("en-US") + " million")} in a single year. For comparison,
   <a href="/paycheck-calculator/michigan/">Michigan</a>, the other state here with a city tax
@@ -685,7 +685,7 @@ ${tableHoraire}
   ${N((MUNI_MAX * 100).toFixed(0) + "%")}, it is between ${N($$(muniBas75))} and
   ${N($$(muniHaut75))}. <strong>The crossover is
   ${N((muniEgalite * 100).toFixed(2) + "%")}</strong>: above that rate your city takes more of
-  your pay than Ohio does, and ${N(MUNI_AU_DESSUS + " of the " + MUNI_NB)} municipalities in the
+  your pay than Ohio does, and ${N(String(MUNI_AU_DESSUS)) + " of the " + N(String(MUNI_NB))} municipalities in the
   Department&rsquo;s table are.</p>
   <p>The shape of that table says something the range alone does not.
   <strong>${N(String(MUNI_A_1PCT))} of the ${N(String(MUNI_NB))}</strong> &mdash; more than a
@@ -746,7 +746,7 @@ ${tableHoraire}
   <p>In Ohio this is the mistake that costs the most, and the arithmetic says so plainly. The
   state layer is genuinely small &mdash; ${N($$(a75.etat))} on ${N($(75000))}. A city levying the
   ${N("1%")} it can set without a vote takes ${N($$(muniVote75))} on the same salary, and
-  ${N(MUNI_NB + " Ohio municipalities")} levy something. Add a school district levy on top and an
+  ${N(String(MUNI_NB)) + " Ohio municipalities"} levy something. Add a school district levy on top and an
   Ohio budget built on the state figure alone is wrong by more than the state figure itself.</p>
 
   <h3>Expecting the calculator to match the paystub to the dollar</h3>
@@ -803,7 +803,7 @@ ${voisins.map(v => {
   most</strong>. The comparison comes with a warning, though, and it runs the other way from the
   ranking: the states above are compared on their state layer alone, and Ohio&rsquo;s state layer
   is the smallest part of an Ohio tax bill. Add a city income tax &mdash; levied by
-  ${N(MUNI_NB + " municipalities")} and worth ${N($$(muniVote75))} on this salary at the
+  ${N(String(MUNI_NB)) + " municipalities"} and worth ${N($$(muniVote75))} on this salary at the
   ${N("1%")} a city can set unaided &mdash; and the ranking reverses against
   <a href="/paycheck-calculator/utah/">Utah</a>, where no city tax comes out of pay at all. Only
   the states with no income tax at all are unambiguously cheaper.</p>
