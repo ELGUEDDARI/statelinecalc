@@ -33,7 +33,25 @@ if (!S) {
 
 const HEURES_AN = 40 * 52;   // 2 080
 
-const progressiveTax = LIB.progressiveTax;
+/* ⚠️ LE CALCUL N'EST PAS REFAIT ICI. Il passe par calcul(), la fonction
+   complete de .tooling/lib/paie.js, et non par ses briques.
+
+   Pourquoi cette precision, ecrite le 02/09/2026 : jusqu'a ce jour ce fichier
+   empruntait progressiveTax() et deductionEtat() puis REASSEMBLAIT le total
+   lui-meme. Il heritait donc des formules mais pas des regles ajoutees ensuite
+   au moteur, et se trompait EN SILENCE :
+     - Pennsylvanie, depuis le 28/08 : la retenue chomage salariee de 0,07 %
+       (employeePrograms) manquait — jusqu'a 105 $ par an ;
+     - Utah, publie le matin du 02/09 : le credit qui s'efface manquait ;
+     - Ohio, publie le soir du 02/09 : la marche de 332 $ manquait, et le
+       tableau annoncait 43 $ d'impot sur 30 000 $ au lieu de 374,63 $.
+   Le commit du 28/08 avait supprime les copies des FORMULES, pas celle de
+   l'ASSEMBLAGE. C'est ce qui restait a faire.
+
+   Regle a tenir : tout nouveau mecanisme d'Etat s'ajoute a calcul() et nulle
+   part ailleurs. test-tableaux.js compare desormais chaque ligne publiee a
+   calcul() et echoue si les deux divergent d'un dollar. */
+const calcul = LIB.calcul;
 
 const money = n => "$" + Math.round(n).toLocaleString("en-US");
 const money2 = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -53,23 +71,9 @@ const taux = [
   40, 45, 50, 55, 60, 65, 70, 75, 85, 100];
 
 const rows = taux.map(h => {
-  const gross = h * HEURES_AN;
-  const federal = progressiveTax(Math.max(0, gross - R.federal.standardDeduction.single),
-                                 R.federal.brackets.single);
-  const ss = Math.min(gross, R.fica.socialSecurity.wageBase) * R.fica.socialSecurity.rate;
-  const med = gross * R.fica.medicare.rate
-            + Math.max(0, gross - R.fica.additionalMedicare.threshold) * R.fica.additionalMedicare.rate;
-  const stateIncome = S.incomeTax.hasIncomeTax
-    ? progressiveTax(Math.max(0, gross - deductionEtat(S, "single", gross)),
-                     S.incomeTax.brackets.single)
-    : 0;
-  const pl = S.paidLeave
-    ? (S.paidLeave.wageCap ? Math.min(gross, S.paidLeave.wageCap) : gross) * S.paidLeave.employeeRate
-    : 0;
-  const wc = S.waCares ? gross * S.waCares.rate : 0;
-  const total = federal + ss + med + stateIncome + pl + wc;
-  const net = gross - total;
-  return { h, gross, net, mensuel: net / 12, netHoraire: net / HEURES_AN, taux: total / gross };
+  const r = calcul(cle, h * HEURES_AN, "single");
+  return { h, gross: r.brut, net: r.net, mensuel: r.net / 12,
+           netHoraire: r.net / HEURES_AN, taux: r.taux };
 });
 
 /* Un tableau faux ne doit jamais pouvoir etre publie : on s'arrete en erreur

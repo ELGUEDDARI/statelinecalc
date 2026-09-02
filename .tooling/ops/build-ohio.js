@@ -46,6 +46,57 @@ const RETENUE_SEUIL_HEBDO = 1923;
    a .0200, « Districts with a "T" use the traditional tax base. Districts with
    an "E" use the "earned income" tax base. » */
 const SD_MIN = 0.0025, SD_MAX = 0.0200;
+/* L'IMPOT MUNICIPAL. Source : Ohio Department of Taxation, Tax Analysis
+   Division, « Table LG-11 No. 75 (2020) », datee du 28 septembre 2020,
+   « MUNICIPAL INCOME TAX: Tax Rates and Net Collections, by Municipality,
+   Calendar Year 2018 », servie par dam.assets.ohio.gov. Lue le 2026-09-02.
+
+   ⚠️ C'EST LA DERNIERE QUE LE DEPARTMENT PUBLIE. Les millesimes cy19 a cy25
+   repondent tous HTTP 404 au meme emplacement, verifie le 2026-09-02. D'ou la
+   separation stricte, sur la page comme ici :
+     - la REGLE DE DROIT est statutaire et ne vieillit pas ;
+     - les CHIFFRES sont ceux de 2018 et sont ECRITS comme tels.
+   On ne publie AUCUN taux de ville en particulier : Cincinnati, par exemple, a
+   change de taux apres 2018. Le lecteur est renvoye a The Finder pour sa
+   propre adresse (thefinder.tax.ohio.gov, HTTP 200 le 2026-09-02).
+
+   Verbatim, dans l'ordre ou la page les utilise :
+   « Municipal income taxes are generally imposed on wages, salaries, and other
+     compensation earned by residents and nonresidents who work in the
+     municipality. »
+   « Most municipalities allow a partial or full credit to residents for
+     municipal income taxes paid to another municipality where they are
+     employed. »
+   « Administration of the municipal income tax is strictly local, either by
+     the cities and villages themselves or by central collection agencies under
+     contract with various municipalities. »
+   « State law requires that the rate must be uniform within a municipality and
+     cannot exceed one percent without approval by voters. »
+   « Rates of taxation in 2018 ranged from a low of 0.50 percent (eleven
+     municipalities) to a high of 3.00 percent in the City of Bedford and Parma
+     Heights (Cuyahoga). »
+   « a total of 642 municipalities (242 cities and 400 villages) levied the
+     tax » · « the total CY18 municipal income tax net collections was
+     $5,599.6 million ». */
+const MUNI_MIN = 0.005, MUNI_MAX = 0.03;
+const MUNI_SANS_VOTE = 0.01;
+const MUNI_NB = 642, MUNI_VILLES = 242, MUNI_VILLAGES = 400;
+const MUNI_ANNEE = 2018;
+const MUNI_COLLECTE = 5599.6;              // en millions de dollars, CY2018
+/* La DISTRIBUTION des 642 taux, extraite de la table elle-meme le 2026-09-02
+   (pdftotext -layout, puis comptage). L'extraction se recoupe sur TROIS points
+   avec la narration de la meme table, ce qui la valide :
+     - 642 taux extraits, et le texte dit « a total of 642 municipalities » ;
+     - 11 municipalites a 0,500 %, et le texte dit « a low of 0.50 percent
+       (eleven municipalities) » ;
+     - 2 municipalites a 3,000 %, et le texte dit « a high of 3.00 percent in
+       the City of Bedford and Parma Heights » — deux noms.
+   Trois recoupements sur trois : le reste de la distribution est lisible avec
+   la meme confiance. */
+const MUNI_A_1PCT = 259;      // pile au plafond que la loi autorise sans vote
+const MUNI_MEDIAN = 0.015;    // 321e valeur sur 642
+const MUNI_AU_DESSUS = 61;    // au-dessus du point de bascule calcule plus bas
+const MUNI_2PCT_PLUS = 181;   // a 2,000 % ou plus
 
 /* Le salaire a partir duquel l'Ohio prend quelque chose : le seuil imposable
    plus l'exoneration. C'est le chiffre que personne d'autre ne publie. */
@@ -83,6 +134,18 @@ const gainPA = pa75.etat - calcul("pennsylvania", 75000, "single", PCT_401K).eta
 const effet30 = a30.etat / 30000 * 100;
 const effet75 = a75.etat / 75000 * 100;
 const effet250 = a250.etat / 250000 * 100;
+
+/* Ce que la couche municipale ajouterait sur un salaire moyen, aux deux bouts
+   de la fourchette publiee par l'Etat — et au plafond que la loi fixe sans
+   vote. C'est le chiffre qui manquait a la page ce matin. */
+const muniBas75 = 75000 * MUNI_MIN;
+const muniHaut75 = 75000 * MUNI_MAX;
+const muniVote75 = 75000 * MUNI_SANS_VOTE;
+/* A partir de quel taux municipal la ville prend-elle plus que l'Etat, sur
+   75 000 $ ? On le CALCULE au lieu de l'affirmer : la premiere version de
+   cette page disait « votre ville prend presque surement plus que l'Etat »,
+   ce qui est FAUX au plancher de 1 % — 750 $ contre 1 619 $. */
+const muniEgalite = a75.etat / 75000;
 
 /* Ce que le district scolaire ajouterait sur un salaire moyen, aux deux bouts
    de la fourchette publiee par l'Etat. */
@@ -176,8 +239,14 @@ const faq = [
 
   ["Why is my Ohio paycheck smaller than this calculator says?",
    "In Ohio there are usually three reasons, in this order. Your city almost certainly levies a "
-   + "municipal income tax, which is administered by the city rather than the state and is not "
-   + "modelled here. Your school district may levy one too. And the state withholding tables take "
+   + "municipal income tax — " + MUNI_NB + " Ohio municipalities did so in " + MUNI_ANNEE
+   + ", per the Department's own Table LG-11 — which is administered by the city rather than the "
+   + "state and is not modelled here. A city may set up to 1% on its own authority and more if its "
+   + "voters approve, so on $75,000 that is " + $$(muniVote75) + " a year at the 1% floor and "
+   + "more where voters have gone higher: 61 of the 642 municipalities charge above 2.16%, the "
+   + "rate at which a city takes more of a $75,000 salary than Ohio does. Your school district "
+   + "may levy one too. And the state "
+   + "withholding tables take "
    + "more than the tax you owe, which you get back only at filing. After that come the ordinary "
    + "causes: health premiums and other benefit deductions come out before tax, and a second job "
    + "pushes federal withholding up."]
@@ -293,7 +362,9 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
     does not start until about ${N($(DEPART))} of salary for a single filer. On $75,000 you pay
     the state ${N($$(a75.etat))} and keep about ${N($(a75.net))} a year, a state rate of
     ${N(effet75.toFixed(2) + "%")}. The dollar that crosses the line costs ${N($$(coutDuDollar))},
-    because the law adds ${N($(MARCHE))} at once.</p>
+    because the law adds ${N($(MARCHE))} at once. Your city is the bigger number:
+    ${N(MUNI_NB + " Ohio municipalities")} levy their own income tax on top, and it is not
+    included here.</p>
   </div>
 
   <section aria-labelledby="calc-h">
@@ -592,14 +663,51 @@ ${tableHoraire}
   <a href="/paycheck-calculator/pennsylvania/">a Pennsylvania worker</a> making the same
   contribution sees their state tax fall by ${N($$(gainPA))} &mdash; nothing at all.</p>
 
-  <h3>Your city almost certainly takes more than the state does</h3>
-  <p>Ohio municipal income tax is levied and collected by cities themselves rather than by the
-  state, which is why it appears on your pay stub as a separate line and never on your Ohio IT
-  1040. For a great many Ohio workers the city takes a larger share of their pay than the state
-  does &mdash; a consequence of a 2.75% state rate rather than of unusually high city rates.</p>
-  <p>We do not quote a rate here, because there is no single statewide figure we can source: each
-  city sets its own, and residents and non-residents may be treated differently. Your pay stub and
-  your city&rsquo;s income tax office are the reliable sources. Nothing on this page includes it.</p>
+  <h3>Your city can easily take more than the state does</h3>
+  <p>This is the fact that matters most on this page, and it is the one usually left out.
+  <strong>${N(MUNI_NB + " Ohio municipalities")}</strong> &mdash; ${N(MUNI_VILLES + " cities")}
+  and ${N(MUNI_VILLAGES + " villages")} &mdash; levied their own income tax, according to the
+  Department of Taxation&rsquo;s own Table LG-11, and between them they collected
+  ${N("$" + MUNI_COLLECTE.toLocaleString("en-US") + " million")} in a single year. For comparison,
+  <a href="/paycheck-calculator/michigan/">Michigan</a>, the other state here with a city tax
+  layer, has about two dozen.</p>
+  <p>Three rules decide what it costs you, and all three come from that table:</p>
+  <ul>
+    <li><strong>It follows the work, not just the home.</strong> The tax is
+    &ldquo;imposed on wages, salaries, and other compensation earned by <em>residents and
+    nonresidents who work in the municipality</em>&rdquo;. Commuting in does not put you outside
+    it.</li>
+    <li><strong>You are usually not taxed twice.</strong> &ldquo;Most municipalities allow a
+    partial or full credit to residents for municipal income taxes paid to another municipality
+    where they are employed&rdquo; &mdash; but it is the municipality&rsquo;s choice, not a
+    statewide guarantee.</li>
+    <li><strong>${N("1%")} is the ceiling a city can set on its own.</strong> State law
+    &ldquo;requires that the rate must be uniform within a municipality and cannot exceed one
+    percent without approval by voters&rdquo;. Anything above ${N("1%")} was voted for locally.</li>
+  </ul>
+  <p>The scale, in money, on a ${N($(75000))} salary. At the ${N("1%")} a city can set without
+  a vote, it owes its city ${N($$(muniVote75))} &mdash; about half what the state takes. Across the
+  range the Department&rsquo;s table records, ${N((MUNI_MIN * 100).toFixed(2) + "%")} to
+  ${N((MUNI_MAX * 100).toFixed(0) + "%")}, it is between ${N($$(muniBas75))} and
+  ${N($$(muniHaut75))}. <strong>The crossover is
+  ${N((muniEgalite * 100).toFixed(2) + "%")}</strong>: above that rate your city takes more of
+  your pay than Ohio does, and ${N(MUNI_AU_DESSUS + " of the " + MUNI_NB)} municipalities in the
+  Department&rsquo;s table are.</p>
+  <p>The shape of that table says something the range alone does not.
+  <strong>${N(String(MUNI_A_1PCT))} of the ${N(String(MUNI_NB))}</strong> &mdash; more than a
+  third &mdash; sit at exactly ${N("1.000%")}, the ceiling a council can set without asking its
+  voters. The median rate is ${N("1.5%")}, and ${N(String(MUNI_2PCT_PLUS))} municipalities are at
+  ${N("2%")} or above. So the typical Ohio city takes rather less than the state on a
+  ${N($(75000))} salary while the largest ones take more &mdash; which is why no single number
+  can stand in for your own city.</p>
+  <p><strong>Two honest caveats.</strong> Those counts and rates are for calendar year
+  ${N(String(MUNI_ANNEE))}: it is the most recent municipality-by-municipality table the
+  Department publishes, and we checked for later editions before saying so. And we deliberately do
+  not name any city&rsquo;s rate here, because individual cities have changed theirs since. Since
+  &ldquo;administration of the municipal income tax is strictly local&rdquo;, the reliable sources
+  for your own rate are your pay stub, your city&rsquo;s income tax office, and the
+  Department&rsquo;s Finder tool at <span class="num">thefinder.tax.ohio.gov</span>. None of it is
+  in the figures on this page.</p>
 
   <h3>Ohio school districts levy their own income tax too</h3>
   <p>Separately from any city tax, Ohio school districts may levy an income tax on residents, filed
@@ -641,10 +749,11 @@ ${tableHoraire}
   passed.</p>
 
   <h3>Treating the state tax as the whole tax</h3>
-  <p>In Ohio this is the mistake that costs the most. The state layer is genuinely small &mdash;
-  ${N($$(a75.etat))} on ${N($(75000))}. Your city&rsquo;s tax and, if you have one, your school
-  district&rsquo;s can each be comparable or larger. An Ohio budget built on the state figure alone
-  will be wrong by more than the state figure itself.</p>
+  <p>In Ohio this is the mistake that costs the most, and the arithmetic says so plainly. The
+  state layer is genuinely small &mdash; ${N($$(a75.etat))} on ${N($(75000))}. A city levying the
+  ${N("1%")} it can set without a vote takes ${N($$(muniVote75))} on the same salary, and
+  ${N(MUNI_NB + " Ohio municipalities")} levy something. Add a school district levy on top and an
+  Ohio budget built on the state figure alone is wrong by more than the state figure itself.</p>
 
   <h3>Expecting the calculator to match the paystub to the dollar</h3>
   <p>It will not, and in Ohio it particularly will not, because the state withholding tables take
@@ -687,7 +796,10 @@ ${voisins.map(v => {
   const nom = v.cle.charAt(0).toUpperCase() + v.cle.slice(1);
   const d = v.r.net - a75.net;
   const sens = d > 0 ? "keeps " + $$(Math.abs(d)) + " more" : "keeps " + $$(Math.abs(d)) + " less";
-  const art = /^[AEIOU]/.test(nom) ? "An" : "A";
+  /* « An Illinois » mais « a Utah » : c'est le SON qui decide, pas la lettre.
+     Utah se dit « Yoo-tah ». Ecrit apres avoir relu « An Utah worker » dans
+     la page generee le 02/09. */
+  const art = (/^[AEIOU]/.test(nom) && nom !== "Utah") ? "An" : "A";
   return `    <li><a href="/paycheck-calculator/${v.cle}/">${nom}</a> &mdash; ${$(v.r.net)} take-home, `
     + `an effective rate of ${(v.r.taux * 100).toFixed(1)}%. ${art} ${nom} worker ${sens} than an `
     + `Ohioan on the same salary.</li>`;
@@ -696,9 +808,11 @@ ${voisins.map(v => {
   <p>Of every state published here that levies an income tax, <strong>Ohio leaves you the
   most</strong>. The comparison comes with a warning, though, and it runs the other way from the
   ranking: the states above are compared on their state layer alone, and Ohio&rsquo;s state layer
-  is the smallest part of an Ohio tax bill. Add a city income tax &mdash; which most working
-  Ohioans pay and which Utah workers do not &mdash; and the gap narrows or reverses. Only the
-  states with no income tax at all are unambiguously cheaper.</p>
+  is the smallest part of an Ohio tax bill. Add a city income tax &mdash; levied by
+  ${N(MUNI_NB + " municipalities")} and worth ${N($$(muniVote75))} on this salary at the
+  ${N("1%")} a city can set unaided &mdash; and the ranking reverses against
+  <a href="/paycheck-calculator/utah/">Utah</a>, where no city tax comes out of pay at all. Only
+  the states with no income tax at all are unambiguously cheaper.</p>
 
   <h2>Related reading</h2>
   <ul>
