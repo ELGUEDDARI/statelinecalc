@@ -238,7 +238,7 @@ const faq = [
    + "page. Use the Department's Finder tool at tax.ohio.gov/Finder to see which district you are in."],
 
   ["Why is my Ohio paycheck smaller than this calculator says?",
-   "In Ohio there are usually three reasons, in this order. Your city almost certainly levies a "
+   "In Ohio there are usually three reasons, in this order. Your city may well levy a "
    + "municipal income tax — " + MUNI_NB + " Ohio municipalities did so in " + MUNI_ANNEE
    + ", per the Department's own Table LG-11 — which is administered by the city rather than the "
    + "state and is not modelled here. A city may set up to 1% on its own authority and more if its "
@@ -479,7 +479,8 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
 
     <p><strong>Two things this calculator does not model, and in Ohio they matter more than
     anywhere else on this site.</strong> Ohio cities levy their own municipal income tax, collected
-    by the city rather than the state, and most working Ohioans pay one. Ohio school districts may
+    by the city rather than the state: ${N(String(MUNI_VILLES))} Ohio cities and
+    ${N(String(MUNI_VILLAGES))} villages levied one. Ohio school districts may
     levy one too, on a separate return. Read both sections below before treating these figures as
     your whole tax bill.</p>
 
@@ -620,7 +621,7 @@ ${tableHoraire}
     <li>${N("$" + c0(EXO_MOY))} per person between ${N($(PAL_1 + 1))} and ${N($(PAL_2))};</li>
     <li>${N("$" + c0(EXO_HAUT))} per person above ${N($(PAL_2))};</li>
     <li>and for 2026, <strong>nothing at all</strong> above ${N($(PLAFOND))} of income &mdash;
-    a threshold the legislature lowered from $750,000, so it now catches far more people.</li>
+    a threshold the legislature lowered from $750,000 for 2026.</li>
   </ul>
   <p>Each tier boundary is a small step of its own: crossing ${N($(PAL_1))} costs about
   ${N($$((EXO_BAS - EXO_MOY) * TAUX))} of extra tax, and crossing ${N($(PAL_2))} about
@@ -692,9 +693,9 @@ ${tableHoraire}
   <strong>${N(String(MUNI_A_1PCT))} of the ${N(String(MUNI_NB))}</strong> &mdash; more than a
   third &mdash; sit at exactly ${N("1.000%")}, the ceiling a council can set without asking its
   voters. The median rate is ${N("1.5%")}, and ${N(String(MUNI_2PCT_PLUS))} municipalities are at
-  ${N("2%")} or above. So the typical Ohio city takes rather less than the state on a
-  ${N($(75000))} salary while the largest ones take more &mdash; which is why no single number
-  can stand in for your own city.</p>
+  ${N("2%")} or above. So on a ${N($(75000))} salary the typical Ohio city takes rather
+  less than the state, while the ${N(String(MUNI_AU_DESSUS))} above the crossover take more &mdash;
+  which is why no single number can stand in for your own city.</p>
   <p><strong>Two honest caveats.</strong> Those counts and rates are for calendar year
   ${N(String(MUNI_ANNEE))}: it is the most recent municipality-by-municipality table the
   Department publishes, and we checked for later editions before saying so. And we deliberately do
@@ -713,7 +714,8 @@ ${tableHoraire}
   modified adjusted gross income less exemptions, or an <strong>&ldquo;earned income&rdquo;</strong>
   base that counts only wages and self-employment income.</p>
   <p>On a ${N($(75000))} salary that is between ${N($$(sdBas75))} and ${N($$(sdHaut75))} a year,
-  depending on the district &mdash; at the top of the range, more than the state itself takes. The
+  depending on the district &mdash; at the top of the range, close to what the state itself
+  takes. The
   Department&rsquo;s Finder tool at <span class="num">tax.ohio.gov/Finder</span> tells you which
   district you live in. None of it is in the figures on this page.</p>
 
