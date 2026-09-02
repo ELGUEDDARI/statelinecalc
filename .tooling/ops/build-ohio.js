@@ -97,6 +97,12 @@ const MUNI_A_1PCT = 259;      // pile au plafond que la loi autorise sans vote
 const MUNI_MEDIAN = 0.015;    // 321e valeur sur 642
 const MUNI_AU_DESSUS = 61;    // au-dessus du point de bascule calcule plus bas
 const MUNI_2PCT_PLUS = 181;   // a 2,000 % ou plus
+/* ⚠️ DEUX seuils differents, donc DEUX comptes. 2,16 % est le taux ou la
+   ville depasse l'Etat d'Ohio ; 2,29 % est celui ou un Ohioan avec sa ville
+   passe DERRIERE un Utahn. Le 02/09 j'ai failli reutiliser 61 pour les
+   deux : recompte sur la table, c'est 39 au-dessus de 2,29 %. */
+const MUNI_AU_DESSUS_UT = 39;  // > 2,2913 % : 1 a 2,40 + 32 a 2,50 + 1 a 2,60
+                               //              + 2 a 2,75 + 1 a 2,85 + 2 a 3,00
 
 /* Le salaire a partir duquel l'Ohio prend quelque chose : le seuil imposable
    plus l'exoneration. C'est le chiffre que personne d'autre ne publie. */
@@ -663,10 +669,10 @@ ${tableHoraire}
   <p>This is the fact that matters most on this page, and it is the one usually left out.
   <strong>${N(String(MUNI_NB)) + " Ohio municipalities"}</strong> &mdash; ${N(String(MUNI_VILLES)) + " cities"}
   and ${N(String(MUNI_VILLAGES)) + " villages"} &mdash; levied their own income tax, according to the
-  Department of Taxation&rsquo;s own Table LG-11, and between them they collected
-  ${N("$" + MUNI_COLLECTE.toLocaleString("en-US") + " million")} in a single year. For comparison,
-  <a href="/paycheck-calculator/michigan/">Michigan</a>, the other state here with a city tax
-  layer, has about two dozen.</p>
+  Department of Taxation&rsquo;s own Table LG-11 for ${N(String(MUNI_ANNEE))}, and between them they
+  collected ${N("$" + MUNI_COLLECTE.toLocaleString("en-US") + " million")} that year. For comparison,
+  <a href="/paycheck-calculator/michigan/">Michigan</a> is the only other state published here
+  with a city tax layer, and it has a small fraction of that number.</p>
   <p>Three rules decide what it costs you, and all three come from that table:</p>
   <ul>
     <li><strong>It follows the work, not just the home.</strong> The tax is
@@ -805,11 +811,14 @@ ${voisins.map(v => {
   <p>Of every state published here that levies an income tax, <strong>Ohio leaves you the
   most</strong>. The comparison comes with a warning, though, and it runs the other way from the
   ranking: the states above are compared on their state layer alone, and Ohio&rsquo;s state layer
-  is the smallest part of an Ohio tax bill. Add a city income tax &mdash; levied by
-  ${N(String(MUNI_NB)) + " municipalities"} and worth ${N($$(muniVote75))} on this salary at the
-  ${N("1%")} a city can set unaided &mdash; and the ranking reverses against
-  <a href="/paycheck-calculator/utah/">Utah</a>, where no city tax comes out of pay at all. Only
-  the states with no income tax at all are unambiguously cheaper.</p>
+  is the smallest part of an Ohio tax bill, and the states above have no city layer at all. At the
+  ${N("1%")} a city can set unaided, an Ohioan still keeps
+  ${N($$(a75.net - muniVote75 - voisins[0].r.net))} more than a
+  <a href="/paycheck-calculator/utah/">Utah</a> worker. The ranking only turns over once the city
+  rate passes ${N(((a75.net - voisins[0].r.net) / 75000 * 100).toFixed(2) + "%")}, which
+  ${N(String(MUNI_AU_DESSUS_UT)) + " of the " + MUNI_NB} municipalities in the
+  Department&rsquo;s table exceed. Only the states with no income tax at all are unambiguously cheaper at every
+  address.</p>
 
   <h2>Related reading</h2>
   <ul>
