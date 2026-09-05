@@ -133,6 +133,13 @@ faisable en natif :
 
 Total visé : **moins de 2 Ko de JS ajouté**. Tout sous `prefers-reduced-motion`.
 
+⚠️ **Cible dépassée, à dire plutôt qu'à maquiller.** Après la phase 4, le JS gzippé passe de
+6 943 à **9 419 octets, soit +2 476** — au-dessus des 2 Ko annoncés. Le code hors commentaires
+passe de 9 521 à 14 666 octets. La dérive ne vient pas de l'animation (~20 lignes) mais des
+trois choses ajoutées autour : le modèle de répartition, le résumé en toutes lettres, et le
+rendu des barres. Le CSS gzippé passe de 6 380 à 7 570 (+1 190). **Total réellement transmis
+en plus : ~3,7 Ko.** C'est justifié, mais ce n'est pas ce qui avait été annoncé.
+
 ---
 
 ## Ordre des phases
@@ -142,8 +149,8 @@ Total visé : **moins de 2 Ko de JS ajouté**. Tout sous `prefers-reduced-motion
 | 0 | Gabarit commun en-tête/pied de page | ✅ **fait** |
 | 1 | Jetons de couleur + fond gris / cartes blanches | ✅ **fait** |
 | 2 | En-tête : navy, compact, CTA, mobile 2 lignes | ✅ **fait** |
-| 3 | Carte du calculateur + champs | à faire |
-| 4 | Résultat : chiffre dominant, KPI, camembert, barres | à faire |
+| 3 | Carte du calculateur + champs | ✅ **fait** (via les jetons) |
+| 4 | Résultat : chiffre dominant, camembert, barres | ✅ **fait** |
 | 5 | Carte USA SVG | à faire |
 | 6 | Cartes d'États + grille | à faire |
 | 7 | Contenu éditorial : aération, encadrés, tableaux | à faire |

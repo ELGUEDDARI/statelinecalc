@@ -299,6 +299,77 @@
       };
     }
 
+    /* ---- LA REPARTITION DE LA PAIE, en une seule source ------------------
+       Le camembert, les barres et les lignes chiffrees lisent TOUS ce tableau.
+       Trois representations d'un meme calcul qui se contrediraient seraient
+       pires que pas de graphique du tout.
+
+       ⛔ Le 401(k) n'est PAS en rouge. Le rouge, sur ce site, veut dire « cet
+       argent ne t'appartient plus ». Une cotisation 401(k) reste ton argent :
+       elle est differee, pas prelevee. La peindre comme un impot serait une
+       erreur de fond, pas de style — et c'est exactement le genre de nuance
+       qu'aucun concurrent ne fait. */
+    function repartition(a) {
+      var segs = [{ cle: "net", libelle: "Take-home pay", montant: a.net, couleur: "keep" }];
+      segs.push({ cle: "fed", libelle: "Federal income tax", montant: a.federal, couleur: "fed" });
+      segs.push({ cle: "fica", libelle: "Social Security and Medicare",
+                  montant: a.socialSecurity + a.medicare, couleur: "fica" });
+      if (a.stateTax > 0) segs.push({ cle: "state", libelle: "State income tax",
+                                      montant: a.stateTax, couleur: "state" });
+      var autres = 0;
+      if (a.paidLeave > 0) autres += a.paidLeave;
+      if (a.waCares > 0) autres += a.waCares;
+      (a.programmes || []).forEach(function (pg) { if (pg.amount > 0) autres += pg.amount; });
+      if (autres > 0) segs.push({ cle: "prog", libelle: "State payroll programmes",
+                                  montant: autres, couleur: "prog" });
+      if (a.pretax > 0) segs.push({ cle: "401k", libelle: "401(k), still yours",
+                                    montant: a.pretax, couleur: "defer" });
+      return segs.filter(function (s) { return s.montant > 0; });
+    }
+
+    /* Le camembert. Un seul <circle> par part, rayon 15.915 : sa circonference
+       vaut 100, donc stroke-dasharray se lit directement en pourcents. Aucune
+       bibliotheque — une bibliotheque de graphiques pour un anneau couterait
+       de 40 a 200 Ko, soit une a six fois tout le poids du site. */
+    function camembert(segs, brut) {
+      var off = 25, parts = "";   /* 25 = demarrer a midi plutot qu'a 3 heures */
+      segs.forEach(function (s) {
+        var p = brut > 0 ? (s.montant / brut) * 100 : 0;
+        parts += '<circle class="donut-seg donut-' + s.couleur + '" cx="21" cy="21" r="15.915"' +
+                 ' fill="none" stroke-width="5" stroke-dasharray="' + p.toFixed(2) + ' ' +
+                 (100 - p).toFixed(2) + '" stroke-dashoffset="' + off.toFixed(2) + '"></circle>';
+        off -= p;
+      });
+      var partNet = brut > 0 ? (segs[0].montant / brut) * 100 : 0;
+      return '<svg class="donut" viewBox="0 0 42 42" aria-hidden="true" focusable="false">' +
+             '<circle class="donut-fond" cx="21" cy="21" r="15.915" fill="none" stroke-width="5"></circle>' +
+             parts + "</svg>" +
+             '<p class="donut-centre"><span class="donut-pct num">' + partNet.toFixed(0) + "%</span>" +
+             '<span class="donut-mot">you keep</span></p>';
+    }
+
+    /* Le chiffre qui monte. ~350 ms, uniquement sur le montant principal : le
+       visiteur vient chercher CE nombre, l'animer le designe. Tout animer
+       n'aurait designe rien du tout.
+       prefers-reduced-motion n'est pas une option ici : pour quelqu'un sujet au
+       mal des transports vestibulaire, un nombre qui defile est un symptome. */
+    var animation = null;
+    function animerChiffre(el, valeur, formate) {
+      if (animation) { cancelAnimationFrame(animation); animation = null; }
+      var reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduit || !window.requestAnimationFrame || valeur <= 0) { el.textContent = formate(valeur); return; }
+      var debut = null, duree = 350;
+      function pas(t) {
+        if (debut === null) debut = t;
+        var p = Math.min((t - debut) / duree, 1);
+        /* Sortie en douceur : la fin compte plus que le debut, c'est la que
+           l'oeil se pose sur le chiffre definitif. */
+        el.textContent = formate(valeur * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) animation = requestAnimationFrame(pas); else animation = null;
+      }
+      animation = requestAnimationFrame(pas);
+    }
+
     function render() {
       syncHours();
       var input = read();
@@ -322,6 +393,38 @@
       });
       if (a.pretax > 0) rows.push(["401(k) contribution", a.pretax]);
 
+      var segs = repartition(a);
+      var part = function (m) { return a.gross > 0 ? (m / a.gross) * 100 : 0; };
+
+      /* Le resume en toutes lettres n'est pas un pis-aller pour lecteur d'ecran :
+         c'est la phrase que les moteurs generatifs peuvent citer, et le camembert
+         ne leur dit rien. Un graphique sans son equivalent texte est invisible
+         deux fois.
+
+         ⛔ Le 401(k) est sorti de la phrase « the rest goes to ». Premiere
+         version, le 05/09/2026 : elle rangeait la cotisation 401(k) avec les
+         impots, ce qui est FAUX — cet argent n'est pas pris, il est differe.
+         Une phrase destinee a etre citee par une IA doit etre juste au mot pres.
+         Corrige au passage : « Social Security and Medicare TAKES » — sujet
+         pluriel. On ecrit « at X percent », qui ne s'accorde avec rien. */
+      var prelevements = segs.filter(function (s) { return s.cle !== "net" && s.cle !== "401k"; });
+      var differe = segs.filter(function (s) { return s.cle === "401k"; })[0];
+      var morceaux = prelevements.map(function (s) {
+        return s.libelle.replace(/^State income tax$/, "state income tax")
+                        .replace(/^Federal income tax$/, "federal income tax")
+                        .replace(/^State payroll programmes$/, "state payroll programmes") +
+               " at " + part(s.montant).toFixed(0) + " percent";
+      });
+      var dernier = morceaux.pop();
+      var liste = morceaux.length ? morceaux.join(", ") + " and " + dernier : dernier;
+      var resume = "Of " + v(a.gross) + " gross, you keep " + v(a.net) + " — " +
+                   /* « takes the rest » serait faux des qu'un 401(k) existe :
+                      le reste n'est alors pas entierement du prelevement. */
+                   part(a.net).toFixed(0) + " percent. Withholding accounts for " + liste + "." +
+                   (differe ? " A further " + v(differe.montant) + ", " +
+                    part(differe.montant).toFixed(0) + " percent, goes to your 401(k), which is " +
+                    "deferred rather than taken." : "");
+
       var html =
         '<p class="result-label">Your take-home pay</p>' +
         /* « $59,973.50 / per year » : la barre ET « per » disaient la meme
@@ -329,8 +432,22 @@
            seul, qui se lit tel quel pour chacune des six periodes : per year,
            per month, twice a month, every two weeks, per week, per hour.
            Corrige le 02/09/2026, sur la ligne la plus lue du site. */
-        '<p class="result-head num">' + v(a.net) + " <span class=\"result-unit\">" +
-        label.toLowerCase() + "</span></p><hr>" +
+        '<p class="result-head num"><span data-anime>' + v(a.net) + "</span> " +
+        '<span class="result-unit">' + label.toLowerCase() + "</span></p>" +
+        '<div class="repartition">' +
+          '<div class="donut-wrap">' + camembert(segs, a.gross) + "</div>" +
+          '<ul class="parts">' +
+            segs.map(function (s) {
+              return '<li class="part part-' + s.couleur + '">' +
+                     '<span class="part-nom">' + s.libelle + "</span>" +
+                     '<span class="part-montant num">' + v(s.montant) + "</span>" +
+                     '<span class="part-pct num">' + part(s.montant).toFixed(0) + "%</span>" +
+                     '<span class="part-piste"><i class="part-barre"></i></span></li>';
+            }).join("") +
+          "</ul>" +
+        "</div>" +
+        '<p class="visually-hidden">' + resume + "</p>" +
+        "<hr>" +
         '<dl class="u-m-0">' +
         '<div class="line"><dt>Gross pay</dt><dd class="num">' + v(a.gross) + "</dd></div>" +
         rows.map(function (r) {
@@ -342,6 +459,14 @@
         '<div class="line"><dt>Federal marginal rate</dt><dd class="num">' + pct(a.marginalRate) + "</dd></div>";
 
       out.innerHTML = html;
+
+      /* Les largeurs de barre sont posees APRES l'insertion, pas dans le HTML :
+         la CSP interdit l'attribut style="", donc on passe par la propriete. */
+      var barres = out.querySelectorAll(".part-barre");
+      segs.forEach(function (s, i) { if (barres[i]) barres[i].style.width = part(s.montant).toFixed(2) + "%"; });
+
+      var cible = out.querySelector("[data-anime]");
+      if (cible) animerChiffre(cible, a.net / div, function (x) { return usd.format(x); });
     }
 
     /* Sur un telephone, le resultat vit sous le bouton et donc SOUS l'ecran :

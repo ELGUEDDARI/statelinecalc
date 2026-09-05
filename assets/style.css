@@ -315,6 +315,84 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   color: var(--success);
   margin: var(--s-1) 0 var(--s-4);
 }
+/* ---------- ou passe la paie : camembert + barres ----------
+   Ajoute le 05/09/2026. Le resultat etait une liste de lignes : exact, mais il
+   fallait le LIRE pour comprendre. Le n°1 du secteur ne fait pas mieux — sa
+   page ne montre aucun graphique. C'est une des quatre ouvertures reelles.
+
+   Six couleurs, chacune avec un metier :
+     vert   ce que tu gardes
+     rouge  l'impot federal — le rouge veut dire « cet argent ne t'appartient plus »
+     ambre  Social Security + Medicare
+     navy   l'impot d'Etat
+     violet les programmes d'Etat (Washington, Hawaii) — assez rares pour meriter
+            leur propre couleur plutot que d'etre noyes
+     gris   le 401(k). PAS rouge : cet argent reste le tien, il est differe.
+   Les parts portent toutes leur nom et leur pourcentage en toutes lettres : la
+   couleur n'est jamais le seul porteur de l'information. */
+.repartition {
+  display: grid;
+  gap: var(--s-6);
+  align-items: center;
+  margin: var(--s-6) 0;
+}
+@media (min-width: 560px) { .repartition { grid-template-columns: 150px 1fr; } }
+
+.donut-wrap { position: relative; width: 150px; margin-inline: auto; }
+/* Pas de rotate() ici : le decalage de 25 dans stroke-dashoffset fait deja
+   demarrer la premiere part a midi. Les deux cumules la mettraient a 9 heures. */
+.donut { display: block; width: 100%; height: auto; }
+.donut-fond { stroke: var(--surface-sunken); }
+.donut-seg  { transition: stroke-dasharray 300ms ease; }
+.donut-centre {
+  position: absolute; inset: 0; margin: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; text-align: center; pointer-events: none;
+}
+.donut-pct { font-size: 30px; font-weight: 700; line-height: 1; color: var(--success); }
+.donut-mot { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+
+.parts { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
+.part {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-3);
+  font-size: 15px;
+}
+.part-nom     { color: var(--text-secondary); }
+.part-montant { font-weight: 600; }
+.part-pct     { color: var(--text-muted); min-width: 3.5ch; text-align: right; }
+.part-piste   {
+  grid-column: 1 / -1;
+  height: 6px; border-radius: 3px;
+  background: var(--surface-sunken);
+  overflow: hidden;
+}
+.part-barre { display: block; height: 100%; width: 0; border-radius: 3px; transition: width 300ms ease; }
+
+.donut-keep  { stroke: #047857; }  .part-keep  .part-barre { background: #047857; }
+.donut-fed   { stroke: #B22234; }  .part-fed   .part-barre { background: #B22234; }
+.donut-fica  { stroke: #D97706; }  .part-fica  .part-barre { background: #D97706; }
+.donut-state { stroke: #0A2A5E; }  .part-state .part-barre { background: #0A2A5E; }
+.donut-prog  { stroke: #6D28D9; }  .part-prog  .part-barre { background: #6D28D9; }
+.donut-defer { stroke: #5B6B85; }  .part-defer .part-barre { background: #5B6B85; }
+
+/* Quelqu'un qui a coche « reduire les animations » ne doit voir AUCUN
+   mouvement : ni la barre qui pousse, ni la part qui se remplit. */
+@media (prefers-reduced-motion: reduce) {
+  .donut-seg, .part-barre { transition: none; }
+}
+
+/* Lisible par un lecteur d'ecran et par un moteur generatif, invisible a l'oeil.
+   On ne met PAS display:none : ca le retirerait aussi de l'arbre d'accessibilite,
+   ce qui est exactement le contraire du but. */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+
 .result hr { border: 0; border-top: 1px solid var(--border-subtle); margin: var(--s-4) 0; }
 .line { display: flex; justify-content: space-between; gap: var(--s-4); padding: var(--s-1) 0; }
 .line dt { color: var(--text-secondary); }
