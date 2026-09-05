@@ -142,6 +142,37 @@ en plus : ~3,7 Ko.** C'est justifié, mais ce n'est pas ce qui avait été annon
 
 ---
 
+## La carte USA — d'où vient le tracé
+
+**Source : US Census Bureau**, Cartographic Boundary Files 2023, résolution 1:20m,
+`https://www2.census.gov/geo/tiger/GENZ2023/shp/cb_2023_us_state_20m.zip`, téléchargé le
+05/09/2026 (HTTP 200, 186 432 octets). Œuvre du gouvernement fédéral américain, donc
+**domaine public** au titre du **17 U.S.C. § 105** : aucune attribution due, aucune licence.
+
+⚠️ **Ne jamais reprendre un SVG de carte trouvé sur le web** : la plupart sont en CC BY-SA,
+ce qui obligerait à publier le site entier sous la même licence.
+
+Converti par `.tooling/ops/construit-carte-usa.js`, qui lit le shapefile à la main (aucun outil
+externe n'est installé : ni ogr2ogr, ni mapshaper, ni topojson), projette en Albers conique
+équivalente (parallèles 29,5 et 45,5), replace l'Alaska et Hawaii dans des boîtes cibles, et
+simplifie par Douglas-Peucker : **13 562 points ramenés à 1 927, soit 85,8 % en moins**, pour
+**25 000 octets**.
+
+⛔ **Deux pièges déjà payés, à ne pas refaire :**
+1. **L'axe Y s'inverse.** En Albers, y croît vers le nord ; dans un SVG, vers le bas. Première
+   génération : les États-Unis à l'envers. Les compteurs de sortie étaient pourtant parfaits
+   (51 États, 27 Ko) — **il a fallu regarder l'image**.
+2. **Alaska et Hawaii se placent par boîte cible, pas par facteur et décalages.** Réglés à
+   tâtons, l'Alaska sortait en x négatif et Hawaii tombait 236 px sous le cadre.
+
+Le SVG est **inline** et non chargé à part : la CSP ne liste pas `'self'` dans `connect-src`,
+donc un `fetch('/assets/usa.svg')` serait bloqué net, et un `<img>` ne serait ni stylable ni
+cliquable État par État. Coût assumé : ~25 Ko sur les pages qui la portent — raison pour
+laquelle elle ne va **pas** sur About, Contact, Privacy, Terms et Disclaimer.
+
+Vérifié au navigateur : 51 tracés, 11 bleus cliquables, 40 gris, **0 État gris cliquable**,
+11/11 des liens répondent 200, aucune erreur JS.
+
 ## Ordre des phases
 
 | # | Phase | État |
@@ -151,7 +182,7 @@ en plus : ~3,7 Ko.** C'est justifié, mais ce n'est pas ce qui avait été annon
 | 2 | En-tête : navy, compact, CTA, mobile 2 lignes | ✅ **fait** |
 | 3 | Carte du calculateur + champs | ✅ **fait** (via les jetons) |
 | 4 | Résultat : chiffre dominant, camembert, barres | ✅ **fait** |
-| 5 | Carte USA SVG | à faire |
+| 5 | Carte USA SVG | ✅ **fait** (accueil ; pages d'État à faire) |
 | 6 | Cartes d'États + grille | à faire |
 | 7 | Contenu éditorial : aération, encadrés, tableaux | à faire |
 | 8 | Colonne latérale + fil d'Ariane | à faire |

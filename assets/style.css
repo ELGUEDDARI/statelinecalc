@@ -425,6 +425,52 @@ tbody tr:nth-child(odd) { background: var(--surface-sunken); }
 .ad-mobile      { min-height: 100px; }
 @media (max-width: 767px) { .ad-leaderboard { min-height: 100px; } }
 
+/* ---------- la carte des Etats-Unis ----------
+   Le n°1 du secteur en affiche une, grise et inerte. Celle-ci est cliquable.
+   11 Etats sur 50 sont publies : les 39 autres restent gris et ne sont pas des
+   liens. Un clic qui ne fait rien serait pire que pas de carte du tout. */
+.bloc-carte { margin: var(--s-12) 0; }
+.bloc-carte-intro { color: var(--text-secondary); max-width: var(--measure); }
+/* Plafonnee a 720 px : a pleine largeur de carte elle faisait 650 px de haut et
+   ecrasait tout le reste de l'accueil. Elle situe, elle ne raconte pas. */
+.carte-usa-wrap { margin: var(--s-6) 0; max-width: 720px; }
+.carte-usa { display: block; width: 100%; height: auto; }
+
+.etat { stroke: var(--surface); stroke-width: 1.2; stroke-linejoin: round; }
+.etat-vide   { fill: #DDE4EC; }
+.etat-publie { fill: var(--accent); cursor: pointer; transition: fill 150ms ease; }
+.etat-lien:hover .etat-publie,
+.etat-lien:focus .etat-publie { fill: var(--dark); }
+/* L'Etat de la page courante, en navy plein : le repere « vous etes ici ». */
+.etat-ici { fill: var(--dark); }
+/* Le contour de focus par defaut suit la boite du <a>, pas la forme du trace :
+   sur un Etat en diagonale il dessine un rectangle sans rapport. On souligne
+   donc le trace lui-meme. */
+.etat-lien:focus { outline: none; }
+.etat-lien:focus-visible .etat { stroke: var(--text-primary); stroke-width: 3; }
+
+@media (prefers-reduced-motion: reduce) { .etat-publie { transition: none; } }
+
+/* La liste sous la carte n'est pas une roue de secours : sur telephone, le
+   Rhode Island fait quatre pixels. C'est le chemin principal, et la carte
+   devient l'illustration qui situe. */
+.etats-liste {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: var(--s-2);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.etats-liste a {
+  display: block; padding: var(--s-2) var(--s-3);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  text-decoration: none; font-weight: 600;
+}
+.etats-liste a:hover { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.etats-liste a[aria-current="page"] {
+  background: var(--dark); color: var(--on-dark); border-color: var(--dark);
+}
+
 /* ---------- misc blocks ---------- */
 .callout {
   background: var(--warning-bg);
