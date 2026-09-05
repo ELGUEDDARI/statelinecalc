@@ -249,6 +249,12 @@ tbody tr:nth-child(odd) { background: var(--surface); }
 /* Height is reserved in CSS before anything loads. An unreserved ad slot is
    the number one cause of CLS on a monetised site. */
 .ad-slot { display: block; margin: var(--s-8) auto; background: var(--surface); overflow: hidden; }
+/* AdSense n'est pas encore pose : sans cette regle, les trois emplacements d'une
+ * page d'Etat s'affichent en rectangles GRIS VIDES de 250 px, soit 750 px de vide
+ * par page (constate a l'ecran le 05/09/2026 sur la page Hawaii). Un emplacement
+ * vide ne se reserve pas : il n'y a rien a decaler. Le jour ou AdSense injecte son
+ * <ins> dans la div, elle cesse d'etre :empty et reprend sa hauteur toute seule. */
+.ad-slot:empty { display: none; }
 .ad-leaderboard { min-height: 90px; }
 .ad-rectangle   { min-height: 250px; }
 .ad-mobile      { min-height: 100px; }
