@@ -22,6 +22,7 @@ const fs = require("fs");
 const path = require("path");
 const { net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
 const { PUBLIES } = require("../lib/etats-publies.js");
+const { entete, piedDePage } = require("../lib/gabarit.js");
 
 const taux = Number(process.argv[2] || 25);
 if (!isFinite(taux) || taux <= 0) { console.error("Taux horaire invalide."); process.exit(1); }
@@ -290,16 +291,7 @@ ${faq.map(([n, a]) => `        {
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="/"><svg class="brand-mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0F172A"/><rect x="30" y="10" width="4" height="44" rx="2" fill="#1D4ED8"/><rect x="12" y="34" width="12" height="20" rx="2" fill="#FFFFFF"/><rect x="40" y="22" width="12" height="32" rx="2" fill="#FFFFFF"/></svg>StateLine Calc</a>
-    <nav class="site-nav" aria-label="Main">
-      <a href="/paycheck-calculator/">Paycheck</a>
-      <a href="/salary-to-hourly-calculator/">Salary to Hourly</a>
-      <a href="/methodology/">Methodology</a>
-    </nav>
-  </div>
-</header>
+${entete(null)}
 
 <main class="wrap">
 
@@ -492,14 +484,7 @@ ${liensSoeurs}.</p>
 
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <p><a href="/">StateLine Calc</a> &mdash; free paycheck and money calculators for all 50 states.</p>
-    <p><a href="/about/">About</a> &middot; <a href="/methodology/">Methodology</a> &middot;
-       <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy</a> &middot;
-       <a href="/terms/">Terms</a> &middot; <a href="/disclaimer/">Disclaimer</a></p>
-  </div>
-</footer>
+${piedDePage()}
 
 </body>
 </html>

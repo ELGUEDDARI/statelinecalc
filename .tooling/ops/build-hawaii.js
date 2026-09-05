@@ -194,6 +194,7 @@ const faq = [
 
 const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { entete, piedDePage } = require("../lib/gabarit.js");
 const listeEtats = grilleEtats();
 
 const html = `<!DOCTYPE html>
@@ -260,16 +261,7 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="/"><svg class="brand-mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0F172A"/><rect x="30" y="10" width="4" height="44" rx="2" fill="#1D4ED8"/><rect x="12" y="34" width="12" height="20" rx="2" fill="#FFFFFF"/><rect x="40" y="22" width="12" height="32" rx="2" fill="#FFFFFF"/></svg>StateLine Calc</a>
-    <nav class="site-nav" aria-label="Main">
-      <a href="/paycheck-calculator/">Paycheck</a>
-      <a href="/salary-to-hourly-calculator/">Salary&nbsp;to&nbsp;Hourly</a>
-      <a href="/methodology/">Methodology</a>
-    </nav>
-  </div>
-</header>
+${entete("paycheck")}
 
 <main class="wrap">
 
@@ -725,20 +717,7 @@ ${listeEtats}
 
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <p><strong>StateLine Calc</strong> &mdash; free money calculators for all 50 states.
-    No sign-up. No personal data required.</p>
-    <p class="micro u-on-dark">
-      <a href="/about/">About</a> &middot;
-      <a href="/methodology/">Methodology</a> &middot;
-      <a href="/contact/">Contact</a> &middot;
-      <a href="/privacy/">Privacy</a> &middot;
-      <a href="/terms/">Terms</a> &middot;
-      <a href="/disclaimer/">Disclaimer</a>
-    </p>
-  </div>
-</footer>
+${piedDePage()}
 
 <script src="/data/rates-2026.js"></script>
 <script src="/assets/calc-paycheck.js"></script>
