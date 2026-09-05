@@ -148,6 +148,8 @@ const html = `<!DOCTYPE html>
 <link rel="stylesheet" href="/assets/style.css">
 
 <meta property="og:title" content="Pennsylvania Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="Pennsylvania taxes income at a flat 3.07% from the first dollar, with no standard deduction &mdash; and your 401(k) contribution does not reduce it.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/pennsylvania/">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
@@ -183,7 +185,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+    { "@id": "https://statelinecalc.com/#organization" }
   ]
 }
 </script>

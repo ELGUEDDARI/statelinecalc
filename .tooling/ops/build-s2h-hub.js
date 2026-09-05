@@ -80,6 +80,8 @@ const html = `<!DOCTYPE html>
 <meta name="theme-color" content="#0F172A">
 <link rel="stylesheet" href="/assets/style.css">
 <meta property="og:title" content="Salary to Hourly Calculator 2026 — Before and After Tax">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="$60,000 a year is $28.85 an hour before tax. What it is after tax depends on your state, and that is the figure nobody publishes.">
 <meta property="og:url" content="https://statelinecalc.com/salary-to-hourly-calculator/">
 <meta property="og:type" content="website">
@@ -97,7 +99,7 @@ const html = `<!DOCTYPE html>
       "url": "https://statelinecalc.com/salary-to-hourly-calculator/",
       "datePublished": "2026-08-28",
       "dateModified": "2026-08-28",
-      "publisher": { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+      "publisher": { "@id": "https://statelinecalc.com/#organization" }
     },
     {
       "@type": "ItemList",
@@ -120,7 +122,7 @@ ${ordre.map((k, i) => `        { "@type": "ListItem", "position": ${i + 1}, "nam
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+    { "@id": "https://statelinecalc.com/#organization" }
   ]
 }
 </script>

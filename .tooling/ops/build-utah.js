@@ -204,6 +204,8 @@ const html = `<!DOCTYPE html>
 <link rel="stylesheet" href="/assets/style.css">
 
 <meta property="og:title" content="Utah Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="Utah taxes income at a flat 4.45% in 2026 &mdash; but there is no deduction, only a taxpayer credit that fades out as you earn more.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/utah/">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
@@ -239,7 +241,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+    { "@id": "https://statelinecalc.com/#organization" }
   ]
 }
 </script>

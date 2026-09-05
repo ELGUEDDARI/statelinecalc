@@ -27,6 +27,8 @@
 <meta name="theme-color" content="#0F172A">
 <link rel="stylesheet" href="/assets/style.css">
 <meta property="og:title" content="Free Paycheck Calculators for All 50 States | StateLine Calc">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="Free, no sign-up calculators for take-home pay, taxes and salary in every US state. Rates sourced from the IRS and state agencies, with the date they were checked.">
 <meta property="og:url" content="https://statelinecalc.com/">
 <meta property="og:type" content="website">
@@ -38,8 +40,44 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "WebSite", "name": "StateLine Calc", "url": "https://statelinecalc.com/" },
-    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+    {
+      "@type": "WebSite",
+      "name": "StateLine Calc",
+      "url": "https://statelinecalc.com/",
+      "@id": "https://statelinecalc.com/#website",
+      "description": "Free 2026 paycheck, salary-to-hourly and hourly-rate calculators for US states, with the tax rates and the official source behind every figure.",
+      "inLanguage": "en-US",
+      "publisher": {
+        "@id": "https://statelinecalc.com/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://statelinecalc.com/#organization",
+      "name": "StateLine Calc",
+      "alternateName": "StateLineCalc",
+      "url": "https://statelinecalc.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://statelinecalc.com/assets/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "StateLine Calc publishes free US paycheck and take-home pay calculators, state by state, for tax year 2026. Every rate is read from the agency that sets it and published with the date it was checked. Figures typed into a calculator never leave the visitor's browser.",
+      "foundingDate": "2026-08-22",
+      "knowsAbout": [
+        "US payroll taxes",
+        "State income tax",
+        "Take-home pay",
+        "Federal income tax brackets",
+        "FICA",
+        "Salary to hourly conversion"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      }
+    }
   ]
 }
 </script>

@@ -291,6 +291,8 @@ const html = `<!DOCTYPE html>
 <link rel="stylesheet" href="/assets/style.css">
 
 <meta property="og:title" content="Ohio Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="Ohio charges nothing on the first $26,050 of taxable income, then 2.75% &mdash; and $332 the moment you cross the line.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/ohio/">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
@@ -326,7 +328,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+    { "@id": "https://statelinecalc.com/#organization" }
   ]
 }
 </script>

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tax.hawaii.gov)",
+      "WebFetch(domain:files.hawaii.gov)",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/131.0.0.0 Safari/537.36\" -H \"Accept: application/pdf,*/*\" -o hi-ann25-07.pdf -w \"HTTP %{http_code} | %{size_download} octets | %{content_type}\\\\n\" \"https://files.hawaii.gov/tax/news/announce/ann25-07.pdf\")",
+      "Bash(pdftotext -layout hi-ann25-07.pdf hi.txt)",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/131.0.0.0 Safari/537.36\" -o act46.pdf -w \"HTTP %{http_code} | %{size_download} octets\\\\n\" \"https://data.capitol.hawaii.gov/sessions/sessionlaws/Years/SLH2024/SLH2024_Act46.pdf\")",
+      "Bash(pdftotext -layout act46.pdf act46.txt)",
+      "Bash(grep -n \"December 31, 2024\\\\|December 31, 2025\\\\|Over \\\\$\\\\|But not over\" act46.txt)",
+      "Bash(grep -v \"^\\\\s*$\")",
+      "Bash(python -c ' *)"
+    ]
+  }
+}

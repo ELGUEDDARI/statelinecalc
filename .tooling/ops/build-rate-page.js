@@ -242,6 +242,8 @@ const html = `<!DOCTYPE html>
 <link rel="stylesheet" href="/assets/style.css">
 
 <meta property="og:title" content="${q(titre)}">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="${q(desc)}">
 <meta property="og:url" content="${URL}">
 <meta property="og:type" content="website">
@@ -271,12 +273,7 @@ ${faq.map(([n, a]) => `        {
         }`).join(",\n")}
       ]
     },
-    {
-      "@type": "Organization",
-      "name": "StateLine Calc",
-      "url": "https://statelinecalc.com/",
-      "logo": "https://statelinecalc.com/assets/icon-512.png"
-    }
+    { "@id": "https://statelinecalc.com/#organization" }
   ]
 }
 </script>

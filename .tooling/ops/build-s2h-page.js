@@ -121,6 +121,8 @@ function page(cle) {
 <link rel="stylesheet" href="/assets/style.css">
 
 <meta property="og:title" content="${nom} Salary to Hourly Calculator 2026 — After Tax">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="$60,000 a year is $28.85 an hour before tax, and $${S60.netH} after tax in ${nom}. Thirty salaries converted both ways.">
 <meta property="og:url" content="${url}">
 <meta property="og:type" content="website">
@@ -160,12 +162,7 @@ ${faq.map(([n, a]) => `        {
         }`).join(",\n")}
       ]
     },
-    {
-      "@type": "Organization",
-      "name": "StateLine Calc",
-      "url": "https://statelinecalc.com/",
-      "logo": "https://statelinecalc.com/assets/icon-512.png"
-    }
+    { "@id": "https://statelinecalc.com/#organization" }
   ]
 }
 </script>

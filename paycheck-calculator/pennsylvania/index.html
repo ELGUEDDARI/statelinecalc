@@ -22,6 +22,8 @@
 <link rel="stylesheet" href="/assets/style.css">
 
 <meta property="og:title" content="Pennsylvania Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="Pennsylvania taxes income at a flat 3.07% from the first dollar, with no standard deduction &mdash; and your 401(k) contribution does not reduce it.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/pennsylvania/">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
@@ -40,31 +42,108 @@
       "url": "https://statelinecalc.com/paycheck-calculator/pennsylvania/",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
       "description": "Calculates 2026 Pennsylvania take-home pay after federal income tax, Social Security, Medicare, Pennsylvania's flat 3.07 percent income tax and the 0.07 percent employee unemployment contribution, including Pennsylvania's treatment of 401(k) contributions as taxable compensation."
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Paycheck Calculator", "item": "https://statelinecalc.com/paycheck-calculator/" },
-        { "@type": "ListItem", "position": 3, "name": "Pennsylvania", "item": "https://statelinecalc.com/paycheck-calculator/pennsylvania/" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://statelinecalc.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Paycheck Calculator",
+          "item": "https://statelinecalc.com/paycheck-calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Pennsylvania",
+          "item": "https://statelinecalc.com/paycheck-calculator/pennsylvania/"
+        }
       ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "What is the Pennsylvania income tax rate in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "A flat 3.07%. Pennsylvania has no brackets and no standard deduction, so the rate applies to your compensation from the first dollar. The figure comes from the state's own 2026 form, REV-413 (I), whose worksheet reads “Multiply Line 1 by 3.07 percent (0.0307)”." } },
-        { "@type": "Question", "name": "Does a 401(k) contribution lower my Pennsylvania tax?", "acceptedAnswer": { "@type": "Answer", "text": "No. This is the rule that catches most people out. Pennsylvania treats an elective deferral as compensation at the moment it is made, so a 401(k) contribution reduces your federal tax but not your state tax. On $75,000 with 6% going into a 401(k), you save on federal tax but the state still takes $2,302.50 — $138.15 more than the same worker would pay in a state that follows the federal treatment. Your health insurance premiums under a Section 125 cafeteria plan are a different matter: those Pennsylvania does exclude." } },
-        { "@type": "Question", "name": "Does Pennsylvania have a standard deduction?", "acceptedAnswer": { "@type": "Answer", "text": "No, and it has no personal exemption either. Line 1 of the state's estimating worksheet is “expected PA-taxable income” and is multiplied by 3.07% directly. Low earners are relieved through the Special Tax Forgiveness Credit instead, which is a credit claimed on the return rather than an amount subtracted from wages, so no withholding calculator can show it." } },
-        { "@type": "Question", "name": "What is take-home pay on a $75,000 salary in Pennsylvania?", "acceptedAnswer": { "@type": "Answer", "text": "About $59,238 a year, or $4,936.46 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare, $2,302.50 of Pennsylvania income tax and $52.50 of employee unemployment contribution — an effective rate of 21.0%. Local earned income tax is not included; see the question below." } },
-        { "@type": "Question", "name": "What is $20 an hour after taxes in Pennsylvania?", "acceptedAnswer": { "@type": "Answer", "text": "At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,299 after tax, which works out at $16.49 an hour in real terms. Every hour you work is taxed at the same 3.07% by the state, because the rate is flat and there is no deduction to use up first." } },
-        { "@type": "Question", "name": "Is Pennsylvania unemployment tax taken out of my paycheck?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, and Pennsylvania is unusual in this. In most states unemployment insurance is paid only by the employer. Pennsylvania also withholds an employee contribution of 0.07% of gross wages — 70 cents per $1,000. It has no wage cap, so it follows your whole salary. On $75,000 that is $52.50 a year." } },
-        { "@type": "Question", "name": "Why is my Pennsylvania paycheck smaller than this calculator says?", "acceptedAnswer": { "@type": "Answer", "text": "Almost always local tax. Pennsylvania municipalities and school districts levy an Earned Income Tax, commonly 1% but higher in many places, and Philadelphia's is far higher again. This calculator models the state layer only and says so. Health insurance premiums, other benefit deductions and W-4 settings account for most of the rest." } },
-        { "@type": "Question", "name": "How much is Philadelphia's wage tax in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Effective July 1, 2026 the City of Philadelphia withholds 3.735% from residents and 3.425% from non-residents who work in the city, per the city's own rate table. That is more than the state takes: on a $60,000 salary the city's $2,241.00 exceeds Pennsylvania's $1,842.00 by $399.00. A Philadelphia paycheck is not a Pennsylvania paycheck, and this calculator does not model the city tax." } }
+        {
+          "@type": "Question",
+          "name": "What is the Pennsylvania income tax rate in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A flat 3.07%. Pennsylvania has no brackets and no standard deduction, so the rate applies to your compensation from the first dollar. The figure comes from the state's own 2026 form, REV-413 (I), whose worksheet reads “Multiply Line 1 by 3.07 percent (0.0307)”."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does a 401(k) contribution lower my Pennsylvania tax?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. This is the rule that catches most people out. Pennsylvania treats an elective deferral as compensation at the moment it is made, so a 401(k) contribution reduces your federal tax but not your state tax. On $75,000 with 6% going into a 401(k), you save on federal tax but the state still takes $2,302.50 — $138.15 more than the same worker would pay in a state that follows the federal treatment. Your health insurance premiums under a Section 125 cafeteria plan are a different matter: those Pennsylvania does exclude."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Pennsylvania have a standard deduction?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, and it has no personal exemption either. Line 1 of the state's estimating worksheet is “expected PA-taxable income” and is multiplied by 3.07% directly. Low earners are relieved through the Special Tax Forgiveness Credit instead, which is a credit claimed on the return rather than an amount subtracted from wages, so no withholding calculator can show it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is take-home pay on a $75,000 salary in Pennsylvania?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "About $59,238 a year, or $4,936.46 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare, $2,302.50 of Pennsylvania income tax and $52.50 of employee unemployment contribution — an effective rate of 21.0%. Local earned income tax is not included; see the question below."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is $20 an hour after taxes in Pennsylvania?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,299 after tax, which works out at $16.49 an hour in real terms. Every hour you work is taxed at the same 3.07% by the state, because the rate is flat and there is no deduction to use up first."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Pennsylvania unemployment tax taken out of my paycheck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, and Pennsylvania is unusual in this. In most states unemployment insurance is paid only by the employer. Pennsylvania also withholds an employee contribution of 0.07% of gross wages — 70 cents per $1,000. It has no wage cap, so it follows your whole salary. On $75,000 that is $52.50 a year."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my Pennsylvania paycheck smaller than this calculator says?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Almost always local tax. Pennsylvania municipalities and school districts levy an Earned Income Tax, commonly 1% but higher in many places, and Philadelphia's is far higher again. This calculator models the state layer only and says so. Health insurance premiums, other benefit deductions and W-4 settings account for most of the rest."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much is Philadelphia's wage tax in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Effective July 1, 2026 the City of Philadelphia withholds 3.735% from residents and 3.425% from non-residents who work in the city, per the city's own rate table. That is more than the state takes: on a $60,000 salary the city's $2,241.00 exceeds Pennsylvania's $1,842.00 by $399.00. A Philadelphia paycheck is not a Pennsylvania paycheck, and this calculator does not model the city tax."
+          }
+        }
       ]
     },
-    { "@type": "Organization", "name": "StateLine Calc", "url": "https://statelinecalc.com/", "logo": "https://statelinecalc.com/assets/icon-512.png" }
+    {
+      "@id": "https://statelinecalc.com/#organization"
+    }
   ]
 }
 </script>
