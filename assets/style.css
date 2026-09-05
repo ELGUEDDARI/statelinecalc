@@ -128,6 +128,16 @@ main.wrap {
    juste pour du complementaire ; sa place a droite est un effet de grille, pas
    d'ordre du document. Ne jamais « remonter » l'aside dans le HTML pour le
    placer visuellement : ce serait gagner un pixel et perdre l'accessibilite. */
+/* L'enveloppe du contenu principal. Elle porte une regle a son nom, et pas
+   seulement un ricochet par `main.wrap > *` : audit-silencieux.js signale toute
+   classe presente dans le HTML qu'aucune regle ne nomme, et il a eu raison de le
+   faire — une classe qui ne tient que par un selecteur voisin casse en silence
+   le jour ou ce selecteur bouge. C'est le defaut « classe morte » du 02/09/2026.
+   `min-width: 0` n'est pas decoratif : sans lui, un enfant de grille refuse de
+   passer sous la largeur de son contenu, et le tableau des tranches deborderait
+   au lieu de defiler dans son cadre. */
+.col-contenu { min-width: 0; }
+
 .colonne { margin-top: var(--s-12); }
 .col-bloc + .col-bloc { margin-top: var(--s-8); }
 .col-titre {
