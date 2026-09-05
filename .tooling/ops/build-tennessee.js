@@ -47,15 +47,19 @@ const q = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(
 const REF = 60000;
 const r60 = LIB.calcul(ETAT, REF);
 
-const SALAIRES = [30000, 40000, 50000, 60000, 70000, 80000, 100000, 120000, 150000, 200000];
+/* ⛔ Les paliers viennent du module commun, PAS d'une liste ecrite ici. La
+   premiere version de ce fichier en redefinissait une, plus courte (10 et 9
+   valeurs), et sortait une page a 1 979 mots la ou ses pairs en font 3 600.
+   Voir .tooling/lib/paliers.js pour le detail. */
+const { SALAIRES, TAUX_HORAIRES, HEURES_PAR_AN: HEURES } = require("../lib/paliers.js");
+
 const lignesSalaire = SALAIRES.map(b => {
   const r = LIB.calcul(ETAT, b);
-  return { brut: b, federal: r.federal, fica: r.ss + r.med, net: r.net, taux: r.taux };
+  return { brut: b, federal: r.federal, fica: r.ss + r.med, net: r.net,
+           mois: r.net / 12, taux: r.taux };
 });
 
-const TAUX_H = [15, 18, 20, 22, 25, 30, 35, 40, 50];
-const HEURES = 2080;
-const lignesHoraire = TAUX_H.map(t => {
+const lignesHoraire = TAUX_HORAIRES.map(t => {
   const r = LIB.calcul(ETAT, t * HEURES);
   return { taux: t, brut: t * HEURES, net: r.net, netH: r.net / HEURES };
 });
@@ -328,9 +332,9 @@ ${entete("paycheck")}
     from the same arithmetic the calculator above runs.</p>
     <div class="table-scroll">
       <table>
-        <thead><tr><th>Gross salary</th><th>Federal tax</th><th>Social Security + Medicare</th><th>State tax</th><th>Take-home pay</th><th>Effective rate</th></tr></thead>
+        <thead><tr><th>Gross salary</th><th>Federal tax</th><th>Social Security + Medicare</th><th>State tax</th><th>Take-home pay</th><th>Per month</th><th>Effective rate</th></tr></thead>
         <tbody>
-${lignesSalaire.map(l => `          <tr><td class="num">${$0(l.brut)}</td><td class="num">${$0(l.federal)}</td><td class="num">${$0(l.fica)}</td><td class="num">$0</td><td class="num"><strong>${$0(l.net)}</strong></td><td class="num">${(l.taux * 100).toFixed(1)}%</td></tr>`).join("\n")}
+${lignesSalaire.map(l => `          <tr><td class="num">${$0(l.brut)}</td><td class="num">${$0(l.federal)}</td><td class="num">${$0(l.fica)}</td><td class="num">$0</td><td class="num"><strong>${$0(l.net)}</strong></td><td class="num">${$0(l.mois)}</td><td class="num">${(l.taux * 100).toFixed(1)}%</td></tr>`).join("\n")}
         </tbody>
       </table>
     </div>

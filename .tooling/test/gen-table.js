@@ -64,14 +64,10 @@ const money2 = n => "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, 
    Ajoute le 28/08/2026, en meme temps que le meme correctif dans le moteur. */
 const deductionEtat = LIB.deductionEtat;
 
-const salaries = [
-  /* 30 paliers au lieu de 14. Choisis sur des montants que les gens tapent
-     reellement : tous les 5 000 dans la zone dense 25-100k, puis des paliers
-     ronds au-dela. Chaque ligne repond mot pour mot a une requete du type
-     "how much is $X a year after taxes in Y". */
-  25000, 30000, 35000, 40000, 45000, 50000, 55000, 60000, 65000, 70000,
-  75000, 80000, 85000, 90000, 95000, 100000, 110000, 120000, 125000, 130000,
-  140000, 150000, 160000, 175000, 200000, 225000, 250000, 300000, 400000, 500000];
+/* Les paliers vivent dans un module commun depuis le 05/09/2026 : ils etaient
+   ecrits en trois exemplaires, et le troisieme, plus court, a produit une page
+   Tennessee moitie moins fournie que ses pairs. Voir ../lib/paliers.js. */
+const { SALAIRES: salaries } = require("../lib/paliers.js");
 
 const rows = salaries.map(gross => {
   const r = calcul(cle, gross, "single");
