@@ -221,6 +221,51 @@ const RATES_2026 = {
     },
 
     /* -----------------------------------------------------------------------
+     * TENNESSEE — aucun impot sur le revenu des salaires.
+     *
+     * ⛔ tn.gov EST INJOIGNABLE depuis cette machine. Quatre methodes, quatre
+     * echecs, le 05/09/2026 : curl avec user-agent Chrome meurt au handshake TLS
+     * (schannel), Node donne ECONNRESET sur www.tn.gov et 403 sur l'apex, et un
+     * VRAI Chromium recoit ERR_CONNECTION_RESET. Qu'un navigateur reel echoue
+     * aussi prouve que ce n'est PAS un filtrage d'user-agent comme
+     * tax.hawaii.gov — c'est coupe au niveau reseau. Ne pas retenter : voir
+     * .tooling/sources/tennessee.md pour les deux hotes officiels qui, eux,
+     * repondent.
+     *
+     * SOURCE 1, la loi elle-meme. Public Chapter 181, Actes de 2017 (HB 534),
+     * telecharge le 05/09/2026 depuis publications.tnsosfiles.com — le serveur
+     * de publication du Secretaire d'Etat, HTTP 200, 3 724 474 octets.
+     * Section 13, modifiant Tennessee Code Annotated § 67-2-102, verbatim :
+     *   « (5) For any tax year that begins on or after January 1, 2021, and for
+     *     subsequent tax years, zero percent (0%). »
+     * Section 15 avance la date d'abrogation de 2022 a 2021.
+     * => 0 % depuis les exercices ouverts au 1er janvier 2021, donc 0 % en 2026.
+     *
+     * SOURCE 2, la liste officielle des taxes. tn.gov/revenue/taxes.html,
+     * instantane Wayback du 28/07/2026. Aucun impot sur le revenu des personnes
+     * parmi les taxes actives ; le Hall Income Tax figure sous « Archived Taxes »
+     * a cote du Gift Tax et de l'Inheritance Tax.
+     *
+     * LE PIEGE WASHINGTON, verifie et ecarte. Washington n'a pas d'impot sur le
+     * revenu et pourtant 1,387 % sortent de chaque paie (PFML + WA Cares) : dire
+     * « rien ne sort » sans verifier donnerait un net faux. Page « Employers » du
+     * Tennessee Department of Labor & Workforce Development, archive du
+     * 29/03/2024 : l'« Unemployment Insurance Tax » est rangee sous EMPLOYERS,
+     * et la section « Employees » ne liste que Safety & Health, Labor Laws,
+     * Education Opportunities et Injuries at Work — aucune cotisation salariale.
+     * => Rien n'est retenu au niveau de l'Etat.
+     *
+     * A SAVOIR pour la page : le Hall Income Tax ne frappait QUE les interets et
+     * dividendes. Un salarie du Tennessee n'a donc jamais paye d'impot d'Etat sur
+     * son salaire, meme avant 2021. C'est l'angle qui distingue cette page des
+     * trois autres Etats sans impot deja publies. */
+    tennessee: {
+      name: "Tennessee",
+      abbr: "TN",
+      incomeTax: { hasIncomeTax: false }
+    },
+
+    /* -----------------------------------------------------------------------
        GEORGIA - added 2026-08-28. The first state on this site that actually
        taxes wages, so this block is where the pattern for the other 40 gets
        set. Read verbatim on dor.georgia.gov, page "Important Tax Updates",
