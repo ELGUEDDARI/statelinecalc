@@ -117,6 +117,50 @@ main.wrap {
      il se mettait a defiler pour NEUF pixels. Mesure du 05/09/2026. */
   max-width: 960px;
 }
+
+/* ---------- la colonne laterale ----------
+   La mise en page du n°1 est « contenu + colonne de droite » ; c'etait la
+   derniere difference de structure. Elle remplit aussi le vide que la refonte
+   avait rendu visible : le texte plafonne a 68 caracteres, la carte fait 960 px.
+
+   La colonne est ecrite EN DERNIER dans le HTML. Un lecteur d'ecran et un
+   clavier la rencontrent donc apres le contenu principal, ce qui est l'ordre
+   juste pour du complementaire ; sa place a droite est un effet de grille, pas
+   d'ordre du document. Ne jamais « remonter » l'aside dans le HTML pour le
+   placer visuellement : ce serait gagner un pixel et perdre l'accessibilite. */
+.colonne { margin-top: var(--s-12); }
+.col-bloc + .col-bloc { margin-top: var(--s-8); }
+.col-titre {
+  font-size: 12px; font-weight: 700; margin: 0 0 var(--s-3);
+  text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--s-2);
+}
+.colonne ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-1); }
+.colonne li a { display: block; padding: var(--s-1) 0; font-size: 15px; text-decoration: none; }
+.colonne li a:hover { text-decoration: underline; }
+.col-note p { font-size: 14px; color: var(--text-secondary); margin-bottom: var(--s-2); }
+.col-note a { font-size: 14px; font-weight: 600; }
+
+/* La grille n'apparait qu'a 1100 px. En dessous, la colonne passe simplement
+   sous le contenu, en flux normal — aucune regle a ecrire pour ca.
+   ⛔ 1100 et pas 1024 : a 1024, la colonne de 260 px laisserait 636 px au
+   contenu, et le tableau a 7 colonnes de la page Texas en demande 863. Il se
+   mettrait a defiler sur un ecran d'ordinateur portable. */
+@media (min-width: 1100px) {
+  main.wrap {
+    max-width: 1280px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    column-gap: var(--s-8);
+    align-items: start;
+  }
+  main.wrap > *:not(.colonne) { grid-column: 1; min-width: 0; }
+  .colonne {
+    grid-column: 2; grid-row: 1 / -1;
+    margin-top: 0;
+    position: sticky; top: var(--s-4);
+  }
+}
 @media (min-width: 768px) {
   main.wrap {
     border: 1px solid var(--border-subtle);

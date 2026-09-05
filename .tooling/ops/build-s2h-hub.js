@@ -10,6 +10,7 @@
  */
 const fs = require("fs");
 const { entete, piedDePage } = require("../lib/gabarit.js");
+const { colonne } = require("../lib/colonne.js");
 const path = require("path");
 const { FICHES, net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
 
@@ -133,6 +134,7 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
 ${entete("s2h")}
 
 <main class="wrap">
+<div class="col-contenu">
 
 <nav class="crumbs" aria-label="Breadcrumb">
   <ol>
@@ -214,6 +216,9 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
     financial, tax or legal advice. Results are estimates based on published 2026 rates, the
     standard deduction and 2,080 hours a year.
   </p>
+
+</div>
+${colonne(null)}
 
 </main>
 

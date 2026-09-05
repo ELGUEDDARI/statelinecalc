@@ -150,6 +150,7 @@ const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
    defaire le maillage en etant simplement relance. */
 const { grilleEtats } = require("../lib/etats-publies.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
+const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
 const listeEtats = grilleEtats();
 
@@ -224,6 +225,7 @@ ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "accept
 ${entete("paycheck")}
 
 <main class="wrap">
+<div class="col-contenu">
 
 <nav class="crumbs" aria-label="Breadcrumb">
   <ol>
@@ -636,6 +638,9 @@ ${listeEtats}
     financial, tax or legal advice. Results are estimates based on published 2026 federal and
     Michigan rates and exclude city income tax.
   </p>
+
+</div>
+${colonne("Michigan")}
 
 </main>
 

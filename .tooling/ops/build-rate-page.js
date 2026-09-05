@@ -23,6 +23,7 @@ const path = require("path");
 const { net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
 const { PUBLIES } = require("../lib/etats-publies.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
+const { colonne } = require("../lib/colonne.js");
 
 const taux = Number(process.argv[2] || 25);
 if (!isFinite(taux) || taux <= 0) { console.error("Taux horaire invalide."); process.exit(1); }
@@ -294,6 +295,7 @@ ${faq.map(([n, a]) => `        {
 ${entete(null)}
 
 <main class="wrap">
+<div class="col-contenu">
 
 <nav class="crumbs" aria-label="Breadcrumb">
   <ol>
@@ -481,6 +483,9 @@ ${liensSoeurs}.</p>
   Medicare rates from the SSA, and each state&rsquo;s own published 2026 figures. Every source and
   the date it was checked is listed on our <a href="/methodology/">methodology page</a>. This is
   information, not tax advice.</p>
+
+</div>
+${colonne(null)}
 
 </main>
 
