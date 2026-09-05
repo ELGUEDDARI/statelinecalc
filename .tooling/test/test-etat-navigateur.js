@@ -23,6 +23,7 @@ const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
 const { calcul, R } = require("../lib/paie.js");
+const { stabilise } = require("./attente.js");
 
 const RACINE = path.join(__dirname, "..", "..");
 const PORT = 8793;
@@ -134,7 +135,9 @@ function dit(nom, ok) {
     await page.selectOption("#filing", cas.statut);
     await page.selectOption("#display", "annual");
     await page.click("button[type=submit]");
-    await page.waitForTimeout(120);
+    /* ⛔ PAS d'attente fixe ici : le net est anime sur 350 ms et une lecture
+       trop tot renvoie ~70 % de la valeur. Voir attente.js. */
+    await stabilise(page);
 
     const lu = await page.evaluate(() => {
       const nb = t => Number(String(t).replace(/[^0-9.]/g, ""));

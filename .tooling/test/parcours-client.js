@@ -16,26 +16,9 @@ const { chromium, devices } = require("playwright");
 const { calcul } = require("../lib/paie.js");
 const ETAT = "ohio";
 
-/* Attend que le montant affiche ARRETE de bouger.
-   ⛔ Ne jamais remplacer par un delai fige. Le 05/09/2026 le montant principal a
-   recu une animation de 350 ms (animerChiffre, calc-paycheck.js) ; ce test
-   patientait 180 ms et lisait donc un chiffre EN COURS DE MONTEE. Il a rapporte
-   cinq faux defauts de saisie — « 75,000 -> $53,505.35, attendu $59,974 » — alors
-   que le parsing n'avait rien. On a failli corriger du code qui marchait pour
-   satisfaire un test qui se trompait. Attendre la stabilite se re-regle tout seul
-   si la duree de l'animation change. */
-async function stabilise(page) {
-  let precedent = null;
-  for (let i = 0; i < 30; i++) {
-    const v = await page.evaluate(() => {
-      const t = document.querySelector("[data-paycheck-result] .result-head");
-      return t ? t.textContent : null;
-    });
-    if (v !== null && v === precedent) return;
-    precedent = v;
-    await page.waitForTimeout(60);
-  }
-}
+/* Attend que le montant affiche ARRETE de bouger. Le detail de l'histoire — et
+   pourquoi une attente FIGEE est interdite ici — est dans attente.js. */
+const { stabilise } = require("./attente.js");
 
 const RACINE = path.join(__dirname, "..", "..");
 const SORTIE = path.join(__dirname, "captures");

@@ -255,10 +255,26 @@ const RATES_2026 = {
      * Education Opportunities et Injuries at Work — aucune cotisation salariale.
      * => Rien n'est retenu au niveau de l'Etat.
      *
-     * A SAVOIR pour la page : le Hall Income Tax ne frappait QUE les interets et
-     * dividendes. Un salarie du Tennessee n'a donc jamais paye d'impot d'Etat sur
-     * son salaire, meme avant 2021. C'est l'angle qui distingue cette page des
-     * trois autres Etats sans impot deja publies. */
+     * SOURCE 3, l'assiette du Hall Income Tax — celle qui porte l'angle de la
+     * page. tn.gov/revenue/taxes/hall-income-tax.html, instantane Wayback du
+     * 08/03/2026, relu le 05/09/2026 (HTTP 200), verbatim :
+     *   « The Hall income tax is imposed only on individuals and other entities
+     *     receiving interest from bonds and notes and dividends from stock. »
+     * et, sur l'abrogation : « repealed for tax periods that begin on
+     * January 1, 2021 ».
+     *
+     * ⛔ CETTE LIGNE A FAILLI PARTIR SANS SOURCE. Le 05/09/2026 la page affirmait
+     * deja que le Hall tax ne frappait que les interets et dividendes, en ne
+     * s'appuyant que sur PC 181 — qui AMENDE § 67-2-102 sans jamais en citer la
+     * phrase d'assiette. Le fichier de sources l'avait ecrit noir sur blanc :
+     * « A lire avant de l'ecrire. » Ca ne l'avait pas ete. L'affirmation etait
+     * vraie, la diligence ne l'etait pas : c'est exactement le cas ou on publie
+     * du juste par chance. Le controle independant l'a rattrape avant la mise en
+     * ligne.
+     *
+     * A SAVOIR pour la page : un salarie du Tennessee n'a donc jamais paye
+     * d'impot d'Etat sur son salaire, meme avant 2021. C'est l'angle qui
+     * distingue cette page des trois autres Etats sans impot deja publies. */
     tennessee: {
       name: "Tennessee",
       abbr: "TN",

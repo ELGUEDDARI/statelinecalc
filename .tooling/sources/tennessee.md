@@ -112,9 +112,23 @@ l'employeur. À sourcer aussi si la page l'affirme.
 
 Il taxait les **intérêts et dividendes**, jamais les salaires — ce qui veut dire que
 le Tennessee n'a en réalité **jamais** taxé le salaire. C'est l'angle éditorial de la
-page, et il vaut mieux que « encore un État sans impôt ». Mais le texte de
-§ 67-2-102 dans sa rédaction d'origine n'a pas encore été lu : PC 181 ne fait que
-l'amender et n'en cite pas la phrase d'assiette. **À lire avant de l'écrire.**
+page, et il vaut mieux que « encore un État sans impôt ».
+
+**✅ SOURCÉ le 05/09/2026** — page officielle *Hall Income Tax* du Tennessee
+Department of Revenue, `tn.gov/revenue/taxes/hall-income-tax.html`, instantané
+Wayback du 08/03/2026, relue à cette date (HTTP 200), verbatim :
+
+> The Hall income tax is imposed only on individuals and other entities receiving
+> interest from bonds and notes and dividends from stock.
+
+et, plus bas : « repealed for tax periods that begin on January 1, 2021 ».
+
+⛔ **Ce point avait été écrit sur la page AVANT d'être sourcé.** Cette fiche disait
+« À lire avant de l'écrire » ; ça ne l'avait pas été. PC 181 amende § 67-2-102 mais
+n'en cite jamais la phrase d'assiette — les seules occurrences de « dividend income,
+interest income » dans le PDF portent sur l'apportionment de la franchise & excise
+tax des fabricants, rien à voir. L'affirmation était vraie ; elle n'était pas prouvée.
+Rattrapé par le contrôle indépendant avant publication.
 
 ### 3. La Professional Privilege Tax
 

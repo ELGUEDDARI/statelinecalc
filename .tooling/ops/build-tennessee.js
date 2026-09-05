@@ -207,10 +207,10 @@ ${entete("paycheck")}
     <strong>zero</strong> since 2021. On <span class="num">${$0(REF)}</span> you keep about
     <strong class="num">${$0(r60.net)}</strong> a year &mdash; an effective rate of
     ${(r60.taux * 100).toFixed(1)}%, every point of it federal.</p>
-    <p class="answer-jump"><a href="#calc">Calculate my pay &darr;</a></p>
+    <p class="answer-jump"><a href="#calc-h">Calculate my pay &darr;</a></p>
   </div>
 
-  <h2 id="calc">Calculate your Tennessee take-home pay</h2>
+  <h2 id="calc-h">Calculate your Tennessee take-home pay</h2>
   <form class="calc" data-paycheck-form data-state="tennessee" novalidate>
     <div class="field">
       <label for="salary">Your gross pay or hourly rate</label>
@@ -285,7 +285,7 @@ ${entete("paycheck")}
       $200,000.</li>
     </ul>
     <p>There is no fourth line. Tennessee has no state withholding, no local income tax, and no
-    payroll programme deducted from wages. Unemployment insurance is financed by the employer,
+    payroll program deducted from wages. Unemployment insurance is financed by the employer,
     which is why it never appears on your payslip.</p>
     <p>That last point is worth stating plainly, because &ldquo;no income tax&rdquo; does not
     always mean &ldquo;nothing comes out&rdquo;. <a href="/paycheck-calculator/washington/">Washington</a>
@@ -388,7 +388,7 @@ ${lignesHoraire.map(l => `          <tr><td class="num">$${l.taux}.00</td><td cl
     </ul>
 
     <h2>Compare with neighboring states</h2>
-    <p>The same ${$0(REF)}, single filer, 2026. Georgia is Tennessee's neighbour to the south;
+    <p>The same ${$0(REF)}, single filer, 2026. Georgia is Tennessee's neighbor to the south;
     the others are the states this site publishes that a mover most often compares.</p>
     <div class="table-scroll">
       <table>
@@ -415,7 +415,7 @@ ${FAQ.map(([question, reponse]) => `      <h3>${question}</h3>\n      <p>${repon
       <li><a href="/paycheck-calculator/texas/">Texas paycheck calculator</a> &mdash; the other
       state where the figures come out the same</li>
       <li><a href="/paycheck-calculator/washington/">Washington paycheck calculator</a> &mdash;
-      no income tax, but two programmes still come out</li>
+      no income tax, but two programs still come out</li>
       <li><a href="/methodology/">How we calculate these figures, and where the rates come from</a></li>
     </ul>
   </div>
@@ -427,7 +427,13 @@ ${carteUsa(NOM, { avecListe: false })}
 ${grilleEtats()}
   </ul>
 
-  <p class="dates">Published ${LISIBLE} &middot; Last updated ${LISIBLE}.</p>
+  <p class="dates">
+    Published <time datetime="${AUJOURD_HUI}">${LISIBLE}</time> &middot;
+    Last updated <time datetime="${AUJOURD_HUI}">${LISIBLE}</time> &middot;
+    Rates verified against IRS and Social Security Administration figures, against Public
+    Chapter 181 of 2017 as enrolled, and against the Tennessee Department of Revenue pages
+    for the state's taxes and for the repealed Hall income tax.
+  </p>
   <p class="disclaimer">StateLine Calc provides general information for educational purposes
   only. It is not financial, tax or legal advice. Results are estimates based on published 2026
   federal rates. Tennessee's individual income tax rate is zero under Tennessee Code Annotated
