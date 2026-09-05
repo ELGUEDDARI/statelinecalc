@@ -76,7 +76,13 @@ const serveur = http.createServer((req, res) => {
 
   console.log("=== /" + SLUG + "/ rendue dans un vrai navigateur ===");
   ok("le H1 pose la question visee", /an Hour Is How Much a Year\?$/.test(d.h1 || ""), d.h1);
-  ok("le titre contient la reponse chiffree", /\$52,000/.test(d.titre), d.titre);
+  /* Le brut attendu se DEDUIT du slug : $52,000 etait code en dur, donc ce test
+   * echouait sur tout taux autre que 25 (constate le 05/09/2026). Un test qui
+   * echoue toujours est un test qu'on finit par ignorer. */
+  const tauxDuSlug = Number(SLUG.split("-")[0].replace("-", "."));
+  const brutAttendu = "$" + (tauxDuSlug * 2080).toLocaleString("en-US");
+  ok("le titre contient la reponse chiffree", d.titre.includes(brutAttendu),
+     d.titre + "  [attendu : " + brutAttendu + "]");
   ok("la feuille de style est chargee", d.cssChargee !== "NON CHARGEE", ".wrap max-width = " + d.cssChargee);
   ok("trois tableaux presents", d.tableaux === 3, d.tableaux + " tableaux");
   ok("le tableau des Etats a 8 lignes", d.lignesTableau >= 8 + 6 + 7, d.lignesTableau + " lignes au total");

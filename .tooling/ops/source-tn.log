@@ -1,0 +1,24 @@
+
+
+########## HALL ##########
+HTTP  : 403
+url   : https://www.tn.gov/revenue/taxes/hall-income-tax.html
+titre : 403 Forbidden
+--- TEXTE ---
+403 Forbidden
+
+
+########## TAXES ##########
+HTTP  : 403
+url   : https://www.tn.gov/revenue/taxes.html
+titre : 403 Forbidden
+--- TEXTE ---
+403 Forbidden
+
+
+########## UI ##########
+HTTP  : 403
+url   : https://www.tn.gov/workforce/employers/tax-and-insurance-redirect/unemployment-insurance-tax.html
+titre : 403 Forbidden
+--- TEXTE ---
+403 Forbidden

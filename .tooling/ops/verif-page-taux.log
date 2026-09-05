@@ -1,0 +1,94 @@
+=== depart 22:05:05 ===
+22:05:06 HTTP=404 occurrences de 52,000 = 0
+0
+22:05:51 HTTP=404 occurrences de 52,000 = 0
+0
+22:06:37 HTTP=404 occurrences de 52,000 = 0
+0
+22:07:22 HTTP=404 occurrences de 52,000 = 0
+0
+22:08:07 HTTP=404 occurrences de 52,000 = 0
+0
+22:08:53 HTTP=404 occurrences de 52,000 = 0
+0
+22:09:38 HTTP=404 occurrences de 52,000 = 0
+0
+22:10:24 HTTP=404 occurrences de 52,000 = 0
+0
+22:11:09 HTTP=200 occurrences de 52,000 = 15
+=== SERVIE ET VERIFIEE SUR LE SITE REEL ===
+=== 26 URL lues dans le sitemap servi ===
+
+SITEMAP RESOUMIS : https://statelinecalc.com/sitemap.xml
+
+/                                                        | Submitted and indexed              | crawl 2026-08-24 | robots ALLOWED
+/paycheck-calculator/                                    | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/washington/                         | Submitted and indexed              | crawl 2026-08-23 | robots ALLOWED
+/paycheck-calculator/nevada/                             | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/texas/                              | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/georgia/                            | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/florida/                            | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/illinois/                           | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/pennsylvania/                       | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/michigan/                           | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/methodology/                                            | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/about/                                                  | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/contact/                                                | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/privacy/                                                | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/terms/                                                  | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/disclaimer/                                             | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/                            | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/salary-to-hourly-calculator/texas/                      | Crawled - currently not indexed    | crawl 2026-08-28 | robots ALLOWED
+/salary-to-hourly-calculator/florida/                    | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/nevada/                     | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/washington/                 | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/georgia/                    | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/pennsylvania/               | Submitted and indexed              | crawl 2026-08-30 | robots ALLOWED
+/salary-to-hourly-calculator/michigan/                   | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/illinois/                   | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/25-an-hour-is-how-much-a-year/                          | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+
+=== RESUME ===
+  12  Submitted and indexed
+   7  URL is unknown to Google
+   6  Discovered - currently not indexed
+   1  Crawled - currently not indexed
+
+INDEXEES : 12 / 26
+=== CONTROLE DE LA CLE ===
+  OK : https://statelinecalc.com/4a831ba8c1e14a4f98f83507a17acf8d2bc2df4712ea4d0f9183f731c0d08516.txt
+=== 27 URL lues dans sitemap.xml ===
+=== ENVOI A INDEXNOW ===
+  https://statelinecalc.com/
+  https://statelinecalc.com/paycheck-calculator/
+  https://statelinecalc.com/paycheck-calculator/washington/
+  https://statelinecalc.com/paycheck-calculator/nevada/
+  https://statelinecalc.com/paycheck-calculator/texas/
+  https://statelinecalc.com/paycheck-calculator/georgia/
+  https://statelinecalc.com/paycheck-calculator/florida/
+  https://statelinecalc.com/paycheck-calculator/illinois/
+  https://statelinecalc.com/paycheck-calculator/pennsylvania/
+  https://statelinecalc.com/paycheck-calculator/michigan/
+  https://statelinecalc.com/methodology/
+  https://statelinecalc.com/about/
+  https://statelinecalc.com/contact/
+  https://statelinecalc.com/privacy/
+  https://statelinecalc.com/terms/
+  https://statelinecalc.com/disclaimer/
+  https://statelinecalc.com/salary-to-hourly-calculator/
+  https://statelinecalc.com/salary-to-hourly-calculator/texas/
+  https://statelinecalc.com/salary-to-hourly-calculator/florida/
+  https://statelinecalc.com/salary-to-hourly-calculator/nevada/
+  https://statelinecalc.com/salary-to-hourly-calculator/washington/
+  https://statelinecalc.com/salary-to-hourly-calculator/georgia/
+  https://statelinecalc.com/salary-to-hourly-calculator/pennsylvania/
+  https://statelinecalc.com/salary-to-hourly-calculator/michigan/
+  https://statelinecalc.com/salary-to-hourly-calculator/illinois/
+  https://statelinecalc.com/25-an-hour-is-how-much-a-year/
+  https://statelinecalc.com/sitemap.xml
+REPONSE => HTTP 200
+  ACCEPTE
+
+NOTE : IndexNow accuse reception, il ne garantit PAS l'indexation.
+La seule preuve reste l'etat d'indexation dans Bing Webmaster et Search Console.
+=== FIN 22:14:05 ===

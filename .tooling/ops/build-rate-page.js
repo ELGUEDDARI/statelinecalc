@@ -31,6 +31,119 @@ const URL = "https://statelinecalc.com/" + SLUG + "/";
 const brut = taux * HEURES;                    // 40 h x 52 semaines
 const D = "$" + c0(brut);
 
+/* OU CE TAUX SE SITUE DANS LE MARCHE DU TRAVAIL AMERICAIN.
+ *
+ * Source lue le 05/09/2026 sur https://www.bls.gov/news.release/ocwage.htm :
+ * Occupational Employment and Wage Statistics, donnees de MAI 2025, communique
+ * du 15/05/2026. Ligne "All occupations" : 155 495 730 emplois, moyenne horaire
+ * 33,54 $, moyenne annuelle 69 770 $, MEDIANE horaire 24,51 $.
+ *
+ * POURQUOI CE BLOC EXISTE : mesure du 05/09/2026 — les pages 25 et 27, une fois
+ * les nombres neutralises, etaient identiques sur 311 lignes / 311. Des pages qui
+ * ne different que par leurs chiffres sont du contenu produit a l'echelle, et le
+ * site en porte deja le symptome (/salary-to-hourly-calculator/texas/ est en
+ * "Crawled - currently not indexed" depuis le 28/08).
+ * Ce bloc est la seule partie de la page qui change de CONCLUSION selon le taux,
+ * pas seulement de montant. Ne pas le supprimer sans le remplacer par mieux.
+ *
+ * A REVERIFIER quand le BLS publiera les donnees de mai 2026 (vers mai 2027). */
+const BLS_MEDIAN = 24.51;
+const BLS_MEAN   = 33.54;
+const BLS_MEAN_AN = "$69,770";
+const BLS_EMPLOI = "155,495,730";
+const BLS_ANNEE  = "2025";
+const BLS_PUBLIE = "May 15, 2026";
+const BLS_URL    = "https://www.bls.gov/news.release/ocwage.htm";
+
+const ecartMed  = (taux / BLS_MEDIAN - 1) * 100;
+const signeMed  = ecartMed >= 0 ? "above" : "below";
+const pctMed    = Math.abs(ecartMed).toFixed(0);
+
+/* Trois conclusions distinctes selon la position du taux dans la distribution. */
+const phraseMarche =
+  taux < BLS_MEDIAN
+    ? "More than half of US jobs pay more than this, so the figures below describe pay in the " +
+      "lower half of the national distribution."
+  : taux < BLS_MEAN
+    ? "More than half of US jobs pay less than this. The national mean of $" + BLS_MEAN.toFixed(2) +
+      " is still higher, but a mean is pulled up by the best-paid occupations rather than by " +
+      "typical pay."
+    : "This clears both the median and the mean. Since the mean is pulled up by the highest-paid " +
+      "occupations, passing it puts this rate in the upper part of the US wage distribution.";
+
+/* OU CE TAUX TOMBE DANS LE BAREME FEDERAL — la 2e dimension differenciante.
+ *
+ * POURQUOI : le bloc BLS ne separait pas 25 et 27, qui sont dans la meme bande de
+ * marche (au-dessus du median, sous la moyenne) — mesure du 05/09/2026, 0 ligne
+ * differente sur 311 hors chiffres. Celui-ci les separe, parce que la distance a la
+ * tranche suivante est propre a chaque taux.
+ *
+ * C'EST AUSSI LA TOUCHE QUI NOUS DIFFERENCIE : les pages concurrentes s'arretent au
+ * brut (taux x 2080). Aucune ne dit combien il reste avant que le dollar suivant soit
+ * impose au taux superieur, ni combien d'heures cela represente a ce taux-la.
+ *
+ * Rien n'est ecrit en dur : tout sort de data/rates-2026.js, la meme source que le
+ * moteur. Si l'IRS revise le bareme, ce bloc suit automatiquement. */
+const RATES = require(path.join(__dirname, "..", "..", "data", "rates-2026.js"));
+const DED_SINGLE = RATES.federal.standardDeduction.single;
+const TRANCHES = RATES.federal.brackets.single;
+
+const imposable = brut - DED_SINGLE;
+const iT = TRANCHES.findIndex(([plafond]) => plafond === null || imposable <= plafond);
+const tauxMarginal = Math.round(TRANCHES[iT][1] * 100);
+const plafondT = TRANCHES[iT][0];
+const plafondPrec = iT > 0 ? TRANCHES[iT - 1][0] : 0;
+const tauxSuivant = TRANCHES[iT + 1] ? Math.round(TRANCHES[iT + 1][1] * 100) : null;
+
+/* Deux situations : soit il reste de la marge dans la tranche, soit ce taux vient
+ * d'en franchir une. Les deux phrases ne se ressemblent pas. */
+const marge = plafondT === null ? null : plafondT - imposable;
+const heuresMarge = marge === null ? null : Math.round(marge / taux);
+const dansTranche = imposable - plafondPrec;
+
+/* T est defini plus bas dans le fichier ; on refabrique le meme libelle ici. */
+const TAUX_LIB = "$" + (Number.isInteger(taux) ? c0(taux) : c2(taux));
+
+/* Ce qui est deja franchi. Vide pour les taux qui restent dans la tranche a 12 % :
+ * c'est precisement ce qui distingue une page qui vient de passer un palier. */
+/* ⛔ NE JAMAIS comparer la tranche federale marginale au taux effectif du tableau.
+ * Le 05/09/2026 la phrase disait "the effective rates in the table below stay well
+ * under 12%" alors que le tableau affiche 15,8 % a 20,5 % : la colonne "Effective
+ * rate" additionne federal + FICA 7,65 % + impot d'Etat. C'etait faux sur 32 lignes
+ * sur 32, et contredit par un tableau situe cinq lignes plus bas.
+ * PREMIERE CORRECTION RATEE, le meme jour : "the effective rates are HIGHER than 22%"
+ * etait faux a son tour sur la page 35 (7 lignes sur 8 entre 17,5 % et 21,5 %).
+ * ⛔ CONCLUSION : la tranche marginale federale et le taux effectif du tableau ne se
+ * comparent PAS, dans aucun sens. On dit ce que chacun mesure, jamais lequel est le
+ * plus eleve — c'est justement la question que se pose le visiteur qui lit 15,8 %
+ * en etant "dans la tranche 12 %". */
+const phraseFranchi = plafondPrec > 0
+  ? `Only part of it is taxed at that rate: the first $${c0(plafondPrec)} is taxed at the lower ` +
+    `brackets and only the last <strong>$${c0(dansTranche)}</strong> at ${tauxMarginal}%. ` +
+    `A bracket applies to the dollars above its threshold, never to the whole salary. ` +
+    `The &ldquo;effective rate&rdquo; column in the table below measures something different ` +
+    `again: the share of gross pay lost to every deduction together &mdash; federal income tax, ` +
+    `Social Security and Medicare at 7.65% combined, and any state income tax. `
+  : "";
+
+const phraseTranche = (marge !== null && tauxSuivant)
+  ? `That sits in the ${tauxMarginal}% federal bracket, which runs to $${c0(plafondT)} of taxable ` +
+    `income. ${phraseFranchi}There is <strong>$${c0(marge)}</strong> of room left before the next ` +
+    `dollar would be taxed at ${tauxSuivant}% &mdash; about <strong>${c0(heuresMarge)} more ` +
+    `hours</strong> at ${TAUX_LIB} an hour, or a raise of about $${c2(marge / HEURES)} an hour ` +
+    `held for a full year.`
+  : `That reaches the top ${tauxMarginal}% federal bracket. ${phraseFranchi}`;
+
+/* MAILLAGE INTERNE DE LA FAMILLE.
+ * Mesure du 05/09/2026 : les pages 27, 30 et 35 etaient ORPHELINES — aucun lien
+ * entrant, ni depuis l'accueil ni entre elles. Une page orpheline s'indexe mal et
+ * ne recoit aucune autorite interne. Ajouter le nouveau taux ici en meme temps
+ * qu'on le construit, sinon la page suivante repartira orpheline. */
+const TAUX_PUBLIES = [25, 27, 30, 35];
+const liensSoeurs = TAUX_PUBLIES.filter(x => x !== taux).map(x =>
+  `<a href="/${String(x).replace(".", "-")}-an-hour-is-how-much-a-year/">$${x} an hour` +
+  ` ($${c0(x * HEURES)} a year)</a>`).join(", ");
+
 /* Les Etats publies, tries du net le plus eleve au plus faible. */
 const ETATS = Object.keys(FICHES).map(k => {
   const r = net(k, brut);
@@ -199,6 +312,24 @@ ${faq.map(([n, a]) => `        {
     a year, or $${c2(ecartAn / 12)} a month, on identical pay.</p>
   </div>
 
+  <h2>Where ${T} an hour sits in the US labor market</h2>
+  <p>Across all US occupations the median wage is <strong class="num">$${BLS_MEDIAN.toFixed(2)}</strong>
+  an hour and the mean is <strong class="num">$${BLS_MEAN.toFixed(2)}</strong> &mdash; Bureau of Labor
+  Statistics, <a href="${BLS_URL}" rel="nofollow">Occupational Employment and Wage Statistics</a>,
+  May ${BLS_ANNEE} data covering ${BLS_EMPLOI} jobs, released ${BLS_PUBLIE}.</p>
+  <p>At ${T} an hour you are about <strong>${pctMed}% ${signeMed} the national median</strong>.
+  ${phraseMarche}</p>
+  <p>Annualized, ${D} compares with a national mean of ${BLS_MEAN_AN} a year. The median and the
+  mean differ because a minority of very high-paying occupations pulls the average up; the median
+  is the better description of a typical job.</p>
+
+  <h2>How close ${T} an hour is to the next federal bracket</h2>
+  <p>Most pages answering this question stop at ${D}. The number that decides what a raise is
+  actually worth is a different one: where ${D} falls in the federal brackets.</p>
+  <p>After the $${c0(DED_SINGLE)} standard deduction, ${D} leaves
+  <strong class="num">$${c0(imposable)}</strong> of taxable income for a single filer.
+  ${phraseTranche}</p>
+
   <h2>${T} an hour after tax, state by state</h2>
   <p>Single filer, standard deduction, 2026 rates, no 401(k) contribution. Every figure below is
   produced by the same engine as our paycheck calculators &mdash; nothing here is rounded by hand.</p>
@@ -259,6 +390,10 @@ ${faq.map(([n, a]) => `    <dt>${n}</dt>
   contribution. If any of that is wrong for you, the state calculators take your own numbers and
   show every deduction line by line:
 ${ETATS.map(e => `<a href="${e.lien}">${e.nom}</a>`).join(", ")}.</p>
+
+  <h2>Other hourly rates</h2>
+  <p>The same question, answered the same way, at nearby rates:
+${liensSoeurs}.</p>
 
   <p class="caption">Rates: IRS 2026 federal brackets and standard deduction, Social Security and
   Medicare rates from the SSA, and each state&rsquo;s own published 2026 figures. Every source and

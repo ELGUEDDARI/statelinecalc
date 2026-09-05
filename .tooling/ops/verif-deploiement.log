@@ -1,0 +1,42 @@
+=== depart 19:02:26 ===
+19:02:27 liens s2h servis = 0
+19:03:12 liens s2h servis = 0
+19:03:57 liens s2h servis = 8
+=== DEPLOYE ET VERIFIE SUR LE SITE REEL (8 liens) ===
+=== 25 URL lues dans le sitemap servi ===
+
+SITEMAP RESOUMIS : https://statelinecalc.com/sitemap.xml
+
+/                                                        | Submitted and indexed              | crawl 2026-08-24 | robots ALLOWED
+/paycheck-calculator/                                    | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/washington/                         | Submitted and indexed              | crawl 2026-08-23 | robots ALLOWED
+/paycheck-calculator/nevada/                             | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/texas/                              | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/georgia/                            | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/florida/                            | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/illinois/                           | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/pennsylvania/                       | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/paycheck-calculator/michigan/                           | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/methodology/                                            | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/about/                                                  | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/contact/                                                | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/privacy/                                                | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/terms/                                                  | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/disclaimer/                                             | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/                            | Submitted and indexed              | crawl 2026-08-28 | robots ALLOWED
+/salary-to-hourly-calculator/texas/                      | Crawled - currently not indexed    | crawl 2026-08-28 | robots ALLOWED
+/salary-to-hourly-calculator/florida/                    | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/nevada/                     | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/washington/                 | Discovered - currently not indexed | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/georgia/                    | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/pennsylvania/               | Submitted and indexed              | crawl 2026-08-30 | robots ALLOWED
+/salary-to-hourly-calculator/michigan/                   | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+/salary-to-hourly-calculator/illinois/                   | URL is unknown to Google           | crawl jamais | robots ROBOTS_TXT_STATE_UNSPECIFIED
+
+=== RESUME ===
+  12  Submitted and indexed
+   6  URL is unknown to Google
+   6  Discovered - currently not indexed
+   1  Crawled - currently not indexed
+
+INDEXEES : 12 / 25

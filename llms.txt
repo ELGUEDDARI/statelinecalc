@@ -50,6 +50,22 @@ that reaches the account, which is not: $24.23 an hour in Texas, $22.87 in Illin
 Each state page carries a 30-row table converting salaries from $25,000 to $500,000, giving
 the gross hourly rate, the after-tax hourly rate, and the yearly, monthly and weekly figures.
 
+## Hourly rate to annual salary, after tax
+
+Every other page answering "$25 an hour is how much a year?" stops at $52,000, which is just
+the rate times 2,080 hours and is the same in all fifty states. These pages give the figure
+that reaches the account, which is not, and place the rate against the US median wage of
+$24.51 an hour (Bureau of Labor Statistics, Occupational Employment and Wage Statistics,
+May 2025 data covering 155,495,730 jobs, released May 15, 2026).
+
+- [$25 an hour is how much a year?](https://statelinecalc.com/25-an-hour-is-how-much-a-year/): $52,000 a year before tax, 2% above the US median hourly wage. After tax a single filer keeps $43,962 in Texas and $41,533 in Illinois, a gap of $2,429 a year on identical pay.
+- [$27 an hour is how much a year?](https://statelinecalc.com/27-an-hour-is-how-much-a-year/): $56,160 a year before tax, 10% above the US median. After tax: $47,305 in Texas, $44,669 in Illinois, a gap of $2,635.
+- [$30 an hour is how much a year?](https://statelinecalc.com/30-an-hour-is-how-much-a-year/): $62,400 a year before tax, 22% above the US median. After tax: $52,318 in Texas, $49,374 in Illinois, a gap of $2,944.
+- [$35 an hour is how much a year?](https://statelinecalc.com/35-an-hour-is-how-much-a-year/): $72,800 a year before tax, 43% above the US median and above the national mean of $33.54 an hour. After tax: $60,045 in Texas, $56,586 in Illinois, a gap of $3,459.
+
+Each page also converts the rate to monthly, biweekly and weekly pay, and to the hours actually
+worked when the week is not 40 hours.
+
 ## Reference
 
 - [Methodology](https://statelinecalc.com/methodology/): The exact formula, every 2026 federal figure with its official source and the date it was verified, and what the calculators deliberately do not model.
