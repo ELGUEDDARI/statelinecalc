@@ -123,6 +123,7 @@ const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
    defaire le maillage en etant simplement relance. */
 const { grilleEtats } = require("../lib/etats-publies.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
+const { carteUsa } = require("../lib/bloc-carte.js");
 const listeEtats = grilleEtats();
 
 const html = `<!DOCTYPE html>
@@ -601,6 +602,8 @@ ${voisins.map(v => {
   </ul>
 
   </div>
+
+${carteUsa("Pennsylvania", { avecListe: false })}
 
   <h2>Browse paycheck calculators by state</h2>
   <ul class="linkgrid">

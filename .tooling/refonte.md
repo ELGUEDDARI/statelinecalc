@@ -105,6 +105,34 @@ Toute phase qui fait grossir ce total doit dire de combien et pourquoi.
 mais **6 390 octets une fois gzippé** — et **7 793 octets sont des commentaires**, qui ne
 coûtent presque rien compressés. Le JavaScript n'a pas bougé : **0 octet ajouté**.
 
+## Ce que le n°1 mesure vraiment (SimilarWeb, juillet 2026, fourni par le PDG)
+
+| | |
+|---|---|
+| Visites | **5,5 M/mois** · rebond 56,01 % · 2,88 pages/visite · 1 min 40 |
+| **Mot-clé n°1** | **« paycheck calculator » — 106 300 visites, CPC 3,91 $** |
+| Puis | income tax calculator 34,7 K (0,77 $) · salary calculator 21,5 K (1,32 $) · take home pay calculator 19,6 K (1,79 $) · investment calculator 17,2 K (0,87 $) |
+| Trafic IA | Gemini **23,78 %** · Perplexity **23,4 %** · ChatGPT **8,9 %** |
+
+👉 **Leurs cinq premiers mots-clés sont tous des calculateurs. Aucun article de blog.**
+Leur trafic ne vient pas du blog — il vient exactement de ce que nous construisons. C'est leur
+propre donnée qui répond à la question du blog, pas une opinion.
+👉 **« paycheck calculator » vaut 3,91 $ de CPC**, trois fois le mot-clé suivant. C'est la
+valeur de notre créneau, et c'est le nôtre.
+👉 Plus de **56 %** de leur trafic IA vient de Gemini + Perplexity, en hausse. Le résumé en
+toutes lettres ajouté au calculateur en phase 4 sert exactement ça.
+
+## Pourquoi pas de blog (décidé le 05/09/2026)
+
+Mesuré sur `smartasset.com/blog` le 05/09 : **58 des 251 liens** de la page pointent vers
+l'appariement avec un conseiller financier. **SmartAsset n'est pas un site AdSense, c'est un
+vendeur de prospects.** Leur blog est un entonnoir vers une mise en relation qui se facture des
+dizaines de dollars le prospect ; un clic AdSense en vaut environ un. Copier le blog sans le
+modèle, c'est prendre le coût sans le revenu.
+Et notre goulot n'est pas le volume : **809 impressions, 0 clic**, avec des pages en
+« Crawled – currently not indexed ». Un blog ajouterait des pages que Google refuse déjà
+d'indexer, et nous exposerait au *scaled content abuse*.
+
 ## Où l'on peut réellement dépasser le n°1
 
 Relevé sur sa page le 05/09/2026, ce sont ses faiblesses, pas des suppositions :
@@ -182,11 +210,11 @@ Vérifié au navigateur : 51 tracés, 11 bleus cliquables, 40 gris, **0 État gr
 | 2 | En-tête : navy, compact, CTA, mobile 2 lignes | ✅ **fait** |
 | 3 | Carte du calculateur + champs | ✅ **fait** (via les jetons) |
 | 4 | Résultat : chiffre dominant, camembert, barres | ✅ **fait** |
-| 5 | Carte USA SVG | ✅ **fait** (accueil ; pages d'État à faire) |
-| 6 | Cartes d'États + grille | à faire |
+| 5 | Carte USA SVG | ✅ **fait** — accueil + 11 pages d'État |
+| 6 | Cartes d'États + grille | ✅ **fait** (liste sous la carte) |
 | 7 | Contenu éditorial : aération, encadrés, tableaux | à faire |
-| 8 | Colonne latérale + fil d'Ariane | à faire |
-| 9 | Pied de page en 4 colonnes | à faire |
+| 8 | Largeur de contenu ramenée à 960 px | ✅ **fait** (colonne latérale : plus tard) |
+| 9 | Pied de page en 4 colonnes | ✅ **fait** |
 | 10 | Passe mobile 375 → 1440 | à faire |
 | 11 | Passe accessibilité | à faire |
 | 12 | Mesure de performance avant/après | à faire |

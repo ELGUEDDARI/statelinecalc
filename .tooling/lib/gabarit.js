@@ -52,16 +52,48 @@ const NAV = [
   { cle: "methodology", href: "/methodology/",                 libelle: "Methodology" }
 ];
 
-/* Les liens du pied de page. */
-const PIED = [
-  { href: "/",            libelle: "Home" },
-  { href: "/about/",      libelle: "About" },
-  { href: "/methodology/", libelle: "Methodology" },
-  { href: "/contact/",    libelle: "Contact" },
-  { href: "/privacy/",    libelle: "Privacy" },
-  { href: "/terms/",      libelle: "Terms" },
-  { href: "/disclaimer/", libelle: "Disclaimer" }
+/* Le pied de page, en colonnes.
+ * ⛔ Chaque adresse ci-dessous DOIT exister. Le brief de refonte proposait des
+ * rubriques « Tax Guides », « Overtime Calculator », « Tax Calculator » et
+ * « Hourly to Salary » : aucune n'existe sur ce site. Un pied de page rempli de
+ * liens morts est pire qu'un pied de page court.
+ * Les taux publies viennent de TAUX_PIED, les Etats de PUBLIES : une seule
+ * source, donc le pied de page ne peut pas se desynchroniser du site. */
+const TAUX_PIED = [25, 27, 30, 35];
+
+const COLONNES = [
+  {
+    titre: "Calculators",
+    liens: [
+      { href: "/paycheck-calculator/", libelle: "Paycheck calculator" },
+      { href: "/salary-to-hourly-calculator/", libelle: "Salary to hourly" }
+    ].concat(TAUX_PIED.map(t => ({
+      href: "/" + t + "-an-hour-is-how-much-a-year/",
+      libelle: "$" + t + " an hour a year"
+    })))
+  },
+  { titre: "States", liens: [] },          /* rempli plus bas depuis PUBLIES */
+  {
+    titre: "Resources",
+    liens: [
+      { href: "/methodology/", libelle: "Methodology" },
+      { href: "/about/", libelle: "About" },
+      { href: "/contact/", libelle: "Contact" }
+    ]
+  },
+  {
+    titre: "Legal",
+    liens: [
+      { href: "/privacy/", libelle: "Privacy" },
+      { href: "/terms/", libelle: "Terms" },
+      { href: "/disclaimer/", libelle: "Disclaimer" }
+    ]
+  }
 ];
+
+/* Liste a plat, utilisee par le test verif-gabarit.js pour verifier qu'aucun
+   lien du pied de page n'a disparu d'une page. */
+const PIED = [{ href: "/", libelle: "Home" }];
 
 /* actif : "paycheck" | "s2h" | "methodology" | null.
  * On MARQUE la rubrique courante (aria-current) au lieu de retirer son lien :
@@ -91,16 +123,34 @@ ${liens}
 }
 
 function piedDePage() {
-  const liens = PIED.map(l => `      <a href="${l.href}">${l.libelle}</a>`).join(" &middot;\n");
+  const { PUBLIES } = require("./etats-publies.js");
+  const colonnes = COLONNES.map(c => {
+    const liens = (c.titre === "States")
+      ? Object.keys(PUBLIES).sort().map(n =>
+          ({ href: "/paycheck-calculator/" + PUBLIES[n] + "/", libelle: n }))
+      : c.liens;
+    return `      <div class="pied-col">
+        <h2 class="pied-titre">${c.titre}</h2>
+        <ul>
+${liens.map(l => `          <li><a href="${l.href}">${l.libelle}</a></li>`).join("\n")}
+        </ul>
+      </div>`;
+  }).join("\n");
+
   return `<footer class="site-footer">
   <div class="wrap">
-    <p><strong>StateLine Calc</strong> &mdash; free money calculators for all 50 states.
-    No sign-up. No personal data required.</p>
-    <p class="micro u-on-dark">
-${liens}
-    </p>
+    <div class="pied-cols">
+${colonnes}
+    </div>
+    <div class="pied-bas">
+      <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
+      states. No sign-up, no account, and nothing you type leaves your browser.</p>
+      <p class="micro u-on-dark u-mt-3">&copy; 2026 StateLine Calc &middot;
+      <a href="/">Home</a> &middot;
+      <a href="/disclaimer/">Estimates only, not tax advice</a></p>
+    </div>
   </div>
 </footer>`;
 }
 
-module.exports = { entete, piedDePage, NAV, PIED, LOGO };
+module.exports = { entete, piedDePage, NAV, PIED, COLONNES, LOGO };

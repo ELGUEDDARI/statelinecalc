@@ -107,6 +107,15 @@ body {
 main.wrap {
   background: var(--surface);
   padding-block: var(--s-6);
+  /* Plus etroite que l'en-tete et le pied de page, qui gardent 1120 px et
+     traversent l'ecran. A 1120 px la carte laissait 450 px de blanc vide a
+     droite du texte, qui plafonne a 68 caracteres : le contenu avait l'air
+     perdu. 920 px cadre le texte sans rendre les tableaux de tranches
+     defilants — verifie a 1280 et 1440 px.
+     ⛔ Pas moins de 960. A 920 px, le tableau a 7 colonnes de
+     /salary-to-hourly-calculator/texas/ demandait 863 px pour 854 disponibles :
+     il se mettait a defiler pour NEUF pixels. Mesure du 05/09/2026. */
+  max-width: 960px;
 }
 @media (min-width: 768px) {
   main.wrap {
@@ -193,6 +202,33 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   padding-block: var(--s-12);
 }
 .site-footer a { color: var(--on-dark); }
+
+/* Pied de page en colonnes, 05/09/2026. Avant : une phrase et six liens sur une
+   ligne. Un pied de page est la derniere chance de retenir quelqu'un qui n'a pas
+   trouve sa page — il doit montrer ce que le site couvre.
+   ⛔ Chaque lien pointe vers une page qui EXISTE. Le brief proposait « Tax
+   Guides », « Overtime Calculator », « Tax Calculator » et « Hourly to Salary » :
+   aucun n'existe ici, et un pied de page plein de liens morts est pire qu'un
+   pied de page court. Etats et taux sortent de la source unique. */
+.pied-cols {
+  display: grid; gap: var(--s-6);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 560px)  { .pied-cols { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px)  { .pied-cols { grid-template-columns: repeat(4, 1fr); } }
+.pied-titre {
+  font-size: 13px; font-weight: 700; margin: 0 0 var(--s-3);
+  text-transform: uppercase; letter-spacing: .06em; color: #FFFFFF;
+}
+.pied-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
+.pied-col a { font-size: 15px; text-decoration: none; }
+.pied-col a:hover { text-decoration: underline; }
+.pied-bas {
+  margin-top: var(--s-8); padding-top: var(--s-6);
+  border-top: 1px solid rgba(255, 255, 255, .18);
+  max-width: var(--measure);
+}
+.site-footer a:focus-visible { outline-color: #FFFFFF; }
 
 /* Breadcrumb */
 .crumbs { font-size: 14px; color: var(--text-muted); margin: var(--s-4) 0; }
