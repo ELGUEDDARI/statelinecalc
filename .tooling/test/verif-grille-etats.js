@@ -30,7 +30,14 @@ const srv = http.createServer((q,r)=>{ let p=decodeURIComponent(q.url.split("?")
   const SERVI = process.argv.includes("--servi");
   const BASE = SERVI ? "https://statelinecalc.com" : "http://localhost:" + PORT;
   let fail = 0;
-  for (const e of ["florida","texas","georgia","illinois","nevada","washington","michigan","pennsylvania","utah","ohio"]) {
+  /* La liste vient de .tooling/lib/etats-publies.js, source unique. Elle etait
+     codee en dur ici : le 05/09/2026 Hawaii a ete publie et le test ne l'a pas
+     vu passer, exactement comme le titre "$52,000" code en dur dans
+     test-rate-page-local.js. Un test qui ignore les pages neuves ne protege
+     que les anciennes. */
+  const { PUBLIES } = require("../lib/etats-publies.js");
+  const ETATS_TESTES = Object.values(PUBLIES);
+  for (const e of ETATS_TESTES) {
     await page.goto(BASE+"/paycheck-calculator/"+e+"/", {waitUntil:"networkidle"});
     const d = await page.evaluate(()=>{
       const ul=[...document.querySelectorAll("ul")].find(u=>u.textContent.includes("Wyoming"));
@@ -47,6 +54,6 @@ const srv = http.createServer((q,r)=>{ let p=decodeURIComponent(q.url.split("?")
   }
   await nav.close(); srv.close();
   console.log("\n=== GRILLE DES 50 ETATS" + (SERVI ? " (SERVI)" : " (LOCAL)")
-    + " : " + (10 - fail) + " OK, " + fail + " ECHEC ===\n");
+    + " : " + (ETATS_TESTES.length - fail) + " OK, " + fail + " ECHEC ===\n");
   process.exit(fail === 0 ? 0 : 1);
 })();

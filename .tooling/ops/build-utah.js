@@ -640,7 +640,15 @@ ${voisins.map(v => {
   const nom = v.cle.charAt(0).toUpperCase() + v.cle.slice(1);
   const d = v.r.net - a75.net;
   const sens = d > 0 ? "keeps " + $$(Math.abs(d)) + " more" : "keeps " + $$(Math.abs(d)) + " less";
-  const art = /^[AEIOU]/.test(nom) ? "An" : "A";
+  /* « An Utah worker » : le test portait sur la LETTRE initiale, pas sur le SON.
+     Utah se prononce /juːtɑː/, avec un son consonne — un lecteur americain ecrit
+     toujours « a Utah worker ». Defaut trouve par le controle le 05/09/2026 sur
+     la page Hawaii, present dans trois generateurs. Utah est la SEULE exception
+     parmi les 50 Etats : tous les autres a voyelle initiale (Alabama, Alaska,
+     Arizona, Arkansas, Idaho, Illinois, Indiana, Iowa, Ohio, Oklahoma, Oregon)
+     prennent bien « An ». */
+  const SON_CONSONNE = ["Utah"];
+  const art = (/^[AEIOU]/.test(nom) && !SON_CONSONNE.includes(nom)) ? "An" : "A";
   return `    <li><a href="/paycheck-calculator/${v.cle}/">${nom}</a> &mdash; ${$(v.r.net)} take-home, `
     + `an effective rate of ${(v.r.taux * 100).toFixed(1)}%. ${art} ${nom} worker ${sens} than a `
     + `Utahn on the same salary.</li>`;

@@ -25,6 +25,7 @@ const ETATS_50 = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Col
 const PUBLIES = {
   Florida: "florida",
   Georgia: "georgia",
+  Hawaii: "hawaii",
   Illinois: "illinois",
   Michigan: "michigan",
   Nevada: "nevada",
