@@ -73,7 +73,7 @@ const html = `<!DOCTYPE html>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
 <title>Salary to Hourly Calculator 2026 — Before and After Tax, by State</title>
-<meta name="description" content="Convert a salary to an hourly rate for 2026, and see the rate after tax rather than only before. $60,000 a year is $28.85 an hour gross — what you keep depends on your state.">
+<meta name="description" content="Convert a salary to an hourly rate for 2026, and see the rate after tax, not only before. $60,000 a year is $28.85 an hour gross &mdash; less once tax is out.">
 <link rel="canonical" href="https://statelinecalc.com/salary-to-hourly-calculator/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

@@ -10,6 +10,14 @@
  */
 const fs = require("fs");
 const { entete, piedDePage } = require("../lib/gabarit.js");
+/* ⛔ migre-colonne.js du 05/09/2026 a pose la colonne laterale dans les huit
+   pages salary-to-hourly, mais sa liste de generateurs oubliait CELUI-CI. La
+   colonne vivait donc uniquement dans le HTML publie : la premiere
+   regeneration l'a effacee des huit pages d'un coup, 2 145 octets et tout le
+   bloc « Other states » en moins, sans qu'aucun test ne bronche. C'est
+   exactement le defaut que cette migration disait empecher — pages ET
+   generateurs dans le meme passage — applique partout sauf ici. */
+const { colonne } = require("../lib/colonne.js");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { FICHES, net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
@@ -19,6 +27,9 @@ const SALAIRES_VEDETTE = [40000, 50000, 60000, 75000, 100000];
 function page(cle) {
   const f = FICHES[cle];
   const nom = f.nom;
+  /* « a Illinois » etait publie tel quel : l'article etait ecrit en dur
+     dans la meta description. Il se calcule sur la voyelle. */
+  const article = n => (/^[AEIOU]/i.test(n) ? "an" : "a");
   const url = "https://statelinecalc.com/salary-to-hourly-calculator/" + cle + "/";
 
   const tableau = execFileSync("node",
@@ -112,7 +123,7 @@ function page(cle) {
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
 <title>${nom} Salary to Hourly Calculator 2026 — After Tax</title>
-<meta name="description" content="Convert a ${nom} salary to an hourly rate for 2026 — and see the rate after tax, not just before. $60,000 a year is $28.85 an hour gross, $${S60.netH} after tax in ${nom}.">
+<meta name="description" content="Convert ${article(nom)} ${nom} salary to an hourly rate, 2026. $60,000 a year is $28.85 an hour gross &mdash; $${S60.netH} after tax in ${nom}.">
 <link rel="canonical" href="${url}">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -173,6 +184,7 @@ ${faq.map(([n, a]) => `        {
 ${entete("s2h")}
 
 <main class="wrap">
+<div class="col-contenu">
 
 <nav class="crumbs" aria-label="Breadcrumb">
   <ol>
@@ -369,6 +381,9 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
     standard deduction and 2,080 hours a year. Your actual paycheck depends on your W-4, your
     employer's benefit deductions and your full tax situation.
   </p>
+
+</div>
+${colonne(nom)}
 
 </main>
 

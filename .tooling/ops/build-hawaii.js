@@ -209,7 +209,7 @@ const html = `<!DOCTYPE html>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
 <title>Hawaii Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
-<meta name="description" content="Free Hawaii paycheck calculator, 2026. Hourly or salary. Hawaii has ${NB_TRANCHES} tax brackets from ${TAUX_BAS.toFixed(2)}% to ${TAUX_HAUT.toFixed(2)}%, and its standard deduction nearly doubled to ${$(DED)} this year.">
+<meta name="description" content="Free Hawaii paycheck calculator, 2026. Hourly or salary. Hawaii has 12 brackets from 1.40% to 11.00%, and a standard deduction now at $8,000.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/hawaii/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

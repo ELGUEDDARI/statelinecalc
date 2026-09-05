@@ -168,7 +168,7 @@ const html = `<!DOCTYPE html>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
 <title>Michigan Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
-<meta name="description" content="Free Michigan paycheck calculator, 2026. Hourly or salary. Michigan taxes income at a flat 4.25% after a $5,900 personal exemption per person &mdash; and Michigan cities, Detroit included, may add their own tax on top.">
+<meta name="description" content="Free Michigan paycheck calculator, 2026. Hourly or salary. A flat 4.25% after a $5,900 exemption per person, plus city tax in Detroit and elsewhere.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/michigan/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
