@@ -7,21 +7,36 @@
    ========================================================================= */
 
 :root {
-  /* --- colour, section 3 --- */
-  --text-primary:   #0F172A;  /* 17.85:1 on white — AAA */
-  --text-secondary: #475569;  /*  7.58:1 — AAA */
-  --text-muted:     #64748B;  /*  4.76:1 — AA  */
-  --accent:         #1D4ED8;  /*  6.70:1 — AA  */
+  /* --- colour, section 3 -------------------------------------------------
+     TROIS NIVEAUX DE FOND, refonte du 05/09/2026. L'ancien systeme n'en avait
+     que deux — page blanche, blocs gris — et ne pouvait pas faire flotter une
+     carte. Le nouveau suit ce que fait le n°1 du secteur, releve sur sa page
+     en direct le 05/09 : fond de page gris #F4F4F6, blanc UNIQUEMENT sur les
+     surfaces qui portent du texte.
+       --ground          le fond de la page. Rien ne s'y ecrit directement.
+       --surface         le blanc des cartes. C'est la qu'on ecrit.
+       --surface-sunken  le gris POSE SUR le blanc : lignes de tableau,
+                         encadre de reponse, champs groupes.
+     ⛔ --surface valait #F8FAFC avant cette date et servait de gris. Tout
+     usage de --surface comme « gris leger » doit devenir --surface-sunken,
+     sinon l'element devient blanc sur blanc et disparait sans erreur. */
+  --ground:         #F1F5F9;  /* ecart 1.10 avec le blanc : la carte se voit sans bordure */
+  --surface:        #FFFFFF;
+  --surface-sunken: #F8FAFC;
+
+  --text-primary:   #0F2547;  /* 15.26:1 blanc / 13.93:1 gris — AAA */
+  --text-secondary: #3F5170;  /*  8.01:1 blanc /  7.31:1 gris — AAA */
+  --text-muted:     #5B6B85;  /*  5.40:1 blanc /  4.93:1 gris — AA  */
+  --accent:         #1D4ED8;  /*  6.70:1 blanc /  6.12:1 gris — AA  */
   --on-accent:      #FFFFFF;
-  --success:        #047857;  /*  5.48:1 — AA  */
+  --success:        #047857;  /*  5.48:1 blanc /  5.01:1 gris — AA  */
   --on-success:     #FFFFFF;
   --danger:         #B91C1C;  /*  6.47:1 — AA  */
   --warning-bg:     #FFFEF7;
   --warning-text:   #92400E;  /*  7.01:1 on --warning-bg — AAA */
-  --surface:        #F8FAFC;
-  --dark:           #0F172A;
-  --on-dark:        #F1F5F9;  /* 16.30:1 — AAA */
-  --border-strong:  #64748B;  /* 4.76:1 — functional borders only */
+  --dark:           #0A2A5E;  /* navy de marque — 13.95:1 avec du blanc */
+  --on-dark:        #F1F5F9;  /* 12.73:1 sur --dark — AAA */
+  --border-strong:  #5B6B85;  /* 5.40:1 — functional borders only */
   --border-subtle:  #CBD5E1;  /* decorative separators ONLY, never a field */
 
   /* --- type, section 4 --- */
@@ -57,7 +72,7 @@ body {
   font-size: 17px;
   line-height: 1.65;
   color: var(--text-primary);
-  background: #FFFFFF;
+  background: var(--ground);
 }
 
 /* Numbers are the product. Tabular figures stop the layout from twitching
@@ -75,6 +90,34 @@ body {
 
 .prose { max-width: var(--measure); }
 
+/* LA CARTE DE CONTENU. Refonte du 05/09/2026.
+   Le fond de la page est gris, le contenu est blanc : c'est ce qui fait qu'un
+   site financier a l'air d'un produit et pas d'un document. Le blanc n'est pas
+   decoratif, il DELIMITE — il dit ou commence et ou finit ce qu'on doit lire.
+   Releve le 05/09 sur la page du n°1 du secteur : fond #F4F4F6, contenu blanc.
+
+   ⚠️ Cible `main.wrap` et pas `.wrap` : l'en-tete et le pied de page utilisent
+   la meme classe pour leur largeur. Blanchir `.wrap` mettrait une carte blanche
+   dans le pied de page navy.
+
+   Sur telephone la carte est a bord perdu — pas de marge, pas d'arrondi, pas de
+   bordure. Un ecran de 390 px n'a pas 32 px a offrir a une gouttiere decorative,
+   et une carte etroite serre le tableau des tranches, qui est le contenu le plus
+   important de la page. La carte n'apparait qu'a partir de 768 px. */
+main.wrap {
+  background: var(--surface);
+  padding-block: var(--s-6);
+}
+@media (min-width: 768px) {
+  main.wrap {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding-block: var(--s-8);
+    margin-block: var(--s-6);
+  }
+}
+
 /* ---------- type scale, section 4.3 ---------- */
 h1 { font-size: 28px; font-weight: 700; line-height: 1.2; margin: 0 0 var(--s-4); }
 @media (min-width: 768px) { h1 { font-size: 32px; } }
@@ -90,14 +133,58 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   outline-offset: 2px;
 }
 
-/* ---------- header / footer ---------- */
+/* ---------- header / footer ----------
+   Barre navy pleine largeur, refonte du 05/09/2026. Avant, l'en-tete n'avait
+   aucun fond : sur la nouvelle page grise il flottait, sans debut ni fin. Le
+   n°1 du secteur pose la meme barre sombre pleine largeur (#00496E, releve le
+   05/09) — c'est la convention du secteur, et elle sert : elle donne un haut
+   de page franc et fait ressortir la carte blanche du contenu. */
 .site-header {
-  border-bottom: 1px solid var(--border-subtle);
-  padding-block: var(--s-4);
+  background: var(--dark);
+  color: var(--on-dark);
+  padding-block: var(--s-3);
 }
-.site-header .wrap { display: flex; align-items: center; gap: var(--s-6); flex-wrap: wrap; }
-.brand { font-weight: 700; font-size: 18px; color: var(--text-primary); text-decoration: none; }
+.site-header .wrap {
+  display: flex; align-items: center; gap: var(--s-4);
+  flex-wrap: wrap; justify-content: space-between;
+}
+.site-nav-group { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; }
+.brand { font-weight: 700; font-size: 18px; color: #FFFFFF; text-decoration: none; }
 .site-nav { display: flex; gap: var(--s-4); flex-wrap: wrap; font-size: 15px; }
+.site-nav a { color: var(--on-dark); text-decoration: none; }
+.site-nav a:hover { text-decoration: underline; }
+/* La rubrique courante est soulignee en plus d'etre annoncee par aria-current :
+   un repere visible ne doit jamais reposer sur le seul lecteur d'ecran. */
+.site-nav a[aria-current="page"] {
+  color: #FFFFFF; font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--on-dark);
+}
+/* Le bouton d'action de l'en-tete. Blanc sur navy plutot que bleu sur navy :
+   le bleu de marque #1D4ED8 sur #0A2A5E ne fait que 2,08:1 — invisible.
+   Blanc sur navy : 13,95:1. */
+.btn-header {
+  min-height: 40px; padding-inline: var(--s-4);
+  font-size: 15px; font-weight: 600; text-decoration: none;
+  background: #FFFFFF; color: var(--dark);
+  border-radius: var(--radius-md);
+}
+.btn-header:hover { background: var(--on-dark); }
+.site-header a:focus-visible { outline-color: #FFFFFF; }
+
+/* SUR TELEPHONE, DEUX LIGNES ET PAS TROIS.
+   Constate en capture a 390 px le 05/09/2026 : marque, puis menu, puis bouton
+   — trois lignes, environ 160 px de navy avant le premier mot du contenu.
+   `display: contents` dissout le groupe pour que le bouton et le menu deviennent
+   des enfants directs du flex : marque + bouton sur la premiere ligne, menu sur
+   la seconde. Le div dissous n'a aucune semantique, le <nav> garde la sienne.
+   Aucun JavaScript : un menu hamburger couterait du script pour resoudre un
+   probleme que trois lignes de CSS reglent. */
+@media (max-width: 767px) {
+  .site-nav-group { display: contents; }
+  .brand      { order: 1; }
+  .btn-header { order: 2; min-height: 36px; padding-inline: var(--s-3); font-size: 14px; }
+  .site-nav   { order: 3; width: 100%; gap: var(--s-3); }
+}
 
 .site-footer {
   margin-top: var(--s-16);
@@ -115,7 +202,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* ---------- the 40-60 word answer block, gabarit item 2 ---------- */
 .answer {
-  background: var(--surface);
+  background: var(--surface-sunken);
   border-left: 4px solid var(--accent);
   border-radius: var(--radius-sm);
   padding: var(--s-4) var(--s-6);
@@ -153,7 +240,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* ---------- form, section 6.1 ---------- */
 .calc {
-  background: var(--surface);
+  background: var(--surface-sunken);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: var(--s-6);
@@ -171,7 +258,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   padding: var(--s-2) var(--s-3);
   font: inherit;
   color: var(--text-primary);
-  background: #FFFFFF;
+  background: var(--surface);
   border: 1px solid var(--border-strong);   /* functional border, >= 3:1 */
   border-radius: var(--radius-sm);
 }
@@ -216,7 +303,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .result {
   margin-top: var(--s-8);
   min-height: 320px;
-  background: #FFFFFF;
+  background: var(--surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -242,13 +329,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 table { border-collapse: collapse; width: 100%; font-size: 15px; }
 th, td { padding: var(--s-2) var(--s-3); text-align: right; border-bottom: 1px solid var(--border-subtle); }
 th:first-child, td:first-child { text-align: left; }
-thead th { background: var(--surface); font-weight: 600; white-space: nowrap; }
-tbody tr:nth-child(odd) { background: var(--surface); }
+thead th { background: var(--surface-sunken); font-weight: 600; white-space: nowrap; }
+tbody tr:nth-child(odd) { background: var(--surface-sunken); }
 
 /* ---------- ad slots, section 7 ---------- */
 /* Height is reserved in CSS before anything loads. An unreserved ad slot is
    the number one cause of CLS on a monetised site. */
-.ad-slot { display: block; margin: var(--s-8) auto; background: var(--surface); overflow: hidden; }
+.ad-slot { display: block; margin: var(--s-8) auto; background: var(--surface-sunken); overflow: hidden; }
 /* AdSense n'est pas encore pose : sans cette regle, les trois emplacements d'une
  * page d'Etat s'affichent en rectangles GRIS VIDES de 250 px, soit 750 px de vide
  * par page (constate a l'ecran le 05/09/2026 sur la page Hawaii). Un emplacement

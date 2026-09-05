@@ -101,6 +101,22 @@ caractère près, seule l'indentation change. **Comparer le contenu, jamais le n
 
 Toute phase qui fait grossir ce total doit dire de combien et pourquoi.
 
+**Après phases 1 et 2 (05/09/2026)** : `style.css` passe de 13 564 à **17 851 octets** bruts,
+mais **6 390 octets une fois gzippé** — et **7 793 octets sont des commentaires**, qui ne
+coûtent presque rien compressés. Le JavaScript n'a pas bougé : **0 octet ajouté**.
+
+## Où l'on peut réellement dépasser le n°1
+
+Relevé sur sa page le 05/09/2026, ce sont ses faiblesses, pas des suppositions :
+
+1. **Son calculateur est enterré** sous un long bloc de texte et une carte inerte.
+   Le nôtre peut être atteignable dès le premier écran.
+2. **Sa carte USA est grise et ne fait rien** — décorative. La nôtre sera cliquable.
+3. **Son résultat est une simple liste.** Le nôtre aura un chiffre dominant, un camembert
+   et des barres.
+4. **Il ne cite aucune source.** Nous citons le texte de loi avec la date de lecture.
+   C'est notre vrai avantage, et aucun budget ne l'achète.
+
 ## Animation : aucune bibliothèque
 
 La CSP (`script-src 'self'` + googletagmanager) interdit tout script externe. Et tout est
@@ -124,8 +140,8 @@ Total visé : **moins de 2 Ko de JS ajouté**. Tout sous `prefers-reduced-motion
 | # | Phase | État |
 |---|---|---|
 | 0 | Gabarit commun en-tête/pied de page | ✅ **fait** |
-| 1 | Jetons de couleur + fond gris / cartes blanches | à faire |
-| 2 | En-tête : navy, compact, CTA, menu mobile | à faire |
+| 1 | Jetons de couleur + fond gris / cartes blanches | ✅ **fait** |
+| 2 | En-tête : navy, compact, CTA, mobile 2 lignes | ✅ **fait** |
 | 3 | Carte du calculateur + champs | à faire |
 | 4 | Résultat : chiffre dominant, KPI, camembert, barres | à faire |
 | 5 | Carte USA SVG | à faire |

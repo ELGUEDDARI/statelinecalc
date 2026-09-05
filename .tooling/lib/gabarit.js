@@ -33,13 +33,17 @@
 /* Le logo. Dessine en SVG inline plutot que charge : 340 octets, aucune requete,
    et il s'affiche meme si le reseau lache. Les couleurs sont ecrites en dur
    parce qu'un SVG inline ne peut pas lire les variables CSS du document dans
-   tous les contextes ou il sert (og-image, favicon). */
+   tous les contextes ou il sert (og-image, favicon).
+   VARIANTE CLAIRE, 05/09/2026 : l'en-tete est passe en navy #0A2A5E. Le carre
+   du logo etait #0F172A — pose sur ce navy il ne se distinguait plus. Le carre
+   est donc blanc ici et les barres reprennent le navy. C'est la version
+   sur-fond-sombre de la marque ; la favicon et l'og-image gardent la sombre. */
 const LOGO =
   '<svg class="brand-mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true" ' +
-  'focusable="false"><rect width="64" height="64" rx="14" fill="#0F172A"/>' +
-  '<rect x="30" y="10" width="4" height="44" rx="2" fill="#1D4ED8"/>' +
-  '<rect x="12" y="34" width="12" height="20" rx="2" fill="#FFFFFF"/>' +
-  '<rect x="40" y="22" width="12" height="32" rx="2" fill="#FFFFFF"/></svg>';
+  'focusable="false"><rect width="64" height="64" rx="14" fill="#FFFFFF"/>' +
+  '<rect x="30" y="10" width="4" height="44" rx="2" fill="#2563EB"/>' +
+  '<rect x="12" y="34" width="12" height="20" rx="2" fill="#0A2A5E"/>' +
+  '<rect x="40" y="22" width="12" height="32" rx="2" fill="#0A2A5E"/></svg>';
 
 /* La navigation principale. Ajouter une rubrique ICI et nulle part ailleurs. */
 const NAV = [
@@ -67,14 +71,21 @@ const PIED = [
 function entete(actif) {
   const liens = NAV.map(n => {
     const marque = (n.cle === actif) ? ' aria-current="page"' : "";
-    return `      <a href="${n.href}"${marque}>${n.libelle}</a>`;
+    return `        <a href="${n.href}"${marque}>${n.libelle}</a>`;
   }).join("\n");
+  /* Le bouton d'action pointe vers le hub des calculateurs, jamais vers une
+     ancre : une ancre #calc n'existe pas sur toutes les pages (About, Privacy,
+     Terms n'ont pas de calculateur), et un bouton qui ne fait rien sur 8 pages
+     est pire que pas de bouton. Le hub, lui, existe partout. */
   return `<header class="site-header">
   <div class="wrap">
     <a class="brand" href="/">${LOGO}StateLine Calc</a>
-    <nav class="site-nav" aria-label="Main">
+    <div class="site-nav-group">
+      <nav class="site-nav" aria-label="Main">
 ${liens}
-    </nav>
+      </nav>
+      <a class="btn btn-header" href="/paycheck-calculator/">Calculate My Pay</a>
+    </div>
   </div>
 </header>`;
 }
