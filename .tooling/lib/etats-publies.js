@@ -31,6 +31,7 @@ const PUBLIES = {
   Nevada: "nevada",
   Ohio: "ohio",
   Pennsylvania: "pennsylvania",
+  Tennessee: "tennessee",
   Texas: "texas",
   Utah: "utah",
   Washington: "washington"
