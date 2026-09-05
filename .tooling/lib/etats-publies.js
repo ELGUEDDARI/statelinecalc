@@ -36,6 +36,24 @@ const PUBLIES = {
   Washington: "washington"
 };
 
+/* Les Etats qui ont AUSSI une page « salary to hourly ». Sous-ensemble de
+ * PUBLIES : la prose de ces pages est ecrite a la main, une par une, donc
+ * elles n'arrivent pas au meme rythme que les pages paycheck.
+ * ⛔ Ne pas confondre les deux ensembles. Le 05/09/2026, les pages par taux
+ * lisaient cette liste-la (8 Etats) en croyant lire PUBLIES (11), et
+ * affichaient un tableau amute de l'Ohio, de l'Utah et d'Hawaii sous une
+ * phrase disant « Only the states we publish are listed ». */
+const S2H_PUBLIES = {
+  Florida: "florida",
+  Georgia: "georgia",
+  Illinois: "illinois",
+  Michigan: "michigan",
+  Nevada: "nevada",
+  Pennsylvania: "pennsylvania",
+  Texas: "texas",
+  Washington: "washington"
+};
+
 /* La grille HTML, identique sur toutes les pages. */
 function grilleEtats() {
   return ETATS_50.map(n => PUBLIES[n]
@@ -43,4 +61,4 @@ function grilleEtats() {
     : `    <li>${n}</li>`).join("\n");
 }
 
-module.exports = { ETATS_50, PUBLIES, grilleEtats };
+module.exports = { ETATS_50, PUBLIES, S2H_PUBLIES, grilleEtats };

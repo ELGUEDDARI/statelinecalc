@@ -225,6 +225,37 @@ Le test attend désormais que la valeur se stabilise, ce qui se re-règle seul s
 J'ai refait exactement la même erreur dans mon propre script de vérification vingt minutes plus
 tard — un délai figé de 600 ms — et il a fallu la même correction.
 
+## Menu déroulant (05/09/2026) — CSS pur, zéro JavaScript
+
+Le n°1 en a un : mesuré sur sa page, survoler « TAXES » révèle **16 liens**. L'intérêt réel
+n'est pas l'imitation, c'est le **maillage interne** : depuis n'importe quelle page, les 11 États
+sont à un survol, au lieu d'exiger de descendre jusqu'à la carte ou à la grille du bas.
+
+Trois règles tenues, vérifiées au navigateur :
+1. **Aucun JavaScript.** `:hover` pour la souris, `:focus-within` pour le clavier.
+   Ouverture au clavier confirmée : `visibility: visible` au focus.
+2. Le panneau est caché par `visibility/opacity`, **pas** par `display:none` — un panneau en
+   `display:none` sort de l'ordre de tabulation et devient inatteignable au clavier.
+3. **Sur téléphone, le menu est entièrement neutralisé** (`display:none`) : il n'y a pas de survol
+   sur la moitié du trafic. La rubrique reste un lien vers son hub, et les États restent joignables
+   par la carte, la grille de bas de page et le pied de page. Mieux vaut pas de menu qu'un menu mort.
+
+Coût : `style.css` gzippé passe de 8 229 à **9 713 octets** (+1 484). **0 octet de JavaScript.**
+21 liens de panneau, tous à 200.
+
+⛔ **Ce menu a cassé `parcours-client.js`, et c'était juste.** Plusieurs liens pointent désormais
+vers la même page d'État ; sur téléphone celui du panneau est invisible, et Playwright cliquait le
+**premier du document**, donc un lien caché. Le test attend maintenant `:visible` — ce qu'un humain
+peut voir, ce qu'il est censé simuler.
+
+## Le calculateur était DÉJÀ dynamique — vérification du 05/09
+
+J'avais affirmé au PDG que changer d'État ne mettait rien à jour tant qu'on ne recliquait pas.
+**C'était faux**, et vérifié sur le site en ligne sans jamais cliquer : chargement 52 318,40 $,
+puis Hawaii → 49 292,80 $, Illinois → 49 374,39 $, chacun conforme au moteur au centime.
+`calc-paycheck.js` écoute déjà `input` et `change` et rend une première fois au chargement.
+Le bouton « Calculate » sert sur téléphone (il ferme le clavier et amène au résultat), pas au calcul.
+
 ## Ordre des phases
 
 | # | Phase | État |
@@ -243,6 +274,7 @@ tard — un délai figé de 600 ms — et il a fallu la même correction.
 | 11 | Passe accessibilité | à faire |
 | 12 | Mesure de performance avant/après | à faire |
 | 13 | Contrôle indépendant | ✅ **fait le 05/09** — verdict CORRIGER, 3 défauts, tous corrigés |
-| 14 | Publication | à faire |
+| 14 | Publication | ✅ **fait le 05/09** |
+| 15 | Menu déroulant des rubriques | ✅ **fait** — CSS pur, 0 JS |
 
 ⚠️ **Publication seulement après le contrôle.** Analyser, construire, faire vérifier, publier.

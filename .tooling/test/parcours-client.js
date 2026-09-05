@@ -111,7 +111,14 @@ const SAISIES = [
   /* ---------------------------------------- 2. il choisit un Etat, mobile */
   console.log("\n--- 2. IL CLIQUE SUR UN ETAT, DEPUIS L'ACCUEIL ---");
   const t0 = Date.now();
-  await m.click('a[href="/paycheck-calculator/ohio/"]');
+  /* ⛔ « :visible » n'est pas un detail. Depuis le menu deroulant du 05/09/2026,
+     plusieurs liens pointent vers la meme page d'Etat : celui du panneau de
+     navigation, celui de la carte, celui du pied de page. Sur telephone le
+     panneau est en display:none — Playwright prenait le PREMIER du document,
+     donc un lien invisible, et le test echouait par expiration alors que le
+     site allait tres bien. On clique ce qu'un humain peut voir, ce qui est de
+     toute facon ce que ce test est cense simuler. */
+  await m.locator('a[href="/paycheck-calculator/ohio/"]:visible').first().click();
   await m.waitForLoadState("networkidle");
   dit("mobile", "la page Ohio s'ouvre en " + (Date.now() - t0) + " ms");
   await m.screenshot({ path: path.join(SORTIE, "parcours-2-ohio-mobile.png") });

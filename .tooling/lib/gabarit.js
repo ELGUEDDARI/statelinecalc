@@ -100,10 +100,46 @@ const PIED = [{ href: "/", libelle: "Home" }];
  * un lecteur d'ecran l'annonce, et la page garde son maillage interne. Les
  * pages « salary to hourly » retiraient leur propre lien — elles perdaient le
  * chemin vers leur hub sans rien gagner. */
+/* Ce que chaque rubrique deplie au survol. Le n°1 du secteur fait pareil :
+   mesure du 05/09/2026, survoler « TAXES » chez lui revele 16 liens.
+   L'interet reel n'est pas l'imitation, c'est le MAILLAGE : depuis n'importe
+   quelle page, les 11 Etats sont a un survol. Aujourd'hui il faut descendre
+   jusqu'a la carte ou jusqu'a la grille du bas.
+   ⛔ Trois regles, sinon le menu devient un piege :
+     1. AUCUN JavaScript — :hover et :focus-within suffisent ;
+     2. il s'ouvre aussi au CLAVIER, pas seulement a la souris ;
+     3. sur telephone il n'y a pas de survol, donc la rubrique elle-meme reste
+        un lien qui marche, et le sous-menu s'affiche en liste depliee. */
+function sousMenu(cle) {
+  const { PUBLIES, S2H_PUBLIES } = require("./etats-publies.js");
+  if (cle === "paycheck") {
+    return Object.keys(PUBLIES).sort().map(n =>
+      ({ href: "/paycheck-calculator/" + PUBLIES[n] + "/", libelle: n }));
+  }
+  if (cle === "s2h") {
+    return Object.keys(S2H_PUBLIES).sort().map(n =>
+      ({ href: "/salary-to-hourly-calculator/" + S2H_PUBLIES[n] + "/", libelle: n }));
+  }
+  return [];
+}
+
 function entete(actif) {
   const liens = NAV.map(n => {
     const marque = (n.cle === actif) ? ' aria-current="page"' : "";
-    return `        <a href="${n.href}"${marque}>${n.libelle}</a>`;
+    const sous = sousMenu(n.cle);
+    if (!sous.length) {
+      return `        <div class="nav-item"><a href="${n.href}"${marque}>${n.libelle}</a></div>`;
+    }
+    return `        <div class="nav-item nav-item-deroule">
+          <a href="${n.href}"${marque}>${n.libelle}<span class="nav-chevron" aria-hidden="true">&#9662;</span></a>
+          <div class="nav-panneau">
+            <p class="nav-panneau-titre">${n.libelle} by state</p>
+            <ul>
+${sous.map(l => `              <li><a href="${l.href}">${l.libelle}</a></li>`).join("\n")}
+            </ul>
+            <a class="nav-panneau-tout" href="${n.href}">See all &rarr;</a>
+          </div>
+        </div>`;
   }).join("\n");
   /* Le bouton pointe vers le hub des calculateurs, jamais vers une ancre : une
      ancre #calc n'existe pas sur toutes les pages (About, Privacy, Terms n'ont
