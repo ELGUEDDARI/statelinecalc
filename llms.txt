@@ -60,8 +60,8 @@ May 2025 data covering 155,495,730 jobs, released May 15, 2026).
 
 - [$25 an hour is how much a year?](https://statelinecalc.com/25-an-hour-is-how-much-a-year/): $52,000 a year before tax, 2% above the US median hourly wage. After tax a single filer keeps $43,962 in Texas and $41,533 in Illinois, a gap of $2,429 a year on identical pay.
 - [$27 an hour is how much a year?](https://statelinecalc.com/27-an-hour-is-how-much-a-year/): $56,160 a year before tax, 10% above the US median. After tax: $47,305 in Texas, $44,669 in Illinois, a gap of $2,635.
-- [$30 an hour is how much a year?](https://statelinecalc.com/30-an-hour-is-how-much-a-year/): $62,400 a year before tax, 22% above the US median. After tax: $52,318 in Texas, $49,374 in Illinois, a gap of $2,944.
-- [$35 an hour is how much a year?](https://statelinecalc.com/35-an-hour-is-how-much-a-year/): $72,800 a year before tax, 43% above the US median and above the national mean of $33.54 an hour. After tax: $60,045 in Texas, $56,586 in Illinois, a gap of $3,459.
+- [$30 an hour is how much a year?](https://statelinecalc.com/30-an-hour-is-how-much-a-year/): $62,400 a year before tax, 22% above the US median. After tax: $52,318 in Texas, $49,293 in Hawaii, a gap of $3,026.
+- [$35 an hour is how much a year?](https://statelinecalc.com/35-an-hour-is-how-much-a-year/): $72,800 a year before tax, 43% above the US median and above the national mean of $33.54 an hour. After tax: $60,045 in Texas, $56,229 in Hawaii, a gap of $3,816.
 
 Each page also converts the rate to monthly, biweekly and weekly pay, and to the hours actually
 worked when the week is not 40 hours.

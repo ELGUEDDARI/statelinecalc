@@ -20,7 +20,8 @@
  */
 const fs = require("fs");
 const path = require("path");
-const { FICHES, net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
+const { net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
+const { PUBLIES } = require("../lib/etats-publies.js");
 
 const taux = Number(process.argv[2] || 25);
 if (!isFinite(taux) || taux <= 0) { console.error("Taux horaire invalide."); process.exit(1); }
@@ -144,11 +145,20 @@ const liensSoeurs = TAUX_PUBLIES.filter(x => x !== taux).map(x =>
   `<a href="/${String(x).replace(".", "-")}-an-hour-is-how-much-a-year/">$${x} an hour` +
   ` ($${c0(x * HEURES)} a year)</a>`).join(", ");
 
-/* Les Etats publies, tries du net le plus eleve au plus faible. */
-const ETATS = Object.keys(FICHES).map(k => {
-  const r = net(k, brut);
-  return { cle: k, nom: FICHES[k].nom, net: r.net, taux: r.taux,
-           netH: r.net / HEURES, lien: "/paycheck-calculator/" + k + "/" };
+/* Les Etats publies, tries du net le plus eleve au plus faible.
+ *
+ * ⛔ LIRE PUBLIES, JAMAIS FICHES. Le 05/09/2026 cette liste sortait de FICHES,
+ * la liste ECRITE A LA MAIN des 8 Etats qui ont une page « salary to hourly ».
+ * Resultat : le tableau, le selecteur d'Etat et le texte des 4 pages par taux
+ * ignoraient l'Ohio, l'Utah et Hawaii — pourtant publies — pendant que la page
+ * affirmait « Only the states we publish are listed ». Faux sur 4 pages sur 4.
+ * FICHES = les Etats qui ont une page de conversion salaire→horaire (prose
+ * ecrite a la main, 8). PUBLIES = les Etats qui ont une page paycheck (11).
+ * Les deux ne sont pas le meme ensemble et ne le seront jamais. */
+const ETATS = Object.entries(PUBLIES).map(([nom, cle]) => {
+  const r = net(cle, brut);
+  return { cle: cle, nom: nom, net: r.net, taux: r.taux,
+           netH: r.net / HEURES, lien: "/paycheck-calculator/" + cle + "/" };
 }).sort((a, b) => b.net - a.net);
 
 const haut = ETATS[0], bas = ETATS[ETATS.length - 1];

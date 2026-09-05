@@ -49,7 +49,7 @@
         {
           "@type": "Question",
           "name": "$27 an hour is how much a year?",
-          "acceptedAnswer": { "@type": "Answer", "text": "$27 an hour is $56,160 a year before tax, at 40 hours a week for 52 weeks. After tax it depends entirely on where you work: Texas leaves you $47,305 and Illinois $44,669, a difference of $2,635 on identical pay." }
+          "acceptedAnswer": { "@type": "Answer", "text": "$27 an hour is $56,160 a year before tax, at 40 hours a week for 52 weeks. After tax it depends entirely on where you work: Florida leaves you $47,305 and Illinois $44,669, a difference of $2,635 on identical pay." }
         },
         {
           "@type": "Question",
@@ -79,7 +79,7 @@
         {
           "@type": "Question",
           "name": "Does the state really change the answer that much?",
-          "acceptedAnswer": { "@type": "Answer", "text": "On $56,160 a year, the gap between Texas and Illinois is $2,635 a year, or $219.59 a month. It is the single largest variable in the answer after the hours you actually work." }
+          "acceptedAnswer": { "@type": "Answer", "text": "On $56,160 a year, the gap between Florida and Illinois is $2,635 a year, or $219.59 a month. It is the single largest variable in the answer after the hours you actually work." }
         }
       ]
     },
@@ -118,7 +118,7 @@
     <p><strong>$27 an hour is $56,160 a year</strong> before tax, at 40 hours a week for 52 weeks.
     That is the figure every other page gives you, and it is the easy half of the question.</p>
     <p>The half that decides what reaches your account is your state. On the same $56,160,
-    Texas leaves you <strong class="num">$47,305</strong> and Illinois
+    Florida leaves you <strong class="num">$47,305</strong> and Illinois
     <strong class="num">$44,669</strong> &mdash; a gap of <strong>$2,635</strong>
     a year, or $219.59 a month, on identical pay.</p>
   </div>
@@ -142,11 +142,14 @@
           <select id="state" name="state">
             <option value="florida">Florida</option>
             <option value="georgia">Georgia</option>
+            <option value="hawaii">Hawaii</option>
             <option value="illinois">Illinois</option>
             <option value="michigan">Michigan</option>
             <option value="nevada">Nevada</option>
+            <option value="ohio">Ohio</option>
             <option value="pennsylvania">Pennsylvania</option>
             <option value="texas" selected>Texas</option>
+            <option value="utah">Utah</option>
             <option value="washington">Washington</option>
           </select>
           <span class="help">Only the states we publish are listed.</span>
@@ -239,13 +242,6 @@
       </thead>
       <tbody>
         <tr>
-          <td><a href="/paycheck-calculator/texas/">Texas</a></td>
-          <td class="num"><strong>$47,305</strong></td>
-          <td class="num">$3,942.05</td>
-          <td class="num">$22.74</td>
-          <td class="num">15.8%</td>
-        </tr>
-        <tr>
           <td><a href="/paycheck-calculator/florida/">Florida</a></td>
           <td class="num"><strong>$47,305</strong></td>
           <td class="num">$3,942.05</td>
@@ -260,11 +256,25 @@
           <td class="num">15.8%</td>
         </tr>
         <tr>
+          <td><a href="/paycheck-calculator/texas/">Texas</a></td>
+          <td class="num"><strong>$47,305</strong></td>
+          <td class="num">$3,942.05</td>
+          <td class="num">$22.74</td>
+          <td class="num">15.8%</td>
+        </tr>
+        <tr>
           <td><a href="/paycheck-calculator/washington/">Washington</a></td>
           <td class="num"><strong>$46,526</strong></td>
           <td class="num">$3,877.13</td>
           <td class="num">$22.37</td>
           <td class="num">17.2%</td>
+        </tr>
+        <tr>
+          <td><a href="/paycheck-calculator/ohio/">Ohio</a></td>
+          <td class="num"><strong>$46,204</strong></td>
+          <td class="num">$3,850.31</td>
+          <td class="num">$22.21</td>
+          <td class="num">17.7%</td>
         </tr>
         <tr>
           <td><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></td>
@@ -286,6 +296,20 @@
           <td class="num">$3,764.04</td>
           <td class="num">$21.72</td>
           <td class="num">19.6%</td>
+        </tr>
+        <tr>
+          <td><a href="/paycheck-calculator/utah/">Utah</a></td>
+          <td class="num"><strong>$44,805</strong></td>
+          <td class="num">$3,733.79</td>
+          <td class="num">$21.54</td>
+          <td class="num">20.2%</td>
+        </tr>
+        <tr>
+          <td><a href="/paycheck-calculator/hawaii/">Hawaii</a></td>
+          <td class="num"><strong>$44,753</strong></td>
+          <td class="num">$3,729.43</td>
+          <td class="num">$21.52</td>
+          <td class="num">20.3%</td>
         </tr>
         <tr>
           <td><a href="/paycheck-calculator/illinois/">Illinois</a></td>
@@ -373,7 +397,7 @@
   <h2>Questions</h2>
   <dl class="faq">
     <dt>$27 an hour is how much a year?</dt>
-    <dd>$27 an hour is $56,160 a year before tax, at 40 hours a week for 52 weeks. After tax it depends entirely on where you work: Texas leaves you $47,305 and Illinois $44,669, a difference of $2,635 on identical pay.</dd>
+    <dd>$27 an hour is $56,160 a year before tax, at 40 hours a week for 52 weeks. After tax it depends entirely on where you work: Florida leaves you $47,305 and Illinois $44,669, a difference of $2,635 on identical pay.</dd>
     <dt>$27 an hour is how much a year after taxes?</dt>
     <dd>Between $44,669 and $47,305 depending on the state, for a single filer taking the standard deduction in 2026. That is an effective rate of 20.5 to 15.8 percent. The table above shows every state we publish, and each figure is the same arithmetic our paycheck calculator runs, not a rounded estimate.</dd>
     <dt>$27 an hour is how much a month?</dt>
@@ -385,14 +409,14 @@
     <dt>Why does the yearly figure differ from other calculators?</dt>
     <dd>Most pages answering this question multiply by 2,080 and stop. That is the gross figure, and it is not the number that reaches your account. This page also shows what is left after federal income tax, Social Security, Medicare and state withholding, which is why our after-tax figures are lower and closer to your bank statement.</dd>
     <dt>Does the state really change the answer that much?</dt>
-    <dd>On $56,160 a year, the gap between Texas and Illinois is $2,635 a year, or $219.59 a month. It is the single largest variable in the answer after the hours you actually work.</dd>
+    <dd>On $56,160 a year, the gap between Florida and Illinois is $2,635 a year, or $219.59 a month. It is the single largest variable in the answer after the hours you actually work.</dd>
   </dl>
 
   <h2>Work out your own figure</h2>
   <p>These tables assume a single filer taking the standard deduction with no retirement
   contribution. If any of that is wrong for you, the state calculators take your own numbers and
   show every deduction line by line:
-<a href="/paycheck-calculator/texas/">Texas</a>, <a href="/paycheck-calculator/florida/">Florida</a>, <a href="/paycheck-calculator/nevada/">Nevada</a>, <a href="/paycheck-calculator/washington/">Washington</a>, <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a>, <a href="/paycheck-calculator/georgia/">Georgia</a>, <a href="/paycheck-calculator/michigan/">Michigan</a>, <a href="/paycheck-calculator/illinois/">Illinois</a>.</p>
+<a href="/paycheck-calculator/florida/">Florida</a>, <a href="/paycheck-calculator/nevada/">Nevada</a>, <a href="/paycheck-calculator/texas/">Texas</a>, <a href="/paycheck-calculator/washington/">Washington</a>, <a href="/paycheck-calculator/ohio/">Ohio</a>, <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a>, <a href="/paycheck-calculator/georgia/">Georgia</a>, <a href="/paycheck-calculator/michigan/">Michigan</a>, <a href="/paycheck-calculator/utah/">Utah</a>, <a href="/paycheck-calculator/hawaii/">Hawaii</a>, <a href="/paycheck-calculator/illinois/">Illinois</a>.</p>
 
   <h2>Other hourly rates</h2>
   <p>The same question, answered the same way, at nearby rates:

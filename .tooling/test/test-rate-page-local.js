@@ -10,6 +10,8 @@ const fs = require("fs");
 const path = require("path");
 const { chromium } = require("C:/Users/sland/Desktop/SHOPFY NERVOLAXE/node_modules/playwright");
 
+const { PUBLIES } = require("../lib/etats-publies.js");
+
 const RACINE = path.join(__dirname, "..", "..");
 const SLUG = process.argv[2] || "25-an-hour-is-how-much-a-year";
 const PORT = 8791;
@@ -61,6 +63,15 @@ const serveur = http.createServer((req, res) => {
       })(),
       lignesTableau: document.querySelectorAll("table tbody tr").length,
       tableaux: document.querySelectorAll("table").length,
+      /* Le tableau des Etats est celui qui pointe vers /paycheck-calculator/ :
+         on l'identifie par son contenu, pas par son rang, pour que l'ajout d'un
+         autre tableau ne fasse pas silencieusement tester le mauvais. */
+      lignesEtats: (() => {
+        const t = [...document.querySelectorAll("table")]
+          .find(x => x.querySelector("a[href^='/paycheck-calculator/']"));
+        return t ? t.querySelectorAll("tbody tr").length : 0;
+      })(),
+      optionsEtat: [...document.querySelectorAll("#state option")].map(o => o.value),
       liensInternes: [...document.querySelectorAll("main a[href^='/']")].map(a => a.getAttribute("href")),
       nan: (txt.match(/NaN|undefined|\$\s*\$/g) || []).length,
       montants: (txt.match(/\$[\d,]+(\.\d{2})?/g) || []).length,
@@ -69,8 +80,12 @@ const serveur = http.createServer((req, res) => {
   });
 
   const echecs = [];
+  /* Le total etait ecrit en dur (« 9 + 1 »). Ajouter un controle ne changeait pas
+   * le compte affiche : le 05/09/2026 le test annoncait « 10 OK » en ayant passe
+   * 11 controles. Un compteur qu'on doit penser a mettre a jour finit par mentir. */
+  let passes = 0;
   const ok = (nom, cond, detail) => {
-    if (cond) console.log("  OK    | " + nom + (detail ? "  (" + detail + ")" : ""));
+    if (cond) { passes++; console.log("  OK    | " + nom + (detail ? "  (" + detail + ")" : "")); }
     else { console.log("  ECHEC | " + nom + (detail ? "  (" + detail + ")" : "")); echecs.push(nom); }
   };
 
@@ -85,7 +100,17 @@ const serveur = http.createServer((req, res) => {
      d.titre + "  [attendu : " + brutAttendu + "]");
   ok("la feuille de style est chargee", d.cssChargee !== "NON CHARGEE", ".wrap max-width = " + d.cssChargee);
   ok("trois tableaux presents", d.tableaux === 3, d.tableaux + " tableaux");
-  ok("le tableau des Etats a 8 lignes", d.lignesTableau >= 8 + 6 + 7, d.lignesTableau + " lignes au total");
+  /* ⛔ Ce test portait « 8 » en dur. Le 05/09/2026 la page ne montrait que 8 des
+   * 11 Etats publies — Ohio, Utah et Hawaii absents du tableau ET du selecteur —
+   * et ce test l'a laisse passer, parce qu'il comptait un minimum fige au lieu de
+   * comparer a la source unique. Un test qui ignore les pages neuves ne protege
+   * que les anciennes. On compare desormais a PUBLIES, a l'unite pres. */
+  const ATTENDUS = Object.values(PUBLIES).sort();
+  ok("le tableau des Etats couvre les " + ATTENDUS.length + " Etats publies",
+     d.lignesEtats === ATTENDUS.length, d.lignesEtats + " lignes");
+  ok("le selecteur d'Etat couvre les " + ATTENDUS.length + " Etats publies",
+     d.optionsEtat.slice().sort().join(",") === ATTENDUS.join(","),
+     d.optionsEtat.length + " options : " + (ATTENDUS.filter(e => !d.optionsEtat.includes(e)).join(", ") || "aucun manquant"));
   ok("aucun NaN ni undefined rendu", d.nan === 0, d.nan + " occurrences");
   ok("des montants sont bien affiches", d.montants > 40, d.montants + " montants");
   ok("aucun debordement horizontal", !d.largeurDebordement);
@@ -100,6 +125,6 @@ const serveur = http.createServer((req, res) => {
   ok("tous les liens internes repondent 200", casses.length === 0, casses.join(", ") || d.liensInternes.length + " liens");
 
   await nav.close(); serveur.close();
-  console.log("\n=== RESULTAT : " + (9 + 1 - echecs.length) + " OK, " + echecs.length + " ECHEC ===");
+  console.log("\n=== RESULTAT : " + passes + " OK, " + echecs.length + " ECHEC ===");
   process.exit(echecs.length ? 1 : 0);
 })();
