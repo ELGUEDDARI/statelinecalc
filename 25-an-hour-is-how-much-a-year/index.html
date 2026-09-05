@@ -9,6 +9,8 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
+<script src="/data/rates-2026.js"></script>
+<script src="/assets/calc-paycheck.js"></script>
 <title>$25 an Hour Is How Much a Year? $52,000 Before Tax</title>
 <meta name="description" content="$25 an hour is $52,000 a year before tax at 40 hours a week. After tax it is $41,533 to $43,962 depending on your state. 2026 rates, every deduction shown.">
 <link rel="canonical" href="https://statelinecalc.com/25-an-hour-is-how-much-a-year/">
@@ -114,6 +116,8 @@
   <h1>$25 an Hour Is How Much a Year?</h1>
 
   <div class="answer">
+    <p class="answer-big"><span class="answer-figure">$52,000</span>
+    <span class="answer-label">a year, before tax</span></p>
     <p><strong>$25 an hour is $52,000 a year</strong> before tax, at 40 hours a week for 52 weeks.
     That is the figure every other page gives you, and it is the easy half of the question.</p>
     <p>The half that decides what reaches your account is your state. On the same $52,000,
@@ -121,6 +125,90 @@
     <strong class="num">$41,533</strong> &mdash; a gap of <strong>$2,429</strong>
     a year, or $202.43 a month, on identical pay.</p>
   </div>
+
+  <section class="calc-wrap">
+    <h2>Your own figure at $25 an hour</h2>
+    <p>The table further down assumes a single filer with no 401(k). Change anything here and the
+    answer follows. Everything runs in your browser &mdash; nothing you type is sent to us.</p>
+
+    <form class="calc" data-paycheck-form data-state="texas" novalidate>
+      <div class="row row-2">
+        <div class="field">
+          <label for="salary">Your hourly rate</label>
+          <input type="text" id="salary" name="salary" inputmode="decimal" value="25"
+                 autocomplete="off">
+          <span class="help">Before any taxes or deductions.</span>
+          <span class="error" role="alert">Enter an amount greater than zero.</span>
+        </div>
+        <div class="field">
+          <label for="state">State you work in</label>
+          <select id="state" name="state">
+            <option value="florida">Florida</option>
+            <option value="georgia">Georgia</option>
+            <option value="illinois">Illinois</option>
+            <option value="michigan">Michigan</option>
+            <option value="nevada">Nevada</option>
+            <option value="pennsylvania">Pennsylvania</option>
+            <option value="texas" selected>Texas</option>
+            <option value="washington">Washington</option>
+          </select>
+          <span class="help">Only the states we publish are listed.</span>
+        </div>
+      </div>
+
+      <div class="field" data-hours-field>
+        <label for="hours">Hours per week</label>
+        <input type="text" id="hours" name="hours" inputmode="decimal" value="40" autocomplete="off">
+        <span class="help">Your real hours, not an assumed 2,080 a year.</span>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="period">What the amount above is</label>
+          <select id="period" name="period">
+            <option value="hourly" selected>Per hour</option>
+            <option value="annual">Per year</option>
+            <option value="monthly">Per month</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">Change it if you are entering a salary instead.</span>
+        </div>
+        <div class="field">
+          <label for="filing">Filing status</label>
+          <select id="filing" name="filing">
+            <option value="single" selected>Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+          <span class="help">Sets your standard deduction and federal brackets.</span>
+        </div>
+      </div>
+
+      <div class="row row-2">
+        <div class="field">
+          <label for="retirement">401(k) contribution</label>
+          <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
+          <span class="help">Percent of gross pay, before tax. 0 if you do not contribute.</span>
+        </div>
+        <div class="field">
+          <label for="display">Show results</label>
+          <select id="display" name="display">
+            <option value="annual" selected>Per year</option>
+            <option value="monthly">Per month</option>
+            <option value="hourly">Per hour</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+          <span class="help">Changes the period, not the calculation.</span>
+        </div>
+      </div>
+    </form>
+
+    <div class="result" data-paycheck-result aria-live="polite"></div>
+  </section>
 
   <h2>Where $25 an hour sits in the US labor market</h2>
   <p>Across all US occupations the median wage is <strong class="num">$24.51</strong>

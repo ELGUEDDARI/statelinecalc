@@ -227,7 +227,16 @@
     var out = document.querySelector("[data-paycheck-result]");
     if (!form || !out || typeof RATES_2026 === "undefined") return;
 
-    var stateKey = form.getAttribute("data-state");
+    /* L'Etat vient de data-state sur les 10 pages /paycheck-calculator/<etat>/,
+       ou il est FIXE. Les pages "X an hour is how much a year" ne portent aucun
+       Etat : elles ajoutent un <select name="state">, et l'Etat doit alors etre
+       relu a CHAQUE calcul, pas une seule fois au chargement.
+       Ajoute le 05/09/2026 : ces pages n'avaient aucun champ de saisie, donc
+       aucun moyen pour le visiteur d'obtenir son propre chiffre. */
+    function etatCourant() {
+      return (form.elements.state && form.elements.state.value)
+             || form.getAttribute("data-state");
+    }
 
     var hoursField = form.querySelector("[data-hours-field]");
 
@@ -285,7 +294,7 @@
         hoursPerWeek: hours,
         filingStatus: form.elements.filing.value,
         retirementPct: retraite / 100,
-        state: stateKey,
+        state: etatCourant(),
         waCaresApplies: form.elements.wacares ? form.elements.wacares.checked : true
       };
     }

@@ -124,6 +124,33 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .answer p:last-child { margin-bottom: 0; }
 
+/* La reponse chiffree, lisible sans lire.
+   Ajoute le 05/09/2026 : sur les pages "X an hour is how much a year", le montant
+   etait en gras au milieu d'une phrase de trois lignes. Le visiteur vient chercher
+   ce nombre — il doit le voir avant de lire quoi que ce soit. */
+.answer-big {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: 0 0 var(--s-4);
+}
+.answer-figure {
+  font-size: clamp(34px, 8vw, 52px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+.answer-label {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+/* Le calculateur place haut sur les pages par taux. */
+.calc-wrap { margin-bottom: var(--s-8); }
+
 /* ---------- form, section 6.1 ---------- */
 .calc {
   background: var(--surface);
