@@ -105,10 +105,18 @@ function entete(actif) {
     const marque = (n.cle === actif) ? ' aria-current="page"' : "";
     return `        <a href="${n.href}"${marque}>${n.libelle}</a>`;
   }).join("\n");
-  /* Le bouton d'action pointe vers le hub des calculateurs, jamais vers une
-     ancre : une ancre #calc n'existe pas sur toutes les pages (About, Privacy,
-     Terms n'ont pas de calculateur), et un bouton qui ne fait rien sur 8 pages
-     est pire que pas de bouton. Le hub, lui, existe partout. */
+  /* Le bouton pointe vers le hub des calculateurs, jamais vers une ancre : une
+     ancre #calc n'existe pas sur toutes les pages (About, Privacy, Terms n'ont
+     pas de calculateur), et un bouton qui ne fait rien sur 8 pages est pire que
+     pas de bouton. Le hub, lui, existe partout.
+     ⛔ IL NE DOIT PAS S'APPELER « Calculate ». Premiere version le 05/09/2026 :
+     « Calculate My Pay ». Sur une page d'Etat il se retrouvait dans le MEME
+     ECRAN que le raccourci « Calculate my pay ↓ » du bloc reponse — deux
+     libelles quasi identiques menant a deux endroits differents. Mesure du
+     controle a 390 px sur la page Ohio : l'un a top 12-60, l'autre a top
+     607-651, visibles ensemble sans defiler. Le visiteur qui croyait descendre
+     au calculateur d'Ohio partait vers le hub generique et perdait son Etat.
+     Le libelle dit desormais ou il MENE, pas ce qu'il fait. */
   return `<header class="site-header">
   <div class="wrap">
     <a class="brand" href="/">${LOGO}StateLine Calc</a>
@@ -116,7 +124,7 @@ function entete(actif) {
       <nav class="site-nav" aria-label="Main">
 ${liens}
       </nav>
-      <a class="btn btn-header" href="/paycheck-calculator/">Calculate My Pay</a>
+      <a class="btn btn-header" href="/paycheck-calculator/">All states</a>
     </div>
   </div>
 </header>`;

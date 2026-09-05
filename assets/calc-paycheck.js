@@ -331,7 +331,10 @@
        vaut 100, donc stroke-dasharray se lit directement en pourcents. Aucune
        bibliotheque — une bibliotheque de graphiques pour un anneau couterait
        de 40 a 200 Ko, soit une a six fois tout le poids du site. */
-    function camembert(segs, brut) {
+    function camembert(segs, brut, pctNet) {
+      /* pctNet vient de la repartition reconciliee, il n'est PAS recalcule ici :
+         deux arrondis independants peuvent donner 78 au centre et 79 dans la
+         liste, a trois centimetres l'un de l'autre. */
       var off = 25, parts = "";   /* 25 = demarrer a midi plutot qu'a 3 heures */
       segs.forEach(function (s) {
         var p = brut > 0 ? (s.montant / brut) * 100 : 0;
@@ -340,11 +343,10 @@
                  (100 - p).toFixed(2) + '" stroke-dashoffset="' + off.toFixed(2) + '"></circle>';
         off -= p;
       });
-      var partNet = brut > 0 ? (segs[0].montant / brut) * 100 : 0;
       return '<svg class="donut" viewBox="0 0 42 42" aria-hidden="true" focusable="false">' +
              '<circle class="donut-fond" cx="21" cy="21" r="15.915" fill="none" stroke-width="5"></circle>' +
              parts + "</svg>" +
-             '<p class="donut-centre"><span class="donut-pct num">' + partNet.toFixed(0) + "%</span>" +
+             '<p class="donut-centre"><span class="donut-pct num">' + pctNet + "%</span>" +
              '<span class="donut-mot">you keep</span></p>';
     }
 
@@ -394,7 +396,36 @@
       if (a.pretax > 0) rows.push(["401(k) contribution", a.pretax]);
 
       var segs = repartition(a);
+      /* Part exacte, pour les largeurs de barre et les parts du camembert :
+         celles-la ne s'additionnent pas a l'oeil, elles se dessinent. */
       var part = function (m) { return a.gross > 0 ? (m / a.gross) * 100 : 0; };
+
+      /* ⛔ LES POURCENTAGES AFFICHES SE REPARTISSENT, ILS NE S'ARRONDISSENT PAS
+         CHACUN DE SON COTE. Le 05/09/2026, arrondir chaque part separement
+         donnait 101 % dans 19 cas sur 36 testes : Ohio a 85 000 $ affichait
+         79 + 12 + 8 + 2. Le camembert etait juste — seuls les libelles chiffres
+         derivaient — mais un lecteur qui additionne trouve 101, et une IA qui
+         cite la page reprend 101. Sur un site dont l'argument est l'exactitude,
+         c'est le pire endroit ou se tromper d'un point.
+         Methode du plus fort reste : on prend la partie entiere de chacun, puis
+         on distribue les points manquants aux parts dont la decimale etait la
+         plus grande. La somme fait 100 par construction. */
+      var pcts = (function (valeurs, total) {
+        var n = valeurs.length;
+        if (!(total > 0) || !n) { return valeurs.map(function () { return 0; }); }
+        var bruts = valeurs.map(function (v) { return (v / total) * 100; });
+        var bas = bruts.map(function (x) { return Math.floor(x); });
+        var somme = bas.reduce(function (x, y) { return x + y; }, 0);
+        var reste = Math.max(0, Math.min(n, 100 - somme));
+        var ordre = bruts.map(function (x, i) { return { i: i, frac: x - Math.floor(x) }; })
+                         .sort(function (u, v) { return v.frac - u.frac; });
+        for (var k = 0; k < reste; k++) { bas[ordre[k].i]++; }
+        return bas;
+      })(segs.map(function (s) { return s.montant; }), a.gross);
+      var pctDe = function (cle) {
+        for (var i = 0; i < segs.length; i++) { if (segs[i].cle === cle) return pcts[i]; }
+        return 0;
+      };
 
       /* Le resume en toutes lettres n'est pas un pis-aller pour lecteur d'ecran :
          c'est la phrase que les moteurs generatifs peuvent citer, et le camembert
@@ -413,16 +444,16 @@
         return s.libelle.replace(/^State income tax$/, "state income tax")
                         .replace(/^Federal income tax$/, "federal income tax")
                         .replace(/^State payroll programmes$/, "state payroll programmes") +
-               " at " + part(s.montant).toFixed(0) + " percent";
+               " at " + pctDe(s.cle) + " percent";
       });
       var dernier = morceaux.pop();
       var liste = morceaux.length ? morceaux.join(", ") + " and " + dernier : dernier;
       var resume = "Of " + v(a.gross) + " gross, you keep " + v(a.net) + " — " +
                    /* « takes the rest » serait faux des qu'un 401(k) existe :
                       le reste n'est alors pas entierement du prelevement. */
-                   part(a.net).toFixed(0) + " percent. Withholding accounts for " + liste + "." +
+                   pctDe("net") + " percent. Withholding accounts for " + liste + "." +
                    (differe ? " A further " + v(differe.montant) + ", " +
-                    part(differe.montant).toFixed(0) + " percent, goes to your 401(k), which is " +
+                    pctDe("401k") + " percent, goes to your 401(k), which is " +
                     "deferred rather than taken." : "");
 
       var html =
@@ -435,13 +466,13 @@
         '<p class="result-head num"><span data-anime>' + v(a.net) + "</span> " +
         '<span class="result-unit">' + label.toLowerCase() + "</span></p>" +
         '<div class="repartition">' +
-          '<div class="donut-wrap">' + camembert(segs, a.gross) + "</div>" +
+          '<div class="donut-wrap">' + camembert(segs, a.gross, pctDe("net")) + "</div>" +
           '<ul class="parts">' +
-            segs.map(function (s) {
+            segs.map(function (s, i) {
               return '<li class="part part-' + s.couleur + '">' +
                      '<span class="part-nom">' + s.libelle + "</span>" +
                      '<span class="part-montant num">' + v(s.montant) + "</span>" +
-                     '<span class="part-pct num">' + part(s.montant).toFixed(0) + "%</span>" +
+                     '<span class="part-pct num">' + pcts[i] + "%</span>" +
                      '<span class="part-piste"><i class="part-barre"></i></span></li>';
             }).join("") +
           "</ul>" +

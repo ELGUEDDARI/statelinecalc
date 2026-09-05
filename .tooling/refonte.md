@@ -201,6 +201,30 @@ laquelle elle ne va **pas** sur About, Contact, Privacy, Terms et Disclaimer.
 Vérifié au navigateur : 51 tracés, 11 bleus cliquables, 40 gris, **0 État gris cliquable**,
 11/11 des liens répondent 200, aucune erreur JS.
 
+## Contrôle indépendant du 05/09/2026 — verdict CORRIGER, 3 défauts
+
+**1. Les pourcentages affichés totalisaient 101 %.** Recoupé moi-même sur le moteur :
+**19 cas sur 36**. Ohio à 85 000 $ affichait 79 + 12 + 8 + 2. Le camembert était juste — les
+`stroke-dasharray` utilisent les valeurs exactes — seuls les libellés chiffrés dérivaient.
+Cause : chaque part était arrondie de son côté. Corrigé par la **méthode du plus fort reste**.
+Le pourcentage au centre du camembert était en plus calculé séparément : il pouvait afficher 78
+pendant que la liste disait 79. Il lit désormais la même source.
+✅ Vérifié au navigateur : **20 cas sur 20**, somme 100 %, centre = liste, net = moteur au centime.
+
+**2. Deux boutons « Calculate » quasi identiques dans le même écran.** L'en-tête disait
+« Calculate My Pay » (vers le hub) et le bloc réponse « Calculate my pay ↓ » (ancre sur place).
+Mesuré à 390 px sur Ohio : `top 12-60` et `top 607-651`, visibles ensemble sans défiler. Un
+visiteur qui croyait descendre au calculateur d'Ohio partait vers le hub et perdait son État.
+Le bouton d'en-tête s'appelle maintenant **« All states »** : il dit où il mène, pas ce qu'il fait.
+
+**3. Mon animation cassait un test existant.** `parcours-client.js` patientait 180 ms alors que
+`animerChiffre` dure 350 ms : il lisait un chiffre **en cours de montée** et rapportait cinq faux
+défauts de saisie (« 75,000 → $53,505.35, attendu $59,974 »). Le parsing n'avait rien.
+⛔ **On a failli corriger du code qui marchait pour satisfaire un test qui se trompait.**
+Le test attend désormais que la valeur se stabilise, ce qui se re-règle seul si l'animation change.
+J'ai refait exactement la même erreur dans mon propre script de vérification vingt minutes plus
+tard — un délai figé de 600 ms — et il a fallu la même correction.
+
 ## Ordre des phases
 
 | # | Phase | État |
@@ -218,6 +242,7 @@ Vérifié au navigateur : 51 tracés, 11 bleus cliquables, 40 gris, **0 État gr
 | 10 | Passe mobile 375 → 1440 | à faire |
 | 11 | Passe accessibilité | à faire |
 | 12 | Mesure de performance avant/après | à faire |
-| 13 | Contrôle par l'agent `controle-statelinecalc`, PUIS publication | à faire |
+| 13 | Contrôle indépendant | ✅ **fait le 05/09** — verdict CORRIGER, 3 défauts, tous corrigés |
+| 14 | Publication | à faire |
 
 ⚠️ **Publication seulement après le contrôle.** Analyser, construire, faire vérifier, publier.

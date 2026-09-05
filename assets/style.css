@@ -230,8 +230,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .site-footer a:focus-visible { outline-color: #FFFFFF; }
 
-/* Breadcrumb */
-.crumbs { font-size: 14px; color: var(--text-muted); margin: var(--s-4) 0; }
+/* Breadcrumb — discret par construction : il situe, il ne se dispute pas la
+   place avec le titre. C'est la premiere ligne de la carte blanche, donc elle
+   respire au-dessus du H1 sans le repousser. */
+.crumbs { font-size: 14px; color: var(--text-muted); margin: 0 0 var(--s-4); }
+.crumbs a { text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.crumbs [aria-current="page"] { color: var(--text-secondary); font-weight: 600; }
 .crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; padding: 0; }
 .crumbs li::after { content: "/"; margin-left: var(--s-2); color: var(--border-subtle); }
 .crumbs li:last-child::after { content: ""; }
@@ -441,10 +446,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    invisible to them. This is the most important markup on the page. */
 .table-scroll { overflow-x: auto; }        /* never scroll the whole page */
 table { border-collapse: collapse; width: 100%; font-size: 15px; }
-th, td { padding: var(--s-2) var(--s-3); text-align: right; border-bottom: 1px solid var(--border-subtle); }
+th, td { padding: var(--s-3); text-align: right; border-bottom: 1px solid var(--border-subtle); }
 th:first-child, td:first-child { text-align: left; }
-thead th { background: var(--surface-sunken); font-weight: 600; white-space: nowrap; }
+/* En-tete navy plutot que gris pale, refonte du 05/09/2026. Le tableau des
+   tranches est le contenu le plus important d'une page d'Etat — c'est la version
+   lisible sans JavaScript du calculateur, donc la seule que voient les robots
+   des moteurs generatifs. Un en-tete qui se detache dit ou commence la donnee.
+   Blanc sur #0A2A5E : 13,95:1. */
+thead th {
+  background: var(--dark); color: #FFFFFF;
+  font-weight: 600; white-space: nowrap;
+  border-bottom: 0;
+}
+thead th:first-child { border-top-left-radius: var(--radius-sm); }
+thead th:last-child  { border-top-right-radius: var(--radius-sm); }
 tbody tr:nth-child(odd) { background: var(--surface-sunken); }
+tbody tr:hover { background: #E8EFF9; }
 
 /* ---------- ad slots, section 7 ---------- */
 /* Height is reserved in CSS before anything loads. An unreserved ad slot is

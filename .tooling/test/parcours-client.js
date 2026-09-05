@@ -16,6 +16,27 @@ const { chromium, devices } = require("playwright");
 const { calcul } = require("../lib/paie.js");
 const ETAT = "ohio";
 
+/* Attend que le montant affiche ARRETE de bouger.
+   ⛔ Ne jamais remplacer par un delai fige. Le 05/09/2026 le montant principal a
+   recu une animation de 350 ms (animerChiffre, calc-paycheck.js) ; ce test
+   patientait 180 ms et lisait donc un chiffre EN COURS DE MONTEE. Il a rapporte
+   cinq faux defauts de saisie — « 75,000 -> $53,505.35, attendu $59,974 » — alors
+   que le parsing n'avait rien. On a failli corriger du code qui marchait pour
+   satisfaire un test qui se trompait. Attendre la stabilite se re-regle tout seul
+   si la duree de l'animation change. */
+async function stabilise(page) {
+  let precedent = null;
+  for (let i = 0; i < 30; i++) {
+    const v = await page.evaluate(() => {
+      const t = document.querySelector("[data-paycheck-result] .result-head");
+      return t ? t.textContent : null;
+    });
+    if (v !== null && v === precedent) return;
+    precedent = v;
+    await page.waitForTimeout(60);
+  }
+}
+
 const RACINE = path.join(__dirname, "..", "..");
 const SORTIE = path.join(__dirname, "captures");
 const PORT = 8799;
@@ -119,7 +140,16 @@ const SAISIES = [
     else await m.selectOption("#period", "annual");
     await m.selectOption("#display", "annual");
     await m.click("button[type=submit]");
-    await m.waitForTimeout(180);
+    /* ⛔ ATTENDRE LA FIN DE L'ANIMATION, PAS UN DELAI AU HASARD.
+       Le 05/09/2026 le montant principal a recu une animation de 350 ms
+       (animerChiffre dans calc-paycheck.js). Ce test patientait 180 ms : il
+       lisait un chiffre EN COURS DE MONTEE et rapportait 5 faux defauts de
+       saisie — « 75,000 -> $53,505.35, attendu $59,974 ». Le parsing n'avait
+       rien. Le controle du 05/09 a failli faire corriger un code qui marchait
+       pour satisfaire un test qui se trompait.
+       On attend donc que la valeur se stabilise, plutot qu'un delai fige qu'il
+       faudrait re-regler a chaque changement d'animation. */
+    await stabilise(m);
     const r = await m.evaluate(() => {
       const res = document.querySelector("[data-paycheck-result]");
       const champ = document.querySelector("#salary");
