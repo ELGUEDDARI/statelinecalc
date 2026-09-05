@@ -1,32 +1,54 @@
 # statelinecalc.com
 
+# /.tooling/ est l'atelier : generateurs, fiches de sources, notes de travail et
+# 19 fragments de tableaux HTML sans <head>, sans titre et sans lien entrant.
+# GitHub Pages les sert publiquement — .nojekyll est present, donc meme les
+# dossiers commencant par un point sortent en HTTP 200 (verifie le 05/09/2026 :
+# /.tooling/test/table-texas.html repond 200, 9 901 octets).
+# Ce sont exactement les pages pauvres et dupliquees qu'un moteur ne doit pas
+# voir : les memes tableaux que les pages publiees, sans leur contexte.
+#
+# ⛔ Le Disallow est repete dans CHAQUE groupe, et ce n'est pas une maladresse.
+# Un robot qui trouve un groupe a son nom ignore entierement le groupe « * ».
+# Mettre la regle une seule fois sous « * » la rendrait sans effet pour GPTBot,
+# ClaudeBot et tous les autres nommes ci-dessous.
+
 User-agent: *
+Disallow: /.tooling/
 Allow: /
 
 # AI crawlers are explicitly welcome. Being cited by generative engines is a
 # deliberate part of this site's strategy, not an accident.
 User-agent: GPTBot
+Disallow: /.tooling/
 Allow: /
 
 User-agent: OAI-SearchBot
+Disallow: /.tooling/
 Allow: /
 
 User-agent: ChatGPT-User
+Disallow: /.tooling/
 Allow: /
 
 User-agent: ClaudeBot
+Disallow: /.tooling/
 Allow: /
 
 User-agent: Claude-Web
+Disallow: /.tooling/
 Allow: /
 
 User-agent: PerplexityBot
+Disallow: /.tooling/
 Allow: /
 
 User-agent: Google-Extended
+Disallow: /.tooling/
 Allow: /
 
 User-agent: Applebot-Extended
+Disallow: /.tooling/
 Allow: /
 
 Sitemap: https://statelinecalc.com/sitemap.xml
