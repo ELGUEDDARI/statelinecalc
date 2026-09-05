@@ -662,6 +662,91 @@ const RATES_2026 = {
         },
         notch: { over: 26050, add: 332 }
       }
+    },
+
+    /* HAWAII — 12 tranches, de 1,40 % a 11,00 %. Le bareme le plus etendu du site.
+       SOURCE, lue verbatim le 05/09/2026 dans le TEXTE DE LOI, pas dans un resume :
+       Act 46, Session Laws of Hawaii 2024, telecharge sur
+       https://data.capitol.hawaii.gov/sessions/sessionlaws/Years/SLH2024/SLH2024_Act46.pdf
+       (tax.hawaii.gov et files.hawaii.gov repondent 403 a un agent non navigateur ;
+       curl avec un User-Agent Chrome passe en HTTP 200. Le 403 n'est pas une absence
+       de source — c'est un blocage d'agent. Meme piege que tn.gov.)
+
+       DEDUCTION STANDARD : Act 46 section (F), « For taxable years beginning after
+       December 31, 2025 » — donc l'annee fiscale 2026 : 8 000 $ celibataire,
+       16 000 $ joint, 12 000 $ chef de famille.
+       ⚠️ Plusieurs resumes en ligne annoncent 4 400 $ : c'est le bareme 2024-2025.
+
+       TRANCHES : Act 46 section 2, « any taxable year beginning after December 31,
+       2024 » — ce bloc couvre 2025 ET 2026. La loi contient AUSSI un bloc
+       « after December 31, 2026 » avec d'autres seuils : il prend effet en 2027,
+       ne pas le confondre.
+       HB 2306 (session 2026) releve les trois tranches hautes, mais « for taxable
+       years beginning after 12/31/2026 » : sans effet sur 2026.
+
+       CONTROLE DE COHERENCE fait a la main sur les trois baremes :
+         - les montants cumules de la loi se recalculent ligne a ligne
+           (9 600 x 1,4 % = 134 ; 134 + 4 800 x 3,2 % = 288 ; +4 800 x 5,5 % = 552...) ;
+         - marriedJoint = EXACTEMENT 2 x single sur les 11 seuils ;
+         - headOfHousehold = EXACTEMENT 1,5 x single sur les 11 seuils.
+
+       ECART D'ARRONDI CONNU, mesure le 05/09/2026 — a ne pas corriger en silence :
+       la loi ecrit ses points de depart cumules ARRONDIS AU DOLLAR INFERIEUR.
+       Exemple : 9 600 x 1,4 % = 134,40 $, mais la loi ecrit « $134.00 plus 3.20% ».
+       Notre moteur additionne tranche par tranche, sans arrondir en chemin. Sur un
+       revenu imposable de 50 000 $ il donne 2 691,20 $ la ou la formule de la loi
+       donne 2 691,00 $ : 0,20 $ d'ecart, soit 0,0004 %, TOUJOURS en defaveur du
+       contribuable (nous annonçons un peu plus d'impot, donc un peu moins de net).
+       Nous gardons le calcul par tranches, identique a celui des neuf autres Etats,
+       plutot que d'ecrire une exception pour Hawaii. L'ecart est annonce sur la page
+       et sur /methodology/. Si un visiteur compare au centime avec le formulaire N-11,
+       c'est cette difference qu'il verra, et elle est voulue.
+
+       ⛔ CE QUE NOUS NE DEDUISONS PAS, ET POURQUOI — a dire sur la page :
+       Hawaii a deux prelevements salariaux possibles, tous deux FACULTATIFS pour
+       l'employeur. Source : State of Hawaii, DLIR, Disability Compensation Division,
+       « 2026 Maximum Weekly Wage Base and Maximum Weekly Benefit Amount »,
+       10 decembre 2025, https://labor.hawaii.gov/dcd/files/2025/12/2026-Maximum-Weekly-Wage-Base.pdf
+         - TDI (Temporary Disability Insurance), note 3 verbatim : « An employer MAY
+           withhold TDI contributions of one-half the premium cost but not more than
+           .5% of the employee's weekly wage, with the maximum not to exceed $7.50. »
+           Base hebdomadaire maximale 2026 : 1 500,21 $. Plafond : 7,50 $/semaine,
+           soit 390 $/an.
+         - PHC (Prepaid Health Care), note 4 verbatim : « An employer MAY withhold
+           one-half the PHC premium cost but not to exceed 1.5% of an employee's wages. »
+       Le montant reel depend du cout de la prime ET du choix de l'employeur : il est
+       INCONNAISSABLE depuis un salaire brut. Contrairement au PFML de Washington, qui
+       est obligatoire et a taux fixe, on ne peut pas le modeliser sans inventer.
+       On ne deduit donc rien, et la page annonce le plafond legal explicitement. */
+    hawaii: {
+      name: "Hawaii",
+      abbr: "HI",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: { single: 8000, marriedJoint: 16000, headOfHousehold: 12000 },
+        brackets: {
+          single: [
+            [9600, 0.014], [14400, 0.032], [19200, 0.055], [24000, 0.064],
+            [36000, 0.068], [48000, 0.072], [125000, 0.076], [175000, 0.079],
+            [225000, 0.0825], [275000, 0.09], [325000, 0.10], [Infinity, 0.11]
+          ],
+          marriedJoint: [
+            [19200, 0.014], [28800, 0.032], [38400, 0.055], [48000, 0.064],
+            [72000, 0.068], [96000, 0.072], [250000, 0.076], [350000, 0.079],
+            [450000, 0.0825], [550000, 0.09], [650000, 0.10], [Infinity, 0.11]
+          ],
+          headOfHousehold: [
+            [14400, 0.014], [21600, 0.032], [28800, 0.055], [36000, 0.064],
+            [54000, 0.068], [72000, 0.072], [187500, 0.076], [262500, 0.079],
+            [337500, 0.0825], [412500, 0.09], [487500, 0.10], [Infinity, 0.11]
+          ]
+        }
+      },
+      /* Declare pour la page, JAMAIS soustrait du net. Voir le commentaire ci-dessus. */
+      optionalWithholding: {
+        tdi: { maxEmployeeRate: 0.005, maxWeeklyWageBase: 1500.21, maxWeekly: 7.50 },
+        prepaidHealthCare: { maxEmployeeRate: 0.015 }
+      }
     }
   }
 };
