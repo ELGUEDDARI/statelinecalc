@@ -145,9 +145,19 @@ const prem = (s, re) => { const m = s.match(re); return m ? m[1] : null; };
   dit(dTitres.length === 0, "aucun titre en double", dTitres.map(([k, v]) => k + " x" + v.length).join(" ; "));
   dit(dDescs.length === 0, "aucune description en double", dDescs.map(([, v]) => v.join(" = ")).join(" ; "));
 
-  const longs = [...titres.keys()].filter(t => t.length > 65);
+  /* ⛔ MESURER LE TITRE RENDU, PAS LA CHAINE SOURCE. Le 09/09/2026 ce controle
+     a refuse « North Carolina Paycheck Calculator 2026 &mdash; Hourly &amp;
+     Salary » en annoncant 67 caracteres. Le lecteur, lui, en voit 57 : &mdash;
+     s'affiche comme un seul tiret et &amp; comme une seule esperluette. Le test
+     mesurait le HTML la ou Google mesure le texte affiche — il aurait fini par
+     faire raccourcir des titres qui n'ont aucun probleme, et il laissait passer
+     l'inverse. On decode avant de compter. */
+  const rendu = t => t.replace(/&mdash;/g, "—").replace(/&ndash;/g, "–")
+                      .replace(/&amp;/g, "&").replace(/&rsquo;/g, "’")
+                      .replace(/&nbsp;/g, " ").replace(/&quot;/g, '"');
+  const longs = [...titres.keys()].filter(t => rendu(t).length > 65);
   dit(longs.length === 0, "aucun titre au-dela de 65 caracteres (risque de troncature en SERP)",
-      longs.map(t => t.length + " : " + t).join(" ; "));
+      longs.map(t => rendu(t).length + " : " + t).join(" ; "));
   /* ⛔ CECI N'EST PAS UN ECHEC D'INDEXATION, et c'est pourquoi ce bloc
      n'incremente pas le compteur d'echecs. Une description de 200 caracteres
      s'indexe parfaitement ; elle se fait simplement tronquer dans la SERP, ce
@@ -156,11 +166,11 @@ const prem = (s, re) => { const m = s.match(re); return m ? m[1] : null; };
      encore plus : la consigne du PDG impose de regarder la SERP reelle avant de
      toucher a une description publiee. Le chiffre est donc MESURE et REMONTE,
      la decision appartient au PDG. */
-  const trop = [...descs.entries()].filter(([d]) => d.length > 165);
-  const courtes = [...descs.entries()].filter(([d]) => d.length < 70);
+  const trop = [...descs.entries()].filter(([d]) => rendu(d).length > 165);
+  const courtes = [...descs.entries()].filter(([d]) => rendu(d).length < 70);
   console.log("\n  AVERTISSEMENT (n'empeche pas l'indexation) :");
   console.log("    descriptions > 165 car., tronquees en SERP : " + trop.length + " / " + descs.size +
-              (trop.length ? "  (max " + Math.max(...trop.map(([d]) => d.length)) + " car.)" : ""));
+              (trop.length ? "  (max " + Math.max(...trop.map(([d]) => rendu(d).length)) + " car.)" : ""));
   console.log("    descriptions < 70 car., trop maigres        : " + courtes.length + " / " + descs.size);
 
   /* robots.txt : le Disallow de l'atelier doit figurer dans CHAQUE groupe, sinon
