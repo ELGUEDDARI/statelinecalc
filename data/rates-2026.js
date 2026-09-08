@@ -543,6 +543,103 @@ const RATES_2026 = {
        (multiply by 0.012)." Lue le 2026-08-29 par le meme detour Wayback.
        Comme pour Philadelphie, le calculateur ne modelise que la couche Etat
        et l'ecrit noir sur blanc. */
+    /* -----------------------------------------------------------------------
+       NORTH CAROLINA - ajoute le 2026-09-09. 13e Etat publie.
+
+       LE TAUX. Deux sources officielles 2026, independantes l'une de l'autre.
+       1. NCDOR, page « Tax Rate Schedules », lue le 2026-09-09 (HTTP 200),
+          verbatim :
+            « For Taxable Years beginning in 2025, the North Carolina
+              individual income tax rate is 4.25% (0.0425). »
+            « For Taxable Years after 2025, the North Carolina individual
+              income tax rate is 3.99% (0.0399). »
+          Suivi de : « Additional rate changes may apply to tax years beginning
+          with 2027 based on certain rate reduction triggers », cf. Session
+          Law 2023-134. Donc 3,99 % vaut pour 2026 ; 2027 n'est PAS acquis et
+          la page ne doit rien en dire.
+       2. Formulaire NC-30, « 2026 Income Tax Withholding Tables and
+          Instructions for Employers », revision Web 11-25, telecharge le
+          2026-09-09 depuis ncdor.gov (application/pdf, 570 759 octets),
+          encadre « New for 2026 », verbatim :
+            « As a result of Session Law 2023-134, the individual income tax
+              rate for tax year 2026 will be 3.99%. »
+
+       LA DEDUCTION STANDARD. Formulaire NC-4, « Employee's Withholding
+       Allowance Certificate », revision Web 10-25 — donc la version en vigueur
+       pour les paies 2026 — Part II, ligne 2, verbatim :
+            « $12,750 if Single / $25,500 if Married Filing Jointly or
+              Surviving Spouse / $12,750 if Married Filing Separately /
+              $19,125 if Head of Household »
+       Recoupe sur le NC-30 2026, feuilles « Annualized Method » : 12 750,00 $
+       pour « Single Person, Married Person, or Surviving Spouse » et
+       19 125,00 $ pour « Head of Household ».
+       ⛔ La page NCDOR « NC Standard Deduction or NC Itemized Deductions »
+       donne les memes montants mais s'annonce « for tax year 2025 » : elle ne
+       peut PAS servir de source 2026. Ce sont le NC-4 et le NC-30 qui datent.
+       Aucun supplement pour les 65 ans et plus ni pour les non-voyants, a la
+       difference du federal (meme page NCDOR).
+
+       ⛔ LE PIEGE PROPRE A LA CAROLINE DU NORD : LE TAUX RETENU N'EST PAS LE
+       TAUX D'IMPOT. NC-30 2026, sous chaque feuille de calcul, verbatim :
+         « The withholding calculations are based on the individual income tax
+           rate of 3.99% plus 0.1%. This results in a withholding tax rate of
+           4.09%. »
+       L'employeur preleve donc 4,09 % la ou l'impot du sur l'annee est de
+       3,99 %. Ce moteur calcule l'IMPOT (3,99 %), pas la retenue : le net
+       affiche ici est donc legerement SUPERIEUR a celui d'une fiche de paie de
+       Caroline du Nord, et l'ecart revient sous forme de remboursement. Cet
+       ecart est explique sur la page, il n'est pas modelise dans le net —
+       modeliser la retenue donnerait un « take-home » faux sur l'annee.
+
+       LE PIEGE WASHINGTON, verifie et ecarte. Rien d'autre que l'impot sur le
+       revenu ne sort d'une paie de Caroline du Nord au titre de l'Etat.
+       N.C. Division of Employment Security, page « Am I Required to Pay
+       Taxes? », lue le 2026-09-09 (HTTP 200), verbatim :
+         « Employers pay unemployment insurance taxes based on employer
+           payrolls. Unemployment taxes are not deducted from employees'
+           wages. »
+       Pas de PFML ni d'assurance dependance a la Washington : aucune n'existe
+       en Caroline du Nord au 2026-09-09 — et cette absence est une absence de
+       page, pas une preuve : la page dit ce que le calcul fait, pas ce que
+       l'Etat ne fait pas.
+
+       LE 401(k). L'impot de Caroline du Nord part du revenu brut ajuste
+       FEDERAL. NCDOR, « Important Notice: Impact of Recently Enacted Laws on
+       North Carolina Individual and Corporate Income Tax Returns », 23/07/2026
+       mis a jour le 29/07/2026, verbatim : « For individuals, North Carolina
+       taxable income starts with federal adjusted gross income (AGI). » Une
+       cotisation 401(k) classique sort deja de l'AGI federal, donc elle reduit
+       aussi l'impot d'Etat. C'est le comportement par defaut du moteur, et il
+       est ici source plutot que suppose.
+
+       NON VERIFIE, donc la page n'en dit RIEN : l'existence ou non d'un impot
+       sur le revenu leve par une ville ou un comte de Caroline du Nord.
+       Aucune source lue dans un sens ou dans l'autre le 2026-09-09.
+
+       NON MODELISE, donc explique sur la page : la « child deduction » de
+       N.C. Gen. Stat. 105-153.5(a1), qui depend du nombre d'enfants et du
+       revenu, et la deduction itemisee — la Caroline du Nord n'accepte que
+       les interets d'emprunt immobilier, la taxe fonciere, les dons, les frais
+       medicaux et, depuis la Session Law 2026-41, les pertes de jeu.
+       ----------------------------------------------------------------------- */
+    "north-carolina": {
+      name: "North Carolina",
+      abbr: "NC",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 12750,
+          marriedJoint: 25500,
+          headOfHousehold: 19125
+        },
+        brackets: {
+          single:          [[Infinity, 0.0399]],
+          marriedJoint:    [[Infinity, 0.0399]],
+          headOfHousehold: [[Infinity, 0.0399]]
+        }
+      }
+    },
+
     michigan: {
       name: "Michigan",
       abbr: "MI",
