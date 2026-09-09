@@ -140,8 +140,8 @@ const html = `<!DOCTYPE html>
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js"></script>
-<title>Pennsylvania Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
-<meta name="description" content="Free Pennsylvania paycheck calculator, 2026. Hourly or salary. A flat 3.07% with no standard deduction &mdash; and, unlike most states, your 401(k) is taxed too.">
+<title>Pennsylvania (PA) Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
+<meta name="description" content="Free Pennsylvania (PA) paycheck calculator, 2026. Hourly or salary. A flat 3.07% with no standard deduction &mdash; and, unlike most states, your 401(k) is taxed too.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/pennsylvania/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -150,7 +150,7 @@ const html = `<!DOCTYPE html>
 <meta name="theme-color" content="#0F172A">
 <link rel="stylesheet" href="/assets/style.css">
 
-<meta property="og:title" content="Pennsylvania Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
+<meta property="og:title" content="Pennsylvania (PA) Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
 <meta property="og:site_name" content="StateLine Calc">
 <meta name="application-name" content="StateLine Calc">
 <meta property="og:description" content="Pennsylvania taxes income at a flat 3.07% from the first dollar, with no standard deduction &mdash; and your 401(k) contribution does not reduce it.">

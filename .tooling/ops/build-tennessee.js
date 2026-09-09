@@ -121,8 +121,8 @@ const FAQ = [
 ];
 
 /* --- le HTML ------------------------------------------------------------ */
-const TITRE = "Tennessee Paycheck Calculator 2026 — Take-Home Pay After Tax";
-const DESC = "Tennessee takes nothing from your wages at state level. See what " + $0(REF) +
+const TITRE = "Tennessee (TN) Paycheck Calculator 2026 — Take-Home Pay";
+const DESC = "Tennessee (TN) takes nothing from your wages at state level. See what " + $0(REF) +
   " leaves you after federal tax and FICA, with the statute that set the state rate to zero.";
 
 const jsonld = {
