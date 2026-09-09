@@ -67,7 +67,23 @@ const DOSSIER = path.join(__dirname, "captures");
     const m = await page.evaluate(() => {
       const nav = performance.getEntriesByType("navigation")[0] || {};
       const fcp = (performance.getEntriesByName("first-contentful-paint")[0] || {}).startTime;
-      const corps = document.querySelector("main p, article p, p");
+      /* ⛔ LE PREMIER <p> DE LA PAGE N'EST PAS LE CORPS DE TEXTE. Le 09/09/2026
+         cette ligne a fait dire au tableau que notre texte etait en 12 px,
+         parce que « main p, article p, p » renvoie le premier <p> du DOCUMENT
+         quel que soit l'ordre des selecteurs — chez nous l'etiquette
+         « Paycheck by state » du menu deroulant, en 12 px. Le vrai corps de
+         texte est en 17 px. Un chiffre faux dans ce tableau aurait pu faire
+         changer la typographie de tout le site pour rien.
+         On cherche donc le premier paragraphe REEL : dans le contenu, visible,
+         et assez long pour etre une phrase. */
+      const corps = (() => {
+        const dans = document.querySelector("main, article") || document.body;
+        for (const e of dans.querySelectorAll("p")) {
+          const r = e.getBoundingClientRect();
+          if (r.height > 0 && r.width > 0 && e.textContent.trim().length > 80) return e;
+        }
+        return dans.querySelector("p");
+      })();
       const cs = corps ? getComputedStyle(corps) : null;
       // Y a-t-il un champ de saisie visible sans defiler ?
       const champs = [...document.querySelectorAll("input,select")];
