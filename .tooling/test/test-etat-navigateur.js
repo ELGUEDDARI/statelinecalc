@@ -57,12 +57,31 @@ if (S.incomeTax.notch) {
   const seuil = S.incomeTax.notch.over + exo;
   CAS.push({ brut: seuil, statut: "single" }, { brut: seuil + 1, statut: "single" });
 }
-/* Un credit qui s'efface : on teste avant, pendant et apres l'effacement. */
+/* Un credit qui s'efface : on teste avant, pendant et apres l'effacement.
+   ⛔ TOUS LES CREDITS NE S'EFFACENT PAS. Le Nebraska, ajoute le 09/09/2026, en
+   donne un de 176 $ par part qui vaut la meme somme a tous les revenus : sa
+   degressivite a ete supprimee en 2018. Le calcul « phaseOutStart + base /
+   phaseOutRate » donnait alors Infinity + 176 / 0, et le test partait tester
+   un salaire infini — il plantait au lieu d'echouer proprement. Quand le
+   credit ne s'efface pas, la frontiere interessante est ailleurs : c'est le
+   salaire ou le credit cesse d'annuler l'impot. On la CHERCHE au dollar pres
+   plutot que de la calculer, pour qu'elle reste juste si la structure change. */
 if (S.incomeTax.taxCredit) {
   const c = S.incomeTax.taxCredit;
   const fin = c.phaseOutStart.single + c.base.single / c.phaseOutRate;
-  CAS.push({ brut: Math.round(fin / 2), statut: "single" },
-           { brut: Math.round(fin), statut: "single" });
+  if (isFinite(fin)) {
+    CAS.push({ brut: Math.round(fin / 2), statut: "single" },
+             { brut: Math.round(fin), statut: "single" });
+  } else {
+    let bas = 0, haut = 200000;
+    if (calcul(ETAT, haut).etat > 0) {
+      while (haut - bas > 1) {
+        const milieu = Math.floor((bas + haut) / 2);
+        if (calcul(ETAT, milieu).etat > 0) haut = milieu; else bas = milieu;
+      }
+      CAS.push({ brut: bas, statut: "single" }, { brut: haut, statut: "single" });
+    }
+  }
 }
 /* Des paliers d'exoneration : on teste de part et d'autre de chaque frontiere. */
 if (S.incomeTax.deductionByIncome) {

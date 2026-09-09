@@ -640,6 +640,103 @@ const RATES_2026 = {
       }
     },
 
+    /* -----------------------------------------------------------------------
+       NEBRASKA - ajoute le 2026-09-09. 14e Etat publie.
+
+       LA SOURCE, une seule et elle porte tout : formulaire 1040N-ES,
+       « Nebraska Individual Estimated Income Tax Payment Vouchers », millesime
+       2026, telecharge le 2026-09-09 depuis revenue.nebraska.gov
+       (application/pdf, 611 808 octets, HTTP 200). C'est le document que le
+       contribuable utilise pour estimer son impot 2026 : il porte donc le
+       bareme 2026 ET la deduction standard 2026, la ou le livret du 1040N
+       n'existera qu'en 2027.
+
+       BAREME, page 6, « 2026 Nebraska Estimated Income Tax Rate Schedule »,
+       verbatim pour le celibataire :
+         « 2.46% of the income » jusqu'a 4 130 $
+         « $101.60 + 3.51% of the excess over $4,130 » jusqu'a 24 760 $
+         « $825.71 + 4.55% of the excess over $24,760 » jusqu'a 39 900 $
+         « $1,514.58 + 4.55% of the excess over $39,900 » au-dela.
+       Marie declarant conjointement : 8 250 / 49 530 / 79 800.
+       Chef de famille : 7 700 / 39 620 / 59 160.
+
+       ⚠️ POURQUOI TROIS TAUX ET NON QUATRE. Le Nebraska imprime QUATRE
+       tranches, mais les deux dernieres portent le meme taux. Le formulaire le
+       dit lui-meme, verbatim : « The tax year 2026 individual income tax rates
+       for the third and fourth brackets are at the same rate of 4.55% per
+       Neb. Rev. Stat. § 77-2715.03(2)(c)(v). » Une quatrieme bande a 4,55 %
+       apres une troisieme a 4,55 % ne change aucun resultat ; on ecrit trois
+       bandes et on explique la quatrieme sur la page. Ne pas « corriger » ceci
+       en rajoutant une bande : ce serait du bruit, pas de la fidelite.
+
+       LA BAISSE. Meme document DOR, « Nebraska Tax Rate Chronologies,
+       Table 1 », revision 2-2026, lue le 2026-09-09 : au 1er janvier 2025 les
+       quatre taux etaient 2,46 / 3,51 / 5,01 / 5,20 ; au 1er janvier 2026 ils
+       sont 2,46 / 3,51 / 4,55 / 4,55. Le taux le plus haut perd 0,65 point en
+       un an — contre 0,26 point en Caroline du Nord sur la meme annee.
+
+       DEDUCTION STANDARD 2026, 1040N-ES page 4, ligne 5, verbatim :
+         « Single $8,850; Married, Filing Jointly $17,700; Head of Household
+           $12,950; Married, Filing Separately $8,850 ».
+
+       LE CREDIT PERSONNEL — ET C'EST UN CREDIT, PAS UNE DEDUCTION. Meme
+       formulaire, page 6, verbatim : « Include $176 for each Nebraska personal
+       exemption allowed on line 14 ». Il se retranche de l'IMPOT, pas du
+       revenu, donc il vaut 176 $ pour tout le monde — la meme somme pour un
+       salaire de 30 000 $ que pour un salaire de 300 000 $. Le traiter comme
+       une deduction donnerait un resultat faux a tous les niveaux de revenu.
+       C'est le meme mecanisme que l'Utah, a une difference pres : le credit de
+       l'Utah s'efface avec le revenu, celui du Nebraska non. La chronologie
+       DOR le dit : la degressivite du credit est « Not Applicable beginning in
+       2018 ». D'ou phaseOutStart a l'infini et phaseOutRate a zero — ce n'est
+       pas un contournement, c'est la loi.
+       Convention identique aux autres Etats a exoneration par personne :
+       une part pour un celibataire, deux pour un couple.
+
+       LES TAUX DE RETENUE, QUI NE SONT PAS LES TAUX D'IMPOT. « 2026 Nebraska
+       Circular EN », Rev. 11-2025 (PDF, 519 436 octets, meme hote, lu le
+       09/09/2026), page 12, « Percentage Method Tables (For Wages Paid on or
+       After January 1, 2026) », TABLE 1 colonne SINGLE : 2,26 % / 3,22 % /
+       4,21 % / 4,35 % / 4,48 % / 4,60 %, appliques apres soustraction de la
+       valeur de l'allocation de retenue. Six taux, la ou l'impot en a trois.
+       ⛔ NE JAMAIS s'en servir pour calculer un net : ce sont des instructions
+       aux employeurs, pas le bareme. Ils sont cites sur la page, avec leur
+       page d'origine, uniquement pour expliquer pourquoi une fiche de paie du
+       Nebraska ne tombe pas sur le meme chiffre que ce calculateur.
+
+       ⛔ CE QUE CETTE PAGE NE DIT PAS, ET POURQUOI.
+       Je n'ai PAS pu verifier qui paie l'assurance chomage au Nebraska.
+       dol.nebraska.gov et nebraskalegislature.gov refusent la connexion depuis
+       cette machine (ECONNREFUSED sur 164.119.176.91 et 164.119.161.105 — tout
+       le reseau de l'Etat, alors que revenue.nebraska.gov repond 200). Deux
+       methodes, deux echecs : on s'arrete la. La page dit donc ce que le
+       calcul FAIT, et ne pretend pas dresser la liste de ce qui ne sort pas
+       d'une fiche de paie du Nebraska. Meme regle que la Georgie.
+       Idem pour un eventuel impot municipal : aucune source lue.
+       ----------------------------------------------------------------------- */
+    nebraska: {
+      name: "Nebraska",
+      abbr: "NE",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 8850,
+          marriedJoint: 17700,
+          headOfHousehold: 12950
+        },
+        brackets: {
+          single:          [[4130, 0.0246], [24760, 0.0351], [Infinity, 0.0455]],
+          marriedJoint:    [[8250, 0.0246], [49530, 0.0351], [Infinity, 0.0455]],
+          headOfHousehold: [[7700, 0.0246], [39620, 0.0351], [Infinity, 0.0455]]
+        },
+        taxCredit: {
+          base:          { single: 176, marriedJoint: 352, headOfHousehold: 176 },
+          phaseOutStart: { single: Infinity, marriedJoint: Infinity, headOfHousehold: Infinity },
+          phaseOutRate:  0
+        }
+      }
+    },
+
     michigan: {
       name: "Michigan",
       abbr: "MI",

@@ -28,6 +28,7 @@ const PUBLIES = {
   Hawaii: "hawaii",
   Illinois: "illinois",
   Michigan: "michigan",
+  Nebraska: "nebraska",
   Nevada: "nevada",
   "North Carolina": "north-carolina",
   Ohio: "ohio",
