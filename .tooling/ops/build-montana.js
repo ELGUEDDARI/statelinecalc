@@ -226,6 +226,8 @@ const faq = [
 
 const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -272,6 +274,7 @@ const html = `<!DOCTYPE html>
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Montana take-home pay after federal income tax, Social Security, Medicare and Montana income tax at 4.7 and 5.65 percent, applied to federal taxable income."
     },
     {
@@ -288,7 +291,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
@@ -731,6 +734,8 @@ ${voisins.map(v => {
   ${N($$(voisins[2].r.etat))}. The state whose worker clearly keeps more is
   <a href="/paycheck-calculator/washington/">Washington</a>, which has no income tax at all
   &mdash; though it takes two small employee contributions that Montana is forbidden to take.</p>
+
+${blocSources("montana")}
 
   <h2>Related reading</h2>
   <ul>

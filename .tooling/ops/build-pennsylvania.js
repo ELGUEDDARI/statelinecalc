@@ -122,6 +122,8 @@ const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
    publies apres sa derniere execution. Un generateur ne doit pas pouvoir
    defaire le maillage en etant simplement relance. */
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -172,6 +174,7 @@ const html = `<!DOCTYPE html>
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Pennsylvania take-home pay after federal income tax, Social Security, Medicare, Pennsylvania's flat 3.07 percent income tax and the 0.07 percent employee unemployment contribution, including Pennsylvania's treatment of 401(k) contributions as taxable compensation."
     },
     {
@@ -188,7 +191,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
@@ -589,6 +592,8 @@ ${voisins.map(v => {
   <p>Pennsylvania sits where you would expect from its rate: better than Illinois or Georgia,
   behind the states that levy nothing. What the table cannot show is the 401(k) rule, which widens
   the gap for anyone saving for retirement, and local tax, which widens it again.</p>
+
+${blocSources("pennsylvania")}
 
   <h2>Related reading</h2>
   <ul>

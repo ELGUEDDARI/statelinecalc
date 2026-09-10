@@ -265,6 +265,8 @@ const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
    publies apres sa derniere execution. Un generateur ne doit pas pouvoir
    defaire le maillage en etant simplement relance. */
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -315,6 +317,7 @@ const html = `<!DOCTYPE html>
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Ohio take-home pay after federal income tax, Social Security, Medicare and Ohio's income tax, which charges nothing on the first $26,050 of taxable income and then $332 plus 2.75 percent of the excess, after a personal exemption of $2,400, $2,150 or $1,900 per person depending on income."
     },
     {
@@ -331,7 +334,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
@@ -816,6 +819,8 @@ ${voisins.map(v => {
   ${N(String(MUNI_AU_DESSUS_UT)) + " of the " + MUNI_NB} municipalities in the
   Department&rsquo;s table exceed. Only the states with no income tax at all are unambiguously cheaper at every
   address.</p>
+
+${blocSources("ohio")}
 
   <h2>Related reading</h2>
   <ul>

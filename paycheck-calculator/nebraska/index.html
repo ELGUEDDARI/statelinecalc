@@ -39,6 +39,7 @@
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Nebraska take-home pay after federal income tax, Social Security, Medicare and Nebraska income tax at 2.46, 3.51 and 4.55 percent, after the state's $8,850 standard deduction and its $176 personal exemption credit."
     },
     {
@@ -63,7 +64,33 @@
         { "@type": "Question", "name": "Why is my Nebraska paycheck smaller than this calculator says?", "acceptedAnswer": { "@type": "Answer", "text": "The usual reasons, and one that is specific to Nebraska. Specific: your employer withholds from the tables in Circular EN, which use their own rates — 2.26% through 4.60% — and a withholding allowance value, so the amount held back is an approximation of the tax rather than the tax itself. General: health insurance premiums and other benefit deductions come out before tax and are not modelled here, and a second job pushes your federal withholding up." } }
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    {
+      "@type": "Organization",
+      "@id": "https://statelinecalc.com/#organization",
+      "name": "StateLine Calc",
+      "alternateName": "StateLineCalc",
+      "url": "https://statelinecalc.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://statelinecalc.com/assets/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "StateLine Calc publishes free US paycheck and take-home pay calculators, state by state, for tax year 2026. Every rate is read from the agency that sets it and published with the date it was checked. Figures typed into a calculator never leave the visitor's browser.",
+      "foundingDate": "2026-08-22",
+      "knowsAbout": [
+        "US payroll taxes",
+        "State income tax",
+        "Take-home pay",
+        "Federal income tax brackets",
+        "FICA",
+        "Salary to hourly conversion"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      }
+    }
   ]
 }
 </script>
@@ -1043,6 +1070,27 @@
   them, which is what the 0.65-point move was for. What separates it from them is the shape: a
   low-paid worker in Nebraska is taxed at 2.46% on the first band, where a flat state charges its
   full rate from the first taxable dollar.</p>
+
+  <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
+  <h2>Sources</h2>
+  <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Nebraska ones from the state&rsquo;s own document below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
+
+  <h3>The documents these figures are read from</h3>
+  <ul class="prose">
+    <li><a href="https://revenue.nebraska.gov/sites/default/files/doc/business/Cir_En_2025/2026cir_en_whole.pdf">Nebraska &mdash; 2026 Circular EN, Income Tax Withholding (PDF)</a> &mdash; the withholding tables an employer actually uses, whose own rates run from 2.26% to 4.60% and are not the tax itself.</li>
+    <li><a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill">IRS &mdash; 2026 inflation adjustments (Rev. Proc. 2025-32)</a> &mdash; the federal brackets and the $16,100 standard deduction.</li>
+    <li><a href="https://www.irs.gov/taxtopics/tc751">IRS &mdash; Topic no. 751, Social Security and Medicare withholding rates</a> &mdash; the 6.2% and 1.45% rates and the 0.9% Additional Medicare Tax.</li>
+    <li><a href="https://www.ssa.gov/oact/cola/cbb.html">SSA &mdash; Contribution and benefit base</a> &mdash; the $184,500 Social Security wage base.</li>
+  </ul>
+
+  <h3>The agencies that set them</h3>
+  <p class="prose">These are the offices that set the figures. We link them so you can start from the source yourself, but an agency&rsquo;s own summary page is not always current, and we do not claim that these pages carry the 2026 number &mdash; several of them do not. Where a rate was read somewhere else, in a statute, a withholding guide or an estimated-tax form, the exact document and the date we read it are on our <a href="/methodology/">methodology page</a>.</p>
+  <ul class="prose">
+    <li><a href="https://revenue.nebraska.gov/individuals">Nebraska Department of Revenue &mdash; Individuals</a>.</li>
+  </ul>
+
+  <p class="caption">All links checked <time datetime="2026-09-10">September 10, 2026</time>.</p>
+  <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
   <ul>

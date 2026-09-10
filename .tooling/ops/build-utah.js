@@ -178,6 +178,8 @@ const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
    publies apres sa derniere execution. Un generateur ne doit pas pouvoir
    defaire le maillage en etant simplement relance. */
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -228,6 +230,7 @@ const html = `<!DOCTYPE html>
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Utah take-home pay after federal income tax, Social Security, Medicare and Utah's flat 4.45 percent income tax, including the Utah taxpayer credit of $485 for a single filer and its 1.3 percent phase-out above $9,348."
     },
     {
@@ -244,7 +247,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
@@ -654,6 +657,8 @@ ${voisins.map(v => {
   4.45% applies to every dollar. Lower down the scale the ranking changes: the credit is
   worth more, proportionally, to a worker on ${N($(25000))} than Michigan&rsquo;s exemption is
   worth to the same worker. The states that levy nothing at all remain in a category of their own.</p>
+
+${blocSources("utah")}
 
   <h2>Related reading</h2>
   <ul>

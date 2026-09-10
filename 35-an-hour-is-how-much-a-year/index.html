@@ -39,8 +39,18 @@
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
-        { "@type": "ListItem", "position": 2, "name": "$35 an hour is how much a year", "item": "https://statelinecalc.com/35-an-hour-is-how-much-a-year/" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://statelinecalc.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "$35 an hour is how much a year",
+          "item": "https://statelinecalc.com/35-an-hour-is-how-much-a-year/"
+        }
       ]
     },
     {
@@ -49,41 +59,91 @@
         {
           "@type": "Question",
           "name": "$35 an hour is how much a year?",
-          "acceptedAnswer": { "@type": "Answer", "text": "$35 an hour is $72,800 a year before tax, at 40 hours a week for 52 weeks. After tax it depends entirely on where you work: Florida leaves you $60,045 and Hawaii $56,229, a difference of $3,816 on identical pay." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "$35 an hour is $72,800 a year before tax, at 40 hours a week for 52 weeks. After tax it depends entirely on where you work: Florida leaves you $60,045 and Hawaii $56,229, a difference of $3,816 on identical pay."
+          }
         },
         {
           "@type": "Question",
           "name": "$35 an hour is how much a year after taxes?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Between $56,229 and $60,045 depending on the state, for a single filer taking the standard deduction in 2026. That is an effective rate of 22.8 to 17.5 percent. The table above shows every state we publish, and each figure is the same arithmetic our paycheck calculator runs, not a rounded estimate." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Between $56,229 and $60,045 depending on the state, for a single filer taking the standard deduction in 2026. That is an effective rate of 22.8 to 17.5 percent. The table above shows every state we publish, and each figure is the same arithmetic our paycheck calculator runs, not a rounded estimate."
+          }
         },
         {
           "@type": "Question",
           "name": "$35 an hour is how much a month?",
-          "acceptedAnswer": { "@type": "Answer", "text": "$6,066.67 a month before tax. After tax, between $4,685.73 and $5,003.73 a month depending on the state. Note that a month is not four weeks: twelve monthly payments of $6,066.67 and twenty-six biweekly payments of $2,800.00 come to the same $72,800." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "$6,066.67 a month before tax. After tax, between $4,685.73 and $5,003.73 a month depending on the state. Note that a month is not four weeks: twelve monthly payments of $6,066.67 and twenty-six biweekly payments of $2,800.00 come to the same $72,800."
+          }
         },
         {
           "@type": "Question",
           "name": "$35 an hour is how much a week?",
-          "acceptedAnswer": { "@type": "Answer", "text": "$1,400.00 a week before tax at 40 hours, and $2,800.00 for a biweekly pay period. Overtime, unpaid leave and short weeks all move this figure, which is why the annual total below assumes a full 2,080 hours." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "$1,400.00 a week before tax at 40 hours, and $2,800.00 for a biweekly pay period. Overtime, unpaid leave and short weeks all move this figure, which is why the annual total below assumes a full 2,080 hours."
+          }
         },
         {
           "@type": "Question",
           "name": "Is 2,080 hours the right number to multiply by?",
-          "acceptedAnswer": { "@type": "Answer", "text": "It is the convention -- 40 hours a week for 52 weeks -- and it assumes no unpaid time off. It is not the law. At 35 hours a week $35 an hour comes to $63,700 a year, and at 30 hours $54,600. The table of weekly hours above gives the honest range instead of one number." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the convention -- 40 hours a week for 52 weeks -- and it assumes no unpaid time off. It is not the law. At 35 hours a week $35 an hour comes to $63,700 a year, and at 30 hours $54,600. The table of weekly hours above gives the honest range instead of one number."
+          }
         },
         {
           "@type": "Question",
           "name": "Why does the yearly figure differ from other calculators?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Most pages answering this question multiply by 2,080 and stop. That is the gross figure, and it is not the number that reaches your account. This page also shows what is left after federal income tax, Social Security, Medicare and state withholding, which is why our after-tax figures are lower and closer to your bank statement." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most pages answering this question multiply by 2,080 and stop. That is the gross figure, and it is not the number that reaches your account. This page also shows what is left after federal income tax, Social Security, Medicare and state withholding, which is why our after-tax figures are lower and closer to your bank statement."
+          }
         },
         {
           "@type": "Question",
           "name": "Does the state really change the answer that much?",
-          "acceptedAnswer": { "@type": "Answer", "text": "On $72,800 a year, the gap between Florida and Hawaii is $3,816 a year, or $318.00 a month. It is the single largest variable in the answer after the hours you actually work." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On $72,800 a year, the gap between Florida and Hawaii is $3,816 a year, or $318.00 a month. It is the single largest variable in the answer after the hours you actually work."
+          }
         }
-      ]
+      ],
+      "publisher": {
+        "@id": "https://statelinecalc.com/#organization"
+      }
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    {
+      "@type": "Organization",
+      "@id": "https://statelinecalc.com/#organization",
+      "name": "StateLine Calc",
+      "alternateName": "StateLineCalc",
+      "url": "https://statelinecalc.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://statelinecalc.com/assets/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "StateLine Calc publishes free US paycheck and take-home pay calculators, state by state, for tax year 2026. Every rate is read from the agency that sets it and published with the date it was checked. Figures typed into a calculator never leave the visitor's browser.",
+      "foundingDate": "2026-08-22",
+      "knowsAbout": [
+        "US payroll taxes",
+        "State income tax",
+        "Take-home pay",
+        "Federal income tax brackets",
+        "FICA",
+        "Salary to hourly conversion"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      }
+    }
   ]
 }
 </script>

@@ -434,6 +434,29 @@ const RATES_2026 = {
       }
     },
 
+    /* GEORGIE — la SEULE entree de ce fichier qui n'avait aucune source ecrite,
+       trouve le 10/09/2026 en verifiant une citation que la page attribuait au
+       DOR sans pouvoir la produire. Le taux etait juste ; la preuve manquait.
+
+       Source, lue le 2026-09-10, HTTP 200 : Georgia Department of Revenue,
+       « 2026 Employer's Tax Guide (updated June 2026) », PDF de 3 434 407
+       octets. Verbatim, page 1 :
+         « The income tax rate has been reduced from a flat rate of 5.19% to a
+           flat rate of 4.99%. Note: Employers must continue to withhold at the
+           rate of 5.19% before the effective date of the change and can begin
+           withholding at the new rate of 4.99%, starting May 11, 2026. »
+
+       ⚠️ A ECRIRE SUR LA PAGE UN JOUR : une fiche de paie georgienne de 2026
+       melange DEUX taux. L'employeur retient 5,19 % jusqu'au 10 mai et peut
+       passer a 4,99 % a partir du 11. Notre calculateur donne l'IMPOT DU de
+       l'annee, a 4,99 %, ce qui reste juste — mais quelqu'un qui compare son
+       cumul de janvier a mai avec cette page trouvera un ecart, et il aura
+       raison. C'est le meme genre de fait que le 4,09 % / 3,99 % de la
+       Caroline du Nord.
+
+       Deduction standard 15 000 / 30 000 $ : deja en place depuis le 28/08,
+       non re-verifiee ce jour. 🔎 A recouper sur le meme guide.
+       ----------------------------------------------------------------------- */
     georgia: {
       name: "Georgia",
       abbr: "GA",
@@ -593,11 +616,20 @@ const RATES_2026 = {
 
        LE PIEGE WASHINGTON, verifie et ecarte. Rien d'autre que l'impot sur le
        revenu ne sort d'une paie de Caroline du Nord au titre de l'Etat.
-       N.C. Division of Employment Security, page « Am I Required to Pay
-       Taxes? », lue le 2026-09-09 (HTTP 200), verbatim :
-         « Employers pay unemployment insurance taxes based on employer
-           payrolls. Unemployment taxes are not deducted from employees'
+       N.C. Division of Employment Security, « Employer Tax FAQs »,
+       https://www.des.nc.gov/need-help/faqs/employer-tax-faqs
+       relue le 2026-09-10 (HTTP 200), verbatim EXACT :
+         « Employers pay unemployment insurance taxes based on employers'
+           payroll. Unemployment taxes are not deducted from employees'
            wages. »
+       ⚠️ CORRIGE le 10/09/2026, deux erreurs dans la version precedente :
+         - l'URL citee (page « Am I Required to Pay Taxes? ») rend aujourd'hui
+           un HTTP 404 : la page a bouge ;
+         - nous ecrivions « based on employer payrolls » ENTRE GUILLEMETS alors
+           que la source dit « based on employers' payroll ». Des guillemets
+           promettent le mot exact ; ils ne se paraphrasent pas.
+       La phrase est dans un accordeon FERME de la page : `innerText` ne la voit
+       pas, il faut lire le HTML rendu.
        Pas de PFML ni d'assurance dependance a la Washington : aucune n'existe
        en Caroline du Nord au 2026-09-09 — et cette absence est une absence de
        page, pas une preuve : la page dit ce que le calcul fait, pas ce que

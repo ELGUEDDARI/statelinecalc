@@ -26,6 +26,7 @@ const fs = require("fs");
 const path = require("path");
 const LIB = require("../lib/paie.js");
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
 const { colonne } = require("../lib/colonne.js");
@@ -150,7 +151,12 @@ const jsonld = {
         "@type": "Question", "name": question,
         "acceptedAnswer": { "@type": "Answer", "text": reponse }
       }))
-    }
+    },
+    /* Le noeud Organization EN ENTIER, pas une reference. Mesure du 10/09/2026 :
+       il n'etait defini que sur l'accueil, et les 35 autres pages ne portaient
+       qu'un @id sans type ni propriete. Le JSON-LD est evalue page par page :
+       une reference vers un noeud absent du document n'apprend rien. */
+    require("../lib/entite.js").organisation
   ]
 };
 
@@ -413,7 +419,9 @@ ${lignesCompare.map(l => `          <tr><td>${l.cle === ETAT ? "<strong>" + l.no
 ${FAQ.map(([question, reponse]) => `      <h3>${question}</h3>\n      <p>${reponse}</p>`).join("\n")}
     </div>
 
-    <h2>Related reading</h2>
+  ${blocSources("tennessee")}
+
+  <h2>Related reading</h2>
     <ul>
       <li><a href="/paycheck-calculator/">Paycheck calculators for every state we publish</a></li>
       <li><a href="/paycheck-calculator/texas/">Texas paycheck calculator</a> &mdash; the other

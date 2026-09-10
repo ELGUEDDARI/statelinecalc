@@ -39,6 +39,7 @@
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 North Carolina take-home pay after federal income tax, Social Security, Medicare and North Carolina's flat 3.99 percent income tax, applied after the state's standard deduction of $12,750 for a single filer."
     },
     {
@@ -58,12 +59,38 @@
         { "@type": "Question", "name": "How much is the North Carolina standard deduction for 2026?", "acceptedAnswer": { "@type": "Answer", "text": "$12,750 if you are single or married filing separately, $25,500 if you are married filing jointly or a surviving spouse, and $19,125 for head of household. The amounts are printed on Form NC-4, the 2026 employee's withholding allowance certificate. Two things surprise people: there is no extra amount for being 65 or older or blind, unlike the federal deduction, and if you are not eligible for the federal standard deduction your North Carolina one is zero." } },
         { "@type": "Question", "name": "Does a 401(k) contribution lower my North Carolina tax?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. North Carolina taxable income starts from your federal adjusted gross income, and an elective deferral is already out of that figure, so the contribution reduces your state tax as well as your federal tax. On $75,000 with 6% going into a 401(k), your North Carolina tax falls by $179.55. The rule is not universal: in Pennsylvania the same worker's state tax falls by $0.00 — nothing at all." } },
         { "@type": "Question", "name": "What is $20 an hour after taxes in North Carolina?", "acceptedAnswer": { "@type": "Answer", "text": "At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,454 after tax, which works out at $16.56 an hour in real terms. North Carolina takes $1,151.12 of that, because the $12,750 standard deduction shelters a larger share of a small salary than a large one." } },
-        { "@type": "Question", "name": "Is unemployment insurance taken out of a North Carolina paycheck?", "acceptedAnswer": { "@type": "Answer", "text": "No. The N.C. Division of Employment Security states it plainly: “Employers pay unemployment insurance taxes based on employer payrolls. Unemployment taxes are not deducted from employees' wages.” North Carolina also has no state disability or paid-leave payroll deduction of the kind Washington workers pay. State income tax is the only state-level line on a North Carolina pay stub." } },
+        { "@type": "Question", "name": "Is unemployment insurance taken out of a North Carolina paycheck?", "acceptedAnswer": { "@type": "Answer", "text": "No. The N.C. Division of Employment Security states it plainly: “Employers pay unemployment insurance taxes based on employers' payroll. Unemployment taxes are not deducted from employees' wages.” North Carolina also has no state disability or paid-leave payroll deduction of the kind Washington workers pay. State income tax is the only state-level line on a North Carolina pay stub." } },
         { "@type": "Question", "name": "Will the North Carolina tax rate fall again in 2027?", "acceptedAnswer": { "@type": "Answer", "text": "It may, and nobody can promise it yet. Session Law 2023-134 set the 3.99% rate for 2026 and made every further cut conditional: NCDOR's own wording is that “additional rate changes may apply to tax years beginning with 2027 based on certain rate reduction triggers”, which are revenue targets the state has to hit first. This page models 2026, the year that is settled." } },
         { "@type": "Question", "name": "Why is my North Carolina paycheck smaller than this calculator says?", "acceptedAnswer": { "@type": "Answer", "text": "Start with the 4.09% withholding rate above: your employer holds back a tenth of a point more than the tax you owe, on purpose. After that, the usual reasons apply — health insurance premiums and other benefit deductions come out before tax and are not modelled here, the allowances on your NC-4 may differ from the assumption made here, and a second job pushes your federal withholding up." } }
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    {
+      "@type": "Organization",
+      "@id": "https://statelinecalc.com/#organization",
+      "name": "StateLine Calc",
+      "alternateName": "StateLineCalc",
+      "url": "https://statelinecalc.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://statelinecalc.com/assets/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "StateLine Calc publishes free US paycheck and take-home pay calculators, state by state, for tax year 2026. Every rate is read from the agency that sets it and published with the date it was checked. Figures typed into a calculator never leave the visitor's browser.",
+      "foundingDate": "2026-08-22",
+      "knowsAbout": [
+        "US payroll taxes",
+        "State income tax",
+        "Take-home pay",
+        "Federal income tax brackets",
+        "FICA",
+        "Salary to hourly conversion"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      }
+    }
   ]
 }
 </script>
@@ -943,7 +970,7 @@
   <h3>Nothing else comes out at the state level</h3>
   <p>State income tax is the only state-level line on a North Carolina pay stub. Unemployment
   insurance is paid by employers: the N.C. Division of Employment Security states that
-  &ldquo;employers pay unemployment insurance taxes based on employer payrolls&rdquo; and that
+  &ldquo;employers pay unemployment insurance taxes based on employers&rsquo; payroll&rdquo; and that
   &ldquo;unemployment taxes are not deducted from employees&rsquo; wages&rdquo;. There is no state
   disability or paid-family-leave deduction of the kind that takes 1.387% out of a
   <a href="/paycheck-calculator/washington/">Washington</a> paycheck. If a state with no income tax
@@ -1046,7 +1073,7 @@
     <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,454 after tax, which works out at $16.56 an hour in real terms. North Carolina takes $1,151.12 of that, because the $12,750 standard deduction shelters a larger share of a small salary than a large one.</p>
 
     <h3>Is unemployment insurance taken out of a North Carolina paycheck?</h3>
-    <p>No. The N.C. Division of Employment Security states it plainly: “Employers pay unemployment insurance taxes based on employer payrolls. Unemployment taxes are not deducted from employees' wages.” North Carolina also has no state disability or paid-leave payroll deduction of the kind Washington workers pay. State income tax is the only state-level line on a North Carolina pay stub.</p>
+    <p>No. The N.C. Division of Employment Security states it plainly: “Employers pay unemployment insurance taxes based on employers' payroll. Unemployment taxes are not deducted from employees' wages.” North Carolina also has no state disability or paid-leave payroll deduction of the kind Washington workers pay. State income tax is the only state-level line on a North Carolina pay stub.</p>
 
     <h3>Will the North Carolina tax rate fall again in 2027?</h3>
     <p>It may, and nobody can promise it yet. Session Law 2023-134 set the 3.99% rate for 2026 and made every further cut conditional: NCDOR's own wording is that “additional rate changes may apply to tax years beginning with 2027 based on certain rate reduction triggers”, which are revenue targets the state has to hit first. This page models 2026, the year that is settled.</p>
@@ -1067,6 +1094,27 @@
   Georgia&rsquo;s and its standard deduction is real, but it cannot reach the states next door that
   levy nothing. The gap to Tennessee is the whole of the state tax line, and it is smaller than
   most people expect.</p>
+
+  <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
+  <h2>Sources</h2>
+  <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the North Carolina ones from the state&rsquo;s own document below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
+
+  <h3>The documents these figures are read from</h3>
+  <ul class="prose">
+    <li><a href="https://www.des.nc.gov/need-help/faqs/employer-tax-faqs">N.C. Division of Employment Security &mdash; Employer Tax FAQs</a> &mdash; the sentence we quote: unemployment taxes are not deducted from employees&rsquo; wages.</li>
+    <li><a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill">IRS &mdash; 2026 inflation adjustments (Rev. Proc. 2025-32)</a> &mdash; the federal brackets and the $16,100 standard deduction.</li>
+    <li><a href="https://www.irs.gov/taxtopics/tc751">IRS &mdash; Topic no. 751, Social Security and Medicare withholding rates</a> &mdash; the 6.2% and 1.45% rates and the 0.9% Additional Medicare Tax.</li>
+    <li><a href="https://www.ssa.gov/oact/cola/cbb.html">SSA &mdash; Contribution and benefit base</a> &mdash; the $184,500 Social Security wage base.</li>
+  </ul>
+
+  <h3>The agencies that set them</h3>
+  <p class="prose">These are the offices that set the figures. We link them so you can start from the source yourself, but an agency&rsquo;s own summary page is not always current, and we do not claim that these pages carry the 2026 number &mdash; several of them do not. Where a rate was read somewhere else, in a statute, a withholding guide or an estimated-tax form, the exact document and the date we read it are on our <a href="/methodology/">methodology page</a>.</p>
+  <ul class="prose">
+    <li><a href="https://www.ncdor.gov/taxes-forms/individual-income-tax">NCDOR &mdash; Individual Income Tax</a>.</li>
+  </ul>
+
+  <p class="caption">All links checked <time datetime="2026-09-10">September 10, 2026</time>.</p>
+  <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
   <ul>

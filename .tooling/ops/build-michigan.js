@@ -149,6 +149,8 @@ const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
    publies apres sa derniere execution. Un generateur ne doit pas pouvoir
    defaire le maillage en etant simplement relance. */
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -199,6 +201,7 @@ const html = `<!DOCTYPE html>
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Michigan take-home pay after federal income tax, Social Security, Medicare and Michigan's flat 4.25 percent income tax, applied after the state's $5,900 personal exemption for each exemption claimed."
     },
     {
@@ -215,7 +218,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
@@ -605,6 +608,8 @@ ${voisins.map(v => {
   Pennsylvania&rsquo;s but its exemption gives back what Pennsylvania does not, and it is well
   behind the states that levy nothing at all. What the comparison cannot show is city tax, which in
   Detroit is large enough to change the ranking on its own.</p>
+
+${blocSources("michigan")}
 
   <h2>Related reading</h2>
   <ul>

@@ -206,6 +206,8 @@ const faq = [
 
 const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -252,6 +254,7 @@ const html = `<!DOCTYPE html>
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Nebraska take-home pay after federal income tax, Social Security, Medicare and Nebraska income tax at 2.46, 3.51 and 4.55 percent, after the state's $8,850 standard deduction and its $176 personal exemption credit."
     },
     {
@@ -268,7 +271,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
@@ -668,6 +671,8 @@ ${voisins.map(v => {
   them, which is what the 0.65-point move was for. What separates it from them is the shape: a
   low-paid worker in Nebraska is taxed at 2.46% on the first band, where a flat state charges its
   full rate from the first taxable dollar.</p>
+
+${blocSources("nebraska")}
 
   <h2>Related reading</h2>
   <ul>

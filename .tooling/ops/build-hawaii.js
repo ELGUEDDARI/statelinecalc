@@ -194,6 +194,8 @@ const faq = [
 
 const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -240,6 +242,7 @@ const html = `<!DOCTYPE html>
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Hawaii take-home pay after federal income tax, Social Security, Medicare and Hawaii's ${NB_TRANCHES} income tax brackets running from ${TAUX_BAS.toFixed(2)} to ${TAUX_HAUT.toFixed(2)} percent, using the 2026 standard deduction of ${$(DED)} for a single filer."
     },
     {
@@ -256,7 +259,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
@@ -686,6 +689,8 @@ ${voisins.map(v => {
   scale Hawaii's newly doubled ${N($(DED))} deduction and its ${N(TAUX_BAS.toFixed(2) + "%")}
   opening band close much of the gap. The states that levy nothing at all remain in a category of
   their own.</p>
+
+${blocSources("hawaii")}
 
   <h2>Related reading</h2>
   <ul>

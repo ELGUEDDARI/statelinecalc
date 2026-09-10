@@ -163,7 +163,7 @@ const faq = [
 
   ["Is unemployment insurance taken out of a North Carolina paycheck?",
    "No. The N.C. Division of Employment Security states it plainly: “Employers pay "
-   + "unemployment insurance taxes based on employer payrolls. Unemployment taxes are not deducted "
+   + "unemployment insurance taxes based on employers' payroll. Unemployment taxes are not deducted "
    + "from employees' wages.” North Carolina also has no state disability or paid-leave "
    + "payroll deduction of the kind Washington workers pay. State income tax is the only "
    + "state-level line on a North Carolina pay stub."],
@@ -185,6 +185,8 @@ const faq = [
 
 const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const { grilleEtats } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
+const { blocSources } = require("../lib/sources.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -231,6 +233,7 @@ const html = `<!DOCTYPE html>
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 North Carolina take-home pay after federal income tax, Social Security, Medicare and North Carolina's flat 3.99 percent income tax, applied after the state's standard deduction of $12,750 for a single filer."
     },
     {
@@ -247,7 +250,7 @@ const html = `<!DOCTYPE html>
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
@@ -568,7 +571,7 @@ ${tableHoraire}
   <h3>Nothing else comes out at the state level</h3>
   <p>State income tax is the only state-level line on a North Carolina pay stub. Unemployment
   insurance is paid by employers: the N.C. Division of Employment Security states that
-  &ldquo;employers pay unemployment insurance taxes based on employer payrolls&rdquo; and that
+  &ldquo;employers pay unemployment insurance taxes based on employers&rsquo; payroll&rdquo; and that
   &ldquo;unemployment taxes are not deducted from employees&rsquo; wages&rdquo;. There is no state
   disability or paid-family-leave deduction of the kind that takes 1.387% out of a
   <a href="/paycheck-calculator/washington/">Washington</a> paycheck. If a state with no income tax
@@ -671,6 +674,8 @@ ${voisins.map(v => {
   Georgia&rsquo;s and its standard deduction is real, but it cannot reach the states next door that
   levy nothing. The gap to Tennessee is the whole of the state tax line, and it is smaller than
   most people expect.</p>
+
+${blocSources("north-carolina")}
 
   <h2>Related reading</h2>
   <ul>

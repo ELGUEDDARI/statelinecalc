@@ -39,6 +39,7 @@
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Calculates 2026 Hawaii take-home pay after federal income tax, Social Security, Medicare and Hawaii's 12 income tax brackets running from 1.40 to 11.00 percent, using the 2026 standard deduction of $8,000 for a single filer."
     },
     {
@@ -64,7 +65,33 @@
         { "@type": "Question", "name": "Do any Hawaii counties charge their own income tax?", "acceptedAnswer": { "@type": "Answer", "text": "No. Hawaii is unusually centralised: the state levies the income tax and the counties do not add an income tax layer on top. That is a real difference from Michigan, where Detroit adds 2.4%, or Pennsylvania, where local earned income tax is routine. Hawaii's general excise tax does vary by county, but it is charged on transactions, not withheld from your pay." } }
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    {
+      "@type": "Organization",
+      "@id": "https://statelinecalc.com/#organization",
+      "name": "StateLine Calc",
+      "alternateName": "StateLineCalc",
+      "url": "https://statelinecalc.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://statelinecalc.com/assets/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "StateLine Calc publishes free US paycheck and take-home pay calculators, state by state, for tax year 2026. Every rate is read from the agency that sets it and published with the date it was checked. Figures typed into a calculator never leave the visitor's browser.",
+      "foundingDate": "2026-08-22",
+      "knowsAbout": [
+        "US payroll taxes",
+        "State income tax",
+        "Take-home pay",
+        "Federal income tax brackets",
+        "FICA",
+        "Salary to hourly conversion"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      }
+    }
   ]
 }
 </script>
@@ -1115,6 +1142,28 @@
   scale Hawaii's newly doubled <span class="num">$8,000</span> deduction and its <span class="num">1.40%</span>
   opening band close much of the gap. The states that levy nothing at all remain in a category of
   their own.</p>
+
+  <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
+  <h2>Sources</h2>
+  <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Hawaii ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
+
+  <h3>The documents these figures are read from</h3>
+  <ul class="prose">
+    <li><a href="https://data.capitol.hawaii.gov/sessions/sessionlaws/Years/SLH2024/SLH2024_Act46.pdf">Hawaii &mdash; Act 46, Session Laws of Hawaii 2024 (PDF)</a> &mdash; the text of the law, with brackets from 1.40% to 11.00%.</li>
+    <li><a href="https://labor.hawaii.gov/dcd/files/2025/12/2026-Maximum-Weekly-Wage-Base.pdf">Hawaii Department of Labor &mdash; 2026 maximum weekly wage base (PDF)</a> &mdash; the $1,500.21 cap and the $7.50 weekly maximum for disability insurance.</li>
+    <li><a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill">IRS &mdash; 2026 inflation adjustments (Rev. Proc. 2025-32)</a> &mdash; the federal brackets and the $16,100 standard deduction.</li>
+    <li><a href="https://www.irs.gov/taxtopics/tc751">IRS &mdash; Topic no. 751, Social Security and Medicare withholding rates</a> &mdash; the 6.2% and 1.45% rates and the 0.9% Additional Medicare Tax.</li>
+    <li><a href="https://www.ssa.gov/oact/cola/cbb.html">SSA &mdash; Contribution and benefit base</a> &mdash; the $184,500 Social Security wage base.</li>
+  </ul>
+
+  <h3>The agencies that set them</h3>
+  <p class="prose">These are the offices that set the figures. We link them so you can start from the source yourself, but an agency&rsquo;s own summary page is not always current, and we do not claim that these pages carry the 2026 number &mdash; several of them do not. Where a rate was read somewhere else, in a statute, a withholding guide or an estimated-tax form, the exact document and the date we read it are on our <a href="/methodology/">methodology page</a>.</p>
+  <ul class="prose">
+    <li><a href="https://tax.hawaii.gov/">Hawaii Department of Taxation</a>.</li>
+  </ul>
+
+  <p class="caption">All links checked <time datetime="2026-09-10">September 10, 2026</time>.</p>
+  <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
   <ul>

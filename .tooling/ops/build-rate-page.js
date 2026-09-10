@@ -22,6 +22,7 @@ const fs = require("fs");
 const path = require("path");
 const { net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
 const { PUBLIES } = require("../lib/etats-publies.js");
+const { organisation } = require("../lib/entite.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 
@@ -277,6 +278,7 @@ const html = `<!DOCTYPE html>
     },
     {
       "@type": "FAQPage",
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "mainEntity": [
 ${faq.map(([n, a]) => `        {
           "@type": "Question",
@@ -285,7 +287,7 @@ ${faq.map(([n, a]) => `        {
         }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>

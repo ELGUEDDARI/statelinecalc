@@ -10,6 +10,7 @@
  */
 const fs = require("fs");
 const { entete, piedDePage } = require("../lib/gabarit.js");
+const { organisation } = require("../lib/entite.js");
 /* ⛔ migre-colonne.js du 05/09/2026 a pose la colonne laterale dans les huit
    pages salary-to-hourly, mais sa liste de generateurs oubliait CELUI-CI. La
    colonne vivait donc uniquement dans le HTML publie : la premiere
@@ -154,6 +155,7 @@ function page(cle) {
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://statelinecalc.com/#organization" },
       "description": "Converts an annual salary to an hourly rate for ${nom} in 2026, before and after federal tax, Social Security, Medicare and state withholding."
     },
     {
@@ -174,7 +176,7 @@ ${faq.map(([n, a]) => `        {
         }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>

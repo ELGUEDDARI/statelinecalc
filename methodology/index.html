@@ -59,7 +59,31 @@
       ]
     },
     {
-      "@id": "https://statelinecalc.com/#organization"
+      "@type": "Organization",
+      "@id": "https://statelinecalc.com/#organization",
+      "name": "StateLine Calc",
+      "alternateName": "StateLineCalc",
+      "url": "https://statelinecalc.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://statelinecalc.com/assets/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "StateLine Calc publishes free US paycheck and take-home pay calculators, state by state, for tax year 2026. Every rate is read from the agency that sets it and published with the date it was checked. Figures typed into a calculator never leave the visitor's browser.",
+      "foundingDate": "2026-08-22",
+      "knowsAbout": [
+        "US payroll taxes",
+        "State income tax",
+        "Take-home pay",
+        "Federal income tax brackets",
+        "FICA",
+        "Salary to hourly conversion"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      }
     }
   ]
 }
@@ -395,6 +419,66 @@ tool on it is a page with no answer on it.</p>
 and we verified that by watching the network traffic during a real calculation rather than by
 simply asserting it. There is no account, no email capture and no salary database. See the
 <a href="/privacy/">privacy policy</a> for what our analytics do collect.</p>
+
+  <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
+  <h2>Every source we link, with the date we last checked it</h2>
+  <p>We publish the links rather than only the agency names, because a claim you cannot check is
+  not evidence. Each one answered when we checked it on
+  <time datetime="2026-09-10">September 10, 2026</time>. If one has gone dead since,
+  <a href="/contact/">tell us</a> and we will fix it.</p>
+
+  <h3>Documents &mdash; these carry the figure itself</h3>
+  <p>For each of these we check that the page still contains the number we attribute to it. That
+  check is automated, and it fails before publication if a document stops carrying its figure.</p>
+  <ul>
+    <li><a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill">IRS &mdash; 2026 inflation adjustments (Rev. Proc. 2025-32)</a> &mdash; the federal brackets and the $16,100 standard deduction.</li>
+    <li><a href="https://www.irs.gov/taxtopics/tc751">IRS &mdash; Topic no. 751, Social Security and Medicare withholding rates</a> &mdash; the 6.2% and 1.45% rates and the 0.9% Additional Medicare Tax.</li>
+    <li><a href="https://www.ssa.gov/oact/cola/cbb.html">SSA &mdash; Contribution and benefit base</a> &mdash; the $184,500 Social Security wage base.</li>
+    <li><a href="https://floridarevenue.com/taxes/taxesfees/Pages/reemployment.aspx">Florida Department of Revenue &mdash; Reemployment Tax</a> &mdash; Florida, the rule that the tax is paid by employers, on the first $7,000 of wages.</li>
+    <li><a href="https://dor.georgia.gov/document/document/2026-employers-tax-guide-updated-june-2026/download">Georgia &mdash; Employer&rsquo;s Tax Guide, 2026 (PDF)</a> &mdash; Georgia, the cut from 5.19% to 4.99%, and the May 11, 2026 date from which employers may withhold at the new rate.</li>
+    <li><a href="https://data.capitol.hawaii.gov/sessions/sessionlaws/Years/SLH2024/SLH2024_Act46.pdf">Hawaii &mdash; Act 46, Session Laws of Hawaii 2024 (PDF)</a> &mdash; Hawaii, the text of the law, with brackets from 1.40% to 11.00%.</li>
+    <li><a href="https://labor.hawaii.gov/dcd/files/2025/12/2026-Maximum-Weekly-Wage-Base.pdf">Hawaii Department of Labor &mdash; 2026 maximum weekly wage base (PDF)</a> &mdash; Hawaii, the $1,500.21 cap and the $7.50 weekly maximum for disability insurance.</li>
+    <li><a href="https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/withholding/documents/currentyear/il-700-t.pdf">Illinois &mdash; Booklet IL-700-T, Withholding Tax Tables (PDF)</a> &mdash; Illinois, the flat 4.95% rate an Illinois employer withholds at.</li>
+    <li><a href="https://tax.illinois.gov/research/publications/bulletins/fy-2026-15.html">Illinois &mdash; Informational Bulletin FY 2026-15, What&rsquo;s New for Illinois Income Taxes</a> &mdash; Illinois, the $2,925 exemption allowance for 2026.</li>
+    <li><a href="https://ides.illinois.gov/unemployment/resources/what-every-worker-should-know-about-unemployment-insurance.html">Illinois Department of Employment Security &mdash; What Every Worker Should Know</a> &mdash; Illinois, the rule that benefits are financed by employer payroll taxes, not by deductions from wages &mdash; which is why no unemployment line appears on an Illinois pay stub.</li>
+    <li><a href="https://revenuefiles.mt.gov/files/Forms/Montana_Employer_and_Information_Agent_Guide_with_Tax_Tables.pdf">Montana &mdash; Employer and Information Agent Guide, 2026 (PDF)</a> &mdash; Montana, the 5.65% top rate and the $16,100 band this page is checked against.</li>
+    <li><a href="https://uid.dli.mt.gov/employer-handbook.pdf">Montana Department of Labor &amp; Industry &mdash; Employer Handbook (PDF)</a> &mdash; Montana, the sentence forbidding any unemployment insurance deduction from wages.</li>
+    <li><a href="https://revenue.nebraska.gov/sites/default/files/doc/business/Cir_En_2025/2026cir_en_whole.pdf">Nebraska &mdash; 2026 Circular EN, Income Tax Withholding (PDF)</a> &mdash; Nebraska, the withholding tables an employer actually uses, whose own rates run from 2.26% to 4.60% and are not the tax itself.</li>
+    <li><a href="https://www.des.nc.gov/need-help/faqs/employer-tax-faqs">N.C. Division of Employment Security &mdash; Employer Tax FAQs</a> &mdash; North Carolina, the sentence we quote: unemployment taxes are not deducted from employees&rsquo; wages.</li>
+    <li><a href="https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2026/2026_rev-413i.pdf">Pennsylvania &mdash; REV-413 (I), Instructions for Estimating PA Personal Income Tax, 2026 (PDF)</a> &mdash; Pennsylvania, the flat rate, in the state&rsquo;s own words: multiply by 3.07 percent (0.0307).</li>
+    <li><a href="https://www.pa.gov/agencies/dli/resources/for-employers-and-educators/how-to-file/uc-tax/employee-withholding">Pennsylvania Department of Labor &amp; Industry &mdash; UC Employee Withholding</a> &mdash; Pennsylvania, the 0.07% employee unemployment contribution, and the fact that it has no wage cap &mdash; the line that makes a Pennsylvania pay stub unusual.</li>
+    <li><a href="https://statutes.capitol.texas.gov/Docs/CN/htm/CN.8.htm">Texas Constitution, Article 8, Section 24-a</a> &mdash; Texas, the ban itself: the legislature may not impose a tax on the net incomes of individuals.</li>
+    <li><a href="https://statutes.capitol.texas.gov/Docs/LA/htm/LA.204.htm">Texas Labor Code, Section 204.003 &mdash; Contribution Not Deducted From Wages</a> &mdash; Texas, the rule that an employer may not deduct any part of an unemployment contribution from wages.</li>
+    <li><a href="https://esd.wa.gov/about-us/news-release/2025/paid-family-medical-leave-premium-rate-increases-113-2026">Washington Employment Security Department &mdash; 2026 Paid Leave premium</a> &mdash; Washington, the 1.13% premium behind the Paid Leave line on a Washington pay stub.</li>
+  </ul>
+
+  <h3>Agencies &mdash; the offices behind the numbers</h3>
+  <p>These are the offices that set the figures. We link them so you can start from the source yourself, but an agency&rsquo;s own summary page is not always current, and we do not claim that these pages carry the 2026 number &mdash; several of them do not. Where a rate was read somewhere else, in a statute, a withholding guide or an estimated-tax form, the exact document and the date we read it are on our <a href="/methodology/">methodology page</a>.</p>
+  <ul>
+    <li><a href="https://floridarevenue.com/">Florida Department of Revenue</a> &mdash; Florida.</li>
+    <li><a href="https://dor.georgia.gov/">Georgia Department of Revenue</a> &mdash; Georgia.</li>
+    <li><a href="https://tax.hawaii.gov/">Hawaii Department of Taxation</a> &mdash; Hawaii.</li>
+    <li><a href="https://tax.illinois.gov/">Illinois Department of Revenue</a> &mdash; Illinois.</li>
+    <li><a href="https://revenue.mt.gov/taxes/individual-income-tax/">Montana Department of Revenue &mdash; Individual Income Tax</a> &mdash; Montana.</li>
+    <li><a href="https://revenue.nebraska.gov/individuals">Nebraska Department of Revenue &mdash; Individuals</a> &mdash; Nebraska.</li>
+    <li><a href="https://tax.nv.gov/">Nevada Department of Taxation</a> &mdash; Nevada.</li>
+    <li><a href="https://www.ncdor.gov/taxes-forms/individual-income-tax">NCDOR &mdash; Individual Income Tax</a> &mdash; North Carolina.</li>
+    <li><a href="https://tax.ohio.gov/">Ohio Department of Taxation</a> &mdash; Ohio; its rate page carries no 2026 figure at all, so we read the rate from the Revised Code instead.</li>
+    <li><a href="https://www.revenue.pa.gov/">Pennsylvania Department of Revenue</a> &mdash; Pennsylvania.</li>
+    <li><a href="https://comptroller.texas.gov/taxes/">Texas Comptroller of Public Accounts &mdash; Taxes</a> &mdash; Texas.</li>
+    <li><a href="https://incometax.utah.gov/">Utah State Tax Commission &mdash; Income Tax</a> &mdash; Utah; its rate page still showed &ldquo;January 1, 2025 &ndash; current: 4.5%&rdquo; on the day we checked, a year after the law cut the rate to 4.45%, so we read the rate from the Utah Code and the withholding guide instead.</li>
+    <li><a href="https://dor.wa.gov/">Washington Department of Revenue</a> &mdash; Washington.</li>
+  </ul>
+
+  <p>Three states have no link at all, and it is worth saying
+  why rather than leaving a gap: <strong>Michigan, Nevada and Tennessee</strong>. Those states&rsquo;
+  own sites answer an automated request with HTTP 403 &mdash; and they still refuse when we come
+  back from a real browser rather than a script, which is what a refusal like that usually
+  means. So we have no
+  link we have checked ourselves, and we will not publish one we have not checked. The figures are
+  still read from those agencies and dated in our rate file; what is missing is the link, not the
+  source.</p>
+  <!-- SOURCES:fin -->
 
 <h2>Corrections</h2>
 

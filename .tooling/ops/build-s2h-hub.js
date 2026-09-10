@@ -10,6 +10,7 @@
  */
 const fs = require("fs");
 const { entete, piedDePage } = require("../lib/gabarit.js");
+const { organisation } = require("../lib/entite.js");
 const { colonne } = require("../lib/colonne.js");
 const path = require("path");
 const { FICHES, net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
@@ -124,7 +125,7 @@ ${ordre.map((k, i) => `        { "@type": "ListItem", "position": ${i + 1}, "nam
 ${faq.map(([n, a]) => `        { "@type": "Question", "name": "${q(n)}", "acceptedAnswer": { "@type": "Answer", "text": "${q(a)}" } }`).join(",\n")}
       ]
     },
-    { "@id": "https://statelinecalc.com/#organization" }
+    ${JSON.stringify(organisation, null, 2).split("\n").map((l, i) => i ? "    " + l : l).join("\n")}
   ]
 }
 </script>
