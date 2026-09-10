@@ -1002,6 +1002,117 @@ const RATES_2026 = {
         tdi: { maxEmployeeRate: 0.005, maxWeeklyWageBase: 1500.21, maxWeekly: 7.50 },
         prepaidHealthCare: { maxEmployeeRate: 0.015 }
       }
+    },
+
+    /* -------------------------------------------------------------------
+       MONTANA - tax year 2026, lu sur DEUX sources officielles independantes
+       le 2026-09-10 : la table de retenue de l'employeur et la loi elle-meme.
+       Elles tombent sur les memes nombres au dollar pres ; le detail du
+       recoupement est plus bas.
+
+       1. « Montana Employer and Information Agent Guide with Montana
+          Withholding Tax Tables - 2026 », Department of Revenue,
+          https://revenuefiles.mt.gov/files/Forms/Montana_Employer_and_Information_Agent_Guide_with_Tax_Tables.pdf
+          (application/pdf, 985 472 octets, HTTP 200, lu le 2026-09-10). La
+          page qui le publie ecrit : « For use beginning January 1, 2026 ».
+
+          Montana Withholding Tax Formula, W = A + ( B x ( G - C ) ), periode
+          ANNUELLE, verbatim :
+            Single / MFS / Married both working : 0 % jusqu'a 16 100 $ ;
+              4,7 % de 16 100 a 63 600 ; puis A = 2 233 $ + 5,65 % au-dela.
+            Married Filing Jointly : 0 % jusqu'a 32 200 $ ; 4,7 % jusqu'a
+              127 200 ; puis A = 4 465 $ + 5,65 %.
+            Head of Household : 0 % jusqu'a 24 150 $ ; 4,7 % jusqu'a 95 400 ;
+              puis A = 3 349 $ + 5,65 %.
+
+       2. Montana Code Annotated 15-30-2103, « Rate of tax », lu sur
+          archive.legmt.gov le 2026-09-10, verbatim, version (Temporary) :
+            « on the first $47,500 of Montana taxable income or any part of
+              that income, 4.7% » (celibataire et marie separement)
+            « on the first $95,000 ... 4.7% » (marie conjoint)
+            « on the first $71,250 ... 4.7% » (chef de famille)
+            « on any Montana taxable income in excess of ... 5.65% ».
+
+       LE RECOUPEMENT, ET POURQUOI IL VERROUILLE LES CHIFFRES. La table de
+       retenue et la loi ne parlent pas de la meme grandeur : la premiere part
+       du SALAIRE BRUT, la seconde du REVENU IMPOSABLE. L'ecart entre les deux
+       est exactement la deduction :
+         63 600 - 16 100 = 47 500  -> le seuil de la loi, au dollar pres
+         127 200 - 32 200 = 95 000 -> idem
+         95 400 - 24 150 = 71 250  -> idem
+       et le « A » imprime par la table est le produit :
+         4,7 % x 47 500 = 2 232,50 -> 2 233 $ imprime
+         4,7 % x 95 000 = 4 465,00 -> 4 465 $ imprime
+         4,7 % x 71 250 = 3 348,75 -> 3 349 $ imprime
+       Si un seul des six nombres avait ete mal recopie, l'egalite tomberait.
+
+       LA DEDUCTION DU MONTANA EST LA DEDUCTION FEDERALE. 16 100 / 32 200 /
+       24 150 sont, au dollar pres, les trois deductions standard federales
+       2026 declarees en tete de ce fichier (Rev. Proc. 2025-32). Ce n'est pas
+       une coincidence : MCA 15-30-2120 s'intitule « Adjustments to federal
+       taxable income to determine Montana taxable income » et commence par
+       « The items in subsection (2) are added to and the items in subsection
+       (3) are subtracted from federal taxable income to determine Montana
+       taxable income ». Le Montana part du revenu imposable FEDERAL - donc
+       apres deduction federale - la ou la Caroline du Nord ou le Nebraska
+       ecrivent leur propre deduction. Consequence pour le moteur : il n'y a
+       pas de deduction d'Etat a inventer, on reprend la federale.
+
+       ⚠️ NE PAS METTRE A JOUR CES TROIS MONTANTS SANS METTRE A JOUR
+       federal.standardDeduction EN MEME TEMPS : ce sont les memes nombres,
+       pour la meme raison.
+
+       ⚠️ 2026 EST UNE ANNEE DE TRANSITION, ECRITE COMME TELLE DANS LA LOI. Le
+       texte ci-dessus porte la mention « (Temporary) ... Terminates
+       December 31, 2026 », et la meme section publie deja sa version
+       « (Effective January 1, 2027) » : 4,7 % sur les premiers 65 000 $
+       (celibataire), 130 000 $ (conjoint), 97 500 $ (chef de famille), puis
+       5,4 %. Le guide de l'employeur le dit aussi : « In 2025, the rate was
+       5.9%. This rate decreases in 2026 to 5.65% and in 2027 to 5.4%. »
+       Cette ligne est a rejouer en janvier 2027, pas a deviner.
+
+       2025, POUR LA COMPARAISON ECRITE SUR LA PAGE : revenue.mt.gov
+       « 2025 Montana Tax Tables and Deductions », lu le 2026-09-10 : 4,7 %
+       sur les premiers 21 100 $ (celibataire), 42 200 $ (conjoint),
+       31 700 $ (chef de famille), puis 5,9 %.
+
+       401(k) : guide de l'employeur, section « Withholding from Pensions,
+       Annuities, Deferred Compensations, and IRAs », verbatim : « Employee
+       contributions to qualifying annuity contracts ... are exempt from
+       withholding requirements to the extent that the contributions are not
+       included in the employee's adjusted gross income for federal income tax
+       purposes. » Le versement 401(k) sort donc de la base d'Etat : pas de
+       taxesRetirementDeferrals ici (contrairement a la Pennsylvanie).
+
+       ASSURANCE CHOMAGE - le piege Washington, ecarte sur la source. Montana
+       Employer Handbook, https://uid.dli.mt.gov/employer-handbook.pdf
+       (858 745 octets, HTTP 200, lu le 2026-09-10), verbatim : « It is
+       against the law to deduct UI taxes from your employees' wages. »
+       Rien a soustraire du net.
+
+       ⛔ CE QUE CETTE ENTREE NE DIT PAS : rien sur un impot municipal. Le
+       guide de retenue ne decrit qu'une seule retenue d'Etat et n'en mentionne
+       aucune autre, mais aucune source ne l'affirme en toutes lettres, donc
+       la page ne l'affirme pas non plus.
+       ------------------------------------------------------------------- */
+    montana: {
+      name: "Montana",
+      abbr: "MT",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Identiques a federal.standardDeduction, et pour cause : MCA
+           15-30-2120 part du revenu imposable federal. Voir le commentaire. */
+        standardDeduction: {
+          single: 16100,
+          marriedJoint: 32200,
+          headOfHousehold: 24150
+        },
+        brackets: {
+          single:          [[47500, 0.047], [Infinity, 0.0565]],
+          marriedJoint:    [[95000, 0.047], [Infinity, 0.0565]],
+          headOfHousehold: [[71250, 0.047], [Infinity, 0.0565]]
+        }
+      }
     }
   }
 };

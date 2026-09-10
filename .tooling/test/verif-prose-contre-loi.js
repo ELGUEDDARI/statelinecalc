@@ -63,6 +63,23 @@ function utahSelonLaLoi(salaire, marie) {
 
 const nb = t => Number(String(t).replace(/[$,]/g, ""));
 
+/* --------------------------------------------------------------- MONTANA --
+   MCA 15-30-2103 (Temporary, tax year 2026), verbatim sur la page : 4,7 % sur
+   les premiers 47 500 $ de revenu imposable du Montana (celibataire),
+   95 000 $ (marie conjoint), 71 250 $ (chef de famille), puis 5,65 %.
+   MCA 15-30-2120 : le revenu imposable du Montana part du revenu imposable
+   FEDERAL, donc la deduction est la deduction standard federale 2026
+   (16 100 / 32 200 / 24 150 $, Rev. Proc. 2025-32).
+   Aucun credit, aucune marche, aucune exoneration : deux lignes suffisent. */
+function montanaSelonLaLoi(salaire, conjoint) {
+  const deduction = conjoint ? 32200 : 16100;
+  const seuil = conjoint ? 95000 : 47500;
+  const imposable = Math.max(0, salaire - deduction);
+  return imposable <= seuil
+    ? imposable * 0.047
+    : seuil * 0.047 + (imposable - seuil) * 0.0565;
+}
+
 (async () => {
   console.log("\n=== OHIO : la prose et le tableau, contre ORC 5747.02 et 5747.025 ===");
   const oh = await get("https://statelinecalc.com/paycheck-calculator/ohio/");
@@ -130,6 +147,43 @@ const nb = t => Number(String(t).replace(/[$,]/g, ""));
   present("le taux 4,45 % est bien celui affiche", utTexte, "4.45%");
   present("la page previent que la page de taux de l'Etat est perimee",
     utTexte, "still showed 4.5%");
+
+  console.log("\n=== MONTANA : la prose et le tableau, contre MCA 15-30-2103 et 15-30-2120 ===");
+  const mt = await get("https://statelinecalc.com/paycheck-calculator/montana/");
+  const mtTexte = mt.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+
+  check("impot d'Etat sur 25 000 (une seule bande)", 418.30, montanaSelonLaLoi(25000), 0.01);
+  check("impot d'Etat sur 60 000 (juste sous le seuil)", 2063.30, montanaSelonLaLoi(60000), 0.01);
+  check("impot d'Etat sur 75 000 (les DEUX bandes)", 2876.60, montanaSelonLaLoi(75000), 0.01);
+  check("impot d'Etat sur 250 000", 12764.10, montanaSelonLaLoi(250000), 0.01);
+  check("couple sur 75 000", 2011.60, montanaSelonLaLoi(75000, true), 0.01);
+  /* Le point ou 5,65 % commence a mordre : 47 500 + 16 100 = 63 600 $ de salaire.
+     Un dollar avant, tout est encore a 4,7 %. */
+  check("a 63 600 $ de salaire, tout est encore a 4,7 %",
+    montanaSelonLaLoi(63600), 47500 * 0.047, 0.01);
+  check("le Montana ne prend rien jusqu'a la deduction federale",
+    montanaSelonLaLoi(16100), 0, 0.001);
+
+  const mtLignes = mt.split("<tr>").slice(1)
+    .map(b => [...b.matchAll(/<td[^>]*>(?:<strong>)?([^<]+)/g)].map(m => m[1].trim()))
+    .filter(c => c.length >= 6 && c[0].startsWith("$") && !c[0].includes("."));
+  let ecartsMt = 0;
+  for (const c of mtLignes) {
+    if (Math.abs(nb(c[3]) - montanaSelonLaLoi(nb(c[0]))) > 1) {
+      ecartsMt++;
+      console.log("  ECHEC | tableau Montana a " + c[0] + " : page " + c[3]
+        + ", loi " + montanaSelonLaLoi(nb(c[0])).toFixed(2));
+    }
+  }
+  if (ecartsMt) fail++; else pass++;
+  console.log("  %s | les %d lignes du tableau servi contre la loi ecrite a la main",
+    ecartsMt ? "ECHEC" : "OK   ", mtLignes.length);
+
+  present("le taux haut 5,65 % est bien celui affiche", mtTexte, "5.65%");
+  present("la page dit que le Montana n'a pas de deduction a lui",
+    mtTexte, "no standard deduction of its own");
+  present("la page cite l'interdiction de retenir l'assurance chomage",
+    mtTexte, "against the law to deduct UI taxes");
 
   console.log("\n=== PROSE CONTRE LOI : " + pass + " OK, " + fail + " ECHEC ===\n");
   process.exit(fail === 0 ? 0 : 1);
