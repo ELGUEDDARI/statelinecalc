@@ -24,28 +24,59 @@ function progressiveTax(taxable, bands) {
   return du;
 }
 
+/* Le Wisconsin est le premier Etat ou la deduction standard elle-meme est une
+   PENTE continue, pas une marche : 2026 Form 1-ES Instructions (D-101A),
+   « 13,960 less 12% of the amount over $20,120 » (celibataire). Chaque
+   segment est soit un montant fixe (amount), soit une formule lineaire
+   (base moins rate% du revenu au-dela de from), et la table s'arrete au
+   premier segment dont upTo couvre le revenu. Le foyer chef de famille a
+   DEUX segments de pente qui se suivent (22,515 % puis 12 %) : la loi le
+   dit ainsi, et l'ecart entre les deux au point de jonction est
+   d'un dollar, pas une erreur de saisie. */
+function deductionGlissante(segments, base) {
+  for (const s of segments) {
+    if (s.upTo === null || base <= s.upTo) {
+      return s.amount !== undefined ? s.amount : Math.max(0, s.base - s.rate * (base - s.from));
+    }
+  }
+  return 0;
+}
+
 /* La deduction d'un Etat peut etre un nombre, une table par situation de
-   famille (Georgie), et certains Etats la retirent entierement au-dela d'un
-   seuil (Illinois). */
+   famille (Georgie), une pente continue (Wisconsin), et certains Etats la
+   retirent entierement au-dela d'un seuil (Illinois). */
 function deductionEtat(S, statut, base) {
   const d = S.incomeTax.standardDeduction;
   const paliers = S.incomeTax.deductionByIncome;
-  if (!d && !paliers) return 0;
+  const pente = S.incomeTax.slidingDeduction;
+  const ex = S.incomeTax.personalExemption;
+  if (!d && !paliers && !pente && !ex) return 0;
   let v;
+  if (pente && base !== undefined) {
+    const segs = (statut in pente) ? pente[statut] : pente.single;
+    v = deductionGlissante(segs, base);
   /* L'Ohio est le premier Etat ou le MONTANT de l'exoneration depend du
      revenu et pas seulement du foyer : 2 400 $ par personne jusqu'a 40 000 $
      de revenu, 2 150 $ jusqu'a 80 000 $, 1 900 $ au-dela. Une table par
      situation de famille ne peut pas exprimer ca. */
-  if (paliers && base !== undefined) {
+  } else if (paliers && base !== undefined) {
     const p = paliers.find(x => x.upTo === null || base <= x.upTo);
     v = (statut in p.amounts) ? p.amounts[statut] : p.amounts.single;
   } else {
-    v = (typeof d === "object") ? ((statut in d) ? d[statut] : d.single) : d;
+    v = (typeof d === "object") ? ((statut in d) ? d[statut] : d.single) : (d || 0);
   }
   const po = S.incomeTax.deductionPhaseOut;
   if (po && base !== undefined) {
     const seuil = (statut in po) ? po[statut] : po.single;
     if (isFinite(seuil) && base > seuil) v = 0;
+  }
+  /* Le Wisconsin ajoute une EXEMPTION PERSONNELLE fixe par tete, en plus de
+     la deduction glissante : 700 $ pour le declarant, 700 $ pour le conjoint
+     si declaration commune, 700 $ par personne a charge. Notre calculateur
+     ne demande pas le nombre de personnes a charge, donc le chef de famille
+     ne recoit que sa propre part (700 $), comme les autres Etats a foyer. */
+  if (ex) {
+    v += (statut in ex) ? ex[statut] : ex.single;
   }
   return v;
 }

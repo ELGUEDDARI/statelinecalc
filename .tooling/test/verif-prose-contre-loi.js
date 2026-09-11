@@ -80,6 +80,46 @@ function montanaSelonLaLoi(salaire, conjoint) {
     : seuil * 0.047 + (imposable - seuil) * 0.0565;
 }
 
+/* ---------------------------------------------------------------- WISCONSIN --
+   2026 Form 1-ES Instructions (D-101A, R. 1-26), verbatim sur la page :
+   Schedule A (single/HOH) 3,5 % / 4,4 % / 5,3 % / 7,65 % a 15 110 / 51 950 /
+   332 720 $ ; Schedule B (commun) memes taux a 20 150 / 69 260 / 443 630 $.
+   Deduction standard : une PENTE, pas un montant fixe — single "13,960 less
+   12% of the amount over $20,120" ; commun "25,840 less 19.778% of the
+   amount over $29,040" ; chef de famille deux pentes (22,515 % puis 12 %).
+   Exemption personnelle fixe : 700 $ (1 400 $ en commun), qui ne glisse pas. */
+function wisconsinDeduction(statut, revenu) {
+  if (statut === "marriedJoint") {
+    if (revenu <= 29039) return 25840;
+    if (revenu <= 159690) return Math.max(0, 25840 - 0.19778 * (revenu - 29040));
+    return 0;
+  }
+  if (statut === "headOfHousehold") {
+    if (revenu <= 20119) return 18030;
+    if (revenu <= 58827) return Math.max(0, 18030 - 0.22515 * (revenu - 20120));
+    if (revenu <= 136453) return Math.max(0, 13960 - 0.12 * (revenu - 20120));
+    return 0;
+  }
+  if (revenu <= 20119) return 13960;
+  if (revenu <= 136453) return Math.max(0, 13960 - 0.12 * (revenu - 20120));
+  return 0;
+}
+function wisconsinSelonLaLoi(salaire, statut) {
+  statut = statut || "single";
+  const exemption = statut === "marriedJoint" ? 1400 : 700;
+  const imposable = Math.max(0, salaire - wisconsinDeduction(statut, salaire) - exemption);
+  const seuils = statut === "marriedJoint"
+    ? [[20150, 0.035], [69260, 0.044], [443630, 0.053], [Infinity, 0.0765]]
+    : [[15110, 0.035], [51950, 0.044], [332720, 0.053], [Infinity, 0.0765]];
+  let du = 0, bas = 0;
+  for (const [haut, taux] of seuils) {
+    if (imposable <= bas) break;
+    du += (Math.min(imposable, haut) - bas) * taux;
+    bas = haut;
+  }
+  return du;
+}
+
 (async () => {
   console.log("\n=== OHIO : la prose et le tableau, contre ORC 5747.02 et 5747.025 ===");
   const oh = await get("https://statelinecalc.com/paycheck-calculator/ohio/");
@@ -184,6 +224,43 @@ function montanaSelonLaLoi(salaire, conjoint) {
     mtTexte, "no standard deduction of its own");
   present("la page cite l'interdiction de retenir l'assurance chomage",
     mtTexte, "against the law to deduct UI taxes");
+
+  console.log("\n=== WISCONSIN : la prose et le tableau, contre le Form 1-ES 2026 ===");
+  const wi = await get("https://statelinecalc.com/paycheck-calculator/wisconsin/");
+  const wiTexte = wi.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+
+  check("impot d'Etat sur 25 000, celibataire", 382.40, wisconsinSelonLaLoi(25000), 0.01);
+  check("impot d'Etat sur 75 000, celibataire", 2943.52, wisconsinSelonLaLoi(75000), 0.01);
+  check("impot d'Etat sur 75 000, commun", 2320.05, wisconsinSelonLaLoi(75000, "marriedJoint"), 0.01);
+  check("impot d'Etat sur 75 000, chef de famille",
+    2943.52, wisconsinSelonLaLoi(75000, "headOfHousehold"), 0.01);
+  check("impot d'Etat sur 250 000, celibataire", 12609.36, wisconsinSelonLaLoi(250000), 0.01);
+  check("la deduction atteint zero a 136 453 $ (a un dollar pres)",
+    wisconsinDeduction("single", 136453), 0, 1);
+  check("chef de famille : les deux pentes se rejoignent a un dollar pres, a 58 827 $",
+    wisconsinDeduction("headOfHousehold", 58827),
+    Math.max(0, 13960 - 0.12 * (58827 - 20120)), 1);
+
+  const wiLignes = wi.split("<tr>").slice(1)
+    .map(b => [...b.matchAll(/<td[^>]*>(?:<strong>)?([^<]+)/g)].map(m => m[1].trim()))
+    .filter(c => c.length >= 6 && c[0].startsWith("$") && !c[0].includes("."));
+  let ecartsWi = 0;
+  for (const c of wiLignes) {
+    if (Math.abs(nb(c[3]) - wisconsinSelonLaLoi(nb(c[0]))) > 1) {
+      ecartsWi++;
+      console.log("  ECHEC | tableau Wisconsin a " + c[0] + " : page " + c[3]
+        + ", loi " + wisconsinSelonLaLoi(nb(c[0])).toFixed(2));
+    }
+  }
+  if (ecartsWi) fail++; else pass++;
+  console.log("  %s | les %d lignes du tableau servi contre la loi ecrite a la main",
+    ecartsWi ? "ECHEC" : "OK   ", wiLignes.length);
+
+  present("le taux plafond 7,65 % est bien celui affiche", wiTexte, "7.65%");
+  present("la page dit que la deduction est une pente, pas une marche",
+    wiTexte, "less 12% of the amount over");
+  present("la page previent que la page de taux du DOR est perimee",
+    wiTexte, "still showed only the 2025 brackets");
 
   console.log("\n=== PROSE CONTRE LOI : " + pass + " OK, " + fail + " ECHEC ===\n");
   process.exit(fail === 0 ? 0 : 1);

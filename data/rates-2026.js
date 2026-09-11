@@ -1145,6 +1145,142 @@ const RATES_2026 = {
           headOfHousehold: [[71250, 0.047], [Infinity, 0.0565]]
         }
       }
+    },
+
+    /* ------------------------------------------------------------------ *
+       WISCONSIN, lu le 2026-09-11.
+
+       BAREME ET DEDUCTION STANDARD 2026 - source primaire : Wisconsin
+       Department of Revenue, "2026 Form 1-ES Instructions" (D-101A, R. 1-26),
+       https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf
+       (262 557 octets, HTTP 200, lu le 2026-09-11). Page finale, verbatim :
+       « This document provides statements or interpretations of the
+       following laws and regulations enacted as of January 16, 2026: ch. 71,
+       Wis. Stats. » Le document donne, mot pour mot, les « 2026 Tax Rate
+       Schedules for Full-Year Residents » et le « 2026 Standard Deduction ».
+
+       ⚠️ docs.legis.wisconsin.gov (le texte code des articles 71.06 et
+       71.05(22)) a refuse la connexion sur TROIS methodes distinctes le
+       2026-09-11 (curl direct, curl avec un autre agent utilisateur, l'outil
+       WebFetch - ECONNREFUSED a chaque fois). Regle des 3 tentatives
+       appliquee : le Form 1-ES ci-dessus, document officiel du DOR qui cite
+       explicitement le chapitre 71 des Wis. Stats. et la date de la loi
+       qu'il interprete, sert de source primaire a sa place - le meme
+       traitement que le Nevada le 10/09 (SANS_LIEN sur le texte legal brut,
+       source d'agence retenue a la place).
+
+       ⚠️ RECOUPEMENT : la page "DOR Tax Rates" generale,
+       https://www.revenue.wi.gov/Pages/FAQS/pcs-taxrates.aspx (82 844
+       octets, HTTP 200, lu le 2026-09-11), N'A PAS ENCORE ETE MISE A JOUR
+       POUR 2026 : elle affiche toujours le bareme "2025 tax is" (seuils
+       14 680 $ / 50 480 $ / 323 290 $, celibataire), sans colonne 2026. Ne
+       pas confondre les deux pages : celle-ci est perimee au jour de la
+       lecture, le Form 1-ES est la seule des deux a porter le mot "2026"
+       sur ses baremes.
+
+       TRANCHES 2026, Schedule A (celibataire, chef de famille, successions) :
+       3,5 % jusqu'a 15 110 $, puis 4,4 % jusqu'a 51 950 $, puis 5,3 %
+       jusqu'a 332 720 $, puis 7,65 %. Schedule B (declaration commune) :
+       3,5 % jusqu'a 20 150 $, puis 4,4 % jusqu'a 69 260 $, puis 5,3 %
+       jusqu'a 443 630 $, puis 7,65 %.
+       RECOUPEMENT qui verrouille les tranches contre les constantes
+       imprimees : 15 110 x 3,5 % = 528,85 $ (imprime 528,85) ;
+       + (51 950 - 15 110) x 4,4 % = 1 620,96 $ -> 2 149,81 $ (imprime
+       2 149,81) ; + (332 720 - 51 950) x 5,3 % = 14 880,81 $ -> 17 030,62 $
+       (imprime 17 030,62). Meme verification en commun : 20 150 x 3,5 % =
+       705,25 $ ; + (69 260 - 20 150) x 4,4 % = 2 160,84 $ -> 2 866,09 $ ;
+       + (443 630 - 69 260) x 5,3 % = 19 841,61 $ -> 22 707,70 $. Les six
+       constantes imprimees tombent juste : si un seuil avait ete recopie de
+       travers, l'egalite casserait.
+
+       DEDUCTION STANDARD 2026 - UNE PENTE, PAS UNE MARCHE. C'est l'angle
+       propre de cette page : le Wisconsin ne publie ni un montant fixe par
+       foyer, ni une table par paliers d'Etats, mais une FORMULE LINEAIRE qui
+       diminue dollar pour dollar avec le revenu, jusqu'a atteindre zero.
+       Verbatim, celibataire : « If Wisconsin income is: over $0 but not over
+       $20,119, the 2026 Standard Deduction is: $13,960 » puis « over $20,119
+       but not over $136,453, the 2026 Standard Deduction is: $13,960 less
+       12% of the amount over $20,120 » puis « over $136,453: $0 ».
+       Declaration commune : 25 840 $ jusqu'a 29 039 $ de revenu, puis
+       « 25,840 less 19.778% of the amount over $29,040 » jusqu'a 159 690 $,
+       puis 0 $. Chef de famille : 18 030 $ jusqu'a 20 119 $, puis
+       « 18,030 less 22.515% of the amount over $20,120 » jusqu'a 58 827 $,
+       PUIS UN DEUXIEME SEGMENT, « 13,960 less 12% of the amount over
+       $20,120 » jusqu'a 136 453 $, puis 0 $ - deux pentes differentes bout a
+       bout, imprimees ainsi par le DOR, pas une erreur de recopie (les deux
+       formules donnent une valeur a moins d'un dollar l'une de l'autre au
+       point de jonction, 58 827 $ : 9 315,12 $ contre 9 315,16 $ calcule
+       ici).
+
+       EXEMPTION PERSONNELLE 2026, en plus de la deduction ci-dessus,
+       verbatim (meme document, note de bas de page du tableau) : « Your
+       exemptions are $700 for yourself, $700 for your spouse if filing a
+       joint return, and $700 for each dependent. Add $250 to the total if
+       you are 65 years of age or over... » Notre calculateur ne demande pas
+       de personnes a charge ni d'age, donc seule la part de 700 $ par
+       declarant (et par conjoint en commun) est modelisee : single 700,
+       marriedJoint 1 400, headOfHousehold 700.
+
+       RETENUE A LA SOURCE (mecanique, pas les chiffres) - Wisconsin
+       Department of Revenue, Publication W-166 "Withholding Tax Guide",
+       revision "(1/26)", https://www.revenue.wi.gov/DOR%20Publications/pb166.pdf
+       (2 128 837 octets, HTTP 200, lu le 2026-09-11). Verbatim : « Federal
+       Form W-4 cannot be used for Wisconsin withholding tax purposes »
+       (formulaire WT-4 propre a l'Etat). ⚠️ Ce guide porte encore la mention
+       "Effective for Withholding Periods Beginning on or After January 1,
+       2022" et sa rubrique "Important News" dit "Current withholding rates
+       continue for 2025" (non mise a jour pour 2026) : ses propres montants
+       de methode alternative (6 702 $ / 17 780 $ celibataire) ne sont donc
+       PAS repris ici, seule sa mecanique (WT-4, formulaire d'exemption) est
+       citee. Les montants imposables viennent du Form 1-ES 2026 ci-dessus.
+
+       ASSURANCE CHOMAGE - employeur seul. Wisconsin DWD, "UI Employer
+       Handbook" (UCB-201-P, R. 03/16/2026),
+       https://dwd.wisconsin.gov/ui201/pdf/ucb201print.pdf (1 315 282
+       octets, HTTP 200, lu le 2026-09-11), verbatim : « The program is
+       financed solely through employer contributions (taxes). » Rien a
+       soustraire du net.
+
+       ⛔ CE QUE CETTE ENTREE NE DIT PAS : rien sur un impot municipal ou de
+       comte - aucune source lue n'en mentionne, en bien ou en mal ; rien sur
+       le Married Filing Separately (notre calculateur ne propose pas ce
+       statut) ; rien sur l'age 65+ ou les personnes a charge (le
+       calculateur ne les demande pas).
+       ------------------------------------------------------------------- */
+    wisconsin: {
+      name: "Wisconsin",
+      abbr: "WI",
+      incomeTax: {
+        hasIncomeTax: true,
+        slidingDeduction: {
+          single: [
+            { upTo: 20119, amount: 13960 },
+            { upTo: 136453, from: 20120, base: 13960, rate: 0.12 },
+            { upTo: null, amount: 0 }
+          ],
+          marriedJoint: [
+            { upTo: 29039, amount: 25840 },
+            { upTo: 159690, from: 29040, base: 25840, rate: 0.19778 },
+            { upTo: null, amount: 0 }
+          ],
+          headOfHousehold: [
+            { upTo: 20119, amount: 18030 },
+            { upTo: 58827, from: 20120, base: 18030, rate: 0.22515 },
+            { upTo: 136453, from: 20120, base: 13960, rate: 0.12 },
+            { upTo: null, amount: 0 }
+          ]
+        },
+        personalExemption: {
+          single: 700,
+          marriedJoint: 1400,
+          headOfHousehold: 700
+        },
+        brackets: {
+          single:          [[15110, 0.035], [51950, 0.044], [332720, 0.053], [Infinity, 0.0765]],
+          marriedJoint:    [[20150, 0.035], [69260, 0.044], [443630, 0.053], [Infinity, 0.0765]],
+          headOfHousehold: [[15110, 0.035], [51950, 0.044], [332720, 0.053], [Infinity, 0.0765]]
+        }
+      }
     }
   }
 };

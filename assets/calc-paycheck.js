@@ -112,7 +112,28 @@
          status cannot say that, so income tiers are read first when a state
          declares them. Added 2026-09-02. */
       var tiers = state.incomeTax.deductionByIncome;
-      if (tiers) {
+      /* Wisconsin is the first state here whose standard deduction is a
+         continuous SLOPE, not a step: 2026 Form 1-ES Instructions (D-101A),
+         "$13,960 less 12% of the amount over $20,120" for a single filer.
+         Each segment is either a flat amount or a straight line (base minus
+         rate times income past "from"), and the table stops at the first
+         segment whose upTo covers the income. Head of household has two
+         slope segments back to back (22.515% then 12%) - that is what the
+         law prints, not a typo; the two nearly meet at the seam. Added
+         2026-09-11. */
+      var slope = state.incomeTax.slidingDeduction;
+      if (slope) {
+        var segs = (input.filingStatus in slope) ? slope[input.filingStatus] : slope.single;
+        sd = 0;
+        for (var si = 0; si < segs.length; si++) {
+          var seg = segs[si];
+          if (seg.upTo === null || baseEtat <= seg.upTo) {
+            sd = (seg.amount !== undefined) ? seg.amount
+              : Math.max(0, seg.base - seg.rate * (baseEtat - seg.from));
+            break;
+          }
+        }
+      } else if (tiers) {
         for (var ti = 0; ti < tiers.length; ti++) {
           if (tiers[ti].upTo === null || baseEtat <= tiers[ti].upTo) {
             var am = tiers[ti].amounts;
@@ -135,6 +156,15 @@
       if (po) {
         var seuil = (input.filingStatus in po) ? po[input.filingStatus] : po.single;
         if (isFinite(seuil) && baseEtat > seuil) sd = 0;
+      }
+      /* Wisconsin also grants a flat PERSONAL EXEMPTION per head, on top of
+         the sliding deduction: $700 for the filer, $700 for a spouse filing
+         jointly, $700 per dependent. This calculator does not ask for a
+         dependent count, so head of household only gets its own $700, like
+         every other filing status here. Added 2026-09-11. */
+      var pe = state.incomeTax.personalExemption;
+      if (pe) {
+        sd = (sd || 0) + ((input.filingStatus in pe) ? pe[input.filingStatus] : pe.single);
       }
       var imposableEtat = Math.max(0, baseEtat - (sd || 0));
       stateTax = progressiveTax(

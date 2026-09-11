@@ -600,5 +600,103 @@ check("OH : aucun autre Etat n'a d'exoneration par palier de revenu",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.deductionByIncome).length, 1, 0);
 
 
+/* --- WISCONSIN --------------------------------------------------------
+   Sources, lues le 2026-09-11 : Wisconsin DOR "2026 Form 1-ES Instructions"
+   (D-101A, R. 1-26) pour le bareme (Schedule A/B) et la deduction standard
+   glissante (2026 Standard Deduction schedules), et le meme document pour
+   l'exemption personnelle de 700 $ (note de bas de page). Voir
+   data/rates-2026.js et .tooling/sources/wisconsin.md pour le detail complet.
+   Les attendus sont poses a la main d'apres le texte imprime, pas repris du
+   moteur : deduction(revenu) puis bareme(imposable), independamment de
+   deductionEtat() et deductionGlissante(). */
+function dedWI(statut, revenu) {
+  if (statut === "single" || statut === "headOfHousehold_stage2") {
+    if (revenu <= 20119) return 13960;
+    if (revenu <= 136453) return Math.max(0, 13960 - 0.12 * (revenu - 20120));
+    return 0;
+  }
+  if (statut === "marriedJoint") {
+    if (revenu <= 29039) return 25840;
+    if (revenu <= 159690) return Math.max(0, 25840 - 0.19778 * (revenu - 29040));
+    return 0;
+  }
+  if (statut === "headOfHousehold") {
+    if (revenu <= 20119) return 18030;
+    if (revenu <= 58827) return Math.max(0, 18030 - 0.22515 * (revenu - 20120));
+    if (revenu <= 136453) return Math.max(0, 13960 - 0.12 * (revenu - 20120));
+    return 0;
+  }
+}
+function exoWI(statut) {
+  return statut === "marriedJoint" ? 1400 : 700;
+}
+function calculWI(revenu, statut) {
+  var imposable = Math.max(0, revenu - dedWI(statut, revenu) - exoWI(statut));
+  var bands = statut === "marriedJoint"
+    ? [[20150, 0.035], [69260, 0.044], [443630, 0.053], [Infinity, 0.0765]]
+    : [[15110, 0.035], [51950, 0.044], [332720, 0.053], [Infinity, 0.0765]];
+  return progressiveTax(imposable, bands);
+}
+
+check("WI : le taux d'entree est 3,5 % (Schedule A)",
+  R.states.wisconsin.incomeTax.brackets.single[0][1], 0.035, 0);
+check("WI : le taux plafond est 7,65 %",
+  R.states.wisconsin.incomeTax.brackets.single[3][1], 0.0765, 0);
+check("WI : recoupement de la 2e constante imprimee, celibataire (528,85 + 4,4%)",
+  15110 * 0.035, 528.85, 0.01);
+check("WI : recoupement de la 3e constante imprimee, celibataire (2 149,81)",
+  528.85 + (51950 - 15110) * 0.044, 2149.81, 0.01);
+check("WI : recoupement de la 4e constante imprimee, celibataire (17 030,62)",
+  2149.81 + (332720 - 51950) * 0.053, 17030.62, 0.01);
+check("WI : recoupement de la 4e constante imprimee, commun (22 707,70)",
+  705.25 + (69260 - 20150) * 0.044 + (443630 - 69260) * 0.053, 22707.70, 0.01);
+
+check("WI : deduction pleine sous 20 119 $, celibataire",
+  dedWI("single", 15000), 13960, 0);
+check("WI : deduction nulle a 136 454 $ et au-dela, celibataire",
+  dedWI("single", 136454), 0, 0);
+check("WI : la pente s'annule a moins d'un dollar de zero a 136 453 $",
+  dedWI("single", 136453), 0.04, 0.02);
+check("WI : deduction pleine sous 29 039 $, commun",
+  dedWI("marriedJoint", 20000), 25840, 0);
+check("WI : deduction nulle a 159 691 $, commun",
+  dedWI("marriedJoint", 159691), 0, 0);
+check("WI : chef de famille, premier segment (22,515 %) a 50 000 $",
+  dedWI("headOfHousehold", 50000), 11302.52, 0.01);
+check("WI : chef de famille, le deuxieme segment prend le relais apres 58 827 $",
+  dedWI("headOfHousehold", 58828), 9315.04, 0.01);
+check("WI : les deux segments du chef de famille se rejoignent a moins d'un dollar",
+  Math.abs(dedWI("headOfHousehold", 58827) - (13960 - 0.12 * (58827 - 20120))) < 1 ? 1 : 0, 1, 0);
+
+check("WI : exemption personnelle 700 $ simple",
+  R.states.wisconsin.incomeTax.personalExemption.single, 700, 0);
+check("WI : exemption personnelle 1 400 $ en commun (700 + 700)",
+  R.states.wisconsin.incomeTax.personalExemption.marriedJoint, 1400, 0);
+
+check("WI : impot d'Etat sur 25 000 $, celibataire",
+  calcul("wisconsin", 25000).etat, calculWI(25000, "single"), 0.01);
+check("WI : impot d'Etat sur 75 000 $, celibataire",
+  calcul("wisconsin", 75000).etat, calculWI(75000, "single"), 0.01);
+check("WI : impot d'Etat sur 75 000 $ vaut bien 2 943,52 $",
+  calcul("wisconsin", 75000).etat, 2943.52, 0.01);
+check("WI : impot d'Etat sur 250 000 $, celibataire",
+  calcul("wisconsin", 250000).etat, calculWI(250000, "single"), 0.01);
+check("WI : impot d'Etat sur 75 000 $, commun",
+  calcul("wisconsin", 75000, "marriedJoint").etat, calculWI(75000, "marriedJoint"), 0.01);
+check("WI : impot d'Etat sur 75 000 $, chef de famille",
+  calcul("wisconsin", 75000, "headOfHousehold").etat, calculWI(75000, "headOfHousehold"), 0.01);
+check("WI : le 401(k) reduit bien l'impot d'Etat",
+  calcul("wisconsin", 75000).etat - calcul("wisconsin", 75000, "single", 0.06).etat > 0 ? 1 : 0,
+  1, 0);
+check("WI : aucun programme salarie retenu (assurance chomage employeur seul)",
+  (R.states.wisconsin.employeePrograms || []).length, 0, 0);
+check("WI : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
+  calcul("wisconsin", 5000).etat >= 0 ? 1 : 0, 1, 0);
+check("WI : la deduction glissante n'existe que pour le Wisconsin",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).length, 1, 0);
+check("WI : l'exemption personnelle n'existe que pour le Wisconsin",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 1, 0);
+
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

@@ -61,7 +61,7 @@
    ========================================================================= */
 
 /* Date du dernier controle HTTP + motif de TOUTES les URL de ce fichier. */
-const VERIFIE_LE = "2026-09-10";
+const VERIFIE_LE = "2026-09-11";
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -231,6 +231,31 @@ const PAR_ETAT = {
   ],
   nevada: [
     { type: "agence", url: "https://tax.nv.gov/", titre: "Nevada Department of Taxation" }
+  ],
+  wisconsin: [
+    { type: "document",
+      url: "https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf",
+      titre: "Wisconsin Department of Revenue &mdash; 2026 Form 1-ES Instructions (PDF)",
+      quoi: "the 2026 tax rate schedules and the sliding 2026 standard deduction this page is " +
+            "checked against",
+      motif: ["528.85", "13,960"] },
+    { type: "document",
+      url: "https://www.revenue.wi.gov/DOR%20Publications/pb166.pdf",
+      titre: "Wisconsin Department of Revenue &mdash; Withholding Tax Guide, Publication W-166 (PDF)",
+      quoi: "the rule that a Wisconsin employer cannot use the federal W-4, only the state's own " +
+            "Form WT-4",
+      motif: ["cannot be used for Wisconsin withholding"] },
+    { type: "document",
+      url: "https://dwd.wisconsin.gov/ui201/pdf/ucb201print.pdf",
+      titre: "Wisconsin Department of Workforce Development &mdash; UI Employer Handbook (PDF)",
+      quoi: "the sentence we quote: unemployment insurance is financed solely through employer " +
+            "contributions",
+      motif: ["financed solely through employer contributions"] },
+    { type: "agence",
+      url: "https://www.revenue.wi.gov/Pages/FAQS/pcs-taxrates.aspx",
+      titre: "Wisconsin Department of Revenue &mdash; Tax Rates FAQ",
+      perime: "it still showed only the 2025 brackets on the day we checked, with no 2026 " +
+              "column at all, so we read the 2026 figures from the Form 1-ES instructions instead" }
   ]
 };
 
