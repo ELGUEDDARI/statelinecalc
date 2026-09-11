@@ -48,7 +48,16 @@ $helper = "store --file=" + $credPath
 
 try {
   Write-Output "=== COMMIT DES MODIFICATIONS LOCALES ==="
-  git add -A
+  # Depot PUBLIC : jamais `git add -A`. Le 11/09/2026, -A a pousse par effet
+  # de bord une page d'un autre chantier, non encore auditee. On n'ajoute que
+  # les fichiers DEJA SUIVIS ; un fichier nouveau doit etre `git add` nomme
+  # AVANT d'appeler ce script, et le script le dit s'il en reste.
+  git add -u
+  $nonSuivis = git ls-files --others --exclude-standard
+  if ($nonSuivis) {
+    Write-Output "  NON SUIVIS, NON POUSSES (git add <fichier> nomme si voulu) :"
+    $nonSuivis | ForEach-Object { Write-Output ("    " + $_) }
+  }
   $rien = git diff --cached --quiet; $codeCommit = $LASTEXITCODE
   if ($codeCommit -eq 0) {
     Write-Output "  rien a committer"
