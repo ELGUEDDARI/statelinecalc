@@ -149,6 +149,49 @@ nouvelle tentative — non lie au blocage ci-dessus, un incident distinct et pas
 
 ---
 
+## 5bis. House Bill 40 — le texte de loi de la baisse a 5,3 %
+
+**« Idaho delivers largest income tax cut in state history, sending another $253 million
+back to Idahoans »**, Office of the Governor (Brad Little), publie **Thursday March 6,
+2025** (`datePublished: 2025-03-06T14:48:12-07:00` dans le JSON-LD de la page).
+`https://gov.idaho.gov/pressrelease/idaho-delivers-largest-income-tax-cut-in-state-history-sending-another-253-million-back-to-idahoans/`
+Lu via Wayback (`web.archive.org/web/20260512222837/...`), HTTP 200 le 12/09/2026 (direct :
+`ECONNREFUSED` sur la meme IP `164.165.66.150` que §5, meme famille de blocage).
+
+Verbatim : « Governor Brad Little joined members of House and Senate leadership today in
+signing House Bill 40, sending another $253 million back to Idahoans' pockets in the form
+of income tax cuts. [...] Most of the tax cut is achieved by reducing the income tax rate
+for individuals and businesses from 5.695% to 5.3%. » House Speaker Mike Moyle, cite dans le
+meme communique : « we are delivering the single largest income tax cut in state history ».
+
+Confirme : (1) le taux 5,3 % vient bien de House Bill 40 ; (2) l'ancien taux etait 5,695 %,
+pas 5,8 % comme certains recapitulatifs tiers l'ecrivent ; (3) la formulation « largest
+income tax cut in state history » est celle du gouvernement lui-meme, pas une estimation de
+la page. Recoupe avec EIN00046 §3 (« Effective January 1, 2025, the individual income tax
+rate is 5.3% ») : meme taux, meme annee d'entree en vigueur, deux sources independantes.
+
+---
+
+## 5ter. Idaho Code 63-3029L — le montant exact du credit d'impot pour enfant
+
+**Section 63-3029L, CHILD TAX CREDIT**, Idaho State Legislature (texte codifie).
+`https://legislature.idaho.gov/statutesrules/idstat/title63/t63ch30/sect63-3029l/`
+Lu via Wayback (`web.archive.org/web/20260519032429/...`), HTTP 200 le 12/09/2026 (direct :
+injoignable, meme blocage que §5).
+
+Verbatim : « For taxable years beginning on or after January 1, 2018, and before January 1,
+2026, there shall be allowed to a taxpayer a **nonrefundable** credit against the tax
+imposed by this chapter in the amount of **two hundred five dollars ($205)** with respect
+to each qualifying child of the taxpayer. [...] This credit is available only to Idaho
+residents. »
+
+Confirme, avec la loi elle-meme (pas seulement le communique de la Commission fiscale, §2) :
+le montant (205 $/enfant), le caractere non-remboursable, et la borne de date (« before
+January 1, 2026 » = la derniere annee d'imposition couverte est 2025, cette page 2026 est
+donc correcte de dire que le credit ne s'applique plus).
+
+---
+
 ## 6. Assurance chomage — employeur seul
 
 **Handbook for Businesses, Unemployment Insurance Tax Information**, Idaho Department of

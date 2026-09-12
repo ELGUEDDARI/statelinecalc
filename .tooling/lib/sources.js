@@ -299,7 +299,7 @@ const SANS_LIEN = {
      figures on this page are sourced and dated; we just have no link from
      this machine that we have verified ourselves. */
   idaho: "tax.idaho.gov and legislature.idaho.gov time out on every automated " +
-         "method from this machine, though the same figures were read from their " +
+         "connection attempt from this machine, though the same figures were read from their " +
          "Internet Archive snapshots"
 };
 

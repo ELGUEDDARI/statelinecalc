@@ -1498,11 +1498,19 @@ const RATES_2026 = {
           (HTTP 200 le 2026-09-12), verbatim : « We've updated the income tax
           withholding tables for 2026. The Idaho Child Tax Credit has
           sunsetted per Idaho Code section 63-3029L. » Confirme que le
-          credit d'impot pour enfant PROPRE A L'IDAHO (205 $/enfant,
-          distinct du credit federal, expire le 1er janvier 2026 par sa
-          propre clause d'extinction) ne s'applique plus a l'annee
-          d'imposition 2026 — d'ou l'absence de toute « child tax credit
-          allowance » non nulle dans notre moteur.
+          credit d'impot pour enfant PROPRE A L'IDAHO (distinct du credit
+          federal) ne s'applique plus a l'annee d'imposition 2026 — d'ou
+          l'absence de toute « child tax credit allowance » non nulle dans
+          notre moteur. Le montant (205 $/enfant) et le caractere
+          NON-REMBOURSABLE viennent du texte de loi lui-meme, Idaho Code
+          63-3029L, lu via
+          web.archive.org/web/20260519032429/https://legislature.idaho.gov/statutesrules/idstat/title63/t63ch30/sect63-3029l/
+          (HTTP 200 le 2026-09-12 ; direct : injoignable, meme blocage),
+          verbatim : « there shall be allowed to a taxpayer a nonrefundable
+          credit against the tax imposed by this chapter in the amount of
+          two hundred five dollars ($205) with respect to each qualifying
+          child of the taxpayer [...] For taxable years beginning on or
+          after January 1, 2018, and before January 1, 2026 ».
 
        3. Idaho Code 63-3024, « Individuals' tax and tax on estates and
           trusts » — legislature.idaho.gov injoignable sur les memes trois
@@ -1533,13 +1541,25 @@ const RATES_2026 = {
           ceux que federal.standardDeduction declare deja en tete de ce
           fichier.
 
-       TAUX. 5,3 % depuis le 1er janvier 2025 (House Bill 40, signee mars
-       2025 par le gouverneur Brad Little — « the largest income tax cut in
-       Idaho history », recherche du 2026-09-12), inchange pour l'annee
-       d'imposition 2026 : aucune loi de baisse supplementaire trouvee pour
-       2026 (House Bill 559, 2026, ne touche que la conformite federale des
-       deductions — deduction seniors, pourboires, interets sur pret auto,
-       heures supplementaires — pas le taux d'imposition).
+       TAUX. 5,3 % depuis le 1er janvier 2025, House Bill 40 : Office of the
+       Governor (Brad Little), communique « Idaho delivers largest income
+       tax cut in state history, sending another $253 million back to
+       Idahoans », publie le 2025-03-06 (JSON-LD datePublished
+       2025-03-06T14:48:12-07:00), lu via
+       web.archive.org/web/20260512222837/https://gov.idaho.gov/pressrelease/idaho-delivers-largest-income-tax-cut-in-state-history-sending-another-253-million-back-to-idahoans/
+       (HTTP 200 le 2026-09-12 ; direct : ECONNREFUSED, meme IP que les
+       sources tax.idaho.gov ci-dessus). Verbatim : « Governor Brad Little
+       joined members of House and Senate leadership today in signing House
+       Bill 40 [...] Most of the tax cut is achieved by reducing the income
+       tax rate for individuals and businesses from 5.695% to 5.3%. »
+       (House Speaker Mike Moyle, meme communique : « the single largest
+       income tax cut in state history »). Recoupe par EIN00046 ci-dessus
+       (« Effective January 1, 2025, the individual income tax rate is
+       5.3% »). Inchange pour l'annee d'imposition 2026 : aucune loi de
+       baisse supplementaire trouvee pour 2026 (House Bill 559, 2026, ne
+       touche que la conformite federale des deductions — deduction
+       seniors, pourboires, interets sur pret auto, heures supplementaires
+       — pas le taux d'imposition).
 
        PAS DE DEDUCTION STANDARD DISTINCTE A CONSTRUIRE : le seuil de
        16 100 $/32 200 $ EST directement la deduction a soustraire (comme le

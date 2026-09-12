@@ -124,9 +124,10 @@ const faq = [
   ["Does Idaho have a standard deduction?",
    "Effectively yes, though it works through the withholding threshold rather than a separate "
    + "line you subtract yourself. The 2026 withholding table starts a 0% band at $" + c0(DED_SINGLE)
-   + " for a single filer or head of household and $" + c0(DED_JOINT) + " filing jointly &mdash; "
-   + "the same two numbers as the 2026 federal standard deduction, to the dollar. Everything above "
-   + "that line is taxed at 5.3%."],
+   + " for a single filer and $" + c0(DED_JOINT) + " filing jointly &mdash; the same two numbers "
+   + "as the 2026 federal standard deduction for those statuses, to the dollar. A head of household "
+   + "gets the same $" + c0(DED_HOH) + " band as a single filer, not the larger $24,150 the IRS "
+   + "gives that status. Everything above the applicable line is taxed at 5.3%."],
 
   ["What is take-home pay on a $75,000 salary in Idaho?",
    "About " + $(a75.net) + " a year, or " + $$(a75.net / 12) + " a month, for a single filer with "
@@ -159,8 +160,8 @@ const faq = [
   ["Do Idaho employees pay for unemployment insurance?",
    "No. The Idaho Department of Labor's own handbook for businesses puts it plainly: "
    + "&ldquo;State Unemployment Tax (SUTA) is an employer-paid tax paid into the unemployment "
-   + "insurance trust fund.&rdquo; There is no state disability or paid family leave deduction "
-   + "either, so the only state line on an Idaho pay stub is income tax withholding."],
+   + "insurance trust fund.&rdquo; The only state line we found on an Idaho pay stub is income "
+   + "tax withholding."],
 
   ["Does a 401(k) contribution lower my Idaho tax?",
    "Yes. Idaho's own tax form starts from your federal adjusted gross income, which already "
@@ -178,7 +179,7 @@ const faq = [
 
   ["Why is my Idaho paycheck smaller than this calculator says?",
    "The usual reasons: health insurance premiums and other pre-tax benefit deductions come out "
-   + "before tax and are not modelled here, a second job pushes your federal withholding up, and "
+   + "before tax and are not modeled here, a second job pushes your federal withholding up, and "
    + "your employer withholds from the W-4 and Idaho Form ID W-4 you actually filed rather than "
    + "the standard assumptions this page uses. One Idaho-specific reason: the withholding table "
    + "sets the threshold that applies to your paycheck, but your final bill at filing runs through "
@@ -186,7 +187,13 @@ const faq = [
    + "deductions and credits are counted."]
 ];
 
-const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+/* Les chaines de faq[] contiennent deja des entites HTML brutes (&mdash;, &ldquo;,
+   &rdquo;) ecrites en dur pour le rendu visible (ligne ~613, jamais passees par q()).
+   Le JSON-LD (ligne ~253) reutilise ces memes chaines : q() doit donc laisser ces
+   entites deja valides intactes et n'echapper que les "&" qui n'en font pas partie
+   (sinon "&mdash;" devient "&amp;mdash;", cassant le rendu du JSON-LD -- defaut trouve
+   par controle-statelinecalc le 12/09/2026). */
+const q = s => s.replace(/&(?!amp;|mdash;|ldquo;|rdquo;|quot;|#\d+;)/g, "&amp;").replace(/"/g, "&quot;");
 const { grilleEtats } = require("../lib/etats-publies.js");
 const { organisation } = require("../lib/entite.js");
 const { blocSources } = require("../lib/sources.js");
@@ -280,8 +287,8 @@ ${entete("paycheck")}
     ${N("$" + c0(DED_SINGLE))} for a single filer or head of household and
     ${N("$" + c0(DED_JOINT))} filing jointly. On $75,000 that is ${N($$(a75.etat))} to the state
     and about ${N($(a75.net))} a year in your pocket. Head of household shares the
-    <strong>single</strong> threshold, not the higher married one &mdash; a detail that catches
-    people out.</p>
+    <strong>single</strong> threshold, not the higher married one &mdash; a detail that trips
+    people up.</p>
     <p class="answer-jump"><a href="#calc-h">Calculate my pay &darr;</a></p>
   </div>
 
@@ -373,9 +380,12 @@ ${entete("paycheck")}
     the other is <a href="/paycheck-calculator/utah/">Utah</a>, which works through a credit
     instead of a threshold. Idaho's version is simpler to describe: nothing is taxed up to a
     threshold, and every dollar above it is taxed at the same 5.3%, no matter how high your
-    income goes. That threshold, for 2026, is ${N("$" + c0(DED_SINGLE))} for a single filer or
-    head of household and ${N("$" + c0(DED_JOINT))} filing jointly &mdash; the same two numbers as
-    the 2026 federal standard deduction, to the dollar.</p>
+    income goes. That threshold, for 2026, is ${N("$" + c0(DED_SINGLE))} for a single filer,
+    also ${N("$" + c0(DED_SINGLE))} for a head of household, and ${N("$" + c0(DED_JOINT))} filing
+    jointly. The single and joint figures match the 2026 federal standard deduction for those two
+    filing statuses to the dollar; the head-of-household figure does not &mdash; Idaho groups head
+    of household with the single filer instead of giving it the larger federal head-of-household
+    deduction. More on that below.</p>
 
     <p>The calculator applies four deductions, in this order:</p>
     <ul>
@@ -396,7 +406,7 @@ ${entete("paycheck")}
     <time datetime="2026-07-23">July 23, 2026</time>, and the rate statute itself,
     <strong>Idaho Code section 63-3024</strong>. Both were read on
     <time datetime="2026-09-12">September 12, 2026</time>. tax.idaho.gov and legislature.idaho.gov
-    would not answer a direct connection from the machine that built this page, so both documents
+    would not respond to a direct connection from the machine that built this page, so both documents
     were read from their Internet Archive snapshots &mdash; the same PDFs, the same text, just a
     different route to them. Our full sourcing, including that detail, is on the
     <a href="/methodology/">methodology page</a>.</p>
@@ -404,13 +414,18 @@ ${entete("paycheck")}
     <p><strong>One check worth stating, because it is what makes this figure trustworthy:</strong>
     the withholding table's threshold and the federal standard deduction are not obviously the
     same quantity &mdash; one is set by the Idaho State Tax Commission, the other by the IRS. But
-    they land on the identical numbers for 2026, ${N("$" + c0(DED_SINGLE))} and
-    ${N("$" + c0(DED_JOINT))}, which is consistent with Idaho's own tax form: Form 40 starts from
-    your <em>federal adjusted gross income</em> and then applies a standard deduction that Idaho
-    sets to match the federal one. For tax year 2025, the comparable threshold was
-    ${N("$" + c0(DED_2025_SINGLE))} single and ${N("$" + c0(DED_2025_JOINT))} joint &mdash; far
-    lower, because 2026 is the first year the withholding table lines up the threshold with the
-    larger, OBBBA-enhanced federal standard deduction rather than the smaller indexed figure Idaho
+    for a single filer and for a married couple filing jointly, they land on the identical numbers
+    for 2026, ${N("$" + c0(DED_SINGLE))} and ${N("$" + c0(DED_JOINT))}, which is consistent with
+    Idaho's own tax form: Form 40 starts from your <em>federal adjusted gross income</em> and then
+    applies a standard deduction that Idaho sets to match the federal one for those two statuses.
+    Head of household is the exception: the federal standard deduction for that status is
+    ${N("$24,150")} for 2026, but Idaho's withholding table still groups head of household with the
+    single filer's ${N("$" + c0(DED_SINGLE))}, not its own, larger federal figure &mdash; a choice
+    the table makes explicitly, not a rounding artifact. For tax year 2025, the comparable
+    single/joint threshold was ${N("$" + c0(DED_2025_SINGLE))} single and
+    ${N("$" + c0(DED_2025_JOINT))} joint &mdash; far lower, because 2026 is the first year the
+    withholding table lines up the threshold with the larger, OBBBA-enhanced federal standard
+    deduction rather than the smaller indexed figure Idaho
     Code 63-3024 sets on its own.</p>
 
     <p>What the calculator deliberately does not do: it does not itemize deductions, model Idaho's
@@ -453,7 +468,7 @@ ${tableSalaires}
     <h3>Why we ask your hours instead of assuming 2,080</h3>
     <p>Most hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
     week for 52 weeks, which describes a full-time salaried schedule rather than most hourly work.
-    If you are on 32 hours, or 45 with overtime, the assumed figure is wrong before any tax is
+    If you work 32 hours a week, or 45 with overtime, the assumed figure is wrong before any tax is
     applied. The calculator above asks for your hours and uses them.</p>
 
     <h3>What $20 an hour comes to in Idaho</h3>
@@ -519,7 +534,7 @@ ${tableHoraire}
   a shrinking share of a larger income.</p>
 
   <h3>Head of household shares the single threshold, not the joint one</h3>
-  <p>This is the fact that most separates Idaho from the other flat- or near-flat-rate states on
+  <p>This is what most sets Idaho apart from the other flat- or near-flat-rate states on
   this site. The 2026 withholding table lists two columns: &ldquo;Single Persons Including Head of
   Household&rdquo; at ${N("$" + c0(DED_SINGLE))}, and &ldquo;Married Persons&rdquo; at
   ${N("$" + c0(DED_JOINT))}. A head of household is grouped with the single filer, not with the
@@ -537,13 +552,12 @@ ${tableHoraire}
   credit for 2026, it is not there.</p>
 
   <h3>Your employer cannot deduct unemployment insurance from your pay</h3>
-  <p>Some states take an employee contribution for unemployment or disability cover;
+  <p>Some states take an employee contribution for unemployment coverage;
   <a href="/paycheck-calculator/washington/">Washington</a> is the example on this site, where paid
-  family leave and long-term care both come off the stub. Idaho does not. The Idaho Department of
-  Labor&rsquo;s handbook for businesses states it directly: <em>State Unemployment Tax (SUTA) is
-  an employer-paid tax paid into the unemployment insurance trust fund.</em> There is no state
-  disability or paid family leave deduction either, so the only state line on an Idaho pay stub is
-  income tax withholding.</p>
+  family leave and long-term care both come off the stub. Idaho does not: the Idaho Department of
+  Labor&rsquo;s handbook for businesses states it directly, <em>State Unemployment Tax (SUTA) is
+  an employer-paid tax paid into the unemployment insurance trust fund.</em> The only state line we
+  found on an Idaho pay stub is income tax withholding.</p>
 
   <h3>Your 401(k) contribution does reduce your Idaho tax</h3>
   <p>Idaho&rsquo;s own tax form starts from your federal adjusted gross income &mdash; Form 40,
@@ -586,7 +600,7 @@ ${tableHoraire}
   <p>It will not, and no calculator can. Idaho&rsquo;s own withholding table is a per-paycheck
   approximation; your actual bill runs through the full annual worksheet on Form 40, where your
   real deductions and any credits you qualify for are counted. Health insurance premiums and other
-  pre-tax benefit deductions come out before tax and are not modelled here, a second job changes
+  pre-tax benefit deductions come out before tax and are not modeled here, a second job changes
   the federal withholding picture, and your employer withholds from the Idaho Form ID W-4 you
   actually filed. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
