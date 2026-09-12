@@ -452,6 +452,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   min-height: 320px;
   background: var(--surface);
   border: 1px solid var(--border-subtle);
+  /* Bande rouge du 12/09/2026, decision du PDG apres mockup : meme rouge que
+     l'impot federal dans le donut plus bas, clin d'oeil discret au drapeau. */
+  border-top: 4px solid #B22234;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   padding: var(--s-6);
@@ -459,7 +462,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .result-label { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
 .result-head {
   font-size: 40px; line-height: 1.1; font-weight: 700;
-  color: var(--success);
+  color: var(--dark); /* navy de marque, meme decision du 12/09/2026 que la bande rouge ci-dessus */
   margin: var(--s-1) 0 var(--s-4);
 }
 /* ---------- ou passe la paie : camembert + barres ----------
