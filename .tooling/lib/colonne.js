@@ -45,6 +45,7 @@ ${bloc("Other states", etats.map(n =>
 ${bloc("More calculators", [
     { href: "/paycheck-calculator/", libelle: "Paycheck calculator" },
     { href: "/salary-to-hourly-calculator/", libelle: "Salary to hourly" },
+    { href: "/state-comparison/", libelle: "Compare two states" },
     { href: "/75000-salary-take-home-pay-by-state/", libelle: "$75,000 by state" }
   ].concat(TAUX_LATERAL.map(t =>
     ({ href: "/" + t + "-an-hour-is-how-much-a-year/", libelle: "$" + t + " an hour a year" }))))}

@@ -540,7 +540,19 @@
         "</dl><hr>" +
         '<div class="line line-total"><dt>Take-home pay</dt><dd class="num">' + v(a.net) + "</dd></div>" +
         '<div class="line"><dt>Effective tax rate</dt><dd class="num">' + pct(a.effectiveRate) + "</dd></div>" +
-        '<div class="line"><dt>Federal marginal rate</dt><dd class="num">' + pct(a.marginalRate) + "</dd></div>";
+        '<div class="line"><dt>Federal marginal rate</dt><dd class="num">' + pct(a.marginalRate) + "</dd></div>" +
+        /* Le bouton PDF et le lien vers le comparateur, ajoutes le 12/09/2026.
+           window.print() seulement : aucune bibliotheque, rien n'est envoye
+           nulle part. Le lien passe le salaire ANNUEL BRUT deja tape — pas la
+           periode affichee — pour que le comparateur reparte du meme chiffre
+           sans que le visiteur le retape. */
+        '<div class="result-actions">' +
+          '<button type="button" class="btn btn-secondary" data-print-pdf>Download as PDF</button>' +
+        "</div>" +
+        '<p class="compare-cta"><a href="/state-comparison/?state=' + encodeURIComponent(input.state) +
+        '&salary=' + Math.round(a.gross) + '">Compare ' +
+        (RATES_2026.states[input.state] ? RATES_2026.states[input.state].name : input.state) +
+        ' with another state &rarr;</a></p>';
 
       out.innerHTML = html;
 
@@ -568,6 +580,12 @@
       if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
       out.scrollIntoView({ behavior: "smooth", block: "center" });
     }
+
+    /* Delegation sur `out`, pose une seule fois : le bouton est recree a
+       chaque render(), mais le conteneur qui le porte ne change jamais. */
+    out.addEventListener("click", function (e) {
+      if (e.target.closest("[data-print-pdf]")) window.print();
+    });
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();

@@ -711,3 +711,67 @@ tbody tr:hover { background: #E8EFF9; }
   background: var(--accent); color: var(--on-accent);
 }
 .answer-jump a:hover, .answer-jump a:focus { text-decoration: underline; }
+
+/* ---------- secondary button, added 2026-09-12 ----------
+   Outline style, not filled: a filled .btn-primary already means "calculate"
+   on every page that has both. Two filled buttons next to each other compete
+   for the eye; this one deliberately looks lighter. Border and text both use
+   --accent (#1D4ED8) on --surface (#FFFFFF) = 6.70:1, the same pair already
+   verified in the :root comment above — AA for text, well past the 3:1 a
+   button border needs as a UI component. */
+.btn-secondary { background: var(--surface); color: var(--accent); border-color: var(--accent); }
+.btn-secondary:hover { background: var(--surface-sunken); }
+.result-actions { margin-top: var(--s-6); display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
+/* The link from a state page's result to the comparator, carrying the
+   salary the visitor already typed. Kept visually quiet — it is a secondary
+   path, not the page's main action. */
+.compare-cta { margin: var(--s-3) 0 0; font-size: 15px; }
+.compare-cta a { font-weight: 600; }
+
+/* ---------- state comparator, added 2026-09-12 ----------
+   Two .compare-card blocks side by side once there is room; stacked on a
+   phone, never side-scrolling the page. Reuses .result for the outer card
+   chrome (border-top, shadow, padding) so it matches every other result
+   block on the site instead of inventing a second look. */
+.compare-grid {
+  display: grid; gap: var(--s-6);
+}
+@media (min-width: 680px) { .compare-grid { grid-template-columns: 1fr 1fr; } }
+.compare-card {
+  background: var(--surface-sunken);
+  border-radius: var(--radius-sm);
+  padding: var(--s-4);
+}
+.compare-card h3 { margin: 0 0 var(--s-2); font-size: 18px; }
+.compare-card .result-head { font-size: 28px; margin: 0 0 var(--s-3); }
+.compare-diff {
+  margin: var(--s-6) 0 0; padding-top: var(--s-4);
+  border-top: 1px solid var(--border-subtle);
+  font-size: 16px; text-align: center;
+}
+
+/* ---------- print / PDF export, added 2026-09-12 ----------
+   "Download as PDF" calls window.print(), nothing more: no library, nothing
+   sent anywhere, consistent with "nothing you type leaves your browser".
+   These rules pick the paycheck breakdown out of a page built for reading on
+   screen. Rather than listing every prose section that must disappear —
+   fragile, because a future block would print by default until someone
+   remembered to hide it — this hides EVERYTHING under <body> and then
+   names the handful of elements that carry the result and its ancestors
+   back in with :not(). Miss one ancestor and the result itself would vanish
+   too (a hidden parent hides its children regardless of their own display),
+   so the exclusion list is exactly the chain from <body> down to .result,
+   not a style choice.
+   .result's own descendants (.donut, .repartition, .parts, .line — grid and
+   flex layouts set in section 6.3 above) are matched by ".result *" and so
+   never touched by this rule at all, which is why the chart and the bars
+   still render correctly on paper instead of collapsing to block boxes. */
+@media print {
+  body *:not(h1):not(main):not(.col-contenu):not(section[aria-labelledby="calc-h"]):not(.result):not(.result *) {
+    display: none !important;
+  }
+  .result [data-print-pdf] { display: none !important; }
+  .result { box-shadow: none; border: 1px solid var(--dark); margin-top: 0; }
+  h1 { margin: 0 0 var(--s-4); }
+}

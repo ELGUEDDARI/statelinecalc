@@ -78,6 +78,10 @@ worked when the week is not 40 hours.
 
 - [$75,000 salary: take-home pay in every state we publish, and what changed in 2026](https://statelinecalc.com/75000-salary-take-home-pay-by-state/): Single filer, 2026 rates. Federal income tax, Social Security and Medicare take $13,407.50 in every state; take-home then runs from $57,609 in Hawaii to $61,593 in Florida, Nevada, Tennessee and Texas. Six states cut their income tax for 2026, worth on this salary $345.30 in Montana, $273.60 in Hawaii, $161.85 in North Carolina, $120.00 in Georgia, $37.50 in Utah and $10.00 in Ohio. Nebraska cut its top rate from 5.20% to 4.55%.
 
+## Compare two states
+
+- [Compare take-home pay between two states](https://statelinecalc.com/state-comparison/): Pick any two of the 18 states we publish and compare 2026 take-home pay on the same salary, side by side, using the same engine as the individual state calculators. Federal income tax, Social Security and Medicare are identical in both columns; only state income tax and state payroll programs differ. Example: Texas vs Illinois on $75,000 keeps $61,592.50 in Texas against $58,024.79 in Illinois, a $3,567.71 gap that is entirely Illinois's state income tax.
+
 ## Reference
 
 - [Methodology](https://statelinecalc.com/methodology/): The exact formula, every 2026 federal figure with its official source and the date it was verified, and what the calculators deliberately do not model.

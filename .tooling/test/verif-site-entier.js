@@ -132,15 +132,56 @@ function lisSitemap() {
      *
      * Donc : on saisit une valeur volontairement DIFFERENTE de ce qui est
      * affiche, et on exige que le texte du resultat change. */
+    /* [data-compare-result], ajoute le 12/09/2026 pour /state-comparison/ :
+       deux .result-head y vivent (un par Etat compare) ; le premier suffit,
+       il change des que l'un des deux Etats ou le salaire change. */
     const lireResultat = () => page.evaluate(() => {
-      const t = document.querySelector("[data-paycheck-result] .result-head");
+      const t = document.querySelector(
+        "[data-paycheck-result] .result-head, [data-compare-result] .result-head");
       return t ? t.textContent.trim() : null;
     });
+
+    /* Le bouton d'export PDF, ajoute le 12/09/2026, teste A PART : il ne
+       recalcule rien (window.print() seulement), donc le test generique plus
+       bas — qui exige un resultat different apres le clic — ne peut pas le
+       verifier et l'ignore expres. On remplace window.print() par une sonde
+       AVANT le clic (l'ecouteur du bouton lit window.print au moment du clic,
+       pas avant, donc le remplacer apres le chargement de la page fonctionne),
+       et on cherche l'element au moment du clic plutot que de reutiliser un
+       handle capture plus tot, qui peut deja avoir ete remplace par un rendu
+       intermediaire. */
+    const boutonPdf = await page.$("[data-print-pdf]");
+    if (boutonPdf) {
+      await page.evaluate(() => { window.__pdf_appele = false; window.print = () => { window.__pdf_appele = true; }; });
+      const frais = await page.$("[data-print-pdf]");
+      if (!frais) {
+        dit(false, u + " bouton PDF cliquable", "introuvable au moment du clic");
+      } else {
+        try { await frais.click({ timeout: 5000 }); }
+        catch (e) { dit(false, u + " bouton PDF cliquable", e.message.split("\n")[0]); }
+        const appele = await page.evaluate(() => window.__pdf_appele === true);
+        dit(appele, u + " bouton PDF appelle window.print()", "");
+      }
+    }
 
     const boutons = await page.$$("button, input[type=submit]");
     for (const b of boutons) {
       if (!(await b.isVisible())) continue;
       const nom = (await b.textContent() || await b.getAttribute("value") || "sans texte").trim().slice(0, 40);
+
+      /* Le bouton d'export PDF (window.print(), ajoute le 12/09/2026) ne
+         recalcule rien par conception : le test generique ci-dessous, qui
+         exige que remplir le salaire change le resultat, ne s'applique pas a
+         lui. Il a son propre test, plus haut dans ce fichier. Le distinguer
+         ICI est necessaire, pas cosmetique : sur les pages "X an hour", ce
+         bouton est le SEUL de la page, et remplir #salary avant de le cliquer
+         (ce que fait le test generique) remplace deja son noeud — le clic
+         suivant tombe alors sur un noeud detache. Sur les pages d'Etat, le
+         meme remplacement rend le noeud invisible AVANT ce test, donc
+         isVisible() plus haut l'ecarte en silence : la moitie du defaut passait
+         inapercue, ce qui est pire que le voir echouer partout. */
+      if ((await b.getAttribute("data-print-pdf")) !== null) continue;
+
       const champ = await page.$("#salary");
       const avantTexte = await lireResultat();
       const avantDom = await page.evaluate(() => document.body.innerHTML.length);

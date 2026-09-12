@@ -66,7 +66,8 @@ const COLONNES = [
     titre: "Calculators",
     liens: [
       { href: "/paycheck-calculator/", libelle: "Paycheck calculator" },
-      { href: "/salary-to-hourly-calculator/", libelle: "Salary to hourly" }
+      { href: "/salary-to-hourly-calculator/", libelle: "Salary to hourly" },
+      { href: "/state-comparison/", libelle: "Compare two states" }
     ].concat(TAUX_PIED.map(t => ({
       href: "/" + t + "-an-hour-is-how-much-a-year/",
       libelle: "$" + t + " an hour a year"
