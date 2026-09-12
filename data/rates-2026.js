@@ -1281,6 +1281,173 @@ const RATES_2026 = {
           headOfHousehold: [[15110, 0.035], [51950, 0.044], [332720, 0.053], [Infinity, 0.0765]]
         }
       }
+    },
+
+    /* ARKANSAS - ajoute le 2026-09-12. 17e Etat publie.
+
+       LA SOURCE PRINCIPALE : « State of Arkansas, Estimated Tax Declaration
+       Vouchers and Instructions for Tax Year 2026 » (AR1000ES, Instr. R
+       10/14/2025 ; Worksheet R 10/17/2025 ; Voucher R 10/13/2025),
+       telechargee le 2026-09-12 depuis
+       dfa.arkansas.gov/wp-content/uploads/2026_Final_AR1000ES.pdf
+       (application/pdf, 1 833 297 octets, HTTP 200). C'est le document que le
+       contribuable utilise pour estimer son impot 2026 : il porte donc le
+       bareme ET la deduction standard de l'annee en cours.
+
+       LA DEDUCTION STANDARD, verbatim, ligne 2 du « 2026 Estimated Tax
+       Worksheet » : « If you do not expect to itemize deductions, enter the
+       standard deduction of $2,470 per taxpayer ». Un celibataire ou un chef
+       de famille est UN contribuable (2 470 $) ; un couple qui declare en
+       commun en compte deux (4 940 $) - meme convention que le Michigan et le
+       Nebraska.
+
+       LE BAREME EST UNE TABLE DE SEGMENTS, PAS DES TRANCHES CONTINUES. La
+       « TAX RATE SCHEDULE » de l'AR1000ES imprime, pour chaque segment, un
+       montant de base propre au dollar pres - « $0.00 plus 2.0% of the
+       excess over $5,599.99 » jusqu'a 11 199,99 $, puis « $111.00 plus 3.0%
+       » jusqu'a 15 999,99 $, puis « $255.00 plus 3.4% » jusqu'a 26 399,99 $,
+       puis 3,9 % partout au-dessus par paliers de base imprimes : 608,00 $
+       (26 400 $), 748,00 $ (30 000 $), 1 138,00 $ (40 000 $), 1 528,00 $
+       (50 000 $), 1 918,00 $ (60 000 $), 2 308,00 $ (70 000 $), 2 698,00 $
+       (80 001 $), 3 727,00 $ (97 801 $), 3 809,00 $ (100 000 $ et au-dela).
+       Recalculer ces paliers avec des tranches marginales ordinaires (2,0 /
+       3,0 / 3,4 / 3,9 %, en chaine continue depuis zero) donne un chiffre
+       PROCHE mais FAUX au-dela de 94 700,99 $ - verifie le 2026-09-12 : a
+       100 000 $ imposables, une chaine continue donne 3 480,00 $ contre les
+       3 809,00 $ publies, un ecart de 329 $ qui persiste (et ne se resorbe
+       jamais) a tout revenu superieur.
+
+       LE PONT DE 94 701 $ A 97 800,99 $, LA CAUSE DE L'ECART. Une deuxieme
+       table, « TAX RATE SCHEDULE (94,701.00 - 97,800.99) », decoupe cette
+       bande en 31 paliers de 100 $ dont l'impot monte d'environ 14 $ par
+       tranche de 100 $ (3 296,00 $ a 94 701 $, jusqu'a 3 713,00 $ a
+       97 701-97 800,99 $) - une recapture d'environ 14 % de taux marginal sur
+       une bande etroite, avant de revenir a 3,9 % au-dessus. Aucune des cinq
+       autres sources lues pour d'autres Etats n'avait ce mecanisme ; il est
+       reproduit ici segment par segment (31 lignes), pas approxime, parce
+       que l'ecart qu'il cause (329 $) est trop grand pour etre laisse de
+       cote. Moteur : S.incomeTax.bracketTable, .tooling/lib/paie.js et
+       assets/calc-paycheck.js, fonction impotTable ajoutee le 2026-09-12
+       specifiquement pour cette table (le mecanisme habituel de tranches
+       marginales, progressiveTax, ne peut pas exprimer des bases publiees
+       qui ne s'enchainent pas exactement d'un segment au suivant).
+
+       LE MEME BAREME S'APPLIQUE A TOUT LE MONDE, SANS DOUBLER LES SEUILS.
+       Le formulaire AR1000ES calcule l'impot du PRINCIPAL et du CONJOINT
+       dans deux colonnes separees ("PRIMARY" / "SPOUSE"), chacune sur SA
+       PROPRE table de segments imposable - contrairement au Wisconsin, au
+       Nebraska ou a la Caroline du Nord, l'Arkansas ne double pas les seuils
+       pour une declaration commune. C'est un fait rare confirme par une
+       deuxieme source, LegalClarity, « Arkansas Tax Brackets: Rates, Tables,
+       and Deductions », lu le 2026-09-12 : « the tax brackets for these
+       filing statuses are the same in the state of Arkansas ». Ce
+       calculateur ne demande qu'un seul revenu, donc bracketTable est
+       IDENTIQUE pour single, marriedJoint et headOfHousehold ; seule la
+       deduction standard et le credit ci-dessous doublent pour le foyer.
+
+       LE CREDIT D'IMPOT PERSONNEL - ET C'EST UN CREDIT, PAS UNE DEDUCTION.
+       Meme AR1000ES, section « TAX CREDITS » : « 1. Single or Married Filing
+       Separate Forms ... $29 » et « 2. Married Filing Joint Return, Head of
+       Household, Married Filing Separately on the Same Return, or Qualifying
+       Widow(er) with Dependent Child ... $58 ». Comme le Nebraska, ce credit
+       ne s'efface pas avec le revenu - rien dans le document ne prevoit de
+       seuil de degressivite, d'ou phaseOutStart a l'infini et phaseOutRate a
+       zero.
+
+       AUCUN IMPOT MUNICIPAL OU DE COMTE. Arkansas Code § 26-73-103(a)(2)(B),
+       lu via codes.findlaw.com/ar/title-26-taxation/ar-code-sect-26-73-103.html
+       le 2026-09-12 (le site de la legislature d'Arkansas ne publie pas le
+       code annote consultable article par article), verbatim : « A county,
+       municipality, or other local government shall not levy a tax on
+       income. » Aucune ville ni aucun comte d'Arkansas ne peut donc preleve
+       un impot sur le revenu.
+
+       L'ASSURANCE CHOMAGE NE SORT PAS DE LA PAIE. Arkansas Division of
+       Workforce Services, page FAQ, dws.arkansas.gov/workforce-services/
+       unemployment/faq/, lue le 2026-09-12 (HTTP 200), verbatim : « No,
+       deductions are not made from your paycheck. Arkansas employers who are
+       covered by the Arkansas Division of Reemployment law are required to
+       pay a quarterly tax on their payroll. » Meme mecanisme que la plupart
+       des Etats deja publies : rien a soustraire du net a ce titre.
+
+       ⛔ CE QUE CETTE ENTREE NE DIT PAS, ET POURQUOI : rien sur le Married
+       Filing Separately (le calculateur ne propose pas ce statut) ; rien sur
+       les personnes a charge (29 $ chacune selon l'AR1000ES) ni sur l'age
+       65+/aveugle/sourd (29 $ chacun) - le calculateur ne demande ni l'un ni
+       l'autre ; rien sur un eventuel transfert de la deduction inutilisee
+       d'un conjoint sans revenu vers l'autre - aucune source lue ne le
+       precise pour ce formulaire d'estimation.
+       ------------------------------------------------------------------- */
+    arkansas: {
+      name: "Arkansas",
+      abbr: "AR",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 2470,
+          marriedJoint: 4940,
+          headOfHousehold: 2470
+        },
+        bracketTable: (() => {
+          const segments = [
+            { upTo: 5599.99, amount: 0 },
+            { upTo: 11199.99, base: 0, rate: 0.02, from: 5599.99 },
+            { upTo: 15999.99, base: 111, rate: 0.03, from: 11199.99 },
+            { upTo: 26399.99, base: 255, rate: 0.034, from: 15999.99 },
+            { upTo: 29999.99, base: 608, rate: 0.039, from: 26399.99 },
+            { upTo: 39999.99, base: 748, rate: 0.039, from: 29999.99 },
+            { upTo: 49999.99, base: 1138, rate: 0.039, from: 39999.99 },
+            { upTo: 59999.99, base: 1528, rate: 0.039, from: 49999.99 },
+            { upTo: 69999.99, base: 1918, rate: 0.039, from: 59999.99 },
+            { upTo: 80000.99, base: 2308, rate: 0.039, from: 69999.99 },
+            { upTo: 94700.99, base: 2698, rate: 0.039, from: 80000.99 },
+            /* Le pont : 31 lignes de 100 $, imprimees a part sur
+               « TAX RATE SCHEDULE (94,701.00 - 97,800.99) ». */
+            { upTo: 94800.99, amount: 3296 },
+            { upTo: 94900.99, amount: 3310 },
+            { upTo: 95000.99, amount: 3324 },
+            { upTo: 95100.99, amount: 3338 },
+            { upTo: 95200.99, amount: 3352 },
+            { upTo: 95300.99, amount: 3365 },
+            { upTo: 95400.99, amount: 3379 },
+            { upTo: 95500.99, amount: 3393 },
+            { upTo: 95600.99, amount: 3407 },
+            { upTo: 95700.99, amount: 3421 },
+            { upTo: 95800.99, amount: 3435 },
+            { upTo: 95900.99, amount: 3449 },
+            { upTo: 96000.99, amount: 3463 },
+            { upTo: 96100.99, amount: 3477 },
+            { upTo: 96200.99, amount: 3491 },
+            { upTo: 96300.99, amount: 3504 },
+            { upTo: 96400.99, amount: 3518 },
+            { upTo: 96500.99, amount: 3532 },
+            { upTo: 96600.99, amount: 3546 },
+            { upTo: 96700.99, amount: 3560 },
+            { upTo: 96800.99, amount: 3574 },
+            { upTo: 96900.99, amount: 3588 },
+            { upTo: 97000.99, amount: 3602 },
+            { upTo: 97100.99, amount: 3616 },
+            { upTo: 97200.99, amount: 3630 },
+            { upTo: 97300.99, amount: 3643 },
+            { upTo: 97400.99, amount: 3657 },
+            { upTo: 97500.99, amount: 3671 },
+            { upTo: 97600.99, amount: 3685 },
+            { upTo: 97700.99, amount: 3699 },
+            { upTo: 97800.99, amount: 3713 },
+            { upTo: 99999.99, base: 3727, rate: 0.039, from: 97800.99 },
+            { upTo: null, base: 3809, rate: 0.039, from: 99999.99 }
+          ];
+          /* Meme table pour les trois statuts : l'Arkansas ne double pas les
+             seuils pour une declaration commune (voir le commentaire
+             ci-dessus). */
+          return { single: segments, marriedJoint: segments, headOfHousehold: segments };
+        })(),
+        taxCredit: {
+          base:          { single: 29, marriedJoint: 58, headOfHousehold: 58 },
+          phaseOutStart: { single: Infinity, marriedJoint: Infinity, headOfHousehold: Infinity },
+          phaseOutRate:  0
+        }
+      }
     }
   }
 };

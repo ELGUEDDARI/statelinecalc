@@ -167,10 +167,33 @@
         sd = (sd || 0) + ((input.filingStatus in pe) ? pe[input.filingStatus] : pe.single);
       }
       var imposableEtat = Math.max(0, baseEtat - (sd || 0));
-      stateTax = progressiveTax(
-        imposableEtat,
-        state.incomeTax.brackets[input.filingStatus] || state.incomeTax.brackets.single
-      );
+      /* Arkansas is the first state here whose RATE SCHEDULE itself is
+         published as a table of segments rather than continuous marginal
+         bands: AR1000ES 2026, Tax Rate Schedule. Each segment prints its own
+         base tax to the dollar, and a narrow bridge table between $94,701
+         and $97,800.99 raises tax by roughly 14% per $100 - a recapture
+         mechanism that leaves tax about $329 higher at $100,000 and above
+         than a continuous marginal calculation would give. Recomputing this
+         as ordinary bands understates tax by that much at every income from
+         $100,000 up, not just inside the narrow bridge. Added 2026-09-12. */
+      var bt = state.incomeTax.bracketTable;
+      if (bt) {
+        var btSegs = (input.filingStatus in bt) ? bt[input.filingStatus] : bt.single;
+        stateTax = 0;
+        for (var bi = 0; bi < btSegs.length; bi++) {
+          var bs = btSegs[bi];
+          if (bs.upTo === null || imposableEtat <= bs.upTo) {
+            stateTax = (bs.amount !== undefined) ? bs.amount
+              : Math.max(0, bs.base + bs.rate * (imposableEtat - bs.from));
+            break;
+          }
+        }
+      } else {
+        stateTax = progressiveTax(
+          imposableEtat,
+          state.incomeTax.brackets[input.filingStatus] || state.incomeTax.brackets.single
+        );
+      }
       /* A STEP, not a slope. Ohio owes nothing up to $26,050 of taxable income
          and then "$332.00 plus 2.75% of the amount in excess of $26,050"
          (Ohio Revised Code 5747.02, for 2026 and thereafter), so the dollar

@@ -61,7 +61,7 @@
    ========================================================================= */
 
 /* Date du dernier controle HTTP + motif de TOUTES les URL de ce fichier. */
-const VERIFIE_LE = "2026-09-11";
+const VERIFIE_LE = "2026-09-12";
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -256,6 +256,27 @@ const PAR_ETAT = {
       titre: "Wisconsin Department of Revenue &mdash; Tax Rates FAQ",
       perime: "it still showed only the 2025 brackets on the day we checked, with no 2026 " +
               "column at all, so we read the 2026 figures from the Form 1-ES instructions instead" }
+  ],
+  arkansas: [
+    { type: "document",
+      url: "https://www.dfa.arkansas.gov/wp-content/uploads/2026_Final_AR1000ES.pdf",
+      titre: "Arkansas Department of Finance and Administration &mdash; 2026 AR1000ES, " +
+             "Estimated Tax Declaration Vouchers and Instructions (PDF)",
+      quoi: "the 2026 tax rate schedule, including its $94,701&ndash;$97,800.99 bridge table, " +
+            "the $2,470 standard deduction and the $29/$58 tax credit",
+      motif: ["2,470", "3,809.00"] },
+    { type: "document",
+      url: "https://dws.arkansas.gov/workforce-services/unemployment/faq/",
+      titre: "Arkansas Division of Workforce Services &mdash; Unemployment Insurance FAQ",
+      quoi: "the rule that unemployment insurance is an employer-paid tax, not a payroll " +
+            "deduction",
+      motif: ["deductions are not made from your paycheck"] },
+    { type: "document",
+      url: "https://codes.findlaw.com/ar/title-26-taxation/ar-code-sect-26-73-103.html",
+      titre: "Arkansas Code &sect; 26-73-103, via FindLaw",
+      quoi: "the statute that bars a city, county or other local government from levying an " +
+            "income tax",
+      motif: ["shall not levy a tax on income"] }
   ]
 };
 

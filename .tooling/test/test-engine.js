@@ -697,6 +697,83 @@ check("WI : la deduction glissante n'existe que pour le Wisconsin",
 check("WI : l'exemption personnelle n'existe que pour le Wisconsin",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 1, 0);
 
+/* --- ARKANSAS -----------------------------------------------------------
+   Source, lue le 2026-09-12 : "State of Arkansas, Estimated Tax Declaration
+   Vouchers and Instructions for Tax Year 2026" (AR1000ES), Tax Rate Schedule
+   et sa deuxieme table "94,701.00 - 97,800.99". Voir data/rates-2026.js pour
+   le detail complet. Les attendus ci-dessous sont recopies A LA MAIN depuis
+   le texte imprime du formulaire (base + % + seuil), independamment de
+   impotTable() : ce test verifie le moteur contre le document, pas contre
+   lui-meme. */
+function impotAR_main(imposable) {
+  var seg = [
+    [0, 5599.99, 0, 0, 0],
+    [5600, 11199.99, 0, 0.02, 5599.99],
+    [11200, 15999.99, 111, 0.03, 11199.99],
+    [16000, 26399.99, 255, 0.034, 15999.99],
+    [26400, 29999.99, 608, 0.039, 26399.99],
+    [30000, 39999.99, 748, 0.039, 29999.99],
+    [40000, 49999.99, 1138, 0.039, 39999.99],
+    [50000, 59999.99, 1528, 0.039, 49999.99],
+    [60000, 69999.99, 1918, 0.039, 59999.99],
+    [70000, 80000.99, 2308, 0.039, 69999.99],
+    [80001, 94700.99, 2698, 0.039, 80000.99],
+    [97801, 99999.99, 3727, 0.039, 97800.99],
+    [100000, Infinity, 3809, 0.039, 99999.99]
+  ];
+  for (var i = 0; i < seg.length; i++) {
+    if (imposable >= seg[i][0] && imposable <= seg[i][1]) {
+      return seg[i][2] + seg[i][3] * (imposable - seg[i][4]);
+    }
+  }
+  return null; // dans le pont 94 701-97 800,99 : hors de ce test, verifie a part
+}
+
+check("AR : $0.00 plus 2.0% jusqu'a 11 199,99 $ (base publiee)",
+  impotAR_main(11199.99), 112.00, 0.01);
+check("AR : $111.00 plus 3.0% jusqu'a 15 999,99 $ (base publiee)",
+  impotAR_main(15999.99), 255.00, 0.01);
+check("AR : impot d'Etat sur 25 000 $ imposables, publie 561,00 $ (moins credit)",
+  R.states.arkansas.incomeTax.bracketTable.single
+    .reduce(function (r, s) { if (r !== null) return r;
+      if (s.upTo === null || 25000 <= s.upTo) return s.amount !== undefined ? s.amount
+        : s.base + s.rate * (25000 - s.from); return null; }, null),
+  561.00, 0.01);
+check("AR : impot d'Etat sur 75 000 $ imposables (2 308 + 3,9% sur 5 000,01)",
+  impotAR_main(75000), 2503.00, 0.01);
+check("AR : impot d'Etat sur 100 000 $ imposables, la ou une chaine continue " +
+  "se tromperait de 329 $ (3 809,00 $ publies)",
+  impotAR_main(100000), 3809.00, 0.01);
+check("AR : le pont 94 701-97 800,99 est bien reproduit (31 lignes, +14 $/100 $)",
+  (function () {
+    var s = R.states.arkansas.incomeTax.bracketTable.single;
+    var first = s.filter(function (x) { return x.amount === 3296; }).length;
+    var last = s.filter(function (x) { return x.amount === 3713; }).length;
+    return (first === 1 && last === 1) ? 1 : 0;
+  })(), 1, 0);
+check("AR : deduction standard 2 470 $ par contribuable, 4 940 $ en commun",
+  R.states.arkansas.incomeTax.standardDeduction.single
+    + R.states.arkansas.incomeTax.standardDeduction.single,
+  R.states.arkansas.incomeTax.standardDeduction.marriedJoint, 0);
+check("AR : credit 29 $ celibataire, 58 $ en commun ou chef de famille",
+  R.states.arkansas.incomeTax.taxCredit.base.single
+    + R.states.arkansas.incomeTax.taxCredit.base.single,
+  R.states.arkansas.incomeTax.taxCredit.base.marriedJoint, 0);
+check("AR : le meme bareme s'applique aux trois statuts (pas de seuils doubles)",
+  R.states.arkansas.incomeTax.bracketTable.single === R.states.arkansas.incomeTax.bracketTable.marriedJoint
+  && R.states.arkansas.incomeTax.bracketTable.single === R.states.arkansas.incomeTax.bracketTable.headOfHousehold
+  ? 1 : 0, 1, 0);
+check("AR : impot d'Etat complet sur 75 000 $ brut, celibataire, apres deduction et credit",
+  calcul("arkansas", 75000).etat,
+  impotAR_main(75000 - 2470) - 29, 0.01);
+check("AR : aucun programme salarie retenu (assurance chomage employeur seul)",
+  (R.states.arkansas.employeePrograms || []).length, 0, 0);
+check("AR : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
+  calcul("arkansas", 5000).etat >= 0 ? 1 : 0, 1, 0);
+check("AR : la table de segments (bracketTable) n'existe que pour l'Arkansas",
+  Object.keys(R.states).filter(function (k) { return R.states[k].incomeTax.bracketTable; }).length,
+  1, 0);
+
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

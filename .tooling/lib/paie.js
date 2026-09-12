@@ -93,6 +93,33 @@ function marcheEtat(S, imposable) {
   return imposable > m.over ? m.add : 0;
 }
 
+/* L'Arkansas est le premier Etat ou le BAREME LUI-MEME, pas seulement la
+   deduction, est publie comme une table de segments plutot que des tranches
+   marginales continues. AR1000ES 2026, Tax Rate Schedule : chaque segment
+   imprime son PROPRE montant de base au dollar pres, et ces montants ne
+   s'enchainent pas exactement d'un segment au suivant (arrondi interne au
+   dollar de l'agence). Pire : entre 94 701 $ et 97 800,99 $, une table de
+   « pont » a 31 lignes de 100 $ each augmente l'impot d'environ 14 % par
+   tranche de 100 $ - un mecanisme de recapture qui laisse l'impot environ
+   329 $ plus haut au-dela de ce pont qu'un calcul marginal continu ne le
+   donnerait. Verifie le 12/09/2026 : recalculer avec des tranches marginales
+   ordinaires sous-estime l'impot de 329 $ a tout revenu imposable de
+   100 000 $ et au-dela - une erreur qui grandit avec le revenu, pas un
+   arrondi. C'est pourquoi cette table reprend le document au dollar pres,
+   segment par segment, plutot que de recalculer une pente. Meme forme que
+   deductionGlissante (chaque segment est soit un montant fixe, soit une
+   droite base + taux x (revenu - depart)), mais en ADDITION : l'impot monte
+   avec le revenu, il ne descend pas. */
+function impotTable(segments, imposable) {
+  for (const s of segments) {
+    if (s.upTo === null || imposable <= s.upTo) {
+      return s.amount !== undefined ? s.amount
+        : Math.max(0, s.base + s.rate * (imposable - s.from));
+    }
+  }
+  return 0;
+}
+
 /* Certains Etats ne reduisent pas le revenu imposable : ils calculent l'impot
    plein, puis en retranchent un CREDIT qui s'efface a mesure que le revenu
    monte. L'Utah est le premier ici - Publication 14, schedules 1 a 8 :
@@ -131,9 +158,12 @@ function calcul(cle, brut, statut = "single", retraitePct = 0) {
   /* La Pennsylvanie taxe le versement 401(k) : sa base est le brut. */
   const baseEtat = S.incomeTax.taxesRetirementDeferrals ? brut : apresPretax;
   const imposableEtat = Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat));
+  const table = S.incomeTax.bracketTable;
   const etat = S.incomeTax.hasIncomeTax
-    ? Math.max(0, progressiveTax(imposableEtat,
-                                 S.incomeTax.brackets[statut] || S.incomeTax.brackets.single)
+    ? Math.max(0, (table
+                    ? impotTable((statut in table) ? table[statut] : table.single, imposableEtat)
+                    : progressiveTax(imposableEtat,
+                                     S.incomeTax.brackets[statut] || S.incomeTax.brackets.single))
                   + marcheEtat(S, imposableEtat)
                   - creditEtat(S, statut, baseEtat))
     : 0;
@@ -167,4 +197,4 @@ const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFra
 const c0 = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
 module.exports = { R, HEURES, progressiveTax, deductionEtat, creditEtat, marcheEtat,
-                   calcul, c2, c0 };
+                   impotTable, calcul, c2, c0 };

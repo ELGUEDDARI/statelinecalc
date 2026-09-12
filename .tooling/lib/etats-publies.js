@@ -23,6 +23,7 @@ const ETATS_50 = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Col
 
 /* Nom affiche -> segment d'URL. Un Etat absent d'ici s'affiche en texte brut. */
 const PUBLIES = {
+  Arkansas: "arkansas",
   Florida: "florida",
   Georgia: "georgia",
   Hawaii: "hawaii",
