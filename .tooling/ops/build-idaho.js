@@ -210,7 +210,7 @@ const html = `<!DOCTYPE html>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
-<script src="/assets/analytics.js"></script>
+<script src="/assets/analytics.js" defer></script>
 <title>Idaho (ID) Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
 <meta name="description" content="Free Idaho (ID) paycheck calculator, 2026. A flat 5.3% rate above a $16,100 (single) or $32,200 (joint) threshold &mdash; and head of household shares the single threshold.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/idaho/">
@@ -693,8 +693,8 @@ ${colonne("Idaho")}
 
 ${piedDePage()}
 
-<script src="/data/rates-2026.js"></script>
-<script src="/assets/calc-paycheck.js"></script>
+<script src="/data/rates-2026.js" defer></script>
+<script src="/assets/calc-paycheck.js" defer></script>
 </body>
 </html>
 `;

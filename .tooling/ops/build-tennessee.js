@@ -168,7 +168,7 @@ const html = `<!DOCTYPE html>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
-<script src="/assets/analytics.js"></script>
+<script src="/assets/analytics.js" defer></script>
 <meta name="msvalidate.01" content="6BC658742CD039312B23F62F699F2B93">
 <title>${TITRE}</title>
 <meta name="description" content="${q(DESC)}">
@@ -462,8 +462,8 @@ ${piedDePage()}
      calculateur ne s'initialise pas, le formulaire part en navigation normale et
      le visiteur PERD sa page en cliquant Calculate. Aucun test unitaire ne l'a vu ;
      c'est le pilotage au navigateur qui a leve l'erreur. -->
-<script src="/data/rates-2026.js"></script>
-<script src="/assets/calc-paycheck.js"></script>
+<script src="/data/rates-2026.js" defer></script>
+<script src="/assets/calc-paycheck.js" defer></script>
 </body>
 </html>
 `;

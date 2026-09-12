@@ -122,7 +122,7 @@ function page(cle) {
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
-<script src="/assets/analytics.js"></script>
+<script src="/assets/analytics.js" defer></script>
 <title>${nom} Salary to Hourly Calculator 2026 — After Tax</title>
 <meta name="description" content="Convert ${article(nom)} ${nom} salary to an hourly rate, 2026. $60,000 a year is $28.85 an hour gross &mdash; $${S60.netH} after tax in ${nom}.">
 <link rel="canonical" href="${url}">
@@ -391,8 +391,8 @@ ${colonne(nom)}
 
 ${piedDePage()}
 
-<script src="/data/rates-2026.js"></script>
-<script src="/assets/calc-paycheck.js"></script>
+<script src="/data/rates-2026.js" defer></script>
+<script src="/assets/calc-paycheck.js" defer></script>
 
 </body>
 </html>
