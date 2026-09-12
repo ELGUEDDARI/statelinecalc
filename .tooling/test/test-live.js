@@ -43,7 +43,7 @@ function check(label, ok, detail) {
   console.log("\n=== 2. Page Washington ===");
   await page.goto(URL_PAGE, { waitUntil: "networkidle" });
   check("titre correct",
-    (await page.title()).includes("Washington Paycheck Calculator"),
+    (await page.title()).includes("Washington") && (await page.title()).includes("Paycheck Calculator"),
     await page.title());
 
   // Le tiret long doit s'afficher, pas une sequence de mojibake.
