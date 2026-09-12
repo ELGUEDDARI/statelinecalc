@@ -115,7 +115,7 @@ const faq = [
    "overall. Those figures are outside what a paycheck calculator can honestly tell you."]
 ];
 
-const titre = "Compare Take-Home Pay Between Two States (2026)";
+const titre = "Paycheck Calculator: Compare Take-Home Pay Between Two States (2026)";
 /* Sous ~155-160 caracteres : au-dela, Google tronque la description dans la
    SERP, souvent en plein milieu d'un mot. Controle du 12/09/2026. */
 const desc = "Compare " + A_NOM + " vs " + B_NOM + ", or any two of the " + Object.keys(PUBLIES).length +
@@ -218,7 +218,7 @@ ${entete(null)}
   </ol>
 </nav>
 
-  <h1>Compare Take-Home Pay Between Two States</h1>
+  <h1>Paycheck Calculator: Compare Take-Home Pay Between Two States</h1>
 
   <div class="answer">
     <p><strong>Moving your paycheck to another state only changes the state part.</strong>
