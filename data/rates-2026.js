@@ -1448,6 +1448,140 @@ const RATES_2026 = {
           phaseOutRate:  0
         }
       }
+    },
+
+    /* ------------------------------------------------------------------ *
+       IDAHO, lu le 2026-09-12.
+
+       ⚠️ tax.idaho.gov ET legislature.idaho.gov ont refuse la connexion
+       depuis cette machine sur TROIS methodes distinctes le 2026-09-12 :
+       (1) curl direct -> ERR_CONNECTION_TIMED_OUT / exit 28 (TCP vers
+       164.165.66.150:443 jamais accepte, verifie avec curl -v) ; (2) curl
+       force IPv4 -> meme resultat ; (3) l'outil WebFetch (ECONNREFUSED) et un
+       Chromium reel headless via lire-source.js (ERR_CONNECTION_TIMED_OUT).
+       sos.idaho.gov, meme TLD, a repondu HTTP 200 normalement le meme jour :
+       ce n'est donc pas un blocage de idaho.gov entier, mais des serveurs
+       fiscaux/legislatifs precis, injoignables depuis ce reseau. Regle des
+       3 tentatives appliquee : les deux documents officiels ci-dessous ont
+       ete lus dans leur instantane Internet Archive (meme detour que
+       l'Utah le 02/09/2026 pour Publication 14), qui repond HTTP 200 et sert
+       un PDF identique a l'original — pas un resume tiers.
+
+       1. « Table for Percentage Computation Method of Withholding », Idaho
+          State Tax Commission, EPB00744 (revision 07-23-2026), lu via
+          web.archive.org/web/2026/https://tax.idaho.gov/wp-content/uploads/pubs/EPB00744/EPB00744_07-23-2026.pdf
+          (application/pdf, 316 188 octets, HTTP 200 le 2026-09-12). Seule
+          source retenue pour le mecanisme de paie : elle porte
+          explicitement l'annee 2026. Verbatim, periode ANNUELLE :
+            Single Persons Including Head of Household — « If wages after
+            subtracting child tax credit allowances are: More than $1 ...
+            Less than $16,100 ... $0.00 ... $16,100 [et au-dela] 5.3% of the
+            amount over $16,100 ».
+            Married Persons — memes mots, seuil « $32,200 ».
+          Ces deux seuils sont EXACTEMENT les deductions standard federales
+          2026 declarees en tete de ce fichier (IRS Rev. Proc. 2025-32) :
+          l'Idaho retient sur le revenu apres deduction standard federale,
+          comme le Montana.
+          ⚠️ Le chef de famille N'A PAS de colonne separee dans cette table :
+          il est explicitement regroupe avec le celibataire (« Single Persons
+          Including Head of Household »), au seuil de 16 100 $ — different du
+          traitement federal (24 150 $) et du formulaire annuel de
+          declaration pour l'annee d'imposition 2025 (ou il etait regroupe
+          avec le conjoint, voir point 3). C'est la table de retenue 2026 —
+          celle qui gouverne ce qui sort effectivement d'un salaire — qui
+          fait foi ici.
+
+       2. Idaho State Tax Commission, communique de presse « Withholding
+          tables updated for 2026 », date affichee « Friday July 31, 2026 »,
+          lu via
+          web.archive.org/web/2026/https://tax.idaho.gov/pressrelease/withholding-tables-updated-for-2026/
+          (HTTP 200 le 2026-09-12), verbatim : « We've updated the income tax
+          withholding tables for 2026. The Idaho Child Tax Credit has
+          sunsetted per Idaho Code section 63-3029L. » Confirme que le
+          credit d'impot pour enfant PROPRE A L'IDAHO (205 $/enfant,
+          distinct du credit federal, expire le 1er janvier 2026 par sa
+          propre clause d'extinction) ne s'applique plus a l'annee
+          d'imposition 2026 — d'ou l'absence de toute « child tax credit
+          allowance » non nulle dans notre moteur.
+
+       3. Idaho Code 63-3024, « Individuals' tax and tax on estates and
+          trusts » — legislature.idaho.gov injoignable sur les memes trois
+          methodes que ci-dessus le 2026-09-12 ; texte de loi lu par extrait
+          indexe (WebSearch), verbatim, concordant sur plusieurs miroirs
+          juridiques : « computed at the rate of five and three-tenths
+          percent (5.3%) of taxable income over two thousand five hundred
+          dollars ($2,500) » (celibataire), « over five thousand dollars
+          ($5,000) » (declaration commune), « a return of a surviving
+          spouse ... and a head of household ... shall be treated as a
+          joint return ». Ces montants de 1998 sont indexes chaque annee sur
+          l'IPC par la Commission (Idaho Code 63-3024A : « the state tax
+          commission shall prescribe a factor ... so that inflation will
+          not result in a tax increase ») — le montant EFFECTIF pour 2026
+          est celui de la table de retenue ci-dessus (16 100 $ / 32 200 $),
+          pas le montant brut de la loi. Pour comparaison, le formulaire
+          annuel EIN00046 (revision 03-02-2026, tax year 2025, meme detour
+          Wayback, HTTP 200 le 2026-09-12) donnait, verbatim, dans son
+          « Worksheet » pour la ligne « Tax » : « Single or married filing
+          separately, enter $4,811 » / « Married filing jointly, head of
+          household, or qualifying surviving spouse, enter $9,622 » — la
+          valeur 2026 (16 100 $/32 200 $) est bien plus elevee parce que 2026
+          est la premiere annee ou le DOR fait correspondre directement le
+          seuil de retenue a la deduction standard federale OBBBA-augmentee
+          (16 100 $/32 200 $, contre 15 750 $/31 500 $ pour 2025), un
+          changement de methode de calcul publie par l'agence, pas une
+          erreur de recopie : les deux nombres 2026 sont, au dollar pres,
+          ceux que federal.standardDeduction declare deja en tete de ce
+          fichier.
+
+       TAUX. 5,3 % depuis le 1er janvier 2025 (House Bill 40, signee mars
+       2025 par le gouverneur Brad Little — « the largest income tax cut in
+       Idaho history », recherche du 2026-09-12), inchange pour l'annee
+       d'imposition 2026 : aucune loi de baisse supplementaire trouvee pour
+       2026 (House Bill 559, 2026, ne touche que la conformite federale des
+       deductions — deduction seniors, pourboires, interets sur pret auto,
+       heures supplementaires — pas le taux d'imposition).
+
+       PAS DE DEDUCTION STANDARD DISTINCTE A CONSTRUIRE : le seuil de
+       16 100 $/32 200 $ EST directement la deduction a soustraire (comme le
+       Montana), donc standardDeduction porte ces deux nombres et brackets
+       n'a qu'une seule tranche, a taux plein, au-dela.
+
+       ASSURANCE CHOMAGE — Idaho Department of Labor, « Handbook for
+       Businesses, Unemployment Insurance Tax Information » (date de
+       couverture 11/5/2025), lu via
+       web.archive.org/web/2026/https://www.labor.idaho.gov/wp-content/uploads/2025/11/Handbook_Tax-information_Nov.-2025-1.pdf
+       (HTTP 200 le 2026-09-12), page 2, verbatim : « State Unemployment Tax
+       (SUTA) is an employer-paid tax paid into the unemployment insurance
+       trust fund ». Rien a soustraire du salaire de l'employe.
+
+       ⛔ CE QUE CETTE ENTREE NE DIT PAS : rien sur un impot municipal ou de
+       comte. Aucune des sources lues ne l'affirme en toutes lettres, donc la
+       page ne l'affirme pas non plus (meme regle que le Montana et le
+       Wisconsin). Rien non plus sur le statut Married Filing Separately (non
+       propose par notre calculateur) ni sur les personnes a charge/l'age
+       65+ (le calculateur ne les demande pas).
+       ------------------------------------------------------------------- */
+    idaho: {
+      name: "Idaho",
+      abbr: "ID",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Identiques a federal.standardDeduction pour single/marriedJoint,
+           et pour cause : voir le commentaire. headOfHousehold reprend le
+           montant "single" parce que EPB00744 regroupe explicitement les
+           deux dans sa colonne "Single Persons Including Head of
+           Household" — ce n'est pas un oubli, c'est la table 2026. */
+        standardDeduction: {
+          single: 16100,
+          marriedJoint: 32200,
+          headOfHousehold: 16100
+        },
+        brackets: {
+          single:          [[Infinity, 0.053]],
+          marriedJoint:    [[Infinity, 0.053]],
+          headOfHousehold: [[Infinity, 0.053]]
+        }
+      }
     }
   }
 };

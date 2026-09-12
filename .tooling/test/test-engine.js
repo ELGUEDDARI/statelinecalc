@@ -774,6 +774,59 @@ check("AR : la table de segments (bracketTable) n'existe que pour l'Arkansas",
   Object.keys(R.states).filter(function (k) { return R.states[k].incomeTax.bracketTable; }).length,
   1, 0);
 
+/* --- IDAHO ----------------------------------------------------------------
+   Source, lue le 12/09/2026 : "Table for Percentage Computation Method of
+   Withholding", Idaho State Tax Commission, EPB00744 (revision 07-23-2026),
+   periode ANNUELLE : 5,3% du salaire au-dela de 16 100 $ (celibataire ou chef
+   de famille) ou 32 200 $ (commun). Voir data/rates-2026.js pour le detail
+   complet et l'obstacle reseau contourne par Internet Archive. Les attendus
+   ci-dessous sont recalcules A LA MAIN a partir du texte imprime de la table,
+   independamment du moteur : ce test verifie le moteur contre le document,
+   pas contre lui-meme. */
+function impotID_main(brut, seuil) {
+  return Math.max(0, brut - seuil) * 0.053;
+}
+check("ID : rien retenu sous le seuil de 16 100 $, celibataire",
+  impotID_main(16000, 16100), 0, 0);
+check("ID : premier dollar imposable a 16 101 $, celibataire",
+  impotID_main(16101, 16100), 0.05, 0.01);
+check("ID : impot d'Etat sur 25 000 $ brut, celibataire (25 000 - 16 100) x 5,3%",
+  impotID_main(25000, 16100), 471.70, 0.01);
+check("ID : impot d'Etat sur 75 000 $ brut, celibataire (75 000 - 16 100) x 5,3%",
+  impotID_main(75000, 16100), 3121.70, 0.01);
+check("ID : impot d'Etat sur 75 000 $ brut, commun (75 000 - 32 200) x 5,3%",
+  impotID_main(75000, 32200), 2268.40, 0.01);
+check("ID : le moteur retombe sur le calcul a la main, celibataire 75 000 $",
+  calcul("idaho", 75000).etat, impotID_main(75000, 16100), 0.01);
+check("ID : le moteur retombe sur le calcul a la main, commun 75 000 $",
+  calcul("idaho", 75000, "marriedJoint").etat, impotID_main(75000, 32200), 0.01);
+check("ID : le chef de famille partage le seuil du celibataire, PAS celui du " +
+  "conjoint (EPB00744 : \"Single Persons Including Head of Household\")",
+  R.states.idaho.incomeTax.standardDeduction.headOfHousehold,
+  R.states.idaho.incomeTax.standardDeduction.single, 0);
+check("ID : le seuil chef de famille n'est PAS celui du conjoint",
+  R.states.idaho.incomeTax.standardDeduction.headOfHousehold ===
+  R.states.idaho.incomeTax.standardDeduction.marriedJoint ? 1 : 0, 0, 0);
+check("ID : impot identique single et head of household sur 75 000 $",
+  calcul("idaho", 75000, "headOfHousehold").etat,
+  calcul("idaho", 75000, "single").etat, 0.005);
+check("ID : le seuil 2026 vaut la deduction standard federale 2026, single",
+  R.states.idaho.incomeTax.standardDeduction.single,
+  R.federal.standardDeduction.single, 0);
+check("ID : le seuil 2026 vaut la deduction standard federale 2026, commun",
+  R.states.idaho.incomeTax.standardDeduction.marriedJoint,
+  R.federal.standardDeduction.marriedJoint, 0);
+check("ID : un seul taux, 5,3%, quel que soit le revenu (pas de palier)",
+  R.states.idaho.incomeTax.brackets.single.length, 1, 0);
+check("ID : le taux unique est bien 5,3%",
+  R.states.idaho.incomeTax.brackets.single[0][1], 0.053, 0);
+check("ID : aucun programme salarie retenu (assurance chomage employeur seul)",
+  (R.states.idaho.employeePrograms || []).length, 0, 0);
+check("ID : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
+  calcul("idaho", 5000).etat >= 0 ? 1 : 0, 1, 0);
+check("ID : le seuil d'imposition tombe un dollar apres le seuil de 16 100 $",
+  calcul("idaho", 16100).etat === 0 && calcul("idaho", 16101).etat > 0 ? 1 : 0, 1, 0);
+
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

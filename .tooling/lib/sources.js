@@ -289,7 +289,18 @@ const SANS_LIEN = {
      Akamai « Access Denied ». Three methods, three refusals — so we say so
      instead of pretending an agency home page proves the point. */
   nevada: "leg.state.nv.us, which publishes NRS chapter 612, refuses automated " +
-          "requests with HTTP 403, and so do the state&rsquo;s own employment pages"
+          "requests with HTTP 403, and so do the state&rsquo;s own employment pages",
+  /* Idaho, 12/09/2026: tax.idaho.gov and legislature.idaho.gov timed out on
+     three separate methods from this machine (direct curl, IPv4-forced curl,
+     a real headless Chromium) while sos.idaho.gov, the same .gov domain,
+     answered normally the same day &mdash; a block on specific state
+     servers, not the whole TLD. Both documents were still read, from their
+     Internet Archive snapshots (the same PDFs, HTTP 200 there), so the
+     figures on this page are sourced and dated; we just have no link from
+     this machine that we have verified ourselves. */
+  idaho: "tax.idaho.gov and legislature.idaho.gov time out on every automated " +
+         "method from this machine, though the same figures were read from their " +
+         "Internet Archive snapshots"
 };
 
 const MOIS = ["January", "February", "March", "April", "May", "June", "July",
