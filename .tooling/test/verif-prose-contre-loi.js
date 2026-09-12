@@ -63,6 +63,17 @@ function utahSelonLaLoi(salaire, marie) {
 
 const nb = t => Number(String(t).replace(/[$,]/g, ""));
 
+/* ------------------------------------------------------------------ IDAHO --
+   EPB00744 (revision 07-23-2026), periode annuelle, verbatim : « Single
+   Persons Including Head of Household ... Less than $16,100 ... $0.00 ...
+   $16,100 [and above] 5.3% of the amount over $16,100 » ; « Married Persons
+   ... $32,200 ... 5.3% of the amount over $32,200 ». Un seul taux, deux
+   seuils, le chef de famille partage celui du celibataire. */
+function idahoSelonLaLoi(salaire, statut) {
+  const seuil = statut === "marriedJoint" ? 32200 : 16100;
+  return Math.max(0, salaire - seuil) * 0.053;
+}
+
 /* --------------------------------------------------------------- MONTANA --
    MCA 15-30-2103 (Temporary, tax year 2026), verbatim sur la page : 4,7 % sur
    les premiers 47 500 $ de revenu imposable du Montana (celibataire),
@@ -261,6 +272,44 @@ function wisconsinSelonLaLoi(salaire, statut) {
     wiTexte, "less 12% of the amount over");
   present("la page previent que la page de taux du DOR est perimee",
     wiTexte, "still showed only the 2025 brackets");
+
+  console.log("\n=== IDAHO : la prose et le tableau, contre EPB00744 (2026) ===");
+  const id = await get("https://statelinecalc.com/paycheck-calculator/idaho/");
+  const idTexte = id.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+
+  check("impot d'Etat sur 25 000, celibataire", 471.70, idahoSelonLaLoi(25000), 0.01);
+  check("impot d'Etat sur 75 000, celibataire", 3121.70, idahoSelonLaLoi(75000), 0.01);
+  check("impot d'Etat sur 75 000, commun", 2268.40, idahoSelonLaLoi(75000, "marriedJoint"), 0.01);
+  check("impot d'Etat sur 75 000, chef de famille (meme seuil que celibataire)",
+    3121.70, idahoSelonLaLoi(75000, "headOfHousehold"), 0.01);
+  check("impot d'Etat sur 250 000, celibataire", 12396.70, idahoSelonLaLoi(250000), 0.01);
+  check("rien retenu un dollar sous le seuil de 16 100 $",
+    idahoSelonLaLoi(16100), 0, 0.001);
+  check("le premier dollar imposable est bien retenu a 16 101 $",
+    idahoSelonLaLoi(16101), 0.053, 0.001);
+
+  const idLignes = id.split("<tr>").slice(1)
+    .map(b => [...b.matchAll(/<td[^>]*>(?:<strong>)?([^<]+)/g)].map(m => m[1].trim()))
+    .filter(c => c.length >= 6 && c[0].startsWith("$") && !c[0].includes("."));
+  let ecartsId = 0;
+  for (const c of idLignes) {
+    if (Math.abs(nb(c[3]) - idahoSelonLaLoi(nb(c[0]))) > 1) {
+      ecartsId++;
+      console.log("  ECHEC | tableau Idaho a " + c[0] + " : page " + c[3]
+        + ", loi " + idahoSelonLaLoi(nb(c[0])).toFixed(2));
+    }
+  }
+  if (ecartsId) fail++; else pass++;
+  console.log("  %s | les %d lignes du tableau servi contre la loi ecrite a la main",
+    ecartsId ? "ECHEC" : "OK   ", idLignes.length);
+
+  present("le taux plat 5,3 % est bien celui affiche", idTexte, "5.3%");
+  present("la page dit que le chef de famille partage le seuil du celibataire",
+    idTexte, "shares the single threshold");
+  present("la page cite l'employeur seul pour l'assurance chomage",
+    idTexte, "employer-paid tax paid into the unemployment insurance trust fund");
+  present("la page dit que tax.idaho.gov n'a pas repondu depuis cette machine",
+    idTexte, "would not answer a direct connection");
 
   console.log("\n=== PROSE CONTRE LOI : " + pass + " OK, " + fail + " ECHEC ===\n");
   process.exit(fail === 0 ? 0 : 1);
