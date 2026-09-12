@@ -198,7 +198,7 @@ const faq = [
 
   ["Why is my Wisconsin paycheck smaller than this calculator says?",
    "The usual reasons - health insurance premiums and other pre-tax deductions come out before "
-   + "tax and are not modelled here, and your employer withholds from the Form WT-4 you filed, "
+   + "tax and are not modeled here, and your employer withholds from the Form WT-4 you filed, "
    + "not from your actual tax liability. One trap specific to Wisconsin: if you search for the "
    + "state's own tax rate page rather than a tax form, you may land on "
    + "revenue.wi.gov's general Tax Rates FAQ, which still showed only the 2025 brackets when we "

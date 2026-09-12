@@ -205,7 +205,7 @@ const faq = [
    + "on a pay stub, so the table counts them."]
 ];
 
-const titre = D + " Salary: Take-Home Pay in " + N + " States, and What Changed in 2026";
+const titre = D + " Salary: Take-Home Pay by State (2026)";
 const desc = "A " + D + " salary keeps $" + c0(bas.net) + " to $" + c0(haut.net) + " after tax "
   + "depending on the state. " + N + " states ranked, plus the 2026 tax cuts in dollars: "
   + gainMax.nom + " saves $" + c0(gainMax.gain) + ", " + gainMin.nom + " $" + c0(gainMin.gain) + ".";

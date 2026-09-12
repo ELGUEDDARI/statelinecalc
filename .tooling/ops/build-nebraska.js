@@ -200,7 +200,7 @@ const faq = [
    + "from the tables in Circular EN, which use their own rates — 2.26% through 4.60% — and a "
    + "withholding allowance value, so the amount held back is an approximation of the tax rather "
    + "than the tax itself. General: health insurance premiums and other benefit deductions come "
-   + "out before tax and are not modelled here, and a second job pushes your federal withholding "
+   + "out before tax and are not modeled here, and a second job pushes your federal withholding "
    + "up."]
 ];
 

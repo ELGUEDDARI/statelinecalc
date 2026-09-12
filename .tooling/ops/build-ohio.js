@@ -247,7 +247,7 @@ const faq = [
    "In Ohio there are usually three reasons, in this order. Your city may well levy a "
    + "municipal income tax — " + MUNI_NB + " Ohio municipalities did so in " + MUNI_ANNEE
    + ", per the Department's own Table LG-11 — which is administered by the city rather than the "
-   + "state and is not modelled here. A city may set up to 1% on its own authority and more if its "
+   + "state and is not modeled here. A city may set up to 1% on its own authority and more if its "
    + "voters approve, so on $75,000 that is " + $$(muniVote75) + " a year at the 1% floor and "
    + "more where voters have gone higher: 61 of the 642 municipalities charge above 2.16%, the "
    + "rate at which a city takes more of a $75,000 salary than Ohio does. Your school district "

@@ -220,7 +220,7 @@ const faq = [
    + "married filing jointly is printed as $" + A_JOINT_MENSUEL_IMPRIME + " where $"
    + c0(A_JOINT) + " divided by 12 and rounded up would be $" + Math.ceil(A_JOINT / 12)
    + ". Differences of a dollar a period are normal and settle when you file. General: health "
-   + "insurance premiums and other benefit deductions come out before tax and are not modelled "
+   + "insurance premiums and other benefit deductions come out before tax and are not modeled "
    + "here, and a second job pushes your federal withholding up."]
 ];
 

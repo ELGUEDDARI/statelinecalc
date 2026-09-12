@@ -178,7 +178,7 @@ const faq = [
   ["Why is my North Carolina paycheck smaller than this calculator says?",
    "Start with the 4.09% withholding rate above: your employer holds back a tenth of a point more "
    + "than the tax you owe, on purpose. After that, the usual reasons apply — health insurance "
-   + "premiums and other benefit deductions come out before tax and are not modelled here, the "
+   + "premiums and other benefit deductions come out before tax and are not modeled here, the "
    + "allowances on your NC-4 may differ from the assumption made here, and a second job pushes "
    + "your federal withholding up."]
 ];

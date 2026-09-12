@@ -135,7 +135,7 @@ const faq = [
    + "— no statewide calculator can know which city applies to you."],
 
   ["Why is my Michigan paycheck smaller than this calculator says?",
-   "The usual reason is city income tax, which is not modelled here. After that: health insurance "
+   "The usual reason is city income tax, which is not modeled here. After that: health insurance "
    + "premiums and other benefit deductions come out before tax and are not included, your MI-W4 may "
    + "claim a different number of exemptions than assumed, and a second job pushes your withholding "
    + "up. The state layer itself is the simplest part of a Michigan paycheck and the least likely "
@@ -354,7 +354,7 @@ ${blocChecklist()}
       <li><strong>Medicare</strong> at 1.45% of all wages, with no cap, plus the 0.9% Additional
       Medicare Tax on wages above ${N("$200,000")}.</li>
       <li><strong>Michigan income tax</strong> at a flat <strong>4.25%</strong>, applied after
-      subtracting ${N("$" + c0(EXO))} for each exemption. A single filer is modelled with one
+      subtracting ${N("$" + c0(EXO))} for each exemption. A single filer is modeled with one
       exemption; married filing jointly with two.</li>
     </ul>
 
