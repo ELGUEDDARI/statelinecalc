@@ -27,6 +27,7 @@ const path = require("path");
 const LIB = require("../lib/paie.js");
 const { grilleEtats } = require("../lib/etats-publies.js");
 const { blocSources } = require("../lib/sources.js");
+const { blocLimites, blocChecklist } = require("../lib/limites.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
 const { colonne } = require("../lib/colonne.js");
@@ -220,6 +221,8 @@ ${entete("paycheck")}
     <p class="answer-jump"><a href="#calc-h">Calculate my pay &darr;</a></p>
   </div>
 
+${blocChecklist()}
+
   <h2 id="calc-h">Calculate your Tennessee take-home pay</h2>
   <form class="calc" data-paycheck-form data-state="tennessee" novalidate>
     <div class="field">
@@ -358,6 +361,8 @@ ${lignesHoraire.map(l => `          <tr><td class="num">$${l.taux}.00</td><td cl
     </div>
 
     <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
+
+${blocLimites()}
 
     <h2>Key facts that affect your take-home pay in Tennessee</h2>
     <ul>

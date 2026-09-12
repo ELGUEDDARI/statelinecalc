@@ -642,6 +642,22 @@ tbody tr:hover { background: #E8EFF9; }
   padding: var(--s-4);
   margin: var(--s-6) 0;
 }
+/* Ajoutee le 12/09/2026 pour les deux blocs de confiance generes par
+   .tooling/lib/limites.js : ce qui n'est pas modelise, et ce qu'il faut avoir
+   en main avant de calculer. Fond neutre distinct de .callout (qui reste
+   reserve a un avertissement) et bordure gauche pour les distinguer d'une
+   simple citation en lecture rapide. */
+.box-neutre {
+  background: var(--surface-sunken);
+  border-left: 3px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--s-4);
+  margin: var(--s-6) 0;
+}
+.box-neutre h2, .box-neutre h3 { margin-top: 0; }
+.box-neutre ul { margin-bottom: 0; }
+.box-neutre li:last-child { margin-bottom: 0; }
+
 .dates { font-size: 14px; color: var(--text-muted); margin-top: var(--s-8); }
 .disclaimer { font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: var(--s-4); margin-top: var(--s-8); }
 

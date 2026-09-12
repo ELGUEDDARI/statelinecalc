@@ -19,6 +19,7 @@ const { organisation } = require("../lib/entite.js");
    exactement le defaut que cette migration disait empecher — pages ET
    generateurs dans le meme passage — applique partout sauf ici. */
 const { colonne } = require("../lib/colonne.js");
+const { blocLimites, blocChecklist } = require("../lib/limites.js");
 const path = require("path");
 const { execFileSync } = require("child_process");
 const { FICHES, net, c2, c0, HEURES, RACINE } = require("./build-salary-to-hourly.js");
@@ -206,6 +207,8 @@ ${entete("s2h")}
     <span class="num">$${S60.netMois}</span> a month.</p>
   </div>
 
+  ${blocChecklist()}
+
   <section aria-labelledby="calc-h">
     <h2 id="calc-h" class="u-mt-0">Convert your own salary</h2>
 
@@ -350,6 +353,8 @@ ${AUTRES}
       </tbody>
     </table>
   </div>
+
+  ${blocLimites()}
 
   <h2>Common questions</h2>
   <div class="faq">

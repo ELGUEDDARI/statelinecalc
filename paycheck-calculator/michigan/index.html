@@ -180,6 +180,19 @@
   </div>
 
   <section aria-labelledby="calc-h">
+  <!-- CHECKLIST:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
+  <div class="box-neutre">
+    <h3 class="u-mt-0">What you need before you calculate</h3>
+    <ul class="prose">
+      <li>Your gross salary, or your hourly rate</li>
+      <li>How often you are paid &mdash; per year, per month, twice a month, every two weeks,
+      per week, or per hour</li>
+      <li>Your filing status &mdash; single, married filing jointly, or head of household</li>
+      <li>Your 401(k) contribution percentage, if you have one &mdash; leave it at 0 if not</li>
+    </ul>
+  </div>
+  <!-- CHECKLIST:fin -->
+
     <h2 id="calc-h" class="u-mt-0">Calculate your Michigan take-home pay</h2>
 
     <form class="calc" data-paycheck-form data-state="michigan" novalidate>
@@ -900,6 +913,39 @@
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
+
+  <!-- LIMITES:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
+  <h2>What this calculator does not cover</h2>
+  <p class="prose">This tool models federal income tax, Social Security, Medicare and the
+  payroll programs your state actually runs &mdash; nothing more. It deliberately leaves out:</p>
+  <ul class="prose">
+    <li><strong>Itemized deductions and federal tax credits</strong> &mdash; the Child Tax
+    Credit, the Earned Income Tax Credit, education credits. The engine always applies the
+    standard deduction; there is no itemizing path.</li>
+    <li><strong>A second job, self-employment income or 1099 pay.</strong> Every dollar you
+    enter is treated as one employer&rsquo;s W-2 wages, taxed at the employee share of Social
+    Security and Medicare &mdash; not the self-employment tax a 1099 worker actually owes.</li>
+    <li><strong>Pre-tax benefits other than the 401(k) field</strong> &mdash; health insurance
+    premiums, an HSA or FSA, commuter benefits. The only amount taken out before tax is the
+    percentage you enter for a 401(k).</li>
+    <li><strong>Local taxes</strong> &mdash; city income tax, county tax, or a school-district
+    tax. Where a state levies one, our <a href="/methodology/">methodology page</a> says so by
+    name; this calculator does not add that line for any state.</li>
+    <li><strong>Overtime premiums.</strong> An hourly rate is multiplied by the hours you enter;
+    it does not add a time-and-a-half rate for hours worked past 40 in a week.</li>
+    <li><strong>Wage garnishments or court-ordered deductions</strong> &mdash; child support, a
+    wage levy. Your result assumes none exist.</li>
+    <li><strong>The Additional Medicare Tax, at the single-filer threshold.</strong> The 0.9%
+    surtax above $200,000 is applied at that one figure for every filing status, the way an
+    employer actually withholds it &mdash; not the higher threshold a married couple filing
+    jointly may end up owing at tax return time.</li>
+    <li><strong>Married filing separately, or a qualifying surviving spouse.</strong> The
+    calculator only offers single, married filing jointly, and head of household.</li>
+  </ul>
+  <p class="caption">None of these change what you owe &mdash; they change what a pay stub
+  cannot show without more information than a calculator can ask for. See
+  <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
+  <!-- LIMITES:fin -->
 
   <h2>Key facts that affect your take-home pay in Michigan</h2>
 

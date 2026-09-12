@@ -208,6 +208,7 @@ const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 const { grilleEtats } = require("../lib/etats-publies.js");
 const { organisation } = require("../lib/entite.js");
 const { blocSources } = require("../lib/sources.js");
+const { blocLimites, blocChecklist } = require("../lib/limites.js");
 const { entete, piedDePage } = require("../lib/gabarit.js");
 const { colonne } = require("../lib/colonne.js");
 const { carteUsa } = require("../lib/bloc-carte.js");
@@ -305,6 +306,8 @@ ${entete("paycheck")}
   </div>
 
   <section aria-labelledby="calc-h">
+${blocChecklist()}
+
     <h2 id="calc-h" class="u-mt-0">Calculate your Nebraska take-home pay</h2>
 
     <form class="calc" data-paycheck-form data-state="nebraska" novalidate>
@@ -518,6 +521,8 @@ ${tableHoraire}
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
+
+${blocLimites()}
 
   <h2>Key facts that affect your take-home pay in Nebraska</h2>
 
