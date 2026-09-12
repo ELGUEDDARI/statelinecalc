@@ -1,35 +1,16 @@
-# Ajoute N'IMPORTE QUEL type d'enregistrement a la zone DNS, SANS detruire
-# l'existant. Generalisation de dns-add-txt.ps1.
+# REMPLACE (au lieu d'ajouter) le contenu d'un enregistrement name+type donne.
+# Sert a corriger une valeur fausse (ex: TXT DKIM mal transcrite), pas a ajouter
+# une variante en plus. Meme garde-fous que dns-add-record.ps1.
 #
-# L'API Hostinger ne sait que remplacer la zone entiere (overwrite: true).
-# On relit donc la zone, on fusionne, on renvoie le tout, et on CONTROLE
-# apres coup que les enregistrements vitaux sont intacts.
-#
-# Enregistrements vitaux au 22/08/2026 :
-#   - 4 A et 4 AAAA sur @   -> le site (GitHub Pages)
-#   - 2 TXT google-site-verification -> les validations Search Console
-# Les perdre casse le site ou fait perdre la propriete verifiee.
-#
-# Exemples :
-#   ... -Nom "@"   -Type MX  -Valeur "mx1.improvmx.com" -Priorite 10
-#   ... -Nom "@"   -Type TXT -Valeur "v=spf1 include:spf.improvmx.com ~all"
-#   ... -Nom "www" -Type CNAME -Valeur "ELGUEDDARI.github.io."
+# Exemple :
+#   ... -Nom "zmail._domainkey" -Type TXT -Valeur "v=DKIM1; k=rsa; p=...."
 
 param(
   [Parameter(Mandatory=$true)][string]$Nom,
   [Parameter(Mandatory=$true)][ValidateSet("A","AAAA","TXT","MX","CNAME")][string]$Type,
   [Parameter(Mandatory=$true)][string]$Valeur,
-  [int]$Priorite = 0,
   [int]$Ttl = 300
 )
-
-# NOTE (12/09/2026) : l'API Hostinger n'a AUCUN champ "priority" dans son schema
-# (DNS.V1.Zone.UpdateRequest, verifie sur https://raw.githubusercontent.com/hostinger/api/main/openapi.json).
-# L'envoyer causait un HTTP 500 systematique sur les MX. Pour MX, la priorite se met
-# DANS le contenu : "10 mx.zoho.eu" (comme un fichier de zone classique).
-if ($Type -eq "MX" -and $Priorite -gt 0) {
-  $Valeur = "$Priorite $Valeur"
-}
 
 $ErrorActionPreference = "Stop"
 $domaine = "statelinecalc.com"
@@ -43,32 +24,25 @@ Write-Output "=== ZONE AVANT ==="
 $avant = (Invoke-WebRequest -Uri $url -Headers $h -TimeoutSec 30 -UseBasicParsing).Content | ConvertFrom-Json
 foreach ($e in $avant) { Write-Output ("  " + $e.type + " " + $e.name + " -> " + ($e.records.content -join ", ")) }
 
-# Reconstruction a l'identique + le nouvel enregistrement
 $zone = @()
 $trouve = $false
 foreach ($e in $avant) {
-  $contenus = @()
-  foreach ($r in $e.records) { $contenus += @{ content = $r.content } }
   if ($e.type -eq $Type -and $e.name -eq $Nom) {
-    foreach ($r in $e.records) {
-      if ($r.content -eq $Valeur -or $r.content -eq ('"' + $Valeur + '"')) {
-        Write-Output "=== DEJA POSE - rien a faire ==="
-        exit 0
-      }
-    }
-    $contenus += @{ content = $Valeur }
+    $zone += @{ name = $e.name; type = $e.type; ttl = $e.ttl; records = @(@{ content = $Valeur }) }
     $trouve = $true
+  } else {
+    $contenus = @()
+    foreach ($r in $e.records) { $contenus += @{ content = $r.content } }
+    $zone += @{ name = $e.name; type = $e.type; ttl = $e.ttl; records = $contenus }
   }
-  $zone += @{ name = $e.name; type = $e.type; ttl = $e.ttl; records = $contenus }
 }
 if (-not $trouve) {
-  $nouveau = @{ name = $Nom; type = $Type; ttl = $Ttl; records = @(@{ content = $Valeur }) }
-  $zone += $nouveau
+  $zone += @{ name = $Nom; type = $Type; ttl = $Ttl; records = @(@{ content = $Valeur }) }
 }
 
 $corps = @{ overwrite = $true; zone = $zone } | ConvertTo-Json -Depth 6
 
-Write-Output ("=== ENVOI : " + $Type + " " + $Nom + " -> " + $Valeur + " ===")
+Write-Output ("=== ENVOI (REMPLACEMENT) : " + $Type + " " + $Nom + " -> " + $Valeur + " ===")
 try {
   $r = Invoke-WebRequest -Uri $url -Method PUT -Headers $h -Body $corps -TimeoutSec 40 -UseBasicParsing
   Write-Output ("PUT => HTTP " + $r.StatusCode + " " + $r.Content)
@@ -85,7 +59,6 @@ Write-Output "=== ZONE APRES (relecture) ==="
 $apres = (Invoke-WebRequest -Uri $url -Headers $h -TimeoutSec 30 -UseBasicParsing).Content | ConvertFrom-Json
 foreach ($e in $apres) { Write-Output ("  " + $e.type + " " + $e.name + " -> " + ($e.records.content -join ", ")) }
 
-# --- controle de non-regression sur les enregistrements vitaux ----------
 $a = 0; $aaaa = 0; $txtGoogle = 0
 foreach ($e in $apres) {
   if ($e.type -eq "A"    -and $e.name -eq "@") { $a    = $e.records.Count }
