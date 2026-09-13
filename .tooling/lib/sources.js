@@ -338,7 +338,7 @@ function nomEtat(cle) {
    federaux. La page se contredisait a deux paragraphes d'intervalle sans qu'aucun
    test ne bronche. Desormais la phrase depend du nombre de documents PROPRES a
    l'Etat, et `verif-bloc-sources.js` echoue si les deux divergent. */
-function introduction(cle, nbDocsEtat) {
+function introduction(cle, nbDocsEtat, manque) {
   const commun = "If one of our numbers disagrees with one of theirs, they are right and we " +
                  "have a defect to fix &mdash; <a href=\"/contact/\">tell us</a>.";
   if (!cle) {
@@ -354,9 +354,28 @@ function introduction(cle, nbDocsEtat) {
            (nbDocsEtat > 1 ? "documents" : "document") + " below. Each one carries the " +
            "date we last checked that it still answers. " + commun;
   }
-  /* Aucun document propre a l'Etat : on le dit, au lieu de laisser croire le
-     contraire. C'est le cas de l'Ohio et de l'Utah (page d'agence perimee) et
-     des Etats dont le site refuse les requetes automatiques. */
+  /* Aucun document propre a l'Etat LINKABLE depuis cette machine. Deux cas,
+     et ils ne disent pas la meme chose : soit l'Etat ne publie vraiment rien
+     de plus qu'une page d'agence perimee (Ohio, Utah), soit il publie un
+     document que le reseau de cette machine ne peut pas joindre alors qu'on
+     l'a lu par ailleurs (SANS_LIEN : Michigan, Tennessee, Nevada, Idaho).
+     Le 12/09 la page Idaho affirmait « Idaho ne publie pas » alors que le
+     document existe et a ete lu via Wayback — trouve par controle-statelinecalc,
+     et vrai aussi sur les 3 autres Etats de SANS_LIEN avant cette correction. */
+  if (manque) {
+    /* On cite SANS_LIEN[cle] textuellement plutot que de deviner comment la
+       figure a ete lue : seul Idaho documente une lecture via Wayback,
+       Michigan/Tennessee/Nevada disent seulement pourquoi il n'y a pas de
+       lien verifie, sans preciser la methode alternative. Une phrase fixe
+       qui promettrait Wayback pour les trois serait une affirmation que
+       les donnees ne soutiennent pas. */
+    return "The federal figures on this page &mdash; the brackets, the standard deduction and " +
+           "FICA &mdash; are read from the official documents below. The " + etat + " figures " +
+           "are read from the state&rsquo;s own law and withholding guides, which we quote and " +
+           "date on our <a href=\"/methodology/\">methodology page</a>: " + etat + " does " +
+           "publish its own document, but " + manque + ", so we have no link from this machine " +
+           "that we have verified ourselves. " + commun;
+  }
   return "The federal figures on this page &mdash; the brackets, the standard deduction and " +
          "FICA &mdash; are read from the official documents below. The " + etat + " figures " +
          "are read from the state&rsquo;s own law and withholding guides, which we quote and " +
@@ -373,7 +392,7 @@ function blocSources(cle) {
 
   let html = `  <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
   <h2>Sources</h2>
-  <p class="prose">${introduction(cle, docsEtat.length)}</p>
+  <p class="prose">${introduction(cle, docsEtat.length, manque)}</p>
 
   <h3>${docsEtat.length ? "The documents these figures are read from"
                         : "The federal documents these figures are read from"}</h3>

@@ -173,7 +173,7 @@ const faq = [
 
   ["What is $20 an hour after taxes in Idaho?",
    "At 40 hours a week, $20 an hour is " + $(h20.brut) + " a year gross and about " + $(h20.net)
-   + " after tax, which works out at " + $$(h20.netHoraire) + " an hour in real terms. Idaho "
+   + " after tax, which works out to " + $$(h20.netHoraire) + " an hour in real terms. Idaho "
    + "takes " + $$(h20.etat) + " of that: the first $" + c0(DED_SINGLE)
    + " is untaxed and the rest is taxed at a flat 5.3%."],
 
@@ -597,7 +597,7 @@ ${blocLimites()}
   return figure, not this year's withholding table.</p>
 
   <h3>Expecting the Idaho Child Tax Credit</h3>
-  <p>It sunset on January 1, 2026. A ${N("$" + CTC_MONTANT)}-per-child figure that shows up in an
+  <p>It expired on January 1, 2026. A ${N("$" + CTC_MONTANT)}-per-child figure that shows up in an
   older search result or a prior year's guide no longer applies to tax year 2026, and this
   calculator does not add it back.</p>
 
@@ -654,7 +654,7 @@ ${voisins.map(v => {
   Utah subtracts nothing before applying its rate, while Idaho shelters
   ${N("$" + c0(DED_SINGLE))} first. What is taken out before the rate applies matters as much as
   the rate itself. <a href="/paycheck-calculator/montana/">Montana</a>, with a two-rate system and
-  the same federal-sized deduction as Idaho, lands close by at ${N($$(voisins[0].r.etat))}.</p>
+  the same federal-sized deduction as Idaho, comes in close, at ${N($$(voisins[0].r.etat))}.</p>
 
 ${blocSources("idaho")}
 
