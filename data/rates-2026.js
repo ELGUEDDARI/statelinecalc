@@ -1939,6 +1939,113 @@ const RATES_2026 = {
       name: "Wyoming",
       abbr: "WY",
       incomeTax: { hasIncomeTax: false }
+    },
+
+    /* -----------------------------------------------------------------------
+       MISSISSIPPI — added 2026-09-17, the 23rd state. CSV SEMrush du 01/09 :
+       "mississippi paycheck calculator" KD 11, volume 1 300/mois, CPC 4,67 $
+       (le CPC le plus haut des quatre candidats a KD 11 : New Mexico 3,33 $,
+       Rhode Island 3,69 $, South Dakota 1,79 $). South Carolina (KD 10,
+       volume 1 900, CPC 2,40 $), pourtant le KD le plus bas de la liste,
+       ECARTEE apres lecture de dor.sc.gov/iit le 2026-09-17 : la Caroline du
+       Sud a introduit pour 2026 une "South Carolina Income Adjusted
+       Deduction" (SCIAD) qui, verbatim, "may be reduced based on a
+       taxpayer's federal AGI" — un abattement DEGRESSIF selon le revenu, la
+       meme famille de mecanisme non supporte qui a deja ecarte le Maine le
+       17/09 (chantier a part, budget dedie). SERP reelle verifiee par
+       WebSearch le 2026-09-17 sur "mississippi paycheck calculator" : 9/9
+       acteurs etablis (ADP, Indeed Flex, Gusto, PaycheckCity, SurePayroll,
+       SmartAsset, QuickBooks, Fingercheck, OnPay) — porte fermee au sens
+       strict du 21/08, publiee quand meme sur le meme raisonnement
+       volume/CPC que Virginia/Alaska/North Dakota/Wyoming (decision PDG du
+       11/09).
+
+       ── L'ANGLE DE CETTE PAGE ────────────────────────────────────────────
+       Le Mississippi ne taxe RIEN sur les 10 000 premiers dollars de revenu
+       imposable, puis un TAUX UNIQUE de 4,0% sur le reste — pas un bareme a
+       plusieurs tranches comme la Virginie ou le Dakota du Nord. C'est un
+       bareme a deux segments, le second a taux constant, modelise ici comme
+       [[10000, 0], [Infinity, 0.04]] dans le meme moteur `brackets` que les
+       Etats progressifs.
+
+       1. LE BAREME 2026 ET LA DEDUCTION/EXEMPTION PAR STATUT. "Withholding
+          Income Tax Tables And Employer Instructions", Pub 89-700-25-1
+          (Rev. 07/25), Mississippi Department of Revenue, PDF officiel
+          telecharge directement depuis dor.ms.gov (dor.ms.gov/sites/
+          default/files/tax-forms/business/89700251revised1.13.2026.pdf,
+          HTTP 200, lu le 2026-09-17). Page 1, tableau "Income Tax Rates,
+          Taxable Income (Tax Year 2026)", verbatim :
+            "First $10,000 ... 0%"
+            "Remaining balance (excess of $10,000) ... 4.0%"
+          (des sources tierces independantes — Rippling, Netchex — citent
+          4,4% pour 2026 ; la table officielle du 89-700, datee de la meme
+          annee fiscale, dit 4,0% sans ambiguite et c'est ce chiffre qui est
+          retenu, conformement a la regle du projet de ne jamais preferer un
+          site tiers a la source officielle). Meme page, tableau "Exemptions
+          and Deductions Schedule", verbatim :
+            Single :      exemption $6,000,  standard deduction $2,300
+            Head-of-Family ($8,000 + $1,500 per dependent) : exemption
+              $9,500 (avec 1 personne a charge), standard deduction $3,400
+            Married :     exemption $12,000, standard deduction $4,600
+          Notre calculateur ne demande pas le nombre de personnes a charge,
+          donc suit la meme convention que le Wisconsin, le Nebraska et la
+          Virginie : le montant "Head-of-Family" imprime dans le tableau
+          officiel du Mississippi lui-meme suppose deja UNE personne a
+          charge ($8,000 de base + $1,500), retenu tel quel plutot que
+          recalcule a zero personne a charge.
+
+       2. ASSURANCE CHOMAGE — ENTIEREMENT A LA CHARGE DE L'EMPLOYEUR, comme
+          21 des 22 Etats deja publies (seul l'Alaska partage la charge).
+          Mississippi Department of Employment Security (MDES), deux
+          documents officiels lus le 2026-09-17, HTTP 200 :
+            a) "Instructions for Completing Form UI-2/3" (mdes.ms.gov/
+               media/10376/UI_2_3_R_and_Instructions.pdf), verbatim en tete
+               de document : "Taxable wage base per year per employee is
+               $14,000."
+            b) Page "Unemployment Tax Rates" (mdes.ms.gov/employers/
+               unemployment-tax/reporting-and-filing/unemployment-tax-
+               rates/), verbatim : "In Mississippi, the tax rate for a
+               start-up business is 1.00% the first year of liability,
+               1.10% the second year of liability and 1.20% the third and
+               subsequent years of liability." Aucune mention d'une part
+               salariale nulle part dans ces deux pages ni dans le guide de
+               retenue 89-700 (pas d'entree employeePrograms).
+
+       3. AUCUN IMPOT LOCAL SUR LE REVENU. Le guide de retenue 89-700, 25
+          pages consacrees exclusivement a ce qu'un employeur mississippien
+          doit retenir, ne contient AUCUNE occurrence des mots "local",
+          "municipal" ou "county tax" en rapport avec un impot sur le
+          revenu — seule occurrence du mot "local" dans tout le document
+          concerne le lieu de travail d'un employe de maison, sans rapport
+          avec la fiscalite. Meme discipline que l'Alaska/la Georgie/le
+          Dakota du Nord : silence dans le document dont c'est precisement
+          l'objet, retenu comme signal, recoupe par des sources tierces
+          independantes (Deel, Rippling) qui confirment explicitement
+          qu'aucune ville ni aucun comte du Mississippi ne leve d'impot sur
+          le revenu — utilisees en RECOUPEMENT seulement, jamais comme
+          source du fait lui-meme.
+       ----------------------------------------------------------------------- */
+    mississippi: {
+      name: "Mississippi",
+      abbr: "MS",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 2300,
+          marriedJoint: 4600,
+          headOfHousehold: 3400
+        },
+        personalExemption: {
+          single: 6000,
+          marriedJoint: 12000,
+          headOfHousehold: 9500
+        },
+        brackets: {
+          single:          [[10000, 0], [Infinity, 0.04]],
+          marriedJoint:    [[10000, 0], [Infinity, 0.04]],
+          headOfHousehold: [[10000, 0], [Infinity, 0.04]]
+        }
+      }
     }
   }
 };

@@ -345,6 +345,26 @@ const PAR_ETAT = {
       quoi: "the rule that new-employer rates are set by industry rather than a single flat " +
             "rate, with an 8.5% ceiling for a late registration",
       motif: ["8.5%"] }
+  ],
+  mississippi: [
+    { type: "document",
+      url: "https://www.dor.ms.gov/sites/default/files/tax-forms/business/89700251revised1.13.2026.pdf",
+      titre: "Mississippi Department of Revenue &mdash; Withholding Income Tax Tables And " +
+             "Employer Instructions, Pub 89-700-25-1 (PDF)",
+      quoi: "the two-segment 2026 rate schedule (0% on the first $10,000, 4.0% above) and the " +
+            "per-status exemption and standard deduction amounts",
+      motif: ["4.0%", "6,000"] },
+    { type: "document",
+      url: "https://mdes.ms.gov/media/10376/UI_2_3_R_and_Instructions.pdf",
+      titre: "Mississippi Department of Employment Security &mdash; Instructions for " +
+             "Completing Form UI-2/3 (PDF)",
+      quoi: "the $14,000 unemployment insurance taxable wage base",
+      motif: ["14,000"] },
+    { type: "document",
+      url: "https://mdes.ms.gov/employers/unemployment-tax/reporting-and-filing/unemployment-tax-rates/",
+      titre: "Mississippi Department of Employment Security &mdash; Unemployment Tax Rates",
+      quoi: "the 1.00%/1.10%/1.20% new-employer rate schedule, paid entirely by the employer",
+      motif: ["1.00%"] }
   ]
 };
 

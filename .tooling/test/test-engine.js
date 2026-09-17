@@ -694,8 +694,8 @@ check("WI : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("wisconsin", 5000).etat >= 0 ? 1 : 0, 1, 0);
 check("WI : la deduction glissante n'existe que pour le Wisconsin",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).length, 1, 0);
-check("WI : l'exemption personnelle existe pour le Wisconsin et la Virginie (16/09/2026)",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 2, 0);
+check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie et le Mississippi (17/09/2026)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 3, 0);
 
 /* --- ARKANSAS -----------------------------------------------------------
    Source, lue le 2026-09-12 : "State of Arkansas, Estimated Tax Declaration
@@ -976,6 +976,36 @@ check("WY : le net sur 60 000 $ egale le federal + FICA, comme les 6 autres Etat
   calcul("wyoming", 60000).net, calcul("texas", 60000).net, 0.001);
 check("WY : le net sur 75 000 $ egale le Texas au centime pres",
   calcul("wyoming", 75000).net, calcul("texas", 75000).net, 0.001);
+
+/* ── MISSISSIPPI, 23e Etat, ajoute 2026-09-17 ────────────────────────────────
+   Bareme a DEUX segments : 0% sur les 10 000 premiers dollars de revenu
+   imposable, 4,0% flat au-dela. Exemption ET standard deduction distinctes
+   par statut (8 300 $ / 16 600 $ / 12 900 $ combines). Aucune part salariale
+   d'assurance chomage (employeur seul, comme 21 des 22 Etats deja publies). */
+check("MS : bareme a deux segments seulement",
+  R.states.mississippi.incomeTax.brackets.single.length, 2, 0);
+check("MS : impot d'Etat sur 75 000 $ brut, celibataire ((75000-8300-10000) x 4%)",
+  calcul("mississippi", 75000).etat, 2268, 0.01);
+check("MS : impot d'Etat sur 75 000 $ brut, marie-commun ((75000-16600-10000) x 4%)",
+  calcul("mississippi", 75000, "marriedJoint").etat, 1936, 0.01);
+check("MS : impot d'Etat sur 75 000 $ brut, chef de famille ((75000-12900-10000) x 4%)",
+  calcul("mississippi", 75000, "headOfHousehold").etat, 2084, 0.01);
+check("MS : rien sous le seuil d'imposition de 18 300 $, celibataire",
+  calcul("mississippi", 18300).etat, 0, 0);
+check("MS : premier cent au dollar 18 301 $, celibataire (1 x 4%)",
+  calcul("mississippi", 18301).etat, 0.04, 0.001);
+check("MS : rien a 5 000 $, celibataire",
+  calcul("mississippi", 5000).etat, 0, 0);
+check("MS : le taux reste 4,0% flat a 300 000 $, pas de troisieme tranche ((300000-8300-10000) x 4%)",
+  calcul("mississippi", 300000).etat, 11268, 0.01);
+check("MS : aucun programme salarie retenu (assurance chomage employeur seul)",
+  (R.states.mississippi.employeePrograms || []).length, 0, 0);
+check("MS : le net sur 60 000 $ integre le bareme a deux segments, celibataire",
+  calcul("mississippi", 60000).net, 48722, 0.01);
+check("MS : l'impot d'Etat n'est jamais negatif, meme a 1 000 $",
+  calcul("mississippi", 1000).etat >= 0 ? 1 : 0, 1, 0);
+check("MS : un couple marie paie moins qu'un celibataire sur le meme salaire",
+  calcul("mississippi", 75000, "marriedJoint").etat < calcul("mississippi", 75000).etat ? 1 : 0, 1, 0);
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
