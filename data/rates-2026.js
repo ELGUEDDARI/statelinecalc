@@ -1602,6 +1602,100 @@ const RATES_2026 = {
           headOfHousehold: [[Infinity, 0.053]]
         }
       }
+    },
+
+    /* -----------------------------------------------------------------------
+       VIRGINIA - ajoute le 2026-09-16. 19e Etat publie.
+
+       LA SOURCE : "Income Tax Withholding Guide for Employers", Virginia
+       Department of Taxation, revision 05/25 (document 2614086), telechargee
+       le 2026-09-16 depuis tax.virginia.gov/sites/default/files/vatax-pdf/
+       employer-withholding-instructions.pdf (application/pdf, 1 678 640
+       octets, HTTP 200 direct - aucun obstacle reseau cette fois).
+
+       LE BAREME NE S'ELARGIT PAS PAR STATUT, comme l'Arkansas. Page 21,
+       "Formula for Computing Tax to be Withheld", verbatim :
+         "Not over $3,000 : 2% of T"
+         "$3,000 to $5,000 : $60 + (3% of excess over $3,000)"
+         "$5,000 to $17,000 : $120 + (5% of excess over $5,000)"
+         "Over $17,000 : $720 + (5.75% of excess over $17,000)"
+       Une seule table, single ou married, contrairement a la Caroline du
+       Nord ou au Nebraska qui doublent leurs seuils au mariage. Recoupement
+       a la main sur l'exemple imprime page 22 (John, 5 exemptions, 63 576 $
+       de brut annualise, 13 400 $ de deduction+exemptions) : T = 50 176 $,
+       W = 720 + 5,75% x 33 176 = 2 628,12 $ -> imprime 2 628 $ (arrondi
+       demonstratif de l'agence). Notre moteur ne recoupe pas cet exemple
+       telle-quelle (il utilise 1 exemption, pas 5), mais chaque segment de
+       la formule est verifie separement.
+
+       LA DEDUCTION STANDARD 2026. Page 5, "New: Increase in Standard
+       Deduction", verbatim : "the standard deduction from $8,500 to $8,750
+       for single filers and from $17,000 to $17,500 for married filers
+       filing jointly. Under this Act, the increase in the standard
+       deduction is scheduled to sunset after Taxable Year 2026" - donc
+       8 750 $ / 17 500 $ s'appliquent a l'annee d'imposition 2026, le
+       millesime de cette page, avant de retomber a 3 000 $ / 6 000 $ en
+       2027. headOfHousehold reprend le montant "single" : le formulaire de
+       retenue VA-4 ne distingue que Single et Married (aucune case Head of
+       Household), et une recherche independante (visaverge.com,
+       citant le texte du House Bill 12 qui rend l'augmentation permanente)
+       confirme que le chef de famille partage le seuil du celibataire,
+       8 750 $, pour 2026 - source tierce utilisee en RECOUPEMENT seulement,
+       jamais comme source du chiffre lui-meme.
+
+       L'EXEMPTION PERSONNELLE, ET C'EST UNE VRAIE DEDUCTION (contrairement
+       au credit du Nebraska ou de l'Utah). Page 21, legende de la formule :
+       "E1 = Personal and Dependent Exemptions", et l'etape 1 de la formule
+       soustrait "(E1 X $930)" du revenu annualise avant application du
+       bareme. Notre calculateur ne demande pas le nombre de personnes a
+       charge, donc suit la meme convention que le Wisconsin et le Nebraska :
+       1 exemption (930 $) pour un celibataire ou un chef de famille, 2
+       (1 860 $) pour un couple qui declare conjointement - le declarant et
+       le conjoint, sans personne a charge.
+
+       PAS D'IMPOT LOCAL SUR LE REVENU. Ce guide de 32 pages couvre chaque
+       categorie de retenue qu'un employeur de Virginie doit appliquer -
+       aucune occurrence du mot "local" dans tout le document, aucune ligne
+       de retenue municipale ou de comte dans la formule ou les tables.
+       Cette absence dans un document officiel exhaustif est le signal
+       retenu ; recoupee par trois sources tierces independantes lues le
+       2026-09-16 (ADP, SmartAsset, SurePayroll), qui affirment toutes en
+       toutes lettres que la Virginie n'a pas d'impot local sur le revenu -
+       utilisees en RECOUPEMENT seulement, jamais comme source du fait
+       lui-meme. Les taxes foncieres locales existent (dls.maryland.gov et
+       equivalents Virginie), mais ne sortent pas d'un salaire.
+
+       CE QUE CETTE PAGE NE DIT PAS, ET POURQUOI. L'assurance chomage
+       (VEC) : vec.virginia.gov a renvoye HTTP 403 (blocage de robot,
+       verifie le 2026-09-16) sur la page qui declare l'obligation
+       employeur-seul ; la meme regle est vraie sans exception dans les 18
+       autres Etats deja publies sur ce site et confirmee par un organisme
+       tiers de paie (rippling.com, "This tax is levied on employers, not
+       their employees"), utilise en RECOUPEMENT. Rien sur Married Filing
+       Separately (non propose par le calculateur) ni sur l'age 65+/aveugle
+       (E2, 800 $ par exemption, que le calculateur ne demande pas).
+       ----------------------------------------------------------------------- */
+    virginia: {
+      name: "Virginia",
+      abbr: "VA",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 8750,
+          marriedJoint: 17500,
+          headOfHousehold: 8750
+        },
+        personalExemption: {
+          single: 930,
+          marriedJoint: 1860,
+          headOfHousehold: 930
+        },
+        brackets: {
+          single:          [[3000, 0.02], [5000, 0.03], [17000, 0.05], [Infinity, 0.0575]],
+          marriedJoint:    [[3000, 0.02], [5000, 0.03], [17000, 0.05], [Infinity, 0.0575]],
+          headOfHousehold: [[3000, 0.02], [5000, 0.03], [17000, 0.05], [Infinity, 0.0575]]
+        }
+      }
     }
   }
 };

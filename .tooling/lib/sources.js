@@ -277,6 +277,15 @@ const PAR_ETAT = {
       quoi: "the statute that bars a city, county or other local government from levying an " +
             "income tax",
       motif: ["shall not levy a tax on income"] }
+  ],
+  virginia: [
+    { type: "document",
+      url: "https://www.tax.virginia.gov/sites/default/files/vatax-pdf/employer-withholding-instructions.pdf",
+      titre: "Virginia Department of Taxation &mdash; Income Tax Withholding Guide for " +
+             "Employers, rev. 05/25 (PDF)",
+      quoi: "the four-bracket withholding formula (2% to 5.75%), the $8,750/$17,500 " +
+            "standard deduction and the $930 personal exemption",
+      motif: ["8,750", "5.75%"] }
   ]
 };
 
@@ -301,6 +310,15 @@ const SANS_LIEN = {
   idaho: "tax.idaho.gov and legislature.idaho.gov time out on every automated " +
          "connection attempt from this machine, though the same figures were read from their " +
          "Internet Archive snapshots"
+  ,
+  /* Virginia, 16/09/2026: vec.virginia.gov (the Virginia Employment
+     Commission, source for the unemployment-insurance line) answers an F5/WAF
+     403 to both curl and a real headless Chromium. Its Internet Archive
+     snapshot from 18/05/2026 was still read, and confirms only employers are
+     addressed in the page's "Paying Taxes" section &mdash; no employee
+     deduction is mentioned anywhere on it. */
+  virginia: "vec.virginia.gov, the Virginia Employment Commission, refuses automated " +
+            "requests with an F5/WAF HTTP 403, though its Internet Archive snapshot was read"
 };
 
 const MOIS = ["January", "February", "March", "April", "May", "June", "July",

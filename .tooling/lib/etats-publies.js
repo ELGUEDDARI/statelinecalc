@@ -39,6 +39,7 @@ const PUBLIES = {
   Tennessee: "tennessee",
   Texas: "texas",
   Utah: "utah",
+  Virginia: "virginia",
   Washington: "washington",
   Wisconsin: "wisconsin"
 };

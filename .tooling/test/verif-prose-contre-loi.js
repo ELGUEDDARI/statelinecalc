@@ -131,6 +131,27 @@ function wisconsinSelonLaLoi(salaire, statut) {
   return du;
 }
 
+/* --------------------------------------------------------------- VIRGINIA --
+   Income Tax Withholding Guide for Employers, rev. 05/25, page 21, verbatim :
+   T = (G)P - [$8,750 + (E1 x $930)], puis 2 % jusqu'a 3 000 $, 3 % de 3 000 a
+   5 000 $, 5 % de 5 000 a 17 000 $, 5,75 % au-dela. Meme bareme pour tout
+   statut ; seul le montant deduit avant (deduction standard + exemptions)
+   varie. HOH reprend le montant single (VA-4 ne distingue que Single et
+   Married), joint = 2x single (deduction 17 500 $, 2 exemptions). */
+function virginiaSelonLaLoi(salaire, statut) {
+  const dedSingle = 8750, dedJoint = 17500;
+  const ded = statut === "marriedJoint" ? dedJoint : dedSingle;
+  const exemptions = statut === "marriedJoint" ? 2 : 1;
+  const imposable = Math.max(0, salaire - ded - exemptions * 930);
+  let du = 0, bas = 0;
+  for (const [haut, taux] of [[3000, 0.02], [5000, 0.03], [17000, 0.05], [Infinity, 0.0575]]) {
+    if (imposable <= bas) break;
+    du += (Math.min(imposable, haut) - bas) * taux;
+    bas = haut;
+  }
+  return du;
+}
+
 (async () => {
   console.log("\n=== OHIO : la prose et le tableau, contre ORC 5747.02 et 5747.025 ===");
   const oh = await get("https://statelinecalc.com/paycheck-calculator/ohio/");
@@ -309,7 +330,44 @@ function wisconsinSelonLaLoi(salaire, statut) {
   present("la page cite l'employeur seul pour l'assurance chomage",
     idTexte, "employer-paid tax paid into the unemployment insurance trust fund");
   present("la page dit que tax.idaho.gov n'a pas repondu depuis cette machine",
-    idTexte, "would not answer a direct connection");
+    idTexte, "would not respond to a direct connection");
+
+  console.log("\n=== VIRGINIA : la prose et le tableau, contre le guide de retenue rev. 05/25 ===");
+  const va = await get("https://statelinecalc.com/paycheck-calculator/virginia/");
+  const vaTexte = va.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+
+  check("impot d'Etat sur 25 000, celibataire", 636.00, virginiaSelonLaLoi(25000), 0.01);
+  check("impot d'Etat sur 75 000, celibataire", 3498.40, virginiaSelonLaLoi(75000), 0.01);
+  check("impot d'Etat sur 75 000, commun", 2941.80, virginiaSelonLaLoi(75000, "marriedJoint"), 0.01);
+  check("impot d'Etat sur 75 000, chef de famille (meme deduction que celibataire)",
+    3498.40, virginiaSelonLaLoi(75000, "headOfHousehold"), 0.01);
+  check("rien retenu sous le seuil de 9 680 $ (deduction 8 750 + exemption 930)",
+    virginiaSelonLaLoi(9680), 0, 0.001);
+  check("le premier dollar imposable est bien retenu a 9 681 $",
+    virginiaSelonLaLoi(9681), 0.02, 0.001);
+
+  const vaLignes = va.split("<tr>").slice(1)
+    .map(b => [...b.matchAll(/<td[^>]*>(?:<strong>)?([^<]+)/g)].map(m => m[1].trim()))
+    .filter(c => c.length >= 6 && c[0].startsWith("$") && !c[0].includes("."));
+  let ecartsVa = 0;
+  for (const c of vaLignes) {
+    if (Math.abs(nb(c[3]) - virginiaSelonLaLoi(nb(c[0]))) > 1) {
+      ecartsVa++;
+      console.log("  ECHEC | tableau Virginia a " + c[0] + " : page " + c[3]
+        + ", loi " + virginiaSelonLaLoi(nb(c[0])).toFixed(2));
+    }
+  }
+  if (ecartsVa) fail++; else pass++;
+  console.log("  %s | les %d lignes du tableau servi contre la loi ecrite a la main",
+    ecartsVa ? "ECHEC" : "OK   ", vaLignes.length);
+
+  present("le taux plafond 5,75 % est bien celui affiche", vaTexte, "5.75%");
+  present("la page dit que le bareme ne s'elargit pas au mariage",
+    vaTexte, "do not widen for a married couple");
+  present("la page cite l'exemption personnelle de 930 $",
+    vaTexte, "$930 personal exemption");
+  present("la page dit qu'il n'y a pas d'impot local",
+    vaTexte, "no local or city income tax");
 
   console.log("\n=== PROSE CONTRE LOI : " + pass + " OK, " + fail + " ECHEC ===\n");
   process.exit(fail === 0 ? 0 : 1);

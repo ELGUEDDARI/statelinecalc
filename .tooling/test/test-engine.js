@@ -694,8 +694,8 @@ check("WI : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("wisconsin", 5000).etat >= 0 ? 1 : 0, 1, 0);
 check("WI : la deduction glissante n'existe que pour le Wisconsin",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).length, 1, 0);
-check("WI : l'exemption personnelle n'existe que pour le Wisconsin",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 1, 0);
+check("WI : l'exemption personnelle existe pour le Wisconsin et la Virginie (16/09/2026)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 2, 0);
 
 /* --- ARKANSAS -----------------------------------------------------------
    Source, lue le 2026-09-12 : "State of Arkansas, Estimated Tax Declaration
@@ -827,6 +827,48 @@ check("ID : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
 check("ID : le seuil d'imposition tombe un dollar apres le seuil de 16 100 $",
   calcul("idaho", 16100).etat === 0 && calcul("idaho", 16101).etat > 0 ? 1 : 0, 1, 0);
 
+/* --- VIRGINIE -------------------------------------------------------------
+   Formula for Computing Tax to be Withheld, page 21 du guide de retenue,
+   rev. 05/25 : (G)P - [$8,750 + (E1 x $930)] = T, puis bareme a 4 tranches
+   2%/3%/5%/5,75% aux seuils 3 000/5 000/17 000 $, IDENTIQUES pour tout
+   statut. Chaque cas recalcule a la main, independamment du moteur. */
+check("VA : rien retenu sous le seuil de 9 680 $ (8 750 deduction + 930 exemption), celibataire",
+  calcul("virginia", 9680).etat, 0, 0);
+check("VA : premier dollar imposable a 9 681 $, celibataire (1 $ x 2%)",
+  calcul("virginia", 9681).etat, 0.02, 0.001);
+check("VA : impot d'Etat sur 25 000 $ brut, celibataire " +
+  "(taxable 15 320 $ : 3 000x2% + 2 000x3% + 10 320x5%)",
+  calcul("virginia", 25000).etat, 636.00, 0.005);
+check("VA : impot d'Etat sur 75 000 $ brut, celibataire " +
+  "(taxable 65 320 $ : 720 + 5,75% x 48 320)",
+  calcul("virginia", 75000).etat, 3498.40, 0.005);
+check("VA : impot d'Etat sur 75 000 $ brut, commun " +
+  "(taxable 55 640 $ : 720 + 5,75% x 38 640)",
+  calcul("virginia", 75000, "marriedJoint").etat, 2941.80, 0.005);
+check("VA : le meme bareme s'applique aux trois statuts (pas de seuils doubles au mariage)",
+  JSON.stringify(R.states.virginia.incomeTax.brackets.single) ===
+  JSON.stringify(R.states.virginia.incomeTax.brackets.marriedJoint) ? 1 : 0, 1, 0);
+check("VA : impot d'Etat identique single et head of household sur 75 000 $",
+  calcul("virginia", 75000, "headOfHousehold").etat,
+  calcul("virginia", 75000, "single").etat, 0.005);
+check("VA : un couple paie moins qu'un celibataire sur le meme salaire",
+  calcul("virginia", 75000, "marriedJoint").etat < calcul("virginia", 75000).etat ? 1 : 0, 1, 0);
+check("VA : l'exemption personnelle vaut 930 $ par personne, 1 860 $ en commun",
+  R.states.virginia.incomeTax.personalExemption.marriedJoint,
+  2 * R.states.virginia.incomeTax.personalExemption.single, 0);
+check("VA : la deduction standard 2026 vaut la deduction federale +5,3% (8 750 vs 8 300... " +
+  "non lie, simple recoupement du chiffre publie)",
+  R.states.virginia.incomeTax.standardDeduction.single, 8750, 0);
+check("VA : la deduction standard commune est exactement le double de la deduction single",
+  R.states.virginia.incomeTax.standardDeduction.marriedJoint,
+  2 * R.states.virginia.incomeTax.standardDeduction.single, 0);
+check("VA : quatre tranches, 2% / 3% / 5% / 5,75%",
+  R.states.virginia.incomeTax.brackets.single.map(b => b[1]).join(",") ===
+  [0.02, 0.03, 0.05, 0.0575].join(",") ? 1 : 0, 1, 0);
+check("VA : aucun programme salarie retenu (assurance chomage employeur seul)",
+  (R.states.virginia.employeePrograms || []).length, 0, 0);
+check("VA : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
+  calcul("virginia", 5000).etat >= 0 ? 1 : 0, 1, 0);
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
