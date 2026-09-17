@@ -43,7 +43,8 @@ const PUBLIES = {
   Utah: "utah",
   Virginia: "virginia",
   Washington: "washington",
-  Wisconsin: "wisconsin"
+  Wisconsin: "wisconsin",
+  Wyoming: "wyoming"
 };
 
 /* Les Etats qui ont AUSSI une page « salary to hourly ». Sous-ensemble de

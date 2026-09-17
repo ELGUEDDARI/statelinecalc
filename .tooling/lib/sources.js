@@ -325,6 +325,26 @@ const PAR_ETAT = {
       quoi: "the $46,600 taxable wage base, paid entirely by the employer &mdash; no employee " +
             "rate appears anywhere in this schedule",
       motif: ["46,600"] }
+  ],
+  wyoming: [
+    { type: "document",
+      url: "https://wyoleg.gov/statutes/compress/title39.pdf",
+      titre: "Wyoming Statutes, Title 39, &sect;&nbsp;39-12-101, &ldquo;Preemption by " +
+             "state&rdquo; (PDF)",
+      quoi: "the single statute that bars both the state and every county, city and town " +
+            "from levying a tax on wages or other income",
+      motif: ["preempt for itself the field"] },
+    { type: "document",
+      url: "https://dws.wyo.gov/dws-division/unemployment-insurance/wyui/unemployment-taxable-wage-base/",
+      titre: "Wyoming Department of Workforce Services &mdash; Unemployment Taxable Wage Base",
+      quoi: "the $33,800 taxable wage base for 2026",
+      motif: ["33,800"] },
+    { type: "document",
+      url: "https://dws.wyo.gov/dws-division/unemployment-insurance/employers/unemployment-tax-rates/",
+      titre: "Wyoming Department of Workforce Services &mdash; Unemployment Tax Rates",
+      quoi: "the rule that new-employer rates are set by industry rather than a single flat " +
+            "rate, with an 8.5% ceiling for a late registration",
+      motif: ["8.5%"] }
   ]
 };
 

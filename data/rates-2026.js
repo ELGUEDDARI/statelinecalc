@@ -1858,6 +1858,87 @@ const RATES_2026 = {
           headOfHousehold: [[78475, 0], [289675, 0.0195], [Infinity, 0.025]]
         }
       }
+    },
+
+    /* -----------------------------------------------------------------------
+       WYOMING — added 2026-09-17, the 22nd state, the 7th with no income tax
+       (after Texas, Florida, Nevada, Tennessee, Washington, Alaska). CSV
+       SEMrush du 01/09 : "wyoming paycheck calculator" KD 9, volume 880/mois,
+       CPC 2,29 $ (retenu apres North Dakota KD 7 ; Maine, KD 9 egalement mais
+       CPC 5,72 $, ecarte cette session parce que son mecanisme de retenue
+       comporte un abattement standard DEGRESSIF au-dela d'un seuil de revenu
+       annualise — formule non encore supportee par le moteur, chantier a
+       part ; Vermont KD 9 ecarte, CPC 0,00 $, signal faible). SERP reelle
+       verifiee par WebSearch le 2026-09-17 : 9/9 acteurs etablis (ADP,
+       OnPay, Gusto, Indeed Flex, PaycheckCity, SmartAsset, QuickBooks,
+       SurePayroll, usapaycheck.org) — porte fermee au sens strict du
+       21/08, publiee quand meme sur le meme raisonnement volume/CPC que
+       Virginia/Alaska/North Dakota (decision PDG du 11/09).
+
+       ── L'ANGLE DE CETTE PAGE ────────────────────────────────────────────
+       Le Wyoming ne se contente pas de taxer a 0% : la loi lui interdit
+       EXPLICITEMENT, a lui-meme et a toute subdivision, de lever un impot
+       sur les salaires. C'est plus fort que "le taux est a zero" (Tennessee,
+       apres abrogation) ou que "la loi ne prevoit rien" (Texas, Floride) :
+       c'est une clause de PREEMPTION qui couvre l'Etat ET les villes/comtes
+       dans la meme phrase — source ci-dessous.
+
+       1. AUCUN IMPOT SUR LE REVENU, NI D'ETAT NI LOCAL — LA MEME PHRASE DE
+          LOI COUVRE LES DEUX. Wyoming Statutes, Title 39 ("Taxation and
+          Revenue"), Chapter 12 ("Income Tax"), § 39-12-101 ("Preemption by
+          state"), PDF officiel telecharge directement depuis wyoleg.gov
+          (wyoleg.gov/statutes/compress/title39.pdf, HTTP 200, lu le
+          2026-09-17), verbatim, texte integral du seul article du chapitre
+          12 :
+            "The state of Wyoming does hereby preempt for itself the field
+             of imposing and levying income taxes, earning taxes, or any
+             other form of tax based on wages or other income and no
+             county, city, town or other political subdivision shall have
+             the right to impose, levy or collect such taxes."
+          C'est le SEUL article du chapitre consacre a l'impot sur le revenu
+          dans l'integralite du Titre 39 (la taxation et les revenus de
+          l'Etat) — aucun bareme, aucune tranche, aucun formulaire de
+          retenue nulle part ailleurs dans ce titre. Recoupe par la page
+          "Our Mission" du Department of Revenue (revenue.wyo.gov/our-
+          mission, lue le 2026-09-17), qui enumere les taxes que le
+          Department administre — mineral et excise taxes, sales/use/
+          lodging/cigarette/estate tax (Excise Tax Division), mineral
+          severance taxes (Mineral Tax Division), property taxes (Property
+          Tax Division) — sans jamais mentionner d'impot sur le revenu des
+          personnes physiques.
+
+       2. ASSURANCE CHOMAGE — ENTIEREMENT A LA CHARGE DE L'EMPLOYEUR, comme
+          20 des 21 Etats deja publies (seul l'Alaska partage la charge) —
+          mais avec un mecanisme de taux NOUVEAU-VENU plus complexe que
+          d'habitude, propre a l'angle de cette page. Wyoming Department of
+          Workforce Services (DWS), deux pages officielles lues le
+          2026-09-17, HTTP 200 :
+            a) "Unemployment Taxable Wage Base" (dws.wyo.gov/dws-division/
+               unemployment-insurance/wyui/unemployment-taxable-wage-base/),
+               tableau HTML verbatim : "2026  $33,800" (en hausse depuis
+               32 400 $ en 2025 ; 34 900 $ deja publies pour 2027).
+            b) "Unemployment Tax Rates" (dws.wyo.gov/dws-division/
+               unemployment-insurance/employers/unemployment-tax-rates/),
+               verbatim : "The Unemployment Tax Rates in Wyoming are
+               assigned per W.S. 27-3 Article 5. [...] New employers (with
+               less than three years of 'experience') will be assigned a
+               base rate calculated on their specific industry. [...] If an
+               employer fails to complete their registration prior to
+               submitting their report, they will be assigned the highest
+               base rate possible which is 8.5%."
+          A LA DIFFERENCE de tous les autres Etats publies a ce jour, il
+          n'existe PAS un taux unique "nouvel employeur" : le taux depend du
+          secteur d'activite (NAICS), avec un plafond de 8,5% pour tout
+          employeur non enregistre a temps. La page ne peut donc annoncer
+          qu'une fourchette sourcee, jamais un chiffre unique invente.
+          Aucune mention d'une part salariale nulle part dans ces deux
+          pages ni dans les FAQ employeurs du DWS : la charge ne sort donc
+          jamais d'un bulletin de paie (pas d'entree employeePrograms).
+       ----------------------------------------------------------------------- */
+    wyoming: {
+      name: "Wyoming",
+      abbr: "WY",
+      incomeTax: { hasIncomeTax: false }
     }
   }
 };

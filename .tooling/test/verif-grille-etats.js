@@ -40,7 +40,19 @@ const srv = http.createServer((q,r)=>{ let p=decodeURIComponent(q.url.split("?")
   for (const e of ETATS_TESTES) {
     await page.goto(BASE+"/paycheck-calculator/"+e+"/", {waitUntil:"networkidle"});
     const d = await page.evaluate(()=>{
-      const ul=[...document.querySelectorAll("ul")].find(u=>u.textContent.includes("Wyoming"));
+      /* ⛔ Cherchait autrefois le premier <ul> dont le texte contient
+         "Wyoming" — marchait tant que Wyoming n'etait pas publie nulle
+         part. Le 17/09/2026, une fois Wyoming publie, son PROPRE menu de
+         navigation (genere par entete(), qui liste tous les Etats publies)
+         s'est mis a contenir un lien "Wyoming" — sur la page Wyoming
+         elle-meme, ce <ul> de navigation precede la grille dans le DOM, et
+         le test se trompait de <ul>. La grille des 50 Etats est la SEULE
+         liste de la page a compter exactement 50 <li> (le menu de
+         navigation n'en a qu'un par Etat PUBLIE, jamais 50) : on la
+         retrouve par ce compte, toujours independant du nom de classe et
+         d'un Etat en particulier. */
+      const ul = [...document.querySelectorAll("ul")]
+        .find(u => u.querySelectorAll(":scope > li").length === 50);
       if(!ul) return {trouve:false};
       const cs=getComputedStyle(ul);
       return {trouve:true, classe:ul.className, display:cs.display,

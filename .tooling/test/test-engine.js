@@ -957,5 +957,25 @@ check("ND : aucun programme salarie retenu (assurance chomage employeur seul)",
 check("ND : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("north-dakota", 5000).etat >= 0 ? 1 : 0, 1, 0);
 
+/* ── WYOMING, 22e Etat, ajoute 2026-09-17 ────────────────────────────────────
+   Aucun impot sur le revenu, ni d'Etat ni local, par preemption statutaire
+   (Wyoming Statutes § 39-12-101). Comme les 6 autres Etats sans impot deja
+   publies (Texas, Floride, Nevada, Tennessee, Washington, Alaska), le net
+   est integralement determine par le federal + FICA. A la difference de
+   l'Alaska, aucune part salariale d'assurance chomage : employeePrograms
+   doit rester vide, comme Texas/Tennessee/Nevada/Floride/Washington
+   (Washington a ses propres programmes PFML/WA Cares, mais pas de part
+   d'assurance chomage). */
+check("WY : aucun impot sur le revenu",
+  R.states.wyoming.incomeTax.hasIncomeTax === false ? 1 : 0, 1, 0);
+check("WY : l'impot d'Etat est toujours zero, quel que soit le salaire",
+  calcul("wyoming", 500000).etat, 0, 0);
+check("WY : aucun programme salarie retenu (assurance chomage par industrie, employeur seul)",
+  (R.states.wyoming.employeePrograms || []).length, 0, 0);
+check("WY : le net sur 60 000 $ egale le federal + FICA, comme les 6 autres Etats sans impot",
+  calcul("wyoming", 60000).net, calcul("texas", 60000).net, 0.001);
+check("WY : le net sur 75 000 $ egale le Texas au centime pres",
+  calcul("wyoming", 75000).net, calcul("texas", 75000).net, 0.001);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
