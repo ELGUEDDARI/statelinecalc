@@ -1761,6 +1761,103 @@ const RATES_2026 = {
       employeePrograms: [
         { label: "AK Unemployment Insurance (0.50%)", rate: 0.005, wageCap: 54200 }
       ]
+    },
+
+    /* -----------------------------------------------------------------------
+       NORTH DAKOTA — 21e Etat, ajoute 2026-09-17. Deux sources officielles
+       lues le jour meme.
+
+       1. BAREME DE RETENUE 2026 (Section 2, formulaire W-4 2020 et apres).
+          "North Dakota Income Tax Withholding Rates & Instructions, For
+          wages paid in 2026", North Dakota Office of State Tax Commissioner,
+          telechargee le 2026-09-17 depuis tax.nd.gov/sites/www/files/
+          documents/forms/individual/2026-iit/2026-income-tax-withholding-
+          rates-booklet.pdf (HTTP 200 direct, aucun obstacle reseau), page 45,
+          "Annual Percentage Method Tables (Forms W-4 for 2020 and after)",
+          verbatim :
+            Single : "0 + 1.95% of amount over $ 57,625" puis
+                     "3,916.09 + 2.50% of amount over 258,450"
+            Married Filing Jointly : "0 + 1.95% of amount over $ 57,500" puis
+                     "2,164.99 + 2.50% of amount over 168,525"
+            Head of Household : "0 + 1.95% of amount over $ 78,475" puis
+                     "4,118.40 + 2.50% of amount over 289,675"
+          Chaque montant de base recoupe l'arithmetique de son propre segment
+          au centime pres (verifie a la main le 2026-09-17) :
+            Single    : (258450-57625) x 1,95% = 3 916,09 $ -> imprime 3 916,09 $
+            Married   : (168525-57500) x 1,95% = 2 165,00 $ -> imprime 2 164,99 $ (arrondi agence)
+            Head of H.: (289675-78475) x 1,95% = 4 118,40 $ -> imprime 4 118,40 $
+          Cette coherence interne parfaite confirme que les trois seuils ont
+          ete lus dans le bon ordre malgre une mise en page a colonnes (verifie
+          trois fois avec des extractions PDF differentes : pdftotext -layout,
+          -raw et sans option, resultat identique a chaque fois).
+
+          LE FAIT DISTINCTIF DE CETTE PAGE : le seuil du couple qui declare
+          conjointement (57 500 $) N'EST PAS LE DOUBLE du seuil du celibataire
+          (57 625 $) — il est meme legerement PLUS BAS. C'est l'inverse du
+          schema habituel (Nebraska, Caroline du Nord, bareme federal), ou le
+          mariage double le seuil. La formule de retenue du Dakota du Nord
+          n'essaie pas de deviner le revenu du foyer entier a partir d'un seul
+          bulletin de paie : chaque tranche de retenue est calibree pour un
+          SEUL salaire, quel que soit le statut, ce qui explique pourquoi les
+          trois seuils (57 625 $ / 57 500 $ / 78 475 $) sont du meme ordre de
+          grandeur plutot que le statut marie doublant le statut celibataire.
+          Cette formule de RETENUE (ce qui sort reellement d'un bulletin de
+          paie, l'objet de ce calculateur) differe du bareme STATUTAIRE de
+          declaration annuelle publie separement sur tax.nd.gov/individual-
+          income-tax (qui, pour 2025, dernier millesime affiche sur cette
+          page au 2026-09-17, montre un seuil "Married filing jointly" a
+          80 975 $ contre 48 475 $ pour "Single" — bien plus large, comme
+          attendu pour une declaration annuelle). Cette page modelise la
+          RETENUE, conformement a l'objet d'un "paycheck calculator".
+
+          Pas de deduction standard ni d'exemption personnelle distinctes a
+          soustraire : la tranche a 0% agit deja comme un seuil integre dans
+          le bareme de retenue lui-meme (contrairement a la Virginie, qui
+          soustrait deduction + exemption avant d'appliquer un bareme qui
+          commence a 0 $).
+
+       2. ASSURANCE CHOMAGE — ENTIEREMENT A LA CHARGE DE L'EMPLOYEUR, comme
+          19 des 20 Etats deja publies (seul l'Alaska partage la charge).
+          Source : Job Service North Dakota, "2026 Unemployment Insurance Tax
+          Rate Schedules" (jobsnd.com/sites/www/files/documents/jsnd-
+          documents/uitaxrateschedules2026.pdf), lue le 2026-09-17, HTTP 200,
+          verbatim : "2026 Taxable Wage Base is $46,600" et "New Employer
+          Rate ... Non-Construction 1.00%". Aucune mention d'un taux ou d'une
+          part salariale nulle part dans ce document ni dans le "Employer's
+          Handbook on the Unemployment Insurance Program in North Dakota"
+          (library.nd.gov/statedocs/JobService/jsnd4036.pdf, lu le meme
+          jour) — recoupe le schema standard : cette taxe ne sort jamais
+          d'un bulletin de paie au Dakota du Nord, donc n'est pas modelisee
+          dans employeePrograms.
+
+       PAS D'IMPOT LOCAL SUR LE REVENU. La propre page officielle "Local
+       Taxes - City and County Taxes" du Tax Commissioner
+       (tax.nd.gov/business/sales-and-use-tax/local-taxes-city-and-county-
+       taxes), lue le 2026-09-17, HTTP 200, enumere EXHAUSTIVEMENT les
+       categories de taxes locales que villes et comtes peuvent lever,
+       verbatim : "Cities and counties may levy sales and use taxes, as well
+       as special taxes such as lodging taxes, lodging and restaurant taxes,
+       and motor vehicle rental taxes." Aucun impot sur le revenu n'apparait
+       dans cette liste exhaustive d'un document officiel dedie precisement
+       a l'enumeration des taxes locales — un signal plus fort que l'absence
+       de source rencontree en Alaska/Georgie, puisque la page dont c'est
+       precisement l'objet ne mentionne pas d'impot local sur le revenu parmi
+       les categories qu'elle liste. Recoupe par une recherche independante
+       (search web, plusieurs sources tierces) confirmant qu'aucune ville du
+       Dakota du Nord (Fargo, Bismarck compris) ne leve d'impot local sur le
+       revenu — utilisee en RECOUPEMENT seulement.
+       ----------------------------------------------------------------------- */
+    "north-dakota": {
+      name: "North Dakota",
+      abbr: "ND",
+      incomeTax: {
+        hasIncomeTax: true,
+        brackets: {
+          single:          [[57625, 0], [258450, 0.0195], [Infinity, 0.025]],
+          marriedJoint:    [[57500, 0], [168525, 0.0195], [Infinity, 0.025]],
+          headOfHousehold: [[78475, 0], [289675, 0.0195], [Infinity, 0.025]]
+        }
+      }
     }
   }
 };

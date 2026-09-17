@@ -301,6 +301,30 @@ const PAR_ETAT = {
       quoi: "the four-bracket withholding formula (2% to 5.75%), the $8,750/$17,500 " +
             "standard deduction and the $930 personal exemption",
       motif: ["8,750", "5.75%"] }
+  ],
+  "north-dakota": [
+    { type: "document",
+      url: "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2026-iit/2026-income-tax-withholding-rates-booklet.pdf",
+      titre: "North Dakota Office of State Tax Commissioner &mdash; Income Tax Withholding " +
+             "Rates &amp; Instructions, for wages paid in 2026 (PDF)",
+      quoi: "the three withholding brackets (0%, 1.95%, 2.5%) and their thresholds for " +
+            "Single ($57,625/$258,450), Married Filing Jointly ($57,500/$168,525) and Head " +
+            "of Household ($78,475/$289,675)",
+      motif: ["57,625", "1.95%"] },
+    { type: "document",
+      url: "https://www.tax.nd.gov/business/sales-and-use-tax/local-taxes-city-and-county-taxes",
+      titre: "North Dakota Office of State Tax Commissioner &mdash; Local Taxes, City and " +
+             "County Taxes",
+      quoi: "the state's own exhaustive list of local taxes cities and counties may levy " +
+            "&mdash; sales, use, lodging and rental taxes only, no income tax",
+      motif: ["cities and counties may levy sales and use taxes"] },
+    { type: "document",
+      url: "https://www.jobsnd.com/sites/www/files/documents/jsnd-documents/uitaxrateschedules2026.pdf",
+      titre: "Job Service North Dakota &mdash; 2026 Unemployment Insurance Tax Rate Schedules " +
+             "(PDF)",
+      quoi: "the $46,600 taxable wage base, paid entirely by the employer &mdash; no employee " +
+            "rate appears anywhere in this schedule",
+      motif: ["46,600"] }
   ]
 };
 

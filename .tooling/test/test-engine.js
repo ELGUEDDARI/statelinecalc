@@ -907,5 +907,55 @@ check("AK : est le seul Etat de ce site avec un employeePrograms non vide " +
 check("AK : l'impot d'Etat (income tax) est toujours zero, quel que soit le salaire",
   calcul("alaska", 500000).etat, 0, 0);
 
+/* ── NORTH DAKOTA, 21e Etat, ajoute 2026-09-17 ───────────────────────────────
+   Bareme de retenue 2026 a trois tranches (0% / 1,95% / 2,5%), seuils
+   differents par statut de declaration. Source : North Dakota Office of
+   State Tax Commissioner, "Income Tax Withholding Rates & Instructions, for
+   wages paid in 2026", page 45, "Annual Percentage Method Tables (Forms W-4
+   for 2020 and after)", lu 2026-09-17.
+
+   LE FAIT DISTINCTIF : le seuil marie-commun (57 500 $) est LEGEREMENT PLUS
+   BAS que le seuil celibataire (57 625 $) — l'inverse du schema habituel
+   (Nebraska double ses seuils au mariage). Le seuil chef de famille
+   (78 475 $) est le plus large des trois.
+
+   Cas - 75 000 $ brut, celibataire, calcule a la main :
+     tranche 1 : 0 $ a 57 625 $ a 0%                      =      0,00
+     tranche 2 : 57 625 $ a 75 000 $ (17 375 $) a 1,95%    =    338,81
+     total impot d'Etat                                    =    338,81
+   Meme salaire, marie-commun :
+     tranche 2 : 57 500 $ a 75 000 $ (17 500 $) a 1,95%    =    341,25
+   Meme salaire, chef de famille : sous le seuil de 78 475 $ -> 0,00 $. */
+check("ND : trois tranches, 0% / 1,95% / 2,5%",
+  R.states["north-dakota"].incomeTax.brackets.single.length, 3, 0);
+check("ND : impot d'Etat sur 75 000 $ brut, celibataire (17 375 x 1,95%)",
+  calcul("north-dakota", 75000).etat, 338.8125, 0.01);
+check("ND : impot d'Etat sur 75 000 $ brut, marie-commun (17 500 x 1,95%)",
+  calcul("north-dakota", 75000, "marriedJoint").etat, 341.25, 0.01);
+check("ND : impot d'Etat sur 75 000 $ brut, chef de famille (sous le seuil de 78 475 $)",
+  calcul("north-dakota", 75000, "headOfHousehold").etat, 0, 0);
+check("ND : le seuil marie-commun est PLUS BAS que le seuil celibataire (fait distinctif)",
+  57500 < 57625 ? 1 : 0, 1, 0);
+check("ND : a 75 000 $, le marie-commun paie PLUS que le celibataire (seuil plus bas)",
+  calcul("north-dakota", 75000, "marriedJoint").etat > calcul("north-dakota", 75000).etat ? 1 : 0, 1, 0);
+check("ND : rien sous le seuil single de 57 625 $",
+  calcul("north-dakota", 57625).etat, 0, 0);
+check("ND : premier cent au dollar 57 626 $, celibataire (1 x 1,95%)",
+  calcul("north-dakota", 57626).etat, 0.0195, 0.001);
+check("ND : rien sous le seuil marie-commun de 57 500 $",
+  calcul("north-dakota", 57500, "marriedJoint").etat, 0, 0);
+check("ND : rien sous le seuil chef de famille de 78 475 $",
+  calcul("north-dakota", 78475, "headOfHousehold").etat, 0, 0);
+check("ND : la tranche a 2,5% s'applique au-dela de 258 450 $, celibataire",
+  calcul("north-dakota", 300000).etat, 4954.8375, 0.01);
+check("ND : rien sous 25 000 $, celibataire",
+  calcul("north-dakota", 25000).etat, 0, 0);
+check("ND : le net sur 60 000 $ integre le bareme a trois tranches, celibataire",
+  calcul("north-dakota", 60000).net, 50343.6875, 0.01);
+check("ND : aucun programme salarie retenu (assurance chomage employeur seul)",
+  (R.states["north-dakota"].employeePrograms || []).length, 0, 0);
+check("ND : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
+  calcul("north-dakota", 5000).etat >= 0 ? 1 : 0, 1, 0);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
