@@ -870,5 +870,42 @@ check("VA : aucun programme salarie retenu (assurance chomage employeur seul)",
 check("VA : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("virginia", 5000).etat >= 0 ? 1 : 0, 1, 0);
 
+/* ── ALASKA, 20e Etat, ajoute 2026-09-17 ─────────────────────────────────────
+   Aucun impot sur le revenu (hasIncomeTax: false), mais un mecanisme unique
+   sur ce site : l'assurance chomage est PARTAGEE, employeur ET salarie.
+   Source : Alaska Department of Labor and Workforce Development, "2026
+   Unemployment Insurance Tax Rates", verbatim "The 2026 Employee Rate is
+   0.50%" et "The 2026 Taxable Wage Base is $54,200.00", lu 2026-09-17.
+
+   Cas - 60 000 $ brut, celibataire, calcule a la main :
+     impot d'Etat                                       =      0,00
+     chomage salarie = 54 200 x 0,50 % (plafonne)        =    271,00
+     federal (identique aux autres Etats sans impot)     =  5 020,00
+     Social Security 60 000 x 6,2 %                      =  3 720,00
+     Medicare 60 000 x 1,45 %                             =    870,00
+     total                                                =  9 881,00
+     net                                                  = 50 119,00 */
+check("AK : aucun impot sur le revenu",
+  R.states.alaska.incomeTax.hasIncomeTax === false ? 1 : 0, 1, 0);
+check("AK : chomage salarie a 0,50%", R.states.alaska.employeePrograms[0].rate, 0.005, 0);
+check("AK : plafond de salaire du chomage a 54 200 $",
+  R.states.alaska.employeePrograms[0].wageCap, 54200, 0);
+check("AK : chomage salarie sur 60 000 $ (sous le plafond)",
+  calcul("alaska", 60000).programmes[0].montant, 271.00, 0.01);
+check("AK : chomage plafonne a 271 $ meme au-dela de 54 200 $",
+  calcul("alaska", 200000).programmes[0].montant, 271.00, 0.01);
+check("AK : chomage exactement 271 $ pile au plafond de 54 200 $",
+  calcul("alaska", 54200).programmes[0].montant, 271.00, 0.01);
+check("AK : sous le plafond, le chomage suit le salaire (30 000 x 0,50%)",
+  calcul("alaska", 30000).programmes[0].montant, 150.00, 0.01);
+check("AK : le net sur 60 000 $ integre le chomage salarie",
+  calcul("alaska", 60000).net, 50119.00, 0.01);
+check("AK : est le seul Etat de ce site avec un employeePrograms non vide " +
+  "en plus d'un hasIncomeTax false (Texas/Tennessee/Nevada/Washington/Floride n'en ont pas)",
+  (R.states.alaska.employeePrograms || []).length > 0 &&
+  R.states.alaska.incomeTax.hasIncomeTax === false ? 1 : 0, 1, 0);
+check("AK : l'impot d'Etat (income tax) est toujours zero, quel que soit le salaire",
+  calcul("alaska", 500000).etat, 0, 0);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

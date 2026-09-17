@@ -61,7 +61,7 @@
    ========================================================================= */
 
 /* Date du dernier controle HTTP + motif de TOUTES les URL de ce fichier. */
-const VERIFIE_LE = "2026-09-12";
+const VERIFIE_LE = "2026-09-17";
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -91,6 +91,21 @@ const FEDERALES = [
 ];
 
 const PAR_ETAT = {
+  alaska: [
+    { type: "document",
+      url: "https://tax.alaska.gov/programs/programs/index.aspx?10001",
+      titre: "Alaska Department of Revenue, Tax Division &mdash; \"Personal Income\" tax type page",
+      quoi: "the statement that Alaska currently has no individual income tax and requires no " +
+            "state withholding",
+      motif: ["does not have an individual income tax"] },
+    { type: "document",
+      url: "https://labor.alaska.gov/estax/2026-experience-rates.html",
+      titre: "Alaska Department of Labor and Workforce Development &mdash; 2026 Unemployment " +
+             "Insurance Tax Rates",
+      quoi: "the 0.50% employee rate and the $54,200 taxable wage base, the only state on this " +
+            "site where part of unemployment insurance comes out of the employee's own pay",
+      motif: ["0.50%", "54,200"] }
+  ],
   montana: [
     { type: "document",
       url: "https://revenuefiles.mt.gov/files/Forms/Montana_Employer_and_Information_Agent_Guide_with_Tax_Tables.pdf",

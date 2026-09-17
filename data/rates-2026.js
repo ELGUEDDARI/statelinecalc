@@ -1696,6 +1696,71 @@ const RATES_2026 = {
           headOfHousehold: [[3000, 0.02], [5000, 0.03], [17000, 0.05], [Infinity, 0.0575]]
         }
       }
+    },
+
+    /* -----------------------------------------------------------------------
+       ALASKA — 20e Etat, ajoute 2026-09-17. Deux sources officielles lues le
+       jour meme, les DEUX joignables directement par curl (aucun blocage,
+       contrairement a la Tennessee/Nevada/Idaho/Virginie) :
+
+       1. AUCUN IMPOT SUR LE REVENU DES PARTICULIERS.
+          tax.alaska.gov, Department of Revenue - Tax Division, page "Personal
+          Income" (https://tax.alaska.gov/programs/programs/index.aspx?10001),
+          lue le 2026-09-17, HTTP 200, verbatim :
+            "Does Alaska have a personal income tax? The State of Alaska
+             currently does not have an individual income tax, therefore no
+             employee withholding for state income tax is required."
+          Recoupement historique (non retenu comme source du chiffre, juste
+          pour l'angle editorial) : l'impot sur le revenu des particuliers a
+          ete abroge retroactivement au 1er janvier 1980 (loi signee par le
+          gouverneur Jay Hammond en septembre 1980), finance par les recettes
+          petrolieres du pipeline Trans-Alaska. AS 43.20.011 ("Tax on
+          corporations"), la disposition actuelle du Alaska Net Income Tax
+          Act, ne taxe QUE les societes aujourd'hui - confirme le 2026-09-17
+          sur codes.findlaw.com/ak/title-43-revenue-and-taxation/ak-st-sect-
+          43-20-011/, HTTP 200 : la section ne mentionne aucune assiette
+          individuelle. Un projet de loi (SB 92, session 2025) proposerait de
+          reintroduire un impot individuel a 3,2 %/5,7 % - PROPOSE, non
+          adopte ; non modelise ici, et la page ne le presente pas comme une
+          loi en vigueur.
+
+       2. ASSURANCE CHOMAGE - PARTAGEE ENTRE EMPLOYEUR ET SALARIE. C'est le
+          fait distinctif de cet Etat : l'Alaska est le SEUL Etat des 20 deja
+          publies sur ce site ou une part de l'assurance chomage sort de la
+          paie du salarie plutot que d'etre payee entierement par
+          l'employeur. Source : Alaska Department of Labor and Workforce
+          Development, "2026 Unemployment Insurance Tax Rates"
+          (https://labor.alaska.gov/estax/2026-experience-rates.html), lue le
+          2026-09-17, HTTP 200, verbatim :
+            "The 2026 Employee Rate is 0.50%"
+            "The 2026 Taxable Wage Base is $54,200.00"
+          La page precise aussi "The Total Rate = Employer Rate + Employee
+          Rate" : le salarie ne paie que sa part (0,50 %), jamais le total.
+          0,50 % x 54 200 $ = 271 $ par an au maximum, atteint des 54 200 $ de
+          salaire brut.
+
+       CE QUE CETTE PAGE NE DIT PAS, ET POURQUOI. Taxe locale sur le revenu :
+          aucune source d'Etat officielle listant les 165 municipalites
+          (boroughs et villes) de l'Alaska n'a pu etre chargee depuis cette
+          machine (commerce.alaska.gov/web/dcra/officeofthestateassessor/
+          alaskataxfacts.aspx repond HTTP 403 a toute requete automatisee).
+          Aucune municipalite d'Alaska taxant les salaires n'a ete trouvee
+          dans les recherches menees, mais faute d'une source d'Etat lue
+          directement, la page ne l'affirme pas comme un fait etabli - elle
+          dit ce qu'elle sait (aucun impot local trouve) sans promettre une
+          verification exhaustive des 165 juridictions. Meme prudence que
+          pour la Georgie le 28/08/2026.
+       ----------------------------------------------------------------------- */
+    alaska: {
+      name: "Alaska",
+      abbr: "AK",
+      incomeTax: { hasIncomeTax: false },
+
+      /* Assurance chomage, part SALARIALE. L'Alaska est le seul des 20 Etats
+         publies ou ce champ est non vide : voir la source 2 ci-dessus. */
+      employeePrograms: [
+        { label: "AK Unemployment Insurance (0.50%)", rate: 0.005, wageCap: 54200 }
+      ]
     }
   }
 };
