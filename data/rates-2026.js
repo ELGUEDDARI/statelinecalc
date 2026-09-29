@@ -2046,6 +2046,101 @@ const RATES_2026 = {
           headOfHousehold: [[10000, 0], [Infinity, 0.04]]
         }
       }
+    },
+
+    /* -----------------------------------------------------------------------
+       NEW HAMPSHIRE — added 2026-09-29, the 24th state. CSV SEMrush du 01/09 :
+       "new hampshire paycheck calculator" KD 10, volume 880/mois, CPC 3,66 $.
+       Meilleur candidat par KD croissant sur le CSV apres Mississippi (KD 11)
+       parmi les Etats non deja publies et non reportes : Vermont (KD 9, mais
+       CPC 0,00 $ — signal publicitaire nul, deja ecarte le 17/09 pour cette
+       raison sur Wyoming), Maine (KD 9, abattement degressif selon l'AGI —
+       chantier moteur a part, meme famille que Maine/South Carolina deja
+       reportes), South Carolina (KD 10, meme mecanisme AGI, deja ecarte le
+       17/09). New Hampshire ne souleve aucun de ces problemes : pas d'impot
+       sur les salaires, aucun mecanisme degressif. SERP reelle verifiee par
+       WebSearch le 2026-09-29 sur "new hampshire paycheck calculator" :
+       10/10 acteurs etablis (Indeed Flex, ADP, Gusto, SmartAsset, QuickBooks,
+       PaycheckCity, SurePayroll, OnPay) — porte fermee au sens strict du
+       21/08, publiee quand meme sur le meme raisonnement volume/CPC que
+       Virginia/Alaska/North Dakota/Wyoming/Mississippi (decision PDG du
+       11/09).
+
+       ── L'ANGLE DE CETTE PAGE ────────────────────────────────────────────
+       New Hampshire est le 6e Etat du site sans impot sur le revenu du
+       travail, mais avec un fait distinctif recent : jusqu'en 2024 l'Etat
+       taxait les INTERETS ET DIVIDENDES (pas les salaires) a 3% ; cette taxe
+       a ete integralement abrogee a compter des periodes fiscales ouvertes
+       apres le 31 decembre 2024. Depuis le 1er janvier 2025, et donc pour
+       toute l'annee 2026 modelisee ici, le New Hampshire n'a plus AUCUNE
+       taxe sur le revenu, ni sur les salaires (jamais taxes) ni sur les
+       revenus de placement (desormais abroges). C'est un angle editorial
+       fort : contrairement au Wyoming/Dakota du Sud/Texas (jamais eu
+       d'impot sur le revenu des salaires), le New Hampshire vient de
+       *devenir* un Etat sans aucun impot sur le revenu, ce que la page
+       explique.
+
+       1. AUCUN IMPOT SUR LE REVENU DES SALAIRES (jamais eu), ET ABROGATION
+          DE LA TAXE SUR LES INTERETS/DIVIDENDES EN 2025 (recente). New
+          Hampshire Department of Revenue Administration, page "Taxes at a
+          Glance - Interest & Dividends Tax"
+          (https://www.revenue.nh.gov/taxes-glance/interest-dividends-tax),
+          site bloquant les requetes automatisees directes (curl et
+          PowerShell Invoke-WebRequest : HTTP 403 tous les deux, meme
+          User-Agent navigateur) — lue via l'instantane Wayback Machine du
+          2026-09-20 (http://web.archive.org/web/20260920113242/
+          https://www.revenue.nh.gov/taxes-glance/interest-dividends-tax),
+          capture verifiee HTTP 200, contenu du site officiel du DRA
+          (bandeau, navigation, coordonnees identiques au site en direct),
+          verbatim :
+            "The State of New Hampshire does not have an income tax on an
+             individual's reported W-2 wages."
+            "The I&D Tax was repealed for taxable periods beginning after
+             December 31, 2024."
+            "Effective for taxable periods beginning after December 31,
+             2024, the Interest and Dividends tax is repealed."
+          Recoupement independant (WebSearch, plusieurs cabinets fiscaux
+          tiers — McLane Middleton, CBIZ, Albin Randall and Bennett — tous
+          confirmant la meme date d'abrogation) : utilise en RECOUPEMENT
+          seulement, jamais comme source du chiffre lui-meme, conformement a
+          la regle du projet.
+
+       2. ASSURANCE CHOMAGE — ENTIEREMENT A LA CHARGE DE L'EMPLOYEUR, comme
+          22 des 23 Etats deja publies (seul l'Alaska partage la charge).
+          New Hampshire Employment Security (NHES), page "Employer Claims &
+          Taxes" (https://www.nhes.nh.gov/employers/employer-claims-taxes),
+          meme blocage HTTP 403 direct — lue via l'instantane Wayback du
+          2026-01-05 (http://web.archive.org/web/20260105171503/
+          https://www.nhes.nh.gov/employers/employer-claims-taxes), capture
+          verifiee HTTP 200, verbatim :
+            "Each new employer starts with a new employer tax rate of 2.7%
+             which is paid on the first $14,000 in annual wages paid to
+             each employee."
+            "The New Hampshire new employer tax rate is 2.7% Minus any Fund
+             Balance Reduction in place for the applicable quarter"
+          Le taux 2,7% est le taux NOUVEL EMPLOYEUR avant reduction
+          eventuelle liee au solde du fonds ; les employeurs etablis paient
+          un taux experience-rated different. Aucune mention d'une part
+          salariale nulle part sur cette page ni dans les pages liees
+          (Tax Rate Chart, formulaires employeur) : la charge ne sort donc
+          jamais d'un bulletin de paie (pas d'entree employeePrograms).
+          Instantane date de janvier 2026 plutot que septembre : le plafond
+          de 14 000 $ est stable au New Hampshire depuis 2011 (aucune
+          modification legislative trouvee pour 2026 lors du recoupement
+          WebSearch), retenu comme fiable pour toute l'annee 2026.
+
+       3. AUCUN IMPOT LOCAL SUR LE REVENU. Aucune ville ni aucun comte du New
+          Hampshire ne leve d'impot sur le revenu — l'absence meme d'impot
+          d'Etat sur les salaires (source 1 ci-dessus) rend structurellement
+          impossible une surtaxe locale assise dessus ; recoupe par les
+          memes cabinets fiscaux tiers que la source 1, aucun ne mentionne
+          de taxe municipale sur le revenu du travail. Meme discipline de
+          prudence que l'Alaska/la Georgie/le Dakota du Nord/le Mississippi.
+       ----------------------------------------------------------------------- */
+    "new-hampshire": {
+      name: "New Hampshire",
+      abbr: "NH",
+      incomeTax: { hasIncomeTax: false }
     }
   }
 };

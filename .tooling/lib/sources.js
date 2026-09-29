@@ -397,7 +397,17 @@ const SANS_LIEN = {
      addressed in the page's "Paying Taxes" section &mdash; no employee
      deduction is mentioned anywhere on it. */
   virginia: "vec.virginia.gov, the Virginia Employment Commission, refuses automated " +
-            "requests with an F5/WAF HTTP 403, though its Internet Archive snapshot was read"
+            "requests with an F5/WAF HTTP 403, though its Internet Archive snapshot was read",
+  /* New Hampshire, 29/09/2026: both revenue.nh.gov (Interest & Dividends Tax
+     repeal) and nhes.nh.gov (unemployment insurance) answer HTTP 403 to
+     curl, to PowerShell Invoke-WebRequest AND to a real headless Chromium
+     with a browser user agent &mdash; three methods, three refusals, same
+     discipline as Idaho. Both documents were still read from their Internet
+     Archive snapshots (2026-09-20 for revenue.nh.gov, 2026-01-05 for
+     nhes.nh.gov), so the figures on this page are sourced and dated; we
+     just have no link from this machine that we have verified ourselves. */
+  "new-hampshire": "revenue.nh.gov and nhes.nh.gov refuse automated requests with HTTP 403, " +
+                    "though both documents were read from their Internet Archive snapshots"
 };
 
 const MOIS = ["January", "February", "March", "April", "May", "June", "July",

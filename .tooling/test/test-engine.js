@@ -1007,5 +1007,23 @@ check("MS : l'impot d'Etat n'est jamais negatif, meme a 1 000 $",
 check("MS : un couple marie paie moins qu'un celibataire sur le meme salaire",
   calcul("mississippi", 75000, "marriedJoint").etat < calcul("mississippi", 75000).etat ? 1 : 0, 1, 0);
 
+/* ── NEW HAMPSHIRE, 24e Etat, ajoute 2026-09-29 ──────────────────────────────
+   Aucun impot sur le revenu, ni sur les salaires (jamais) ni sur les
+   interets/dividendes (abroge depuis 2025). Comme les 7 autres Etats sans
+   impot deja publies (Texas, Floride, Nevada, Tennessee, Washington, Alaska,
+   Wyoming), le net est integralement determine par le federal + FICA. Comme
+   le Wyoming (et a la difference de l'Alaska), aucune part salariale
+   d'assurance chomage : employeePrograms doit rester vide. */
+check("NH : aucun impot sur le revenu",
+  R.states["new-hampshire"].incomeTax.hasIncomeTax === false ? 1 : 0, 1, 0);
+check("NH : l'impot d'Etat est toujours zero, quel que soit le salaire",
+  calcul("new-hampshire", 500000).etat, 0, 0);
+check("NH : aucun programme salarie retenu (assurance chomage employeur seul)",
+  (R.states["new-hampshire"].employeePrograms || []).length, 0, 0);
+check("NH : le net sur 60 000 $ egale le federal + FICA, comme les 7 autres Etats sans impot",
+  calcul("new-hampshire", 60000).net, calcul("texas", 60000).net, 0.001);
+check("NH : le net sur 75 000 $ egale le Wyoming au centime pres",
+  calcul("new-hampshire", 75000).net, calcul("wyoming", 75000).net, 0.001);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
