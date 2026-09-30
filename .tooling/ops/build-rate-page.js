@@ -499,7 +499,7 @@ ${piedDePage()}
 
 const dossier = path.join(RACINE, SLUG);
 fs.mkdirSync(dossier, { recursive: true });
-fs.writeFileSync(path.join(dossier, "index.html"), html, "utf8");
+fs.writeFileSync(path.join(dossier, "index.html"), require("../lib/jsonld.js").nettoieJsonLd(html), "utf8");
 console.log("ECRIT : /" + SLUG + "/index.html  (" + html.length + " octets)");
 console.log("  " + T + "/h -> " + D + " brut/an");
 ETATS.forEach(e => console.log("  %s net %s $/an  (%s $/h, %s%%)",

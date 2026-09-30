@@ -467,7 +467,7 @@ ${piedDePage()}
 const dossier = path.join(RACINE, "paycheck-calculator", ETAT);
 fs.mkdirSync(dossier, { recursive: true });
 const dest = path.join(dossier, "index.html");
-fs.writeFileSync(dest, html);
+fs.writeFileSync(dest, require("../lib/jsonld.js").nettoieJsonLd(html));
 console.log("ECRIT : /paycheck-calculator/" + ETAT + "/index.html  (" + fs.statSync(dest).size + " octets)");
 console.log("  net sur " + $0(REF) + " : " + $(r60.net) + "  (" + (r60.taux * 100).toFixed(1) + " %)");
 console.log("  " + lignesSalaire.length + " lignes de salaire, " + lignesHoraire.length +

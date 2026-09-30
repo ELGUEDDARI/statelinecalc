@@ -789,7 +789,7 @@ ${piedDePage()}
 
 const dossier = path.join(RACINE, "paycheck-calculator", "montana");
 fs.mkdirSync(dossier, { recursive: true });
-fs.writeFileSync(path.join(dossier, "index.html"), html, "utf8");
+fs.writeFileSync(path.join(dossier, "index.html"), require("../lib/jsonld.js").nettoieJsonLd(html), "utf8");
 
 const mots = html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
 console.log("page ecrite : %d mots, %d H2, %d H3, %d lignes de tableau",

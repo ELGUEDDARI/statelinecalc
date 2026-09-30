@@ -439,7 +439,7 @@ ${piedDePage()}
 
 const dossier = path.join(RACINE, SLUG);
 fs.mkdirSync(dossier, { recursive: true });
-fs.writeFileSync(path.join(dossier, "index.html"), html, "utf8");
+fs.writeFileSync(path.join(dossier, "index.html"), require("../lib/jsonld.js").nettoieJsonLd(html), "utf8");
 console.log("ECRIT : /" + SLUG + "/index.html  (" + html.length + " octets)");
 console.log("  federal + FICA partout : $" + c2(federalEtFica));
 ETATS.forEach((e, i) => console.log("  %s %s  etat %s  autres %s  net %s",

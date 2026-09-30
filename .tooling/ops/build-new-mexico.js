@@ -760,7 +760,7 @@ ${piedDePage()}
 
 const dossier = path.join(RACINE, "paycheck-calculator", CLE);
 fs.mkdirSync(dossier, { recursive: true });
-fs.writeFileSync(path.join(dossier, "index.html"), html, "utf8");
+fs.writeFileSync(path.join(dossier, "index.html"), require("../lib/jsonld.js").nettoieJsonLd(html), "utf8");
 
 const mots = html.replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ")
   .split(/\s+/).filter(Boolean).length;

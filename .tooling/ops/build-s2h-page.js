@@ -410,7 +410,7 @@ cibles.forEach(cle => {
   const dossier = path.join(RACINE, "salary-to-hourly-calculator", cle);
   fs.mkdirSync(dossier, { recursive: true });
   const html = page(cle);
-  fs.writeFileSync(path.join(dossier, "index.html"), html, "utf8");
+  fs.writeFileSync(path.join(dossier, "index.html"), require("../lib/jsonld.js").nettoieJsonLd(html), "utf8");
   const mots = html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   console.log("  ecrit : salary-to-hourly-calculator/%s/ (%d mots, %d H2, %d H3)",
     cle, mots, (html.match(/<h2/g) || []).length, (html.match(/<h3/g) || []).length);

@@ -231,7 +231,7 @@ ${piedDePage()}
 
 const dossier = path.join(RACINE, "salary-to-hourly-calculator");
 fs.mkdirSync(dossier, { recursive: true });
-fs.writeFileSync(path.join(dossier, "index.html"), html, "utf8");
+fs.writeFileSync(path.join(dossier, "index.html"), require("../lib/jsonld.js").nettoieJsonLd(html), "utf8");
 const mots = html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
 console.log("hub ecrit : %d mots, %d H2, %d H3", mots,
   (html.match(/<h2/g) || []).length, (html.match(/<h3/g) || []).length);
