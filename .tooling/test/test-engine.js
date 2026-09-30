@@ -1128,5 +1128,56 @@ check("RI : les trois taux sont identiques pour les trois statuts",
     JSON.stringify(R.states["rhode-island"].incomeTax.brackets[st])
     === JSON.stringify(R.states["rhode-island"].incomeTax.brackets.single)) ? 1 : 0, 1, 0);
 
+console.log("\n=== Colorado (27e Etat) ===");
+
+/* Sources : DR 1098 (10/21/25), 2026 Colorado Withholding Worksheet for
+   Employers (tax.colorado.gov, instantane Internet Archive du 2026-08-23) :
+   retenue annuelle = (salaire annualise - allocation) x 4,40 %, allocation
+   11 000 $ pour un couple marie (declaration commune) ou 5 500 $ sinon.
+   FAMLI : 0,44 % part salariee, jusqu'au plafond Social Security (184 500 $),
+   famli.colorado.gov/employers (instantane du 2026-01-18). Chaque attendu est
+   recalcule a la main, jamais tire du moteur.
+   single 75 000  : (75 000 - 5 500) x 4,4 % = 69 500 x 0,044          = 3 058,00
+   married 75 000 : (75 000 - 11 000) x 4,4 % = 64 000 x 0,044         = 2 816,00
+   HoH 75 000     : 5 500 comme le celibataire ("otherwise")           = 3 058,00
+   single 25 000  : 19 500 x 0,044                                     =   858,00
+   single 250 000 : 244 500 x 0,044                                    = 10 758,00
+   FAMLI 75 000 : 75 000 x 0,0044 = 330,00 ; 250 000 : 184 500 x 0,0044 = 811,80
+   net single 75 000 : 75 000 - 7 670 (federal) - 4 650 - 1 087,50 - 3 058 - 330
+                     = 58 204,50
+   net single 52 000 (25 $/h) : federal 4 060 (1 240 + 23 500 x 12 %), SS 3 224,
+     Medicare 754, CO 46 500 x 4,4 % = 2 046, FAMLI 228,80 -> 41 687,20 */
+check("CO : single 75 000 $ = 3 058,00 $ (base 69 500 x 4,4 %)",
+  calcul("colorado", 75000).etat, 3058.00, 0.005);
+check("CO : married 75 000 $ = 2 816,00 $ (allocation 11 000 $)",
+  calcul("colorado", 75000, "marriedJoint").etat, 2816.00, 0.005);
+check("CO : head of household 75 000 $ = 3 058,00 $ (allocation 5 500 $ comme single)",
+  calcul("colorado", 75000, "headOfHousehold").etat, 3058.00, 0.005);
+check("CO : single 25 000 $ = 858,00 $",
+  calcul("colorado", 25000).etat, 858.00, 0.005);
+check("CO : single 250 000 $ = 10 758,00 $ (taux plat, pas de palier)",
+  calcul("colorado", 250000).etat, 10758.00, 0.005);
+check("CO : rien de retenu a 5 500 $ (l'allocation couvre tout)",
+  calcul("colorado", 5500).etat, 0, 0);
+check("CO : premier dollar au-dessus de 5 500 $ = 4,4 % de 1 $ = 0,044 $",
+  calcul("colorado", 5501).etat, 0.044, 0.0001);
+check("CO : FAMLI sur 75 000 $ = 330,00 $",
+  calcul("colorado", 75000).programmes[0].montant, 330.00, 0.005);
+check("CO : FAMLI sur 250 000 $ = 811,80 $ (plafond 184 500 $)",
+  calcul("colorado", 250000).programmes[0].montant, 811.80, 0.005);
+check("CO : le plafond FAMLI est la base salariale Social Security",
+  R.states.colorado.employeePrograms[0].wageCap, R.fica.socialSecurity.wageBase, 0);
+check("CO : net a 75 000 $ = 58 204,50 $ (75 000 - 7 670 - 4 650 - 1 087,50 - 3 058 - 330)",
+  calcul("colorado", 75000).net, 58204.50, 0.005);
+check("CO : net a 25 $/h (52 000 $) = 41 687,20 $",
+  calcul("colorado", 25 * 2080).net, 41687.20, 0.005);
+check("CO : un seul programme salarie (FAMLI ; le chomage est employeur seul)",
+  (R.states.colorado.employeePrograms || []).length, 1, 0);
+check("CO : un seul taux plat pour les trois statuts",
+  ["single", "marriedJoint", "headOfHousehold"].every(st =>
+    JSON.stringify(R.states.colorado.incomeTax.brackets[st]) === JSON.stringify([[Infinity, 0.044]])) ? 1 : 0, 1, 0);
+check("CO : un couple marie paie moins qu'un celibataire sur le meme salaire",
+  calcul("colorado", 75000, "marriedJoint").etat < calcul("colorado", 75000).etat ? 1 : 0, 1, 0);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

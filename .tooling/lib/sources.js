@@ -432,6 +432,71 @@ const PAR_ETAT = {
              "(Internet Archive snapshot of August 9, 2026)",
       quoi: "the &ldquo;1.1% employee wage deduction&rdquo; on a $100,000 taxable wage base for 2026; archived copy, for the same reason",
       motif: ["1.1% employee wage deduction"] }
+  ],
+  colorado: [
+    { type: "document",
+      url: "https://web.archive.org/web/20260823134135/https://tax.colorado.gov/sites/tax/files/documents/DR_1098_Colorado_Withholding_Worksheet_for_Employees.pdf",
+      titre: "Colorado Department of Revenue &mdash; DR 1098, 2026 Colorado Withholding " +
+             "Worksheet for Employers (PDF, Internet Archive snapshot of August 23, 2026)",
+      quoi: "the withholding method itself: annual wages minus $5,500 ($11,000 if married " +
+            "filing jointly), times 4.40%; the department&rsquo;s own site refuses automated " +
+            "requests, so we link the archived copy",
+      motif: ["4.40%", "5,500"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260208073325/https://tax.colorado.gov/sites/tax/files/documents/DR_0004_2026.pdf",
+      titre: "Colorado Department of Revenue &mdash; DR 0004, 2026 Colorado Employee " +
+             "Withholding Certificate (PDF, Internet Archive snapshot of February 8, 2026)",
+      quoi: "the statement that withholding based on the federal W-4 will generally result in " +
+            "a refund, and the optional allowances of $14,000, $22,000 and $30,000; archived " +
+            "copy, for the same reason",
+      motif: ["generally result in a refund", "14,000"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260426234623/https://tax.colorado.gov/individual-income-tax-guide",
+      titre: "Colorado Department of Revenue &mdash; Individual Income Tax Guide (Internet " +
+             "Archive snapshot of April 26, 2026)",
+      quoi: "that Colorado taxes modified federal taxable income, and the rate by tax year " +
+            "(4.25% for 2024, 4.4% for 2025); archived copy, for the same reason",
+      motif: ["modified federal taxable income", "4.25%"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260228181124/https://tax.colorado.gov/sites/tax/files/documents/Wage_Withholding_Tax_Guide_Jan_2026.pdf",
+      titre: "Colorado Department of Revenue &mdash; Colorado Wage Withholding Tax Guide, " +
+             "revised January 2026 (PDF, Internet Archive snapshot of February 28, 2026)",
+      quoi: "that overtime compensation is generally subject to Colorado withholding, and that " +
+            "the DR 1098 worksheet prescribes the calculation; archived copy, for the same reason",
+      motif: ["overtime compensation", "prescribes the method"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260118202513/https://famli.colorado.gov/employers",
+      titre: "Colorado FAMLI Division &mdash; Employers (Internet Archive snapshot of " +
+             "January 18, 2026)",
+      quoi: "the 0.88% premium split 0.44% employer and 0.44% employee, on wages up to the " +
+            "Social Security wage cap; archived copy, because the live page refuses automated requests",
+      motif: ["0.44% paid by the employee", "Social Security Wage Cap"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20251205221239/https://cdle.colorado.gov/employers/unemployment-insurance-premiums/premium-rates",
+      titre: "Colorado Department of Labor and Employment &mdash; Unemployment Insurance " +
+             "Premium Rates (Internet Archive snapshot of December 5, 2025)",
+      quoi: "the statement that employers pay unemployment premiums, and the $30,600 chargeable " +
+            "wage base for 2026; archived copy, because the live page refuses automated requests",
+      motif: ["employers must pay annual premiums", "30,600"] },
+    { type: "document",
+      url: "https://www.denvergov.org/files/assets/public/v/2/finance/documents/treasury/tax-guides/taxguidetopic61_occupationalprivilegetaxes.pdf",
+      titre: "City and County of Denver &mdash; Tax Guide Topic No. 61, Occupational " +
+             "Privilege Taxes (PDF, revised 1/2021)",
+      quoi: "the Employee OPT of $5.75 per month, withheld by the employer, for workers who " +
+            "earn at least $500 for a calendar month in Denver",
+      motif: ["$5.75 per month", "five hundred dollars"] },
+    { type: "document",
+      url: "https://www.greenwoodvillage.com/1220/Occupational-Privilege-Tax-OPT",
+      titre: "Greenwood Village &mdash; Occupational Privilege Tax (OPT)",
+      quoi: "the $2 per month employee portion, which applies when $250 or more is earned " +
+            "in a calendar month",
+      motif: ["$2 per month", "$250 or more"] },
+    { type: "document",
+      url: "https://www.auroragov.org/business_services/taxes/occupational_privilege_tax",
+      titre: "City of Aurora &mdash; Occupational Privilege Tax",
+      quoi: "the city&rsquo;s notice that its occupational privilege tax will be repealed " +
+            "effective January 1, 2025, with the last returns covering 2024",
+      motif: ["repealed effective Jan. 1, 2025"] }
   ]
 };
 

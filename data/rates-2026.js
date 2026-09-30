@@ -2394,6 +2394,118 @@ const RATES_2026 = {
       employeePrograms: [
         { label: "RI TDI/TCI (1.1%)", rate: 0.011, wageCap: 100000 }
       ]
+    },
+
+    /* -----------------------------------------------------------------------
+       COLORADO - 27e Etat, ajoute 2026-09-30. Sources officielles lues le jour
+       meme. tax.colorado.gov, famli.colorado.gov et cdle.colorado.gov
+       repondent 403 a curl et a WebFetch : les documents ont ete lus dans
+       leurs instantanes Internet Archive (octets bruts, `id_`, parfois
+       gzip : `gunzip` puis pdftotext) ; les pages des villes (denvergov.org,
+       auroragov.org, greenwoodvillage.com) repondent 200 en direct.
+
+       1. L'IMPOT. Colorado Department of Revenue, « DR 1098 (10/21/25) - 2026
+          Colorado Withholding Worksheet for Employers » (PDF, instantane
+          Internet Archive du 2026-08-23 ; https://tax.colorado.gov/sites/tax/
+          files/documents/DR_1098_Colorado_Withholding_Worksheet_for_Employees.pdf).
+          Verbatim :
+            « 1c Multiply line 1a by line 1b [annualized wages] »
+            « 2a ... enter the appropriate amount based on the employee's
+              expected filing status from IRS form W-4 Step 1(c): $11,000 if
+              married filing jointly or qualifying surviving spouse; or
+              $5,500 otherwise »
+            « 2b Subtract line 2a from line 1c. If zero or less, enter zero »
+            « 2c Multiply line 2b by 4.40% (0.044) »
+          => retenue annuelle = max(0, salaire annualise - allocation) x 4,4 %.
+          UN SEUL TAUX (plat), allocation 5 500 $ (celibataire ET chef de
+          famille : « otherwise ») ou 11 000 $ (couple marie, declaration
+          commune). Le moteur le modelise avec standardDeduction + un seul
+          palier a 4,4 % : aucun mecanisme nouveau.
+
+          ⚠️ C'EST UNE RETENUE, PAS L'IMPOT FINAL. Le revenu imposable
+          Colorado part du revenu imposable FEDERAL (Individual Income Tax
+          Guide, Part 2 : « Colorado imposes an income tax on the modified
+          federal taxable income »), donc de la deduction standard federale
+          (16 100 $ celibataire) et non de 5 500 $. Le DR 0004 le dit : la
+          retenue calculee d'apres le W-4 « will generally result in a refund
+          when you file your Colorado income tax return » (instantane du
+          2026-02-08). Ce calculateur montre la RETENUE (ce que l'employeur
+          prend de chaque paie), comme New Mexico et Rhode Island.
+          Formulaire DR 0004 facultatif (Table 1, 1 emploi) : 14 000 $
+          celibataire / 22 000 $ chef de famille / 30 000 $ couple marie.
+          Non modelise ; dit sur la page.
+
+       2. LE TAUX, PAR ANNEE. Colorado Individual Income Tax Guide (instantane
+          du 2026-04-26), « Colorado Income Tax Rates » : 2019 4.5 % ; 2020
+          4.55 % ; 2021 4.5 % ; 2022 4.4 % ; 2023 4.4 % ; 2024 4.25 % ; 2025
+          4.4 %. Phrase : « The Colorado income tax rate varies by tax year. »
+          La table s'arrete a 2025 : le 4,40 % de 2026 vient du DR 1098, pas de
+          cette table. On N'ATTRIBUE PAS la baisse de 2024 a une cause (TABOR
+          n'est pas nomme dans la table).
+
+       3. FAMLI (assurance conges familiaux et medicaux) - PART SALARIEE.
+          famli.colorado.gov/employers (instantane du 2026-01-18), verbatim :
+            « The premiums are set to 0.88% of the employee's wage, with 0.44%
+              paid by the employer and 0.44% paid by the employee. Some
+              employers may choose not to deduct any premiums contributions
+              from their employees' wages. »
+            « Premiums are paid on wages up to the Federal Social Security
+              Wage Cap. »
+            « ... (0.44% of an employee's gross wages.) »
+            « It is important to know employees are never required to pay more
+              than 50% of the total premium. »
+          Plafond = base salariale Social Security 2026 (184 500 $, meme
+          valeur que fica.socialSecurity.wageBase ci-dessus ; un test egalise
+          les deux). Maximum annuel = 0,0044 x 184 500 = 811,80 $.
+          Hypothese du moteur : l'employeur deduit la part salariee.
+
+       4. CHOMAGE - EMPLOYEUR SEUL. CDLE, « Premium Rates » (instantane du
+          2025-12-05) : « Employers must pay annual premiums on the chargeable
+          wages for each of their employees each calendar year. » ; base 2026 :
+          « The 2026 chargeable wage base increased to $30,600 ». Pas
+          d'entree employeePrograms pour le chomage.
+
+       5. IMPOTS LOCAUX - NON MODELISES (montants fixes par mois, pas un
+          pourcentage : le moteur ne sait pas les exprimer).
+          - Denver, Tax Guide Topic No. 61 (PDF, 200 en direct, « Revised
+            1/2021 ») : « ... liable for the Employee OPT to be withheld by the
+            employer at a rate of $5.75 per month » pour un salarie qui recoit
+            « at least five hundred dollars ($500) for a calendar month ».
+          - Greenwood Village (greenwoodvillage.com, 200 en direct, 2026-09-30) :
+            « Both portions are $2 per month for a total of $4 per month, and
+            both apply when $250 or more is earned in a calendar month. »
+          - Aurora (auroragov.org, 200 en direct, 2026-09-30) : « The city of
+            Aurora Occupational Privilege Tax will be repealed effective Jan. 1,
+            2025. » => PLUS de taxe a Aurora. Glendale et Sheridan : non lus,
+            non cites.
+
+       6. SALAIRES. Wage Withholding Tax Guide (Jan 2026, instantane du
+          2026-02-28) : « Wages subject to Colorado wage withholding
+          generally include any overtime compensation that may be exempted
+          from federal withholding requirements under the One Big Beautiful
+          Bill Act. » Le DR 1098 n'a AUCUNE ligne de taux supplementaire pour
+          les primes. 401(k) : le guide ne le traite pas ; choix de modelisation
+          (ordre federal), dit sur la page.
+       ----------------------------------------------------------------------- */
+    colorado: {
+      name: "Colorado",
+      abbr: "CO",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 5500,
+          marriedJoint: 11000,
+          headOfHousehold: 5500
+        },
+        brackets: {
+          single:          [[Infinity, 0.044]],
+          marriedJoint:    [[Infinity, 0.044]],
+          headOfHousehold: [[Infinity, 0.044]]
+        }
+      },
+      employeePrograms: [
+        { label: "CO FAMLI (0.44%)", rate: 0.0044, wageCap: 184500 }
+      ]
     }
   }
 };
