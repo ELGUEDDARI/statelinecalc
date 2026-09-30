@@ -30,7 +30,7 @@ const { colonne } = require("../lib/colonne.js");
 const RACINE = path.join(__dirname, "..", "..");
 const SLUG = "state-comparison";
 const URL = "https://statelinecalc.com/" + SLUG + "/";
-const VERIFIE_LE = "2026-09-12";
+const VERIFIE_LE = "2026-09-30";
 
 const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/\s+/g, " ").trim();
 const pct = n => (n * 100).toFixed(1) + "%";
@@ -394,7 +394,7 @@ ${grilleEtats}
     state's own agency before it appears here or in the comparator &mdash; see the
     <a href="/paycheck-calculator/">state index</a>.</p>
 
-    <p class="dates">Published ${VERIFIE_LE} &middot; Updated ${VERIFIE_LE}. Figures are read from
+    <p class="dates">Published 2026-09-12 &middot; Updated ${VERIFIE_LE}. Figures are read from
     the same sources as our individual state calculators; see the
     <a href="/methodology/">methodology page</a> for the full list.</p>
 

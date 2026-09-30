@@ -1025,5 +1025,49 @@ check("NH : le net sur 60 000 $ egale le federal + FICA, comme les 7 autres Etat
 check("NH : le net sur 75 000 $ egale le Wyoming au centime pres",
   calcul("new-hampshire", 75000).net, calcul("wyoming", 75000).net, 0.001);
 
+/* ── NEW MEXICO, 25e Etat, ajoute 2026-09-30 ────────────────────────────────
+   Attendus recalcules A LA MAIN depuis les lignes imprimees dans FYI-104
+   (rev. 11/2025), table 7 ANNUAL : base imprimee + taux x (salaire - seuil de
+   la ligne). Aucun n'est tire du moteur.
+   single 75 000  : 2 716,50 + 4,9 % x (75 000 - 74 550) = 2 738,55
+   married 75 000 : 1 739,00 + 4,7 % x (75 000 - 66 100) = 2 157,30
+   HoH 75 000     : 1 739,00 + 4,7 % x (75 000 - 62 075) = 2 346,475
+   single 25 000  : 434,50 + 4,3 % x (25 000 - 24 550)   = 453,85
+   single 250 000 : 9 748,00 + 5,9 % x (250 000 - 218 050) = 11 633,05
+   single 500 000 : 9 748,00 + 5,9 % x (500 000 - 218 050) = 26 383,05
+   married 250 000: 4 089,00 + 4,9 % x (250 000 - 116 100) = 10 650,10
+   HoH 250 000    : 4 089,00 + 4,9 % x (250 000 - 112 075) = 10 847,325 */
+check("NM : single 75 000 $ = 2 738,55 $ (ligne 74 550 -> 218 050 de FYI-104)",
+  calcul("new-mexico", 75000).etat, 2738.55, 0.005);
+check("NM : married 75 000 $ = 2 157,30 $ (ligne 66 100 -> 102 100)",
+  calcul("new-mexico", 75000, "marriedJoint").etat, 2157.30, 0.005);
+check("NM : head of household 75 000 $ = 2 346,475 $ (ligne 62 075 -> 98 075)",
+  calcul("new-mexico", 75000, "headOfHousehold").etat, 2346.475, 0.005);
+check("NM : single 25 000 $ = 453,85 $ (ligne 24 550 -> 33 550)",
+  calcul("new-mexico", 25000).etat, 453.85, 0.005);
+check("NM : single 250 000 $ = 11 633,05 $ (taux maximum 5,9 %)",
+  calcul("new-mexico", 250000).etat, 11633.05, 0.005);
+check("NM : single 500 000 $ = 26 383,05 $",
+  calcul("new-mexico", 500000).etat, 26383.05, 0.005);
+check("NM : married 250 000 $ = 10 650,10 $ (ligne 116 100 -> 331 100)",
+  calcul("new-mexico", 250000, "marriedJoint").etat, 10650.10, 0.005);
+check("NM : head of household 250 000 $ = 10 847,325 $ (ligne 112 075 -> 327 075)",
+  calcul("new-mexico", 250000, "headOfHousehold").etat, 10847.325, 0.005);
+check("NM : rien de retenu jusqu'a 8 050 $ (single), 16 100 $ (married), 12 075 $ (HoH)",
+  calcul("new-mexico", 8050).etat + calcul("new-mexico", 16100, "marriedJoint").etat
+  + calcul("new-mexico", 12075, "headOfHousehold").etat, 0, 0);
+check("NM : premier dollar au-dessus de 8 050 $ = 1,5 % de 1 $ = 0,015 $",
+  calcul("new-mexico", 8051).etat, 0.015, 0.0001);
+check("NM : aucun programme salarie retenu (assurance chomage employeur seul)",
+  (R.states["new-mexico"].employeePrograms || []).length, 0, 0);
+check("NM : six taux distincts",
+  new Set(R.states["new-mexico"].incomeTax.brackets.single.map(b => b[1])).size, 6, 0);
+check("NM : les six taux sont identiques pour les trois statuts",
+  ["marriedJoint", "headOfHousehold"].every(st =>
+    JSON.stringify(R.states["new-mexico"].incomeTax.brackets[st].map(b => b[1]))
+    === JSON.stringify(R.states["new-mexico"].incomeTax.brackets.single.map(b => b[1]))) ? 1 : 0, 1, 0);
+check("NM : un couple marie paie moins qu'un celibataire sur le meme salaire",
+  calcul("new-mexico", 75000, "marriedJoint").etat < calcul("new-mexico", 75000).etat ? 1 : 0, 1, 0);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

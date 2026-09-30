@@ -61,7 +61,7 @@
    ========================================================================= */
 
 /* Date du dernier controle HTTP + motif de TOUTES les URL de ce fichier. */
-const VERIFIE_LE = "2026-09-17";
+const VERIFIE_LE = "2026-09-30";
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -365,6 +365,49 @@ const PAR_ETAT = {
       titre: "Mississippi Department of Employment Security &mdash; Unemployment Tax Rates",
       quoi: "the 1.00%/1.10%/1.20% new-employer rate schedule, paid entirely by the employer",
       motif: ["1.00%"] }
+  ],
+  "new-mexico": [
+    { type: "document",
+      url: "https://realfile.tax.newmexico.gov/FYI-104.pdf",
+      titre: "New Mexico Taxation and Revenue Department &mdash; FYI-104, New Mexico " +
+             "Withholding Tax, effective January 1, 2026 (PDF)",
+      quoi: "the six-rate withholding schedule (1.5% to 5.9%) and the annual table for " +
+            "Single ($8,050), Married ($16,100) and Head of Household ($12,075)",
+      motif: ["8,050", "5.9%"] },
+    { type: "document",
+      url: "https://www.tax.newmexico.gov/businesses/withholding-tax-and-workers-compensation/",
+      titre: "New Mexico Taxation and Revenue Department &mdash; Withholding Tax and " +
+             "Workers Compensation",
+      quoi: "the workers&rsquo; compensation administration fee, including the $2.25 " +
+            "employee share from July 1, 2025",
+      motif: ["2.25", "52-5-19"] },
+    { type: "document",
+      url: "https://www.tax.newmexico.gov/businesses/wp-content/uploads/sites/4/2020/11/rpd-41108.pdf",
+      titre: "New Mexico Taxation and Revenue Department &mdash; Workers&rsquo; Compensation " +
+             "Fee Instructions, form WC-1 (PDF, older)",
+      quoi: "that the fee is charged per quarter and that the employee&rsquo;s share should be " +
+            "deducted from wages; its dollar amounts date from 2004 and are out of date",
+      motif: ["deducted from the wages of the employee", "per quarter"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260421103306/https://www.dws.state.nm.us/en-us/Unemployment/Unemployment-for-an-Individual/What-You-Should-Know-About-UI/UI-Taxes",
+      titre: "New Mexico Department of Workforce Solutions &mdash; UI Taxes (Internet Archive " +
+             "snapshot of April 21, 2026)",
+      quoi: "the statement that the employer pays unemployment insurance taxes; the " +
+            "department&rsquo;s own site refuses automated requests, so we link the archived copy",
+      motif: ["you pay UI taxes to fund UI benefits"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260615230704/https://www.dws.nm.gov/UI-Tax-Information",
+      titre: "New Mexico Department of Workforce Solutions &mdash; Unemployment Insurance Tax " +
+             "Information (Internet Archive snapshot of June 15, 2026)",
+      quoi: "the $34,800 taxable wage base for 2026",
+      motif: ["34,800"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260510231813/https://www.dws.state.nm.us/PFML",
+      titre: "New Mexico Department of Workforce Solutions &mdash; Paid Family and Medical " +
+             "Leave (Internet Archive snapshot of May 10, 2026)",
+      quoi: "the page&rsquo;s description of a task force developing recommendations for a " +
+            "paid family and medical leave law",
+      motif: ["task force"] }
   ]
 };
 
@@ -408,6 +451,14 @@ const SANS_LIEN = {
      just have no link from this machine that we have verified ourselves. */
   "new-hampshire": "revenue.nh.gov and nhes.nh.gov refuse automated requests with HTTP 403, " +
                     "though both documents were read from their Internet Archive snapshots"
+  /* New Mexico, 30/09/2026 : PAS d'entree ici, volontairement. dws.state.nm.us
+     (Department of Workforce Solutions) repond 403 a curl sur tous les chemins
+     essayes, MAIS les trois pages lues (chomage employeur seul, base salariale
+     34 800 $, PFML) sont liees dans PAR_ETAT["new-mexico"] par leur instantane
+     Internet Archive, qui repond 200 et dont le contenu est teste par
+     verif-liens-sources.js. Une entree SANS_LIEN dirait « aucun lien verifie »
+     alors qu'il y en a trois : le controle du 30/09 l'a releve sur
+     /methodology/. */
 };
 
 const MOIS = ["January", "February", "March", "April", "May", "June", "July",

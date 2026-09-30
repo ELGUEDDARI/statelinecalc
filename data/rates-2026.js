@@ -2141,6 +2141,146 @@ const RATES_2026 = {
       name: "New Hampshire",
       abbr: "NH",
       incomeTax: { hasIncomeTax: false }
+    },
+
+    /* -----------------------------------------------------------------------
+       NEW MEXICO — ajoute 2026-09-30, 25e Etat. CSV SEMrush du 01/09 :
+       "new mexico paycheck calculator" KD 11. SERP reelle (WebSearch
+       2026-09-30) : ADP, Indeed Flex, SmartAsset, QuickBooks, Gusto,
+       Fingercheck, PaycheckCity, SurePayroll + un petit outil (treasury.sh) —
+       porte quasi fermee, publie sur la decision PDG du 11/09 (volume/CPC).
+
+       1. LE BAREME DE RETENUE 2026. "FYI-104, New Mexico Withholding Tax,
+          Effective January 1, 2026" (REV. 11/2025), New Mexico Taxation and
+          Revenue Department, telecharge le 2026-09-30 depuis
+          https://realfile.tax.newmexico.gov/FYI-104.pdf (HTTP 200,
+          780 041 octets). Table 7, « ANNUAL », page 7, pdftotext -raw ET
+          -layout, colonne par colonne. Verbatim :
+            (a) SINGLE   : "Not Over $ 8,050 $0.00" ; "8,050 13,550 1.5% 8,050" ;
+                           "13,550 20,550 82.50 + 3.2% 13,550" ;
+                           "20,550 24,550 306.50 + 3.2% 20,550" ;
+                           "24,550 33,550 434.50 + 4.3% 24,550" ;
+                           "33,550 41,550 821.50 + 4.3% 33,550" ;
+                           "41,550 58,550 1,165.50 + 4.7% 41,550" ;
+                           "58,550 74,550 1,964.50 + 4.7% 58,550" ;
+                           "74,550 218,050 2,716.50 + 4.9% 74,550" ;
+                           "218,050 and over 9,748.00 + 5.9% 218,050"
+            (b) MARRIED  : "Not Over $ 16,100 $0.00" ; "16,100 24,100 1.5%" ;
+                           "24,100 32,100 120.00 + 3.2%" ; "32,100 41,100 376.00 + 3.2%" ;
+                           "41,100 57,100 664.00 + 4.3%" ; "57,100 66,100 1,352.00 + 4.3%" ;
+                           "66,100 102,100 1,739.00 + 4.7%" ; "102,100 116,100 3,431.00 + 4.7%" ;
+                           "116,100 331,100 4,089.00 + 4.9%" ; "331,100 and over 14,624.00 + 5.9%"
+            (c) HEAD of HOUSEHOLD : "Not Over $ 12,075 $0.00" ; "12,075 20,075 1.5%" ;
+                           "20,075 28,075 120.00 + 3.2%" ; "28,075 37,075 376.00 + 3.2%" ;
+                           "37,075 53,075 664.00 + 4.3%" ; "53,075 62,075 1,352.00 + 4.3%" ;
+                           "62,075 98,075 1,739.00 + 4.7%" ; "98,075 112,075 3,431.00 + 4.7%" ;
+                           "112,075 327,075 4,089.00 + 4.9%" ; "327,075 and over 14,624.00 + 5.9%"
+          RECOUPEMENT ARITHMETIQUE de chaque ligne (fait a la main le
+          2026-09-30) : la base imprimee de chaque tranche egale la base de la
+          precedente + largeur x taux. Single : 5 500 x 1,5 % = 82,50 ;
+          7 000 x 3,2 % = 224 -> 306,50 ; 4 000 x 3,2 % = 128 -> 434,50 ;
+          9 000 x 4,3 % = 387 -> 821,50 ; 8 000 x 4,3 % = 344 -> 1 165,50 ;
+          17 000 x 4,7 % = 799 -> 1 964,50 ; 16 000 x 4,7 % = 752 -> 2 716,50 ;
+          143 500 x 4,9 % = 7 031,50 -> 9 748,00. Married : 8 000 x 1,5 % =
+          120 ; 8 000 x 3,2 % = 256 -> 376 ; 9 000 x 3,2 % = 288 -> 664 ;
+          16 000 x 4,3 % = 688 -> 1 352 ; 9 000 x 4,3 % = 387 -> 1 739 ;
+          36 000 x 4,7 % = 1 692 -> 3 431 ; 14 000 x 4,7 % = 658 -> 4 089 ;
+          215 000 x 4,9 % = 10 535 -> 14 624. Head of household : memes
+          largeurs et memes bases que Married, decalees de 12 075 au lieu de
+          16 100. Les 9 lignes imprimees se replient en SIX taux distincts
+          (1,5 / 3,2 / 4,3 / 4,7 / 4,9 / 5,9 %) : le tableau de l'agence
+          repete le meme taux sur deux lignes consecutives.
+
+          MODELISATION. Le moteur applique deja « revenu - deduction, puis
+          tranches ». La tranche « Not Over 8 050 $ = 0 $ » de l'agence EST
+          donc la "deduction standard" du moteur (8 050 / 16 100 / 12 075),
+          et les tranches sont exprimees en surplus au-dessus de ce seuil :
+            single          : [5 500, 16 500, 33 500, 66 500, 210 000, Inf]
+            marriedJoint    : [8 000, 25 000, 50 000, 100 000, 315 000, Inf]
+            headOfHousehold : [8 000, 25 000, 50 000, 100 000, 315 000, Inf]
+          (ex. single : 13 550 - 8 050 = 5 500 ; 24 550 - 8 050 = 16 500 ;
+          41 550 - 8 050 = 33 500 ; 74 550 - 8 050 = 66 500 ; 218 050 - 8 050
+          = 210 000.) Test croise a la main : 75 000 $ single -> 2 716,50 +
+          (75 000 - 74 550) x 4,9 % = 2 716,50 + 22,05 = 2 738,55 $.
+
+          LE FAIT A NE PAS INVENTER : les montants 8 050 / 16 100 / 12 075
+          sont exactement la MOITIE des deductions standard federales 2026
+          (16 100 / 32 200 / 24 150) - simple constat arithmetique. FYI-104
+          dit seulement que les tables "have been updated to reflect the
+          standard deduction for the year" ; il ne dit PAS pourquoi la moitie,
+          et la page ne l'explique pas. FYI-104 dit aussi que la retenue est
+          "an estimate of an employee or individual's New Mexico income tax
+          liability", credite ensuite contre l'impot reel.
+
+          SALAIRES SUPPLEMENTAIRES (non modelises) : "If the federal
+          withholding is calculated using a flat percent, a flat 5.9% of the
+          supplemental wage or fringe benefit amount should be withheld for
+          state tax purposes."
+
+       2. AUCUN IMPOT LOCAL. FYI-104 (10 pages) ne contient
+          aucune table locale, municipale ou de comte : recherche plein texte
+          des mots local/city/county/municipal/cities -> seules occurrences
+          "local district office" et "local tax offices". Meme discipline que
+          la Virginie (absence dans un document officiel exhaustif) ; la page
+          le dit en ces termes et ne pretend pas a une verification
+          juridique exhaustive de chaque municipalite.
+
+       3. ASSURANCE CHOMAGE - EMPLOYEUR SEUL. New Mexico Department of
+          Workforce Solutions (dws.state.nm.us / dws.nm.gov : HTTP 403 a
+          toute requete automatisee, curl comme WebFetch), lue via
+          l'instantane Internet Archive du 2026-04-21 de
+          /en-us/Unemployment/Unemployment-for-an-Individual/What-You-Should-
+          Know-About-UI/UI-Taxes, verbatim : "As an employer, you pay UI taxes
+          to fund UI benefits." Plafond de salaire 2026, meme site, instantane
+          du 2026-06-15 de /UI-Tax-Information, verbatim : "The taxable wage
+          base for wages paid during calendar year 2026 is $34,800.00".
+          Aucun taux salarie n'apparait : pas d'entree employeePrograms.
+
+       4. PAS DE PFML / SDI MODELISE. La page « Paid Family and Medical Leave
+          (PFML) » du DWS, instantane du 2026-05-10, decrit uniquement un
+          groupe de travail charge de formuler des recommandations
+          ("a task force to develop recommendations for the enactment and
+          implementation of a PFML Act") - pas un programme qui preleve des
+          cotisations. FYI-104 ne liste aucune retenue de ce type. Recherche
+          web (non retenue comme source du fait) : le projet HB 11 est mort en
+          commission du Senat en 2025. La page reste prudente : elle dit ce
+          que la page de l'Etat decrit, pas plus.
+
+       5. FRAIS DES ACCIDENTS DU TRAVAIL (NON MODELISE, MENTIONNE). Taxation and
+          Revenue Department, "Withholding Tax and Workers Compensation"
+          (https://www.tax.newmexico.gov/businesses/withholding-tax-and-
+          workers-compensation/, HTTP 200, lue le 2026-09-30), verbatim :
+          "every employee covered by the Workers' Compensation Act, is
+          assessed a fee for funding the administration of the Workers'
+          Compensation Administration (Section 52-5-19 NMSA 1978)". Barème :
+          Employee "prior to July 1, 2025, 2.00; beginning July 1, 2025 and
+          prior to July 1, 2028, $2.25". La page TRD ne dit PAS "per quarter" ni
+          "deduit du salaire" : ces deux faits viennent des instructions WC-1
+          de l'agence (rpd-41108.pdf, montants perimes de 2004), verbatim "the fee is
+          $4.30 per quarter for each covered employee" et "$2 should be deducted
+          from the wages of the employee". 4 x 2,25 $ = 9 $ par an au maximum est
+          NOTRE multiplication, dite comme telle sur la page (controle du 30/09).
+          Les trois pages DWS sont liees par leur instantane Internet Archive dans
+          .tooling/lib/sources.js. Non modelise :
+          le moteur n'a pas de champ « dollars par trimestre », et 9 $ par an
+          ne justifient pas d'en creer un ; la page le divulgue.
+       ----------------------------------------------------------------------- */
+    "new-mexico": {
+      name: "New Mexico",
+      abbr: "NM",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 8050,
+          marriedJoint: 16100,
+          headOfHousehold: 12075
+        },
+        brackets: {
+          single:          [[5500, 0.015], [16500, 0.032], [33500, 0.043], [66500, 0.047], [210000, 0.049], [Infinity, 0.059]],
+          marriedJoint:    [[8000, 0.015], [25000, 0.032], [50000, 0.043], [100000, 0.047], [315000, 0.049], [Infinity, 0.059]],
+          headOfHousehold: [[8000, 0.015], [25000, 0.032], [50000, 0.043], [100000, 0.047], [315000, 0.049], [Infinity, 0.059]]
+        }
+      }
     }
   }
 };
