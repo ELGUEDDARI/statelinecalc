@@ -115,6 +115,15 @@ function lisSitemap() {
     dit(!/NaN|undefined|\[object Object\]/.test(corps), u + " sans NaN ni undefined",
         (corps.match(/.{0,40}(NaN|undefined|\[object Object\]).{0,40}/) || [""])[0]);
 
+    /* 0 entite HTML litterale dans les blocs ld+json : un script ld+json n'est
+       PAS decode comme du HTML, « &rsquo; » y serait lu a la lettre par les
+       moteurs (defaut releve le 30/09/2026 sur 8 pages d'Etat). On lit le HTML
+       servi tel quel, pas le DOM. */
+    const brut = await (await page.request.get(BASE + u)).text();
+    const blocsLd = brut.match(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g) || [];
+    const entite = blocsLd.map(b => (b.match(/&(#x?[0-9a-f]+|[a-z]+);/i) || [])[0]).filter(Boolean);
+    dit(entite.length === 0, u + " 0 entite HTML litterale dans le JSON-LD", entite.slice(0, 3).join(" "));
+
     /* Chaque bouton doit faire QUELQUE CHOSE. Un bouton qui ne change rien a la
        page est soit mort, soit decoratif — dans les deux cas c'est un defaut.
      *

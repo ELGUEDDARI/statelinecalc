@@ -27,6 +27,8 @@ function decodeTexte(s) {
   return s;
 }
 function nettoieJsonLd(html) {
+  /* Title GEO + dates du WebApplication (pages d'Etat seulement ; no-op ailleurs). */
+  html = require("./titre-geo.js").appliqueGeo(html);
   return html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g,
     (m, a, corps, c) => {
       const propre = decodeTexte(corps);
