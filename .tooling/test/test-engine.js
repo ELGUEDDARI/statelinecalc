@@ -1069,5 +1069,64 @@ check("NM : les six taux sont identiques pour les trois statuts",
 check("NM : un couple marie paie moins qu'un celibataire sur le meme salaire",
   calcul("new-mexico", 75000, "marriedJoint").etat < calcul("new-mexico", 75000).etat ? 1 : 0, 1, 0);
 
+console.log("\n=== Rhode Island (26e Etat) ===");
+
+/* Sources : 2026 Rhode Island Employer's Income Tax Withholding Tables
+   (tax.ri.gov, Table 7 ANNUAL, « for all filing status types ») : 3,75 % jusqu'a
+   82 050 $, 4,75 % jusqu'a 186 450 $, 5,99 % au-dela ; exemption 1 000 $ par
+   personne, 0 $ si le salaire annuel depasse 290 800 $. TDI/TCI 1,1 % sur les
+   100 000 premiers dollars (DLT, communique du 18/12/2025). Chaque attendu est
+   recalcule a la main, jamais tire du moteur.
+   single 75 000  : (75 000 - 1 000) x 3,75 %                         = 2 775,00
+   single 25 000  : (25 000 - 1 000) x 3,75 %                         =   900,00
+   single 100 000 : base 99 000 = 82 050 x 3,75 % + 16 950 x 4,75%
+                    = 3 076,875 + 805,125                              = 3 882,00
+   single 250 000 : base 249 000 = 3 076,875 + 104 400 x 4,75 % (4 959,00)
+                    + 62 550 x 5,99 % (3 746,745)                      = 11 782,62
+   single 300 000 : exemption perdue, base 300 000 = 8 035,875
+                    + 113 550 x 5,99 % (6 801,645)                     = 14 837,52
+   single 290 800 : exemption encore accordee (« more than »), base 289 800
+                    = 8 035,875 + 103 350 x 5,99 % (6 190,665)         = 14 226,54
+   single 290 801 : exemption perdue, base 290 801 = 8 035,875
+                    + 104 351 x 5,99 % (6 250,6249)                    = 14 286,50
+   TDI 75 000 : 75 000 x 1,1 %  = 825,00 ; TDI 250 000 : plafond 100 000 x 1,1 % = 1 100,00
+   Salaire minimum 16 $ x 2 080 h x 1,1 % = 366,08 (chiffre donne par le DLT). */
+check("RI : single 75 000 $ = 2 775,00 $ d'impot (base 74 000 x 3,75 %)",
+  calcul("rhode-island", 75000).etat, 2775.00, 0.005);
+check("RI : married 75 000 $ = meme impot (bareme unique pour tous les statuts)",
+  calcul("rhode-island", 75000, "marriedJoint").etat, 2775.00, 0.005);
+check("RI : head of household 75 000 $ = meme impot",
+  calcul("rhode-island", 75000, "headOfHousehold").etat, 2775.00, 0.005);
+check("RI : single 25 000 $ = 900,00 $",
+  calcul("rhode-island", 25000).etat, 900.00, 0.005);
+check("RI : single 100 000 $ = 3 882,00 $ (franchit 82 050 $)",
+  calcul("rhode-island", 100000).etat, 3882.00, 0.005);
+check("RI : single 250 000 $ = 11 782,62 $ (franchit 186 450 $)",
+  calcul("rhode-island", 250000).etat, 11782.62, 0.005);
+check("RI : single 300 000 $ = 14 837,52 $ (exemption perdue)",
+  calcul("rhode-island", 300000).etat, 14837.52, 0.005);
+check("RI : single 290 800 $ pile = 14 226,54 $ (exemption encore accordee)",
+  calcul("rhode-island", 290800).etat, 14226.54, 0.005);
+check("RI : single 290 801 $ = 14 286,50 $ (falaise : exemption perdue)",
+  calcul("rhode-island", 290801).etat, 14286.50, 0.005);
+check("RI : rien de retenu a 1 000 $ (l'exemption couvre tout)",
+  calcul("rhode-island", 1000).etat, 0, 0);
+check("RI : premier dollar au-dessus de 1 000 $ = 3,75 % de 1 $ = 0,0375 $",
+  calcul("rhode-island", 1001).etat, 0.0375, 0.0001);
+check("RI : TDI/TCI sur 75 000 $ = 825,00 $",
+  calcul("rhode-island", 75000).programmes[0].montant, 825.00, 0.005);
+check("RI : TDI/TCI sur 250 000 $ = 1 100,00 $ (plafond 100 000 $)",
+  calcul("rhode-island", 250000).programmes[0].montant, 1100.00, 0.005);
+check("RI : TDI/TCI au salaire minimum (16 $ x 2 080 h) = 366,08 $, chiffre du DLT",
+  calcul("rhode-island", 16 * 2080).programmes[0].montant, 366.08, 0.005);
+check("RI : net a 75 000 $ = 57 992,50 $ (75 000 - 7 670 - 4 650 - 1 087,50 - 2 775 - 825)",
+  calcul("rhode-island", 75000).net, 57992.50, 0.005);
+check("RI : un seul programme salarie (TDI/TCI ; le chomage est employeur seul)",
+  (R.states["rhode-island"].employeePrograms || []).length, 1, 0);
+check("RI : les trois taux sont identiques pour les trois statuts",
+  ["marriedJoint", "headOfHousehold"].every(st =>
+    JSON.stringify(R.states["rhode-island"].incomeTax.brackets[st])
+    === JSON.stringify(R.states["rhode-island"].incomeTax.brackets.single)) ? 1 : 0, 1, 0);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

@@ -408,6 +408,30 @@ const PAR_ETAT = {
       quoi: "the page&rsquo;s description of a task force developing recommendations for a " +
             "paid family and medical leave law",
       motif: ["task force"] }
+  ],
+  "rhode-island": [
+    { type: "document",
+      url: "https://web.archive.org/web/20260804140612/https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-12/2026%20Withholding%20Tax%20Booklet.pdf",
+      titre: "Rhode Island Division of Taxation &mdash; 2026 Employer&rsquo;s Income Tax " +
+             "Withholding Tables (PDF, Internet Archive snapshot of August 4, 2026)",
+      quoi: "the annual withholding table (3.75%, 4.75% and 5.99%, the same for every filing " +
+            "status) and the $1,000 exemption that disappears above $290,800 of annual wages; " +
+            "the division&rsquo;s own site refuses automated requests, so we link the archived copy",
+      motif: ["82,050", "290,800"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260415040946/https://dlt.ri.gov/press-releases/2026-tax-rates-unemployment-insurance-and-temporary-disability-insurance",
+      titre: "Rhode Island Department of Labor and Training &mdash; 2026 Tax Rates for " +
+             "Unemployment Insurance and Temporary Disability Insurance (Internet Archive snapshot " +
+             "of April 15, 2026)",
+      quoi: "the 1.1% TDI rate on the first $100,000 of wages, the statement that TDI is paid by " +
+            "employees, and the statement that unemployment benefits are funded by employers; the department&rsquo;s site also refuses automated requests, so we link the archived copy",
+      motif: ["1.1 percent", "paid by employees, not employers"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260809193710/https://dlt.ri.gov/individuals/temporary-disability-caregiver-insurance/employers",
+      titre: "Rhode Island Department of Labor and Training &mdash; TDI / TCI For Employers " +
+             "(Internet Archive snapshot of August 9, 2026)",
+      quoi: "the &ldquo;1.1% employee wage deduction&rdquo; on a $100,000 taxable wage base for 2026; archived copy, for the same reason",
+      motif: ["1.1% employee wage deduction"] }
   ]
 };
 

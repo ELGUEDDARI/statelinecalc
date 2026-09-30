@@ -2281,8 +2281,122 @@ const RATES_2026 = {
           headOfHousehold: [[8000, 0.015], [25000, 0.032], [50000, 0.043], [100000, 0.047], [315000, 0.049], [Infinity, 0.059]]
         }
       }
+    },
+
+    /* -----------------------------------------------------------------------
+       RHODE ISLAND - 26e Etat, ajoute 2026-09-30. Sources officielles lues le
+       jour meme.
+
+       ⚠️ COMMENT ELLES ONT ETE LUES. tax.ri.gov et dlt.ri.gov sont derriere
+       Cloudflare : HTTP 403 a curl (avec User-Agent navigateur), a WebFetch, a
+       Chromium headless, et a un Chrome reel visible - quatre methodes, quatre
+       refus (« Performing security verification »). Les documents ont donc ete
+       lus dans leurs instantanes Internet Archive (HTTP 200, octets bruts
+       « id_ »), qui sont les fichiers de l'Etat eux-memes :
+         - 2026 Withholding Tax Booklet (PDF, 601 205 octets), instantane du
+           2026-08-04, « Updated as of 11/04/2025 » ;
+         - communique DLT du 2025-12-18, instantane du 2026-04-15 ;
+         - page « TDI / TCI For Employers », instantane du 2026-08-09.
+
+       1. BAREME DE RETENUE 2026 - tax.ri.gov, « 2026 RHODE ISLAND EMPLOYER'S
+          INCOME TAX WITHHOLDING TABLES » (tax.ri.gov/sites/g/files/xkgbur541/
+          files/2025-12/2026%20Withholding%20Tax%20Booklet.pdf), p. 9-10.
+          Verbatim : « TABLES ARE FOR ALL FILING STATUS TYPES ». Table 7 -
+          ANNUAL PAYROLL PERIOD : « $0.00 PLUS 3.75% » jusqu'a 82 050 $ ;
+          « 3,076.88 PLUS 4.75% » de 82 050 $ a 186 450 $ ; « 8,035.88 PLUS
+          5.99% » au-dela de 186 450 $. Recoupe a la main : 82 050 x 3,75 % =
+          3 076,875 (imprime 3 076,88) ; 3 076,875 + 104 400 x 4,75 % =
+          8 035,875 (imprime 8 035,88). Les tables hebdomadaire, bimensuelle,
+          mensuelle... donnent les memes taux. Un seul bareme pour TOUS les
+          statuts : le modele n'a donc qu'une seule serie de tranches, copiee
+          pour les trois statuts.
+
+          Etapes de la methode en pourcentage (p. 9), verbatim : « (1.)
+          Multiply the amount of one withholding exemption (see table above)
+          by the number of exemptions and allowances claimed by the employee ;
+          (2.) Subtract the amount from the employee's wages ; (3.) Determine
+          the amount to be withheld from the appropriate rate table ». Montant
+          annuel d'une exemption : « Annually.... $ 1,000.00 » ; « Annual wages
+          are more than.... $ 290,800.00 ...... $0.00 ». Et p. 22 (RI W-4) :
+          « if your annual wages exceed $290,800, your exemption amount will be
+          phased out and be equal to zero ». C'est une FALAISE, pas une pente :
+          a 290 800 $ pile l'exemption existe encore ; a 290 801 $ elle vaut
+          0 $ (impot +60 $ d'un coup). Modelisee comme standardDeduction 1 000 $
+          (UNE exemption = le salarie) + deductionPhaseOut 290 800 $, la meme
+          mecanique que l'Illinois : le moteur compare « base > seuil ».
+          Le calculateur ne demande pas de personnes a charge : une seule
+          exemption, dite sur la page. Exemple imprime p. 9 recalcule :
+          2 195,00 - 19,23 = 2 175,77 ; 1 578 x 3,75 % = 59,18 ; 597,77 x 4,75 %
+          = 28,39 ; total 87,57 - le vocabulaire et l'ordre des etapes sont
+          bien ceux modelises.
+
+          Salaires supplementaires : « The Supplemental withholding rate is
+          5.99%. » Non modelises, mentionnes sur la page.
+
+       2. TDI / TCI - PART SALARIEE, MODELISEE (employeePrograms). Rhode Island
+          Department of Labor and Training, communique « 2026 Tax Rates for
+          Unemployment Insurance and Temporary Disability Insurance »,
+          publie le 2025-12-18, verbatim : « The 2026 TDI Taxable Wage Base for
+          Rhode Island employees will be $100,000 in 2026 », « The TDI
+          contribution rate will be set at 1.1 percent for calendar year 2026 »,
+          « The maximum TDI contribution in 2026 will be $1,100.00 » et « TDI is
+          paid by employees, not employers, through a payroll tax. » Meme
+          agence, page « TDI / TCI For Employers » : « Taxable Wage Base -
+          $100,000 for 2026; Tax Rate - 1.1% employee wage deduction » et « TDI/
+          TCI are financed entirely by payroll deductions ». Recoupement
+          arithmetique fourni PAR L'AGENCE : « An individual working full-time,
+          earning the minimum wage of $16.00 an hour, will pay a total of
+          $366.08 in TDI contributions in 2026 » = 16 x 2 080 x 1,1 % = 366,08.
+          Le communique dit aussi « TCI is not a separate state program; TCI is
+          part of the TDI program » : UN SEUL prelevement couvre TDI et TCI.
+          Le nombre de semaines de TCI est ecrit « seven weeks » dans le
+          communique et « up to 8 weeks » sur la page employeurs : la page ne
+          donne AUCUN nombre de semaines.
+
+       3. ASSURANCE CHOMAGE - EMPLOYEUR SEUL. Meme communique, verbatim :
+          « Worker benefits are funded entirely from state and federal UI taxes
+          paid by Rhode Island employers. » Base salariale UI 2026 : « The 2026
+          UI Taxable Wage Base for most employers will be $30,800 ». Pas
+          d'entree employeePrograms pour le chomage. La « Job Development
+          Assessment » (0,21 %) est aussi une charge employeur.
+
+       4. PAS D'IMPOT LOCAL MODELISE. Le livret de retenue ne contient aucune
+          table locale (les seules occurrences de « City » sont dans
+          l'adresse du formulaire RI W-4). La page dit « lists no local income
+          tax » et n'affirme pas avoir verifie chaque commune : aucun
+          document officiel lu ne dit « Rhode Island n'a pas d'impot local sur
+          le revenu » en toutes lettres.
+       ----------------------------------------------------------------------- */
+    "rhode-island": {
+      name: "Rhode Island",
+      abbr: "RI",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Une exemption de 1 000 $ (le salarie), pas une deduction standard :
+           l'agence n'en publie pas pour la retenue. Disparait au-dela de
+           290 800 $ de salaire annuel (falaise). */
+        standardDeduction: {
+          single: 1000,
+          marriedJoint: 1000,
+          headOfHousehold: 1000
+        },
+        deductionPhaseOut: {
+          single: 290800,
+          marriedJoint: 290800,
+          headOfHousehold: 290800
+        },
+        brackets: {
+          single:          [[82050, 0.0375], [186450, 0.0475], [Infinity, 0.0599]],
+          marriedJoint:    [[82050, 0.0375], [186450, 0.0475], [Infinity, 0.0599]],
+          headOfHousehold: [[82050, 0.0375], [186450, 0.0475], [Infinity, 0.0599]]
+        }
+      },
+      employeePrograms: [
+        { label: "RI TDI/TCI (1.1%)", rate: 0.011, wageCap: 100000 }
+      ]
     }
   }
 };
+
 
 if (typeof module !== "undefined" && module.exports) { module.exports = RATES_2026; }
