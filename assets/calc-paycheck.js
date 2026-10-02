@@ -219,7 +219,7 @@
       }
     }
 
-    /* --- state payroll programmes --- */
+    /* --- state payroll programs --- */
     var paidLeave = 0, waCares = 0;
     if (state.paidLeave) {
       var plBase = state.paidLeave.wageCap
@@ -373,7 +373,7 @@
       if (a.paidLeave > 0) autres += a.paidLeave;
       if (a.waCares > 0) autres += a.waCares;
       (a.programmes || []).forEach(function (pg) { if (pg.amount > 0) autres += pg.amount; });
-      if (autres > 0) segs.push({ cle: "prog", libelle: "State payroll programmes",
+      if (autres > 0) segs.push({ cle: "prog", libelle: "State payroll programs",
                                   montant: autres, couleur: "prog" });
       if (a.pretax > 0) segs.push({ cle: "401k", libelle: "401(k), still yours",
                                     montant: a.pretax, couleur: "defer" });
@@ -496,7 +496,7 @@
       var morceaux = prelevements.map(function (s) {
         return s.libelle.replace(/^State income tax$/, "state income tax")
                         .replace(/^Federal income tax$/, "federal income tax")
-                        .replace(/^State payroll programmes$/, "state payroll programmes") +
+                        .replace(/^State payroll programs$/, "state payroll programs") +
                " at " + pctDe(s.cle) + " percent";
       });
       var dernier = morceaux.pop();

@@ -52,7 +52,7 @@ const FICHES = {
   },
   washington: {
     nom: "Washington",
-    retenue: "Washington withholds two state programmes but no income tax",
+    retenue: "Washington withholds two state programs but no income tax",
     specifique: `Washington has no income tax, but it is not a no-deduction state: Paid Family
       and Medical Leave takes 0.807159% of wages up to $184,500, and WA Cares takes 0.58% with
       no cap. Together they are worth about $1,040 a year on a $75,000 salary, and they are the
