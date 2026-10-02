@@ -38,6 +38,7 @@ const PUBLIES = {
   Nebraska: "nebraska",
   Nevada: "nevada",
   "New Hampshire": "new-hampshire",
+  "New Jersey": "new-jersey",
   "New Mexico": "new-mexico",
   "North Carolina": "north-carolina",
   "North Dakota": "north-dakota",

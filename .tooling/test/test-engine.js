@@ -1231,5 +1231,85 @@ check("AZ : aucune deduction dans la formule de retenue",
 check("AZ : le defaut est l'un des sept choix du A-4 (0,5 a 3,5 %)",
   [0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035].includes(R.states.arizona.incomeTax.brackets.single[0][1]) ? 1 : 0, 1, 0);
 
+console.log("\n=== New Jersey (29e Etat) ===");
+
+/* Sources (lues en direct le 2026-10-02) : NJ-WT (Sept. 2025) p. 24 : Rate A
+   pour Single (NJ-W4 cases 1/3), Rate B pour Married joint / Head of household ;
+   allocation annuelle 1 000 $ ; tables annuelles « Tables for Percentage Method
+   of Withholding » ; NJ DOL (ligne « Worker » 2026) : UI 0,3825 % + WF/SWF
+   0,0425 % sur 44 800 $, SDI 0,19 % et FLI 0,23 % sur 171 100 $.
+   MODELISATION : 1 allocation (Single, HoH), 2 (Married joint).
+   Chaque attendu est recalcule a la main.
+   single 75 000 : base 75 000 - 1 000 = 74 000 ; Rate A tranche 40-75 k :
+                   795 + (74 000 - 40 000) x 6,1 % = 795 + 2 074        = 2 869,00
+   married 75 000: base 75 000 - 2 000 = 73 000 ; Rate B tranche 70-80 k :
+                   1 440 + 3 000 x 3,9 % = 1 440 + 117                  = 1 557,00
+   HoH 75 000    : base 74 000 ; Rate B : 1 440 + 4 000 x 3,9 %        = 1 596,00
+   single 25 000 : base 24 000 ; 300 + 4 000 x 2,0 %                    =   380,00
+   single 250 000: base 249 000 ; 2 930 + 174 000 x 7,0 %
+                   = 2 930 + 12 180                                     = 15 110,00
+   single 52 000 : base 51 000 ; 795 + 11 000 x 6,1 % = 795 + 671      = 1 466,00
+   401(k) 6 %    : (75 000 - 4 500) - 1 000 = 69 500 ; 795 + 29 500 x 6,1 %
+                   = 795 + 1 799,50                                     = 2 594,50
+   programmes a 75 000 : UI+WF 44 800 x 0,00425 = 190,40 ; SDI 75 000 x 0,0019
+     = 142,50 ; FLI 75 000 x 0,0023 = 172,50                           = 505,40
+   net single 75 000 : 75 000 - 7 670 - 4 650 - 1 087,50 - 2 869 - 505,40
+                     = 58 218,10
+   net single 52 000 : 52 000 - 4 060 - 3 224 - 754 - 1 466 - (190,40 + 98,80
+     + 119,60 = 408,80) = 42 087,20
+   net single 250 000 : 250 000 - 51 304 - 11 439 - 4 075 - 15 110
+     - (190,40 + 325,09 + 393,53 = 909,02) = 167 162,98 */
+check("NJ : single 75 000 $ = 2 869,00 $ (Rate A, base 74 000)",
+  calcul("new-jersey", 75000).etat, 2869.00, 0.005);
+check("NJ : married 75 000 $ = 1 557,00 $ (Rate B, 2 allocations)",
+  calcul("new-jersey", 75000, "marriedJoint").etat, 1557.00, 0.005);
+check("NJ : head of household 75 000 $ = 1 596,00 $ (Rate B, 1 allocation)",
+  calcul("new-jersey", 75000, "headOfHousehold").etat, 1596.00, 0.005);
+check("NJ : single 25 000 $ = 380,00 $",
+  calcul("new-jersey", 25000).etat, 380.00, 0.005);
+check("NJ : single 250 000 $ = 15 110,00 $",
+  calcul("new-jersey", 250000).etat, 15110.00, 0.005);
+check("NJ : single 52 000 $ (25 $/h) = 1 466,00 $",
+  calcul("new-jersey", 25 * 2080).etat, 1466.00, 0.005);
+check("NJ : 401(k) 6 % sur 75 000 $ -> base 69 500 = 2 594,50 $",
+  calcul("new-jersey", 75000, "single", 0.06).etat, 2594.50, 0.005);
+check("NJ : rien de retenu jusqu'a 1 000 $ (l'allocation couvre tout)",
+  calcul("new-jersey", 1000).etat, 0, 0);
+check("NJ : 1 001 $ -> 1 $ imposable x 1,5 % = 0,015 $",
+  calcul("new-jersey", 1001).etat, 0.015, 0.0001);
+
+/* Les montants de base IMPRIMES dans les tables annuelles A et B doivent etre
+   reproduits par les tranches marginales (15 montants, lus dans l'image du PDF). */
+const njA = R.states["new-jersey"].incomeTax.brackets.single;
+const njB = R.states["new-jersey"].incomeTax.brackets.marriedJoint;
+[[20000, 300], [35000, 600], [40000, 795], [75000, 2930], [500000, 32680], [1000000, 82180]].forEach(([x, base]) =>
+  check("NJ Rate A : impot cumule a " + x + " $ = base imprimee " + base + " $",
+    progressiveTax(x, njA), base, 0.005));
+[[20000, 300], [50000, 900], [70000, 1440], [80000, 1830], [150000, 6100], [500000, 30600], [1000000, 80100]].forEach(([x, base]) =>
+  check("NJ Rate B : impot cumule a " + x + " $ = base imprimee " + base + " $",
+    progressiveTax(x, njB), base, 0.005));
+check("NJ : Married joint et Head of household partagent la Rate B",
+  JSON.stringify(R.states["new-jersey"].incomeTax.brackets.marriedJoint) ===
+  JSON.stringify(R.states["new-jersey"].incomeTax.brackets.headOfHousehold) ? 1 : 0, 1, 0);
+
+check("NJ : chomage + fonds de formation sur 75 000 $ = 190,40 $ (44 800 x 0,425 %)",
+  calcul("new-jersey", 75000).programmes[0].montant, 190.40, 0.005);
+check("NJ : SDI sur 75 000 $ = 142,50 $",
+  calcul("new-jersey", 75000).programmes[1].montant, 142.50, 0.005);
+check("NJ : FLI sur 75 000 $ = 172,50 $",
+  calcul("new-jersey", 75000).programmes[2].montant, 172.50, 0.005);
+check("NJ : SDI sur 250 000 $ = 325,09 $ (plafond 171 100 x 0,19 %)",
+  calcul("new-jersey", 250000).programmes[1].montant, 325.09, 0.005);
+check("NJ : FLI sur 250 000 $ = 393,53 $ (plafond 171 100 x 0,23 %)",
+  calcul("new-jersey", 250000).programmes[2].montant, 393.53, 0.005);
+check("NJ : trois programmes salaries (UI+WF, SDI, FLI)",
+  (R.states["new-jersey"].employeePrograms || []).length, 3, 0);
+check("NJ : net a 75 000 $ = 58 218,10 $",
+  calcul("new-jersey", 75000).net, 58218.10, 0.005);
+check("NJ : net a 25 $/h (52 000 $) = 42 087,20 $",
+  calcul("new-jersey", 25 * 2080).net, 42087.20, 0.005);
+check("NJ : net a 250 000 $ = 167 162,98 $",
+  calcul("new-jersey", 250000).net, 167162.98, 0.005);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

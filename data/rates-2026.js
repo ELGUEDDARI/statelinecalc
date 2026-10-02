@@ -2623,6 +2623,129 @@ const RATES_2026 = {
           headOfHousehold: [[Infinity, 0.02]]
         }
       }
+    },
+
+    /* -----------------------------------------------------------------------
+       NEW JERSEY - 29e Etat, ajoute 2026-10-02. Les documents de la Division
+       of Taxation (nj.gov/treasury/taxation) et du Department of Labor
+       (nj.gov/labor) repondent 200 EN DIRECT, a curl avec un User-Agent de
+       navigateur : lus dans leurs octets reels le 2026-10-02, pas dans
+       Internet Archive.
+
+       1. LA RETENUE. NJ-WT « New Jersey Income Tax Withholding Instructions »
+          (revision « September 2025 », fichier nj.gov/treasury/taxation/pdf/
+          current/njwt.pdf, Last-Modified 2025-12-03), p. 24, verbatim :
+            « Withhold at Rate A  If Box 1 or 3 on Line 2 (Filing Status) is checked »
+            « Withhold at Rate B  If Box 2, 4 or 5 is checked and Line 3 is blank »
+            « Withhold at Rate Selected  If employee completes Line 3 »
+          Allocation par periode : « Annual  $1,000 » (hebdo 19,20 $, mensuel
+          83,30 $). Calcul : « Multiply the proper withholding allowance ...
+          by the number of exemptions claimed by the employee ; Subtract this
+          amount from the wages for the period to determine wages subject to
+          withholding ; Refer to the New Jersey Withholding Rate Tables ».
+          Cases du NJ-W4 : 1 Single, 2 Married/Civil Union Couple Joint,
+          3 Married/Civil Union Partner Separate, 4 Head of Household,
+          5 Qualifying Widow(er). => Single -> Table A ; Married joint et Head
+          of Household -> Table B (ligne 3 vide).
+
+       2. LES BAREMES. « TABLES FOR PERCENTAGE METHOD OF WITHHOLDING -
+          Applicable to Wages, Salaries, and Commissions Paid on and after
+          October 1, 2020 » (nj.gov/treasury/taxation/pdf/withholdingtables.pdf,
+          lien direct du NJ-WT p. 24 ; Last-Modified 2022-03-22), table
+          ANNUELLE, relue dans l'image du PDF le 2026-10-02 et recoupee dans le
+          NJ-W4 (1-21, nj.gov/treasury/taxation/pdf/current/njw4.pdf, Last-
+          Modified 2024-12-10), qui reimprime les memes tables A a E :
+            Rate A (Single, Married separate) :
+              0 - 20 000 : 1,5 % ; 20 000 - 35 000 : 300 + 2,0 % ;
+              35 000 - 40 000 : 600 + 3,9 % ; 40 000 - 75 000 : 795 + 6,1 % ;
+              75 000 - 500 000 : 2 930 + 7,0 % ; 500 000 - 1 000 000 :
+              32 680 + 9,9 % ; au-dela : 82 180 + 11,8 %.
+            Rate B (Married joint, Head of household, Qualifying widow(er)) :
+              0 - 20 000 : 1,5 % ; 20 000 - 50 000 : 300 + 2,0 % ;
+              50 000 - 70 000 : 900 + 2,7 % ; 70 000 - 80 000 : 1 440 + 3,9 % ;
+              80 000 - 150 000 : 1 830 + 6,1 % ; 150 000 - 500 000 :
+              6 100 + 7,0 % ; 500 000 - 1 000 000 : 30 600 + 9,9 % ; au-dela :
+              80 100 + 11,8 %.
+          Chaque montant de base imprime a ete RECOUPE A LA MAIN (base
+          precedente + largeur x taux) : les 15 sont coherents, donc des
+          tranches marginales ordinaires les reproduisent exactement. Les
+          tables C, D et E (deux revenus, NJ-W4 ligne 3 + « Wage Chart ») ne
+          sont PAS modelisees ; dit sur la page.
+          ⚠️ CES TAUX DE RETENUE (1,5 % a 11,8 %) NE SONT PAS LES TAUX DE
+          L'IMPOT : NJ-1040 2025 instructions (nj.gov/treasury/taxation/pdf/
+          current/1040i.pdf, Last-Modified 2025-12-03), « New Jersey Tax Rate
+          Schedules 2025 », Table A : .014 / .0175 / .035 / .05525 / .0637 /
+          .0897 / .1075 ; Table B : .014 / .0175 / .0245 / .035 / .05525 /
+          .0637 / .0897 / .1075. Le calculateur affiche la RETENUE.
+
+       3. ALLOCATIONS (« exemptions »). Le NJ-W4 dit seulement « Total number
+          of allowances you are claiming (see instructions) » ; aucun document
+          lu ne dit combien en reclamer. MODELISATION : 1 allocation (1 000 $)
+          pour Single et Head of household, 2 (2 000 $) pour Married joint -
+          les memes exemptions que la ligne 6 de la NJ-1040 2025 (« You can
+          claim a $1,000 exemption for yourself and your spouse/CU partner (if
+          filing a joint return) »). Choix de modelisation, dit sur la page.
+          Moteur : standardDeduction par statut (mecanique de Rhode Island).
+
+       4. 401(k). NJ-WT p. 6 : « 401(k) contributions up to the federal limit »
+          est dans la liste « Compensation Not Subject to Withholding », et
+          p. 6 « Employee contributions to retirement plans other than a 401(k)
+          in the year they are made » est dans celle des remunerations soumises.
+          => le versement 401(k) reduit la base de l'Etat (comportement par
+          defaut du moteur ; pas de taxesRetirementDeferrals). Au-dela de la
+          limite federale : non modelise.
+
+       5. PROGRAMMES SALARIES 2026 (NJ DOL, « Rate information, contributions,
+          and due dates », nj.gov/labor/ea/employer-services/rate-info, lu le
+          2026-10-02), ligne « Worker » : « U.I. D.I. W.F./S.W.F. F.L.I
+          0.003825 0.0019 0.000425 0.0023 January 1, 2026 to December 31,
+          2026 ». Bases : « 2026 Taxable Wage Base ( UI and WF/SWF - workers
+          and employers, TDI - employers): $44,800 » ; « 2026 Taxable Wage Base
+          (TDI , FLI - workers only): $171,100 » (communique NJDOL du
+          2025-12-29, memes chiffres). NJ-WT p. 16 liste, dans la case 16 du W-2,
+          « Unemployment Insurance Withholding », « Supplemental Workforce
+          Fund », « Workforce Development Partnership Fund », « Disability
+          Insurance » et « Family Leave Insurance (FLI) Contributions ».
+          => 3 entrees : chomage + fonds de formation 0,3825 % + 0,0425 % =
+          0,425 % sur 44 800 $ (max 190,40 $) ; SDI 0,19 % sur 171 100 $
+          (max 325,09 $) ; FLI 0,23 % sur 171 100 $ (max 393,53 $).
+          Hypothese du moteur : l'employeur deduit les trois ; les plans prives
+          (SDI) ne sont pas modelises.
+
+       6. NON MODELISE : primes (NJ-WT : « Total the employee's regular wage
+          and supplemental wages and withhold at the appropriate rate based on
+          the combined payment » si versees en meme temps ; sinon « Withhold
+          from the supplemental wages without any exemption allowances » ;
+          aucun taux forfaitaire), NJ-W4 lignes 3 (table C-E), 5 (montant
+          supplementaire) et 6 (EXEMPT), reciprocite NJ-PA (NJ-165).
+          AUCUN IMPOT LOCAL SUR LE REVENU decrit dans le NJ-WT (seules des
+          taxes locales de Pennsylvanie y sont mentionnees) : la page dit « we
+          found no », jamais « New Jersey has no ».
+       ----------------------------------------------------------------------- */
+    "new-jersey": {
+      name: "New Jersey",
+      abbr: "NJ",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 1000,
+          marriedJoint: 2000,
+          headOfHousehold: 1000
+        },
+        brackets: {
+          single:          [[20000, 0.015], [35000, 0.02], [40000, 0.039], [75000, 0.061],
+                            [500000, 0.07], [1000000, 0.099], [Infinity, 0.118]],
+          marriedJoint:    [[20000, 0.015], [50000, 0.02], [70000, 0.027], [80000, 0.039],
+                            [150000, 0.061], [500000, 0.07], [1000000, 0.099], [Infinity, 0.118]],
+          headOfHousehold: [[20000, 0.015], [50000, 0.02], [70000, 0.027], [80000, 0.039],
+                            [150000, 0.061], [500000, 0.07], [1000000, 0.099], [Infinity, 0.118]]
+        }
+      },
+      employeePrograms: [
+        { label: "NJ unemployment and workforce (0.425%)", rate: 0.00425, wageCap: 44800 },
+        { label: "NJ disability insurance (0.19%)", rate: 0.0019, wageCap: 171100 },
+        { label: "NJ family leave insurance (0.23%)", rate: 0.0023, wageCap: 171100 }
+      ]
     }
   }
 };

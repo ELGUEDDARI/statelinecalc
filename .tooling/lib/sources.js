@@ -543,6 +543,51 @@ const PAR_ETAT = {
       quoi: "that employers are currently required to pay unemployment taxes on the first $8,000 " +
             "in gross wages paid to each employee in a calendar year; archived copy, for the same reason",
       motif: ["8,000"] }
+  ],
+  "new-jersey": [
+    { type: "document",
+      url: "https://www.nj.gov/treasury/taxation/pdf/current/njwt.pdf",
+      titre: "New Jersey Division of Taxation &mdash; NJ-WT, Income Tax Withholding Instructions " +
+             "(PDF, September 2025 revision)",
+      quoi: "which rate table applies to which NJ-W4 filing status, the $1,000 annual value of one " +
+            "withholding allowance, the subtraction before the table is used, the treatment of " +
+            "supplemental wages, and the rule that 401(k) contributions up to the federal limit are " +
+            "not subject to New Jersey withholding",
+      motif: ["Withhold at Rate B", "401(k) contributions up to the federal limit"] },
+    { type: "document",
+      url: "https://www.nj.gov/treasury/taxation/pdf/withholdingtables.pdf",
+      titre: "New Jersey Division of Taxation &mdash; Tables for Percentage Method of Withholding " +
+             "(PDF, wages paid on and after October 1, 2020)",
+      quoi: "the annual Rate A and Rate B tables, from 1.5% to 11.8%, that this calculator applies",
+      motif: ["TABLES FOR PERCENTAGE METHOD OF WITHHOLDING", "October 1, 2020"] },
+    { type: "document",
+      url: "https://www.nj.gov/treasury/taxation/pdf/current/njw4.pdf",
+      titre: "New Jersey Division of Taxation &mdash; Form NJ-W4, Employee&rsquo;s Withholding " +
+             "Allowance Certificate (PDF)",
+      quoi: "the filing-status boxes, the line for the number of allowances, the rule that single " +
+            "and married-separate filers are withheld at Rate A, and the two-income wage chart",
+      motif: ["Total number of allowances you are claiming"] },
+    { type: "document",
+      url: "https://www.nj.gov/labor/ea/employer-services/rate-info",
+      titre: "New Jersey Department of Labor and Workforce Development &mdash; Rate information, " +
+             "contributions, and due dates",
+      quoi: "the 2026 worker contribution rates (unemployment 0.3825%, workforce funds 0.0425%, " +
+            "disability 0.19%, family leave 0.23%) and the $44,800 and $171,100 taxable wage bases",
+      motif: ["0.003825", "171,100"] },
+    { type: "document",
+      url: "https://www.nj.gov/labor/lwdhome/press/2025/20251229_newbenefitrates2026.shtml",
+      titre: "New Jersey Department of Labor and Workforce Development &mdash; New benefit rates " +
+             "for 2026 (press release of December 29, 2025)",
+      quoi: "the 2026 taxable wage bases, $44,800 for unemployment and $171,100 for temporary " +
+            "disability and family leave insurance",
+      motif: ["171,100", "44,800"] },
+    { type: "document",
+      url: "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf",
+      titre: "New Jersey Division of Taxation &mdash; 2025 NJ-1040 instructions, with the tax " +
+             "rate schedules (PDF)",
+      quoi: "the 1.4% to 10.75% rates on the income tax return, which differ from the withholding " +
+            "tables, and the $1,000 exemption for yourself and your spouse",
+      motif: ["New Jersey Tax Rate Schedules", ".05525"] }
   ]
 };
 
