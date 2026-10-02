@@ -1179,5 +1179,57 @@ check("CO : un seul taux plat pour les trois statuts",
 check("CO : un couple marie paie moins qu'un celibataire sur le meme salaire",
   calcul("colorado", 75000, "marriedJoint").etat < calcul("colorado", 75000).etat ? 1 : 0, 1, 0);
 
+console.log("\n=== Arizona (28e Etat) ===");
+
+/* Sources : Arizona Form A-4 2026 (ADOR 10121 (25), instantane Internet Archive
+   du 2026-07-05) : le salarie choisit 0,5 / 1,0 / 1,5 / 2,0 / 2,5 / 3,0 / 3,5 %
+   de « gross taxable wages » ; sans formulaire, « the department requires your
+   employer to withhold 2.0% of your gross taxable wages » ; A.R.S. 43-401(E)
+   (azleg.gov, 2026-10-02). Le moteur modelise ce DEFAUT : 2,0 % de la paie apres
+   401(k), sans deduction, meme chose pour les trois statuts. Chaque attendu est
+   recalcule a la main, jamais tire du moteur.
+   single 75 000   : 75 000 x 0,02                                   = 1 500,00
+   married/HoH     : meme pourcentage, aucune deduction              = 1 500,00
+   single 25 000   : 25 000 x 0,02                                   =   500,00
+   single 250 000  : 250 000 x 0,02 (pas de plafond, pas de palier)  = 5 000,00
+   1 $             : 0,02 $ (aucune franchise)
+   401(k) 6 %      : (75 000 - 4 500) x 0,02 = 70 500 x 0,02         = 1 410,00
+   net single 75 000 : 75 000 - 7 670 (federal) - 4 650 - 1 087,50 - 1 500
+                     = 60 092,50
+   net single 52 000 (25 $/h) : federal 4 060 (1 240 + 23 500 x 12 %), SS 3 224,
+     Medicare 754, AZ 1 040 -> 52 000 - 4 060 - 3 224 - 754 - 1 040 = 42 922,00
+   net single 250 000 : federal 51 304 (1 240 + 4 560 + 12 166 + 23 058 + 10 280),
+     SS 11 439, Medicare 3 625 + 450 (0,9 % x 50 000) = 4 075, AZ 5 000
+     -> 250 000 - 51 304 - 11 439 - 4 075 - 5 000 = 178 182,00 */
+check("AZ : single 75 000 $ = 1 500,00 $ (2,0 % de 75 000)",
+  calcul("arizona", 75000).etat, 1500.00, 0.005);
+check("AZ : married 75 000 $ = 1 500,00 $ (meme pourcentage)",
+  calcul("arizona", 75000, "marriedJoint").etat, 1500.00, 0.005);
+check("AZ : head of household 75 000 $ = 1 500,00 $ (meme pourcentage)",
+  calcul("arizona", 75000, "headOfHousehold").etat, 1500.00, 0.005);
+check("AZ : single 25 000 $ = 500,00 $",
+  calcul("arizona", 25000).etat, 500.00, 0.005);
+check("AZ : single 250 000 $ = 5 000,00 $ (taux plat, pas de plafond)",
+  calcul("arizona", 250000).etat, 5000.00, 0.005);
+check("AZ : le premier dollar est retenu a 2,0 % = 0,02 $ (aucune franchise)",
+  calcul("arizona", 1).etat, 0.02, 0.0001);
+check("AZ : 401(k) 6 % sur 75 000 $ -> 70 500 x 2,0 % = 1 410,00 $",
+  calcul("arizona", 75000, "single", 0.06).etat, 1410.00, 0.005);
+check("AZ : net a 75 000 $ = 60 092,50 $ (75 000 - 7 670 - 4 650 - 1 087,50 - 1 500)",
+  calcul("arizona", 75000).net, 60092.50, 0.005);
+check("AZ : net a 25 $/h (52 000 $) = 42 922,00 $",
+  calcul("arizona", 25 * 2080).net, 42922.00, 0.005);
+check("AZ : net a 250 000 $ = 178 182,00 $",
+  calcul("arizona", 250000).net, 178182.00, 0.005);
+check("AZ : aucun programme salarie (chomage = employeur seul, pas de SDI/PFML lu)",
+  (R.states.arizona.employeePrograms || []).length, 0, 0);
+check("AZ : un seul taux plat de 2,0 % pour les trois statuts",
+  ["single", "marriedJoint", "headOfHousehold"].every(st =>
+    JSON.stringify(R.states.arizona.incomeTax.brackets[st]) === JSON.stringify([[Infinity, 0.02]])) ? 1 : 0, 1, 0);
+check("AZ : aucune deduction dans la formule de retenue",
+  R.states.arizona.incomeTax.standardDeduction, 0, 0);
+check("AZ : le defaut est l'un des sept choix du A-4 (0,5 a 3,5 %)",
+  [0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035].includes(R.states.arizona.incomeTax.brackets.single[0][1]) ? 1 : 0, 1, 0);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

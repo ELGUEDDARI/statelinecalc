@@ -2506,6 +2506,123 @@ const RATES_2026 = {
       employeePrograms: [
         { label: "CO FAMLI (0.44%)", rate: 0.0044, wageCap: 184500 }
       ]
+    },
+
+    /* -----------------------------------------------------------------------
+       ARIZONA - 28e Etat, ajoute 2026-10-02. Sources officielles lues le jour
+       meme. azdor.gov et des.az.gov repondent 403 (Cloudflare) a curl, a
+       WebFetch et a Chrome pilote : les documents ont ete lus dans leurs
+       instantanes Internet Archive (octets bruts, `id_`, parfois gzip). Le
+       texte de loi azleg.gov repond 200 en direct.
+
+       1. LA RETENUE EST UN POURCENTAGE CHOISI PAR LE SALARIE, PAS UN BAREME.
+          Arizona Form A-4, « Employee's Arizona Withholding Election 2026 »
+          (ADOR 10121 (25) ; PDF, instantane du 2026-07-05 ; https://azdor.gov/
+          sites/default/files/document/FORMS_WITHHOLDING_2026_A-4_f.pdf).
+          Verbatim :
+            « 1 Withhold from gross taxable wages at the percentage checked
+              (check only one percentage): 0.5% 1.0% 1.5% 2.0% 2.5% 3.0% 3.5% »
+            « If you do not give this form to your employer the department
+              requires your employer to withhold 2.0% of your gross taxable
+              wages. »
+            « ... your "gross taxable wages" are the wages that will generally
+              be in box 1 of your federal Form W-2. It is your gross wages less
+              any pretax deductions, such as your share of health insurance
+              premiums. »
+          Page ADOR « Withholding Tax - Individual » (instantane du
+          2026-08-27) : « If you as the new employee fails to complete Arizona
+          Form A-4 within 5 days of hire, the employer must withhold Arizona
+          income tax at the rate of 2.0% until you elects a different
+          withholding rate. » et « Rates are a percentage of gross taxable
+          wages. »
+          A.R.S. 43-401(E) (azleg.gov, 200 en direct le 2026-10-02) : « Any
+          employee failing to complete an election form as prescribed shall be
+          deemed to have elected the withholding percentage prescribed by the
+          department. »
+          => LE MOTEUR MODELISE LE DEFAUT : 2,0 % de la paie apres cotisations
+          avant impot (401(k)), pas de deduction, un seul palier, identique
+          pour les trois statuts. Un salarie qui a rempli un A-4 avec un autre
+          pourcentage (0,5 a 3,5 %) a une retenue differente : la page le dit
+          et donne le tableau des sept choix a 75 000 $.
+
+          Autres phrases du A-4 2026 / de la page ADOR utilisees par la page
+          (relues le 2026-10-02 dans les PDF/HTML bruts) : « You may elect an
+          Arizona withholding percentage of zero if you expect to have no
+          Arizona income tax liability for the current year. Arizona tax
+          liability is gross tax liability less any tax credits, such as the
+          family tax credit, school tax credits, or credits for taxes paid to
+          other states. » ; « Zero withholding does not relieve you from paying
+          Arizona income taxes that might be due at the time you file ... you
+          should promptly file a new Form A-4 and choose a withholding
+          percentage that applies to you. » ; « To keep this election for the
+          next calendar year, you must give your employer an updated Form A-4.
+          If you do not, your employer may withhold Arizona income tax from
+          your wages and salary until you submit an updated Form A-4. » ;
+          « Check this box and enter an extra amount to be withheld from each
+          paycheck » ; « The amount withheld is a percentage of your gross
+          taxable wages from every paycheck » ; « Arizona law requires your
+          employer to withhold Arizona income tax from your wages for work done
+          in Arizona. » ; paragraphe « Voluntary Withholding Election by Certain
+          Nonresident Employees » ; page ADOR : « The Arizona Form A-4 should not
+          be submitted to ADOR. »
+
+          Nonresidents (A-4 2026, verbatim) : « Compensation earned by
+          nonresidents while physically working in Arizona for temporary periods
+          is subject to Arizona income tax. However, under Arizona law,
+          compensation paid to certain nonresident employees is not subject to
+          Arizona income tax withholding. These nonresident employees need to
+          review their situations and determine if they should elect to have
+          Arizona income taxes withheld from their Arizona source compensation.
+          Nonresident employees may request that their employer withhold Arizona
+          income taxes by completing this form to elect Arizona income tax
+          withholding. » Changement de situation : « ... if at any time during
+          the current year conditions change so that you expect to have a tax
+          liability, you should promptly file a new Form A-4 and choose a
+          withholding percentage that applies to you. »
+
+       2. L'IMPOT LUI-MEME. Meme page ADOR (2026-08-27) : « Keep in mind for
+          tax year 2023 and beyond, the tax rate for Arizona taxable income is
+          2.5% . » Form 140 Resident Personal Income Tax Return, instructions
+          2025 (instantane du 2026-05-13), ligne 46 : « Multiply line 45 by
+          2.5% (.025) and enter the result. » Deduction standard 2025 : single
+          15 750 $ (« Single $ 15,750 »), mariage declaration commune 31 500 $,
+          chef de famille 23 625 $. AUCUNE valeur 2026 de la deduction
+          standard n'a ete lue : l'exemple de la page est donc declare « avec
+          la deduction 2025 ». NON modelise dans le moteur (la retenue n'en
+          depend pas).
+
+       3. CHOMAGE - EMPLOYEUR SEUL. DES, « Payment Taxes - Overview »
+          (instantane du 2025-10-30) : « State unemployment taxes are used
+          solely for the payment of unemployment benefits and cannot be
+          withheld from employees' wages. » Base : « Taxable wages are the
+          first $8,000 ($7,000 in gross wages before January 1, 2023) in gross
+          wages paid to each employee in a calendar year. » Page « Unemployment
+          - Employer » (instantane du 2026-09-07) : « In Arizona, you are
+          currently required by law to pay UI taxes on the first $8,000 in
+          gross wages paid to each of your employees in a calendar year. »
+          Pas d'entree employeePrograms.
+
+       4. CE QUI N'EST PAS DANS LES SOURCES LUES : aucune prime d'invalidite
+          ou de conge familial salariee (ni le A-4, ni la page de retenue, ni
+          les instructions employeur n'en parlent ; l'absence n'est pas une
+          preuve, la page le formule « we found no ») ; aucun impot local sur
+          le revenu (la page ADOR de retenue ne decrit qu'un pourcentage
+          d'Etat). Primes / heures sup : le A-4 parle de « gross taxable
+          wages » (case 1 du W-2) sans regle distincte : non modelise,
+          mentionne.
+       ----------------------------------------------------------------------- */
+    arizona: {
+      name: "Arizona",
+      abbr: "AZ",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: 0,
+        brackets: {
+          single:          [[Infinity, 0.02]],
+          marriedJoint:    [[Infinity, 0.02]],
+          headOfHousehold: [[Infinity, 0.02]]
+        }
+      }
     }
   }
 };

@@ -497,6 +497,52 @@ const PAR_ETAT = {
       quoi: "the city&rsquo;s notice that its occupational privilege tax will be repealed " +
             "effective January 1, 2025, with the last returns covering 2024",
       motif: ["repealed effective Jan. 1, 2025"] }
+  ],
+  arizona: [
+    { type: "document",
+      url: "https://web.archive.org/web/20260705190656/https://azdor.gov/sites/default/files/document/FORMS_WITHHOLDING_2026_A-4_f.pdf",
+      titre: "Arizona Department of Revenue &mdash; Form A-4, Employee&rsquo;s Arizona " +
+             "Withholding Election, 2026 (PDF, Internet Archive snapshot of July 5, 2026)",
+      quoi: "the seven percentages an employee can pick (0.5% to 3.5%), the 2.0% the department " +
+            "requires when no form is given, and the definition of gross taxable wages; the " +
+            "department&rsquo;s own site refuses automated requests, so we link the archived copy",
+      motif: ["gross taxable wages", "3.5%"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260827135938/https://azdor.gov/individuals/withholding-tax-individual",
+      titre: "Arizona Department of Revenue &mdash; Withholding Tax, Individual (Internet " +
+             "Archive snapshot of August 27, 2026)",
+      quoi: "the 2.0% default when a new employee does not complete Form A-4 within five days, " +
+            "and the note that the tax rate on Arizona taxable income is 2.5% for tax year 2023 " +
+            "and beyond; archived copy, for the same reason",
+      motif: ["tax year 2023 and beyond"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260513213053/https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140i.pdf",
+      titre: "Arizona Department of Revenue &mdash; Form 140 Resident Personal Income Tax " +
+             "Return, 2025 instructions (PDF, Internet Archive snapshot of May 13, 2026)",
+      quoi: "line 46, which multiplies Arizona taxable income by 2.5%, and the 2025 standard " +
+            "deductions (single $15,750); archived copy, for the same reason",
+      motif: ["2.5% (.025)"] },
+    { type: "document",
+      url: "https://www.azleg.gov/ars/43/00401.htm",
+      titre: "Arizona Revised Statutes &sect; 43-401, Withholding tax; rates; election by employee",
+      quoi: "the rule that an employee who fails to complete the election form is deemed to " +
+            "have elected the withholding percentage the department prescribes",
+      motif: ["deemed to have elected the withholding percentage"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20251030211242/https://des.az.gov/services/employment/unemployment-employer/reporting-wages-and-paying-unemployment-insurance-taxes/payment-taxes-overview",
+      titre: "Arizona Department of Economic Security &mdash; Payment Taxes, Overview " +
+             "(Internet Archive snapshot of October 30, 2025)",
+      quoi: "the statement that state unemployment taxes cannot be withheld from employees&rsquo; " +
+            "wages, and the $8,000 taxable wage base; archived copy, because the live page " +
+            "refuses automated requests",
+      motif: ["cannot be withheld from employees"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260907091451/https://des.az.gov/services/employment/unemployment-employer",
+      titre: "Arizona Department of Economic Security &mdash; Unemployment, Employer (Internet " +
+             "Archive snapshot of September 7, 2026)",
+      quoi: "that employers are currently required to pay unemployment taxes on the first $8,000 " +
+            "in gross wages paid to each employee in a calendar year; archived copy, for the same reason",
+      motif: ["8,000"] }
   ]
 };
 
