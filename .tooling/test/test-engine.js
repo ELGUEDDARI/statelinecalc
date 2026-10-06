@@ -1311,5 +1311,114 @@ check("NJ : net a 25 $/h (52 000 $) = 42 087,20 $",
 check("NJ : net a 250 000 $ = 167 162,98 $",
   calcul("new-jersey", 250000).net, 167162.98, 0.005);
 
+console.log("\n=== Massachusetts (30e Etat) ===");
+
+/* Sources (instantanes Internet Archive, lus le 2026-10-02) : Circular M
+   (Rev. 12/25), page 12, methode en pourcentage : 5 %, 9 % au-dela de
+   1 107 750 $, FICA deduite plafonnee a 2 000 $, exemptions 4 400 $ pour 1
+   (1 000 x n + 3 400 au-dela), conjoint = « 4 » exemptions, credit chef de
+   famille 120 $/an, rien retenu sous 8 000 $ ; DFML : PFML 0,28 % + 0,18 %
+   = 0,46 % maximum, plafond Social Security (184 500 $).
+   Chaque attendu est recalcule a la main.
+   single 75 000  : FICA 5 737,50 > 2 000 -> deduite 2 000 ; 75 000 - 4 400 - 2 000
+                    = 68 600 ; x 5 %                                     = 3 430,00
+   married 75 000 : 75 000 - 8 400 - 2 000 = 64 600 ; x 5 %              = 3 230,00
+   HoH 75 000     : 3 430,00 - 120                                      = 3 310,00
+   single 25 000  : FICA 25 000 x 7,65 % = 1 912,50 (< 2 000) ; 25 000 - 4 400
+                    - 1 912,50 = 18 687,50 ; x 5 %                       =   934,375
+   single 20 000  : FICA 1 530 ; 20 000 - 4 400 - 1 530 = 14 070 ; x 5 %=   703,50
+   married 20 000 : 20 000 - 8 400 - 1 530 = 10 070 ; x 5 %             =   503,50
+   HoH 20 000     : 703,50 - 120                                        =   583,50
+   single 8 000   : FICA 612 ; 8 000 - 4 400 - 612 = 2 988 ; x 5 %      =   149,40
+   single 7 999   : sous 8 000 $ -> 0
+   single 52 000  : FICA 3 978 > 2 000 ; 52 000 - 4 400 - 2 000 = 45 600 ; x 5 % = 2 280,00
+   single 250 000 : 250 000 - 4 400 - 2 000 = 243 600 ; x 5 %          = 12 180,00
+   single 1 500 000 : 1 500 000 - 4 400 - 2 000 = 1 493 600 ;
+                    1 107 750 x 5 % = 55 387,50 ; 385 850 x 9 % = 34 726,50 = 90 114,00
+   401(k) 6 %     : (75 000 - 4 500) - 4 400 - 2 000 = 64 100 ; x 5 %   =  3 205,00
+   PFML 75 000    : 75 000 x 0,46 %                                     =   345,00
+   PFML 250 000   : 184 500 x 0,46 %                                    =   848,70
+   net single 75 000 : 75 000 - 7 670 - 4 650 - 1 087,50 - 3 430 - 345  = 57 817,50
+   net single 52 000 : 52 000 - 4 060 - 3 224 - 754 - 2 280 - 239,20    = 41 442,80
+   net single 250 000: 250 000 - 51 304 - 11 439 - 4 075 - 12 180 - 848,70 = 170 153,30 */
+check("MA : single 75 000 $ = 3 430,00 $ (75 000 - 4 400 - 2 000, x 5 %)",
+  calcul("massachusetts", 75000).etat, 3430.00, 0.005);
+check("MA : married 75 000 $ = 3 230,00 $ (5 exemptions = 8 400 $)",
+  calcul("massachusetts", 75000, "marriedJoint").etat, 3230.00, 0.005);
+check("MA : head of household 75 000 $ = 3 310,00 $ (credit de 120 $)",
+  calcul("massachusetts", 75000, "headOfHousehold").etat, 3310.00, 0.005);
+check("MA : single 25 000 $ = 934,375 $ (FICA 1 912,50 $ < plafond de 2 000 $)",
+  calcul("massachusetts", 25000).etat, 934.375, 0.0005);
+check("MA : single 20 000 $ = 703,50 $ (FICA 1 530 $)",
+  calcul("massachusetts", 20000).etat, 703.50, 0.005);
+check("MA : married 20 000 $ = 503,50 $",
+  calcul("massachusetts", 20000, "marriedJoint").etat, 503.50, 0.005);
+check("MA : head of household 20 000 $ = 583,50 $",
+  calcul("massachusetts", 20000, "headOfHousehold").etat, 583.50, 0.005);
+check("MA : single 8 000 $ = 149,40 $ (le plancher est inclus)",
+  calcul("massachusetts", 8000).etat, 149.40, 0.005);
+check("MA : single 7 999 $ = 0 $ (sous 8 000 $, rien n'est retenu)",
+  calcul("massachusetts", 7999).etat, 0, 0);
+check("MA : single 52 000 $ (25 $/h) = 2 280,00 $",
+  calcul("massachusetts", 25 * 2080).etat, 2280.00, 0.005);
+check("MA : single 250 000 $ = 12 180,00 $",
+  calcul("massachusetts", 250000).etat, 12180.00, 0.005);
+check("MA : single 1 500 000 $ = 90 114,00 $ (5 % puis 9 % au-dela de 1 107 750 $)",
+  calcul("massachusetts", 1500000).etat, 90114.00, 0.005);
+check("MA : 401(k) 6 % sur 75 000 $ = 3 205,00 $",
+  calcul("massachusetts", 75000, "single", 0.06).etat, 3205.00, 0.005);
+check("MA : impot cumule a 1 107 750 $ imposable = 55 387,50 $",
+  progressiveTax(1107750, R.states.massachusetts.incomeTax.brackets.single), 55387.50, 0.005);
+check("MA : PFML sur 75 000 $ = 345,00 $ (0,46 %)",
+  calcul("massachusetts", 75000).programmes[0].montant, 345.00, 0.005);
+check("MA : PFML sur 250 000 $ = 848,70 $ (plafond 184 500 $ x 0,46 %)",
+  calcul("massachusetts", 250000).programmes[0].montant, 848.70, 0.005);
+check("MA : net a 75 000 $ = 57 817,50 $",
+  calcul("massachusetts", 75000).net, 57817.50, 0.005);
+check("MA : net a 25 $/h (52 000 $) = 41 442,80 $",
+  calcul("massachusetts", 25 * 2080).net, 41442.80, 0.005);
+check("MA : net a 250 000 $ = 170 153,30 $",
+  calcul("massachusetts", 250000).net, 170153.30, 0.005);
+check("MA : un seul programme salarie (le PFML)",
+  (R.states.massachusetts.employeePrograms || []).length, 1, 0);
+check("MA : le plafond du PFML est le plafond Social Security",
+  R.states.massachusetts.employeePrograms[0].wageCap === R.fica.socialSecurity.wageBase ? 1 : 0, 1, 0);
+check("MA : 0,28 % + 0,18 % = 0,46 %",
+  R.states.massachusetts.employeePrograms[0].rate, 0.0028 + 0.0018, 1e-12);
+check("MA : exemption(n) = 1 000 x n + 3 400 : 1 -> 4 400, 5 -> 8 400",
+  (1000 * 1 + 3400) === R.states.massachusetts.incomeTax.standardDeduction.single &&
+  (1000 * 5 + 3400) === R.states.massachusetts.incomeTax.standardDeduction.marriedJoint ? 1 : 0, 1, 0);
+check("MA : les trois statuts partagent les memes tranches",
+  ["marriedJoint", "headOfHousehold"].every(st =>
+    JSON.stringify(R.states.massachusetts.incomeTax.brackets[st]) ===
+    JSON.stringify(R.states.massachusetts.incomeTax.brackets.single)) ? 1 : 0, 1, 0);
+check("ficaDeduction / noWithholdingBelow : propres au Massachusetts (aucun autre Etat ne les declare)",
+  Object.keys(R.states).filter(k => k !== "massachusetts" &&
+    (R.states[k].incomeTax.ficaDeduction || R.states[k].incomeTax.noWithholdingBelow)).length, 0, 0);
+
+/* Le moteur NAVIGATEUR (assets/calc-paycheck.js) et le moteur NODE (lib/paie.js)
+   doivent donner le meme impot d'Etat et le meme net : on charge le premier
+   dans un contexte vm sans DOM. */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of [5000, 7999, 8000, 15000, 20000, 25000, 26143, 26145, 52000, 75000, 123456, 250000, 1107750, 1500000])
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "massachusetts", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("massachusetts", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("MA : moteur navigateur == moteur node sur " + n + " entrees (impot d'Etat et net)", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

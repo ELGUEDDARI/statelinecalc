@@ -704,8 +704,8 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Rhode Island&rsquo;s two neighboring states,
-  Massachusetts and Connecticut, are not published on this site yet, so the table lines it up against
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Rhode Island&rsquo;s neighbor Connecticut is not published on this site yet,
+  while Massachusetts has its own page. The table lines it up against
   three states we do have: one that taxes wages at a flat rate, one with no income tax, and one
   whose paychecks still carry state payroll programs.</p>
   <div class="table-scroll">

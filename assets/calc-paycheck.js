@@ -166,6 +166,18 @@
       if (pe) {
         sd = (sd || 0) + ((input.filingStatus in pe) ? pe[input.filingStatus] : pe.single);
       }
+      /* Massachusetts is the first state here that lets the employer subtract
+         the Social Security and Medicare actually withheld from the wage
+         before the state rate is applied, up to a yearly maximum: Circular M
+         (Rev. 12/25), step 1 of the percentage method, "The total amount
+         subtracted may not exceed $2,000". Below about $26,000 of pay the
+         FICA withheld is under that cap and the deduction is smaller than
+         $2,000; above it the deduction is flat. A fixed deduction would be
+         wrong for every low-wage visitor. Added 2026-10-02. */
+      var fd = state.incomeTax.ficaDeduction;
+      if (fd) {
+        sd = (sd || 0) + Math.min(fd.cap, ss + medicare + addlMedicare);
+      }
       var imposableEtat = Math.max(0, baseEtat - (sd || 0));
       /* Arkansas is the first state here whose RATE SCHEDULE itself is
          published as a table of segments rather than continuous marginal
@@ -217,6 +229,12 @@
           - Math.max(0, baseEtat - pick(cr.phaseOutStart)) * cr.phaseOutRate);
         stateTax = Math.max(0, stateTax - credit);
       }
+      /* Massachusetts again: Circular M says "Do not withhold from employees
+         who claim one or more exemptions if their wages are less than ...
+         annually: $8,000". Below that figure nothing is withheld; at it,
+         withholding starts at once. Added 2026-10-02. */
+      var nwb = state.incomeTax.noWithholdingBelow;
+      if (nwb && gross < nwb) stateTax = 0;
     }
 
     /* --- state payroll programs --- */

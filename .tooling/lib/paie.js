@@ -157,9 +157,17 @@ function calcul(cle, brut, statut = "single", retraitePct = 0) {
 
   /* La Pennsylvanie taxe le versement 401(k) : sa base est le brut. */
   const baseEtat = S.incomeTax.taxesRetirementDeferrals ? brut : apresPretax;
-  const imposableEtat = Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat));
+  /* Le Massachusetts est le premier Etat ou l'employeur retranche aussi le
+     Social Security + Medicare REELLEMENT retenus, jusqu'a un plafond annuel :
+     Circular M (Rev. 12/25), methode en pourcentage, etape 1, « The total
+     amount subtracted may not exceed $2,000 ». Sous ~26 000 $ de salaire la
+     FICA est inferieure au plafond ; au-dela la deduction est fixe. Miroir de
+     assets/calc-paycheck.js. */
+  const fd = S.incomeTax.ficaDeduction;
+  const ficaDeduite = fd ? Math.min(fd.cap, ss + med) : 0;
+  const imposableEtat = Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat) - ficaDeduite);
   const table = S.incomeTax.bracketTable;
-  const etat = S.incomeTax.hasIncomeTax
+  const etatBrut = S.incomeTax.hasIncomeTax
     ? Math.max(0, (table
                     ? impotTable((statut in table) ? table[statut] : table.single, imposableEtat)
                     : progressiveTax(imposableEtat,
@@ -167,6 +175,10 @@ function calcul(cle, brut, statut = "single", retraitePct = 0) {
                   + marcheEtat(S, imposableEtat)
                   - creditEtat(S, statut, baseEtat))
     : 0;
+  /* Circular M : « Do not withhold from employees who claim one or more
+     exemptions if their wages are less than ... annually: $8,000 ». */
+  const planchet = S.incomeTax.noWithholdingBelow;
+  const etat = (planchet && brut < planchet) ? 0 : etatBrut;
 
   const pl = S.paidLeave
     ? (S.paidLeave.wageCap ? Math.min(brut, S.paidLeave.wageCap) : brut) * S.paidLeave.employeeRate

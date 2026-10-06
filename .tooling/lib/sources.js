@@ -588,6 +588,50 @@ const PAR_ETAT = {
       quoi: "the 1.4% to 10.75% rates on the income tax return, which differ from the withholding " +
             "tables, and the $1,000 exemption for yourself and your spouse",
       motif: ["New Jersey Tax Rate Schedules", ".05525"] }
+  ],
+  massachusetts: [
+    { type: "document",
+      url: "https://web.archive.org/web/20260312193631/https://www.mass.gov/doc/massachusetts-circular-m-income-tax-withholding-tables-at-50-effective-january-1-2026/download",
+      titre: "Massachusetts Department of Revenue &mdash; Circular M, Income Tax Withholding " +
+             "Tables at 5.0% Effective January 1, 2026 (PDF, Internet Archive snapshot of March 12, 2026)",
+      quoi: "the percentage method itself: the 5% rate, the 9% rate above $1,107,750 (the 4% " +
+            "surtax), the Social Security and Medicare deduction capped at $2,000, the exemption " +
+            "factors, the head of household credit and the $8,000 floor; the department&rsquo;s own " +
+            "site refuses automated requests, so we link the archived copy",
+      motif: ["4% Surtax", "1,107,750"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260803165850/https://www.mass.gov/doc/form-m-4-massachusetts-employees-withholding-exemption-certificate/download",
+      titre: "Massachusetts Department of Revenue &mdash; Form M-4, Employee&rsquo;s Withholding " +
+             "Exemption Certificate (PDF, Internet Archive snapshot of August 3, 2026)",
+      quoi: "the personal exemption on line 1, the spouse exemption on line 2, and the rule that " +
+            "each spouse may claim a personal exemption if both are subject to withholding; " +
+            "archived copy, for the same reason",
+      motif: ["Your personal exemption", "each may claim a personal exemption"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260916051521/https://www.mass.gov/info-details/paid-family-and-medical-leave-employer-contribution-rates-and-calculator",
+      titre: "Massachusetts Department of Family and Medical Leave &mdash; Paid Family and Medical " +
+             "Leave employer contribution rates and calculator (Internet Archive snapshot of " +
+             "September 16, 2026)",
+      quoi: "the 2026 split: up to 0.28% of wages for medical leave and 0.18% for family leave " +
+            "can be withheld from the worker, capped at the Social Security taxable maximum; " +
+            "archived copy, because the live page refuses automated requests",
+      motif: ["0.28% of eligible wages", "Social Security taxable maximum"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20251213160708/https://www.mass.gov/info-details/learn-about-employer-contributions-to-dua",
+      titre: "Massachusetts Department of Unemployment Assistance &mdash; Learn about employer " +
+             "contributions to DUA (Internet Archive snapshot of December 13, 2025)",
+      quoi: "the statement that employers make the unemployment insurance contributions, and the " +
+            "other contributions the page lists as employer contributions; archived copy, for the " +
+            "same reason",
+      motif: ["Subject employers are required by law to make quarterly UI contributions"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20240331042643/https://www.mass.gov/info-details/massachusetts-non-government-pensions",
+      titre: "Massachusetts Department of Revenue &mdash; Massachusetts non-government pensions " +
+             "(Internet Archive snapshot of March 31, 2024)",
+      quoi: "that 401(k) elective deferrals, other than Roth contributions, are excluded from " +
+            "Massachusetts gross income to the same extent as from federal gross income; archived " +
+            "copy, for the same reason",
+      motif: ["elective deferrals of your current compensation"] }
   ]
 };
 

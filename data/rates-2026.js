@@ -2746,6 +2746,141 @@ const RATES_2026 = {
         { label: "NJ disability insurance (0.19%)", rate: 0.0019, wageCap: 171100 },
         { label: "NJ family leave insurance (0.23%)", rate: 0.0023, wageCap: 171100 }
       ]
+    },
+
+    /* =======================================================================
+       MASSACHUSETTS  -  lu le 2026-10-02 (mass.gov refuse curl/WebFetch : 403,
+       donc Internet Archive, octets bruts `id_`, instantanes cites ci-dessous)
+       -----------------------------------------------------------------------
+       1. LA METHODE DE RETENUE. Massachusetts Circular M, « Income Tax
+          Withholding Tables at 5.0% Effective January 1, 2026 », Rev. 12/25
+          (PDF, instantane 2026-03-12 :
+          web.archive.org/web/20260312193631id_/https://www.mass.gov/doc/
+          massachusetts-circular-m-income-tax-withholding-tables-at-50-
+          effective-january-1-2026/download). Couverture : « Percentage Method
+          Tables updated to include 4% Surtax. » Page 12, « Percentage Methods
+          for Wages (Not Including Supplemental Wage Payments) Paid from
+          January 1, 2026 » :
+            « 1. Subtract the amount deducted for the U.S. Social Security
+              (FICA), Medicare, Massachusetts, United States or Railroad
+              Retirement systems. The total amount subtracted may not exceed
+              $2,000. »
+            « 2. Subtract the total of the exemption factors »
+            « 3. ... multiply the result by the number of periods in the year »
+            « 4. ... If the result from step 3 is more than $1,107,750*,
+              multiply that portion of the result in excess of $1,107,750 by
+              9%. Then multiply that portion ... that does not exceed
+              $1,107,750 by 5%. »
+            « * This is the 2026 inflation-adjusted threshold for the 4%
+              surtax. »
+            « 6. If the employee will file as head of household ... subtract
+              the head of household tax value ... annually: $120.00 »
+            « Do not withhold from employees who claim one or more exemptions
+              if their wages are less than: ... annually: $8,000. »
+          Facteurs d'exemption annuels : « Claiming "1" ... f. Annually
+          $4,400 » ; « more than "1" : $1,000 multiplied by number claimed,
+          plus $3,400 ». « A claimed spouse counts as "4" exemptions »
+          (en-tete des tables a tranches) -> salarie + conjoint = 5 exemptions
+          = 1 000 x 5 + 3 400 = 8 400 $.
+          VERIFICATION INDEPENDANTE (2026-10-02) : la table hebdomadaire de
+          retenue du meme PDF (102 lignes de 10 $, 0 a 10 exemptions, 1 122
+          cellules, lue en `pdftotext -raw`) est reproduite a 0,005 $ pres par
+          cette formule annualisee (FICA deduite min(2 000/52, 7,65 % x milieu
+          de ligne), exemptions (1 000 x n + 3 400)/52, 5 %) : 0 ecart > 0,011.
+          Le 5 %, le plafond de 2 000 $ et les exemptions sont donc recoupes
+          par l'agence elle-meme, pas seulement lus.
+       2. MODELISATION.
+          - taux : 5 % jusqu'a 1 107 750 $, 9 % au-dela (surtaxe de 4 %), les
+            trois statuts.
+          - deduction : exemptions 4 400 $ (celibataire, chef de famille) ou
+            8 400 $ (couple : 5 exemptions). Hypothese dite sur la page : le
+            conjoint n'a pas de salaire soumis a retenue et ne reclame pas
+            sa propre exemption ; aucune personne a charge (le calculateur ne
+            demande pas de nombre).
+          - FICA deduite : ficaDeduction.cap = 2 000 (nouveau mecanisme du
+            moteur : min(2 000, Social Security + Medicare retenus)).
+            Le Circular dit « the total amount subtracted » : tout salaire
+            annuel > ~26 144 $ en deduit donc 2 000 $. NB : « Massachusetts »
+            dans cette liste designe les regimes de retraite de l'Etat, pas
+            le PFML : le PFML n'est pas deduit.
+          - chef de famille : credit de 120 $/an sur l'impot (etape 6), exprime
+            par taxCredit (base 120, aucune extinction), plancher 0.
+          - plancher : noWithholdingBelow 8 000 $ (nouveau mecanisme) : sous
+            8 000 $ de salaire annuel, rien n'est retenu.
+          - NON MODELISE : personnes a charge (exemption 1 000 $ chacune ;
+            +1 si un enfant de moins de 12 ans, M-4), aveugle (110 $ de
+            credit), etudiant (M-4 D), primes (Circular M, section G :
+            5 % ou 9 % selon le cumul), pensions (M-4P).
+       3. EXEMPTIONS ET M-4. Form M-4 (Rev. 3/24, instantane 2026-08-03,
+          URL telle que lue, avec son suffixe) : « Your personal exemption.
+          Enter "1" », « If married and if exemption for spouse is allowed,
+          enter "4" in line 2 », « If you are married and if your spouse is
+          subject to withholding, each may claim a personal exemption. »
+       4. PROGRAMMES SALARIES 2026 - PFML. DFML, « Paid Family and Medical
+          Leave employer contribution rates and calculator » (instantane
+          2026-09-16 ; « Last updated: July 10, 2026 ») :
+            « Employers with 25 or more covered individuals must send to DFML
+            a contribution of 0.88% of eligible wages. ... Family leave Up to
+            100% of the family leave contribution can be withheld from a
+            covered individual's wages (0.18% of eligible wages). Medical
+            leave Up to 40% of the medical leave contribution can be withheld
+            from a covered individual's wages (0.28% of eligible wages). »
+            Employeurs de moins de 25 : medical « Up to 100% ... (0.28%) ».
+            « Individual contributions are capped by the Social Security
+            taxable maximum. »
+          -> 0,28 % + 0,18 % = 0,46 % MAXIMUM retenable, dans les deux
+          tailles d'employeur, jusqu'au plafond Social Security (184 500 $).
+          Un employeur PEUT prendre une part plus grande : 0,46 % est le plus
+          que le salarie puisse payer. La page dit « up to ». La meme page
+          annonce « New Massachusetts legislation (Chapter 101 of the Acts of
+          2026) shifts employer contributions from medical leave to family
+          leave, effective January 1, 2027 » : hors 2026, mentionne seulement.
+       5. CHOMAGE ET AUTRES CONTRIBUTIONS. DUA, « Learn about employer
+          contributions to DUA » (instantane 2025-12-13) : « Unemployment
+          insurance (UI) contributions ... Subject employers are required by
+          law to make quarterly UI contributions to the state UI Trust Fund »,
+          EMAC (Employer Medical Assistance Contribution) et Workforce
+          Training Fund sont aussi des contributions d'EMPLOYEUR. Aucune
+          retenue salariale de chomage n'y est decrite -> non modelisee, dit
+          « we found no worker-paid ... ».
+       6. 401(k). DOR, « Massachusetts non-government pensions » (instantane
+          2024-03-31) : « Contributions you made to your 401(k) plan or CODA
+          through elective deferrals of your current compensation, other than
+          contributions to a Roth 401(k) ... are excluded from your
+          Massachusetts gross income for the year paid to the same extent as
+          they are excluded from your federal gross income ». Le Circular M ne
+          parle pas du 401(k) : choix de modelisation (le versement reduit la
+          base, comportement par defaut du moteur), dit sur la page.
+       7. IMPOT LOCAL. Aucun document lu (Circular M, M-4) ne decrit un impot
+          local sur le revenu : la page dit « we found no », jamais
+          « Massachusetts has no ».
+       ----------------------------------------------------------------------- */
+    massachusetts: {
+      name: "Massachusetts",
+      abbr: "MA",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 4400,
+          marriedJoint: 8400,
+          headOfHousehold: 4400
+        },
+        ficaDeduction: { cap: 2000 },
+        noWithholdingBelow: 8000,
+        taxCredit: {
+          base: { single: 0, marriedJoint: 0, headOfHousehold: 120 },
+          phaseOutStart: { single: 0, marriedJoint: 0, headOfHousehold: 0 },
+          phaseOutRate: 0
+        },
+        brackets: {
+          single:          [[1107750, 0.05], [Infinity, 0.09]],
+          marriedJoint:    [[1107750, 0.05], [Infinity, 0.09]],
+          headOfHousehold: [[1107750, 0.05], [Infinity, 0.09]]
+        }
+      },
+      employeePrograms: [
+        { label: "MA paid family and medical leave (0.46%)", rate: 0.0046, wageCap: 184500 }
+      ]
     }
   }
 };

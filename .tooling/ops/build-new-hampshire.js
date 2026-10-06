@@ -389,8 +389,8 @@ ${blocLimites()}
     </ul>
 
     <h2>Compare with other states</h2>
-    <p>The same ${$0(REF)}, single filer, 2026. New Hampshire&rsquo;s real neighbors &mdash;
-    Maine, Vermont and Massachusetts &mdash; are not yet published on this site, so the table
+    <p>The same ${$0(REF)}, single filer, 2026. New Hampshire&rsquo;s real neighbors Maine and Vermont
+    are not yet published on this site, while Massachusetts has its own page. The table
     below lines it up against the other states here with no wage tax, plus Pennsylvania as a
     contrast that does tax wages.</p>
     <div class="table-scroll">
