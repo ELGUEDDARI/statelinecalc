@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -716,6 +716,90 @@ const PAR_ETAT = {
       quoi: "the statement that employees do not pay into unemployment insurance and that no " +
             "money is deducted from employee paychecks for it",
       motif: ["Employees do NOT pay into UI"] }
+  ],
+  oregon: [
+    { type: "document",
+      url: "https://www.oregon.gov/dor/forms/FormsPubs/withholding-tax-formulas_206-436_2026.pdf",
+      titre: "Oregon Department of Revenue &mdash; Oregon Withholding Tax Formulas, effective " +
+             "January 1, 2026 (PDF)",
+      quoi: "the withholding formula: wages minus the federal tax withheld (capped, and phased out " +
+            "as pay rises) minus the standard deduction, the 4.75% to 9.9% rates, and the $263 " +
+            "credit for each allowance",
+      motif: ["not to exceed $8,750", "Effective January 1, 2026"] },
+    { type: "document",
+      url: "https://www.oregon.gov/dor/forms/FormsPubs/withholding-tax-tables_206-430_2026.pdf",
+      titre: "Oregon Department of Revenue &mdash; Oregon Withholding Tax Tables, effective " +
+             "January 1, 2026 (PDF)",
+      quoi: "the printed wage-bracket tables that this page&rsquo;s formula is checked against " +
+            "for pay below about $51,000 a year",
+      motif: ["For wages of $4,250 and more, see Oregon Withholding Tax Formulas"] },
+    { type: "document",
+      url: "https://www.oregon.gov/dor/forms/FormsPubs/form-or-W-4-instr_101-402-1_2026.pdf",
+      titre: "Oregon Department of Revenue &mdash; 2026 Form OR-W-4 Instructions (PDF)",
+      quoi: "the allowances: one for yourself, one for a spouse on a joint return, the income " +
+            "limits above which the formula ignores them, and the 8% rate used when no form is " +
+            "filed",
+      motif: ["if no one else can claim you as a dependent", "Eight percent of your wages"] },
+    { type: "document",
+      url: "https://www.oregon.gov/dor/programs/businesses/pages/statewide-transit-tax.aspx",
+      titre: "Oregon Department of Revenue &mdash; Statewide Transit Tax",
+      quoi: "the 0.1% employee tax withheld from wages, and the instruction to keep withholding " +
+            "at that rate after Measure 120 did not pass",
+      motif: ["one-tenth of 1 percent or .001"] },
+    { type: "document",
+      url: "https://www.oregon.gov/employ/Businesses/Tax/Pages/Current-Tax-Rate.aspx",
+      titre: "Oregon Employment Department &mdash; Current Tax and Contribution Rates",
+      quoi: "the 2026 Paid Leave Oregon contribution rate of 1% of wages up to $184,500, and the " +
+            "unemployment insurance rates, which are rates for employers",
+      motif: ["1% of subject wages up to $184,500"] },
+    { type: "document",
+      url: "https://www.oregon.gov/employ/Businesses/Tax/Pages/Payroll-Taxes.aspx",
+      titre: "Oregon Employment Department &mdash; Payroll Taxes, Contributions",
+      quoi: "the notice that the State Transit Tax increase has been delayed pending a vote by " +
+            "Oregon voters in November 2026, and the instruction to keep withholding 0.1%",
+      motif: ["delayed pending a vote by Oregon voters in November 2026"] },
+    { type: "document",
+      url: "https://paidleave.oregon.gov/resources/common-questions.html",
+      titre: "Paid Leave Oregon &mdash; Common questions",
+      quoi: "the rule that employees pay 60% of the contribution rate, and the 2026 maximum " +
+            "wage of $184,500",
+      motif: ["Employees pay 60% of the contribution rate"] },
+    { type: "document",
+      url: "https://www.oregon.gov/DCBS/wbf/Pages/index.aspx",
+      titre: "Oregon Department of Consumer and Business Services &mdash; Workers&rsquo; " +
+             "Benefit Fund assessment",
+      quoi: "the 2026 assessment of 1.8 cents per hour worked",
+      motif: ["1.8 cents per hour worked"] },
+    { type: "document",
+      url: "https://wcd.oregon.gov/laws/Documents/Proposed_rules_and_testimony/70-25053-EXHIBIT2-Director-testimony-WBF-assessment-2026.pdf",
+      titre: "Oregon Workers&rsquo; Compensation Division &mdash; Director&rsquo;s testimony on " +
+             "the 2026 Workers&rsquo; Benefit Fund assessment (PDF)",
+      quoi: "the statement that employers and workers each pay half of the assessment",
+      motif: ["each pay half of the assessment"] },
+    { type: "document",
+      url: "https://www.portland.gov/revenue/personal-tax",
+      titre: "City of Portland Revenue Division &mdash; Personal taxes, payroll withholding " +
+             "requirements",
+      quoi: "the rule that Metro&rsquo;s housing tax is withheld automatically only for " +
+            "employees earning more than $200,000 or who opt in, and the same for Multnomah " +
+            "County&rsquo;s Preschool for All tax",
+      motif: ["employees who earn more than $200,000 annually"] },
+    { type: "document",
+      url: "https://www.multco.us/finance/preschool-all-personal-income-tax",
+      titre: "Multnomah County &mdash; Preschool For All Personal Income Tax",
+      quoi: "the 1.5% and 3% rates, and the instruction that employers withhold automatically " +
+            "only for employees making over $200,000",
+      motif: ["automatically withhold for employees making over $200,000"] },
+    { type: "document",
+      url: "https://trimet.org/taxinfo/",
+      titre: "TriMet &mdash; Payroll and self-employment tax information",
+      quoi: "the 0.8237% transit tax, which the employer pays",
+      motif: ["0.8237%"] },
+    { type: "document",
+      url: "https://www.oregon.gov/dor/programs/businesses/Pages/Lane-County-Transit-District-Payroll-tax.aspx",
+      titre: "Oregon Department of Revenue &mdash; Lane County Transit District payroll tax",
+      quoi: "the statement that the Lane transit tax is imposed directly on the employer",
+      motif: ["imposed directly on the employer"] }
   ]
 };
 

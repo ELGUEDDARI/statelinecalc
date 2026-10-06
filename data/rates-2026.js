@@ -3217,6 +3217,232 @@ const RATES_2026 = {
           }
         }
       }
+    },
+
+    /* =======================================================================
+       OREGON  -  lu le 2026-10-06 (oregon.gov/dor, oregon.gov/employ,
+       oregon.gov/dcbs, paidleave.oregon.gov, wcd.oregon.gov : HTTP 200,
+       PDF telecharges et lus en pypdf ; multco.us, portland.gov, trimet.org :
+       HTTP 200)
+       -----------------------------------------------------------------------
+       1. LA METHODE DE RETENUE. Oregon Department of Revenue, « Oregon
+          Withholding Tax Formulas, Effective January 1, 2026 » (150-206-436,
+          Rev. 12-31-25, https://www.oregon.gov/dor/forms/FormsPubs/
+          withholding-tax-formulas_206-436_2026.pdf, p. 5-7). Citations :
+            « BASE = wages - federal tax withheld (not to exceed $8,750) -
+            standard deduction ($2,910[S]) » (celibataire, moins de 3 allowances) ;
+            « BASE = wages - federal tax withheld (not to exceed [PHASE OUT]) -
+            standard deduction ($5,820[M]) » (celibataire a 3 allowances ou plus,
+            ou marie) ;
+            salaire de 50 000 $ ou plus, celibataire : « 38,340 - 125,000 WH = 678
+            + [(BASE - 11,400) x 0.0875] - (263 x allowances) » ; « 125,000 WH =
+            10,618 + [(BASE - 125,000) x 0.099] - (263 x allowances) » ;
+            marie : « 35,430 - 250,000 WH = 1,357 + [(BASE - 22,800) x 0.0875] -
+            (263 x allowances) » ; « 250,000 WH = 21,237 + [(BASE - 250,000) x
+            0.099] - (263 x allowances) » ;
+            page 6 (salaire < 50 000 $), celibataire : « 0 - 4,550 WH = 263 +
+            [BASE x 0.0475] - (263 x allowances) » ; « 4,550 - 11,400 WH = 479 +
+            [(BASE - 4,550) x 0.0675] - (263 x allowances) » ; « 11,400 - 50,000
+            WH = 941 + [(BASE - 11,400) x 0.0875] ... » ; marie : « 9,100 - 22,800
+            WH = 695 + [(BASE - 9,100) x 0.0675] ... » ; « 22,800 - 50,000 WH =
+            1,620 + [(BASE - 22,800) x 0.0875] ... » ;
+            « Other pay periods ... Monthly Divide by 12 ... Every two weeks Divide
+            by 26 » ; FAQ 10 : « If the withholding amount is negative, what do I
+            use? Zero » ; FAQ 12 : « Is the personal exemption credit subtracted
+            before or after the other calculations? After. » ; FAQ 1 : « Does the
+            federal withholding amount subtracted include FICA? No. » ; FAQ 6 :
+            les versements 401(k) ne font pas partie des « wages ».
+          PLAFOND DE L'IMPOT FEDERAL RETRANCHE, par palier de salaire (p. 7) :
+            celibataire : « wages >= $50,000 and <$125,000 = $8,750 ; >= $125,000
+            and <$130,000 = $7,000 ; >= $130,000 and <$135,000 = $5,250 ;
+            >= $135,000 and <$140,000 = $3,500 ; >= $140,000 and <$145,000 =
+            $1,750 ; >= $145,000 = $0 » ;
+            marie : « >= $50,000 and <$250,000 = $8,750 ; $250,000-$260,000 =
+            $7,000 ; ... >= $290,000 = $0 ».
+          « If single and wages are greater than $100,000 then allowances = 0. »
+          « If married and wages are greater than $200,000 then allowances = 0. »
+       2. DEUX POINTS OU LE LIVRET SE CONTREDIT LUI-MEME, ET CE QUI A ETE CHOISI.
+          a) LE PLAFOND : le texte de la p. 5 (« can't be more than $8,500 per
+             year in 2025 ») et la FAQ 3 disent 8 500 $ (valeur 2025 : le Form
+             OR-40 Instructions 2025, Rev. 01-29-26, dit « The 2025 federal tax
+             subtraction limit is $8,500 », celui de 2024 « $8,250 »), mais les
+             formules des p. 6-7 et la FAQ 11 disent 8 750 $, et les paliers
+             d'effacement (5 x 1 750 $) ne tombent juste qu'avec 8 750 $. Le moteur
+             prend 8 750 $, valeur 2026. Sans effet sous ~78 800 $ de salaire (celibataire :
+             l'impot federal n'atteint 8 500 $ qu'a ce niveau, 8 750 $ vers 79 900 $) ;
+             au-dela, 8 750 $ plutot que 8 500 $ retranche 250 $ de plus de la BASE, soit
+             21,88 $ de retenue en moins par an a 8,75 %. 75 000 $ n'est pas concerne.
+          b) LA CONSTANTE DE LA P. 6 : la formule pour salaire < 50 000 $ ajoute
+             263 $ a l'impot (« 263 + [BASE x 0.0475] », « 941 » a 11 400 $,
+             « 1,620 » pour les maries), alors que la formule pour salaire >= 50 000 $
+             (« 678 », « 1,357 ») est exactement l'impot SANS ce 263 $, et que les
+             TABLES IMPRIMEES du meme organisme (150-206-430, Rev. 12-18-25)
+             correspondent a l'impot sans le 263 $ : voir 4. Le moteur applique
+             l'impot SANS le 263 $ a tout salaire (une seule formule, continue a
+             50 000 $), c'est-a-dire 678 $, 216 $ (= 479 - 263), 1 357 $, 432 $
+             (= 695 - 263). Effet : sous 50 000 $ de salaire, jusqu'a 263 $ par an de
+             moins qu'avec la formule imprimee p. 6 (et son exemple 1 : 941 + ... =
+             1 789 $). La page le dit.
+       3. LES ALLOWANCES. Form OR-W-4 Instructions 2026 (150-101-402-1, Rev.
+          02-17-26, https://www.oregon.gov/dor/forms/FormsPubs/
+          form-or-W-4-instr_101-402-1_2026.pdf, p. 7, Worksheet A) : « A1. Enter
+          "1" for yourself if no one else can claim you as a dependent » ; « A2. If
+          you're married and plan to file a joint return, enter "1" for your
+          spouse » ; « A3. Enter the number of dependents ... » ; p. 2 : « The
+          employer withholding formula treats all allowances like the personal
+          exemption credit on your return. This means that if your wages for the
+          whole year would be more than the income limit for the credit on your
+          return, the formula won't use the allowances you claim » ; « $100,000
+          per year ... if you mark the "Single" box ... $200,000 per year ... if
+          you mark the "Married" ... box » ; « If no Form OR-W-4 has been
+          submitted ... Eight percent of your wages » (sans formulaire : non
+          modelise). MODELISATION : celibataire et chef de famille = 1 allowance
+          (A1), marie = 2 (A1 + A2, conjoint sans salaire, meme hypothese que le
+          Minnesota et l'Indiana). Credit = 263 $ par allowance. Chef de famille :
+          « For employees claiming single or head of household status, use $2,910 »
+          (FAQ 2 du livret des formules) : table celibataire. NON MODELISE :
+          personnes a charge (A3), Worksheets B et C, deux emplois, « Married, but
+          withhold at the higher single rate », montant supplementaire (ligne 3).
+       4. VERIFICATION INDEPENDANTE (2026-10-06) : .tooling/test/verif-retenue-or.js
+          lit les TABLES IMPRIMEES (Oregon Withholding Tax Tables, 150-206-430,
+          Rev. 12-18-25, https://www.oregon.gov/dor/forms/FormsPubs/
+          withholding-tax-tables_206-430_2026.pdf : mensuel, deux fois par mois,
+          toutes les deux semaines, hebdomadaire, jusqu'a 4 250 $ par mois) et
+          refait chaque cellule celibataire a 0, 1 et 2 allowances avec la formule
+          ci-dessus et un impot federal calcule a part (Publication 15-T 2026,
+          section 5, methode pourcentage pour formulaires W-4 de 2019 ou avant,
+          4 300 $ par allowance), au milieu de chaque ligne. Les tables ne couvrent
+          que les salaires annuels < ~51 000 $ : la formule >= 50 000 $ n'est donc
+          recoupee que par continuite avec la derniere ligne, jamais par une table
+          imprimee a 75 000 $. Un livret, deux conventions : voir 2b.
+       5. IMPOT TRANSIT D'ETAT (Statewide Transit Tax). Oregon Department of
+          Revenue, https://www.oregon.gov/dor/programs/businesses/pages/
+          statewide-transit-tax.aspx : « On July 1, 2018, employers began
+          withholding the tax (one-tenth of 1 percent or .001) from: Wages of Oregon
+          residents (regardless of where the work is performed). Wages of
+          nonresidents who perform services in Oregon. » ; « Measure 120 did not
+          pass in the May 19, 2026 primary election. Please continue to withhold at
+          the rate of one-tenth of 1 percent or .001. » ; « Employees who are not
+          subject to regular income tax withholding ... are subject to Statewide
+          Transit Tax withholding. » Aucun plafond de salaire cite. (L'Employment
+          Department dit, sur sa page « Payroll Taxes », que la hausse de la loi HB
+          3991 « has been delayed pending a vote by Oregon voters in November
+          2026 » : les deux pages disent de retenir 0,001.)
+       6. PAID LEAVE OREGON. Employment Department, « Current Tax and
+          Contribution Rates » (https://www.oregon.gov/employ/Businesses/Tax/
+          Pages/Current-Tax-Rate.aspx) : « The 2026 Paid Leave contribution rate is
+          1% of subject wages up to $184,500 (2026 Social Security taxable maximum
+          wage) per employee. » ; paidleave.oregon.gov, « Common questions »
+          (https://paidleave.oregon.gov/resources/common-questions.html) :
+          « Employees pay 60% of the contribution rate. » ; « The contribution rate
+          for 2026 is 1%. » ; « The total contribution rate for 2025 and 2026 has
+          been set at 1%, and the maximum wage is based on the social security wage,
+          which is $176,100 for 2025 and $184,500 for 2026. » ; « Employers with 25
+          or more employees on average pay 40% of the contribution rate. » ;
+          « Small employers, with fewer than 25 employees on average, don't have to
+          pay the employer portion ... However, they still need to collect and pay
+          employee contributions » ; paidleave.oregon.gov, « Calculate your
+          contribution » (https://paidleave.oregon.gov/employers/
+          contributions-calculator.html) : « Employees pay 60% of the total 1%
+          contribution rates. » => 0,6 % du salaire jusqu'a 184 500 $ : 1 107 $
+          maximum par an. (« Employers can also choose to pay the employee
+          contribution, in full or in part, as a benefit » : non modelise.)
+       7. WORKERS' BENEFIT FUND. DCBS (https://www.oregon.gov/DCBS/wbf/Pages/
+          index.aspx) : « In 2026, the WBF assessment is 1.8 cents per hour
+          worked » ; Workers' Compensation Division, testimony du directeur sur le
+          taux 2026 (https://wcd.oregon.gov/laws/Documents/Proposed_rules_and_
+          testimony/70-25053-EXHIBIT2-Director-testimony-WBF-assessment-2026.pdf) :
+          « Employers and workers each pay half of the assessment. » => 0,9 cent
+          par heure et par salarie. ORS 656.506(2), lu sur oregon.public.law le
+          2026-10-06 (le site de l'assemblee ne repond pas) : « Every employer shall
+          retain from the moneys earned by all employees an amount determined by
+          the Director ... for each hour or part of an hour the employee is
+          employed ». Le moteur chiffre 0,009 $ x 2 080 h = 18,72 $ par an (temps
+          plein) ; la retenue reelle suit les heures.
+       8. CHOMAGE. Employment Department, meme page de taux : taux de l'impot
+          chomage de l'EMPLOYEUR (« Taxable base tax rate: 2.4% (new employer rate)
+          », « The UI taxable wage base for 2026 is $56,700 per employee ») ; la
+          page ne decrit aucune retenue sur le salarie : la page du site dit « we
+          found no », jamais « Oregon has no ».
+       9. TAXES LOCALES, CLASSEES. (a) TriMet : « The transit tax rate is 0.8237%
+          of the wages paid by an employer ... » (https://trimet.org/taxinfo/,
+          « Updated February 2026 ») et Lane Transit District : « The transit tax is
+          imposed directly on the employer » (DOR, https://www.oregon.gov/dor/
+          programs/businesses/Pages/Lane-County-Transit-District-Payroll-tax.aspx) :
+          impots de l'EMPLOYEUR, aucune retenue. (b) Metro Supportive Housing
+          Services (1 %) et Multnomah County Preschool for All (1,5 % au-dessus de
+          125 000 $, 3 % au-dessus de 250 000 $ ; celibataire) : portland.gov,
+          « Payroll Withholding Tax Requirements » (https://www.portland.gov/
+          revenue/personal-tax) : « Metro employers are required to withhold the tax
+          through payroll deductions for employees who earn more than $200,000
+          annually or for employees who opt into having the tax withheld. » ;
+          multco.us (https://www.multco.us/finance/preschool-all-personal-income-tax) :
+          « Employers should automatically withhold for employees making over
+          $200,000 per year. Employees may elect to opt in or out of withholding ».
+          => a 75 000 $, aucune retenue, sauf demande du salarie ; au-dela de
+          200 000 $ de salaire, retenue automatique pour les salaries du perimetre :
+          NON MODELISE, dit sur la page. Le moteur n'ajoute aucun impot local.
+      10. HORS MODELE. Le taux de 8 % (sans formulaire OR-W-4) : « HB 2119 (2019)
+          requires employers to withhold income tax at a rate of eight (8) percent
+          of employee wages if the employee hasn't provided a withholding statement
+          or exception certificate. » ; supplemental wages : « Employers may use a 8
+          percent flat rate » (non modelise).
+       ----------------------------------------------------------------------- */
+    oregon: {
+      name: "Oregon",
+      abbr: "OR",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 2910,
+          marriedJoint: 5820,
+          headOfHousehold: 2910
+        },
+        /* Pour l'affichage et le taux marginal ; le calcul passe par bracketTable. */
+        brackets: {
+          single:          [[4550, 0.0475], [11400, 0.0675], [125000, 0.0875], [Infinity, 0.099]],
+          marriedJoint:    [[9100, 0.0475], [22800, 0.0675], [250000, 0.0875], [Infinity, 0.099]],
+          headOfHousehold: [[4550, 0.0475], [11400, 0.0675], [125000, 0.0875], [Infinity, 0.099]]
+        },
+        /* Les constantes IMPRIMEES (678, 10 618, 1 357, 21 237 ; 216 = 479 - 263 et
+           432 = 695 - 263 pour les deux tranches basses, qui ne sont imprimees
+           qu'avec le 263 $ de la p. 6). Voir 2b ci-dessus. */
+        bracketTable: (() => {
+          const celibataire = [
+            { upTo: 4550, base: 0, rate: 0.0475, from: 0 },
+            { upTo: 11400, base: 216, rate: 0.0675, from: 4550 },
+            { upTo: 125000, base: 678, rate: 0.0875, from: 11400 },
+            { upTo: null, base: 10618, rate: 0.099, from: 125000 }
+          ];
+          const marie = [
+            { upTo: 9100, base: 0, rate: 0.0475, from: 0 },
+            { upTo: 22800, base: 432, rate: 0.0675, from: 9100 },
+            { upTo: 250000, base: 1357, rate: 0.0875, from: 22800 },
+            { upTo: null, base: 21237, rate: 0.099, from: 250000 }
+          ];
+          return { single: celibataire, marriedJoint: marie, headOfHousehold: celibataire };
+        })(),
+        /* L'impot federal retenu, retranche dans la limite d'un plafond qui depend
+           du SALAIRE : [salaire strictement inferieur a, plafond]. */
+        federalTaxSubtraction: (() => {
+          const celibataire = [[125000, 8750], [130000, 7000], [135000, 5250], [140000, 3500], [145000, 1750], [Infinity, 0]];
+          const marie = [[250000, 8750], [260000, 7000], [270000, 5250], [280000, 3500], [290000, 1750], [Infinity, 0]];
+          return { capByWages: { single: celibataire, marriedJoint: marie, headOfHousehold: celibataire } };
+        })(),
+        /* Form OR-W-4 : 1 allowance (soi-meme), 2 pour un couple dont le conjoint
+           ne travaille pas ; 263 $ de credit chacune ; plus aucune au-dela du
+           salaire indique. */
+        withholdingAllowances: {
+          perFiler: { single: 1, marriedJoint: 2, headOfHousehold: 1 },
+          credit: 263,
+          noneAbove: { single: 100000, marriedJoint: 200000, headOfHousehold: 100000 }
+        }
+      },
+      employeePrograms: [
+        { label: "OR statewide transit tax (0.1%)", rate: 0.001 },
+        { label: "Paid Leave Oregon (0.6%)", rate: 0.006, wageCap: 184500 },
+        { label: "OR Workers' Benefit Fund (0.9 cent per hour)", perHour: 0.009 }
+      ]
     }
   }
 };

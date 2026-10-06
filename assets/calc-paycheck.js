@@ -179,7 +179,27 @@
       if (fd) {
         sd = (sd || 0) + Math.min(fd.cap, ss + medicare + addlMedicare);
       }
-      var imposableEtat = Math.max(0, baseEtat - (sd || 0));
+      /* Oregon is the first state here whose withholding formula subtracts the
+         employee's FEDERAL income tax withheld, up to a cap that shrinks as pay
+         rises: Oregon Withholding Tax Formulas (150-206-436, Rev. 12-31-25),
+         "BASE = wages - federal tax withheld (not to exceed [PHASE OUT]) -
+         standard deduction". The cap is $8,750 for wages from $50,000 to just
+         under $125,000 (single), then falls $1,750 for every $5,000 to $0 at
+         $145,000; the married table starts at $250,000. The cap is read from the
+         wage after a 401(k) contribution, never from the tax itself. Added
+         2026-10-06. */
+      var fedSub = 0;
+      var fts = state.incomeTax.federalTaxSubtraction;
+      if (fts) {
+        var capTable = (input.filingStatus in fts.capByWages)
+          ? fts.capByWages[input.filingStatus] : fts.capByWages.single;
+        var cap = 0;
+        for (var ci = 0; ci < capTable.length; ci++) {
+          if (baseEtat < capTable[ci][0]) { cap = capTable[ci][1]; break; }
+        }
+        fedSub = Math.min(federal, cap);
+      }
+      var imposableEtat = Math.max(0, baseEtat - (sd || 0) - fedSub);
       imposableCounty = imposableEtat;
       /* Arkansas is the first state here whose RATE SCHEDULE itself is
          published as a table of segments rather than continuous marginal
@@ -231,6 +251,19 @@
           - Math.max(0, baseEtat - pick(cr.phaseOutStart)) * cr.phaseOutRate);
         stateTax = Math.max(0, stateTax - credit);
       }
+      /* Oregon's allowances (Form OR-W-4) are each a CREDIT of $263 taken off the
+         tax AFTER it is figured ("Is the personal exemption credit subtracted
+         before or after the other calculations? After."). The formula gives
+         them up entirely above $100,000 of wages (single) or $200,000 (married),
+         the same income limits as the credit on the return. */
+      var wa = state.incomeTax.withholdingAllowances;
+      if (wa) {
+        var pickWa = function (t) {
+          return (input.filingStatus in t) ? t[input.filingStatus] : t.single;
+        };
+        var waCredit = baseEtat > pickWa(wa.noneAbove) ? 0 : pickWa(wa.perFiler) * wa.credit;
+        stateTax = Math.max(0, stateTax - waCredit);
+      }
       /* Massachusetts again: Circular M says "Do not withhold from employees
          who claim one or more exemptions if their wages are less than ...
          annually: $8,000". Below that figure nothing is withheld; at it,
@@ -259,7 +292,11 @@
     var programmes = [];
     (state.employeePrograms || []).forEach(function (pg) {
       var base = pg.wageCap ? Math.min(gross, pg.wageCap) : gross;
-      programmes.push({ label: pg.label, amount: base * pg.rate });
+      /* A charge PER HOUR worked (Oregon's Workers' Benefit Fund, 0.9 cent an
+         hour) does not depend on pay: it is figured on 2,080 hours, a full-time
+         year, and the page says so. */
+      programmes.push({ label: pg.label,
+                        amount: pg.perHour !== undefined ? pg.perHour * 2080 : base * pg.rate });
     });
     /* Indiana is the first state here with a COUNTY income tax withheld on top of
        the state tax. Departmental Notice #1 (effective Oct. 1, 2026): state and

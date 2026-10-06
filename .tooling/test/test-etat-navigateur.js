@@ -91,6 +91,16 @@ if (S.incomeTax.deductionByIncome) {
   });
 }
 
+/* Un plafond qui s'efface et des credits qui disparaissent (Oregon) : le moteur
+   NAVIGATEUR est un second exemplaire du calcul, donc on encadre chaque marche
+   au dollar pres, pour les trois statuts, comme le test Node. */
+if (S.incomeTax.federalTaxSubtraction || S.incomeTax.withholdingAllowances) {
+  const pts = [49999, 50000, 99999, 100000, 100001, 124999, 125000, 129999, 130000, 145000, 199999, 200000, 200001,
+               249999, 250000, 289999, 290000];
+  pts.forEach(b => CAS.push({ brut: b, statut: "single" }, { brut: b, statut: "marriedJoint" }));
+  CAS.push({ brut: 100001, statut: "headOfHousehold" }, { brut: 60000, statut: "headOfHousehold" });
+}
+
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript",
                 ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon",
                 ".webmanifest": "application/manifest+json", ".xml": "application/xml" };
@@ -174,6 +184,31 @@ function dit(nom, ok) {
     const etiq = cas.brut + " " + cas.statut;
     check("impot d'Etat rendu a l'ecran, " + etiq, lu.etat, attendu.etat, 1);
     check("net rendu a l'ecran, " + etiq, lu.net, attendu.net, 1);
+  }
+
+  /* Les lignes de programmes d'Etat (Oregon : transit, Paid Leave, Workers' Benefit
+     Fund par heure) : chaque etiquette doit etre rendue, avec le montant du moteur Node. */
+  if ((S.employeePrograms || []).length) {
+    console.log("\n--- les lignes de programmes d'Etat rendues a l'ecran (75 000 $, celibataire) ---");
+    await page.fill("#salary", "75000");
+    await page.selectOption("#period", "annual");
+    await page.selectOption("#filing", "single");
+    await page.selectOption("#display", "annual");
+    await page.click("button[type=submit]");
+    await stabilise(page);
+    const lignes = await page.evaluate(() => {
+      const nb = t => Number(String(t).replace(/[^0-9.]/g, ""));
+      const o = {};
+      document.querySelectorAll("[data-paycheck-result] .line").forEach(l => {
+        o[l.querySelector("dt").textContent] = nb(l.querySelector("dd").textContent);
+      });
+      return o;
+    });
+    const att = calcul(ETAT, 75000, "single");
+    att.programmes.forEach(p => {
+      dit("ligne « " + p.label + " » rendue, " + p.montant.toFixed(2) + " $",
+        p.label in lignes && Math.abs(lignes[p.label] - p.montant) < 0.006);
+    });
   }
 
   console.log("\n--- ce que la console du navigateur a dit ---");

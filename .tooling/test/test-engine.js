@@ -770,8 +770,8 @@ check("AR : aucun programme salarie retenu (assurance chomage employeur seul)",
   (R.states.arkansas.employeePrograms || []).length, 0, 0);
 check("AR : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("arkansas", 5000).etat >= 0 ? 1 : 0, 1, 0);
-check("AR : la table de segments (bracketTable) n'existe que pour l'Arkansas",
-  Object.keys(R.states).filter(function (k) { return R.states[k].incomeTax.bracketTable; }).length,
+check("AR : la table de segments (bracketTable) n'existe que pour l'Arkansas et l'Oregon (qui y range ses constantes imprimees)",
+  Object.keys(R.states).filter(function (k) { return R.states[k].incomeTax.bracketTable; }).join() === "arkansas,oregon" ? 1 : 0,
   1, 0);
 
 /* --- IDAHO ----------------------------------------------------------------
@@ -1647,6 +1647,162 @@ check("IN : aucun programme salarie ni conge paye d'Etat (employeePrograms, paid
           }
         }
   check("IN : moteur navigateur == moteur node sur " + n + " entrees (92 comtes + defaut x 3 statuts : Etat, comte, etiquette, net)", ecarts, 0, 0);
+}
+
+console.log("\n=== Oregon (33e Etat) ===");
+
+/* Sources (lues le 2026-10-06) : Oregon Department of Revenue, Oregon
+   Withholding Tax Formulas, Effective January 1, 2026 (150-206-436, Rev.
+   12-31-25), p. 5-7 : BASE = wages - federal tax withheld (plafonne par palier de
+   salaire : 8 750 $ de 50 000 a 125 000 $ pour un celibataire, puis 7 000, 5 250,
+   3 500, 1 750, 0 $ tous les 5 000 $ ; maries : 8 750 $ jusqu'a 250 000 $, puis 7 000
+   ... 0 $ des 290 000 $) - deduction standard (2 910 $ / 5 820 $) ; impot celibataire
+   « 678 + (BASE - 11,400) x 0.0875 », « 10,618 + (BASE - 125,000) x 0.099 » ; marie
+   « 1,357 + (BASE - 22,800) x 0.0875 », « 21,237 + (BASE - 250,000) x 0.099 » ; puis
+   moins 263 $ par allowance, APRES le calcul ; aucune allowance au-dela de 100 000 $
+   (celibataire) ou 200 000 $ (marie) de salaire ; resultat negatif = 0. Les tranches
+   basses (216 $ = 479 - 263 a 4 550 $ ; 432 $ = 695 - 263 a 9 100 $) viennent de la p. 6,
+   qui ajoute 263 $ que les TABLES IMPRIMEES (150-206-430) n'ajoutent pas : voir
+   verif-retenue-or.js. Programmes : transit d'Etat 0,1 % (DOR), Paid Leave Oregon 60 %
+   de 1 % = 0,6 % jusqu'a 184 500 $ (Employment Department, paidleave.oregon.gov),
+   Workers' Benefit Fund 1,8 cent par heure dont la moitie, 0,9 cent, a la charge du
+   salarie (DCBS) = 0,009 x 2 080 h = 18,72 $.
+   Federal : 2026, deduction standard 16 100 / 32 200 / 24 150 $.
+   Chaque attendu est recalcule a la main.
+   single 75 000 : federal 7 670 (58 900 imposables : 1 240 + 4 560 + 8 500 x 22 % = 1 870) ;
+        SS 4 650 ; Medicare 1 087,50 ; 7 670 < 8 750, donc on retranche 7 670 ;
+        BASE = 75 000 - 7 670 - 2 910 = 64 420 ; impot 678 + 53 020 x 0,0875 = 5 317,25 ;
+        moins 1 x 263 = 5 054,25 ; transit 75,00 ; Paid Leave 450,00 ; WBF 18,72
+        net = 75 000 - 7 670 - 5 737,50 - 5 054,25 - 543,72                   = 55 994,53
+   married 75 000 : federal 4 640 (42 800 imposables : 2 480 + 18 000 x 12 % = 2 160) ;
+        BASE = 75 000 - 4 640 - 5 820 = 64 540 ; 1 357 + 41 740 x 0,0875 = 5 009,25 ;
+        moins 2 x 263 = 526 -> 4 483,25
+   head of household 75 000 : federal 5 748 (50 850 imposables) ; table celibataire ;
+        BASE = 75 000 - 5 748 - 2 910 = 66 342 ; 678 + 54 942 x 0,0875 = 5 485,425 ;
+        moins 263 -> 5 222,425
+   single 25 000 : federal 890 ; BASE = 25 000 - 890 - 2 910 = 21 200 ;
+        678 + 9 800 x 0,0875 = 1 535,50 ; moins 263 -> 1 272,50
+        net = 25 000 - 890 - 1 912,50 - 1 272,50 - (25 + 150 + 18,72)         = 20 731,28
+   single 52 000 (25 $/h) : federal 4 060 ; BASE = 52 000 - 4 060 - 2 910 = 45 030 ;
+        678 + 33 630 x 0,0875 = 3 620,625 ; moins 263 -> 3 357,625
+        net = 52 000 - 4 060 - 3 978 - 3 357,625 - (52 + 312 + 18,72)         = 40 221,655
+   single 100 000 : federal 13 170 > 8 750, on retranche 8 750 ; 1 allowance (100 000 n'est
+        pas « greater than $100,000 ») ; BASE = 88 340 ; 678 + 76 940 x 0,0875 = 7 410,25 ;
+        moins 263 -> 7 147,25
+   single 100 001 : plus aucune allowance ; BASE = 88 341 ; 678 + 76 941 x 0,0875 = 7 410,3375
+        (un dollar de salaire de plus : + 263,0875 $)
+   single 124 999 : plafond 8 750 ; BASE = 113 339 ; 678 + 101 939 x 0,0875 = 9 597,6625
+   single 125 000 : plafond 7 000 ; BASE = 115 090 ; 678 + 103 690 x 0,0875 = 9 750,875
+        (un dollar de plus : + 153,2125 $ = 1 751 x 0,0875)
+   single 130 000 : plafond 5 250 ; BASE = 121 840 ; 678 + 110 440 x 0,0875 = 10 341,50
+   single 135 000 : plafond 3 500 ; BASE = 128 590 ; 10 618 + 3 590 x 0,099 = 10 973,41
+   single 140 000 : plafond 1 750 ; BASE = 135 340 ; 10 618 + 10 340 x 0,099 = 11 641,66
+   single 145 000 : plafond 0 ; BASE = 142 090 ; 10 618 + 17 090 x 0,099 = 12 309,91
+   married 200 000 : federal 26 340 ; plafond 8 750 ; 2 allowances ; BASE = 200 000 - 8 750
+        - 5 820 = 185 430 ; 1 357 + 162 630 x 0,0875 = 15 587,125 ; moins 526 -> 15 061,125
+   married 200 001 : aucune allowance ; BASE = 185 431 ; 15 587,2125
+   married 250 000 : plafond 7 000 ; BASE = 237 180 ; 1 357 + 214 380 x 0,0875 = 20 115,25
+   married 290 000 : plafond 0 ; BASE = 284 180 ; 21 237 + 34 180 x 0,099 = 24 620,82
+   single 250 000 : plafond 0 ; BASE = 247 090 ; 10 618 + 122 090 x 0,099 = 22 704,91
+        Paid Leave plafonne : 184 500 x 0,006 = 1 107,00 ; transit 250,00
+   single 10 000 : federal 0 ; BASE = 7 090 ; 216 + 2 540 x 0,0675 = 387,45 ; moins 263 -> 124,45
+   single 1 000 : BASE 0 ; impot 0 moins 263 -> 0 (jamais negatif)
+   401(k) 6 % sur 75 000 : retenue 4 500 ; salaire 70 500 ; federal 6 680 (54 400 imposables) ;
+        BASE = 70 500 - 6 680 - 2 910 = 60 910 ; 678 + 49 510 x 0,0875 = 5 010,125 ;
+        moins 263 -> 4 747,125 */
+const orC = (b, st, rp) => calcul("oregon", b, st || "single", rp || 0);
+const progOr = r => r.programmes.reduce((t, p) => t + p.montant, 0);
+check("OR : single 75 000 $ impot d'Etat = 5 054,25 $", orC(75000).etat, 5054.25, 0.005);
+check("OR : single 75 000 $ transit + Paid Leave + WBF = 543,72 $", progOr(orC(75000)), 543.72, 0.005);
+check("OR : net a 75 000 $ = 55 994,53 $", orC(75000).net, 55994.53, 0.006);
+check("OR : married 75 000 $ = 4 483,25 $ (2 allowances, table mariee)", orC(75000, "marriedJoint").etat, 4483.25, 0.005);
+check("OR : head of household 75 000 $ = 5 222,425 $ (table celibataire, 1 allowance)", orC(75000, "headOfHousehold").etat, 5222.425, 0.0005);
+check("OR : single 25 000 $ = 1 272,50 $", orC(25000).etat, 1272.50, 0.005);
+check("OR : net a 25 000 $ = 20 731,28 $", orC(25000).net, 20731.28, 0.006);
+check("OR : single 52 000 $ (25 $/h) = 3 357,625 $", orC(52000).etat, 3357.625, 0.0005);
+check("OR : net a 25 $/h = 40 221,655 $", orC(52000).net, 40221.655, 0.0006);
+check("OR : single 100 000 $ garde son allowance : 7 147,25 $", orC(100000).etat, 7147.25, 0.005);
+check("OR : single 100 001 $ perd l'allowance : 7 410,3375 $", orC(100001).etat, 7410.3375, 0.00005);
+check("OR : 1 $ de salaire de plus a 100 000 $ coute 263,0875 $ d'impot d'Etat",
+  orC(100001).etat - orC(100000).etat, 263.0875, 0.00005);
+check("OR : single 124 999 $ plafond 8 750 $ = 9 597,6625 $", orC(124999).etat, 9597.6625, 0.00005);
+check("OR : single 125 000 $ plafond 7 000 $ = 9 750,875 $", orC(125000).etat, 9750.875, 0.0005);
+check("OR : 1 $ de plus a 125 000 $ : + 1 751 x 8,75 % = 153,2125 $ (le plafond tombe de 1 750 $)",
+  orC(125000).etat - orC(124999).etat, 153.2125, 0.0005);
+check("OR : single 130 000 $ plafond 5 250 $ = 10 341,50 $", orC(130000).etat, 10341.50, 0.005);
+check("OR : single 135 000 $ plafond 3 500 $ = 10 973,41 $", orC(135000).etat, 10973.41, 0.005);
+check("OR : single 140 000 $ plafond 1 750 $ = 11 641,66 $", orC(140000).etat, 11641.66, 0.005);
+check("OR : single 145 000 $ plafond 0 $ = 12 309,91 $", orC(145000).etat, 12309.91, 0.005);
+check("OR : married 200 000 $ garde ses 2 allowances = 15 061,125 $", orC(200000, "marriedJoint").etat, 15061.125, 0.0005);
+check("OR : married 200 001 $ perd ses allowances = 15 587,2125 $", orC(200001, "marriedJoint").etat, 15587.2125, 0.00005);
+check("OR : married 250 000 $ plafond 7 000 $ = 20 115,25 $", orC(250000, "marriedJoint").etat, 20115.25, 0.005);
+check("OR : married 290 000 $ plafond 0 $ = 24 620,82 $", orC(290000, "marriedJoint").etat, 24620.82, 0.005);
+check("OR : single 250 000 $ = 22 704,91 $", orC(250000).etat, 22704.91, 0.005);
+check("OR : Paid Leave plafonne a 184 500 $ : 1 107,00 $ a 250 000 $",
+  orC(250000).programmes.find(p => /Paid Leave/.test(p.label)).montant, 1107.00, 0.005);
+check("OR : transit 0,1 % sur tout le salaire : 250,00 $ a 250 000 $",
+  orC(250000).programmes.find(p => /transit/.test(p.label)).montant, 250.00, 0.005);
+check("OR : Workers' Benefit Fund = 0,009 x 2 080 h = 18,72 $ quel que soit le salaire",
+  [1000, 75000, 250000].map(b => orC(b).programmes.find(p => /Benefit Fund/.test(p.label)).montant)
+    .every(m => Math.abs(m - 18.72) < 1e-9) ? 1 : 0, 1, 0);
+check("OR : single 10 000 $ = 124,45 $", orC(10000).etat, 124.45, 0.005);
+check("OR : 1 000 $ de salaire = 0 $ (le credit ne rend jamais l'impot negatif)", orC(1000).etat, 0, 0);
+check("OR : 401(k) 6 % sur 75 000 $ = 4 747,125 $", orC(75000, "single", 0.06).etat, 4747.125, 0.0005);
+check("OR : le 401(k) n'abaisse ni le transit ni le Paid Leave (calcules sur le brut)",
+  Math.abs(progOr(orC(75000, "single", 0.06)) - 543.72) < 0.005 ? 1 : 0, 1, 0);
+check("OR : trois programmes salaries, aucun marque county",
+  orC(75000).programmes.length === 3 && !orC(75000).programmes.some(p => p.county) ? 1 : 0, 1, 0);
+check("OR : le plafond de l'impot federal retranche est l'impot federal quand il est plus bas (75 000 $ : 7 670 $)",
+  R.states.oregon.incomeTax.federalTaxSubtraction.capByWages.single[0][1] === 8750 && orC(75000).federal === 7670 ? 1 : 0, 1, 0);
+check("OR : taux 4,75 % / 6,75 % / 8,75 % / 9,9 %, seuils celibataire 4 550 / 11 400 / 125 000, marie 9 100 / 22 800 / 250 000",
+  (() => { const t = R.states.oregon.incomeTax.bracketTable;
+    const f = x => JSON.stringify(x.map(s => [s.upTo, s.rate, s.from]));
+    return f(t.single) === JSON.stringify([[4550, 0.0475, 0], [11400, 0.0675, 4550], [125000, 0.0875, 11400], [null, 0.099, 125000]]) &&
+           f(t.marriedJoint) === JSON.stringify([[9100, 0.0475, 0], [22800, 0.0675, 9100], [250000, 0.0875, 22800], [null, 0.099, 250000]]) &&
+           f(t.headOfHousehold) === f(t.single) ? 1 : 0; })(), 1, 0);
+check("OR : constantes imprimees du livret (678, 10 618, 1 357, 21 237 ; 216 et 432 = 479 et 695 moins 263)",
+  (() => { const t = R.states.oregon.incomeTax.bracketTable;
+    return t.single.map(s => s.base).join() === "0,216,678,10618" && t.marriedJoint.map(s => s.base).join() === "0,432,1357,21237" ? 1 : 0; })(), 1, 0);
+check("OR : continuite du bareme celibataire a 4 550 $, 11 400 $ et 125 000 $ (les constantes se recoupent a 1 $ pres)",
+  (() => { const t = R.states.oregon.incomeTax.bracketTable.single;
+    const at = (i, x) => t[i].base + t[i].rate * (x - t[i].from);
+    return Math.abs(at(0, 4550) - 216) < 1 && Math.abs(at(1, 11400) - 678) < 1 && Math.abs(at(2, 125000) - 10618) < 1 ? 1 : 0; })(), 1, 0);
+check("OR : continuite du bareme marie a 9 100 $, 22 800 $ et 250 000 $ (a 1 $ pres)",
+  (() => { const t = R.states.oregon.incomeTax.bracketTable.marriedJoint;
+    const at = (i, x) => t[i].base + t[i].rate * (x - t[i].from);
+    return Math.abs(at(0, 9100) - 432) < 1 && Math.abs(at(1, 22800) - 1357) < 1 && Math.abs(at(2, 250000) - 21237) < 1 ? 1 : 0; })(), 1, 0);
+check("OR : un seul Etat porte federalTaxSubtraction, withholdingAllowances et un programme perHour",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.federalTaxSubtraction).join() === "oregon" &&
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.withholdingAllowances).join() === "oregon" &&
+  Object.keys(R.states).filter(k => (R.states[k].employeePrograms || []).some(p => p.perHour !== undefined)).join() === "oregon" ? 1 : 0, 1, 0);
+
+/* Le moteur NAVIGATEUR (assets/calc-paycheck.js) et le moteur NODE (lib/paie.js)
+   doivent donner le meme impot d'Etat, les memes programmes et le meme net a chaque
+   palier de plafond, a chaque seuil d'allowance et pour les trois statuts. */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 1000, 10000, 20000, 25000, 49999, 50000, 52000, 75000, 99999, 100000, 100001, 124999, 125000,
+    129999, 130000, 134999, 135000, 139999, 140000, 144999, 145000, 199999, 200000, 200001, 249999, 250000,
+    259999, 260000, 289999, 290000, 1500000, 123456];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "oregon", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("oregon", g, st, rp);
+        n++;
+        const progsOk = a.programmes.length === b.programmes.length &&
+          a.programmes.every((p, i) => p.label === b.programmes[i].label && Math.abs(p.amount - b.programmes[i].montant) < 1e-9);
+        if (Math.abs(a.stateTax - b.etat) > 1e-9 || Math.abs(a.net - b.net) > 0.01 || !progsOk) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("OR : moteur navigateur == moteur node sur " + n + " entrees (Etat, programmes, net ; tous les paliers et seuils)", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

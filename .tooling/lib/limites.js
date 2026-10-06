@@ -69,7 +69,16 @@ const LOCAL_PAR_ETAT = {
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above; it adds no other local line for any
-    state. Our <a href="/methodology/">methodology page</a> names the local taxes it leaves out.</li>`
+    state. Our <a href="/methodology/">methodology page</a> names the local taxes it leaves out.</li>`,
+  /* Oregon (06/10/2026) : les taxes locales existent, et la page doit les CLASSER :
+     retenue automatique seulement au-dela de 200 000 $ (Metro, Multnomah) ou sur
+     demande ; payees par l'employeur (TriMet, Lane). Aucune n'est ajoutee. */
+  oregon: `    <li><strong>Local taxes</strong> &mdash; city income tax, county tax, or a school-district
+    tax. In Oregon the ones to know are the Portland-area Metro housing tax and Multnomah County&rsquo;s
+    Preschool for All tax, which an employer withholds automatically only above $200,000 of pay or when
+    you ask it to, and the TriMet and Lane transit taxes, which your employer pays rather than you.
+    This calculator adds none of them, with one exception elsewhere on the site: the Indiana
+    calculator adds the <a href="/paycheck-calculator/indiana/">county income tax</a> for the county you choose.</li>`
 };
 
 function blocLimites(cle) {

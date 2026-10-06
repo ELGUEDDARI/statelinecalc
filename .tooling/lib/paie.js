@@ -136,6 +136,33 @@ function creditEtat(S, statut, base) {
   return Math.max(0, socle - Math.max(0, base - seuil) * c.phaseOutRate);
 }
 
+/* L'Oregon est le premier Etat ou la formule de retenue retranche l'impot
+   FEDERAL retenu sur la paie, dans la limite d'un plafond qui s'efface avec le
+   salaire : Oregon Withholding Tax Formulas (150-206-436, Rev. 12-31-25),
+   « BASE = wages - federal tax withheld (not to exceed [PHASE OUT]) - standard
+   deduction ». Le plafond est de 8 750 $ pour un salaire de 50 000 a
+   125 000 $ (celibataire), puis tombe par paliers de 1 750 $ tous les 5 000 $
+   jusqu'a 0 $ des 145 000 $ ; table separee pour les maries. Le palier se lit sur
+   le SALAIRE (apres 401(k)), jamais sur l'impot federal lui-meme. */
+function plafondImpotFederal(S, statut, salaire) {
+  const f = S.incomeTax.federalTaxSubtraction;
+  if (!f) return 0;
+  const t = (statut in f.capByWages) ? f.capByWages[statut] : f.capByWages.single;
+  const palier = t.find(([haut]) => salaire < haut);
+  return palier ? palier[1] : 0;
+}
+
+/* Les « allowances » de l'Oregon (OR-W-4) valent chacune un CREDIT retranche de
+   l'impot APRES le calcul : « Is the personal exemption credit subtracted before
+   or after the other calculations? After. » Et la formule n'en tient plus aucune
+   compte au-dela de 100 000 $ (celibataire) ou 200 000 $ (maries) de salaire. */
+function creditAllowances(S, statut, salaire) {
+  const w = S.incomeTax.withholdingAllowances;
+  if (!w) return 0;
+  const pick = (t) => (statut in t) ? t[statut] : t.single;
+  return salaire > pick(w.noneAbove) ? 0 : pick(w.perFiler) * w.credit;
+}
+
 /* retraitePct : part du brut versee au 401(k). Zero par defaut, parce que les
    tableaux publies supposent un salarie sans versement - l'hypothese est
    ecrite sur chaque page. */
@@ -165,7 +192,8 @@ function calcul(cle, brut, statut = "single", retraitePct = 0, comte = undefined
      assets/calc-paycheck.js. */
   const fd = S.incomeTax.ficaDeduction;
   const ficaDeduite = fd ? Math.min(fd.cap, ss + med) : 0;
-  const imposableEtat = Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat) - ficaDeduite);
+  const impotFedSoustrait = Math.min(federal, plafondImpotFederal(S, statut, baseEtat));
+  const imposableEtat = Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat) - ficaDeduite - impotFedSoustrait);
   const table = S.incomeTax.bracketTable;
   const etatBrut = S.incomeTax.hasIncomeTax
     ? Math.max(0, (table
@@ -173,7 +201,8 @@ function calcul(cle, brut, statut = "single", retraitePct = 0, comte = undefined
                     : progressiveTax(imposableEtat,
                                      S.incomeTax.brackets[statut] || S.incomeTax.brackets.single))
                   + marcheEtat(S, imposableEtat)
-                  - creditEtat(S, statut, baseEtat))
+                  - creditEtat(S, statut, baseEtat)
+                  - creditAllowances(S, statut, baseEtat))
     : 0;
   /* Circular M : « Do not withhold from employees who claim one or more
      exemptions if their wages are less than ... annually: $8,000 ». */
@@ -187,7 +216,11 @@ function calcul(cle, brut, statut = "single", retraitePct = 0, comte = undefined
 
   const programmes = (S.employeePrograms || []).map(pg => ({
     label: pg.label,
-    montant: (pg.wageCap ? Math.min(brut, pg.wageCap) : brut) * pg.rate
+    /* Une retenue PAR HEURE (Oregon, Workers' Benefit Fund : 0,9 cent par heure
+       travaillee) ne depend pas du salaire : elle se chiffre sur 2 080 heures,
+       un temps plein. Dit sur la page. */
+    montant: pg.perHour !== undefined ? pg.perHour * HEURES
+           : (pg.wageCap ? Math.min(brut, pg.wageCap) : brut) * pg.rate
   }));
   /* L'Indiana est le premier Etat avec un impot de COMTE retenu en plus de
      l'impot d'Etat : Departmental Notice #1 (effectif le 1er octobre 2026), meme
@@ -227,4 +260,5 @@ const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFra
 const c0 = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
 module.exports = { R, HEURES, progressiveTax, deductionEtat, creditEtat, marcheEtat,
+                   plafondImpotFederal, creditAllowances,
                    impotTable, calcul, c2, c0 };
