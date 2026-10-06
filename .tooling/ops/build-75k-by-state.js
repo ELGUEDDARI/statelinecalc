@@ -75,6 +75,10 @@ const IN_NOTE = (IN_PUBLIE || MD_PUBLIE)
       + "%, and the actual rates in its 23 counties and Baltimore City run from " + (Math.min(...MD_TAUX) * 100).toFixed(2) + "% to "
       + (Math.max(...MD_TAUX) * 100).toFixed(2) + "%." : "")
   : "";
+/* Maryland : impot d'Etat + impot de comte par defaut (Montgomery) a 75 000 $ : le classement
+   « Etat seul » ne dit pas que le Maryland retient davantage une fois le local ajoute. */
+const MD_R = calcul("maryland", BRUT);
+const MD_AVEC_LOCAL = MD_R.etat + MD_R.programmes.filter(p => p.county).reduce((t, p) => t + p.montant, 0);
 const MOTS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
   "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
   "eighteen", "nineteen", "twenty"];
@@ -160,6 +164,7 @@ attendu("Georgia 2026 = moteur", gaImposable * S.georgia.incomeTax.brackets.sing
 attendu("North Carolina 2026 = moteur",
         ncImposable * S["north-carolina"].incomeTax.brackets.single[0][1],
         calcul("north-carolina", BRUT).etat);
+attendu("Maryland, Etat + comte Montgomery a 75 000 $ (3 249 + 2 188,80, calcule a la main)", MD_AVEC_LOCAL, 5437.80);
 gains.forEach(g => { if (!(g.gain > 0)) throw new Error("ARRET : gain non positif " + g.cle); });
 if (sansImpot.length === 0 || avecImpot.length === 0) throw new Error("ARRET : classement vide");
 
@@ -202,8 +207,12 @@ const faq = [
        + "least: $" + c2(plusLeger.etat) + " a year."
      : haut.nom + " leaves $" + c0(haut.net) + "."],
   ["Which state takes the most from " + D + "?",
-   plusLourd.nom + ", at $" + c2(plusLourd.etat) + " of state income tax, or " + pct(plusLourd.tauxEtat)
-   + " of gross pay. The lowest take-home on the page is " + bas.nom + " at $" + c0(bas.net)
+   plusLourd.nom + ", at $" + c2(plusLourd.etat) + " of state income tax alone, not counting local taxes such as "
+   + "Maryland&rsquo;s, or " + pct(plusLourd.tauxEtat) + " of gross pay."
+   + (MD_PUBLIE && MD_AVEC_LOCAL > plusLourd.etat
+     ? " Maryland withholds more once its local income tax is added: $" + c2(MD_AVEC_LOCAL) + " in state and "
+       + MD_CT.rates[MD_CT.defaultCounty][0] + " County income tax combined." : "")
+   + " The lowest take-home on the page is " + bas.nom + " at $" + c0(bas.net)
    + " once every state deduction is counted."],
   ["Which states cut their income tax for 2026?",
    "Of the " + NOMBRE + " states here, " + NOMBRE_DE(gains.length) + " changed their law for tax year 2026, "

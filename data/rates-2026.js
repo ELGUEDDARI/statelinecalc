@@ -3743,6 +3743,145 @@ const RATES_2026 = {
           }
         }
       }
+    },
+
+    /* =======================================================================
+       ALABAMA  -  lu le 2026-10-06 (revenue.alabama.gov, workforce.alabama.gov,
+       birminghamal.gov : HTTP 200 ; labor.alabama.gov repond 403 « WAF Policy
+       Block » a curl ET a un navigateur Chrome pilote : non lu, non cite)
+       36e Etat. Moteur : AUCUN mecanisme nouveau. deductionByIncome (Ohio) pour la
+       deduction standard en escalier, personalExemption (Wisconsin), federalTaxSubtraction
+       (Oregon, sans plafond), brackets par statut.
+       SERP : non mesuree en geo US (a faire en GSC).
+       -----------------------------------------------------------------------
+       1. LA FORMULE DE RETENUE. Alabama Department of Revenue, « Withholding Tax
+          Tables and Instructions for Employers and Withholding Agents », « REVISED
+          January 2026 » (PDF 84 p.,
+          https://www.revenue.alabama.gov/wp-content/uploads/2026/01/whbooklet_0126.pdf,
+          telecharge et lu en pdftotext le 2026-10-06 ; lien depuis
+          https://www.revenue.alabama.gov/individual-corporate/withholding-tax-2/).
+          « Formula For Computing Alabama Withholding Tax », p. 7, verbatim :
+            « 1. Multiply employees gross wages for current payroll period by number
+            of such payroll periods in a year to obtain Gross Income (GI) »
+            « 2. Deduct: A. Standard Deduction ... B. Employees annual Federal
+            withholding tax. Actual amount for this payroll period multiplied by
+            number of such payroll periods in a year ... C. Personal Exemption:
+            None if employee claims "0" exemption; $1,500 if employee claims "S" or
+            "MS"; $3,000 if employee claims "M" or "H" ... D. Dependents: Multiply
+            number of dependents other than spouse by the following: $1,000 if gross
+            income less than or equal to $50,000; $500 if gross income greater than
+            $50,000 but less than or equal to $100,000; $300 if gross income greater
+            than $100,000 »
+            « 4. Taxable Amount (subtract Line 3 from Line 1) »
+            « 5. Compute tax on the amount on Line 4 as follows: Employee claims "0",
+            "S", "H" or "MS" exemption : 1st $ 500 2% / Next $2,500 4% / Over $3,000
+            5% ; Employee claims "M" exemption : 1st $1,000 2% / Next $5,000 4% /
+            Over $6,000 5% »
+          => l'IMPOT FEDERAL RETENU est retranche de la base de l'Etat, SANS plafond
+          (federalTaxSubtraction avec un plafond infini), comme en Oregon. Le moteur
+          du site chiffre le federal par l'IRS Pub. 15-T ; le livret dit « actual
+          amount » : ecart dit sur la page.
+       2. LA DEDUCTION STANDARD, EN ESCALIER (p. 7-8, « Schedule of Standard Deduction
+          Amounts »). Celibataire / « 0 » / « S » : « GI of $25,999 or less deduct
+          $3,000 ; GI greater than $25,999 but less than $35,500 deduct $3,000 less $25
+          for each $500 increment or part thereof of GI above $25,999 ; GI of $35,500 or
+          more deduct $2,500 ». Marie (« M ») : 8 500 $, moins 175 $ par palier de
+          500 $, plancher 5 000 $ (« $35,500 or more deduct $5,000 »). Chef de famille
+          (« H ») : 5 200 $, moins 135 $ par palier de 500 $, plancher 2 500 $. Les
+          trois baremes tombent sur 19 paliers de 500 $ entre 25 999 $ et 35 499 $ :
+          deductionByIncome les produit, et .tooling/test/verif-retenue-al.js les
+          recoupe contre le tableau imprime (p. 8) ET contre les ~20 000 cellules des
+          tables de retenue.
+       3. LES EXEMPTIONS, Form A-4 (REV. 4/2025, la version publiee sur la page
+          Withholding Tax du DOR le 2026-10-06,
+          https://revenue.alabama.gov/wp-content/uploads/2025/04/A4_0425.pdf), verbatim :
+            « If you are SINGLE or MARRIED FILING SEPARATELY, a $1,500 personal
+            exemption is allowed. »
+            « If you are MARRIED or SINGLE CLAIMING HEAD OF FAMILY, a $3,000 personal
+            exemption is allowed. »
+          => « single » = « S » (1 500 $), « marriedJoint » = « M » (3 000 $),
+          « headOfHousehold » = « H » (3 000 $), sans personne a charge. Le choix « 0 »
+          (aucune exemption, retenue maximale) n'est pas modelise.
+       4. TAUX DE PRIME. Booklet p. 3 : « Employers may withhold state income tax
+          from bonuses and supplemental wage payments at the rate of 5%. » (non modelise).
+       4b. Booklet p. 3, verbatim : « The formula should be used by employers who are computing
+          withholding tax using a computer program. » ; « NOTE: ... if a married employee
+          claims his own personal exemption, "S," then the spouse can only claim their own
+          personal exemption or claim "0." However, ... If he claims "M," he is claiming both
+          personal exemptions and his spouse must claim "0." » (p. 3, lu le 2026-10-06).
+       5. TAXES LOCALES. Booklet p. 2, verbatim : « State unemployment tax and local
+          occupational taxes are not administered by the Department of Revenue. ...
+          To obtain information concerning local occupational tax, you must contact the
+          city or county which is administering the tax. » La ville de Birmingham dit
+          administrer une « Occupational Tax » (page Tax and License Division,
+          https://www.birminghamal.gov/government/city-departments/finance/tax-license-division,
+          HTTP 200) mais AUCUN taux n'est lu sur une page officielle : le site ne chiffre
+          aucune taxe d'occupation (ni « 1 % » de Birmingham, lu seulement dans des sources
+          tierces). Page : « we found », jamais « Alabama has no ».
+       6. ASSURANCE CHOMAGE. Alabama Department of Workforce, FAQ employeurs
+          (https://workforce.alabama.gov/employers/faq/, HTTP 200), verbatim : « The
+          employer is taxed on the first $8,000 paid by the employer to the worker
+          during the calendar year. » et « Employers newly liable under the Alabama UC
+          law pay tax at the rate of 2.70% on the first $8,000 of wages for each
+          employee. » Aucune retenue sur le salaire decrite : pas d'entree
+          employeePrograms. NEGATIF NON PROUVABLE : « we found no ».
+       7. PAS D'ASSURANCE INVALIDITE NI DE CONGE PAYE D'ETAT TROUVE (SDI, PFML) : ni le
+          DOR ni le Department of Workforce n'en decrit un dans les pages lues ;
+          « we found no », jamais « Alabama has no ».
+       8. NON MODELISE : personnes a charge (1 000 / 500 / 300 $ chacune), statut
+          « MS » (marie, declaration separee), « 0 », retenue supplementaire (ligne 5
+          du A-4), deduction des heures supplementaires (Act 2026-604 : « the lesser of
+          the actual overtime premium or a maximum annual amount of $1,000 per taxpayer »,
+          2026-2028, sur la DECLARATION ; la page du DOR ne dit rien de la retenue),
+          indemnite de licenciement jusqu'a 50 000 $ (sur accord du DOR), regle des 30
+          jours des non-residents (Act 2025-334), 401(k) : modelise comme dans les autres
+          Etats (le livret exclut l'article 401(k) du salaire retenu, p. 2).
+       ----------------------------------------------------------------------- */
+    alabama: {
+      name: "Alabama",
+      abbr: "AL",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Montants du haut du bareme (GI <= 25 999 $) ; le calcul passe par deductionByIncome. */
+        standardDeduction: {
+          single: 3000,
+          marriedJoint: 8500,
+          headOfHousehold: 5200
+        },
+        /* L'escalier du livret : [montant a 25 999 $ et moins, perte par palier de 500 $,
+           plancher a 35 500 $ et plus]. 19 paliers entre 25 999 $ et 35 499 $. */
+        deductionByIncome: (() => {
+          const bareme = { single: [3000, 25, 2500], marriedJoint: [8500, 175, 5000], headOfHousehold: [5200, 135, 2500] };
+          const montants = k => Object.fromEntries(Object.entries(bareme).map(([s, [haut, pente, bas]]) =>
+            [s, k === null ? bas : haut - pente * k]));
+          const paliers = [{ upTo: 25999, amounts: montants(0) }];
+          for (let k = 1; k <= 19; k++) paliers.push({ upTo: 25999 + 500 * k, amounts: montants(k) });
+          paliers.push({ upTo: null, amounts: montants(null) });
+          return paliers;
+        })(),
+        /* « C. Personal Exemption » : S = 1 500 $, M et H = 3 000 $ (Form A-4). */
+        personalExemption: {
+          single: 1500,
+          marriedJoint: 3000,
+          headOfHousehold: 3000
+        },
+        /* « 1st $ 500 2% ; Next $2,500 4% ; Over $3,000 5% » (« 0 », « S », « H », « MS ») ;
+           « 1st $1,000 2% ; Next $5,000 4% ; Over $6,000 5% » (« M »). */
+        brackets: {
+          single:          [[500, 0.02], [3000, 0.04], [Infinity, 0.05]],
+          marriedJoint:    [[1000, 0.02], [6000, 0.04], [Infinity, 0.05]],
+          headOfHousehold: [[500, 0.02], [3000, 0.04], [Infinity, 0.05]]
+        },
+        /* « B. Employees annual Federal withholding tax. Actual amount » : retranche en
+           entier, sans plafond. */
+        federalTaxSubtraction: {
+          capByWages: {
+            single:          [[Infinity, Infinity]],
+            marriedJoint:    [[Infinity, Infinity]],
+            headOfHousehold: [[Infinity, Infinity]]
+          }
+        }
+      }
     }
   }
 };

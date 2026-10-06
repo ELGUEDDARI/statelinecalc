@@ -67,6 +67,14 @@ const LOCAL_GENERIQUE = `    <li><strong>Local taxes</strong> &mdash; city incom
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
     calculators add the local income tax for the county you choose.</li>`;
 const LOCAL_PAR_ETAT = {
+  /* Alabama (06/10/2026) : le livret du DOR dit que les taxes d'occupation locales ne sont pas
+     administrees par l'Etat ; la ville de Birmingham liste une « Occupational Tax » mais AUCUN taux n'a
+     ete lu sur une page officielle : la page n'en chiffre aucun et ne dit pas « Alabama has no ». */
+  alabama: `    <li><strong>Local occupational taxes</strong> &mdash; the Alabama Department of Revenue says local
+    occupational taxes are not administered by the state, and that for details you must contact the city or county
+    that levies one. The City of Birmingham, for example, lists an occupational tax on its Tax and License Division
+    page. This calculator adds no local line for Alabama. The only local income tax lines on this site are on the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

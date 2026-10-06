@@ -596,8 +596,8 @@ check("OH : l'impot d'Etat n'est jamais negatif, meme a 10 000 $",
    cle "notch", et aucun ne doit avoir change de resultat en l'introduisant. */
 check("OH : aucun autre Etat n'a de marche",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.notch).length, 1, 0);
-check("OH : seul le Maryland (35e Etat) a aussi une deduction par palier de revenu (deductionByIncome)",
-  Object.keys(R.states).filter(k => k !== "maryland" && R.states[k].incomeTax.deductionByIncome).length, 1, 0);
+check("OH : seuls le Maryland (35e Etat) et l'Alabama (36e Etat) ont aussi une deduction par palier de revenu (deductionByIncome)",
+  Object.keys(R.states).filter(k => k !== "maryland" && k !== "alabama" && R.states[k].incomeTax.deductionByIncome).length, 1, 0);
 
 
 /* --- WISCONSIN --------------------------------------------------------
@@ -694,8 +694,8 @@ check("WI : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("wisconsin", 5000).etat >= 0 ? 1 : 0, 1, 0);
 check("WI : la deduction glissante n'existe que pour le Wisconsin",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).length, 1, 0);
-check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie et le Mississippi (17/09/2026)",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 3, 0);
+check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026) et l'Alabama (06/10/2026)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 4, 0);
 
 /* --- ARKANSAS -----------------------------------------------------------
    Source, lue le 2026-09-12 : "State of Arkansas, Estimated Tax Declaration
@@ -1771,8 +1771,8 @@ check("OR : continuite du bareme marie a 9 100 $, 22 800 $ et 250 000 $ (a 1 $ p
   (() => { const t = R.states.oregon.incomeTax.bracketTable.marriedJoint;
     const at = (i, x) => t[i].base + t[i].rate * (x - t[i].from);
     return Math.abs(at(0, 9100) - 432) < 1 && Math.abs(at(1, 22800) - 1357) < 1 && Math.abs(at(2, 250000) - 21237) < 1 ? 1 : 0; })(), 1, 0);
-check("OR : un seul Etat porte federalTaxSubtraction, withholdingAllowances et un programme perHour",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.federalTaxSubtraction).join() === "oregon" &&
+check("OR : seuls l'Oregon et l'Alabama (sans plafond) portent federalTaxSubtraction ; l'Oregon seul, withholdingAllowances et un programme perHour",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.federalTaxSubtraction).join() === "oregon,alabama" &&
   Object.keys(R.states).filter(k => R.states[k].incomeTax.withholdingAllowances).join() === "oregon" &&
   Object.keys(R.states).filter(k => (R.states[k].employeePrograms || []).some(p => p.perHour !== undefined)).join() === "oregon" ? 1 : 0, 1, 0);
 
@@ -1942,8 +1942,8 @@ check("MD : un comte inconnu est une ERREUR, jamais un defaut silencieux",
   (() => { try { mdC(75000, "single", 0, "atlantis"); return 0; } catch (e) { return 1; } })(), 1, 0);
 check("MD : seuls l'Indiana et le Maryland ont un impot de comte (countyTax)",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.countyTax).sort().join(",") === "indiana,maryland" ? 1 : 0, 1, 0);
-check("MD : seuls l'Ohio et le Maryland ont une deduction par palier de revenu",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.deductionByIncome).sort().join(",") === "maryland,ohio" ? 1 : 0, 1, 0);
+check("MD : seuls l'Alabama, le Maryland et l'Ohio ont une deduction par palier de revenu",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.deductionByIncome).sort().join(",") === "alabama,maryland,ohio" ? 1 : 0, 1, 0);
 check("MD : 24 juridictions (23 comtes + Baltimore City), defaut Montgomery, une seule ville",
   (() => { const c = R.states.maryland.incomeTax.countyTax;
     return Object.keys(c.rates).length === 24 && c.defaultCounty === "montgomery" &&
@@ -2033,6 +2033,129 @@ check("MD : aucun programme salarie ni conge paye en 2026 (FAMLI : retenue des j
           }
         }
   check("MD : moteur navigateur == moteur node sur " + n + " entrees (24 juridictions + defaut x 3 statuts x seuils : Etat, local, etiquette, net)", ecarts, 0, 0);
+}
+
+console.log("\n=== Alabama (36e Etat) ===");
+
+/* Sources (lues le 2026-10-06) : Alabama Department of Revenue, « Withholding Tax Tables and
+   Instructions for Employers and Withholding Agents », REVISED January 2026
+   (whbooklet_0126.pdf, p. 7-8) et Form A-4 (rev. 4/2025). Formule du livret :
+   GI - deduction standard (en escalier) - impot federal retenu - exemption (S 1 500, M et H
+   3 000) - personnes a charge ; puis 2 % / 4 % / 5 % (500 / 3 000 ; 1 000 / 6 000 pour M).
+   Aucun programme salarie, aucune retenue chomage : « we found no ».
+   Tous les attendus ci-dessous sont recalcules a la main, PAS copies de la sortie du code. */
+const alC = (b, st, rp) => calcul("alabama", b, st || "single", rp || 0);
+
+/* Cas AL-1 — 75 000 $ celibataire.
+   Federal : 58 900 imposables = 1 240 + 4 560 + 1 870 = 7 670.
+   Deduction standard : GI >= 35 500 -> 2 500 ; exemption S = 1 500.
+   Base : 75 000 - 2 500 - 7 670 - 1 500 = 63 330.
+   Impot : 2 % x 500 = 10 ; 4 % x 2 500 = 100 ; 5 % x (63 330 - 3 000 = 60 330) = 3 016,50 -> 3 126,50.
+   FICA : 4 650 + 1 087,50 = 5 737,50. Net : 75 000 - 7 670 - 5 737,50 - 3 126,50 = 58 466,00. */
+check("AL 75 000 $ celibataire : impot d'Etat", alC(75000).etat, 3126.50, 0.005);
+check("AL 75 000 $ celibataire : impot federal retranche = 7 670", alC(75000).federal, 7670, 0.005);
+check("AL 75 000 $ celibataire : net", alC(75000).net, 58466.00, 0.005);
+
+/* Cas AL-2 — 75 000 $ marie. Federal : 42 800 imposables = 2 480 + 18 000 x 12 % = 4 640.
+   Deduction M a 75 000 = 5 000 ; exemption M = 3 000. Base = 75 000 - 5 000 - 4 640 - 3 000 = 62 360.
+   Bareme M : 1 000 x 2 % = 20 ; 5 000 x 4 % = 200 ; (62 360 - 6 000) x 5 % = 2 818 -> 3 038.
+   Net : 75 000 - 4 640 - 5 737,50 - 3 038 = 61 584,50. */
+check("AL 75 000 $ marie : impot d'Etat", alC(75000, "marriedJoint").etat, 3038.00, 0.005);
+check("AL 75 000 $ marie : net", alC(75000, "marriedJoint").net, 61584.50, 0.005);
+
+/* Cas AL-3 — 75 000 $ chef de famille. Federal : 50 850 imposables = 1 770 + 33 150 x 12 % = 5 748.
+   Deduction H = 2 500 ; exemption H = 3 000. Base = 75 000 - 2 500 - 5 748 - 3 000 = 63 752.
+   Impot : 10 + 100 + (63 752 - 3 000) x 5 % = 3 037,60 -> 3 147,60.
+   Net : 75 000 - 5 748 - 5 737,50 - 3 147,60 = 60 366,90. */
+check("AL 75 000 $ chef de famille : impot d'Etat", alC(75000, "headOfHousehold").etat, 3147.60, 0.005);
+check("AL 75 000 $ chef de famille : net", alC(75000, "headOfHousehold").net, 60366.90, 0.005);
+
+/* Cas AL-4 — 30 000 $ celibataire : la deduction est en escalier. Schedule imprime : 30 000-30 499 -> 2 775.
+   Federal : 13 900 imposables = 1 240 + 1 500 x 12 % = 1 420. Base : 30 000 - 2 775 - 1 420 - 1 500 = 24 305.
+   Impot : 10 + 100 + 21 305 x 5 % = 1 065,25 -> 1 175,25. */
+check("AL 30 000 $ celibataire : impot d'Etat (deduction 2 775)", alC(30000).etat, 1175.25, 0.005);
+check("AL 30 000 $ celibataire : net", alC(30000).net, 25109.75, 0.005);
+
+/* Cas AL-5 — 250 000 $ celibataire. Federal : 233 900 imposables = 1 240 + 4 560 + 12 166 + 23 058 + 10 280 = 51 304.
+   Base : 250 000 - 2 500 - 51 304 - 1 500 = 194 696 ; impot = 10 + 100 + 191 696 x 5 % = 9 584,80 -> 9 694,80.
+   Net : 250 000 - 51 304 - 9 694,80 - 11 439 - 4 075 = 173 487,20. */
+check("AL 250 000 $ celibataire : impot d'Etat (federal retranche sans plafond)", alC(250000).etat, 9694.80, 0.005);
+check("AL 250 000 $ celibataire : net", alC(250000).net, 173487.20, 0.005);
+
+/* Cas AL-6 — 75 000 $ avec 6 % en 401(k) : 4 500 retires ; 70 500 ; federal 54 400 imposables =
+   1 240 + 4 560 + 880 = 6 680 ; base = 70 500 - 2 500 - 6 680 - 1 500 = 59 820 ;
+   impot = 110 + 56 820 x 5 % = 2 841 -> 2 951. Gain = 3 126,50 - 2 951 = 175,50. */
+check("AL 75 000 $ avec 6 % de 401(k) : impot d'Etat", alC(75000, "single", 0.06).etat, 2951.00, 0.005);
+
+/* Cas AL-7 — 25 $ l'heure, 2 080 h = 52 000 $. Federal : 35 900 imposables = 1 240 + 23 500 x 12 % = 4 060.
+   Base : 52 000 - 2 500 - 4 060 - 1 500 = 43 940 ; impot = 110 + 40 940 x 5 % = 2 157.
+   Net : 52 000 - 4 060 - 3 224 - 754 - 2 157 = 41 805. */
+check("AL 25 $/h (52 000 $) : impot d'Etat", alC(25 * 2080).etat, 2157.00, 0.005);
+check("AL 25 $/h (52 000 $) : net", alC(25 * 2080).net, 41805.00, 0.005);
+
+/* Cas AL-8 — 3 000 $ : base negative -> aucun impot. Net : 3 000 - 186 - 43,50 = 2 770,50. */
+check("AL 3 000 $ : aucun impot d'Etat", alC(3000).etat, 0, 0);
+check("AL 3 000 $ : net", alC(3000).net, 2770.50, 0.005);
+
+/* Aucune retenue salariee autre que l'impot : ni programme, ni conge paye, ni WA Cares. */
+check("AL : aucun programme salarie, aucun conge paye",
+  alC(75000).programmes.length === 0 && alC(75000).paidLeave === 0 && alC(75000).waCares === 0 &&
+  !R.states.alabama.employeePrograms && !R.states.alabama.paidLeave ? 1 : 0, 1, 0);
+
+/* La deduction standard en escalier, relue dans le livret imprime (p. 8) :
+   celibataire 3 000 jusqu'a 25 999, puis -25 $ par palier de 500 $ (26 000 -> 2 975 ... 35 000 -> 2 525), 2 500 des 35 500 ;
+   marie 8 500 -> 8 325 ... 5 175, 5 000 des 35 500 ; chef de famille 5 200 -> 5 065 ... 2 635, 2 500 des 35 500. */
+check("AL : deduction standard aux bornes du Schedule imprime (28 valeurs relues a la main)",
+  (() => {
+    const A = R.states.alabama.incomeTax;
+    const d = (st, gi) => deductionEtatAl(st, gi);
+    function deductionEtatAl(st, gi) { const p = A.deductionByIncome.find(x => x.upTo === null || gi <= x.upTo); return p.amounts[st]; }
+    const att = {
+      single:          [[0, 3000], [25999, 3000], [26000, 2975], [26499, 2975], [26500, 2950], [30000, 2775], [35000, 2525], [35499, 2525], [35500, 2500], [900000, 2500]],
+      marriedJoint:    [[0, 8500], [25999, 8500], [26000, 8325], [26500, 8150], [30000, 6925], [35000, 5175], [35499, 5175], [35500, 5000], [900000, 5000]],
+      headOfHousehold: [[0, 5200], [25999, 5200], [26000, 5065], [26500, 4930], [30000, 3985], [35000, 2635], [35499, 2635], [35500, 2500], [900000, 2500]]
+    };
+    let mauvais = 0;
+    for (const st of Object.keys(att)) for (const [gi, v] of att[st]) if (d(st, gi) !== v) mauvais++;
+    return mauvais;
+  })(), 0, 0);
+check("AL : exemptions de la Form A-4 (S 1 500, M 3 000, H 3 000) et taux 2 / 4 / 5 % (seuils 500 / 3 000 ; 1 000 / 6 000)",
+  (() => {
+    const A = R.states.alabama.incomeTax;
+    return JSON.stringify(A.personalExemption) === JSON.stringify({ single: 1500, marriedJoint: 3000, headOfHousehold: 3000 }) &&
+      JSON.stringify(A.brackets.single) === JSON.stringify([[500, 0.02], [3000, 0.04], [Infinity, 0.05]]) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(A.brackets.single) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify([[1000, 0.02], [6000, 0.04], [Infinity, 0.05]]) ? 1 : 0;
+  })(), 1, 0);
+/* Bareme, calcule a la main : imposable 500 -> 10 ; 3 000 -> 10 + 100 = 110 ; 6 000 -> 110 + 3 000 x 5 % = 260 ;
+   marie : 1 000 -> 20 ; 6 000 -> 20 + 200 = 220 ; 7 000 -> 270. */
+check("AL : bareme celibataire a 500 / 3 000 / 6 000 = 10 / 110 / 260",
+  [500, 3000, 6000].map(x => progressiveTax(x, R.states.alabama.incomeTax.brackets.single)).join() === "10,110,260" ? 1 : 0, 1, 0);
+check("AL : bareme marie a 1 000 / 6 000 / 7 000 = 20 / 220 / 270",
+  [1000, 6000, 7000].map(x => progressiveTax(x, R.states.alabama.incomeTax.brackets.marriedJoint)).join() === "20,220,270" ? 1 : 0, 1, 0);
+
+/* Le moteur NAVIGATEUR et le moteur NODE doivent donner le meme impot d'Alabama, le meme net, aux paliers de la
+   deduction (25 999 / 26 000 / 35 499 / 35 500), pour les trois statuts, avec et sans 401(k). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 3000, 4999, 20000, 25999, 26000, 26001, 30000, 35499, 35500, 35501, 52000, 75000, 100001, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "alabama", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("alabama", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("AL : moteur navigateur == moteur node sur " + n + " entrees (3 statuts x paliers de la deduction x 401(k))", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

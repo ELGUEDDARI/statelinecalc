@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -872,6 +872,34 @@ const PAR_ETAT = {
       quoi: "the statement that businesses pay quarterly unemployment taxes, with no deduction from " +
             "employee wages described",
       motif: ["pay quarterly unemployment taxes"] }
+  ],
+  alabama: [
+    { type: "document",
+      url: "https://www.revenue.alabama.gov/wp-content/uploads/2026/01/whbooklet_0126.pdf",
+      titre: "Alabama Department of Revenue &mdash; Withholding Tax Tables and Instructions for Employers and Withholding Agents, revised January 2026 (PDF)",
+      quoi: "the withholding formula (standard deduction by income, federal tax withheld, personal exemption, dependents, the 2%, 4% and 5% rates), the schedule of standard deduction amounts and the printed withholding tables",
+      motif: ["Formula For Computing Alabama Withholding Tax", "Schedule of Standard Deduction Amounts"] },
+    { type: "document",
+      url: "https://revenue.alabama.gov/wp-content/uploads/2025/04/A4_0425.pdf",
+      titre: "Alabama Department of Revenue &mdash; Form A-4, Employee&rsquo;s Withholding Tax Exemption Certificate (rev. 4/2025, PDF)",
+      quoi: "the $1,500 personal exemption for single filers and the $3,000 exemption for married filers and heads of family",
+      motif: ["$1,500 personal exemption", "$3,000 personal exemption"] },
+    { type: "document",
+      url: "https://www.revenue.alabama.gov/individual-corporate/overtime-premium-deduction-act-2026-604/",
+      titre: "Alabama Department of Revenue &mdash; Overtime Premium Deduction (Act 2026-604)",
+      quoi: "the deduction of up to $1,000 of overtime premium pay on the return, for 2026 through 2028",
+      motif: ["Overtime Premium Deduction", "$1,000 per taxpayer"] },
+    { type: "document",
+      url: "https://workforce.alabama.gov/employers/faq/",
+      titre: "Alabama Department of Workforce &mdash; Employer FAQ",
+      quoi: "the statement that the employer is taxed on the first $8,000 paid to each worker, with new employers at 2.70%, and no deduction from employee wages described",
+      motif: ["first $8,000", "2.70%"] },
+    { type: "agence",
+      url: "https://www.revenue.alabama.gov/individual-corporate/withholding-tax-2/",
+      titre: "Alabama Department of Revenue &mdash; Withholding Tax" },
+    { type: "agence",
+      url: "https://www.birminghamal.gov/government/city-departments/finance/tax-license-division",
+      titre: "City of Birmingham &mdash; Tax and License Division (it lists an occupational tax)" }
   ]
 };
 
