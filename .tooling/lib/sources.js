@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -800,6 +800,38 @@ const PAR_ETAT = {
       titre: "Oregon Department of Revenue &mdash; Lane County Transit District payroll tax",
       quoi: "the statement that the Lane transit tax is imposed directly on the employer",
       motif: ["imposed directly on the employer"] }
+  ],
+  "south-dakota": [
+    { type: "document",
+      url: "https://dor.sd.gov/individuals/taxes/",
+      titre: "South Dakota Department of Revenue &mdash; Individuals, Taxes",
+      quoi: "the statement that South Dakota does not impose a state income tax",
+      motif: ["does not impose a state income tax"] },
+    { type: "document",
+      url: "https://dor.sd.gov/businesses/taxes/municipal-tax/",
+      titre: "South Dakota Department of Revenue &mdash; Municipal Tax",
+      quoi: "the municipal taxes the Department administers and the law allows: sales or use " +
+            "tax, and gross receipts tax &mdash; with no tax on wages among them",
+      motif: ["municipal sales or use tax, and gross receipts tax"] },
+    { type: "document",
+      url: "https://dlr.sd.gov/ra/businesses/default.aspx",
+      titre: "South Dakota Department of Labor and Regulation &mdash; Reemployment Assistance " +
+             "for Businesses",
+      quoi: "the $15,000 unemployment insurance taxable wage base for 2026",
+      motif: ["remains at $15,000"] },
+    { type: "document",
+      url: "https://dlr.sd.gov/ra/businesses/faq.aspx",
+      titre: "South Dakota Department of Labor and Regulation &mdash; Reemployment Assistance " +
+             "Tax FAQ",
+      quoi: "the rule that the 0.08% administrative fee may not be deducted from employees&rsquo; " +
+            "wages, and the new-employer rates",
+      motif: ["deducted in whole or in part by any employer from the wages"] },
+    { type: "document",
+      url: "https://dlr.sd.gov/ra/businesses/documents/rahandbookforemployers.pdf",
+      titre: "South Dakota Department of Labor and Regulation &mdash; Reemployment Assistance " +
+             "Employer&rsquo;s Handbook (PDF)",
+      quoi: "the statement that the program is financed by employers through payroll taxes",
+      motif: ["financed by employers through payroll taxes"] }
   ]
 };
 

@@ -3443,6 +3443,74 @@ const RATES_2026 = {
         { label: "Paid Leave Oregon (0.6%)", rate: 0.006, wageCap: 184500 },
         { label: "OR Workers' Benefit Fund (0.9 cent per hour)", perHour: 0.009 }
       ]
+    },
+
+    /* -----------------------------------------------------------------------
+       SOUTH DAKOTA — ajoute 2026-10-06, 34e Etat, le 9e sans impot sur les
+       salaires (apres Texas, Floride, Nevada, Tennessee, Washington, Alaska,
+       Wyoming, New Hampshire). CSV SEMrush du 01/09 : "south dakota paycheck
+       calculator" KD 11, CPC 1,79 $ (voir plus haut, entree Mississippi).
+       SERP (WebSearch du 2026-10-06, une seule requete, pas de controle de
+       geo) : QuickBooks en tete, le reste = clones/spam de domaines tiers
+       (cvs.pantherdb.org, voip.puri.sm...) — porte plus ouverte que les
+       Etats precedents ; mesure partielle, a refaire en GSC.
+
+       Sources lues le 2026-10-06, toutes officielles (SD DOR, SD DLR) :
+
+       1. AUCUN IMPOT D'ETAT SUR LE REVENU. South Dakota Department of
+          Revenue, page « Individuals > Taxes »
+          (https://dor.sd.gov/individuals/taxes/, HTTP 200), verbatim :
+            "South Dakota is one of seven states that does not impose a
+             state income tax."
+          (Le « seven » est le decompte du DOR ; il ne recoupe pas le notre
+          — nous comptons huit autres Etats — donc la page du site ne
+          reprend PAS ce nombre.) Formulaire de retenue d'Etat : aucun
+          trouve sur dor.sd.gov (liste des formulaires hebergee sur
+          seamlessdocs.com, NON parcourue : on ne l'affirme pas sur la page).
+
+       2. TAXES LOCALES. DOR, page « Municipal Tax »
+          (https://dor.sd.gov/businesses/taxes/municipal-tax/, HTTP 200),
+          verbatim : "The South Dakota Department of Revenue is the
+          administrative and enforcement agency for municipal sales or use
+          tax, and gross receipts tax. SDCL 10-52 South Dakota law allows
+          municipalities to impose a municipal sales or use tax, and gross
+          receipts tax." Aucun impot local sur les salaires n'y figure.
+          ⚠️ SDCL 10-52-1 definit le « non-ad valorem tax » municipal comme
+          « any tax other than an ad valorem real property tax » : il n'y a
+          donc PAS d'interdiction expresse d'un impot local sur le revenu
+          dans ce chapitre (contrairement au Wyoming, § 39-12-101), et la
+          Constitution (art. XI, § 2) autorise l'impot sur le revenu pour
+          l'Etat. La page dit donc « we found none », JAMAIS « the law bars
+          it ». Pas de source « loi » pour une preemption : on ne l'invente pas.
+
+       3. ASSURANCE CHOMAGE (« Reemployment Assistance », RA) — A LA CHARGE
+          DE L'EMPLOYEUR. SD Department of Labor and Regulation :
+            a) https://dlr.sd.gov/ra/businesses/default.aspx (HTTP 200) :
+               "The wage base for calendar year 2026 remains at $15,000."
+            b) https://dlr.sd.gov/ra/businesses/faq.aspx (HTTP 200) :
+               "No administrative fee may be credited to the employer's
+               experience-rating account or deducted in whole or in part by
+               any employer from the wages of individuals in its employ."
+               (frais administratifs de 0,08 % en 2026 ; tableau des
+               nouveaux employeurs : 1,20 % non-construction / 6,00 %
+               construction en annee 1.)
+            c) Employer's Handbook (https://dlr.sd.gov/ra/businesses/
+               documents/rahandbookforemployers.pdf, PDF 25 pages, lu) :
+               "South Dakota's Reemployment Assistance (RA) program
+               (formerly known as Unemployment Insurance) is financed by
+               employers through payroll taxes."
+          => aucune retenue salariale : pas d'entree employeePrograms.
+
+       4. PAS DE PROGRAMME SALARIE D'ETAT TROUVE (PFML, SDI, etc.). Rien
+          dans dor.sd.gov ni dlr.sd.gov ; WebSearch du 2026-10-06 (tiers,
+          recoupement seulement) : pas de congé payé d'Etat finance par les
+          salaries pour le secteur prive. NEGATIF NON PROUVABLE : la page dit
+          « we found no », jamais « South Dakota has no ».
+       ----------------------------------------------------------------------- */
+    "south-dakota": {
+      name: "South Dakota",
+      abbr: "SD",
+      incomeTax: { hasIncomeTax: false }
     }
   }
 };

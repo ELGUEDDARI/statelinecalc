@@ -1805,5 +1805,29 @@ check("OR : un seul Etat porte federalTaxSubtraction, withholdingAllowances et u
   check("OR : moteur navigateur == moteur node sur " + n + " entrees (Etat, programmes, net ; tous les paliers et seuils)", ecarts, 0, 0);
 }
 
+/* ── SOUTH DAKOTA, 34e Etat, ajoute 2026-10-06 ──────────────────────────────
+   Aucun impot d'Etat sur le revenu (SD DOR, dor.sd.gov/individuals/taxes/) ;
+   chomage ("Reemployment Assistance") a la charge de l'employeur seul (SD DLR).
+   Attendus recalcules A LA MAIN, celibataire, deduction standard 16 100 $ :
+   75 000 $ : imposable 58 900 ; 10 % x 12 400 = 1 240 ; 12 % x 38 000 = 4 560 ;
+              22 % x 8 500 = 1 870 ; federal 7 670 ; Social Security 6,2 % = 4 650 ;
+              Medicare 1,45 % = 1 087,50 ; net 75 000 - 7 670 - 4 650 - 1 087,50 = 61 592,50.
+   60 000 $ : imposable 43 900 ; 1 240 + 12 % x 31 500 (3 780) = 5 020 ;
+              FICA 3 720 + 870 = 4 590 ; net 60 000 - 5 020 - 4 590 = 50 390. */
+check("SD : aucun impot sur le revenu",
+  R.states["south-dakota"].incomeTax.hasIncomeTax === false ? 1 : 0, 1, 0);
+check("SD : l'impot d'Etat est toujours zero, quel que soit le salaire",
+  calcul("south-dakota", 500000).etat, 0, 0);
+check("SD : aucun programme salarie retenu (chomage employeur seul)",
+  (R.states["south-dakota"].employeePrograms || []).length, 0, 0);
+check("SD : net sur 75 000 $, celibataire, recalcule a la main",
+  calcul("south-dakota", 75000).net, 61592.5, 0.005);
+check("SD : net sur 60 000 $, celibataire, recalcule a la main",
+  calcul("south-dakota", 60000).net, 50390, 0.005);
+check("SD : federal sur 75 000 $, celibataire, recalcule a la main",
+  calcul("south-dakota", 75000).federal, 7670, 0.005);
+check("SD : le net sur 75 000 $ egale le Wyoming au centime pres",
+  calcul("south-dakota", 75000).net, calcul("wyoming", 75000).net, 0.001);
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
