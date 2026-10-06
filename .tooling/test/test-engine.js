@@ -1420,5 +1420,124 @@ check("ficaDeduction / noWithholdingBelow : propres au Massachusetts (aucun autr
   check("MA : moteur navigateur == moteur node sur " + n + " entrees (impot d'Etat et net)", ecarts, 0, 0);
 }
 
+console.log("\n=== Minnesota (31e Etat) ===");
+
+/* Sources (lues le 2026-10-06) : Minnesota Department of Revenue, 2026
+   Income Tax Withholding Instruction Booklet (wh-inst-26.pdf), page 34,
+   « Computer Formula » : annual wage - allowances x 5 300 $, puis le
+   « Chart for Step 5 » ; Form W-4MN 2026 : celibataire = 2 allocations
+   (A + B) = 10 600 $, marie un seul emploi = 3 (A + B + C) = 15 900 $, chef de
+   famille = 3 (A + B + E) sur la table celibataire ; Minnesota Paid Leave :
+   0,88 % dont 0,44 % maximum retenable, plafond = FICA OASDI (268B.14), 184 500 $.
+   Chaque attendu est recalcule a la main.
+   single 75 000   : 75 000 - 10 600 = 64 400 ; 1 782,09 + (64 400 - 38 010) x 6,80 %
+                     = 1 782,09 + 1 794,52                               = 3 576,61
+   married 75 000  : 75 000 - 15 900 = 59 100 ; (59 100 - 14 700) x 5,35 % = 2 375,40
+   HoH 75 000      : 59 100 sur la table celibataire ; 1 782,09 + 21 090 x 6,80 %
+                     = 1 782,09 + 1 434,12                               = 3 216,21
+   single 25 000   : 14 400 ; (14 400 - 4 700) x 5,35 %                  =   518,95
+   single 20 000   : 9 400 ; 4 700 x 5,35 %                              =   251,45
+   single 15 300   : 4 700 -> tranche a 0 %                              =     0,00
+   married 20 000  : 4 100 < 14 700                                      =     0,00
+   married 40 000  : 24 100 ; 9 400 x 5,35 %                             =   502,90
+   single 52 000   : 41 400 ; 1 782,09 + 3 390 x 6,80 % = 1 782,09 + 230,52 = 2 012,61
+   single 120 000  : 109 400 ; 1 782,09 + 71 390 x 6,80 % = 1 782,09 + 4 854,52 = 6 636,61
+   single 250 000  : 239 400 ; 14 315,27 + 31 550 x 9,85 % = 14 315,27 + 3 107,675 = 17 422,945
+   married 500 000 : 484 100 ; 23 789,82 + 131 470 x 9,85 %
+                     (23 789,815 + 12 949,795)                           = 36 739,61
+   401(k) 6 %      : (75 000 - 4 500) - 10 600 = 59 900 ; 1 782,09 + 21 890 x 6,80 %
+                     = 1 782,09 + 1 488,52                               = 3 270,61
+   paid leave 75 000  : 75 000 x 0,44 %                                  =   330,00
+   paid leave 250 000 : 184 500 x 0,44 % (Minn. Stat. 268B.14 subd. 4)   =   811,80
+   net single 75 000  : 75 000 - 7 670 - 4 650 - 1 087,50 - 3 576,61 - 330     = 57 685,89
+   net single 52 000  : 52 000 - 4 060 - 3 224 - 754 - 2 012,61 - 228,80       = 41 720,59
+   net single 250 000 : 250 000 - 51 304 - 11 439 - 4 075 - 17 422,945 - 811,80 = 164 947,255
+   Tolerance 0,006 $ sur les cas qui franchissent le 38 010 $ : le Department imprime
+   ses constantes « Add » arrondies au cent (1 782,09 au lieu de 1 782,085) et le
+   moteur calcule les tranches sans arrondi ; l'ecart est de 0,005 $ au plus. */
+check("MN : single 75 000 $ = 3 576,61 $ (75 000 - 10 600, table celibataire)",
+  calcul("minnesota", 75000).etat, 3576.61, 0.005);
+check("MN : married 75 000 $ = 2 375,40 $ (3 allocations = 15 900 $)",
+  calcul("minnesota", 75000, "marriedJoint").etat, 2375.40, 0.005);
+check("MN : head of household 75 000 $ = 3 216,21 $ (table celibataire, 15 900 $)",
+  calcul("minnesota", 75000, "headOfHousehold").etat, 3216.21, 0.006);
+check("MN : single 25 000 $ = 518,95 $",
+  calcul("minnesota", 25000).etat, 518.95, 0.005);
+check("MN : single 20 000 $ = 251,45 $",
+  calcul("minnesota", 20000).etat, 251.45, 0.005);
+check("MN : single 15 300 $ = 0 $ (la tranche a 0 % va jusqu'a 4 700 $ apres allocations)",
+  calcul("minnesota", 15300).etat, 0, 0);
+check("MN : married 20 000 $ = 0 $ (sous 14 700 $ apres allocations)",
+  calcul("minnesota", 20000, "marriedJoint").etat, 0, 0);
+check("MN : married 40 000 $ = 502,90 $",
+  calcul("minnesota", 40000, "marriedJoint").etat, 502.90, 0.005);
+check("MN : single 52 000 $ (25 $/h) = 2 012,61 $",
+  calcul("minnesota", 25 * 2080).etat, 2012.61, 0.005);
+check("MN : single 120 000 $ = 6 636,61 $",
+  calcul("minnesota", 120000).etat, 6636.61, 0.005);
+check("MN : single 250 000 $ = 17 422,945 $ (4e tranche, 9,85 %)",
+  calcul("minnesota", 250000).etat, 17422.945, 0.006);
+check("MN : married 500 000 $ = 36 739,61 $",
+  calcul("minnesota", 500000, "marriedJoint").etat, 36739.61, 0.005);
+check("MN : 401(k) 6 % sur 75 000 $ = 3 270,61 $",
+  calcul("minnesota", 75000, "single", 0.06).etat, 3270.61, 0.005);
+check("MN : la colonne « Add » imprimee a 38 010 $ (1 782,09 $) tombe juste",
+  progressiveTax(38010, R.states.minnesota.incomeTax.brackets.single), 1782.09, 0.005);
+check("MN : la colonne « Add » imprimee a 114 130 $ (6 958,25 $) tombe juste",
+  progressiveTax(114130, R.states.minnesota.incomeTax.brackets.single), 6958.25, 0.005);
+check("MN : la colonne « Add » imprimee a 207 850 $ (14 315,27 $) tombe juste",
+  progressiveTax(207850, R.states.minnesota.incomeTax.brackets.single), 14315.27, 0.006);
+check("MN : la colonne « Add » imprimee a 63 400 $ marie (2 605,45 $) tombe juste",
+  progressiveTax(63400, R.states.minnesota.incomeTax.brackets.marriedJoint), 2605.45, 0.005);
+check("MN : la colonne « Add » imprimee a 208 180 $ marie (12 450,49 $) tombe juste",
+  progressiveTax(208180, R.states.minnesota.incomeTax.brackets.marriedJoint), 12450.49, 0.005);
+check("MN : la colonne « Add » imprimee a 352 630 $ marie (23 789,82 $) tombe juste",
+  progressiveTax(352630, R.states.minnesota.incomeTax.brackets.marriedJoint), 23789.82, 0.006);
+check("MN : paid leave sur 75 000 $ = 330,00 $ (0,44 %)",
+  calcul("minnesota", 75000).programmes[0].montant, 330.00, 0.005);
+check("MN : paid leave sur 250 000 $ = 811,80 $ (plafond 184 500 $ x 0,44 %)",
+  calcul("minnesota", 250000).programmes[0].montant, 811.80, 0.005);
+check("MN : net a 75 000 $ = 57 685,89 $",
+  calcul("minnesota", 75000).net, 57685.89, 0.006);
+check("MN : net a 25 $/h (52 000 $) = 41 720,59 $",
+  calcul("minnesota", 25 * 2080).net, 41720.59, 0.006);
+check("MN : net a 250 000 $ = 164 947,255 $",
+  calcul("minnesota", 250000).net, 164947.255, 0.006);
+check("MN : un seul programme salarie (le paid leave), 0,44 % = la moitie de 0,88 %",
+  (R.states.minnesota.employeePrograms || []).length === 1 &&
+  Math.abs(R.states.minnesota.employeePrograms[0].rate - 0.0088 / 2) < 1e-12 ? 1 : 0, 1, 0);
+check("MN : le plafond du paid leave est le plafond FICA OASDI (Minn. Stat. 268B.14 subd. 4), 184 500 $",
+  R.states.minnesota.employeePrograms[0].wageCap === R.fica.socialSecurity.wageBase && R.fica.socialSecurity.wageBase === 184500 ? 1 : 0, 1, 0);
+check("MN : allocations = 5 300 $ x 2 (celibataire), x 3 (couple et chef de famille)",
+  R.states.minnesota.incomeTax.standardDeduction.single === 2 * 5300 &&
+  R.states.minnesota.incomeTax.standardDeduction.marriedJoint === 3 * 5300 &&
+  R.states.minnesota.incomeTax.standardDeduction.headOfHousehold === 3 * 5300 ? 1 : 0, 1, 0);
+check("MN : le chef de famille utilise les memes tranches que le celibataire (le Department n'imprime que deux tables)",
+  JSON.stringify(R.states.minnesota.incomeTax.brackets.headOfHousehold) ===
+  JSON.stringify(R.states.minnesota.incomeTax.brackets.single) ? 1 : 0, 1, 0);
+
+/* Le moteur NAVIGATEUR (assets/calc-paycheck.js) et le moteur NODE (lib/paie.js)
+   doivent donner le meme impot d'Etat et le meme net. */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of [5000, 15300, 15301, 20000, 25000, 40000, 52000, 75000, 123456, 124730, 250000, 500000, 1500000])
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "minnesota", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("minnesota", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("MN : moteur navigateur == moteur node sur " + n + " entrees (impot d'Etat et net)", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

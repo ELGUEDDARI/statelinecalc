@@ -63,6 +63,11 @@
 /* Date du dernier controle HTTP + motif de TOUTES les URL de ce fichier. */
 const VERIFIE_LE = "2026-09-30";
 
+/* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
+   VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
+   texte des documents du Minnesota relu le meme jour). */
+const VERIFIE_ETAT = { minnesota: "2026-10-06" };
+
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
 
@@ -632,6 +637,53 @@ const PAR_ETAT = {
             "Massachusetts gross income to the same extent as from federal gross income; archived " +
             "copy, for the same reason",
       motif: ["elective deferrals of your current compensation"] }
+  ],
+  minnesota: [
+    { type: "document",
+      url: "https://www.revenue.state.mn.us/sites/default/files/2025-12/wh-inst-26.pdf",
+      titre: "Minnesota Department of Revenue &mdash; 2026 Minnesota Income Tax Withholding " +
+             "Instruction Booklet and Tax Tables (PDF)",
+      quoi: "the computer formula on page 34: multiply the allowances on Form W-4MN by $5,300, " +
+            "subtract the result from annual wages, and apply the chart of 5.35%, 6.80%, 7.85% and " +
+            "9.85% rates for a single or married employee; also the rule that an employee with no " +
+            "Form W-4MN is withheld at the single rate with zero allowances",
+      motif: ["Computer Formula", "5,300"] },
+    { type: "document",
+      url: "https://www.revenue.state.mn.us/sites/default/files/2026-04/w-4mn.pdf",
+      titre: "Minnesota Department of Revenue &mdash; 2026 Form W-4MN, Minnesota Employee " +
+             "Withholding Certificate (PDF)",
+      quoi: "the worksheet that turns your situation into allowances, with one for yourself, one " +
+            "if you are single or have a non-working spouse and one job, one more if you are " +
+            "married, and one more for head of household",
+      motif: ["Determining Minnesota Allowances", "Head of Household"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260731171530/https://pl.mn.gov/resources/calculators/premium-rate-and-contributions",
+      titre: "Minnesota Paid Leave &mdash; Premium rate and contributions (Internet Archive " +
+             "snapshot of July 31, 2026)",
+      quoi: "the 2026 premium rate of 0.88% and the rule that employers can collect up to 0.44% of " +
+            "wages from employees; archived copy, because the live page refuses automated requests",
+      motif: ["0.88%", "0.44%"] },
+    { type: "document",
+      url: "https://www.revisor.mn.gov/statutes/cite/268B.14",
+      titre: "Minnesota Statutes, section 268B.14 &mdash; Premiums",
+      quoi: "the rule that employers pay at least half of the premium, that employees pay the " +
+            "rest through a wage deduction, and that the maximum wages subject to premium equal the " +
+            "maximum earnings subject to the Social Security tax",
+      motif: ["maximum wages subject to premium"] },
+    { type: "document",
+      url: "https://mn.gov/deed/business/starting-business/insurance/unemployment-insurance.jsp",
+      titre: "Minnesota Department of Employment and Economic Development &mdash; " +
+             "Unemployment Insurance, for employers",
+      quoi: "the statement that the state unemployment insurance tax is paid by employers and " +
+            "&ldquo;may not be withheld from employee wages&rdquo;",
+      motif: ["may not be withheld from employee wages"] },
+    { type: "document",
+      url: "https://www.revisor.mn.gov/statutes/cite/290.92",
+      titre: "Minnesota Statutes, section 290.92 &mdash; Tax withheld at source upon wages",
+      quoi: "the definition of &ldquo;wages&rdquo; for state withholding as the same term used in " +
+            "section 3401 of the Internal Revenue Code, the federal definition this page " +
+            "applies to a 401(k) contribution",
+      motif: ["3401(a), (f), and (i)"] }
   ]
 };
 
@@ -794,7 +846,7 @@ ${agences.map(ligneAgence).join("\n")}
 
   html += `
 
-  <p class="caption">All links checked <time datetime="${VERIFIE_LE}">${moisJour(VERIFIE_LE)}</time>.${
+  <p class="caption">All links checked <time datetime="${(cle && VERIFIE_ETAT[cle]) || VERIFIE_LE}">${moisJour((cle && VERIFIE_ETAT[cle]) || VERIFIE_LE)}</time>.${
     manque ? " One source is named on this page but not linked: " + manque + ", so we have no " +
              "link we have checked ourselves and we will not publish one we have not. The figures " +
              "and the dates we read them are on our <a href=\"/methodology/\">methodology page</a>." : ""

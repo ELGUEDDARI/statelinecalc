@@ -2881,6 +2881,142 @@ const RATES_2026 = {
       employeePrograms: [
         { label: "MA paid family and medical leave (0.46%)", rate: 0.0046, wageCap: 184500 }
       ]
+    },
+
+    /* =======================================================================
+       MINNESOTA  -  lu le 2026-10-06 (revenue.state.mn.us et mn.gov/deed
+       repondent 200 ; pl.mn.gov repond 405 « confirm you are human » a un
+       navigateur headless : la page du Paid Leave est lue dans l'instantane
+       Internet Archive cite plus bas, octets bruts `id_`)
+       -----------------------------------------------------------------------
+       1. LA METHODE DE RETENUE. Minnesota Department of Revenue, « 2026
+          Minnesota Income Tax Withholding Instruction Booklet and Tax Tables
+          - Start using this booklet Jan. 1, 2026 » (PDF, 77 pages,
+          https://www.revenue.state.mn.us/sites/default/files/2025-12/
+          wh-inst-26.pdf, telecharge et lu en `pdftotext` le 2026-10-06),
+          page 34, « Computer Formula » : « This formula supersedes any
+          formulas before Jan. 1, 2026. »
+            Step 2 : salaire annuel = salaire x periodes par an.
+            Step 3 : « Multiply the number of the employee's withholding
+                     allowances by $5,300. »
+            Step 4 : « Subtract the result in step 3 from the result in step
+                     2. If zero or less, stop here. There is no tax to
+                     withhold. »
+            Step 6 : « You may round the amount to the nearest dollar. »
+          « Chart for Step 5 » (resultat de l'etape 4 -> impot annuel) :
+            celibataire : 4 700 a 38 010 : (x - 4 700) x 5,35 % ;
+                          38 010 a 114 130 : 1 782,09 + 6,80 % de l'exces ;
+                          114 130 a 207 850 : 6 958,25 + 7,85 % ;
+                          au-dela de 207 850 : 14 315,27 + 9,85 %.
+            marie       : 14 700 a 63 400 : (x - 14 700) x 5,35 % ;
+                          63 400 a 208 180 : 2 605,45 + 6,80 % ;
+                          208 180 a 352 630 : 12 450,49 + 7,85 % ;
+                          au-dela de 352 630 : 23 789,82 + 9,85 %.
+          Les colonnes « Add » se recoupent entre elles : 33 310 x 5,35 % =
+          1 782,09 ; 1 782,09 + 76 120 x 6,80 % = 6 958,25 ; etc. (idem marie).
+          VERIFICATION INDEPENDANTE (2026-10-06) : les tables imprimees du
+          meme PDF (hebdomadaire, toutes les 2 semaines, 2 fois par mois,
+          mensuelle, celibataire et marie, 11 colonnes de 0 a 10 allocations)
+          sont reproduites par cette formule annualisee au milieu de chaque
+          ligne : 6 666 valeurs lues (606 lignes de 20 $ de large ou moins x 11
+          colonnes), ecart maximal 0,4996 $, c'est-a-dire que chaque valeur
+          imprimee est la valeur de la formule arrondie au dollar. 66 valeurs
+          (6 lignes) sont ecartees : `pdftotext` y inverse les bornes basse et
+          haute (la borne haute lue inferieure a la basse), ce qui est un defaut
+          de lecture du PDF, pas un autre taux. Le 5,35 %, le 6,80 %, le 7,85 %,
+          le 9,85 %, les seuils et les 5 300 $ sont donc recoupes par l'agence elle-meme.
+       2. LES ALLOCATIONS. Form W-4MN 2026 (Rev. 4/26,
+          https://www.revenue.state.mn.us/sites/default/files/2026-04/
+          w-4mn.pdf, lu le 2026-10-06), Section 1 : « A Enter "1" if no one
+          else can claim you as a dependent » ; « B Enter "1" if ... You are
+          single and have only one job / You are married, have only one job,
+          and your spouse does not work » ; « C Enter "1" if you are married,
+          or enter "0" if you are married and have either a working spouse or
+          more than one job » ; « E Enter "1" if you will use the filing
+          status Head of Household ». « If no Form W-4MN is in effect, the
+          number of withholding allowances claimed will be zero. » Le booklet
+          (p. 3) : « If the employee does not complete a Form W-4MN, you must
+          withhold tax at the single filing status with zero allowances. »
+          Le Department ne publie que deux tables (celibataire, marie) : un
+          chef de famille non marie utilise la table celibataire avec une
+          allocation de plus (etape E).
+       3. MODELISATION.
+          - celibataire : A + B = 2 allocations = 2 x 5 300 = 10 600 $.
+          - marie, un seul emploi, conjoint sans salaire : A + B + C = 3
+            allocations = 15 900 $, table « married ».
+          - chef de famille : A + B + E = 3 allocations = 15 900 $, table
+            « single ».
+          - aucune personne a charge (etape D), aucune deduction detaillee
+            (feuille « Itemized Deductions »), aucun revenu hors salaire.
+          - la tranche a 0 % (0 a 4 700 $ celibataire, 0 a 14 700 $ marie) est
+            modelisee comme une premiere tranche a taux 0.
+          - NON MODELISE : le choix « Married, but withhold at higher Single
+            rate », les allocations de deux emplois, la retenue
+            supplementaire de la ligne 2 de la W-4MN, l'arrondi au dollar
+            facultatif de l'etape 6, la retenue forfaitaire de 6,25 % sur les
+            versements supplementaires (primes, heures supplementaires payees
+            a part : booklet p. 7).
+       4. 401(k). Minnesota Statutes 290.92, subd. 1 (1) (revisor.mn.gov, lu le
+          2026-10-06) : « For purposes of this section, the term "wages" means
+          the same as that term is defined in section 3401(a), (f), and (i) of
+          the Internal Revenue Code. » Le moteur retranche donc le 401(k) classique
+          de la base, comme pour l'impot federal. Choix de modelisation dit sur
+          la page : le booklet lui-meme ne parle pas du 401(k) des salaries ; la
+          page dit « same treatment », sans affirmer que l'IRC 3401 l'exclut.
+       5. PAID LEAVE (Minnesota Paid Leave, DEED). pl.mn.gov, « Premium rate
+          and contributions », instantane Internet Archive 2026-07-31
+          (web.archive.org/web/20260731171530id_/https://pl.mn.gov/resources/
+          calculators/premium-rate-and-contributions) :
+            « For 2026 and 2027, the Paid Leave premium rate is 0.88%. This
+            rate covers Family Leave (0.27%) and Medical Leave (0.61%). »
+            « Employers can collect up to 0.44% of wages from employees to
+            cover their portion of the premium. Employers can choose to cover
+            more of the premium for some or all of their employees. »
+            « Premiums are capped at the Old-Age, Survivors, and Disability
+            Insurance (OASDI) limit. ... For Paid Leave, this means wages up
+            to $185,000 are subject to premiums. »
+            Petits employeurs : taux reduit de 0,66 % ; « The maximum
+            contribution from employees in this case is the same as an
+            employee of a large employer. »
+          -> 0,44 % MAXIMUM retenable. PLAFOND : la page de l'agence dit
+          « wages up to $185,000 » (arrondi : son code archive contient
+          OASDI_LIMIT_2025 = 176000 pour 176 100 reels), mais la LOI dit,
+          Minn. Stat. 268B.14 subd. 4 (revisor.mn.gov, lu le 2026-10-06) :
+          « The maximum wages subject to premium in a calendar year is equal
+          to the maximum earnings in that year subject to the FICA Old-Age,
+          Survivors, and Disability Insurance tax. » -> 184 500 $ en 2026
+          (releve par le controle independant). Le moteur applique la loi.
+          « Up to » : un employeur peut prendre moins.
+       6. CHOMAGE. mn.gov/deed, « Unemployment Insurance » (lu le 2026-10-06) :
+          « Employers with covered employment must pay quarterly unemployment
+          insurance tax into the Minnesota Unemployment Insurance Trust Fund
+          ... This tax is a percentage of the taxable wages paid to employees
+          and may not be withheld from employee wages. » -> aucune retenue de
+          chomage salariee.
+       7. IMPOT LOCAL. Aucun document lu (booklet, W-4MN, statut 290.92) ne
+          decrit un impot local sur le revenu : la page dit « we found no »,
+          jamais « Minnesota has no ». Reciprocite : le booklet (p. 5) parle des
+          accords avec le Michigan et le Dakota du Nord (non modelise).
+       ----------------------------------------------------------------------- */
+    minnesota: {
+      name: "Minnesota",
+      abbr: "MN",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 10600,
+          marriedJoint: 15900,
+          headOfHousehold: 15900
+        },
+        brackets: {
+          single:          [[4700, 0], [38010, 0.0535], [114130, 0.068], [207850, 0.0785], [Infinity, 0.0985]],
+          marriedJoint:    [[14700, 0], [63400, 0.0535], [208180, 0.068], [352630, 0.0785], [Infinity, 0.0985]],
+          headOfHousehold: [[4700, 0], [38010, 0.0535], [114130, 0.068], [207850, 0.0785], [Infinity, 0.0985]]
+        }
+      },
+      employeePrograms: [
+        { label: "MN paid leave (0.44%)", rate: 0.0044, wageCap: 184500 }
+      ]
     }
   }
 };
