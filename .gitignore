@@ -38,3 +38,7 @@ node_modules/
 data/semrush-*.csv
 data/ahrefs-*.csv
 00-*.txt
+
+# Config locale de Claude Code : chemins de la machine, jamais publiee (le 06/10 git add -u l a poussee par erreur)
+.claude/
+CLAUDE.md
