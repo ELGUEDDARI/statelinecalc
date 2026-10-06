@@ -88,7 +88,10 @@ async function navigateur(url) {
 
 function textePdf(url) {
   const f = path.join(TMP, "doc.pdf");
-  execFileSync("curl", ["-s", "-L", "--max-time", "60", "-A", UA, "-o", f, url]);
+  /* Wayback sert une page HTML d'habillage a un User-Agent de navigateur :
+     « id_ » apres l'horodatage donne le fichier brut, donc le vrai PDF. */
+  const brut = url.replace(/(web\.archive\.org\/web\/\d+)\//, "$1id_/");
+  execFileSync("curl", ["-s", "-L", "--max-time", "60", "-A", UA, "-o", f, brut]);
   return execFileSync("pdftotext", ["-layout", f, "-"], { encoding: "utf8", maxBuffer: 80e6 });
 }
 
@@ -107,7 +110,16 @@ function textePdf(url) {
     let code = rep.code;
     /* PDF ou HTML : on tranche sur le TYPE MIME du serveur, jamais sur le nom
        de l'URL. Le guide georgien s'appelle « /download » et est un PDF. */
-    const estPdf = /pdf/i.test(rep.type) || s.url.endsWith(".pdf");
+    let estPdf = /pdf/i.test(rep.type) || s.url.endsWith(".pdf");
+    /* Wayback repond « text/html » (page d'habillage) pour un PDF archive :
+       on interroge alors la version brute (« id_ ») pour connaitre le vrai type. */
+    if (!estPdf && /web\.archive\.org\/web\/\d+\//.test(s.url)) {
+      try {
+        const brut = s.url.replace(/(web\.archive\.org\/web\/\d+)\//, "$1id_/");
+        const ent = execFileSync("curl", ["-sIL", "--max-time", "30", brut], { encoding: "utf8" });
+        estPdf = /content-type:\s*application\/pdf/i.test(ent);
+      } catch (e) { /* type inconnu : on garde HTML */ }
+    }
     let texte = "", via = "curl";
     if (code !== 200) {
       const codeCurl = code;
@@ -125,8 +137,16 @@ function textePdf(url) {
     }
     /* Un `document` doit porter son chiffre. On lit le texte rendu. */
     try {
-      if (!texte) texte = estPdf ? textePdf(s.url) : (await navigateur(s.url)).texte;
+      for (let essai = 0; essai < 3 && !texte; essai++) {
+        try { texte = estPdf ? textePdf(s.url) : (await navigateur(s.url)).texte; } catch (e) { texte = ""; }
+      }
     } catch (e) { texte = ""; }
+    /* Texte vide apres 3 essais = telechargement rate, pas « motif absent » :
+       on le dit INDETERMINE au lieu de condamner un document peut-etre bon. */
+    if (!texte.trim()) {
+      ko++; console.log("  INDETERMINE | " + cle.padEnd(15) + " | texte illisible apres 3 essais | " + s.url);
+      continue;
+    }
     /* Normalisation avant comparaison : les sites d'agence ecrivent
        « employees&rsquo; wages » avec une apostrophe typographique, nos motifs
        avec une apostrophe droite. Sans ca, un motif juste echoue. */
