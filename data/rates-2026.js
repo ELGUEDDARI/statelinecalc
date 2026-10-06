@@ -3882,6 +3882,128 @@ const RATES_2026 = {
           }
         }
       }
+    },
+
+    /* =======================================================================
+       OKLAHOMA  -  lu le 2026-10-06 (oklahoma.gov/tax, oklahoma.gov/oesc : HTTP 200
+       dans un Chromium reel ; les PDF repondent 200 a curl)
+       37e Etat. Aucun mecanisme moteur nouveau : tranches avec une premiere
+       tranche a 0 % + personalExemption par statut (comme le Wisconsin).
+       -----------------------------------------------------------------------
+       1. LA FORMULE DE RETENUE. Oklahoma Tax Commission, « 2026 Oklahoma Income
+          Tax Withholding Tables », Packet OW-2, « Revised 11-2025 », « Effective
+          Date: January 1, 2026 » (PDF,
+          https://oklahoma.gov/content/dam/ok/en/tax/documents/resources/publications/businesses/withholding-tables/WHTables-2026.pdf,
+          telecharge et lu en pdftotext le 2026-10-06). Citations :
+            « The percentage rate tables are based on the net wage amount. To
+            compute the net amount of the payment, you must first calculate the
+            employee's/payee's withholding allowance amount and deduct it from the
+            gross wage or payment for the period before using the percentage rate
+            tables. The number of withholding allowances claimed on OTC Form
+            OK-W-4 must be used. »
+            « An individual's withholding allowance amount is the Oklahoma
+            individual income tax personal exemption amount of $1,000.00 divided
+            by the number of payroll periods in the calendar year. »
+            Table 7 : ANNUAL Payroll Period, « A. SINGLE PERSON » (apres
+            deduction des allowances) :
+              « $0 $10,100 $ 0.00 »
+              « $10,100 $11,250 $ 0.00 +(2.50% of the excess over $10,100) »
+              « $11,250 $13,550 $ 28.75 +(3.50% of the excess over $11,250) »
+              « $13,550 and above $109.25 +(4.50% of the excess over $13,550) »
+            « B. MARRIED PERSON » : « $0 $20,200 $ 0.00 », « $20,200 $22,500 $ 0.00
+            +(2.50% of the excess over $20,200) », « $22,500 $27,100 $ 57.50
+            +(3.50% of the excess over $22,500) », « $27,100 and above $218.50
+            +(4.50% of the excess over $27,100) ».
+          => PAS de deduction standard dans la formule : la premiere tranche a
+          0 % la contient. 10 100 $ = 3 750 $ (tranche a 0 % de la loi) + 6 350 $
+          (deduction standard celibataire) ; 20 200 $ = 7 500 $ + 12 700 $. Les
+          taux de la loi 2026 (HB 2764, 68 O.S. 2355, effective 1er novembre 2025) :
+          Oklahoma Tax Commission, « 2025 Tax Legislation Summary » (PDF,
+          https://oklahoma.gov/content/dam/ok/en/tax/documents/resources/publications/legislation/2025LegislativeUpdate.pdf,
+          lu le 2026-10-06) : « Individual income tax rate reduction, effective
+          for tax year 2026 and subsequent tax years. (68 O.S. 2355) », tranches
+          « 0 $3,750 $0.00 0.0% », « $3,751 $4,900 $0.00 2.5% $3,750 », « $4,901
+          $7,200 $28.75 3.5% $4,900 », « $7,201 and above $109.25 4.5% $7,200 »
+          (celibataire) ; 7 500 / 9 800 / 14 400 et « $57.50 », « $218.50 » (marie,
+          chef de famille, conjoint survivant). Le meme document : « individual
+          income tax rates can be reduced by 0.25% across all brackets when certain
+          revenue conditions are met. The State Board of Equalization evaluates
+          this each December and makes final certification in February. (62 O.S.
+          34.103) ». BAISSE DECLENCHEE PAR LE BOARD OF EQUALIZATION : le
+          Revenue Impact Statement de la Legislature sur HB 2764 (version CS, 19/05/2025,
+          https://www.oklegislature.gov/cf_pdf/2025-26%20SUPPORT%20DOCUMENTS/impact%20statements/fiscal/Senate/HB2764%20CS%20FI.PDF,
+          lu le 2026-10-06) : « The initial tax year a "triggered" rate cut could be
+          enacted is tax year 2028. » et « In the December 2026 meeting, the State Board
+          of Equalization (BOE) would be required to make a preliminary certification »
+          => aucune baisse declenchee ne peut toucher 2026. LIMITE : c'est la note de
+          la version CS, pas le texte promulgue ; l'OW-2 de novembre 2025 reste la seule
+          table 2026 de la page des publications de l'agence (lue le 2026-10-06 : 2022 a
+          2026 listees). A relire en janvier 2027.
+          LE MOTEUR : brackets = [[10100, 0], [11250, 0.025], [13550, 0.035],
+          [Infinity, 0.045]] (celibataire) ; [[20200, 0], [22500, 0.025], [27100,
+          0.035], [Infinity, 0.045]] (marie). Les montants de base imprimes (28,75 ;
+          109,25 ; 57,50 ; 218,50) sont exactement la somme des tranches :
+          0,025 x 1 150 = 28,75 ; + 0,035 x 2 300 = 109,25 ; 0,025 x 2 300 = 57,50 ;
+          + 0,035 x 4 600 = 218,50. .tooling/test/verif-retenue-ok.js le recoupe.
+       2. LES ALLOWANCES (Form OK-W-4, Revised 3-2021, lue le 2026-10-06,
+          https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/businesses/general/OK-W-4.pdf).
+          Citations : « 1. Allowance For Yourself: Enter 1 for yourself », « 2.
+          Allowance For Your Spouse: Does your spouse work? Yes No If Yes, enter 0.
+          If no, enter 1 for your spouse », « 3. Allowance For Dependents ». Chaque
+          allowance = 1 000 $ par an (OW-2). => celibataire 1 000 $ ; marie dont
+          le conjoint ne travaille pas 2 000 $ (choix de modelisation, comme les
+          2 exemptions du Maryland : une seule paie dans le foyer). Chef de famille :
+          l'OK-W-4 n'offre que Single / Married / « Married, but withhold at higher
+          Single rate », le OW-2 n'a que deux tables : le moteur applique la table
+          « Single » et 1 allowance (choix de modelisation, DIT sur la page).
+          « If a taxpayer has elected the option of "Married, but withhold at higher
+          Single rate" on OTC Form OK-W-4, use the appropriate Single Persons
+          withholding table. »
+          Arrondi : « Round to the nearest whole dollar by dropping any amount under
+          50 cents and increasing amounts from 50 to 99 cents to the next higher
+          dollar. » Le moteur n'arrondit pas (comme pour tous les autres Etats).
+       3. PAS DE TAXE LOCALE SUR LES SALAIRES TROUVEE : le OW-2 et la page « Withholding
+          Tax » de l'agence (https://oklahoma.gov/tax/businesses/withholding.html,
+          lue le 2026-10-06) ne decrivent qu'une retenue d'Etat, versee a l'agence :
+          « Withholding tax is the amount that an employer withholds from employees'
+          wages and pays directly to the state. » NEGATIF NON PROUVABLE : la page dit
+          « we found no », jamais « Oklahoma has no ». Aucune source officielle
+          affirmant l'absence d'impot local sur les salaires n'a ete trouvee (les
+          sites tiers le disent : non retenus).
+       4. PAS D'ASSURANCE INVALIDITE NI DE CONGE PAYE D'ETAT TROUVES : aucun document
+          lu (OW-2, OK-W-4, pages de l'OESC) n'en decrit une ; « we found no ».
+       5. ASSURANCE CHOMAGE. Oklahoma Employment Security Commission, « Paying
+          Unemployment Tax » (https://oklahoma.gov/oesc/employers/tax.html, lue le
+          2026-10-06) : « Most Oklahoma employers are required to pay a tax to the
+          Oklahoma Unemployment Insurance (UI) Trust Fund. » Et OES-175 (Employer
+          Handbook, Rev. 08-2024, https://oklahoma.gov/content/dam/ok/en/oesc/documents/forms/OES-175.pdf).
+          Aucune retenue salariale decrite : pas d'employeePrograms. ⚠️ La page
+          « Contribution Rates » affiche le millesime 2027 (base salariale « $24,400 »,
+          lue le 2026-10-06) : le montant de la base 2026 N'A PAS ETE LU, ne pas
+          l'ecrire sur la page.
+       6. NON MODELE : personnes a charge (1 000 $ chacune), allowances
+          supplementaires (ligne 4), retenue supplementaire (ligne 6), statut
+          « Exempt » (lignes 7 a 9), deduction de la pension militaire, non-residents,
+          primes, chef de famille (table Single).
+       ----------------------------------------------------------------------- */
+    oklahoma: {
+      name: "Oklahoma",
+      abbr: "OK",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Aucune deduction standard dans la formule de retenue (la tranche a 0 %
+           la contient). 1 000 $ par allowance, deduits AVANT les tranches. */
+        personalExemption: {
+          single: 1000,
+          marriedJoint: 2000,
+          headOfHousehold: 1000
+        },
+        brackets: {
+          single:          [[10100, 0], [11250, 0.025], [13550, 0.035], [Infinity, 0.045]],
+          marriedJoint:    [[20200, 0], [22500, 0.025], [27100, 0.035], [Infinity, 0.045]],
+          headOfHousehold: [[10100, 0], [11250, 0.025], [13550, 0.035], [Infinity, 0.045]]
+        }
+      }
     }
   }
 };

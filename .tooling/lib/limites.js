@@ -75,6 +75,14 @@ const LOCAL_PAR_ETAT = {
     that levies one. The City of Birmingham, for example, lists an occupational tax on its Tax and License Division
     page. This calculator adds no local line for Alabama. The only local income tax lines on this site are on the
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
+  /* Oklahoma (06/10/2026) : le OW-2 et la page « Withholding Tax » de l'OTC ne decrivent qu'une retenue
+     d'Etat. Aucune source officielle n'affirme l'absence de taxe locale sur les salaires : « we found no »,
+     jamais « Oklahoma has no ». */
+  oklahoma: `    <li><strong>Local taxes</strong> &mdash; city income tax, county tax, or a school-district
+    tax. The Oklahoma Tax Commission&rsquo;s withholding tables and withholding page cover only state withholding,
+    and we found no local income tax on wages in the agency pages we read. That is not proof that none exists. This
+    calculator adds no local line for Oklahoma. The only local income tax lines on this site are on the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

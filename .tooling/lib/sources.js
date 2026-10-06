@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -900,6 +900,36 @@ const PAR_ETAT = {
     { type: "agence",
       url: "https://www.birminghamal.gov/government/city-departments/finance/tax-license-division",
       titre: "City of Birmingham &mdash; Tax and License Division (it lists an occupational tax)" }
+  ],
+  oklahoma: [
+    { type: "document",
+      url: "https://oklahoma.gov/content/dam/ok/en/tax/documents/resources/publications/businesses/withholding-tables/WHTables-2026.pdf",
+      titre: "Oklahoma Tax Commission &mdash; 2026 Oklahoma Income Tax Withholding Tables, Packet OW-2 (PDF)",
+      quoi: "the withholding formula (the $1,000 allowance taken off before the percentage tables, and the single and married tables at 2.5%, 3.5% and 4.5%) and the printed wage-bracket tables",
+      motif: ["Effective Date: January 1, 2026", "personal exemption amount of $1,000.00"] },
+    { type: "document",
+      url: "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/businesses/general/OK-W-4.pdf",
+      titre: "Oklahoma Tax Commission &mdash; Form OK-W-4, Employee&rsquo;s Withholding Allowance Certificate (PDF)",
+      quoi: "the allowance for yourself and for a spouse who does not work, and the $6,350 and $12,700 standard deductions",
+      motif: ["Allowance For Yourself", "$12,700"] },
+    { type: "document",
+      url: "https://oklahoma.gov/content/dam/ok/en/tax/documents/resources/publications/legislation/2025LegislativeUpdate.pdf",
+      titre: "Oklahoma Tax Commission &mdash; 2025 Tax Legislation Summary (PDF)",
+      quoi: "the individual income tax rate reduction effective for tax year 2026 (HB 2764): 0%, 2.5%, 3.5% and 4.5%",
+      motif: ["Individual income tax rate reduction, effective for tax year 2026", "68 O.S."] },
+    { type: "document",
+      url: "https://www.oklegislature.gov/cf_pdf/2025-26%20SUPPORT%20DOCUMENTS/impact%20statements/fiscal/Senate/HB2764%20CS%20FI.PDF",
+      titre: "Oklahoma Legislature &mdash; Revenue Impact Statement for HB 2764 (committee substitute, PDF)",
+      quoi: "the statement that the first tax year in which a triggered 0.25% rate cut could take effect is 2028",
+      motif: ["could be enacted is tax year 2028"] },
+    { type: "document",
+      url: "https://oklahoma.gov/oesc/employers/tax.html",
+      titre: "Oklahoma Employment Security Commission &mdash; Paying Unemployment Tax",
+      quoi: "the statement that Oklahoma employers pay a tax to the Unemployment Insurance Trust Fund, with no deduction from employee wages described",
+      motif: ["Most Oklahoma employers are required to pay a tax to the Oklahoma Unemployment Insurance (UI) Trust Fund"] },
+    { type: "agence",
+      url: "https://oklahoma.gov/tax/businesses/withholding.html",
+      titre: "Oklahoma Tax Commission &mdash; Withholding Tax" }
   ]
 };
 

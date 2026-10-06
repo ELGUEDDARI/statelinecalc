@@ -215,10 +215,11 @@ const faq = [
    + " The lowest take-home on the page is " + bas.nom + " at $" + c0(bas.net)
    + " once every state deduction is counted."],
   ["Which states cut their income tax for 2026?",
-   "Of the " + NOMBRE + " states here, " + NOMBRE_DE(gains.length) + " changed their law for tax year 2026, "
+   "Of the " + NOMBRE + " states here, we measured the change for tax year 2026 in " + NOMBRE_DE(gains.length) + ", "
    + "and on a " + D + " salary the saving runs from $" + c2(gainMax.gain) + " in " + gainMax.nom
    + " to $" + c2(gainMin.gain) + " in " + gainMin.nom + ". Nebraska also cut its top rate from "
-   + "5.20% to 4.55%. Each change is listed above with the law behind it."],
+   + "5.20% to 4.55%, and Oklahoma lowered its rates, but we show no dollar figure for either. "
+   + "Each measured change is listed above with the law behind it."],
   ["Is " + D + " a good salary?",
    "It is above the national median. Across all US occupations the median wage is $"
    + BLS_MEDIAN.toFixed(2) + " an hour, or $" + c0(BLS_MEDIAN * 2080) + " a year at 2,080 hours, "
@@ -377,7 +378,7 @@ ${ligneEtats}
   allows first shelters a different share of a ${D} salary.</p>
 
   <h2>What the January 1, 2026 tax changes are worth on ${D}</h2>
-  <p>${Nombre(gains.length)} of these ${NOMBRE} states changed their income tax law for 2026. The figures
+  <p>We measure the 2026 change for ${NOMBRE_DE(gains.length)} of these ${NOMBRE} states. The figures
   below isolate the law: same ${D} salary, same standard deduction, the 2025 rule against the 2026
   rule. They are not a full 2025-versus-2026 return, which would also depend on that year&rsquo;s
   federal figures.</p>
@@ -418,6 +419,10 @@ ${ligneGains}
   and January 1, 2026 (Department of Revenue, Tax Rate Chronologies, Table 1). Its 2025 brackets
   are not in our rate file, so we do not put a dollar figure on it here; the
   <a href="/paycheck-calculator/nebraska/">Nebraska page</a> carries the 2026 figures in full.</p>
+  <p><strong>Oklahoma</strong> lowered its income tax rates for tax year 2026 (HB 2764; Oklahoma Tax
+  Commission, 2025 Tax Legislation Summary). We did not read its 2025 withholding rules, so we do not
+  put a dollar figure on it here; the <a href="/paycheck-calculator/oklahoma/">Oklahoma page</a> carries
+  the 2026 figures in full.</p>
 
   <h2>What this page assumes</h2>
   <ul>

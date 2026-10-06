@@ -702,9 +702,10 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
     rate of ${(ut75.taux * 100).toFixed(1)}%. A Utah worker keeps ${$$(a75.net - ut75.net)} less
     than a New Mexican on the same salary.</li>
   </ul>
-  <p>Of the four states that share a border line with New Mexico (Arizona, Colorado, Oklahoma and
-  Texas), only Texas is on this site so far, and
-  <a href="/paycheck-calculator/texas/">Texas</a> has no state income tax at all, which is why the
+  <p>All four states that share a border line with New Mexico (Arizona, Colorado, Oklahoma and
+  Texas) are on this site now: <a href="/paycheck-calculator/arizona/">Arizona</a>,
+  <a href="/paycheck-calculator/colorado/">Colorado</a>, <a href="/paycheck-calculator/oklahoma/">Oklahoma</a> and
+  <a href="/paycheck-calculator/texas/">Texas</a>. Texas has no state income tax at all, which is why the
   whole ${N($$(a75.etat))} of New Mexico tax is the gap. Utah, which touches New Mexico at Four
   Corners, is on this site too.
   <a href="/paycheck-calculator/utah/">Utah</a> runs a single flat rate and offsets it with a credit

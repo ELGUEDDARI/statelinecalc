@@ -694,8 +694,8 @@ check("WI : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("wisconsin", 5000).etat >= 0 ? 1 : 0, 1, 0);
 check("WI : la deduction glissante n'existe que pour le Wisconsin",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).length, 1, 0);
-check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026) et l'Alabama (06/10/2026)",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 4, 0);
+check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026), l'Alabama et l'Oklahoma (06/10/2026)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 5, 0);
 
 /* --- ARKANSAS -----------------------------------------------------------
    Source, lue le 2026-09-12 : "State of Arkansas, Estimated Tax Declaration
@@ -2156,6 +2156,98 @@ check("AL : bareme marie a 1 000 / 6 000 / 7 000 = 20 / 220 / 270",
         }
       }
   check("AL : moteur navigateur == moteur node sur " + n + " entrees (3 statuts x paliers de la deduction x 401(k))", ecarts, 0, 0);
+}
+
+console.log("\n=== Oklahoma (37e Etat) ===");
+
+/* Sources (lues le 2026-10-06) : Oklahoma Tax Commission, Packet OW-2 « 2026 Oklahoma Income Tax
+   Withholding Tables » (Revised 11-2025, effective January 1, 2026), table 7 annuelle :
+   celibataire « $0 $10,100 $0.00 », « 2.50% of the excess over $10,100 », « $28.75 + 3.50% over $11,250 »,
+   « $109.25 + 4.50% over $13,550 » ; marie : 20 200 / 22 500 / 27 100, bases 0 / 57,50 / 218,50.
+   Allowance : « personal exemption amount of $1,000.00 divided by the number of payroll periods »,
+   deduite du salaire AVANT la table ; OK-W-4 : 1 pour soi, 1 pour un conjoint qui ne travaille pas.
+   Aucune deduction standard dans la formule (la tranche a 0 % la contient). Aucun programme salarie.
+   Tous les attendus ci-dessous sont recalcules a la main, PAS copies de la sortie du code. */
+const okC = (b, st, rp) => calcul("oklahoma", b, st || "single", rp || 0);
+
+/* OK-1 — 75 000 $ celibataire. Federal 7 670 (58 900 imposables = 1 240 + 4 560 + 1 870).
+   Salaire net d'allowance : 75 000 - 1 000 = 74 000. Impot : 109,25 + 4,5 % x (74 000 - 13 550 = 60 450) = 109,25 + 2 720,25 = 2 829,50.
+   FICA 4 650 + 1 087,50. Net : 75 000 - 7 670 - 5 737,50 - 2 829,50 = 58 763,00. */
+check("OK 75 000 $ celibataire : impot d'Etat", okC(75000).etat, 2829.50, 0.005);
+check("OK 75 000 $ celibataire : net", okC(75000).net, 58763.00, 0.005);
+
+/* OK-2 — 75 000 $ marie : 2 allowances = 2 000 ; 73 000 ; 218,50 + 4,5 % x (73 000 - 27 100 = 45 900 -> 2 065,50) = 2 284,00.
+   Federal 4 640. Net : 75 000 - 4 640 - 5 737,50 - 2 284 = 62 338,50. */
+check("OK 75 000 $ marie : impot d'Etat", okC(75000, "marriedJoint").etat, 2284.00, 0.005);
+check("OK 75 000 $ marie : net", okC(75000, "marriedJoint").net, 62338.50, 0.005);
+
+/* OK-3 — chef de famille : table « Single », 1 allowance (choix de modelisation dit sur la page) -> meme impot d'Etat que le celibataire.
+   Federal : 75 000 - 24 150 = 50 850 imposables = 1 770 + 3 978 = 5 748. Net : 75 000 - 5 748 - 5 737,50 - 2 829,50 = 60 685,00. */
+check("OK 75 000 $ chef de famille : impot d'Etat", okC(75000, "headOfHousehold").etat, 2829.50, 0.005);
+check("OK 75 000 $ chef de famille : net", okC(75000, "headOfHousehold").net, 60685.00, 0.005);
+
+/* OK-4 — bornes. 11 000 $ : 10 000 net < 10 100 -> 0. 11 100 $ : 10 100 net -> 0. 12 000 $ : 11 000 net -> 2,5 % x 900 = 22,50.
+   12 250 $ : 11 250 net -> 28,75 exactement (2,5 % x 1 150). 14 000 $ : 13 000 net -> 28,75 + 3,5 % x 1 750 = 90,00.
+   14 550 $ : 13 550 net -> 109,25 (28,75 + 3,5 % x 2 300). */
+check("OK 11 000 $ : sous la tranche a 0 %, aucun impot", okC(11000).etat, 0, 0);
+check("OK 11 100 $ : exactement 10 100 net, aucun impot", okC(11100).etat, 0, 0);
+check("OK 12 000 $ : 22,50", okC(12000).etat, 22.50, 0.005);
+check("OK 12 250 $ : 28,75 (borne de 11 250 $)", okC(12250).etat, 28.75, 0.005);
+check("OK 14 000 $ : 90,00", okC(14000).etat, 90.00, 0.005);
+check("OK 14 550 $ : 109,25 (borne de 13 550 $)", okC(14550).etat, 109.25, 0.005);
+/* Marie : 22 200 $ -> 20 200 net : 0 ; 23 500 $ -> 21 500 : 2,5 % x 1 300 = 32,50 ; 24 500 $ -> 22 500 : 57,50 ;
+   29 100 $ -> 27 100 : 57,50 + 3,5 % x 4 600 = 218,50. */
+check("OK marie 22 200 $ : 0", okC(22200, "marriedJoint").etat, 0, 0);
+check("OK marie 23 500 $ : 32,50", okC(23500, "marriedJoint").etat, 32.50, 0.005);
+check("OK marie 24 500 $ : 57,50", okC(24500, "marriedJoint").etat, 57.50, 0.005);
+check("OK marie 29 100 $ : 218,50", okC(29100, "marriedJoint").etat, 218.50, 0.005);
+
+/* OK-5 — 30 000 $ : 29 000 net -> 109,25 + 4,5 % x 15 450 = 109,25 + 695,25 = 804,50. */
+check("OK 30 000 $ : 804,50", okC(30000).etat, 804.50, 0.005);
+
+/* OK-6 — a l'heure, 2 080 h : 20 $ = 41 600 -> 40 600 net -> 109,25 + 4,5 % x 27 050 (1 217,25) = 1 326,50 ;
+   25 $ = 52 000 -> 51 000 -> 109,25 + 4,5 % x 37 450 (1 685,25) = 1 794,50 ; 30 $ = 62 400 -> 61 400 -> 109,25 + 4,5 % x 47 850 (2 153,25) = 2 262,50. */
+check("OK 20 $/h : impot d'Etat", okC(20 * 2080).etat, 1326.50, 0.005);
+check("OK 25 $/h : impot d'Etat", okC(25 * 2080).etat, 1794.50, 0.005);
+check("OK 30 $/h : impot d'Etat", okC(30 * 2080).etat, 2262.50, 0.005);
+
+/* OK-7 — 401(k) 6 % sur 75 000 $ : 70 500 de salaire retenu, -1 000 = 69 500 ; 109,25 + 4,5 % x 55 950 (2 517,75) = 2 627,00 ;
+   economie = 2 829,50 - 2 627,00 = 202,50 (choix de modelisation : l'OW-2 ne traite pas le 401(k)). */
+check("OK 401(k) 6 % : impot d'Etat sur 75 000 $", okC(75000, "single", 0.06).etat, 2627.00, 0.005);
+
+/* Aucune retenue salariee d'Etat, aucune taxe locale modelisee. */
+check("OK : aucun programme salarie, aucun conge paye, aucune deduction standard dans la formule",
+  okC(75000).programmes.length === 0 && okC(75000).paidLeave === 0 && okC(75000).waCares === 0 &&
+  !R.states.oklahoma.employeePrograms && !R.states.oklahoma.paidLeave &&
+  R.states.oklahoma.incomeTax.standardDeduction === undefined ? 1 : 0, 1, 0);
+check("OK : la premiere tranche a 0 % contient la deduction standard (3 750 + 6 350 = 10 100 ; 7 500 + 12 700 = 20 200)",
+  (3750 + 6350 === R.states.oklahoma.incomeTax.brackets.single[0][0] &&
+   7500 + 12700 === R.states.oklahoma.incomeTax.brackets.marriedJoint[0][0]) ? 1 : 0, 1, 0);
+check("OK : bases imprimees 28,75 / 109,25 (celibataire) et 57,50 / 218,50 (marie) = somme des tranches",
+  [progressiveTax(11250, R.states.oklahoma.incomeTax.brackets.single), progressiveTax(13550, R.states.oklahoma.incomeTax.brackets.single),
+   progressiveTax(22500, R.states.oklahoma.incomeTax.brackets.marriedJoint), progressiveTax(27100, R.states.oklahoma.incomeTax.brackets.marriedJoint)].map(x => x.toFixed(2)).join() === "28.75,109.25,57.50,218.50" ? 1 : 0, 1, 0);
+
+/* Le moteur NAVIGATEUR et le moteur NODE doivent donner le meme impot d'Oklahoma, le meme net. */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 3000, 10100, 11100, 11101, 12250, 14550, 20200, 22200, 24500, 29100, 52000, 75000, 100001, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "oklahoma", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("oklahoma", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("OK : moteur navigateur == moteur node sur " + n + " entrees (3 statuts x bornes des tranches x 401(k))", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

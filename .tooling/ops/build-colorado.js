@@ -100,8 +100,8 @@ const impotFinal75 = (75000 - fedDed.single) * TAUX;              // 2,591.60
 const GAIN_DR0004 = (DR0004_SEUL - ALLOC) * TAUX;                 // 374.00
 const DENVER_AN = DENVER_OPT * 12;                                // 69
 
-/* Voisins terrestres publies : Wyoming, Nebraska, New Mexico, Utah. Kansas et
-   Oklahoma ne sont pas publies. */
+/* Voisins terrestres publies : Wyoming, Nebraska, New Mexico, Utah. Kansas n'est pas publie ;
+   Oklahoma l'est depuis le 06/10/2026 mais n'est pas dans le tableau (4 voisins). */
 const REF = 75000;
 const COMPARE = [CLE, "wyoming", "nebraska", "new-mexico", "utah"];
 const NOMS = { [CLE]: "Colorado", wyoming: "Wyoming", nebraska: "Nebraska", "new-mexico": "New Mexico", utah: "Utah" };
@@ -717,7 +717,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
 
   <h2>Compare with other states</h2>
   <p>The same ${N($(REF))} salary, single filer, 2026 rates, against four of Colorado&rsquo;s neighbors
-  that we publish. Kansas and Oklahoma, and Arizona at the Four Corners, are not on this site yet.</p>
+  that we publish. <a href="/paycheck-calculator/oklahoma/">Oklahoma</a>, which also borders Colorado, has its own calculator here. <a href="/paycheck-calculator/arizona/">Arizona</a>, at the Four Corners, has one too. Kansas is not on this site yet.</p>
   <div class="table-scroll">
     <table>
       <caption class="caption caption-left">
