@@ -310,9 +310,26 @@
     if (state.incomeTax.hasIncomeTax && ct) {
       var ck = (input.county && ct.rates[input.county]) ? input.county : ct.defaultCounty;
       var cRow = ct.rates[ck];
-      var cRate = +(cRow[1] * 100).toFixed(4);
-      programmes.push({ label: cRow[0] + " County income tax (" + cRate + "%)",
-                        amount: imposableCounty * cRow[1], county: true });
+      /* Maryland (added 2026-10-06): Anne Arundel and Frederick have a local rate
+         that depends on taxable income. The Withholding Guide does not say which of
+         its ten tables to use for them; we apply the table that equals or slightly
+         exceeds the rate for the taxable-income step ("Use the rate that equals or
+         slightly exceeds the actual local income tax rate"), to the whole taxable
+         income, like every table in the Guide. Baltimore City is not a county, so
+         its label does not say "County". The Guide's $5,000 floor applies to the
+         local tax too. */
+      var cOpts = cRow[2];
+      var cTaux = cRow[1];
+      if (cOpts && cOpts.graduated) {
+        var cG = (input.filingStatus in cOpts.graduated) ? cOpts.graduated[input.filingStatus] : cOpts.graduated.single;
+        for (var gi = 0; gi < cG.length; gi++) {
+          if (cG[gi][0] === null || imposableCounty <= cG[gi][0]) { cTaux = cG[gi][1]; break; }
+        }
+      }
+      var cRate = +(cTaux * 100).toFixed(4);
+      var cFloor = state.incomeTax.noWithholdingBelow;
+      programmes.push({ label: cRow[0] + ((cOpts && cOpts.city) ? "" : " County") + " income tax (" + cRate + "%)",
+                        amount: (cFloor && gross < cFloor) ? 0 : imposableCounty * cTaux, county: true });
     }
     var totalProgrammes = programmes.reduce(function (t, pg) { return t + pg.amount; }, 0);
 

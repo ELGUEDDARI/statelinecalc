@@ -3511,6 +3511,238 @@ const RATES_2026 = {
       name: "South Dakota",
       abbr: "SD",
       incomeTax: { hasIncomeTax: false }
+    },
+
+    /* =======================================================================
+       MARYLAND  -  lu le 2026-10-06 (marylandcomptroller.gov, paidleave.maryland.gov,
+       labor.maryland.gov, dls.maryland.gov : HTTP 200)
+       35e Etat. Reporte depuis le 17/09 (impot local a 24 juridictions) ; depuis,
+       le moteur a gagne countyTax (Indiana) et deductionByIncome (Ohio).
+       SERP (WebSearch du 2026-10-06, UNE requete, sans geo) : joinotto.com,
+       QuickBooks, puis des clones/spam de domaines tiers ; mesure partielle, a
+       refaire en GSC.
+       -----------------------------------------------------------------------
+       1. LA METHODE DE RETENUE. Comptroller of Maryland, « Maryland Employer
+          Withholding Guide », « This guide is effective January 2026 and includes
+          local income tax rates », « Revised December 2025 » (PDF,
+          https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/withholding/2026/withholding-guide.pdf,
+          telecharge et lu en pdftotext le 2026-10-06). Citations :
+            « For the purpose of the percentage method calculation the Standard
+            Deduction is $3,400. »
+            « 1. Subtract an allowance for Standard Deduction from the employee's
+            wages. 2. Multiply the amount of one withholding exemption for the
+            payroll period by the number of exemptions claimed on the employee's
+            Form MW507. 3. Subtract the amount determined in Step 2 from the
+            employee's wages. 4. Apply the appropriate percentage rate table to
+            the resulting figure to determine the amount of withholding, based on
+            the employee's county of residence. »
+            Tables (periode « Annually ») : « Amount of one exemption $ 3,200.00 »,
+            « Standard Deduction* $ 3,400.00 ».
+            « Maryland law provides that the Comptroller develop withholding tax
+            schedules to approximate the tax on wages, without considering the tax
+            rates in effect that are less than 4.75%. »
+            « The SINGLE rate is used by single employees; employees who are
+            dependents on another person's tax return, or employees who are
+            Married planning to file separately. The JOINT rate is used by Married
+            taxpayers who plan to file joint returns, employees who qualify for
+            Head of Household status on their tax return, or for employees who
+            qualify as Widow or Widower with a dependent child. »
+            « DO NOT WITHHOLD ON GROSS WAGES LESS THAN $5,000.00 » (tables annuelles).
+          => la retenue ignore les taux d'Etat de 2 %, 3 % et 4 % (sur les 3 000
+          premiers dollars imposables) : 4,75 % des le premier dollar. Les tranches
+          ensuite (colonne « Annually », table 3.20 % : « 0 - 100,000 7.95% »,
+          « 100,000 - 125,000 7,950.00 plus 8.20% », 8,45 %, 8,70 %, 8,95 %, 9,45 %,
+          9,70 % ; marie / chef de famille : 150 000, 175 000, 225 000, 300 000,
+          600 000, 1 200 000) = 4,75 / 5,00 / 5,25 / 5,50 / 5,75 / 6,25 / 6,50 %
+          d'Etat + 3,20 % local, donc des tranches d'Etat ordinaires. Memorandum
+          « 2026 Maryland State and Local Income Tax Withholding Information »
+          (Central Payroll Bureau, 4 fevrier 2026,
+          https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf) :
+          meme bareme d'Etat. .tooling/test/verif-retenue-md.js recoupe notre moteur
+          contre les tables annuelles imprimees des DIX taux locaux, aux deux statuts.
+       2. LES EXEMPTIONS (Form MW507, COM/RAD-036 07/25, millesime 2026,
+          https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/forms/2026/mw507.pdf,
+          lu le 2026-10-06). Citations :
+            « Enter on line 1 below, the number of personal exemptions you will
+            claim on your tax return. However, ... if your adjusted gross income
+            will be more than $100,000 if you are filing single or married filing
+            separately ($150,000, if you are filing jointly or as head of
+            household), you must complete the Personal Exemption Worksheet on page 2. »
+            « Generally the value of your exemption will be $3,200; however, if
+            your federal adjusted gross income is expected to be over $100,000,
+            the value of your exemption may be reduced. »
+            « f. Divide the amount on line e by $3,200. Drop any fraction. Do not
+            round up. This is the maximum number of exemptions you may claim for
+            withholding tax purposes. »
+            Table : single / married filing separately : 3 200 $ jusqu'a 100 000 $ ;
+            1 600 $ de 100 000 a 125 000 $ ; 800 $ de 125 000 a 150 000 $ ; 0 $
+            au-dela de 150 000 $ ; joint / chef de famille / veuf : 3 200 $ jusqu'a
+            150 000 $ ; 1 600 $ jusqu'a 175 000 $ ; 800 $ jusqu'a 200 000 $ ; 0 $
+            au-dela.
+          => nombre MAXIMUM d'exemptions = partie entiere de (exemptions x valeur) /
+          3 200 : celibataire 1 jusqu'a 100 000 $ puis 0 ; joint (2 exemptions)
+          2 jusqu'a 150 000 $, 1 jusqu'a 175 000 $, 0 au-dela ; chef de famille
+          (1 exemption, aucune personne a charge) 1 jusqu'a 150 000 $ puis 0.
+          Le Guide : « If an employee fails to furnish a certificate, the employer
+          is required to withhold the tax as if the employee had claimed one
+          withholding exemption. » La base de ces seuils est le revenu brut ajuste
+          federal ATTENDU ; le moteur lit le salaire apres 401(k), faute de mieux.
+          deductionByIncome = standard 3 400 $ + exemptions x 3 200 $, par palier.
+       3. L'IMPOT LOCAL. Le Guide : « For employees who are residents of
+          Maryland, use the rate corresponding to the area where the employee
+          lives. Since each county sets its local income tax rate, there is the
+          possibility of having 24 different local income tax rates. We have
+          calculated 10 local income tax rates. Use the rate that equals or
+          slightly exceeds the actual local income tax rate to ensure that
+          sufficient tax is withheld. » Les dix tables : 2,25 / 2,40 / 2,65 /
+          2,75 / 2,85 / 3,00 / 3,05 / 3,10 / 3,20 / 3,30 %. Meme base que l'Etat
+          (revenu imposable de la formule), donc countyTax du moteur.
+          TAUX REELS 2026 par juridiction : memorandum du 4 fevrier 2026,
+          « Attachment 1, Local Income Tax Withholding Rates for 2026 » (taux
+          lus dans le PDF avec pdftotext -raw ; ils recoupent la colonne CY 2026
+          de « Local Income Tax Rates in Maryland », Department of Legislative
+          Services, https://dls.maryland.gov/pubs/prod/NoPblTabPDF/2026CountyLocalTaxRates.pdf,
+          source « Office of the Comptroller; Department of Legislative
+          Services »). Le memorandum dit aussi : « The county of residence, which
+          determines the rate of the local withholding portion, is the county
+          submitted on Form MW507. »
+          LE MOTEUR RETIENT LE TAUX DE LA TABLE (le premier >= taux reel, regle du
+          Guide), pas le taux reel : Carroll et Charles 3,03 -> 3,05 ; Cecil 2,74 ->
+          2,75 ; Harford 3,06 -> 3,10 ; Washington 2,95 -> 3,00. Le taux reel est
+          garde dans « actual » pour la page. Les autres juridictions simples
+          tombent pile sur une table.
+          ANNE ARUNDEL ET FREDERICK ont un taux local PROGRESSIF (memorandum et
+          Guide) : AA, celibataire 2,70 % jusqu'a 50 000 $, 2,94 % jusqu'a 400 000 $,
+          3,20 % au-dela ; joint / chef de famille : 75 000 $ et 480 000 $.
+          Frederick, celibataire : 2,25 % jusqu'a 25 000 $, 2,75 % jusqu'a 50 000 $,
+          2,96 % jusqu'a 150 000 $, 3,20 % au-dela ; joint : 25 000 $, 100 000 $,
+          250 000 $. LE GUIDE NE DIT PAS quelle des dix tables s'applique a ces deux
+          comtes : CHOIX DE MODELISATION, DIT SUR LA PAGE, on applique la table >=
+          au taux du palier du revenu imposable (2,70 -> 2,75 ; 2,94 / 2,96 -> 3,00 ;
+          3,20 -> 3,20), a tout le revenu imposable, comme les autres tables.
+          Choix par defaut, DIT sur la page : Montgomery (3,20 %, le comte le plus
+          peuple de l'Etat, et 3,20 % est aussi le taux de la majorite des
+          juridictions, dont Baltimore City et Baltimore County). Un selecteur donne
+          les 23 autres. Baltimore City n'est pas un comte mais se retient comme un
+          comte (county code 04 du memorandum) : city:true dans le moteur,
+          l'etiquette ne dit pas « County ».
+       4. ASSURANCE FAMILIALE ET MEDICALE (FAMLI) : AUCUNE COTISATION EN 2026.
+          Maryland Department of Labor, https://paidleave.maryland.gov/employees
+          (lu le 2026-10-06), verbatim : « The total rate is 0.9% of your wages up
+          to the Social Security cap- you pay up to half of that (0.45%), and your
+          employer pays the rest. Starting January 2027, your employer will deduct
+          your share from each paycheck, similar to Social Security. » Et la fiche
+          https://paidleave.maryland.gov/files/understand-famli.pdf : « January 1,
+          2027: Employers begin withholding from employees' pay. » ... « January
+          1, 2028: Benefits begin. » => rien a retenir en 2026 : pas de paidLeave
+          ni d'employeePrograms. Le communique « Proposes Extending Implementation
+          Timeline » de la page d'accueil du programme (labor.maryland.gov, 14 fevrier
+          2025, lu le 06/10/2026) propose exactement ces dates : « payroll deductions
+          would begin January 1, 2027 and benefits would become available on January
+          1, 2028 ». Les pages lues le 06/10/2026 (employes, employeurs, fiche) les
+          donnent toutes ; la page du site les dit avec cette date de lecture.
+       5. ASSURANCE CHOMAGE. Maryland Department of Labor, « Tax Rate »
+          (https://www.labor.maryland.gov/unemployment-insurance/employer-agent/tax-rate.shtml,
+          HTTP 200, lu le 2026-10-06) : « Most businesses are considered
+          contributory employers and pay quarterly unemployment taxes based on
+          benefit charges and taxable wages. » Aucune retenue salariale decrite :
+          pas d'entree employeePrograms. Le montant de la base salariale (8 500 $ sur
+          cette page) n'est PAS repris sur le site : une loi de 2025 releve la base
+          et nous n'avons pas lu le montant 2026. NEGATIF NON PROUVABLE : la page dit
+          « we found no ».
+       6. PAS D'ASSURANCE INVALIDITE D'ETAT (SDI) TROUVEE : aucun document lu (Guide,
+          memorandum, MW507, DOL) n'en decrit une ; la page dit « we found no »,
+          jamais « Maryland has no ».
+       7. NON MODELISE : personnes a charge, 65 ans / aveugle (1 000 $), deductions
+          detaillees excedant le standard, retenue supplementaire (ligne 2 du
+          MW507), exemption de reciprocite (DC, Virginie, Virginie-Occidentale,
+          Pennsylvanie pour l'Etat), non-residents (taux de 7,0 %, memorandum), les
+          residents qui travaillent au Delaware (tables propres du Guide), primes
+          (« 6.50% » et le taux local le plus haut du comte).
+       ----------------------------------------------------------------------- */
+    maryland: {
+      name: "Maryland",
+      abbr: "MD",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Montant du Guide ; le calcul passe par deductionByIncome (standard + exemptions). */
+        standardDeduction: {
+          single: 3400,
+          marriedJoint: 3400,
+          headOfHousehold: 3400
+        },
+        /* 3 400 $ + (exemptions permises par le MW507 x 3 200 $), par palier de revenu
+           brut ajuste (voir 2). */
+        deductionByIncome: [
+          { upTo: 100000, amounts: { single: 6600, marriedJoint: 9800, headOfHousehold: 6600 } },
+          { upTo: 150000, amounts: { single: 3400, marriedJoint: 9800, headOfHousehold: 6600 } },
+          { upTo: 175000, amounts: { single: 3400, marriedJoint: 6600, headOfHousehold: 3400 } },
+          { upTo: null,   amounts: { single: 3400, marriedJoint: 3400, headOfHousehold: 3400 } }
+        ],
+        /* Memorandum du 04/02/2026 et tables du Guide : 4,75 % des le premier dollar
+           (« without considering the tax rates ... less than 4.75% »). Chef de famille =
+           taux « JOINT ». */
+        brackets: {
+          single:          [[100000, 0.0475], [125000, 0.05], [150000, 0.0525], [250000, 0.055], [500000, 0.0575], [1000000, 0.0625], [Infinity, 0.065]],
+          marriedJoint:    [[150000, 0.0475], [175000, 0.05], [225000, 0.0525], [300000, 0.055], [600000, 0.0575], [1200000, 0.0625], [Infinity, 0.065]],
+          headOfHousehold: [[150000, 0.0475], [175000, 0.05], [225000, 0.0525], [300000, 0.055], [600000, 0.0575], [1200000, 0.0625], [Infinity, 0.065]]
+        },
+        /* Guide : « DO NOT WITHHOLD ON GROSS WAGES LESS THAN $5,000.00 ». */
+        noWithholdingBelow: 5000,
+        /* cle -> [nom, taux de la TABLE de retenue, options]. options.actual = taux reel
+           2026 (memorandum, Attachment 1) ; options.city = Baltimore City ;
+           options.graduated = taux de table par palier du revenu imposable, par statut
+           (Anne Arundel, Frederick) ; options.actualSchedule = le bareme progressif reel. */
+        countyTax: {
+          defaultCounty: "montgomery",
+          rates: {
+            "allegany": ["Allegany", 0.032, { actual: 0.032 }],
+            "anne-arundel": ["Anne Arundel", 0.03, {
+              graduated: {
+                single:          [[50000, 0.0275], [400000, 0.03], [null, 0.032]],
+                marriedJoint:    [[75000, 0.0275], [480000, 0.03], [null, 0.032]],
+                headOfHousehold: [[75000, 0.0275], [480000, 0.03], [null, 0.032]]
+              },
+              actualSchedule: {
+                single:          [[50000, 0.027], [400000, 0.0294], [null, 0.032]],
+                marriedJoint:    [[75000, 0.027], [480000, 0.0294], [null, 0.032]],
+                headOfHousehold: [[75000, 0.027], [480000, 0.0294], [null, 0.032]]
+              } }],
+            "baltimore": ["Baltimore", 0.032, { actual: 0.032 }],
+            "baltimore-city": ["Baltimore City", 0.032, { actual: 0.032, city: true }],
+            "calvert": ["Calvert", 0.032, { actual: 0.032 }],
+            "caroline": ["Caroline", 0.032, { actual: 0.032 }],
+            "carroll": ["Carroll", 0.0305, { actual: 0.0303 }],
+            "cecil": ["Cecil", 0.0275, { actual: 0.0274 }],
+            "charles": ["Charles", 0.0305, { actual: 0.0303 }],
+            "dorchester": ["Dorchester", 0.033, { actual: 0.033 }],
+            "frederick": ["Frederick", 0.03, {
+              graduated: {
+                single:          [[25000, 0.0225], [50000, 0.0275], [150000, 0.03], [null, 0.032]],
+                marriedJoint:    [[25000, 0.0225], [100000, 0.0275], [250000, 0.03], [null, 0.032]],
+                headOfHousehold: [[25000, 0.0225], [100000, 0.0275], [250000, 0.03], [null, 0.032]]
+              },
+              actualSchedule: {
+                single:          [[25000, 0.0225], [50000, 0.0275], [150000, 0.0296], [null, 0.032]],
+                marriedJoint:    [[25000, 0.0225], [100000, 0.0275], [250000, 0.0296], [null, 0.032]],
+                headOfHousehold: [[25000, 0.0225], [100000, 0.0275], [250000, 0.0296], [null, 0.032]]
+              } }],
+            "garrett": ["Garrett", 0.0265, { actual: 0.0265 }],
+            "harford": ["Harford", 0.031, { actual: 0.0306 }],
+            "howard": ["Howard", 0.032, { actual: 0.032 }],
+            "kent": ["Kent", 0.033, { actual: 0.033 }],
+            "montgomery": ["Montgomery", 0.032, { actual: 0.032 }],
+            "prince-georges": ["Prince George's", 0.032, { actual: 0.032 }],
+            "queen-annes": ["Queen Anne's", 0.032, { actual: 0.032 }],
+            "st-marys": ["St. Mary's", 0.032, { actual: 0.032 }],
+            "somerset": ["Somerset", 0.032, { actual: 0.032 }],
+            "talbot": ["Talbot", 0.024, { actual: 0.024 }],
+            "washington": ["Washington", 0.03, { actual: 0.0295 }],
+            "wicomico": ["Wicomico", 0.032, { actual: 0.032 }],
+            "worcester": ["Worcester", 0.0225, { actual: 0.0225 }]
+          }
+        }
+      }
     }
   }
 };

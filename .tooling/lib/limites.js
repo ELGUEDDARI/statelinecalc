@@ -63,13 +63,20 @@
    page : le bloc depend donc de l'Etat, et reste identique partout ailleurs. */
 const LOCAL_GENERIQUE = `    <li><strong>Local taxes</strong> &mdash; city income tax, county tax, or a school-district
     tax. Where a state levies one, our <a href="/methodology/">methodology page</a> says so by
-    name; this calculator does not add that line, with one exception: the Indiana calculator adds the
-    <a href="/paycheck-calculator/indiana/">county income tax</a> for the county you choose.</li>`;
+    name; this calculator does not add that line, with two exceptions: the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators add the local income tax for the county you choose.</li>`;
 const LOCAL_PAR_ETAT = {
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
-    income tax, at the rate for the county you choose above; it adds no other local line for any
-    state. Our <a href="/methodology/">methodology page</a> names the local taxes it leaves out.</li>`,
+    income tax, at the rate for the county you choose above. The only other local line on this site is on the
+    <a href="/paycheck-calculator/maryland/">Maryland calculator</a>. Our <a href="/methodology/">methodology page</a>
+    names the local taxes it leaves out.</li>`,
+  maryland: `    <li><strong>Local taxes other than Maryland local income tax</strong> &mdash; any other tax that may
+    apply to you. This calculator does add one local line for Maryland, the local income tax, at the rate for
+    the county or Baltimore City you choose above. The only other local line on this site is on the
+    <a href="/paycheck-calculator/indiana/">Indiana calculator</a>. Our <a href="/methodology/">methodology page</a>
+    names the local taxes it leaves out.</li>`,
   /* Oregon (06/10/2026) : les taxes locales existent, et la page doit les CLASSER :
      retenue automatique seulement au-dela de 200 000 $ (Metro, Multnomah) ou sur
      demande ; payees par l'employeur (TriMet, Lane). Aucune n'est ajoutee. */
@@ -77,8 +84,9 @@ const LOCAL_PAR_ETAT = {
     tax. In Oregon the ones to know are the Portland-area Metro housing tax and Multnomah County&rsquo;s
     Preschool for All tax, which an employer withholds automatically only above $200,000 of pay or when
     you ask it to, and the TriMet and Lane transit taxes, which your employer pays rather than you.
-    This calculator adds none of them, with one exception elsewhere on the site: the Indiana
-    calculator adds the <a href="/paycheck-calculator/indiana/">county income tax</a> for the county you choose.</li>`
+    This calculator adds none of them, with two exceptions elsewhere on the site: the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators add the local income tax for the county you choose.</li>`
 };
 
 function blocLimites(cle) {
@@ -118,7 +126,10 @@ ${local}
 function blocChecklist(cle) {
   const comte = cle === "indiana"
     ? `
-      <li>Your Indiana county as of January 1 &mdash; it sets the county income tax rate</li>` : "";
+      <li>Your Indiana county as of January 1 &mdash; it sets the county income tax rate</li>`
+    : cle === "maryland"
+    ? `
+      <li>Your Maryland county, or Baltimore City &mdash; it sets the local income tax rate</li>` : "";
   return `  <!-- CHECKLIST:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
   <div class="box-neutre">
     <h3 class="u-mt-0">What you need before you calculate</h3>

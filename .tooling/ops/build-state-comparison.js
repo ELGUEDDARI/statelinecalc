@@ -89,6 +89,10 @@ const IN_PUBLIE = "indiana" in Object.fromEntries(Object.entries(PUBLIES).map(([
 const IN_CT = require("../../data/rates-2026.js").states.indiana.incomeTax.countyTax;
 const IN_DEF = IN_CT.rates[IN_CT.defaultCounty];
 const IN_TAUX = Object.values(IN_CT.rates).map(x => x[1]);
+const MD_PUBLIE = "maryland" in Object.fromEntries(Object.entries(PUBLIES).map(([n, k]) => [k, n]));
+const MD_CT = require("../../data/rates-2026.js").states.maryland.incomeTax.countyTax;
+const MD_DEF = MD_CT.rates[MD_CT.defaultCounty];
+const MD_TAUX = [].concat(...Object.values(MD_CT.rates).map(x => x[2].graduated ? x[2].actualSchedule.single.map(t => t[1]) : [x[2].actual]));
 const OPTIONS_ETATS = Object.entries(PUBLIES).sort((a, b) => a[0].localeCompare(b[0]));
 
 /* Ecrit en caracteres reels (em dash "—", apostrophe courbe "'"), jamais en
@@ -355,6 +359,11 @@ ${IN_PUBLIE ? `      <li><strong>Indiana adds a county income tax, and the compa
       Here Indiana is shown with ${IN_DEF[0]} County at ${(IN_DEF[1] * 100).toFixed(2)}%; the rates run from
       ${(Math.min(...IN_TAUX) * 100).toFixed(1)}% to ${(Math.max(...IN_TAUX) * 100).toFixed(1)}%. The
       <a href="/paycheck-calculator/indiana/">Indiana calculator</a> lets you choose yours.</li>
+` : ""}${MD_PUBLIE ? `      <li><strong>Maryland adds a local income tax, and the comparison has to pick a county.</strong>
+      Maryland withholds local tax along with state tax, at a rate set by each of its 23 counties and Baltimore City.
+      Here Maryland is shown with ${MD_DEF[0]} County at ${(MD_DEF[1] * 100).toFixed(2)}%; the actual rates run from
+      ${(Math.min(...MD_TAUX) * 100).toFixed(2)}% to ${(Math.max(...MD_TAUX) * 100).toFixed(2)}%. The
+      <a href="/paycheck-calculator/maryland/">Maryland calculator</a> lets you choose yours.</li>
 ` : ""}      <li><strong>Federal tax, Social Security and Medicare never move between states.</strong>
       Only the rows this tool actually changes &mdash; state tax and state programs &mdash; explain
       any gap you see.</li>

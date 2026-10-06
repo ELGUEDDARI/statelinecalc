@@ -596,8 +596,8 @@ check("OH : l'impot d'Etat n'est jamais negatif, meme a 10 000 $",
    cle "notch", et aucun ne doit avoir change de resultat en l'introduisant. */
 check("OH : aucun autre Etat n'a de marche",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.notch).length, 1, 0);
-check("OH : aucun autre Etat n'a d'exoneration par palier de revenu",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.deductionByIncome).length, 1, 0);
+check("OH : seul le Maryland (35e Etat) a aussi une deduction par palier de revenu (deductionByIncome)",
+  Object.keys(R.states).filter(k => k !== "maryland" && R.states[k].incomeTax.deductionByIncome).length, 1, 0);
 
 
 /* --- WISCONSIN --------------------------------------------------------
@@ -1392,8 +1392,8 @@ check("MA : les trois statuts partagent les memes tranches",
   ["marriedJoint", "headOfHousehold"].every(st =>
     JSON.stringify(R.states.massachusetts.incomeTax.brackets[st]) ===
     JSON.stringify(R.states.massachusetts.incomeTax.brackets.single)) ? 1 : 0, 1, 0);
-check("ficaDeduction / noWithholdingBelow : propres au Massachusetts (aucun autre Etat ne les declare)",
-  Object.keys(R.states).filter(k => k !== "massachusetts" &&
+check("ficaDeduction / noWithholdingBelow : propres au Massachusetts (aucun autre Etat ne les declare, hormis le plancher de 5 000 $ du Maryland)",
+  Object.keys(R.states).filter(k => k !== "massachusetts" && k !== "maryland" &&
     (R.states[k].incomeTax.ficaDeduction || R.states[k].incomeTax.noWithholdingBelow)).length, 0, 0);
 
 /* Le moteur NAVIGATEUR (assets/calc-paycheck.js) et le moteur NODE (lib/paie.js)
@@ -1608,8 +1608,8 @@ check("IN : un comte inconnu est une ERREUR, jamais un defaut silencieux",
   (() => { try { inC(75000, "single", 0, "atlantis"); return 0; } catch (e) { return 1; } })(), 1, 0);
 check("IN : un Etat sans impot de comte refuse un comte",
   (() => { try { calcul("texas", 75000, "single", 0, "marion"); return 0; } catch (e) { return 1; } })(), 1, 0);
-check("IN : aucun autre Etat n'a de countyTax (le mecanisme est propre a l'Indiana)",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.countyTax).join(",") === "indiana" ? 1 : 0, 1, 0);
+check("IN : seul le Maryland (35e Etat) a aussi un countyTax",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.countyTax).sort().join(",") === "indiana,maryland" ? 1 : 0, 1, 0);
 check("IN : 92 comtes, defaut Marion, taux entre 0,5 % et 3,0 %",
   (() => { const c = R.states.indiana.incomeTax.countyTax; const t = Object.values(c.rates).map(x => x[1]);
     return Object.keys(c.rates).length === 92 && c.defaultCounty === "marion" && Math.min(...t) === 0.005 && Math.max(...t) === 0.03 ? 1 : 0; })(), 1, 0);
@@ -1828,6 +1828,212 @@ check("SD : federal sur 75 000 $, celibataire, recalcule a la main",
   calcul("south-dakota", 75000).federal, 7670, 0.005);
 check("SD : le net sur 75 000 $ egale le Wyoming au centime pres",
   calcul("south-dakota", 75000).net, calcul("wyoming", 75000).net, 0.001);
+
+/* ── MARYLAND, 35e Etat, ajoute 2026-10-06 ──────────────────────────────────
+   Sources (lues le 2026-10-06) : Comptroller of Maryland, « Maryland Employer
+   Withholding Guide » (effective January 2026, revised December 2025) : deduction
+   standard 3 400 $, exemption 3 200 $, tables annuelles « Percentage method of
+   withholding for 3.20 PERCENT LOCAL INCOME TAX » (7,95 % = 4,75 % + 3,20 % jusqu'a
+   100 000 $ imposables, puis 8,20 %, 8,45 %, 8,70 %, 8,95 %, 9,45 %, 9,70 % ; table
+   « joint » : 150 000, 175 000, 225 000, 300 000, 600 000, 1 200 000) ; Form MW507
+   2026 (valeur de l'exemption selon le revenu brut ajuste, ligne f « Drop any
+   fraction ») ; memorandum du Central Payroll Bureau du 04/02/2026 (taux locaux 2026).
+   Chaque attendu est recalcule A LA MAIN, sans lire le moteur.
+   single 75 000, Montgomery (3,20 %) : imposable 75 000 - 3 400 - 3 200 = 68 400
+        Etat   68 400 x 0,0475 = 3 249,00
+        local  68 400 x 0,032  = 2 188,80      (total 5 437,80 = 68 400 x 7,95 %)
+        federal 7 670 + SS 4 650 + Medicare 1 087,50
+        net    75 000 - 7 670 - 5 737,50 - 3 249 - 2 188,80          = 56 154,70
+   married 75 000 : 2 exemptions ; imposable 75 000 - 3 400 - 6 400 = 65 200
+        Etat 3 097,00 ; local 2 086,40 ; federal (75 000 - 32 200 = 42 800) :
+        24 800 x 10 % = 2 480 + 18 000 x 12 % = 2 160 = 4 640
+        net 75 000 - 4 640 - 5 737,50 - 3 097 - 2 086,40             = 59 439,10
+   head of household 75 000 : 1 exemption, taux « joint » ; imposable 68 400 ;
+        Etat 3 249,00 ; local 2 188,80 ; federal (75 000 - 24 150 = 50 850) :
+        17 700 x 10 % = 1 770 + 33 150 x 12 % = 3 978 = 5 748
+        net 75 000 - 5 748 - 5 737,50 - 3 249 - 2 188,80             = 58 076,70
+   single 52 000 (25 $/h) : imposable 45 400 ; Etat 2 156,50 ; local 1 452,80 ;
+        federal (52 000 - 16 100 = 35 900) 1 240 + 23 500 x 12 % = 4 060 ; FICA 3 978
+        net 52 000 - 4 060 - 3 978 - 2 156,50 - 1 452,80             = 40 352,70
+   single 20 000 : imposable 13 400 ; Etat 636,50 ; local 428,80
+   single 100 000 : revenu <= 100 000 $ donc 1 exemption : imposable 93 400 ; Etat 4 436,50
+   single 100 001 : plus d'exemption (1 600 / 3 200 = 0, fraction abandonnee) ;
+        imposable 96 601 ; Etat 4 588,5475
+   single 200 000 : imposable 196 600 ; Etat 4 750 + 25 000 x 5 % = 1 250 +
+        25 000 x 5,25 % = 1 312,50 + 46 600 x 5,5 % = 2 563 = 9 875,50 ; local 6 291,20
+   married 160 000 : 1 exemption (2 x 1 600 / 3 200 = 1) ; imposable 153 400 ;
+        Etat 7 125 + 3 400 x 5 % = 170 = 7 295,00
+   married 200 000 : 0 exemption ; imposable 196 600 ;
+        Etat 7 125 + 25 000 x 5 % = 1 250 + 21 600 x 5,25 % = 1 134 = 9 509,00
+   head of household 160 000 : 0 exemption (1 600 / 3 200 = 0) ; imposable 156 600 ;
+        Etat 7 125 + 6 600 x 5 % = 330 = 7 455,00
+   Taux de TABLE par comte, sur 68 400 $ imposables (« the rate that equals or slightly
+   exceeds the actual local income tax rate ») :
+        Carroll 3,03 -> 3,05 %  68 400 x 0,0305 = 2 086,20
+        Cecil 2,74 -> 2,75 %    68 400 x 0,0275 = 1 881,00
+        Harford 3,06 -> 3,10 %  68 400 x 0,031  = 2 120,40
+        Washington 2,95 -> 3,00 % 68 400 x 0,03 = 2 052,00
+        Talbot 2,40 %           68 400 x 0,024  = 1 641,60
+        Worcester 2,25 %        68 400 x 0,0225 = 1 539,00
+        Garrett 2,65 %          68 400 x 0,0265 = 1 812,60
+        Kent 3,30 %             68 400 x 0,033  = 2 257,20
+   Anne Arundel (celibataire 2,70 % jusqu'a 50 000 $, 2,94 % jusqu'a 400 000 $, 3,20 %
+   au-dela ; tables 2,75 / 3,00 / 3,20) :
+        75 000 : imposable 68 400 -> 3,00 % = 2 052,00
+        45 000 : imposable 38 400 -> 2,75 % = 1 056,00
+        500 000 : imposable 496 600 -> 3,20 % = 15 891,20
+        married 75 000 : imposable 65 200 <= 75 000 -> 2,75 % = 1 793,00
+   Frederick (celibataire 2,25 % <= 25 000 $, 2,75 % <= 50 000 $, 2,96 % <= 150 000 $,
+   3,20 % au-dela ; joint 25 000 $ / 100 000 $ / 250 000 $) :
+        single 30 000 : imposable 23 400 -> 2,25 % = 526,50
+        single 40 000 : imposable 33 400 -> 2,75 % = 918,50
+        single 75 000 : imposable 68 400 -> 3,00 % = 2 052,00
+        married 75 000 : imposable 65 200 <= 100 000 -> 2,75 % = 1 793,00
+   401(k) 6 % sur 75 000 : retrait 4 500 ; 70 500 - 6 600 = 63 900 ; Etat 3 035,25 ; local 2 044,80
+   4 000 $ de salaire : sous le plancher de 5 000 $ : rien d'Etat ni de local. */
+const mdC = (b, st, rp, c) => calcul("maryland", b, st || "single", rp || 0, c);
+const localMd = r => r.programmes.filter(p => p.county).reduce((t, p) => t + p.montant, 0);
+check("MD : single 75 000 $ Etat = 3 249,00 $ (68 400 x 4,75 %)", mdC(75000).etat, 3249.00, 0.005);
+check("MD : single 75 000 $ local Montgomery = 2 188,80 $ (68 400 x 3,20 %)", localMd(mdC(75000)), 2188.80, 0.005);
+check("MD : Etat + local = 68 400 x 7,95 % = 5 437,80 $ (table 3.20 % du Guide)", mdC(75000).etat + localMd(mdC(75000)), 5437.80, 0.005);
+check("MD : net a 75 000 $ = 56 154,70 $", mdC(75000).net, 56154.70, 0.006);
+check("MD : married 75 000 $ Etat = 3 097,00 $ (2 exemptions)", mdC(75000, "marriedJoint").etat, 3097.00, 0.005);
+check("MD : married 75 000 $ local = 2 086,40 $", localMd(mdC(75000, "marriedJoint")), 2086.40, 0.005);
+check("MD : net married a 75 000 $ = 59 439,10 $", mdC(75000, "marriedJoint").net, 59439.10, 0.006);
+check("MD : head of household 75 000 $ Etat = 3 249,00 $ (1 exemption)", mdC(75000, "headOfHousehold").etat, 3249.00, 0.005);
+check("MD : net head of household a 75 000 $ = 58 076,70 $", mdC(75000, "headOfHousehold").net, 58076.70, 0.006);
+check("MD : single 52 000 $ (25 $/h) Etat = 2 156,50 $", mdC(52000).etat, 2156.50, 0.005);
+check("MD : single 52 000 $ local = 1 452,80 $", localMd(mdC(52000)), 1452.80, 0.005);
+check("MD : net a 25 $/h (52 000 $) = 40 352,70 $", mdC(52000).net, 40352.70, 0.006);
+check("MD : single 20 000 $ Etat = 636,50 $", mdC(20000).etat, 636.50, 0.005);
+check("MD : single 20 000 $ local = 428,80 $", localMd(mdC(20000)), 428.80, 0.005);
+check("MD : single 100 000 $ garde son exemption (revenu <= 100 000 $) : Etat = 4 436,50 $", mdC(100000).etat, 4436.50, 0.005);
+check("MD : single 100 001 $ perd son exemption (1 600 / 3 200, fraction abandonnee) : Etat = 4 588,5475 $", mdC(100001).etat, 4588.5475, 0.0005);
+check("MD : single 200 000 $ Etat = 9 875,50 $ (4,75 / 5,00 / 5,25 / 5,50 %)", mdC(200000).etat, 9875.50, 0.005);
+check("MD : single 200 000 $ local = 6 291,20 $", localMd(mdC(200000)), 6291.20, 0.005);
+check("MD : married 160 000 $ n'a plus qu'1 exemption : Etat = 7 295,00 $", mdC(160000, "marriedJoint").etat, 7295.00, 0.005);
+check("MD : married 200 000 $ sans exemption : Etat = 9 509,00 $", mdC(200000, "marriedJoint").etat, 9509.00, 0.005);
+check("MD : head of household 160 000 $ sans exemption : Etat = 7 455,00 $", mdC(160000, "headOfHousehold").etat, 7455.00, 0.005);
+check("MD : Carroll 3,03 % reel -> table 3,05 % : 2 086,20 $", localMd(mdC(75000, "single", 0, "carroll")), 2086.20, 0.005);
+check("MD : Cecil 2,74 % reel -> table 2,75 % : 1 881,00 $", localMd(mdC(75000, "single", 0, "cecil")), 1881.00, 0.005);
+check("MD : Harford 3,06 % reel -> table 3,10 % : 2 120,40 $", localMd(mdC(75000, "single", 0, "harford")), 2120.40, 0.005);
+check("MD : Washington 2,95 % reel -> table 3,00 % : 2 052,00 $", localMd(mdC(75000, "single", 0, "washington")), 2052.00, 0.005);
+check("MD : Talbot 2,40 % : 1 641,60 $", localMd(mdC(75000, "single", 0, "talbot")), 1641.60, 0.005);
+check("MD : Worcester 2,25 % : 1 539,00 $", localMd(mdC(75000, "single", 0, "worcester")), 1539.00, 0.005);
+check("MD : Garrett 2,65 % : 1 812,60 $", localMd(mdC(75000, "single", 0, "garrett")), 1812.60, 0.005);
+check("MD : Kent 3,30 % : 2 257,20 $", localMd(mdC(75000, "single", 0, "kent")), 2257.20, 0.005);
+check("MD : Anne Arundel single 75 000 $ (68 400 imposables, 2,94 % -> table 3,00 %) = 2 052,00 $", localMd(mdC(75000, "single", 0, "anne-arundel")), 2052.00, 0.005);
+check("MD : Anne Arundel single 45 000 $ (38 400, 2,70 % -> table 2,75 %) = 1 056,00 $", localMd(mdC(45000, "single", 0, "anne-arundel")), 1056.00, 0.005);
+check("MD : Anne Arundel single 500 000 $ (496 600, 3,20 %) = 15 891,20 $", localMd(mdC(500000, "single", 0, "anne-arundel")), 15891.20, 0.005);
+check("MD : Anne Arundel married 75 000 $ (65 200 <= 75 000, table 2,75 %) = 1 793,00 $", localMd(mdC(75000, "marriedJoint", 0, "anne-arundel")), 1793.00, 0.005);
+check("MD : Frederick single 30 000 $ (23 400, 2,25 %) = 526,50 $", localMd(mdC(30000, "single", 0, "frederick")), 526.50, 0.005);
+check("MD : Frederick single 40 000 $ (33 400, 2,75 %) = 918,50 $", localMd(mdC(40000, "single", 0, "frederick")), 918.50, 0.005);
+check("MD : Frederick single 75 000 $ (68 400, 2,96 % -> table 3,00 %) = 2 052,00 $", localMd(mdC(75000, "single", 0, "frederick")), 2052.00, 0.005);
+check("MD : Frederick married 75 000 $ (65 200 <= 100 000, table 2,75 %) = 1 793,00 $", localMd(mdC(75000, "marriedJoint", 0, "frederick")), 1793.00, 0.005);
+check("MD : 401(k) 6 % sur 75 000 $ Etat = 3 035,25 $", mdC(75000, "single", 0.06).etat, 3035.25, 0.005);
+check("MD : 401(k) 6 % sur 75 000 $ local = 2 044,80 $", localMd(mdC(75000, "single", 0.06)), 2044.80, 0.005);
+check("MD : 4 000 $ de salaire = 0 $ d'Etat (sous le plancher du Guide, 5 000 $)", mdC(4000).etat, 0, 0);
+check("MD : 4 000 $ de salaire = 0 $ de local", localMd(mdC(4000)), 0, 0);
+check("MD : etiquettes (Montgomery County 3.2%, Carroll County 3.05%, Baltimore City sans « County »)",
+  mdC(75000).programmes[0].label === "Montgomery County income tax (3.2%)" &&
+  mdC(75000, "single", 0, "carroll").programmes[0].label === "Carroll County income tax (3.05%)" &&
+  mdC(75000, "single", 0, "baltimore-city").programmes[0].label === "Baltimore City income tax (3.2%)" ? 1 : 0, 1, 0);
+check("MD : un comte inconnu est une ERREUR, jamais un defaut silencieux",
+  (() => { try { mdC(75000, "single", 0, "atlantis"); return 0; } catch (e) { return 1; } })(), 1, 0);
+check("MD : seuls l'Indiana et le Maryland ont un impot de comte (countyTax)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.countyTax).sort().join(",") === "indiana,maryland" ? 1 : 0, 1, 0);
+check("MD : seuls l'Ohio et le Maryland ont une deduction par palier de revenu",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.deductionByIncome).sort().join(",") === "maryland,ohio" ? 1 : 0, 1, 0);
+check("MD : 24 juridictions (23 comtes + Baltimore City), defaut Montgomery, une seule ville",
+  (() => { const c = R.states.maryland.incomeTax.countyTax;
+    return Object.keys(c.rates).length === 24 && c.defaultCounty === "montgomery" &&
+           Object.values(c.rates).filter(x => x[2] && x[2].city).length === 1 ? 1 : 0; })(), 1, 0);
+check("MD : chaque taux de table est le PREMIER des dix taux du Guide >= au taux reel du memorandum (regle du Guide)",
+  (() => {
+    const TABLES = [0.0225, 0.024, 0.0265, 0.0275, 0.0285, 0.03, 0.0305, 0.031, 0.032, 0.033];
+    const premier = a => TABLES.find(t => t >= a - 1e-12);
+    const c = R.states.maryland.incomeTax.countyTax;
+    let mauvais = 0;
+    for (const [k, [nom, taux, o]] of Object.entries(c.rates)) {
+      if (o.graduated) {
+        for (const st of ["single", "marriedJoint", "headOfHousehold"]) {
+          const g = o.graduated[st], a = o.actualSchedule[st];
+          if (g.length !== a.length) { mauvais++; continue; }
+          g.forEach((seg, i) => { if (seg[0] !== a[i][0] || seg[1] !== premier(a[i][1])) mauvais++; });
+        }
+      } else if (taux !== premier(o.actual)) mauvais++;
+    }
+    return mauvais;
+  })(), 0, 0);
+check("MD : taux reels 2026 du memorandum du 04/02/2026 (Attachment 1), 22 juridictions simples",
+  (() => {
+    const attendu = { allegany: 3.20, baltimore: 3.20, "baltimore-city": 3.20, calvert: 3.20, caroline: 3.20, carroll: 3.03,
+      cecil: 2.74, charles: 3.03, dorchester: 3.30, garrett: 2.65, harford: 3.06, howard: 3.20, kent: 3.30, montgomery: 3.20,
+      "prince-georges": 3.20, "queen-annes": 3.20, "st-marys": 3.20, somerset: 3.20, talbot: 2.40, washington: 2.95,
+      wicomico: 3.20, worcester: 2.25 };
+    const c = R.states.maryland.incomeTax.countyTax.rates;
+    return Object.entries(attendu).filter(([k, v]) => !c[k] || Math.abs(c[k][2].actual * 100 - v) > 1e-9).length +
+           Object.keys(attendu).length - 22;
+  })(), 0, 0);
+check("MD : tranches d'Etat 4,75 / 5,00 / 5,25 / 5,50 / 5,75 / 6,25 / 6,50 % (seuils 100 000 ... celibataire, 150 000 ... joint et chef de famille)",
+  (() => { const b = R.states.maryland.incomeTax.brackets;
+    return JSON.stringify(b.single) === JSON.stringify([[100000, 0.0475], [125000, 0.05], [150000, 0.0525], [250000, 0.055], [500000, 0.0575], [1000000, 0.0625], [Infinity, 0.065]]) &&
+           JSON.stringify(b.marriedJoint) === JSON.stringify([[150000, 0.0475], [175000, 0.05], [225000, 0.0525], [300000, 0.055], [600000, 0.0575], [1200000, 0.0625], [Infinity, 0.065]]) &&
+           JSON.stringify(b.headOfHousehold) === JSON.stringify(b.marriedJoint) ? 1 : 0; })(), 1, 0);
+check("MD : deduction par palier = 3 400 $ + exemptions permises x 3 200 $ (MW507, partie entiere), recalculee ici",
+  (() => {
+    const t = R.states.maryland.incomeTax.deductionByIncome;
+    const valeur = (st, agi) => { // MW507 : valeur de l'exemption
+      const joint = st !== "single";
+      if (agi <= (joint ? 150000 : 100000)) return 3200;
+      if (agi <= (joint ? 175000 : 125000)) return joint ? 1600 : 1600;
+      if (agi <= (joint ? 200000 : 150000)) return 800;
+      return 0;
+    };
+    const exemptions = { single: 1, marriedJoint: 2, headOfHousehold: 1 };
+    let mauvais = 0;
+    for (const st of ["single", "marriedJoint", "headOfHousehold"])
+      for (const agi of [50000, 100000, 100001, 125000, 125001, 150000, 150001, 175000, 175001, 200000, 200001, 900000]) {
+        const n = Math.floor(exemptions[st] * valeur(st, agi) / 3200);
+        const p = t.find(x => x.upTo === null || agi <= x.upTo);
+        if (3400 + n * 3200 !== p.amounts[st]) mauvais++;
+      }
+    return mauvais;
+  })(), 0, 0);
+check("MD : aucun programme salarie ni conge paye en 2026 (FAMLI : retenue des janvier 2027)",
+  !R.states.maryland.employeePrograms && !R.states.maryland.paidLeave ? 1 : 0, 1, 0);
+
+/* Le moteur NAVIGATEUR et le moteur NODE doivent donner le meme Etat, le meme local
+   (y compris aux seuils des comtes progressifs), la meme etiquette et le meme net,
+   pour chaque juridiction, les trois statuts et des revenus de part et d'autre des
+   seuils (100 000 / 150 000 / 175 000 / 200 000 pour les exemptions ; 50 000 / 75 000 /
+   25 000 / 100 000 pour les paliers locaux ; le plancher de 5 000 $). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const comtes = Object.keys(R.states.maryland.incomeTax.countyTax.rates).concat([undefined]);
+  const salaires = [900, 4999, 5000, 6600, 20000, 31600, 56600, 57000, 76600, 82000, 100000, 100001, 125000, 150000, 150001,
+    175000, 175001, 200000, 200001, 456600, 480000, 500000, 1500000];
+  for (const c of comtes)
+    for (const st of ["single", "marriedJoint", "headOfHousehold"])
+      for (const g of salaires)
+        for (const rp of [0, 0.06]) {
+          const a = ctx.window.StateLineCalc.computeAnnual(
+            { grossAnnual: g, state: "maryland", county: c, filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+          const b = calcul("maryland", g, st, rp, c);
+          n++;
+          const ca = a.programmes.filter(p => p.county).reduce((t, p) => t + p.amount, 0);
+          const labelOk = a.programmes.length === b.programmes.length && a.programmes.every((p, i) => p.label === b.programmes[i].label);
+          if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(ca - localMd(b)) > 0.005 || Math.abs(a.net - b.net) > 0.01 || !labelOk) {
+            ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", c, st, g, rp, a.stateTax, b.etat, ca, localMd(b), a.net, b.net);
+          }
+        }
+  check("MD : moteur navigateur == moteur node sur " + n + " entrees (24 juridictions + defaut x 3 statuts x seuils : Etat, local, etiquette, net)", ecarts, 0, 0);
+}
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

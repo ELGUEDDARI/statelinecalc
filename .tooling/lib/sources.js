@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -832,6 +832,46 @@ const PAR_ETAT = {
              "Employer&rsquo;s Handbook (PDF)",
       quoi: "the statement that the program is financed by employers through payroll taxes",
       motif: ["financed by employers through payroll taxes"] }
+  ],
+  maryland: [
+    { type: "document",
+      url: "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/withholding/2026/withholding-guide.pdf",
+      titre: "Comptroller of Maryland &mdash; Maryland Employer Withholding Guide, effective January 2026 (PDF)",
+      quoi: "the percentage method: the $3,400 standard deduction, the $3,200 value of one exemption, " +
+            "the single and joint rates, and the ten local income tax tables from 2.25% to 3.30%",
+      motif: ["Standard Deduction is $3,400", "PERCENT LOCAL INCOME TAX", "equals or slightly exceeds"] },
+    { type: "document",
+      url: "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/forms/2026/mw507.pdf",
+      titre: "Comptroller of Maryland &mdash; Form MW507, Employee&rsquo;s Maryland Withholding Exemption " +
+             "Certificate, 2026 (PDF)",
+      quoi: "how many exemptions an employee may claim, and the table that cuts the value of an " +
+            "exemption once adjusted gross income passes $100,000 ($150,000 filing jointly or as head of household)",
+      motif: ["Divide the amount on line e by $3,200", "Drop any fraction"] },
+    { type: "document",
+      url: "https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf",
+      titre: "Comptroller of Maryland, Central Payroll Bureau &mdash; 2026 Maryland State and Local Income " +
+             "Tax Withholding Information (memorandum of February 4, 2026, PDF)",
+      quoi: "the state rates from 4.75% to 6.5% and the 2026 local income tax rate for each of the 23 " +
+            "counties and Baltimore City, including the graduated rates in Anne Arundel and Frederick",
+      motif: ["Local Income Tax Withholding Rates for 2026", "county of residence"] },
+    { type: "document",
+      url: "https://dls.maryland.gov/pubs/prod/NoPblTabPDF/2026CountyLocalTaxRates.pdf",
+      titre: "Maryland Department of Legislative Services &mdash; Local Income Tax Rates in Maryland, calendar year 2026 (PDF)",
+      quoi: "a second reading of the 2026 local income tax rate for every county and Baltimore City, " +
+            "from the Comptroller and the Department of Legislative Services",
+      motif: ["Local Income Tax Rates in Maryland", "Office of the Comptroller"] },
+    { type: "document",
+      url: "https://paidleave.maryland.gov/employees",
+      titre: "Maryland Department of Labor &mdash; FAMLI, for employees",
+      quoi: "the Family and Medical Leave Insurance contribution, 0.9% of wages with up to half (0.45%) " +
+            "paid by the employee, deducted starting January 2027, not in 2026",
+      motif: ["Starting January 2027", "0.45%"] },
+    { type: "document",
+      url: "https://www.labor.maryland.gov/unemployment-insurance/employer-agent/tax-rate.shtml",
+      titre: "Maryland Department of Labor &mdash; Unemployment Insurance, Tax Rate",
+      quoi: "the statement that businesses pay quarterly unemployment taxes, with no deduction from " +
+            "employee wages described",
+      motif: ["pay quarterly unemployment taxes"] }
   ]
 };
 

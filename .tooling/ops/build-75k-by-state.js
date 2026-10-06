@@ -61,11 +61,20 @@ const N = ETATS.length;
    comte retenu et la fourchette lue dans le moteur. */
 const IN_CT = R.states.indiana.incomeTax.countyTax;
 const IN_TAUX = Object.values(IN_CT.rates).map(x => x[1]);
-const IN_NOTE = ETATS.some(e => e.cle === "indiana")
-  ? " The one exception is Indiana, where that column holds the county income tax, withheld along with the state tax: it is shown at the "
-    + IN_CT.rates[IN_CT.defaultCounty][0] + " County rate of " + (IN_CT.rates[IN_CT.defaultCounty][1] * 100).toFixed(2)
-    + "%, and the rate in the state&rsquo;s 92 counties runs from " + (Math.min(...IN_TAUX) * 100).toFixed(1) + "% to "
-    + (Math.max(...IN_TAUX) * 100).toFixed(1) + "%." : "";
+const MD_CT = R.states.maryland.incomeTax.countyTax;
+const MD_TAUX = [].concat(...Object.values(MD_CT.rates).map(x => x[2].graduated
+  ? x[2].actualSchedule.single.map(t => t[1]) : [x[2].actual]));
+const IN_PUBLIE = ETATS.some(e => e.cle === "indiana"), MD_PUBLIE = ETATS.some(e => e.cle === "maryland");
+const IN_NOTE = (IN_PUBLIE || MD_PUBLIE)
+  ? " The " + (IN_PUBLIE && MD_PUBLIE ? "two exceptions are Indiana and Maryland" : "one exception is " + (IN_PUBLIE ? "Indiana" : "Maryland"))
+    + ", where that column holds the local income tax, withheld along with the state tax."
+    + (IN_PUBLIE ? " Indiana is shown at the " + IN_CT.rates[IN_CT.defaultCounty][0] + " County rate of " + (IN_CT.rates[IN_CT.defaultCounty][1] * 100).toFixed(2)
+      + "%, and the rate in the state&rsquo;s 92 counties runs from " + (Math.min(...IN_TAUX) * 100).toFixed(1) + "% to "
+      + (Math.max(...IN_TAUX) * 100).toFixed(1) + "%." : "")
+    + (MD_PUBLIE ? " Maryland is shown at the " + MD_CT.rates[MD_CT.defaultCounty][0] + " County rate of " + (MD_CT.rates[MD_CT.defaultCounty][1] * 100).toFixed(2)
+      + "%, and the actual rates in its 23 counties and Baltimore City run from " + (Math.min(...MD_TAUX) * 100).toFixed(2) + "% to "
+      + (Math.max(...MD_TAUX) * 100).toFixed(2) + "%." : "")
+  : "";
 const MOTS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
   "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
   "eighteen", "nineteen", "twenty"];
@@ -408,7 +417,7 @@ ${ligneGains}
     above takes those.</li>
     <li>2026 federal figures from Rev. Proc. 2025-32 and the 2026 Social Security wage base.
     Federal tax is identical in every row, which is the point: the table isolates the state.</li>
-    <li>No local income tax, with one exception: Indiana&rsquo;s county income tax is included in its row, at the Marion County rate. Cities and school districts in some of these states levy their own;
+    <li>No local income tax, with two exceptions: Indiana&rsquo;s county income tax and Maryland&rsquo;s local income tax are included in their rows, at the Marion County and Montgomery County rates. Cities and school districts in some of these states levy their own;
     the state pages say which.</li>
     <li>Only the ${NOMBRE} states we have published. The list grows as states are added, and the
     count in the title is generated from it, so this page never claims a state it does not

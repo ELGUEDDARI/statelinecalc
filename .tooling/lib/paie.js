@@ -163,6 +163,22 @@ function creditAllowances(S, statut, salaire) {
   return salaire > pick(w.noneAbove) ? 0 : pick(w.perFiler) * w.credit;
 }
 
+/* Le Maryland est le premier Etat dont certains comtes ont un taux local qui depend
+   du REVENU IMPOSABLE : Anne Arundel et Frederick (memorandum du Central Payroll
+   Bureau du 04/02/2026, « Attachment 1 »). Le Guide de retenue ne dit pas quelle de
+   ses dix tables s'applique a ces deux comtes ; le moteur applique la table >= au
+   taux du palier (« Use the rate that equals or slightly exceeds the actual local
+   income tax rate »), a tout le revenu imposable, comme chaque table du Guide.
+   ligne = [nom, taux de table, options] ; options.graduated = { statut: [[plafond du
+   revenu imposable, taux], ...] }. Miroir de assets/calc-paycheck.js. */
+function tauxLocal(ligne, statut, imposable) {
+  const opts = ligne[2];
+  if (!opts || !opts.graduated) return ligne[1];
+  const g = (statut in opts.graduated) ? opts.graduated[statut] : opts.graduated.single;
+  const seg = g.find(([haut]) => haut === null || imposable <= haut);
+  return seg[1];
+}
+
 /* retraitePct : part du brut versee au 401(k). Zero par defaut, parce que les
    tableaux publies supposent un salarie sans versement - l'hypothese est
    ecrite sur chaque page. */
@@ -233,10 +249,16 @@ function calcul(cle, brut, statut = "single", retraitePct = 0, comte = undefined
   if (S.incomeTax.hasIncomeTax && ct) {
     const k = comte === undefined ? ct.defaultCounty : comte;
     if (!ct.rates[k]) throw new Error("Comte inconnu : " + k);
-    const [nomComte, tauxComte] = ct.rates[k];
+    const ligneComte = ct.rates[k];
+    const nomComte = ligneComte[0];
+    const tauxComte = tauxLocal(ligneComte, statut, imposableEtat);
+    /* Baltimore City n'est pas un comte : l'etiquette ne dit pas « County ». Le
+       plancher de 5 000 $ du Guide (« DO NOT WITHHOLD ON GROSS WAGES LESS THAN ») vaut
+       pour l'impot local comme pour l'impot d'Etat. */
+    const estVille = !!(ligneComte[2] && ligneComte[2].city);
     programmes.push({
-      label: nomComte + " County income tax (" + +(tauxComte * 100).toFixed(4) + "%)",
-      montant: imposableEtat * tauxComte,
+      label: nomComte + (estVille ? "" : " County") + " income tax (" + +(tauxComte * 100).toFixed(4) + "%)",
+      montant: (planchet && brut < planchet) ? 0 : imposableEtat * tauxComte,
       county: true
     });
   }
@@ -260,5 +282,5 @@ const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFra
 const c0 = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
 module.exports = { R, HEURES, progressiveTax, deductionEtat, creditEtat, marcheEtat,
-                   plafondImpotFederal, creditAllowances,
+                   plafondImpotFederal, creditAllowances, tauxLocal,
                    impotTable, calcul, c2, c0 };
