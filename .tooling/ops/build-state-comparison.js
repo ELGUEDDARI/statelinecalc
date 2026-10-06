@@ -84,6 +84,11 @@ const waProgrammes = exWa.paidLeave + exWa.waCares;
 if (!(waProgrammes > 0)) throw new Error("ARRET : Washington sans programme d'Etat, contre-exemple invalide");
 
 /* --- les 18 Etats, pour les deux menus et la grille du bas --- */
+/* Indiana : l'impot de comte est dans la comparaison, au taux du comte par defaut. */
+const IN_PUBLIE = "indiana" in Object.fromEntries(Object.entries(PUBLIES).map(([n, k]) => [k, n]));
+const IN_CT = require("../../data/rates-2026.js").states.indiana.incomeTax.countyTax;
+const IN_DEF = IN_CT.rates[IN_CT.defaultCounty];
+const IN_TAUX = Object.values(IN_CT.rates).map(x => x[1]);
 const OPTIONS_ETATS = Object.entries(PUBLIES).sort((a, b) => a[0].localeCompare(b[0]));
 
 /* Ecrit en caracteres reels (em dash "—", apostrophe courbe "'"), jamais en
@@ -345,7 +350,12 @@ ${ligneTabla}
       <li><strong>"No income tax" is not the same claim as "nothing withheld."</strong> Washington
       has no income tax but withholds Paid Family and Medical Leave and WA Cares; both are state
       payroll programs, not income tax, and both show up in this comparison.</li>
-      <li><strong>Federal tax, Social Security and Medicare never move between states.</strong>
+${IN_PUBLIE ? `      <li><strong>Indiana adds a county income tax, and the comparison has to pick a county.</strong>
+      Indiana withholds county tax along with state tax, at a rate set by each of its 92 counties.
+      Here Indiana is shown with ${IN_DEF[0]} County at ${(IN_DEF[1] * 100).toFixed(2)}%; the rates run from
+      ${(Math.min(...IN_TAUX) * 100).toFixed(1)}% to ${(Math.max(...IN_TAUX) * 100).toFixed(1)}%. The
+      <a href="/paycheck-calculator/indiana/">Indiana calculator</a> lets you choose yours.</li>
+` : ""}      <li><strong>Federal tax, Social Security and Medicare never move between states.</strong>
       Only the rows this tool actually changes &mdash; state tax and state programs &mdash; explain
       any gap you see.</li>
     </ul>

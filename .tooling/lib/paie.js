@@ -139,7 +139,7 @@ function creditEtat(S, statut, base) {
 /* retraitePct : part du brut versee au 401(k). Zero par defaut, parce que les
    tableaux publies supposent un salarie sans versement - l'hypothese est
    ecrite sur chaque page. */
-function calcul(cle, brut, statut = "single", retraitePct = 0) {
+function calcul(cle, brut, statut = "single", retraitePct = 0, comte = undefined) {
   const S = R.states[cle];
   if (!S) throw new Error("Etat inconnu : " + cle);
 
@@ -189,6 +189,24 @@ function calcul(cle, brut, statut = "single", retraitePct = 0) {
     label: pg.label,
     montant: (pg.wageCap ? Math.min(brut, pg.wageCap) : brut) * pg.rate
   }));
+  /* L'Indiana est le premier Etat avec un impot de COMTE retenu en plus de
+     l'impot d'Etat : Departmental Notice #1 (effectif le 1er octobre 2026), meme
+     base que l'Etat (salaire - exemptions), taux du comte de residence au
+     1er janvier. Ligne propre, drapeau county pour ne pas la ranger avec les
+     programmes. Sans comte, le defaut de l'Etat ; un comte inconnu est une
+     ERREUR, jamais un defaut silencieux. Miroir de assets/calc-paycheck.js. */
+  const ct = S.incomeTax.countyTax;
+  if (comte !== undefined && !ct) throw new Error("Cet Etat n'a pas d'impot de comte : " + cle);
+  if (S.incomeTax.hasIncomeTax && ct) {
+    const k = comte === undefined ? ct.defaultCounty : comte;
+    if (!ct.rates[k]) throw new Error("Comte inconnu : " + k);
+    const [nomComte, tauxComte] = ct.rates[k];
+    programmes.push({
+      label: nomComte + " County income tax (" + +(tauxComte * 100).toFixed(4) + "%)",
+      montant: imposableEtat * tauxComte,
+      county: true
+    });
+  }
   const totalProg = programmes.reduce((t, pg) => t + pg.montant, 0);
 
   const total = federal + ss + med + etat + pl + wc + totalProg;

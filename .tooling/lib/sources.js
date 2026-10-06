@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -684,6 +684,38 @@ const PAR_ETAT = {
             "section 3401 of the Internal Revenue Code, the federal definition this page " +
             "applies to a 401(k) contribution",
       motif: ["3401(a), (f), and (i)"] }
+  ],
+  indiana: [
+    { type: "document",
+      url: "https://www.in.gov/dor/files/dn01.pdf",
+      titre: "Indiana Department of Revenue &mdash; Departmental Notice #1, How to Compute " +
+             "Withholding for State and County Income Tax (PDF)",
+      quoi: "the 2.95% state rate for 2026, the $1,000 deduction per exemption claimed on Form " +
+            "WH-4, the rule that county tax is withheld on the same wages at the rate of the " +
+            "employee&rsquo;s county on January 1, and the rate for each of the 92 counties",
+      motif: ["individuals is 2.95%", "Indiana County Tax Rates"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20250612092821/https://forms.in.gov/download.aspx?id=2702",
+      titre: "Indiana Department of Revenue &mdash; Form WH-4, Employee&rsquo;s Withholding " +
+             "Exemption and County Status Certificate (Internet Archive snapshot of June 12, 2025)",
+      quoi: "the exemptions on lines 1 and 2, one for yourself and one for a spouse who does not " +
+            "claim it, and the county of residence and county of principal employment as of " +
+            "January 1; archived copy, because forms.in.gov refuses automated requests",
+      motif: ["You are entitled to one exemption", "Indiana County of Residence as of January 1"] },
+    { type: "document",
+      url: "https://www.in.gov/dor/files/ib33.pdf",
+      titre: "Indiana Department of Revenue &mdash; Income Tax Information Bulletin #33, " +
+             "Withholding Requirements for Nonresident Employees (PDF)",
+      quoi: "the reciprocity agreements with Kentucky, Michigan, Ohio, Pennsylvania and " +
+            "Wisconsin, and the rule that county income tax is still withheld",
+      motif: ["reciprocity agreements with Kentucky, Michigan"] },
+    { type: "document",
+      url: "https://www.in.gov/dwd/indiana-unemployment/employers/employer-guide/unemployer-insurance-employer-guide/",
+      titre: "Indiana Department of Workforce Development &mdash; Unemployment Insurance " +
+             "employer guide, Hired an Employee",
+      quoi: "the statement that employees do not pay into unemployment insurance and that no " +
+            "money is deducted from employee paychecks for it",
+      motif: ["Employees do NOT pay into UI"] }
   ]
 };
 

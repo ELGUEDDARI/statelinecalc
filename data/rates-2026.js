@@ -3017,6 +3017,206 @@ const RATES_2026 = {
       employeePrograms: [
         { label: "MN paid leave (0.44%)", rate: 0.0044, wageCap: 184500 }
       ]
+    },
+
+    /* =======================================================================
+       INDIANA  -  lu le 2026-10-06 (in.gov/dor, in.gov/dwd : HTTP 200 ;
+       forms.in.gov repond 403 « Attention Required » (Cloudflare) a tout
+       client automatise, y compris un navigateur : le formulaire WH-4 est lu
+       dans l'instantane Internet Archive cite plus bas, octets bruts id_)
+       -----------------------------------------------------------------------
+       1. LA METHODE DE RETENUE. Indiana Department of Revenue, « Departmental
+          Notice #1 - How to Compute Withholding for State and County Income
+          Tax », « Effective Oct. 1, 2026 (R47 / 10-26) » (PDF,
+          https://www.in.gov/dor/files/dn01.pdf, telecharge et lu en
+          pdftotext le 2026-10-06). Citations :
+            « For 2026, the state adjusted gross income tax rate for
+            individuals is 2.95%. »
+            « Each employee is entitled to deduct $1,000 per year per exemption
+            claimed on line 5 of his/her Form WH-4. »
+            « Most employees are entitled to deduct $1,500 per year per
+            qualifying dependent exemption claimed on line 6 ... »
+            (3 000 $ par enfant adopte, ligne 8 ; non modelise.)
+            Exemple imprime : « Gross Income $800.00 - Total Deduction Constant
+            -326.92 = Taxable Income $473.08 ; State Tax to Withhold $473.08 x
+            .0295 = $13.96 ; County Tax to Withhold $473.08 x .01 = $4.73 ».
+          => un taux PLAT de 2,95 % et UNE SEULE base imposable pour l'Etat et
+          le comte : (salaire - exemptions). Il n'y a ni tranche, ni deduction
+          standard federale.
+          Le meme document dit : « Indiana does not follow the allowance for
+          no withholding permitted for federal purposes under IRC 3402(n). »
+       2. LES EXEMPTIONS (Form WH-4, State Form 48845, R10 / 8-23, instantane
+          Internet Archive 2025-06-12 :
+          web.archive.org/web/20250612092821id_/https://forms.in.gov/download.aspx?id=2702).
+          Le Notice 2026 renvoie aux memes numeros de ligne (5, 6, 7, 8) que
+          cette revision : meme structure. Citations : « 1. You are entitled to
+          one exemption. » ; « 2. If you are married and your spouse does not
+          claim his/her exemption, you may claim it, enter "1" » ; « 5. Add
+          lines 1, 2, 3, and 4. » ; instructions : « You are allowed to claim
+          one exemption for yourself and one for your spouse (if he/she does not
+          claim the exemption for him/herself). »
+       3. MODELISATION.
+          - celibataire : ligne 1 = 1 exemption = 1 000 $.
+          - marie, conjoint sans salaire : lignes 1 + 2 = 2 exemptions = 2 000 $
+            (le conjoint ne reclame pas la sienne, hypothese deja prise pour le
+            Minnesota).
+          - chef de famille : le WH-4 n'a pas de statut « head of household » :
+            1 exemption = 1 000 $, aucune personne a charge.
+          - NON MODELISE : personnes a charge (ligne 3, 1 000 $ chacune ; ligne
+            6, 1 500 $ ; ligne 7 ; ligne 8, 3 000 $), 65 ans ou plus / aveugle
+            (ligne 4), retenue supplementaire (lignes 9 et 10), travailleur
+            non resident, regles des 30 jours (WH-4AFF).
+       4. L'IMPOT DE COMTE (LIT) - le point que le moteur n'avait pas.
+          Departmental Notice #1 (meme document) : « Withholding agents should
+          withhold county tax based on the employee's Indiana county of
+          residence as of Jan. 1 of the tax year. If the employee resides
+          out-of-state on Jan. 1 but has his or her principal place of work or
+          business in an Indiana county as of Jan. 1, then the withholding agent
+          should withhold for the Indiana county of the principal place of work
+          or business. » Les 92 comtes ont un taux (tableau « Indiana County
+          Tax Rates: Effective Oct. 1, 2026 », p. 5 ; 0,5 % a 3,0 %), recopies
+          ci-dessous par script depuis le texte du PDF puis recoupes par
+          .tooling/test/verif-comtes-in.js (qui relit le PDF en ligne). Un seul
+          comte porte l'asterisque (« changed since Departmental Notice #1 was
+          issued on Jan. 1, 2026 ») : Boone, 0,0171. Le moteur ajoute donc UNE
+          ligne « <Comte> County income tax » = taux x la meme base que l'Etat.
+          Choix par defaut, DIT sur la page : Marion (Indianapolis), 0,0202 ;
+          un selecteur de comte sur la page donne les 91 autres. Le comte est
+          celui du 1er janvier, pas celui d'aujourd'hui.
+          Bulletin IB #33 (December 2024, https://www.in.gov/dor/files/ib33.pdf) :
+          « Employees who are residents of reciprocal states are subject to LIT
+          in the same manner as residents of nonreciprocal states. »
+       5. RECIPROCITE. IB #33 : « Indiana has established reciprocity agreements
+          with Kentucky, Michigan, Ohio, Pennsylvania, and Wisconsin concerning
+          the collection of income tax from nonresidents employed in Indiana. »
+          Le salarie remplit le formulaire WH-47 aupres de son employeur. Non
+          modelise (la page suppose un salarie qui reside en Indiana).
+       6. 401(k). Le Notice 2026 parle de « gross income » et ne dit rien du
+          401(k) des salaries : le moteur retranche le 401(k) classique de la base,
+          comme pour l'impot federal. Choix de modelisation DIT sur la page, pas
+          une regle lue.
+       7. CHOMAGE. DWD, « Hired an Employee » (in.gov/dwd, lu le 2026-10-06) :
+          « Employees do NOT pay into UI. No money is deducted from employee
+          paychecks for UI benefits in Indiana. » Aucune retenue de chomage.
+       8. AUCUN PROGRAMME SALARIE. Aucun document lu (Notice #1, WH-4, IB #33,
+          guide DWD) ne decrit un conge paye d'Etat, une assurance invalidite
+          d'Etat ou un impot de ville : la page dit « we found no », jamais
+          « Indiana has no ».
+       ----------------------------------------------------------------------- */
+    indiana: {
+      name: "Indiana",
+      abbr: "IN",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 1000,
+          marriedJoint: 2000,
+          headOfHousehold: 1000
+        },
+        brackets: {
+          single:          [[Infinity, 0.0295]],
+          marriedJoint:    [[Infinity, 0.0295]],
+          headOfHousehold: [[Infinity, 0.0295]]
+        },
+        /* Departmental Notice #1, effective Oct. 1, 2026 : cle -> [nom, taux]. */
+        countyTax: {
+          defaultCounty: "marion",
+          rates: {
+            "adams": ["Adams", 0.016],
+            "allen": ["Allen", 0.0159],
+            "bartholomew": ["Bartholomew", 0.0175],
+            "benton": ["Benton", 0.0179],
+            "blackford": ["Blackford", 0.025],
+            "boone": ["Boone", 0.0171],
+            "brown": ["Brown", 0.025234],
+            "carroll": ["Carroll", 0.024733],
+            "cass": ["Cass", 0.0295],
+            "clark": ["Clark", 0.02],
+            "clay": ["Clay", 0.0235],
+            "clinton": ["Clinton", 0.0265],
+            "crawford": ["Crawford", 0.0165],
+            "daviess": ["Daviess", 0.015],
+            "dearborn": ["Dearborn", 0.014],
+            "decatur": ["Decatur", 0.0245],
+            "dekalb": ["DeKalb", 0.0213],
+            "delaware": ["Delaware", 0.015],
+            "dubois": ["Dubois", 0.012],
+            "elkhart": ["Elkhart", 0.02],
+            "fayette": ["Fayette", 0.0282],
+            "floyd": ["Floyd", 0.0189],
+            "fountain": ["Fountain", 0.021],
+            "franklin": ["Franklin", 0.017],
+            "fulton": ["Fulton", 0.0288],
+            "gibson": ["Gibson", 0.013],
+            "grant": ["Grant", 0.0275],
+            "greene": ["Greene", 0.0235],
+            "hamilton": ["Hamilton", 0.011],
+            "hancock": ["Hancock", 0.0194],
+            "harrison": ["Harrison", 0.01],
+            "hendricks": ["Hendricks", 0.017],
+            "henry": ["Henry", 0.0202],
+            "howard": ["Howard", 0.0235],
+            "huntington": ["Huntington", 0.0195],
+            "jackson": ["Jackson", 0.021],
+            "jasper": ["Jasper", 0.02864],
+            "jay": ["Jay", 0.025],
+            "jefferson": ["Jefferson", 0.0103],
+            "jennings": ["Jennings", 0.025],
+            "johnson": ["Johnson", 0.014],
+            "knox": ["Knox", 0.017],
+            "kosciusko": ["Kosciusko", 0.01],
+            "lagrange": ["LaGrange", 0.0165],
+            "lake": ["Lake", 0.015],
+            "laporte": ["LaPorte", 0.0145],
+            "lawrence": ["Lawrence", 0.0175],
+            "madison": ["Madison", 0.0225],
+            "marion": ["Marion", 0.0202],
+            "marshall": ["Marshall", 0.0125],
+            "martin": ["Martin", 0.025],
+            "miami": ["Miami", 0.0254],
+            "monroe": ["Monroe", 0.0214],
+            "montgomery": ["Montgomery", 0.0265],
+            "morgan": ["Morgan", 0.0272],
+            "newton": ["Newton", 0.01],
+            "noble": ["Noble", 0.0175],
+            "ohio": ["Ohio", 0.02],
+            "orange": ["Orange", 0.0175],
+            "owen": ["Owen", 0.025],
+            "parke": ["Parke", 0.0265],
+            "perry": ["Perry", 0.014],
+            "pike": ["Pike", 0.012],
+            "porter": ["Porter", 0.005],
+            "posey": ["Posey", 0.0145],
+            "pulaski": ["Pulaski", 0.0285],
+            "putnam": ["Putnam", 0.023],
+            "randolph": ["Randolph", 0.03],
+            "ripley": ["Ripley", 0.0238],
+            "rush": ["Rush", 0.0215],
+            "st-joseph": ["St. Joseph", 0.0175],
+            "scott": ["Scott", 0.0216],
+            "shelby": ["Shelby", 0.017],
+            "spencer": ["Spencer", 0.008],
+            "starke": ["Starke", 0.0171],
+            "steuben": ["Steuben", 0.0199],
+            "sullivan": ["Sullivan", 0.017],
+            "switzerland": ["Switzerland", 0.0145],
+            "tippecanoe": ["Tippecanoe", 0.0128],
+            "tipton": ["Tipton", 0.026],
+            "union": ["Union", 0.0275],
+            "vanderburgh": ["Vanderburgh", 0.0125],
+            "vermillion": ["Vermillion", 0.015],
+            "vigo": ["Vigo", 0.02],
+            "wabash": ["Wabash", 0.029],
+            "warren": ["Warren", 0.0212],
+            "warrick": ["Warrick", 0.01],
+            "washington": ["Washington", 0.02],
+            "wayne": ["Wayne", 0.0125],
+            "wells": ["Wells", 0.021],
+            "white": ["White", 0.0232],
+            "whitley": ["Whitley", 0.016829]
+          }
+        }
+      }
     }
   }
 };

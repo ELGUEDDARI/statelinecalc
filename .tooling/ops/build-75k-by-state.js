@@ -56,6 +56,16 @@ const ETATS = Object.entries(PUBLIES).map(([nom, cle]) => {
 }).sort((a, b) => b.net - a.net || a.nom.localeCompare(b.nom));
 
 const N = ETATS.length;
+/* Indiana (06/10/2026) : sa seule « autre deduction » est l'impot de COMTE, qui n'est pas une
+   prime mais un impot sur le revenu, et qui n'a pas de taux unique : on le dit, avec le
+   comte retenu et la fourchette lue dans le moteur. */
+const IN_CT = R.states.indiana.incomeTax.countyTax;
+const IN_TAUX = Object.values(IN_CT.rates).map(x => x[1]);
+const IN_NOTE = ETATS.some(e => e.cle === "indiana")
+  ? " The one exception is Indiana, where that column holds the county income tax, withheld along with the state tax: it is shown at the "
+    + IN_CT.rates[IN_CT.defaultCounty][0] + " County rate of " + (IN_CT.rates[IN_CT.defaultCounty][1] * 100).toFixed(2)
+    + "%, and the rate in the state&rsquo;s 92 counties runs from " + (Math.min(...IN_TAUX) * 100).toFixed(1) + "% to "
+    + (Math.max(...IN_TAUX) * 100).toFixed(1) + "%." : "";
 const MOTS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
   "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen",
   "eighteen", "nineteen", "twenty"];
@@ -320,8 +330,8 @@ ${entete(null)}
 
   <h2>${D} after tax, ranked by state</h2>
   <p>&ldquo;Other state deductions&rdquo; are the amounts a state takes from a pay stub that are
-  not income tax &mdash; paid-leave and long-term-care premiums, mostly. They are why two states
-  with no income tax do not land on the same line.</p>
+  not the state income tax &mdash; paid-leave and long-term-care premiums, mostly. They are why two states
+  with no income tax do not land on the same line.${IN_NOTE}</p>
 
   <div class="table-scroll">
     <table>
@@ -398,7 +408,7 @@ ${ligneGains}
     above takes those.</li>
     <li>2026 federal figures from Rev. Proc. 2025-32 and the 2026 Social Security wage base.
     Federal tax is identical in every row, which is the point: the table isolates the state.</li>
-    <li>No local income tax. Cities and school districts in some of these states levy their own;
+    <li>No local income tax, with one exception: Indiana&rsquo;s county income tax is included in its row, at the Marion County rate. Cities and school districts in some of these states levy their own;
     the state pages say which.</li>
     <li>Only the ${NOMBRE} states we have published. The list grows as states are added, and the
     count in the title is generated from it, so this page never claims a state it does not

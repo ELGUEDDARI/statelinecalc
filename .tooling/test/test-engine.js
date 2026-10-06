@@ -1539,5 +1539,115 @@ check("MN : le chef de famille utilise les memes tranches que le celibataire (le
   check("MN : moteur navigateur == moteur node sur " + n + " entrees (impot d'Etat et net)", ecarts, 0, 0);
 }
 
+console.log("\n=== Indiana (32e Etat) ===");
+
+/* Sources (lues le 2026-10-06) : Indiana Department of Revenue, Departmental
+   Notice #1 « Effective Oct. 1, 2026 (R47 / 10-26) » : « For 2026, the state
+   adjusted gross income tax rate for individuals is 2.95%. » ; « Each employee is
+   entitled to deduct $1,000 per year per exemption claimed on line 5 of his/her
+   Form WH-4 » ; l'exemple imprime applique 2,95 % ET le taux de comte a la MEME
+   base (473,08 $ x .0295 = 13,96 $ ; 473,08 $ x .01 = 4,73 $) ; tableau des 92
+   comtes p. 5. Form WH-4 : ligne 1 = 1 exemption, ligne 2 = 1 pour le conjoint
+   qui ne reclame pas la sienne. Defaut du moteur : Marion, 0,0202.
+   Chaque attendu est recalcule a la main.
+   single 75 000, Marion : base 75 000 - 1 000 = 74 000
+        Etat   74 000 x 0,0295 = 2 183,00
+        comte  74 000 x 0,0202 = 1 494,80
+        federal 7 670 + SS 4 650 + Medicare 1 087,50
+        net    75 000 - 7 670 - 5 737,50 - 2 183 - 1 494,80          = 57 914,70
+   married 75 000 : base 73 000 ; Etat 2 153,50 ; comte 1 474,60
+   HoH 75 000     : 1 exemption comme le celibataire ; Etat 2 183,00
+   single 52 000 (25 $/h) : base 51 000 ; Etat 1 504,50 ; comte 1 030,20
+        federal (52 000 - 16 100 = 35 900) 1 240 + 23 500 x 12 % = 4 060 ; FICA 3 978
+        net 52 000 - 4 060 - 3 978 - 1 504,50 - 1 030,20              = 41 427,30
+   single 250 000 : base 249 000 ; Etat 7 345,50 ; comte 5 029,80
+        federal 51 304 ; SS 11 439 ; Medicare 4 075
+        net 250 000 - 51 304 - 11 439 - 4 075 - 7 345,50 - 5 029,80   = 170 806,70
+   single 20 000 : base 19 000 ; Etat 560,50 ; comte 383,80
+   single 1 000 : base 0 ; aucun impot d'Etat ni de comte
+   Porter (0,005)   75 000 : 74 000 x 0,005   =   370,00
+   Randolph (0,03)  75 000 : 74 000 x 0,03    = 2 220,00
+   Hamilton (0,011) 75 000 : 74 000 x 0,011   =   814,00
+   Boone (0,0171)   75 000 : 74 000 x 0,0171  = 1 265,40
+   Brown (0,025234) 75 000 : 74 000 x 0,025234 = 1 867,316
+   St. Joseph (0,0175) 75 000 : 74 000 x 0,0175 = 1 295,00
+   401(k) 6 % : base (75 000 - 4 500) - 1 000 = 69 500 ; Etat 2 050,25 ; comte 1 403,90 */
+const inC = (b, st, rp, c) => calcul("indiana", b, st, rp, c);
+const comteIn = r => r.programmes.filter(p => p.county).reduce((t, p) => t + p.montant, 0);
+check("IN : single 75 000 $ Etat = 2 183,00 $ (74 000 x 2,95 %)", inC(75000).etat, 2183.00, 0.005);
+check("IN : single 75 000 $ comte Marion = 1 494,80 $ (74 000 x 2,02 %)", comteIn(inC(75000)), 1494.80, 0.005);
+check("IN : net a 75 000 $ = 57 914,70 $", inC(75000).net, 57914.70, 0.006);
+check("IN : married 75 000 $ Etat = 2 153,50 $ (2 exemptions)", inC(75000, "marriedJoint").etat, 2153.50, 0.005);
+check("IN : married 75 000 $ comte = 1 474,60 $", comteIn(inC(75000, "marriedJoint")), 1474.60, 0.005);
+check("IN : head of household 75 000 $ = single (1 exemption) 2 183,00 $", inC(75000, "headOfHousehold").etat, 2183.00, 0.005);
+check("IN : single 52 000 $ (25 $/h) Etat = 1 504,50 $", inC(52000).etat, 1504.50, 0.005);
+check("IN : single 52 000 $ comte = 1 030,20 $", comteIn(inC(52000)), 1030.20, 0.005);
+check("IN : net a 25 $/h (52 000 $) = 41 427,30 $", inC(52000).net, 41427.30, 0.006);
+check("IN : single 250 000 $ Etat = 7 345,50 $ (taux plat, aucune tranche)", inC(250000).etat, 7345.50, 0.005);
+check("IN : single 250 000 $ comte = 5 029,80 $", comteIn(inC(250000)), 5029.80, 0.005);
+check("IN : net a 250 000 $ = 170 806,70 $", inC(250000).net, 170806.70, 0.006);
+check("IN : single 20 000 $ Etat = 560,50 $", inC(20000).etat, 560.50, 0.005);
+check("IN : single 20 000 $ comte = 383,80 $", comteIn(inC(20000)), 383.80, 0.005);
+check("IN : 1 000 $ de salaire = 0 $ d'Etat (l'exemption absorbe tout)", inC(1000).etat, 0, 0);
+check("IN : 1 000 $ de salaire = 0 $ de comte", comteIn(inC(1000)), 0, 0);
+check("IN : Porter 0,5 % sur 75 000 $ = 370,00 $", comteIn(inC(75000, "single", 0, "porter")), 370.00, 0.005);
+check("IN : Randolph 3,0 % sur 75 000 $ = 2 220,00 $", comteIn(inC(75000, "single", 0, "randolph")), 2220.00, 0.005);
+check("IN : Hamilton 1,1 % sur 75 000 $ = 814,00 $", comteIn(inC(75000, "single", 0, "hamilton")), 814.00, 0.005);
+check("IN : Boone 1,71 % (asterisque, modifie depuis le 1er janvier) = 1 265,40 $", comteIn(inC(75000, "single", 0, "boone")), 1265.40, 0.005);
+check("IN : Brown 2,5234 % (4 decimales) = 1 867,316 $", comteIn(inC(75000, "single", 0, "brown")), 1867.316, 0.0005);
+check("IN : St. Joseph (cle st-joseph) 1,75 % = 1 295,00 $", comteIn(inC(75000, "single", 0, "st-joseph")), 1295.00, 0.005);
+check("IN : 401(k) 6 % sur 75 000 $ Etat = 2 050,25 $", inC(75000, "single", 0.06).etat, 2050.25, 0.005);
+check("IN : 401(k) 6 % sur 75 000 $ comte = 1 403,90 $", comteIn(inC(75000, "single", 0.06)), 1403.90, 0.005);
+check("IN : le comte n'est pas range avec les programmes (drapeau county, etiquette Marion 2.02%)",
+  inC(75000).programmes.length === 1 && inC(75000).programmes[0].county === true &&
+  inC(75000).programmes[0].label === "Marion County income tax (2.02%)" ? 1 : 0, 1, 0);
+check("IN : etiquette a 4 decimales, sans zero superflu (Brown 2.5234%, Hamilton 1.1%)",
+  inC(75000, "single", 0, "brown").programmes[0].label === "Brown County income tax (2.5234%)" &&
+  inC(75000, "single", 0, "hamilton").programmes[0].label === "Hamilton County income tax (1.1%)" ? 1 : 0, 1, 0);
+check("IN : un comte inconnu est une ERREUR, jamais un defaut silencieux",
+  (() => { try { inC(75000, "single", 0, "atlantis"); return 0; } catch (e) { return 1; } })(), 1, 0);
+check("IN : un Etat sans impot de comte refuse un comte",
+  (() => { try { calcul("texas", 75000, "single", 0, "marion"); return 0; } catch (e) { return 1; } })(), 1, 0);
+check("IN : aucun autre Etat n'a de countyTax (le mecanisme est propre a l'Indiana)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.countyTax).join(",") === "indiana" ? 1 : 0, 1, 0);
+check("IN : 92 comtes, defaut Marion, taux entre 0,5 % et 3,0 %",
+  (() => { const c = R.states.indiana.incomeTax.countyTax; const t = Object.values(c.rates).map(x => x[1]);
+    return Object.keys(c.rates).length === 92 && c.defaultCounty === "marion" && Math.min(...t) === 0.005 && Math.max(...t) === 0.03 ? 1 : 0; })(), 1, 0);
+check("IN : taux plat 2,95 % identique pour les trois statuts, exemptions 1 000 / 2 000 / 1 000 $",
+  (() => { const i = R.states.indiana.incomeTax; const b = i.brackets;
+    return JSON.stringify(b.single) === JSON.stringify([[Infinity, 0.0295]]) &&
+           JSON.stringify(b.marriedJoint) === JSON.stringify(b.single) && JSON.stringify(b.headOfHousehold) === JSON.stringify(b.single) &&
+           i.standardDeduction.single === 1000 && i.standardDeduction.marriedJoint === 2000 && i.standardDeduction.headOfHousehold === 1000 ? 1 : 0; })(), 1, 0);
+check("IN : aucun programme salarie ni conge paye d'Etat (employeePrograms, paidLeave absents)",
+  !R.states.indiana.employeePrograms && !R.states.indiana.paidLeave ? 1 : 0, 1, 0);
+
+/* Le moteur NAVIGATEUR (assets/calc-paycheck.js) et le moteur NODE (lib/paie.js)
+   doivent donner le meme impot d'Etat, le meme comte et le meme net, pour CHAQUE
+   comte (92) et les trois statuts. */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const comtes = Object.keys(R.states.indiana.incomeTax.countyTax.rates).concat([undefined]);
+  for (const c of comtes)
+    for (const st of ["single", "marriedJoint", "headOfHousehold"])
+      for (const g of [900, 1000, 20000, 52000, 75000, 123456, 250000, 1500000])
+        for (const rp of [0, 0.06]) {
+          const a = ctx.window.StateLineCalc.computeAnnual(
+            { grossAnnual: g, state: "indiana", county: c, filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+          const b = calcul("indiana", g, st, rp, c);
+          n++;
+          const ca = a.programmes.filter(p => p.county).reduce((t, p) => t + p.amount, 0);
+          const labelOk = a.programmes.length === b.programmes.length && a.programmes.every((p, i) => p.label === b.programmes[i].label);
+          if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(ca - comteIn(b)) > 0.005 || Math.abs(a.net - b.net) > 0.01 || !labelOk) {
+            ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", c, st, g, rp, a.stateTax, b.etat, ca, comteIn(b), a.net, b.net);
+          }
+        }
+  check("IN : moteur navigateur == moteur node sur " + n + " entrees (92 comtes + defaut x 3 statuts : Etat, comte, etiquette, net)", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

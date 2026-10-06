@@ -57,7 +57,23 @@
    pouvoir etre remplaces sans etre retapes.
    ========================================================================= */
 
-function blocLimites() {
+/* Indiana (06/10/2026) est le premier Etat dont le moteur ajoute une ligne de taxe
+   LOCALE : l'impot de comte, retenu avec l'impot d'Etat. La phrase generique
+   « this calculator does not add that line for any state » serait fausse sur sa
+   page : le bloc depend donc de l'Etat, et reste identique partout ailleurs. */
+const LOCAL_GENERIQUE = `    <li><strong>Local taxes</strong> &mdash; city income tax, county tax, or a school-district
+    tax. Where a state levies one, our <a href="/methodology/">methodology page</a> says so by
+    name; this calculator does not add that line, with one exception: the Indiana calculator adds the
+    <a href="/paycheck-calculator/indiana/">county income tax</a> for the county you choose.</li>`;
+const LOCAL_PAR_ETAT = {
+  indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
+    tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
+    income tax, at the rate for the county you choose above; it adds no other local line for any
+    state. Our <a href="/methodology/">methodology page</a> names the local taxes it leaves out.</li>`
+};
+
+function blocLimites(cle) {
+  const local = (cle && LOCAL_PAR_ETAT[cle]) || LOCAL_GENERIQUE;
   return `  <!-- LIMITES:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
   <h2>What this calculator does not cover</h2>
   <p class="prose">This tool models federal income tax, Social Security, Medicare and the
@@ -72,9 +88,7 @@ function blocLimites() {
     <li><strong>Pre-tax benefits other than the 401(k) field</strong> &mdash; health insurance
     premiums, an HSA or FSA, commuter benefits. The only amount taken out before tax is the
     percentage you enter for a 401(k).</li>
-    <li><strong>Local taxes</strong> &mdash; city income tax, county tax, or a school-district
-    tax. Where a state levies one, our <a href="/methodology/">methodology page</a> says so by
-    name; this calculator does not add that line for any state.</li>
+${local}
     <li><strong>Overtime premiums.</strong> An hourly rate is multiplied by the hours you enter;
     it does not add a time-and-a-half rate for hours worked past 40 in a week.</li>
     <li><strong>Wage garnishments or court-ordered deductions</strong> &mdash; child support, a
@@ -92,7 +106,10 @@ function blocLimites() {
   <!-- LIMITES:fin -->`;
 }
 
-function blocChecklist() {
+function blocChecklist(cle) {
+  const comte = cle === "indiana"
+    ? `
+      <li>Your Indiana county as of January 1 &mdash; it sets the county income tax rate</li>` : "";
   return `  <!-- CHECKLIST:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
   <div class="box-neutre">
     <h3 class="u-mt-0">What you need before you calculate</h3>
@@ -101,7 +118,7 @@ function blocChecklist() {
       <li>How often you are paid &mdash; per year, per month, twice a month, every two weeks,
       per week, or per hour</li>
       <li>Your filing status &mdash; single, married filing jointly, or head of household</li>
-      <li>Your 401(k) contribution percentage, if you have one &mdash; leave it at 0 if not</li>
+      <li>Your 401(k) contribution percentage, if you have one &mdash; leave it at 0 if not</li>${comte}
     </ul>
   </div>
   <!-- CHECKLIST:fin -->`;

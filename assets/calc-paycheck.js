@@ -98,6 +98,7 @@
        error being raised. Added the table form rather than hard-coding a
        state, because most states that tax income work this way. */
     var stateTax = 0;
+    var imposableCounty = 0;
     if (state.incomeTax.hasIncomeTax) {
       /* Most states start from pay after pre-tax contributions, as the federal
          government does. Pennsylvania does not: a 401(k) deferral is taxable
@@ -179,6 +180,7 @@
         sd = (sd || 0) + Math.min(fd.cap, ss + medicare + addlMedicare);
       }
       var imposableEtat = Math.max(0, baseEtat - (sd || 0));
+      imposableCounty = imposableEtat;
       /* Arkansas is the first state here whose RATE SCHEDULE itself is
          published as a table of segments rather than continuous marginal
          bands: AR1000ES 2026, Tax Rate Schedule. Each segment prints its own
@@ -259,6 +261,22 @@
       var base = pg.wageCap ? Math.min(gross, pg.wageCap) : gross;
       programmes.push({ label: pg.label, amount: base * pg.rate });
     });
+    /* Indiana is the first state here with a COUNTY income tax withheld on top of
+       the state tax. Departmental Notice #1 (effective Oct. 1, 2026): state and
+       county tax are both figured on the same wage after exemptions, the county
+       rate is the one for the employee's county on Jan. 1, and every one of the
+       92 counties has its own. The county shows as its own line, labeled with its
+       name and rate, and is flagged so the breakdown does not file it under
+       "payroll programs". With no county given, the state's default applies and
+       the page says which one it is. Added 2026-10-06. */
+    var ct = state.incomeTax.countyTax;
+    if (state.incomeTax.hasIncomeTax && ct) {
+      var ck = (input.county && ct.rates[input.county]) ? input.county : ct.defaultCounty;
+      var cRow = ct.rates[ck];
+      var cRate = +(cRow[1] * 100).toFixed(4);
+      programmes.push({ label: cRow[0] + " County income tax (" + cRate + "%)",
+                        amount: imposableCounty * cRow[1], county: true });
+    }
     var totalProgrammes = programmes.reduce(function (t, pg) { return t + pg.amount; }, 0);
 
     var totalTax = federal + ss + medicare + addlMedicare + stateTax
@@ -366,6 +384,7 @@
         filingStatus: form.elements.filing.value,
         retirementPct: retraite / 100,
         state: etatCourant(),
+        county: form.elements.county ? form.elements.county.value : undefined,
         waCaresApplies: form.elements.wacares ? form.elements.wacares.checked : true
       };
     }
@@ -387,10 +406,14 @@
                   montant: a.socialSecurity + a.medicare, couleur: "fica" });
       if (a.stateTax > 0) segs.push({ cle: "state", libelle: "State income tax",
                                       montant: a.stateTax, couleur: "state" });
-      var autres = 0;
+      var autres = 0, comte = 0;
       if (a.paidLeave > 0) autres += a.paidLeave;
       if (a.waCares > 0) autres += a.waCares;
-      (a.programmes || []).forEach(function (pg) { if (pg.amount > 0) autres += pg.amount; });
+      (a.programmes || []).forEach(function (pg) {
+        if (pg.amount > 0) { if (pg.county) comte += pg.amount; else autres += pg.amount; }
+      });
+      if (comte > 0) segs.push({ cle: "county", libelle: "County income tax",
+                                 montant: comte, couleur: "prog" });   /* not "state": two neighbouring slices of one navy would read as one */
       if (autres > 0) segs.push({ cle: "prog", libelle: "State payroll programs",
                                   montant: autres, couleur: "prog" });
       if (a.pretax > 0) segs.push({ cle: "401k", libelle: "401(k), still yours",
@@ -514,7 +537,8 @@
       var morceaux = prelevements.map(function (s) {
         return s.libelle.replace(/^State income tax$/, "state income tax")
                         .replace(/^Federal income tax$/, "federal income tax")
-                        .replace(/^State payroll programs$/, "state payroll programs") +
+                        .replace(/^State payroll programs$/, "state payroll programs")
+                        .replace(/^County income tax$/, "county income tax") +
                " at " + pctDe(s.cle) + " percent";
       });
       var dernier = morceaux.pop();

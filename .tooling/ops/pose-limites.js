@@ -36,18 +36,18 @@ function remplaceOuPose(s, debut, fin, ancre, bloc) {
   return { texte: s.slice(0, k) + bloc + "\n\n" + s.slice(k), action: "pose" };
 }
 
-function traiter(abs, nom, ancreLimites) {
+function traiter(abs, nom, ancreLimites, cle) {
   if (!fs.existsSync(abs)) { console.log("  ⚠ absente : " + nom); return "echec"; }
   let s = fs.readFileSync(abs, "utf8");
   let touche = false;
 
   const rC = remplaceOuPose(s, "  <!-- CHECKLIST:debut", "  <!-- CHECKLIST:fin -->",
-                             '<h2 id="calc-h"', blocChecklist());
+                             '<h2 id="calc-h"', blocChecklist(cle));
   if (!rC) { console.log("  ⚠ ancre CHECKLIST introuvable : " + nom); return "echec"; }
   if (rC.texte !== s) { s = rC.texte; touche = true; }
 
   const rL = remplaceOuPose(s, "  <!-- LIMITES:debut", "  <!-- LIMITES:fin -->",
-                             ancreLimites, blocLimites());
+                             ancreLimites, blocLimites(cle));
   if (!rL) { console.log("  ⚠ ancre LIMITES introuvable : " + nom); return "echec"; }
   if (rL.texte !== s) { s = rL.texte; touche = true; }
 
@@ -63,7 +63,7 @@ console.log("=== PAGES D'ETAT (paycheck-calculator) ===");
 for (const nom of Object.keys(PUBLIES).sort()) {
   const cle = PUBLIES[nom];
   const abs = path.join(RACINE, "paycheck-calculator", cle, "index.html");
-  const r = traiter(abs, nom, "  <h2>Key facts");
+  const r = traiter(abs, nom, "  <h2>Key facts", cle);
   if (r === "echec") echecs++; else if (r === "ok") pages++;
 }
 
