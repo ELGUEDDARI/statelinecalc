@@ -83,6 +83,13 @@ const LOCAL_PAR_ETAT = {
     and we found no local income tax on wages in the agency pages we read. That is not proof that none exists. This
     calculator adds no local line for Oklahoma. The only local income tax lines on this site are on the
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
+  /* Louisiane (06/10/2026) : la Constitution (Art. VII, §4(C), senate.la.gov, lue le 06/10/2026) interdit a
+     une subdivision politique de lever un impot sur le revenu : c'est une source officielle, la page peut
+     le dire, citation a l'appui. La formule du DOR n'a aucune ligne locale. */
+  louisiana: `    <li><strong>Local income taxes</strong> &mdash; the Louisiana Constitution says a political
+    subdivision of the state shall not levy an income tax, so we add no parish or city income tax here. The only
+    local income tax lines on this site are on the <a href="/paycheck-calculator/indiana/">Indiana</a> and
+    <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

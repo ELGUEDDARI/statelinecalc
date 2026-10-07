@@ -2250,5 +2250,92 @@ check("OK : bases imprimees 28,75 / 109,25 (celibataire) et 57,50 / 218,50 (mari
   check("OK : moteur navigateur == moteur node sur " + n + " entrees (3 statuts x bornes des tranches x 401(k))", ecarts, 0, 0);
 }
 
+console.log("\n=== Louisiane (38e Etat) ===");
+
+/* Sources (lues le 2026-10-06) : Louisiana Department of Revenue, « Louisiana Withholding Tables and
+   Formulas », R-1306 (1/26), « Effective on or after January 1, 2026 », p. 2 : « 2026 Standard Deduction :
+   Single Individual and Married-Separate $12,875 ; Married-Joint Return, Qualified Surviving Spouse, or Head of
+   Household $25,750 » ; « Formulas - Based on a 3.09% Withholding Rate : W= (S - (12,875/N)) * .0309 ».
+   Taux unique, aucune exemption, aucune soustraction de l'impot federal, aucun programme salarie.
+   Tous les attendus ci-dessous sont recalcules a la main, PAS copies de la sortie du code. */
+const laC = (b, st, rp) => calcul("louisiana", b, st || "single", rp || 0);
+
+/* Cas LA-1 - 75 000 $ celibataire.
+   Federal : 58 900 imposables = 1 240 + 4 560 + 1 870 = 7 670.
+   Etat : (75 000 - 12 875) x 3,09 % = 62 125 x 0,0309 = 1 863,75 + 55,9125 = 1 919,6625.
+   FICA : 4 650 + 1 087,50 = 5 737,50. Net : 75 000 - 7 670 - 5 737,50 - 1 919,6625 = 59 672,8375. */
+check("LA 75 000 $ celibataire : impot d'Etat", laC(75000).etat, 1919.6625, 0.005);
+check("LA 75 000 $ celibataire : net", laC(75000).net, 59672.8375, 0.005);
+
+/* Cas LA-2 - 75 000 $ marie. Federal 4 640. Etat : (75 000 - 25 750) x 0,0309 = 49 250 x 0,0309 = 1 521,825.
+   Net : 75 000 - 4 640 - 5 737,50 - 1 521,825 = 63 100,675. */
+check("LA 75 000 $ marie : impot d'Etat", laC(75000, "marriedJoint").etat, 1521.825, 0.005);
+check("LA 75 000 $ marie : net", laC(75000, "marriedJoint").net, 63100.675, 0.005);
+
+/* Cas LA-3 - 75 000 $ chef de famille. Federal 5 748. Etat = 1 521,825 (meme deduction que « marie »).
+   Net : 75 000 - 5 748 - 5 737,50 - 1 521,825 = 61 992,675. */
+check("LA 75 000 $ chef de famille : impot d'Etat", laC(75000, "headOfHousehold").etat, 1521.825, 0.005);
+check("LA 75 000 $ chef de famille : net", laC(75000, "headOfHousehold").net, 61992.675, 0.005);
+
+/* Cas LA-4 - 30 000 $ celibataire. Federal 1 420. Etat : 17 125 x 0,0309 = 529,1625. FICA 2 295.
+   Net : 30 000 - 1 420 - 2 295 - 529,1625 = 25 755,8375. */
+check("LA 30 000 $ celibataire : impot d'Etat", laC(30000).etat, 529.1625, 0.005);
+check("LA 30 000 $ celibataire : net", laC(30000).net, 25755.8375, 0.005);
+
+/* Cas LA-5 - 250 000 $ celibataire. Federal 51 304. FICA 11 439 + 4 075. Etat : 237 125 x 0,0309 = 7 327,1625.
+   Net : 250 000 - 51 304 - 7 327,1625 - 11 439 - 4 075 = 175 854,8375. */
+check("LA 250 000 $ celibataire : impot d'Etat", laC(250000).etat, 7327.1625, 0.005);
+check("LA 250 000 $ celibataire : net", laC(250000).net, 175854.8375, 0.005);
+
+/* Cas LA-6 - 75 000 $ avec 6 % de 401(k) : 70 500 $ ; Etat : (70 500 - 12 875) x 0,0309 = 57 625 x 0,0309 = 1 780,6125.
+   Gain : 1 919,6625 - 1 780,6125 = 139,05. */
+check("LA 75 000 $ avec 6 % de 401(k) : impot d'Etat", laC(75000, "single", 0.06).etat, 1780.6125, 0.005);
+
+/* Cas LA-7 - 25 $ l'heure, 2 080 h = 52 000 $. Federal 4 060. FICA 3 224 + 754. Etat : 39 125 x 0,0309 = 1 208,9625.
+   Net : 52 000 - 4 060 - 3 978 - 1 208,9625 = 42 753,0375. */
+check("LA 25 $/h (52 000 $) : impot d'Etat", laC(25 * 2080).etat, 1208.9625, 0.005);
+check("LA 25 $/h (52 000 $) : net", laC(25 * 2080).net, 42753.0375, 0.005);
+
+/* Cas LA-8 - 3 000 $ : sous la deduction, aucun impot. Net : 3 000 - 186 - 43,50 = 2 770,50. */
+check("LA 3 000 $ : aucun impot d'Etat", laC(3000).etat, 0, 0);
+check("LA 3 000 $ : net", laC(3000).net, 2770.50, 0.005);
+/* Bornes : a 12 875 $ pile, 0 ; a 12 876 $, 1 x 0,0309 = 0,0309. */
+check("LA 12 875 $ : impot d'Etat = 0", laC(12875).etat, 0, 0);
+check("LA 12 876 $ : impot d'Etat = 0,0309", laC(12876).etat, 0.0309, 0.00001);
+
+check("LA : aucun programme salarie, aucun conge paye, aucun impot local",
+  laC(75000).programmes.length === 0 && laC(75000).paidLeave === 0 && laC(75000).waCares === 0 &&
+  !R.states.louisiana.employeePrograms && !R.states.louisiana.paidLeave && !R.states.louisiana.incomeTax.countyTax ? 1 : 0, 1, 0);
+check("LA : taux unique de 3,09 % (jamais 3 %) et deductions 12 875 / 25 750 / 25 750 (R-1306)",
+  (() => { const A = R.states.louisiana.incomeTax;
+    return JSON.stringify(A.brackets.single) === JSON.stringify([[Infinity, 0.0309]]) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify(A.brackets.single) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(A.brackets.single) &&
+      JSON.stringify(A.standardDeduction) === JSON.stringify({ single: 12875, marriedJoint: 25750, headOfHousehold: 25750 }) &&
+      !A.personalExemption && !A.deductionByIncome && !A.federalTaxSubtraction ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x paliers de la deduction x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 3000, 12875, 12876, 25750, 25751, 52000, 75000, 100001, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "louisiana", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("louisiana", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("LA : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

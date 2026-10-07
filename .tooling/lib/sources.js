@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -930,6 +930,46 @@ const PAR_ETAT = {
     { type: "agence",
       url: "https://oklahoma.gov/tax/businesses/withholding.html",
       titre: "Oklahoma Tax Commission &mdash; Withholding Tax" }
+  ],
+  louisiana: [
+    { type: "document",
+      url: "https://dam.ldr.la.gov/taxforms/1306-1-26.pdf",
+      titre: "Louisiana Department of Revenue &mdash; Louisiana Withholding Tables and Formulas, R-1306 (1/26), effective on or after January 1, 2026 (PDF)",
+      quoi: "the withholding formula (3.09% rate, a $12,875 or $25,750 standard deduction) and the printed wage-bracket tables",
+      motif: ["Based on a 3.09% Withholding Rate", "2026 Standard Deduction"] },
+    { type: "document",
+      url: "https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/why-do-the-withholding-tables-use-3-09/",
+      titre: "Louisiana Department of Revenue &mdash; Why do the withholding tables use 3.09%?",
+      quoi: "the statement that the tables use 3.09% rather than the 3% income tax rate to provide a cushion, and that any amount withheld in excess of the tax liability is refundable",
+      motif: ["rather than the 3% income tax rate", "cushion"] },
+    { type: "document",
+      url: "https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/what-are-the-individual-income-tax-rates-and-brackets/",
+      titre: "Louisiana Department of Revenue &mdash; What are the individual income tax rates and brackets?",
+      quoi: "the statement that the individual income tax rate is a flat 3% for tax periods beginning on or after January 1, 2025",
+      motif: ["the individual income tax rate is a flat 3%"] },
+    { type: "document",
+      url: "https://dam.ldr.la.gov/taxforms/1300-1-26-F.pdf",
+      titre: "Louisiana Department of Revenue &mdash; Form R-1300 (L-4), Employee&rsquo;s Withholding Certificate (1/26, PDF)",
+      quoi: "the standard deduction choices in Block A: 0 for none, 1 for single or married filing separate, 2 for married filing jointly, head of household or qualifying surviving spouse",
+      motif: ["to claim a standard deduction"] },
+    { type: "document",
+      url: "https://legis.la.gov/Legis/Law.aspx?d=101761",
+      titre: "Louisiana Legislature &mdash; R.S. 47:294, Standard deduction",
+      quoi: "the standard deduction for single filers and its yearly CPI adjustment from January 1, 2026",
+      motif: ["standard deduction", "adjusted annually"] },
+    { type: "document",
+      url: "https://senate.la.gov/Documents/Constitution/Article7.html",
+      titre: "Louisiana Constitution of 1974 &mdash; Article VII, Revenue and Finance (Louisiana Senate)",
+      quoi: "Section 4(C), which says a political subdivision of the state shall not levy an income tax",
+      motif: ["A political subdivision of the state shall not levy a severance tax, income tax"] },
+    { type: "document",
+      url: "https://legis.la.gov/legis/Law.aspx?d=83573",
+      titre: "Louisiana Legislature &mdash; R.S. 23:1531, Basis of employer contributions (unemployment)",
+      quoi: "the statement that unemployment contributions are paid by each employer and shall not be deducted from the wages of the people it employs",
+      motif: ["shall not be deducted, in whole or in part, from the wages"] },
+    { type: "agence",
+      url: "https://revenue.louisiana.gov/tax-forms/businesses/?tax_type=withholding",
+      titre: "Louisiana Department of Revenue &mdash; Business tax forms, withholding (lists R-1306 and R-1300)" }
   ]
 };
 

@@ -4004,6 +4004,111 @@ const RATES_2026 = {
           headOfHousehold: [[10100, 0], [11250, 0.025], [13550, 0.035], [Infinity, 0.045]]
         }
       }
+    },
+
+    /* =======================================================================
+       LOUISIANA  -  lu le 2026-10-06 (revenue.louisiana.gov, dam.ldr.la.gov,
+       legis.la.gov, senate.la.gov : HTTP 200 ; laworks.net (Louisiana Workforce
+       Commission) repond 403 « Sorry, you have been blocked » (Cloudflare) a curl ET a un
+       Chrome pilote, en-tete navigateur compris : non lu, non cite)
+       38e Etat. Moteur : AUCUN mecanisme nouveau. Meme forme que l'Indiana et la Georgie :
+       un taux unique (brackets a une tranche) + standardDeduction par statut.
+       SERP : non mesuree en geo US (a faire en GSC / SEMrush avant la page).
+       -----------------------------------------------------------------------
+       1. LA FORMULE DE RETENUE. Louisiana Department of Revenue, « LOUISIANA WITHHOLDING
+          TABLES AND FORMULAS, Effective on or after January 1, 2026 », R-1306 (1/26)
+          (PDF 21 p., https://dam.ldr.la.gov/taxforms/1306-1-26.pdf, telecharge et lu en
+          PyMuPDF + pdftotext le 2026-10-06 ; liste sur
+          https://revenue.louisiana.gov/tax-forms/businesses/?tax_type=withholding).
+          « COMPUTER FORMULA METHOD », p. 2, verbatim :
+            « The overall structure of the formulas used to compute the withholding tax is to
+            calculate the tax on the total wage amount and then subtract the amount of tax
+            calculated on the standard deduction that the taxpayer claims for withholding
+            purposes. »
+            « 2026 Standard Deduction: 1. Single Individual and Married-Separate . . . $12,875
+            2. Married-Joint Return, Qualified Surviving Spouse, or Head of Household . . . $25,750 »
+            « Formulas - Based on a 3.09% Withholding Rate: 1. No Standard Deduction W= S * .0309
+            2. Single Individual and Married-Separate W= (S - (12,875/N)) * .0309
+            3. Married-Joint Return, Qualified Surviving Spouse, or Head of Household
+            W= (S - (25,750/N)) * .0309 »
+            « Remember, if any of the variables in the formula are negative, the negative
+            variable should be considered zero. »
+          => en annuel (N = 1) : retenue = max(0, brut - deduction) x 3,09 %. brackets =
+          [[Infinity, 0.0309]], standardDeduction par statut. Aucune exemption, aucune
+          personne a charge, aucune soustraction de l'impot federal dans la formule.
+          Les 735 lignes des tables imprimees (p. 3-21) se recoupent, cellule par cellule
+          (2 505), avec cette formule au centime pres : .tooling/test/verif-retenue-la.js.
+          CONSTAT : le texte dit « Daily payroll 365 » mais la table journaliere ne se recoupe
+          qu'avec N = 260 ; le site ne chiffre pas la paie journaliere. Autre coquille du PDF : p. 3,
+          « If your employee claims "2" ... use column 1 » (la colonne imprimee pour « 2 » est la 2).
+       2. POURQUOI 3,09 % ET NON 3 %. Louisiana Department of Revenue, FAQ « Why do the withholding
+          tables use 3.09%? »
+          (https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/why-do-the-withholding-tables-use-3-09/),
+          verbatim : « The withholding tables utilize a rate of 3.09% rather than the 3% income tax rate
+          to provide a cushion. This cushion reduces the chances that the taxpayer will have a balance
+          due with their return. Any amount withheld in excess of the tax liability is refundable. »
+          => la page doit dire que l'Etat RETIENT 3,09 % et que l'impot de la declaration est a 3 %.
+       3. LE TAUX DE LA DECLARATION. Meme site, FAQ « What are the individual income tax rates and
+          brackets? »
+          (https://revenue.louisiana.gov/tax-education-and-faqs/faqs/income-tax-reform/what-are-the-individual-income-tax-rates-and-brackets/),
+          verbatim : « For taxable periods beginning on or after January 1, 2025, the individual
+          income tax rate is a flat 3%. The graduated brackets and rates for income tax have been
+          repealed. » ; Revenue Information Bulletin 25-012 (7 mars 2025,
+          https://dam.ldr.la.gov/lawspolicies/RIB-25-012-Louisiana-Individual-Income-Tax-Reform-1.pdf) :
+          « Act 11 repeals the graduated rates and brackets for individuals in favor of a flat 3% tax
+          rate applicable to all taxable income. » et « The additional exemptions for dependents,
+          blind persons, and persons over age 65 were repealed. » (donc pas d'exemption a modeliser).
+       4. LA DEDUCTION STANDARD 2026. La Revised Statute 47:294 (https://legis.la.gov/Legis/Law.aspx?d=101761),
+          verbatim : « For tax year 2025, the amount of the standard deduction shall be as follows:
+          (1) Single Individual and Married-Separate $12,500.00 (2) Married-Joint Return, a Qualified
+          Surviving Spouse, and Head of Household 200% of the dollar amount provided for Single
+          Individuals B. Beginning January 1, 2026, and thereafter, the amount of the standard deduction
+          ... shall be adjusted annually ... (CPI-U) ». Le montant 2026 (12 875 $ / 25 750 $) est celui
+          du R-1306, pas un calcul du site. Statuts du site : single = « 1 », marriedJoint = « 2 »,
+          headOfHousehold = « 2 » (Form R-1300 (L-4), 1/26, Block A : « Enter "1" to claim a standard
+          deduction if your filing status is single or married filing separate ... Enter "2" to claim a
+          standard deduction if your filing status is married filing jointly, head of household, or
+          qualifying surviving spouse », https://dam.ldr.la.gov/taxforms/1300-1-26-F.pdf). Le choix « 0 »
+          (« No deduction », retenue maximale) et la ligne 7 (retenue supplementaire) ne sont pas modelises.
+       5. TAXES LOCALES. Louisiana Constitution, Art. VII, §4(C)
+          (https://senate.la.gov/Documents/Constitution/Article7.html, HTTP 200), verbatim :
+          « (C) Political Subdivisions; Prohibitions. A political subdivision of the state shall not levy
+          a severance tax, income tax, inheritance tax, or tax on motor fuel. »
+          => aucune ligne locale. La page peut citer cet article ; pas d'impot de paroisse a modeliser.
+       6. ASSURANCE CHOMAGE. Louisiana Workforce Commission : 403, NON LU. Source officielle utilisable :
+          Louisiana R.S. 23:1531(A) (https://legis.la.gov/legis/Law.aspx?d=83573), verbatim : « These
+          contributions shall become due and be paid by each employer to the administrator for the fund
+          ... and shall not be deducted, in whole or in part, from the wages of individuals in the
+          employer's employ. » => aucune retenue salariee de chomage : pas d'entree employeePrograms.
+          Le montant de l'assiette patronale n'est pas cite (LWC illisible).
+       7. PAS D'ASSURANCE INVALIDITE NI DE CONGE PAYE D'ETAT TROUVE (SDI, PFML) : ni le DOR ni les
+          statuts lus n'en decrivent ; « we found no », jamais « Louisiana has no ».
+       8. NON MODELISE : colonne « 0 » (aucune deduction), ligne 7 de la L-4 (ajustement), retenue sur les
+          primes (le R-1306 n'en dit rien : « we found no »), non-residents / athletes professionnels
+          (FAQ du DOR), et la deduction de l'impot federal payee que l'article VII §4(A) de la
+          Constitution mentionne (« Federal income taxes paid shall be allowed as a deductible item in
+          computing state income taxes ») : la formule du R-1306 n'en tient AUCUN compte ; le site suit
+          la formule, la page decrit la retenue, pas la declaration.
+       ----------------------------------------------------------------------- */
+    louisiana: {
+      name: "Louisiana",
+      abbr: "LA",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* « 2026 Standard Deduction » du R-1306 : « 1 » = single et married-separate ;
+           « 2 » = married-joint, qualified surviving spouse, head of household. */
+        standardDeduction: {
+          single: 12875,
+          marriedJoint: 25750,
+          headOfHousehold: 25750
+        },
+        /* « Formulas - Based on a 3.09% Withholding Rate » : W = (S - D/N) * .0309. */
+        brackets: {
+          single:          [[Infinity, 0.0309]],
+          marriedJoint:    [[Infinity, 0.0309]],
+          headOfHousehold: [[Infinity, 0.0309]]
+        }
+      }
     }
   }
 };
