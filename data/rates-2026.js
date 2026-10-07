@@ -4109,6 +4109,126 @@ const RATES_2026 = {
           headOfHousehold: [[Infinity, 0.0309]]
         }
       }
+    },
+
+    /* =======================================================================
+       IOWA  -  lu le 2026-10-07 (revenue.iowa.gov, workforce.iowa.gov,
+       legis.iowa.gov : HTTP 200 a curl avec un User-Agent de navigateur)
+       39e Etat. Moteur : AUCUN mecanisme nouveau. Taux unique + deduction par
+       statut (standardDeduction) + un credit par « allowance » retranche de
+       l'impot APRES calcul, comme les allowances de l'Oregon
+       (withholdingAllowances, plafond de revenu infini).
+       -----------------------------------------------------------------------
+       1. LA FORMULE DE RETENUE. Iowa Department of Revenue, « Iowa Individual Income
+          Tax Withholding Formula », « Effective January 1, 2026 », « Released November
+          2025 » (PDF, https://revenue.iowa.gov/media/53/download?inline, telecharge et lu
+          en pdftotext le 2026-10-07 ; liste sur
+          https://revenue.iowa.gov/taxes/tax-guidance/withholding-tax/iowa-withholding-tax-information).
+          Citations :
+            « Step 1. Determine T1. T1 = G - D (G: Gross taxable wages for the pay period;
+            D: Deduction for the pay period) »
+            « Note that the deduction amount in this calculation step is not the same as the
+            federal standard deduction amount. »
+            « Annually $13,000.00 $19,500.00 $26,000.00 » (colonnes A : « Other, or Married
+            Filing Jointly with Spouse Having Earned Income » ; B : « Head of Household » ;
+            C : « Married Filing Jointly with Spouse Having No Earned Income, or Qualified
+            Surviving Spouse »)
+            « Step 2. Determine T2. T2 = T1 x 3.80% (or 0.038) »
+            « Step 3. Determine T3. T3 = T2 - (W / P) (W: Total allowance amount on the IA
+            W-4; P: Number of pay periods per year) »
+            « Step 4. Determine T4, or Withholding Amount per Pay Period. T4 = T3 + A »
+          => en annuel (P = 1) : retenue = max(0, brut - D) x 3,8 % - W, jamais negative.
+          Exemple 1 du PDF (biweekly 2 100 $, « Other », 40 $ d'allowance) : 59,26 $.
+          Pas d'exemption, pas de soustraction de l'impot federal dans la formule.
+       2. LE TAUX. Iowa Department of Revenue, communique du 2025-10-21 (« IDR announces 2026
+          individual income tax and interest rates »,
+          https://revenue.iowa.gov/press-release/2025-10-21/idr-announces-2026-individual-income-tax-and-interest-rates,
+          lu le 2026-10-07), verbatim : « Since the enactment of Iowa Senate File 2442 in May
+          2024, Iowa law provides for a flat tax rate of 3.8 percent. In 2026, all levels of
+          taxable individual income will be subject to this rate. » Meme taux que la formule.
+       3. LES ALLOWANCES. 2026 IA W-4 (form 44-019a, 11/13/2025, PDF,
+          https://revenue.iowa.gov/media/4324/download?inline, lu le 2026-10-07), instructions,
+          ligne 1 : « (a) $40 allowance for yourself or $80 allowance if you are unmarried and
+          eligible to claim head of household status. [...] (b) If you are married and your
+          spouse either does not work or is not claiming allowances on a separate W-4, you may
+          claim the following allowances for them: $40 for your spouse [...] (d) To have the
+          highest amount of tax withheld claim "$0" on line 1. » Statuts du site : single = 40 $
+          ; marriedJoint = 80 $ (soi + conjoint sans revenu : colonne C, D = 26 000 $) ;
+          headOfHousehold = 80 $ (D = 19 500 $). Choix de modelisation DIT sur la page : le
+          moteur suppose les allowances personnelles de la ligne 1, et aucune des lignes 2 a 6
+          (personnes a charge 40 $ chacune, deductions detaillees, ajustements, credit de garde
+          d'enfant, exemption federale des 65 ans et plus). « Married filing jointly » avec un
+          conjoint qui a un revenu = colonne A (celibataire) : non modelise, la page le dit.
+          Tables imprimees : colonne « $40.00-$79.99 » (celibataire), « $80.00-$119.99 » (les deux autres).
+       4. LES TABLES IMPRIMEES : « Iowa Withholding Tables », meme date, classeur Excel
+          publie par l'agence (https://revenue.iowa.gov/media/54/download?inline, 18 feuilles,
+          2 848 lignes, 31 328 cellules), recoupe cellule par cellule :
+          .tooling/test/verif-retenue-ia.js (au centime, ECART ZERO, avec la regle des exemples du
+          PDF : T2 arrondi au cent, puis T3 arrondi au cent, au milieu de chaque tranche).
+          « If annual wages are at least $102,000, multiply the excess over $101,500.00 by
+          3.80% (.038) and add it to the last amount in the applicable column. » Paie
+          journaliere : P = 260 (« Daily 260 »), cette fois le texte et la table concordent.
+       5. TAXES LOCALES : SURTAXE D'ECOLE ET SURTAXE EMS. revenue.iowa.gov, instructions de
+          l'IA 1040 « School District Surtax/Emergency » (2025 ; lu le 2026-10-07,
+          https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/school-district-surtaxemergency),
+          verbatim : « Multiply the amount on line 18 by the surtax rate and enter the result. »
+          « Taxpayers without children, or without children in public school, are still
+          subject to this tax. » « Appanoose, Cass, Pocahontas, Sac, Shelby, and Winnebago are
+          the only counties that have an EMS surtax. » Note de la liste 2025 : « Rates for residents of Appanoose, Cass, Pocahontas, Sac, Shelby, and Winnebago counties include a 1 percent local option surtax for Emergency Medical Services. » Liste des taux 2025 (« IOWA COUNTIES,
+          SCHOOL DISTRICT NUMBERS, SURTAX RATES FOR 2025 », PDF 2 p.,
+          https://revenue.iowa.gov/media/4382/download?inline, lu le 2026-10-07) : de 0 % a 20 %
+          de l'impot de l'Iowa selon le district (3 districts a 20 % : Postville, Fremont-Mills,
+          East Mills). ELLE N'EST PAS DANS LA FORMULE DE RETENUE : l'IA W-4 2026, instructions,
+          ligne 8, dit : « If you reside in a school district that imposes school district surtax,
+          consider reducing the amount of allowances shown on lines 1-6, or have additional tax
+          withheld on line 8. » => preuve positive que l'employeur ne la retient pas par defaut ;
+          non modelee, la page le dit. La liste de taux 2026 n'a pas ete lue : la page ne chiffre
+          que 2025 et le dit.
+       6. ASSURANCE CHOMAGE. Iowa Workforce Development, communique du 2025-06-30
+          (https://workforce.iowa.gov/media/2622/download, lu le 2026-10-07) : « Iowa employers pay
+          unemployment insurance taxes for each employee based on a rate assigned to the
+          employer [...] multiplied by the "taxable wage base" ». Et Code of Iowa 96.15(1)
+          (https://www.legis.iowa.gov/docs/code/96.15.pdf, lu le 2026-10-07) : « No employer shall
+          directly or indirectly make or require or accept any deduction from wages to finance the
+          employer's contributions required from the employer ». => aucune retenue salariee de
+          chomage : pas d'employeePrograms. Base salariale (20 400 $ annoncee pour 2026) non citee
+          sur la page : source IWD de juin 2025, non reverifiee a une page de taux 2026.
+       7. PAS D'ASSURANCE INVALIDITE NI DE CONGE PAYE D'ETAT TROUVES : aucun document lu (formule, IA W-4,
+          IWD, chapitre 96) n'en decrit un ; « we found no », jamais « Iowa has no ».
+       8. NON MODELE : lignes 2 a 6 de l'IA W-4 (personnes a charge, deductions detaillees,
+          ajustements, garde d'enfant, exemption federale), ligne 8 (retenue supplementaire),
+          statut « EXEMPT », conjoint avec revenu (colonne A), primes, non-residents, surtaxes,
+          anciens IA W-4 (2023 et avant : allowances comptees en nombre x 40 $).
+          401(k) : la formule dit « Certain payments made by the employer into employee retirement
+          plans or for employee health insurance are not considered taxable wages » ; elle ne dit
+          rien des cotisations du salarie : choix de modelisation, dit sur la page.
+       ----------------------------------------------------------------------- */
+    iowa: {
+      name: "Iowa",
+      abbr: "IA",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* « Deduction Amounts by Pay Period (Denoted as D) », ligne « Annually » : colonne A
+           (Other), B (Head of Household), C (married, conjoint sans revenu). */
+        standardDeduction: {
+          single: 13000,
+          marriedJoint: 26000,
+          headOfHousehold: 19500
+        },
+        /* « T2 = T1 x 3.80% (or 0.038) ». */
+        brackets: {
+          single:          [[Infinity, 0.038]],
+          marriedJoint:    [[Infinity, 0.038]],
+          headOfHousehold: [[Infinity, 0.038]]
+        },
+        /* « T3 = T2 - (W / P) » : W = 40 $ par allowance personnelle (IA W-4, ligne 1) ; credit
+           retranche de l'impot apres calcul, jamais en dessous de zero, pour tous les salaires. */
+        withholdingAllowances: {
+          perFiler: { single: 1, marriedJoint: 2, headOfHousehold: 2 },
+          credit: 40,
+          noneAbove: { single: Infinity, marriedJoint: Infinity, headOfHousehold: Infinity }
+        }
+      }
     }
   }
 };

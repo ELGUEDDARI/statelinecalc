@@ -107,14 +107,14 @@ const N = s => '<span class="num">' + s + "</span>";
 /* Voisins : Wisconsin et Dakota du Nord (frontaliers publies), Michigan
    (reciprocite avec le Minnesota, booklet p. 4). */
 const REF = 75000;
-const COMPARE = [CLE, "wisconsin", "north-dakota", "michigan"];
-const NOMS = { [CLE]: "Minnesota", wisconsin: "Wisconsin", "north-dakota": "North Dakota", michigan: "Michigan" };
+const COMPARE = [CLE, "wisconsin", "iowa", "north-dakota", "michigan"];
+const NOMS = { [CLE]: "Minnesota", wisconsin: "Wisconsin", iowa: "Iowa", "north-dakota": "North Dakota", michigan: "Michigan" };
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const wi75 = calcul("wisconsin", REF), nd75 = calcul("north-dakota", REF), mi75 = calcul("michigan", REF);
+const wi75 = calcul("wisconsin", REF), ia75 = calcul("iowa", REF), nd75 = calcul("north-dakota", REF), mi75 = calcul("michigan", REF);
 
 /* --- les tableaux, produits par les generateurs generiques ---------------- */
 const gen = (script, arg) => execFileSync(process.execPath,
@@ -702,7 +702,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Minnesota borders Wisconsin, Iowa, South Dakota and North Dakota; Wisconsin and North Dakota are the two we publish so far.
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Minnesota borders Wisconsin, Iowa, South Dakota and North Dakota, and we publish all four; the table compares Wisconsin, Iowa and North Dakota, and South Dakota has its own page.
   Michigan is included because it has an income tax reciprocity agreement with Minnesota. Minnesota is shown with two allowances.</p>
   <div class="table-scroll">
     <table>
@@ -723,7 +723,7 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
     </table>
   </div>
   <p>A <a href="/paycheck-calculator/wisconsin/">Wisconsin</a> worker keeps ${N($$(Math.abs(wi75.net - a75.net)))} ${wi75.net < a75.net ? "less" : "more"} than a Minnesota worker on the
-  same salary, a <a href="/paycheck-calculator/north-dakota/">North Dakota</a> worker keeps ${N($$(Math.abs(nd75.net - a75.net)))} ${nd75.net < a75.net ? "less" : "more"}, and a
+  same salary, an <a href="/paycheck-calculator/iowa/">Iowa</a> worker keeps ${N($$(Math.abs(ia75.net - a75.net)))} ${ia75.net < a75.net ? "less" : "more"}, a <a href="/paycheck-calculator/north-dakota/">North Dakota</a> worker keeps ${N($$(Math.abs(nd75.net - a75.net)))} ${nd75.net < a75.net ? "less" : "more"}, and a
   <a href="/paycheck-calculator/michigan/">Michigan</a> worker keeps ${N($$(Math.abs(mi75.net - a75.net)))} ${mi75.net < a75.net ? "less" : "more"}.</p>
 
 ${blocSources(CLE)}
@@ -734,6 +734,7 @@ ${blocSources(CLE)}
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/wisconsin/">Wisconsin paycheck calculator</a> &mdash; the neighbor to the east, with a standard
     deduction that slides down as you earn more.</li>
+    <li><a href="/paycheck-calculator/iowa/">Iowa paycheck calculator</a> &mdash; the neighbor to the south, with a flat 3.8% withheld after a deduction and a $40 allowance credit.</li>
     <li><a href="/paycheck-calculator/north-dakota/">North Dakota paycheck calculator</a> &mdash; the neighbor to the west, with one of the lowest
     state income tax bills on this site and a reciprocity agreement with Minnesota.</li>
     <li><a href="/paycheck-calculator/michigan/">Michigan paycheck calculator</a> &mdash; the other state with a reciprocity agreement with Minnesota.</li>

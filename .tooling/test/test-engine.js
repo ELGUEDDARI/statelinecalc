@@ -1771,9 +1771,9 @@ check("OR : continuite du bareme marie a 9 100 $, 22 800 $ et 250 000 $ (a 1 $ p
   (() => { const t = R.states.oregon.incomeTax.bracketTable.marriedJoint;
     const at = (i, x) => t[i].base + t[i].rate * (x - t[i].from);
     return Math.abs(at(0, 9100) - 432) < 1 && Math.abs(at(1, 22800) - 1357) < 1 && Math.abs(at(2, 250000) - 21237) < 1 ? 1 : 0; })(), 1, 0);
-check("OR : seuls l'Oregon et l'Alabama (sans plafond) portent federalTaxSubtraction ; l'Oregon seul, withholdingAllowances et un programme perHour",
+check("OR : seuls l'Oregon et l'Alabama (sans plafond) portent federalTaxSubtraction ; l'Oregon et l'Iowa, withholdingAllowances ; l'Oregon seul, un programme perHour",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.federalTaxSubtraction).join() === "oregon,alabama" &&
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.withholdingAllowances).join() === "oregon" &&
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.withholdingAllowances).join() === "oregon,iowa" &&
   Object.keys(R.states).filter(k => (R.states[k].employeePrograms || []).some(p => p.perHour !== undefined)).join() === "oregon" ? 1 : 0, 1, 0);
 
 /* Le moteur NAVIGATEUR (assets/calc-paycheck.js) et le moteur NODE (lib/paie.js)
@@ -2335,6 +2335,99 @@ check("LA : taux unique de 3,09 % (jamais 3 %) et deductions 12 875 / 25 750 / 2
         }
       }
   check("LA : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
+console.log("\n=== Iowa (39e Etat) ===");
+
+/* Sources (lues le 2026-10-07) : Iowa Department of Revenue, « Iowa Individual Income Tax Withholding Formula »,
+   « Effective January 1, 2026 » : T1 = G - D (D annuel : 13 000 / 19 500 / 26 000), T2 = T1 x 3,80 %,
+   T3 = T2 - (W / P) ; IA W-4 2026 (44-019a), ligne 1 : 40 $ pour soi, 80 $ chef de famille, 40 $ pour un conjoint
+   sans revenu. Le moteur retranche les allowances de l'impot, jamais sous zero. 40 $ celibataire, 80 $ marie
+   (colonne C) et chef de famille. Tous les attendus sont recalcules a la main, PAS copies de la sortie du code. */
+const iaC = (b, st, rp) => calcul("iowa", b, st || "single", rp || 0);
+
+/* Cas IA-1 - 75 000 $ celibataire.
+   Federal : 58 900 imposables = 1 240 + 4 560 + 1 870 = 7 670.
+   Etat : (75 000 - 13 000) x 3,8 % = 62 000 x 0,038 = 2 356 ; moins 40 $ d'allowance = 2 316.
+   FICA : 4 650 + 1 087,50 = 5 737,50. Net : 75 000 - 7 670 - 5 737,50 - 2 316 = 59 276,50. */
+check("IA 75 000 $ celibataire : impot d'Etat", iaC(75000).etat, 2316, 0.005);
+check("IA 75 000 $ celibataire : net", iaC(75000).net, 59276.5, 0.005);
+
+/* Cas IA-2 - 75 000 $ marie (conjoint sans revenu). Federal 4 640. Etat : (75 000 - 26 000) x 0,038 = 49 000 x 0,038 = 1 862 ;
+   moins 80 $ = 1 782. Net : 75 000 - 4 640 - 5 737,50 - 1 782 = 62 840,50. */
+check("IA 75 000 $ marie : impot d'Etat", iaC(75000, "marriedJoint").etat, 1782, 0.005);
+check("IA 75 000 $ marie : net", iaC(75000, "marriedJoint").net, 62840.5, 0.005);
+
+/* Cas IA-3 - 75 000 $ chef de famille. Federal 5 748. Etat : (75 000 - 19 500) x 0,038 = 55 500 x 0,038 = 2 109 ; moins 80 $ = 2 029.
+   Net : 75 000 - 5 748 - 5 737,50 - 2 029 = 61 485,50. */
+check("IA 75 000 $ chef de famille : impot d'Etat", iaC(75000, "headOfHousehold").etat, 2029, 0.005);
+check("IA 75 000 $ chef de famille : net", iaC(75000, "headOfHousehold").net, 61485.5, 0.005);
+
+/* Cas IA-4 - 30 000 $ celibataire. Federal 1 420. Etat : 17 000 x 0,038 = 646 ; moins 40 = 606. FICA 2 295.
+   Net : 30 000 - 1 420 - 2 295 - 606 = 25 679. */
+check("IA 30 000 $ celibataire : impot d'Etat", iaC(30000).etat, 606, 0.005);
+check("IA 30 000 $ celibataire : net", iaC(30000).net, 25679, 0.005);
+
+/* Cas IA-5 - 250 000 $ celibataire. Federal 51 304. FICA 11 439 + 4 075. Etat : 237 000 x 0,038 = 9 006 ; moins 40 = 8 966.
+   Net : 250 000 - 51 304 - 8 966 - 11 439 - 4 075 = 174 216. */
+check("IA 250 000 $ celibataire : impot d'Etat", iaC(250000).etat, 8966, 0.005);
+check("IA 250 000 $ celibataire : net", iaC(250000).net, 174216, 0.005);
+
+/* Cas IA-6 - 75 000 $ avec 6 % de 401(k) : 70 500 $ ; Etat : 57 500 x 0,038 = 2 185 ; moins 40 = 2 145. Gain : 2 316 - 2 145 = 171. */
+check("IA 75 000 $ avec 6 % de 401(k) : impot d'Etat", iaC(75000, "single", 0.06).etat, 2145, 0.005);
+
+/* Cas IA-7 - 25 $ l'heure, 2 080 h = 52 000 $. Federal 4 060. FICA 3 224 + 754. Etat : 39 000 x 0,038 = 1 482 ; moins 40 = 1 442.
+   Net : 52 000 - 4 060 - 3 978 - 1 442 = 42 520. */
+check("IA 25 $/h (52 000 $) : impot d'Etat", iaC(25 * 2080).etat, 1442, 0.005);
+check("IA 25 $/h (52 000 $) : net", iaC(25 * 2080).net, 42520, 0.005);
+
+/* Cas IA-8 - 3 000 $ : sous la deduction, aucun impot. Net : 3 000 - 186 - 43,50 = 2 770,50. */
+check("IA 3 000 $ : aucun impot d'Etat", iaC(3000).etat, 0, 0);
+check("IA 3 000 $ : net", iaC(3000).net, 2770.50, 0.005);
+/* Bornes : l'allowance de 40 $ efface les 1 052,63 premiers dollars au-dessus de 13 000 $ (40 / 0,038).
+   A 14 052 $ : 1 052 x 0,038 = 39,976 < 40 -> 0 ; a 14 053 $ : 1 053 x 0,038 = 40,014 -> 0,014. */
+check("IA 13 000 $ : impot d'Etat = 0", iaC(13000).etat, 0, 0);
+check("IA 14 052 $ : impot d'Etat = 0 (allowance > impot)", iaC(14052).etat, 0, 0);
+check("IA 14 053 $ : impot d'Etat = 0,014", iaC(14053).etat, 0.014, 0.00001);
+
+/* Cas IA-9 - 120 000 $ celibataire : 107 000 x 0,038 = 4 066 ; moins 40 = 4 026. Recoupe l'exemple IMPRIME sous la table
+   annuelle de l'agence : « ($120,000.00-$101,500.00) x3.80%+$3,243.00 = 3946 » avec 120 $ d'allowances ; 3 946 + 80 = 4 026. */
+check("IA 120 000 $ celibataire : impot d'Etat (= 3 946 de l'exemple imprime + 80 $ d'allowances en moins)", iaC(120000).etat, 4026, 0.005);
+
+check("IA : aucun programme salarie, aucun conge paye, aucun impot local",
+  iaC(75000).programmes.length === 0 && iaC(75000).paidLeave === 0 && iaC(75000).waCares === 0 &&
+  !R.states.iowa.employeePrograms && !R.states.iowa.paidLeave && !R.states.iowa.incomeTax.countyTax ? 1 : 0, 1, 0);
+check("IA : taux unique de 3,8 %, deductions 13 000 / 26 000 / 19 500, allowances 40 $ x 1 / 2 / 2 (formule et IA W-4 2026)",
+  (() => { const A = R.states.iowa.incomeTax;
+    return JSON.stringify(A.brackets.single) === JSON.stringify([[Infinity, 0.038]]) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify(A.brackets.single) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(A.brackets.single) &&
+      JSON.stringify(A.standardDeduction) === JSON.stringify({ single: 13000, marriedJoint: 26000, headOfHousehold: 19500 }) &&
+      A.withholdingAllowances.credit === 40 &&
+      JSON.stringify(A.withholdingAllowances.perFiler) === JSON.stringify({ single: 1, marriedJoint: 2, headOfHousehold: 2 }) &&
+      !A.personalExemption && !A.deductionByIncome && !A.federalTaxSubtraction ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes de la deduction et de l'allowance x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 3000, 13000, 14052, 14053, 19500, 26000, 26001, 52000, 75000, 102000, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "iowa", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("iowa", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("IA : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

@@ -64,16 +64,15 @@ const lignesHoraire = TAUX_HORAIRES.map(t => {
   return { taux: t, brut: t * HEURES, net: r.net, netH: r.net / HEURES };
 });
 
-/* Les voisins publies : Wyoming, Montana, Nebraska, North Dakota, Minnesota.
- * (L'Iowa, sixieme voisin, n'est pas publie.) */
-const COMPARE = ["south-dakota", "wyoming", "montana", "nebraska", "north-dakota", "minnesota"];
+/* Les voisins publies : Wyoming, Montana, Nebraska, North Dakota, Minnesota, Iowa (publie le 07/10/2026). */
+const COMPARE = ["south-dakota", "wyoming", "montana", "nebraska", "north-dakota", "minnesota", "iowa"];
 const lignesCompare = COMPARE.map(k => {
   const r = LIB.calcul(k, REF);
   /* impot d'Etat + programmes d'Etat : ce qui reconcilie la colonne avec le net */
   return { cle: k, nom: null, net: r.net, etat: REF - r.net - r.federal - r.ss - r.med, taux: r.taux };
 });
 const NOMS = { "south-dakota": "South Dakota", wyoming: "Wyoming", montana: "Montana",
-               nebraska: "Nebraska", "north-dakota": "North Dakota", minnesota: "Minnesota" };
+               nebraska: "Nebraska", "north-dakota": "North Dakota", minnesota: "Minnesota", iowa: "Iowa" };
 lignesCompare.forEach(l => { l.nom = NOMS[l.cle]; });
 lignesCompare.sort((a, b) => b.net - a.net || (a.cle === ETAT ? -1 : 1));
 
@@ -82,6 +81,7 @@ const ecartMN = net(ETAT) - net("minnesota");
 const ecartMT = net(ETAT) - net("montana");
 const ecartNE = net(ETAT) - net("nebraska");
 const ecartND = net(ETAT) - net("north-dakota");
+const ecartIA = net(ETAT) - net("iowa");
 const retenuFederal = r75.federal + r75.ss + r75.med;
 
 /* --- la FAQ ------------------------------------------------------------- */
@@ -408,8 +408,8 @@ ${blocLimites()}
     </ul>
 
     <h2>Compare with neighboring states</h2>
-    <p>The same ${$0(REF)}, single filer, 2026. Wyoming, Montana, Nebraska, North Dakota and Minnesota
-    border South Dakota and are published here; Iowa, the sixth neighbor, is not yet.</p>
+    <p>The same ${$0(REF)}, single filer, 2026. Wyoming, Montana, Nebraska, North Dakota, Minnesota and Iowa
+    are the six states that border South Dakota, and all of them are published here.</p>
     <div class="table-scroll">
       <table>
         <thead><tr><th>State</th><th>State tax and payroll deductions on ${$0(REF)}</th><th>Take-home pay</th><th>Effective rate</th></tr></thead>
@@ -422,7 +422,7 @@ ${lignesCompare.map(l => `          <tr><td>${l.cle === ETAT ? "<strong>" + l.no
     at state level. Against Minnesota the gap is <strong>${$0(ecartMN)}</strong> a year on the same
     gross pay, against Montana <strong>${$0(ecartMT)}</strong>, against Nebraska
     <strong>${$0(ecartNE)}</strong>, and against North Dakota, which taxes lightly,
-    <strong>${$0(ecartND)}</strong>.</p>
+    <strong>${$0(ecartND)}</strong>, and against Iowa <strong>${$0(ecartIA)}</strong>.</p>
 
     <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
@@ -442,6 +442,8 @@ ${FAQ.map(([question, reponse]) => `      <h3>${question}</h3>\n      <p>${repon
       to the west with the same figures, and a statute that bars local income taxes</li>
       <li><a href="/paycheck-calculator/minnesota/">Minnesota paycheck calculator</a> &mdash; the neighbor
       to the east, with four state rates and a paid leave premium</li>
+      <li><a href="/paycheck-calculator/iowa/">Iowa paycheck calculator</a> &mdash; the neighbor
+      to the southeast, with a flat 3.8% withheld after a deduction and a $40 allowance credit</li>
       <li><a href="/methodology/">How we calculate these figures, and where the rates come from</a></li>
     </ul>
   </div>

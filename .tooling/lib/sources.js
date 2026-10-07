@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -970,6 +970,48 @@ const PAR_ETAT = {
     { type: "agence",
       url: "https://revenue.louisiana.gov/tax-forms/businesses/?tax_type=withholding",
       titre: "Louisiana Department of Revenue &mdash; Business tax forms, withholding (lists R-1306 and R-1300)" }
+  ],
+  iowa: [
+    { type: "document",
+      url: "https://revenue.iowa.gov/media/53/download?inline",
+      titre: "Iowa Department of Revenue &mdash; Iowa Individual Income Tax Withholding Formula, effective January 1, 2026 (PDF)",
+      quoi: "the four-step withholding formula (a $13,000, $19,500 or $26,000 deduction, 3.8%, then the allowance amount divided by the pay periods) and its worked examples",
+      motif: ["Effective January 1, 2026", "T2 = T1 x 3.80%"] },
+    { type: "document",
+      url: "https://revenue.iowa.gov/taxes/tax-guidance/withholding-tax/iowa-withholding-tax-information",
+      titre: "Iowa Department of Revenue &mdash; Updated Tables, Iowa withholding tax information",
+      quoi: "the 2026 withholding formula and the printed wage-bracket tables, published as Excel workbooks for each pay period",
+      motif: ["Withholding Formula and Instructions", "Effective January 1, 2026"] },
+    { type: "document",
+      url: "https://revenue.iowa.gov/media/4324/download?inline",
+      titre: "Iowa Department of Revenue &mdash; 2026 IA W-4, Employee Withholding Allowance Certificate and instructions (PDF)",
+      quoi: "the $40 allowance for yourself ($80 for an unmarried head of household), the allowance for a spouse who does not work, and the advice on school district surtax",
+      motif: ["$40 allowance for yourself", "school district surtax"] },
+    { type: "document",
+      url: "https://revenue.iowa.gov/press-release/2025-10-21/idr-announces-2026-individual-income-tax-and-interest-rates",
+      titre: "Iowa Department of Revenue &mdash; IDR announces 2026 individual income tax and interest rates (October 21, 2025)",
+      quoi: "the statement that Iowa law provides for a flat tax rate of 3.8 percent in 2026",
+      motif: ["flat tax rate of 3.8 percent"] },
+    { type: "document",
+      url: "https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/school-district-surtaxemergency",
+      titre: "Iowa Department of Revenue &mdash; IA 1040 expanded instructions, School District Surtax and Emergency Medical Services surtax",
+      quoi: "how the surtax is figured on the return (the tax on line 18 times the surtax rate), and which counties have an EMS surtax",
+      motif: ["Multiply the amount on line 18 by the surtax rate"] },
+    { type: "document",
+      url: "https://revenue.iowa.gov/media/4382/download?inline",
+      titre: "Iowa Department of Revenue &mdash; Iowa counties, school district numbers and surtax rates for 2025 (PDF)",
+      quoi: "the 2025 surtax rate of each school district, from 0% to 20%",
+      motif: ["SURTAX RATES FOR 2025"] },
+    { type: "document",
+      url: "https://workforce.iowa.gov/media/2622/download",
+      titre: "Iowa Workforce Development &mdash; news release of June 30, 2025 on unemployment insurance (PDF)",
+      quoi: "the statement that Iowa employers pay unemployment insurance taxes for each employee",
+      motif: ["Iowa employers pay unemployment insurance taxes"] },
+    { type: "document",
+      url: "https://www.legis.iowa.gov/docs/code/96.15.pdf",
+      titre: "Iowa Code &mdash; section 96.15, Waiver, fees, assignments, penalties (unemployment compensation)",
+      quoi: "the rule that no employer may make or accept any deduction from wages to finance the employer&rsquo;s unemployment contributions",
+      motif: ["No employer shall directly or indirectly make or require or accept any deduction from wages"] }
   ]
 };
 

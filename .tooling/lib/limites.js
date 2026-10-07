@@ -90,6 +90,16 @@ const LOCAL_PAR_ETAT = {
     subdivision of the state shall not levy an income tax, so we add no parish or city income tax here. The only
     local income tax lines on this site are on the <a href="/paycheck-calculator/indiana/">Indiana</a> and
     <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
+  /* Iowa (07/10/2026) : la surtaxe de district scolaire (et, dans six comtes, la surtaxe EMS) existe, elle est
+     calculee sur la DECLARATION (« Multiply the amount on line 18 by the surtax rate ») et l'IA W-4 2026, ligne 8,
+     conseille de reduire les allowances ou de faire retenir un supplement : la formule de retenue ne la contient
+     donc pas. Aucune ligne locale ajoutee. Aucun taux 2026 de district lu : la page ne chiffre pas la surtaxe 2026. */
+  iowa: `    <li><strong>Local taxes</strong> &mdash; the school district surtax, plus an emergency
+    medical services surtax built into the listed rates in six counties, which Iowa figures on your return as a percentage of your Iowa income tax. The 2026 IA W-4
+    tells employees who live in a district with a surtax to consider fewer allowances or extra withholding, and the
+    withholding formula we read has no surtax step. This calculator adds no local line for Iowa. The only local income tax lines on
+    this site are on the <a href="/paycheck-calculator/indiana/">Indiana</a> and
+    <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the
@@ -140,8 +150,8 @@ ${local}
     <li><strong>Married filing separately, or a qualifying surviving spouse.</strong> The
     calculator only offers single, married filing jointly, and head of household.</li>
   </ul>
-  <p class="caption">None of these change what you owe &mdash; they change what a pay stub
-  cannot show without more information than a calculator can ask for. See
+  <p class="caption">None of these are in the estimate. Some of them change what you owe
+  or get back when you file, and a calculator cannot ask for everything they depend on. See
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->`;
 }
