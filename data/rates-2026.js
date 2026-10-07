@@ -4229,6 +4229,118 @@ const RATES_2026 = {
           noneAbove: { single: Infinity, marriedJoint: Infinity, headOfHousehold: Infinity }
         }
       }
+    },
+
+    /* =======================================================================
+       KENTUCKY  -  lu le 2026-10-07 (revenue.ky.gov, ui.ky.gov, apps.legislature.ky.gov,
+       web.sos.ky.gov : HTTP 200 ; kcc.ky.gov, labor.ky.gov, onestop.ky.gov : HTTP 403 au curl, non lus, non cites ;
+       louisvilleky.gov : 403, lexingtonky.gov : 404 -> aucun taux local lu)
+       40e Etat. Moteur : AUCUN mecanisme nouveau. Meme forme que la Louisiane et l'Indiana :
+       un taux unique (brackets a une tranche) + standardDeduction (meme montant aux 3 statuts).
+       SERP : non mesuree en geo US (a faire en GSC / SEMrush avant la page). SEMrush
+       (data/semrush-us-paycheck-2026-09-01.csv) : « paycheck calculator kentucky » 1 000 / mois, KD 14.
+       -----------------------------------------------------------------------
+       1. LA FORMULE DE RETENUE. Kentucky Department of Revenue, « 2026 KENTUCKY WITHHOLDING TAX
+          FORMULA », 42A003 (TCF)(10-2025) (PDF 1 p.,
+          https://revenue.ky.gov/Forms/2026%20Withholding%20Formula.pdf, telecharge et lu en PyMuPDF
+          le 2026-10-07), verbatim :
+            « 2026 Kentucky Standard Deduction: $3,360 »
+            « 2026 Kentucky Tax Rate: 3.5% of taxable income »
+            « Wages for the pay period multiplied by the number of annual pay periods equals annual
+            wages. Annual wages minus the Kentucky standard deduction equals annual Kentucky wages.
+            Compute tax on wages using the 3.5% Kentucky flat tax rate to determine gross annual
+            Kentucky tax. Divide the gross annual Kentucky tax by the number of annual pay periods to
+            determine the Kentucky withholding tax for the pay period. »
+          => en annuel : retenue = (brut - 3 360) x 3,5 %. brackets = [[Infinity, 0.035]],
+          standardDeduction 3 360 aux trois statuts.
+          Exemples imprimes (recalcules a la main) : mensuel 3 270 x 12 = 39 240 ; - 3 360 = 35 880 ;
+          x 3,5 % = 1 255,80 ; / 12 = 104,65 : EXACT. Bimensuel 1 500 x 26 = 39 000 ; - 3 360 = 35 640 ;
+          x 3,5 % = 1 247,40 ; / 26 = 47,98 : le PDF imprime « $35,730 x 3.5% = $1,247.40 » (35 730
+          est une coquille : 35 640 x 0,035 = 1 247,40) et « $47 » (47,98 tronque). Le site suit la
+          formule, pas ces deux coquilles.
+          « NOTE: If you receive more than one W-2 annually, you may need to withhold an extra $117.60. »
+          (= 3 360 x 3,5 % : la deduction n'est accordee qu'une fois ; non modelise, un seul employeur.)
+       2. LE CALCULATEUR OFFICIEL DU DOR. « 2026 Employer Withholding Calculator.xlsx »
+          (https://revenue.ky.gov/Business/Documents/2026%20Withholding%20Tax%20Calculator.xlsx, lien de
+          https://revenue.ky.gov/Business/Pages/Employer-Payroll-Withholding.aspx, telecharge le 2026-10-07).
+          Feuille cachee « Hidden Table », cellule H7 (idem H8...) :
+            IF(C7>0, (((C7*N)-3360)*(3.5/100))/N, "")  avec N = 365 (quotidien), 52, 26, 24, 12, 1,
+            puis D7 = IF(H7>0, H7, 0)  => retenue jamais negative (plancher a 0).
+          Le tableur confirme 3 360 et 3,5 % ; ".tooling/test/verif-retenue-ky.js" relit les 1 994
+          formules et exige le meme 3360 et le meme 3.5 partout.
+       3. LE MONTANT 3 360 $. Kentucky Department of Revenue, communique « Kentucky DOR Announces 2026
+          Standard Deduction » (https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx),
+          verbatim : « FRANKFORT, Ky. (September 4, 2025) — Each year, the Kentucky Department of
+          Revenue calculates the individual standard deduction in accordance with KRS 141.081. After
+          adjusting for inflation, the standard deduction for 2026 is $3,360, an increase of $90. »
+       4. LE TAUX 3,5 %. https://revenue.ky.gov/Business/Pages/Employer-Payroll-Withholding.aspx,
+          verbatim : « The Kentucky Withholding Tax rate will be 3.5% for tax year 2026. » ; livret
+          « Withholding on Salaries and Wages under the Kentucky Income Tax Law », 42A003 (10-25),
+          p. 7 (https://revenue.ky.gov/Forms/42A003.pdf), verbatim : « All Kentucky wage earners are
+          taxed at a flat 3.5% tax rate with a standard deduction allowance annually adjusted by the
+          Department of Revenue in accordance with KRS 141.081(2)(a). There are no personal exemptions. »
+          => aucune exemption personnelle, aucune personne a charge, pas de statut dans la formule.
+          Form K-4 : la version 2026 n'a PAS ete trouvee ; la 2025 (42A804 (K-4)(11-2024),
+          https://revenue.ky.gov/Documents/42A804%20(K-4)%20(2025).pdf, 4 % et 3 270 $, perimee) ne
+          contient que des cases d'exoneration et une retenue supplementaire : pas de statut, pas
+          d'allowances. Le livret 2026 ci-dessus fait foi pour le taux et la deduction.
+       5. RECIPROCITE (non modelisee, mais citee par la page possible). K-4 2025 et livret, verbatim :
+          « You may be exempt from withholding if you work in Kentucky but reside in one of the
+          following reciprocal states: Illinois, Indiana, Michigan, West Virginia, Wisconsin, Virginia
+          and you commute daily or Ohio and you are not a shareholder-employee who is a "twenty (20)
+          percent or greater" direct or indirect equity investor in a S corporation. »
+       6. IMPOTS LOCAUX D'OCCUPATION (« occupational license tax ») : NON MODELISES, DIT SUR LA PAGE.
+          Interim Joint Committee on Local Government, « Occupational Taxing in Kentucky », 21 octobre
+          2025 (KACo / KLC ; Kentucky Legislative Research Commission,
+          https://apps.legislature.ky.gov/CommitteeDocuments/26/35676/Oct%2021%20202%20KACo_KLC%20Occupational%20Taxes%20Presentation.pdf,
+          lu le 2026-10-07) : « KRS 92.281 Allows cities and counties to levy a tax on wages, net
+          profits, and certain business activities. » ; « KRS 68.197 Applies if a city is in a county
+          with 30,000+ population. Requires a credit: taxpayers who pay a city license fee get a credit
+          against their county license fee. » ; tableau « Gross Earnings (Payroll) : 170 cities, 87
+          counties ». Secretary of State, https://web.sos.ky.gov/occupationaltax/ (lu le 2026-10-07) :
+          liste deroulante de 228 « tax districts » (villes, comtes, commissions scolaires) et AUCUN taux.
+          LRC, Local Government Mandate Statement HB 518/GA (2026 RS,
+          https://apps.legislature.ky.gov/recorddocuments/note/26RS/hb518/LM.pdf), citant KACo : « as of
+          January 2025, 87 counties levied an occupational license tax, with all 87 taxing payroll ...
+          at rates ranging from 0.50 percent to 2.5 percent, with a median rate of 1 percent » et
+          (KLC 2023) « approximately 173 Kentucky cities ... median rates of 1.375 percent on payroll ».
+          => des centaines de couches (ville + comte + ecole, avec credit entre ville et comte), aucune
+          table officielle de TAUX lue : le moteur ne les modelise pas. La page dit « we found » :
+          le net affiche est AVANT toute taxe locale d'occupation ; elle est souvent a la charge du
+          salarie sur le bulletin MAIS aucune source lue ne dit QUI la retient (INDETERMINE) :
+          ecrire « may apply », jamais « your employer withholds ».
+       7. ASSURANCE CHOMAGE. Kentucky Office of Unemployment Insurance, « KY OUI Employer Guide 2026 »
+          (https://ui.ky.gov/Documents/KY-OUI_Employer%20Guide_2026.pdf, 50 p., lu le 2026-10-07),
+          p. 4, verbatim : « You, the employer, pay for this support through unemployment taxes on your
+          payroll. Unemployment insurance programs are supported through a combination of federal and
+          state taxes paid by employers. » ; p. 6 : « In 2026, the taxable wage base was $12,000. »
+          => aucune retenue salariee : pas d'entree employeePrograms. (kcc.ky.gov : 403, non lu.)
+       8. PAS D'ASSURANCE INVALIDITE NI DE CONGE PAYE D'ETAT TROUVE (SDI, PFML) : ni le DOR (livret
+          42A003, formule, calculateur) ni le guide OUI n'en decrivent ; « we found no », jamais
+          « Kentucky has no ». Non cherche : le site du Kentucky sur FMLA/paid leave.
+       9. NON MODELISE : retenue supplementaire (K-4), exoneration (K-4 cases 1-4), second W-2 (+117,60 $),
+          paie quotidienne (le calculateur du DOR utilise 365 ; le site ne chiffre pas le quotidien),
+          primes (le livret : « withholding tax rate for gambling winnings is 3.5 percent », rien sur
+          les primes : « we found no »), non-residents.
+       ----------------------------------------------------------------------- */
+    kentucky: {
+      name: "Kentucky",
+      abbr: "KY",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* « 2026 Kentucky Standard Deduction: $3,360 » : un seul montant, pas de statut dans la formule. */
+        standardDeduction: {
+          single: 3360,
+          marriedJoint: 3360,
+          headOfHousehold: 3360
+        },
+        /* « 2026 Kentucky Tax Rate: 3.5% of taxable income » (taux unique, pas de tranche). */
+        brackets: {
+          single:          [[Infinity, 0.035]],
+          marriedJoint:    [[Infinity, 0.035]],
+          headOfHousehold: [[Infinity, 0.035]]
+        }
+      }
     }
   }
 };

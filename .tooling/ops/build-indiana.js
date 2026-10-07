@@ -100,15 +100,15 @@ const bonusEtat = BONUS * TAUX, bonusComte = BONUS * TAUX_DEF;
 /* Voisins : Illinois, Michigan, Ohio (frontaliers publies). Indiana est montre
    avec le comte par defaut. */
 const REF = 75000;
-const COMPARE = [CLE, "illinois", "michigan", "ohio"];
-const NOMS = { [CLE]: "Indiana", illinois: "Illinois", michigan: "Michigan", ohio: "Ohio" };
+const COMPARE = [CLE, "illinois", "kentucky", "michigan", "ohio"];
+const NOMS = { [CLE]: "Indiana", illinois: "Illinois", kentucky: "Kentucky", michigan: "Michigan", ohio: "Ohio" };
 const progs = r => r.programmes.reduce((t, p) => t + p.montant, 0);
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const il75 = calcul("illinois", REF), mi75 = calcul("michigan", REF), oh75 = calcul("ohio", REF);
+const il75 = calcul("illinois", REF), ky75 = calcul("kentucky", REF), mi75 = calcul("michigan", REF), oh75 = calcul("ohio", REF);
 
 /* --- les tableaux, produits par les generateurs generiques ---------------- */
 const gen = (script, arg) => execFileSync(process.execPath,
@@ -682,7 +682,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Indiana borders Illinois, Kentucky, Michigan and Ohio; Illinois, Michigan and Ohio are the three we publish so far.
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Indiana borders Illinois, Kentucky, Michigan and Ohio, and we publish all four.
   Indiana is shown with one exemption and the ${DEF[0]} County income tax included in its state-level deductions.</p>
   <div class="table-scroll">
     <table>
@@ -703,8 +703,8 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
     </table>
   </div>
   <p>An <a href="/paycheck-calculator/illinois/">Illinois</a> worker keeps ${N($$(Math.abs(il75.net - a75.net)))} ${il75.net < a75.net ? "less" : "more"} than an Indiana worker in ${DEF[0]} County on the
-  same salary, a <a href="/paycheck-calculator/michigan/">Michigan</a> worker keeps ${N($$(Math.abs(mi75.net - a75.net)))} ${mi75.net < a75.net ? "less" : "more"}, and an
-  <a href="/paycheck-calculator/ohio/">Ohio</a> worker keeps ${N($$(Math.abs(oh75.net - a75.net)))} ${oh75.net < a75.net ? "less" : "more"}. Ohio&rsquo;s figure leaves out city income tax, which this calculator does not model.</p>
+  same salary, a <a href="/paycheck-calculator/kentucky/">Kentucky</a> worker keeps ${N($$(Math.abs(ky75.net - a75.net)))} ${ky75.net < a75.net ? "less" : "more"}, a <a href="/paycheck-calculator/michigan/">Michigan</a> worker keeps ${N($$(Math.abs(mi75.net - a75.net)))} ${mi75.net < a75.net ? "less" : "more"}, and an
+  <a href="/paycheck-calculator/ohio/">Ohio</a> worker keeps ${N($$(Math.abs(oh75.net - a75.net)))} ${oh75.net < a75.net ? "less" : "more"}. Ohio&rsquo;s figure leaves out city income tax, and Kentucky&rsquo;s leaves out local occupational license taxes; neither calculator models them.</p>
 
 ${blocSources(CLE)}
 
@@ -713,6 +713,7 @@ ${blocSources(CLE)}
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/illinois/">Illinois paycheck calculator</a> &mdash; the neighbor to the west, with a flat 4.95% after a personal exemption.</li>
+    <li><a href="/paycheck-calculator/kentucky/">Kentucky paycheck calculator</a> &mdash; the neighbor to the south, a flat 3.5% after a $3,360 deduction and a reciprocity agreement with Indiana.</li>
     <li><a href="/paycheck-calculator/michigan/">Michigan paycheck calculator</a> &mdash; the neighbor to the north, a flat rate with a per-person exemption and an income tax reciprocity agreement with Indiana.</li>
     <li><a href="/paycheck-calculator/ohio/">Ohio paycheck calculator</a> &mdash; the neighbor to the east, with nothing withheld on the first $26,050 of taxable income and a reciprocity agreement with Indiana.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
@@ -804,7 +805,7 @@ if (!(COMTES.length === 92 && DEF[0] === "Marion" && TAUX_DEF === 0.0202)) echec
 if (!(bas1.nom === "Porter" && bas1.taux === 0.005 && bas2.nom === "Spencer" && bas2.taux === 0.008)) echec("les deux comtes les moins taxes ne sont plus Porter et Spencer");
 if (!(haut1.nom === "Randolph" && haut1.taux === 0.03 && haut2.nom === "Cass" && haut2.taux === 0.0295 && haut3.nom === "Wabash" && haut3.taux === 0.029)) echec("les trois comtes les plus taxes ne sont plus Randolph, Cass et Wabash");
 if (CT.rates.boone[1] !== 0.0171) echec("Boone n'est plus a 0,0171");
-if (!(il75.net !== a75.net && mi75.net !== a75.net && oh75.net !== a75.net)) echec("la comparaison (IL, MI, OH) n'est plus celle ecrite");
+if (!(il75.net !== a75.net && ky75.net !== a75.net && mi75.net !== a75.net && oh75.net !== a75.net)) echec("la comparaison (IL, KY, MI, OH) n'est plus celle ecrite");
 if (!(R.states.illinois.incomeTax.hasIncomeTax && R.states.michigan.incomeTax.hasIncomeTax && R.states.ohio.incomeTax.hasIncomeTax)) echec("un voisin n'a plus d'impot");
 /* Le 401(k) ne change ni la FICA ni le comte du brut : le comte est sur la base apres 401(k). */
 if (!(Math.abs(progs(r401) - ct(r401)) < 1e-9)) echec("un programme salarie inattendu apparait avec un 401(k)");

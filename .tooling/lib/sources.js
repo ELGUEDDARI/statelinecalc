@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -970,6 +970,51 @@ const PAR_ETAT = {
     { type: "agence",
       url: "https://revenue.louisiana.gov/tax-forms/businesses/?tax_type=withholding",
       titre: "Louisiana Department of Revenue &mdash; Business tax forms, withholding (lists R-1306 and R-1300)" }
+  ],
+  kentucky: [
+    { type: "document",
+      url: "https://revenue.ky.gov/Forms/2026%20Withholding%20Formula.pdf",
+      titre: "Kentucky Department of Revenue &mdash; 2026 Kentucky Withholding Tax Formula, 42A003 (TCF)(10-2025) (PDF)",
+      quoi: "the withholding formula for 2026: a flat 3.5% rate after a $3,360 standard deduction, with two worked examples",
+      motif: ["2026 Kentucky Standard Deduction: $3,360", "2026 Kentucky Tax Rate: 3.5% of taxable income"] },
+    { type: "document",
+      url: "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx",
+      titre: "Kentucky Department of Revenue &mdash; Kentucky DOR Announces 2026 Standard Deduction (September 4, 2025)",
+      quoi: "the statement that the 2026 standard deduction is $3,360, an increase of $90 after inflation adjustment under KRS 141.081",
+      motif: ["the standard deduction for 2026 is $3,360"] },
+    { type: "document",
+      url: "https://revenue.ky.gov/Forms/42A003.pdf",
+      titre: "Kentucky Department of Revenue &mdash; Withholding on Salaries and Wages under the Kentucky Income Tax Law, 42A003 (10-25) (PDF)",
+      quoi: "the statement that all Kentucky wage earners are taxed at a flat 3.5% rate with an annually adjusted standard deduction and no personal exemptions, and the list of reciprocal states",
+      motif: ["flat 3.5% tax rate", "There are no personal exemptions"] },
+    { type: "document",
+      url: "https://revenue.ky.gov/Business/Pages/Employer-Payroll-Withholding.aspx",
+      titre: "Kentucky Department of Revenue &mdash; Employer Payroll Withholding",
+      quoi: "the statement that the Kentucky withholding tax rate is 3.5% for tax year 2026, and the link to the department's 2026 employer withholding calculator",
+      motif: ["Withholding Tax rate will be 3.5% for tax year 2026"] },
+    { type: "document",
+      url: "https://revenue.ky.gov/Documents/42A804%20(K-4)%20(2025).pdf",
+      titre: "Kentucky Department of Revenue &mdash; Kentucky&rsquo;s Withholding Certificate, 2025 Form K-4, 42A804 (11-2024) (PDF)",
+      quoi: "the flat 4% rate and $3,270 standard deduction that applied in 2025, before the 2026 change",
+      motif: ["flat 4% rate with a standard deduction allowance of $3,270"] },
+    { type: "document",
+      url: "https://ui.ky.gov/Documents/KY-OUI_Employer%20Guide_2026.pdf",
+      titre: "Kentucky Office of Unemployment Insurance &mdash; Employer Guide 2026 (PDF)",
+      quoi: "the statement that employers pay for unemployment insurance through taxes on their payroll, with no deduction from employee wages described, and the $12,000 taxable wage base",
+      motif: ["You, the employer, pay for this support through unemployment taxes on your payroll"] },
+    { type: "document",
+      url: "https://apps.legislature.ky.gov/CommitteeDocuments/26/35676/Oct%2021%20202%20KACo_KLC%20Occupational%20Taxes%20Presentation.pdf",
+      titre: "Kentucky Interim Joint Committee on Local Government &mdash; Occupational Taxing in Kentucky (October 21, 2025, PDF)",
+      quoi: "the statement that KRS 92.281 lets cities and counties levy a tax on wages, and the count of cities and counties that tax payroll",
+      motif: ["Allows cities and counties to levy a tax on wages"] },
+    { type: "document",
+      url: "https://apps.legislature.ky.gov/recorddocuments/note/26RS/hb518/LM.pdf",
+      titre: "Kentucky Legislative Research Commission &mdash; Local Government Mandate Statement, 2026 Regular Session, HB 518 (PDF)",
+      quoi: "the count of counties that tax payroll and the range of their rates, 0.50 percent to 2.5 percent, as reported by the Kentucky Association of Counties",
+      motif: ["at rates ranging from 0.50 percent to 2.5 percent"] },
+    { type: "agence",
+      url: "https://web.sos.ky.gov/occupationaltax/",
+      titre: "Kentucky Secretary of State &mdash; Occupational Taxes (list of local tax districts and their forms)" }
   ],
   iowa: [
     { type: "document",

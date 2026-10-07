@@ -431,7 +431,7 @@ ${ligneGains}
     above takes those.</li>
     <li>2026 federal figures from Rev. Proc. 2025-32 and the 2026 Social Security wage base.
     Federal tax is identical in every row, which is the point: the table isolates the state.</li>
-    <li>No local income tax, with two exceptions: Indiana&rsquo;s county income tax and Maryland&rsquo;s local income tax are included in their rows, at the Marion County and Montgomery County rates. Cities and school districts in some of these states levy their own;
+    <li>No local income tax, with two exceptions: Indiana&rsquo;s county income tax and Maryland&rsquo;s local income tax are included in their rows, at the Marion County and Montgomery County rates. Cities, counties and school districts in some of these states levy their own;
     the state pages say which.</li>
     <li>Only the ${NOMBRE} states we have published. The list grows as states are added, and the
     count in the title is generated from it, so this page never claims a state it does not

@@ -2430,5 +2430,96 @@ check("IA : taux unique de 3,8 %, deductions 13 000 / 26 000 / 19 500, allowance
   check("IA : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
+console.log("\n=== Kentucky (40e Etat) ===");
+
+/* Sources (lues le 2026-10-07) : Kentucky Department of Revenue, « 2026 KENTUCKY WITHHOLDING TAX FORMULA »,
+   42A003 (TCF)(10-2025) : « 2026 Kentucky Standard Deduction: $3,360 » ; « 2026 Kentucky Tax Rate: 3.5% of
+   taxable income » ; annuel : (salaire - 3 360) x 3,5 %. Livret 42A003 : « There are no personal
+   exemptions ». Calculateur du DOR (xlsx) : -3360 et 3.5/100 sur 1 994 lignes. Taux unique, aucune
+   exemption, aucune soustraction de l'impot federal, aucun programme salarie, aucun impot local modelise.
+   Tous les attendus ci-dessous sont recalcules a la main, PAS copies de la sortie du code. */
+const kyC = (b, st, rp) => calcul("kentucky", b, st || "single", rp || 0);
+
+/* Cas KY-1 - 75 000 $ celibataire.
+   Federal : 58 900 imposables = 1 240 + 4 560 + 1 870 = 7 670.
+   Etat : (75 000 - 3 360) x 3,5 % = 71 640 x 0,035 = 2 507,40.
+   FICA : 4 650 + 1 087,50 = 5 737,50. Net : 75 000 - 7 670 - 5 737,50 - 2 507,40 = 59 085,10. */
+check("KY 75 000 $ celibataire : impot d'Etat", kyC(75000).etat, 2507.40, 0.005);
+check("KY 75 000 $ celibataire : net", kyC(75000).net, 59085.10, 0.005);
+
+/* Cas KY-2 - 75 000 $ marie. Federal 4 640. Etat 2 507,40 (la deduction ne depend pas du statut).
+   Net : 75 000 - 4 640 - 5 737,50 - 2 507,40 = 62 115,10. */
+check("KY 75 000 $ marie : impot d'Etat", kyC(75000, "marriedJoint").etat, 2507.40, 0.005);
+check("KY 75 000 $ marie : net", kyC(75000, "marriedJoint").net, 62115.10, 0.005);
+
+/* Cas KY-3 - 75 000 $ chef de famille. Federal 5 748. Etat 2 507,40.
+   Net : 75 000 - 5 748 - 5 737,50 - 2 507,40 = 61 007,10. */
+check("KY 75 000 $ chef de famille : impot d'Etat", kyC(75000, "headOfHousehold").etat, 2507.40, 0.005);
+check("KY 75 000 $ chef de famille : net", kyC(75000, "headOfHousehold").net, 61007.10, 0.005);
+
+/* Cas KY-4 - 30 000 $ celibataire. Federal 1 420. Etat : 26 640 x 0,035 = 932,40. FICA 2 295.
+   Net : 30 000 - 1 420 - 2 295 - 932,40 = 25 352,60. */
+check("KY 30 000 $ celibataire : impot d'Etat", kyC(30000).etat, 932.40, 0.005);
+check("KY 30 000 $ celibataire : net", kyC(30000).net, 25352.60, 0.005);
+
+/* Cas KY-5 - 250 000 $ celibataire. Federal 51 304. FICA 11 439 + 4 075. Etat : 246 640 x 0,035 = 8 632,40.
+   Net : 250 000 - 51 304 - 8 632,40 - 11 439 - 4 075 = 174 549,60. */
+check("KY 250 000 $ celibataire : impot d'Etat", kyC(250000).etat, 8632.40, 0.005);
+check("KY 250 000 $ celibataire : net", kyC(250000).net, 174549.60, 0.005);
+
+/* Cas KY-6 - 75 000 $ avec 6 % de 401(k) : 70 500 $ ; Etat : (70 500 - 3 360) x 0,035 = 67 140 x 0,035 = 2 349,90.
+   Gain : 2 507,40 - 2 349,90 = 157,50. */
+check("KY 75 000 $ avec 6 % de 401(k) : impot d'Etat", kyC(75000, "single", 0.06).etat, 2349.90, 0.005);
+
+/* Cas KY-7 - 25 $ l'heure, 2 080 h = 52 000 $. Federal 4 060. FICA 3 224 + 754. Etat : 48 640 x 0,035 = 1 702,40.
+   Net : 52 000 - 4 060 - 3 978 - 1 702,40 = 42 259,60. */
+check("KY 25 $/h (52 000 $) : impot d'Etat", kyC(25 * 2080).etat, 1702.40, 0.005);
+check("KY 25 $/h (52 000 $) : net", kyC(25 * 2080).net, 42259.60, 0.005);
+
+/* Cas KY-8 - 3 000 $ : sous la deduction, aucun impot. Net : 3 000 - 186 - 43,50 = 2 770,50. */
+check("KY 3 000 $ : aucun impot d'Etat", kyC(3000).etat, 0, 0);
+check("KY 3 000 $ : net", kyC(3000).net, 2770.50, 0.005);
+/* Bornes : a 3 360 $ pile, 0 ; a 3 361 $, 1 x 0,035 = 0,035. */
+check("KY 3 360 $ : impot d'Etat = 0", kyC(3360).etat, 0, 0);
+check("KY 3 361 $ : impot d'Etat = 0,035", kyC(3361).etat, 0.035, 0.00001);
+
+/* Exemple IMPRIME par le DOR (42A003 TCF) : mensuel 3 270 $ -> 104,65 $. 3 270 x 12 = 39 240 ; - 3 360 = 35 880 ;
+   x 3,5 % = 1 255,80 ; / 12 = 104,65. Le moteur chiffre l'annee : 39 240 $ -> 1 255,80 $. */
+check("KY exemple imprime du DOR (3 270 $ x 12) : impot d'Etat annuel 1 255,80", kyC(3270 * 12).etat, 1255.80, 0.005);
+
+check("KY : aucun programme salarie, aucun conge paye, aucun impot local",
+  kyC(75000).programmes.length === 0 && kyC(75000).paidLeave === 0 && kyC(75000).waCares === 0 &&
+  !R.states.kentucky.employeePrograms && !R.states.kentucky.paidLeave && !R.states.kentucky.incomeTax.countyTax ? 1 : 0, 1, 0);
+check("KY : taux unique de 3,5 % (jamais 4 %, taux 2025) et deduction 3 360 $ aux 3 statuts (DOR 2026)",
+  (() => { const A = R.states.kentucky.incomeTax;
+    return JSON.stringify(A.brackets.single) === JSON.stringify([[Infinity, 0.035]]) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify(A.brackets.single) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(A.brackets.single) &&
+      JSON.stringify(A.standardDeduction) === JSON.stringify({ single: 3360, marriedJoint: 3360, headOfHousehold: 3360 }) &&
+      !A.personalExemption && !A.deductionByIncome && !A.federalTaxSubtraction ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes de la deduction x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 3000, 3360, 3361, 52000, 75000, 100001, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "kentucky", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("kentucky", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("KY : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

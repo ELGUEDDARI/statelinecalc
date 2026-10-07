@@ -100,6 +100,19 @@ const LOCAL_PAR_ETAT = {
     withholding formula we read has no surtax step. This calculator adds no local line for Iowa. The only local income tax lines on
     this site are on the <a href="/paycheck-calculator/indiana/">Indiana</a> and
     <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
+  /* Kentucky (07/10/2026) : les taxes d'occupation locales existent (KRS 92.281 ; 170 villes et 87 comtes taxent la
+     masse salariale, source : Interim Joint Committee on Local Government, 21/10/2025 ; comtes de 0,50 % a 2,5 %,
+     source : LRC HB 518). Aucune table officielle de taux lue ; QUI retient (employeur ou salarie) : INDETERMINE.
+     La page dit « may apply » et que le net reel peut etre plus bas, jamais « your employer withholds ». */
+  kentucky: `    <li><strong>Local occupational license taxes</strong> &mdash; Kentucky cities and counties may tax
+    wages under KRS 92.281 and KRS 68.197. The Kentucky Secretary of State lists 228 local tax districts, and a
+    legislative briefing counts 170 cities and 87 counties that tax payroll. These are separate lists, not the same count. County rates run from 0.50% to 2.5%,
+    and cities are not subject to a statutory rate limit. We found no official table of the rates that apply to a
+    given address, and no source that says who collects the tax from a paycheck, so this calculator adds none.
+    If you work in a city or county that levies one, your actual take-home pay may be lower than the figure shown.
+    This calculator adds no local line for Kentucky. The only local income tax lines on this site are on the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators.</li>`,
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the
