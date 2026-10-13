@@ -694,8 +694,8 @@ check("WI : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("wisconsin", 5000).etat >= 0 ? 1 : 0, 1, 0);
 check("WI : la deduction glissante n'existe que pour le Wisconsin",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).length, 1, 0);
-check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026), l'Alabama et l'Oklahoma (06/10/2026)",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 5, 0);
+check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026), l'Alabama, l'Oklahoma (06/10/2026) et la Virginie-Occidentale (13/10/2026)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 6, 0);
 
 /* --- ARKANSAS -----------------------------------------------------------
    Source, lue le 2026-09-12 : "State of Arkansas, Estimated Tax Declaration
@@ -2519,6 +2519,106 @@ check("KY : taux unique de 3,5 % (jamais 4 %, taux 2025) et deduction 3 360 $ au
         }
       }
   check("KY : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
+console.log("\n=== West Virginia (41e Etat) ===");
+
+/* Sources (lues le 2026-10-07) : West Virginia Tax Division, « Form WV IT-100.2A », « March 2026 », table annuelle
+   « Gross Wage Minus $2,000.00 for Each Exemption Claimed Equals Taxable Wage », bareme « TWO EARNER » (defaut
+   des tables ; l'autre bareme ne s'applique que si l'employe coche la case 5 de l'IT-104) : 2,11 % jusqu'a 7 500 $ ;
+   158,25 + 2,81 % jusqu'a 18 750 ; 474,38 + 3,16 % jusqu'a 30 000 ; 829,88 + 4,22 % jusqu'a 45 000 ; 1 462,88 + 4,58 %
+   au-dela (bases imprimees arrondies au cent, le moteur garde le cumul exact : 1 462,875).
+   Exemptions IT-104 : 1 celibataire / 2 marie / 1 chef de famille, 2 000 $ chacune. Tous les attendus sont
+   recalcules a la main, PAS copies de la sortie du code. Federal et FICA : memes valeurs que les cas IA/OK
+   (independants de l'Etat). */
+const wvC = (b, st, rp) => calcul("west-virginia", b, st || "single", rp || 0);
+
+/* Cas WV-1 - 75 000 $ celibataire. Federal 7 670 ; FICA 5 737,50.
+   Etat : 75 000 - 2 000 = 73 000 imposables ; 1 462,875 + (73 000 - 45 000) x 4,58 % = 1 462,875 + 1 282,40 = 2 745,275.
+   (1 462,875 = 7 500 x 2,11 % + 11 250 x 2,81 % + 11 250 x 3,16 % + 15 000 x 4,22 % = 158,25 + 316,125 + 355,50 + 633,00.)
+   Net : 75 000 - 7 670 - 5 737,50 - 2 745,275 = 58 847,225. */
+check("WV 75 000 $ celibataire : impot d'Etat", wvC(75000).etat, 2745.275, 0.0005);
+check("WV 75 000 $ celibataire : net", wvC(75000).net, 58847.225, 0.0005);
+
+/* Cas WV-2 - 75 000 $ marie. Federal 4 640. Etat : 75 000 - 4 000 = 71 000 ; 1 462,875 + 26 000 x 4,58 % = 1 462,875 + 1 190,80 = 2 653,675.
+   Net : 75 000 - 4 640 - 5 737,50 - 2 653,675 = 61 968,825. */
+check("WV 75 000 $ marie : impot d'Etat", wvC(75000, "marriedJoint").etat, 2653.675, 0.0005);
+check("WV 75 000 $ marie : net", wvC(75000, "marriedJoint").net, 61968.825, 0.0005);
+
+/* Cas WV-3 - 75 000 $ chef de famille (1 exemption, comme le celibataire). Federal 5 748.
+   Etat 2 745,275. Net : 75 000 - 5 748 - 5 737,50 - 2 745,275 = 60 769,225. */
+check("WV 75 000 $ chef de famille : impot d'Etat", wvC(75000, "headOfHousehold").etat, 2745.275, 0.0005);
+check("WV 75 000 $ chef de famille : net", wvC(75000, "headOfHousehold").net, 60769.225, 0.0005);
+
+/* Cas WV-4 - 30 000 $ celibataire. Federal 1 420 ; FICA 2 295. Etat : 28 000 imposables ; 158,25 + 316,125 + (28 000 - 18 750) x 3,16 %
+   = 474,375 + 9 250 x 0,0316 = 474,375 + 292,30 = 766,675. Net : 30 000 - 1 420 - 2 295 - 766,675 = 25 518,325. */
+check("WV 30 000 $ celibataire : impot d'Etat", wvC(30000).etat, 766.675, 0.0005);
+check("WV 30 000 $ celibataire : net", wvC(30000).net, 25518.325, 0.0005);
+
+/* Cas WV-5 - 250 000 $ celibataire. Federal 51 304 ; FICA 11 439 + 4 075 = 15 514. Etat : 248 000 imposables ;
+   1 462,875 + 203 000 x 4,58 % = 1 462,875 + 9 297,40 = 10 760,275. Net : 250 000 - 51 304 - 15 514 - 10 760,275 = 172 421,725. */
+check("WV 250 000 $ celibataire : impot d'Etat", wvC(250000).etat, 10760.275, 0.0005);
+check("WV 250 000 $ celibataire : net", wvC(250000).net, 172421.725, 0.0005);
+
+/* Cas WV-6 - 75 000 $ avec 6 % de 401(k) : 70 500 - 2 000 = 68 500 ; 1 462,875 + 23 500 x 4,58 % = 1 462,875 + 1 076,30 = 2 539,175.
+   Gain : 2 745,275 - 2 539,175 = 206,10 (= 4 500 x 4,58 %). */
+check("WV 75 000 $ avec 6 % de 401(k) : impot d'Etat", wvC(75000, "single", 0.06).etat, 2539.175, 0.0005);
+
+/* Cas WV-7 - 25 $ l'heure, 2 080 h = 52 000 $. Federal 4 060 ; FICA 3 224 + 754 = 3 978. Etat : 50 000 ; 1 462,875 + 5 000 x 4,58 % = 1 462,875 + 229 = 1 691,875.
+   Net : 52 000 - 4 060 - 3 978 - 1 691,875 = 42 270,125. */
+check("WV 25 $/h (52 000 $) : impot d'Etat", wvC(25 * 2080).etat, 1691.875, 0.0005);
+check("WV 25 $/h (52 000 $) : net", wvC(25 * 2080).net, 42270.125, 0.0005);
+
+/* Cas WV-8 - 3 000 $ : 1 000 imposables x 2,11 % = 21,10. Net : 3 000 - 186 - 43,50 - 21,10 = 2 749,40. */
+check("WV 3 000 $ : impot d'Etat", wvC(3000).etat, 21.1, 0.0005);
+check("WV 3 000 $ : net", wvC(3000).net, 2749.4, 0.005);
+
+/* Bornes : 2 000 $ = exactement l'exemption -> 0 ; 2 001 $ -> 1 x 2,11 % = 0,0211 ; 9 500 $ = 7 500 imposables, borne de la 1re tranche
+   -> 158,25 ; 9 501 $ -> 158,25 + 0,0281 = 158,2781. */
+check("WV 2 000 $ : impot d'Etat = 0", wvC(2000).etat, 0, 0);
+check("WV 2 001 $ : impot d'Etat = 0,0211", wvC(2001).etat, 0.0211, 0.00001);
+check("WV 9 500 $ : impot d'Etat = 158,25 (7 500 x 2,11 %)", wvC(9500).etat, 158.25, 0.0005);
+check("WV 9 501 $ : impot d'Etat = 158,2781", wvC(9501).etat, 158.2781, 0.00001);
+/* Continuite a la borne de la 2e tranche (20 750 $ = 18 750 imposables) : 158,25 + 11 250 x 2,81 % = 474,375. */
+check("WV 20 750 $ : impot d'Etat = 474,375", wvC(20750).etat, 474.375, 0.0005);
+
+/* Cas WV-9 - 120 000 $ celibataire : 118 000 imposables ; 1 462,875 + 73 000 x 4,58 % = 1 462,875 + 3 343,40 = 4 806,275. */
+check("WV 120 000 $ celibataire : impot d'Etat", wvC(120000).etat, 4806.275, 0.0005);
+
+check("WV : aucun programme salarie, aucun conge paye, aucun impot local, aucune deduction standard",
+  wvC(75000).programmes.length === 0 && wvC(75000).paidLeave === 0 && wvC(75000).waCares === 0 &&
+  !R.states["west-virginia"].employeePrograms && !R.states["west-virginia"].paidLeave &&
+  !R.states["west-virginia"].incomeTax.countyTax && !R.states["west-virginia"].incomeTax.standardDeduction ? 1 : 0, 1, 0);
+check("WV : 5 tranches 2,11/2,81/3,16/4,22/4,58 (jamais les taux 2025 2,22/2,96/3,33/4,44/4,82), seuils 7 500/18 750/30 000/45 000, exemptions 2 000 x 1 / 2 / 1",
+  (() => { const A = R.states["west-virginia"].incomeTax;
+    const B = [[7500, 0.0211], [18750, 0.0281], [30000, 0.0316], [45000, 0.0422], [Infinity, 0.0458]];
+    return JSON.stringify(A.brackets.single) === JSON.stringify(B) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify(B) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(B) &&
+      JSON.stringify(A.personalExemption) === JSON.stringify({ single: 2000, marriedJoint: 4000, headOfHousehold: 2000 }) &&
+      !A.standardDeduction && !A.deductionByIncome && !A.withholdingAllowances && !A.federalTaxSubtraction ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes de l'exemption et des 4 seuils x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 2000, 3000, 6000, 9500, 20750, 32000, 47000, 75000, 102000, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "west-virginia", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("west-virginia", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("WV : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

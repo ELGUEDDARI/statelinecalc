@@ -604,6 +604,8 @@ ${blocSources("pennsylvania")}
   <ul>
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/west-virginia/">West Virginia paycheck calculator</a> &mdash; the neighbor
+    to the south, with five rates from 2.11% to 4.58% after a $2,000 exemption for each person you claim.</li>
     <li><a href="/salary-to-hourly-calculator/pennsylvania/">Pennsylvania salary to hourly</a>
     &mdash; what an annual salary is worth per hour in Pennsylvania, after tax and not just
     before.</li>

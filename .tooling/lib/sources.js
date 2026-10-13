@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1015,6 +1015,51 @@ const PAR_ETAT = {
     { type: "agence",
       url: "https://web.sos.ky.gov/occupationaltax/",
       titre: "Kentucky Secretary of State &mdash; Occupational Taxes (list of local tax districts and their forms)" }
+  ],
+  "west-virginia": [
+    { type: "document",
+      url: "https://tax.wv.gov/Documents/Withholding/it100.2a.pdf",
+      titre: "West Virginia Tax Division &mdash; Form WV IT-100.2A, Tables for Percentage Method of Withholding, March 2026 (PDF)",
+      quoi: "the 2026 percentage-method tables: $2,000 taken off yearly pay for each exemption claimed, then 2.11%, 2.81%, 3.16%, 4.22% and 4.58%, with one set of tables for two earners or two jobs and one for a single job",
+      motif: ["Gross Wage Minus $2,000.00 for Each Exemption Claimed", "TWO EARNER", "ONE EARNER"] },
+    { type: "document",
+      url: "https://tax.wv.gov/Individuals/Pages/PersonalIncomeTaxReductionBill.aspx",
+      titre: "West Virginia Tax Division &mdash; 2026 Income Tax Rate Cut",
+      quoi: "the statement that SB 392 cut income tax rates by 5% retroactive to January 1, 2026, and the adjusted rate schedule from 2.11% to 4.58%",
+      motif: ["5% income tax cut for all West Virginians", "$1,950.50 plus 4.58%"] },
+    { type: "document",
+      url: "https://tax.wv.gov/Documents/Withholding/it104.pdf",
+      titre: "West Virginia Tax Division &mdash; Form WV/IT-104, Employee&rsquo;s Withholding/Exemption Certificate (Rev. 03/2023, PDF)",
+      quoi: "the rule that you may claim one exemption for yourself plus one for a spouse and each dependent, the line 5 box for a lower withholding rate, and the exemption from West Virginia withholding for residents of five neighboring states",
+      motif: ["maximum of one exemption for themselves", "you must check the box on line 5", "Kentucky, Maryland, Ohio, Pennsylvania or Virginia"] },
+    { type: "document",
+      url: "https://tax.wv.gov/Business/Withholding/HelpAndGeneralInformation/Pages/WithholdingHelpAndGeneralInformation.aspx",
+      titre: "West Virginia Tax Division &mdash; Withholding Help and General Information",
+      quoi: "the statement that the withholding tables are based on two-earner/two-job income, that wages subject to federal withholding are subject to West Virginia withholding, and that the result is rounded to the nearest whole dollar",
+      motif: ["The withholding tables are based on two-earner/two-job income", "Compensation subject to Federal withholding is subject to West Virginia withholding", "rounding the result to the nearest whole dollar"] },
+    { type: "document",
+      url: "https://workforcewv.org/wp-content/uploads/2024/05/WFWV-Claimant-Handbook-08.23-2.pdf",
+      titre: "WorkForce West Virginia &mdash; Claimant Handbook (08.23, PDF)",
+      quoi: "the statement that the unemployment insurance program is funded through taxes paid by employers and that no money is deducted from your paycheck for it",
+      motif: ["No money is deducted from your paycheck to pay for UI benefits"] },
+    { type: "document",
+      url: "https://www.wheelingwv.gov/media/Finance/City%20Service%20Fee/City%20Service%20Fee%20-%20Regulations.pdf",
+      titre: "City of Wheeling &mdash; City Service Fee Administrative Regulations (PDF)",
+      quoi: "the rule that an employer withholds the city service fee from the employee&rsquo;s paycheck",
+      motif: ["paycheck the entire amount of the Fee"] },
+    { type: "document",
+      url: "https://www.charlestonwv.gov/sites/default/files/documents/2017-11/City%20Service%20Fee%20Bill%20%207757.pdf",
+      titre: "City of Charleston &mdash; Bill No. 7757, City Service Fee ordinance, adopted September 18, 2017 (PDF)",
+      quoi: "the city service fee imposed on each employee and self-employed individual per calendar week of employment within the city",
+      motif: ["per calendar week of employment within the city"] },
+    { type: "document",
+      url: "https://code.wvlegislature.gov/8-13-13/",
+      titre: "West Virginia Code &mdash; section 8-13-13, Rates, fees and charges for municipal services",
+      quoi: "the authority for a municipality to impose by ordinance reasonable rates, fees and charges on the users of its services",
+      motif: ["to impose by ordinance upon the users of the service reasonable rates, fees, and charges"] },
+    { type: "agence",
+      url: "https://tax.wv.gov/Business/Withholding/Pages/WithholdingTaxForms.aspx",
+      titre: "West Virginia Tax Division &mdash; Withholding Tax Forms (lists IT-100.2.A, IT-100.2.B and IT-104)" }
   ],
   iowa: [
     { type: "document",

@@ -4341,6 +4341,137 @@ const RATES_2026 = {
           headOfHousehold: [[Infinity, 0.035]]
         }
       }
+    },
+
+    /* =======================================================================
+       WEST VIRGINIA  -  lu le 2026-10-07 (tax.wv.gov, workforcewv.org,
+       code.wvlegislature.gov, wheelingwv.gov, charlestonwv.gov : HTTP 200 a curl
+       avec un User-Agent de navigateur ; workforcewv.org/employers/ renvoie 403 a curl, non lu)
+       41e Etat. Moteur : AUCUN mecanisme nouveau. Meme structure que l'Oklahoma :
+       personalExemption (deduite AVANT les tranches) + brackets progressives, une
+       table par statut, pas de standardDeduction.
+       -----------------------------------------------------------------------
+       1. LA FORMULE DE RETENUE. West Virginia Tax Division, « Form WV IT-100.2A »,
+          « Tables for Percentage Method of Withholding », « March 2026 » (PDF 4 p.,
+          https://tax.wv.gov/Documents/Withholding/it100.2a.pdf, telecharge et lu en
+          PyMuPDF le 2026-10-07 ; liste sur
+          https://tax.wv.gov/Business/Withholding/Pages/WithholdingTaxForms.aspx :
+          « The withholding tax tables have been updated for the 2026 tax year. »).
+          Le PDF imprime DEUX baremes, a six periodes de paie chacun :
+            pages 1-2 : « TWO EARNER/TWO OR MORE JOBS » (« Married filing jointly, both
+            working/individual earning wages from two jobs ») ;
+            pages 3-4 : « OPTIONAL ONE EARNER/ONE JOB » (« Single, head of household or
+            married with nonemployed spouse »).
+          Table annuelle, verbatim : « TABLE 5. ANNUAL Payroll Period - Gross Wage Minus
+          $2,000.00 for Each Exemption Claimed Equals Taxable Wage ».
+            Bareme « TWO EARNER » (annuel) : jusqu'a 7 500 $ : 2,11 % ; 7 500-18 750 :
+            158,25 $ plus 2,81 % ; 18 750-30 000 : 474,38 $ plus 3,16 % ; 30 000-45 000 :
+            829,88 $ plus 4,22 % ; au-dela de 45 000 : 1 462,88 $ plus 4,58 %.
+            Bareme « ONE EARNER » (annuel) : 10 000 / 25 000 / 40 000 / 60 000 ; bases
+            211,00 / 632,50 / 1 106,50 / 1 950,50 ; memes taux.
+          LE BAREME PAR DEFAUT EST LE « TWO EARNER » : Tax Division, « Withholding Help and
+          General Information », a propos des tables de la Method I (https://tax.wv.gov/Business/Withholding/HelpAndGeneralInformation/Pages/WithholdingHelpAndGeneralInformation.aspx),
+          verbatim : « The withholding tables are based on two-earner/two-job income. The
+          tables are computed at a higher rate to help in preventing under-withholding for
+          married employees filing a joint personal income tax return and for those
+          employees earning wages from more than one job. » ; et le formulaire WV IT-104,
+          ligne 5 : « If you are Single, Head of Household, or Married and your spouse does
+          not work, and you are receiving wages from only one job, and you wish to have your
+          tax withheld at a lower rate, you must check the box on line 5. » => sans case
+          cochee : bareme TWO EARNER. Le site modelise ce defaut pour les trois statuts ;
+          la page dit ce que change la case 5 (bareme ONE EARNER). La page d'aide ecrit « Optional
+          Two Earner Percentage Method tables are included » : contredit par le PDF (« OPTIONAL
+          ONE EARNER/ONE JOB ») et par l'IT-104 ; le PDF et le formulaire font foi.
+          Arrondi : meme page d'aide, « apply the appropriate rate, rounding the result to
+          the nearest whole dollar ». Le moteur n'arrondit pas (ecart < 0,50 $ par an), dit.
+          Base de salaire : « Compensation subject to Federal withholding is subject to West
+          Virginia withholding. » (meme page) : le site part du salaire apres 401(k)
+          (choix de modelisation, dit sur la page ; la page ne parle pas des cotisations).
+       2. LE TAUX. West Virginia Tax Division, « 2026 Income Tax Rate Cut »
+          (https://tax.wv.gov/Individuals/Pages/PersonalIncomeTaxReductionBill.aspx, lu le
+          2026-10-07), verbatim : « During the 2026 Legislative Session, Governor Morrisey
+          promoted SB 392 to deliver an across the board income tax rate cut. It was passed
+          and signed into law on March 31, 2026. Effective June 12, 2026, W. Va. Code
+          § 11-21-4j will be codified to reflect a 5% income tax cut for all West Virginians
+          retroactive to January 1, 2026. » Bareme de la declaration : « Not over $10,000
+          2.11% of taxable income / Over $10,000 but not over $25,000 $211.00 plus 2.81% of
+          the excess over $10,000 / Over $25,000 but not over $40,000 $632.50 plus 3.16% of
+          excess over $25,000 / Over $40,000 but not over $60,000 $1,106.50 plus 4.22% of
+          excess over $40,000 / Over $60,000 $1,950.50 plus 4.58% of excess over $60,000 ».
+          ATTENTION : 2,22 / 2,96 / 3,33 / 4,44 / 4,82 % sont les taux de 2025. La page
+          d'aide de la meme agence cite encore 4,82 % dans son exemple de prime
+          (« 4.82% on the two-earner table ») : texte non mis a jour, PAS une source de taux.
+       3. LES EXEMPTIONS. Formulaire WV/IT-104 « Employee's Withholding/Exemption
+          Certificate » (« Rev. 03/2023 », https://tax.wv.gov/Documents/Withholding/it104.pdf,
+          lu le 2026-10-07), verbatim : « Individuals are permitted a maximum of one exemption
+          for themselves, plus an additional exemption for their spouse and any dependent
+          other than their spouse that they expect to claim on their tax return. » Ligne 2(a) :
+          « If MARRIED, one exemption each for husband and wife if not claimed on another
+          certificate. » Valeur : 2 000 $ par exemption (IT-100.2.A, table annuelle). Statuts du
+          site : single = 1 exemption (2 000 $) ; marriedJoint = 2 (4 000 $, conjoint sans
+          certificat propre) ; headOfHousehold = 1 (2 000 $) : les personnes a charge ne sont
+          pas demandees par le calculateur (2 000 $ chacune, 91,60 $ de retenue en moins par an
+          a la tranche de 4,58 %), comme pour le Wisconsin. Dit sur la page.
+       4. LES TABLES IMPRIMEES : les 12 tables de l'IT-100.2.A (2 baremes x 6 periodes)
+          recoupees avec la formule par .tooling/test/verif-retenue-wv.js. Annuel : seuils,
+          bases a 0,01 $, taux, ECART ZERO. Autres periodes : les seuils sont arrondis a
+          l'unite par l'agence (7 500 / 52 = 144,23 imprime 144, mais 45 000 / 52 = 865,38
+          imprime 866) : l'ecart a la formule annualisee est mesure et plafonne par le script.
+          Le site ne modelise que l'annuel.
+       5. NON-RESIDENTS. IT-104, page 2 : « If you are a resident of Kentucky, Maryland, Ohio,
+          Pennsylvania or Virginia and your only source of income from West Virginia is wages
+          or salaries, you are exempt from West Virginia Personal Income Tax Withholding. » Non
+          modelise (le calculateur suppose un salarie qui travaille et vit en Virginie-Occidentale).
+       6. TAXES LOCALES. Aucun impot local sur le revenu dans les documents lus ; mais des villes
+          imposent une « city service fee » forfaitaire PAR SEMAINE, retenue par l'employeur :
+          Wheeling, « City Service Fee Administrative Regulations » (10/8/2019,
+          https://www.wheelingwv.gov/media/Finance/City%20Service%20Fee/City%20Service%20Fee%20-%20Regulations.pdf),
+          § 2(b) : « that individual's employer shall withhold from that employee's paycheck the
+          entire amount of the Fee. » ; Charleston, Bill No. 7757 (adopted Sept. 18, 2017,
+          https://www.charlestonwv.gov/sites/default/files/documents/2017-11/City%20Service%20Fee%20Bill%20%207757.pdf),
+          Sec. 2-737 : « the fee rate imposed shall be $3.00 per calendar week of employment
+          within the city ». Base legale : W. Va. Code § 8-13-13 (https://code.wvlegislature.gov/8-13-13/),
+          « to impose by ordinance upon the users of the service reasonable rates, fees, and
+          charges ». Montant 2026 non relu : NON MODELISE, la page dit « we found », jamais
+          « West Virginia has no local ».
+       7. ASSURANCE CHOMAGE. WorkForce West Virginia, « Claimant Handbook » (08.23,
+          https://workforcewv.org/wp-content/uploads/2024/05/WFWV-Claimant-Handbook-08.23-2.pdf,
+          lu le 2026-10-07), verbatim : « Our state UI program is funded through taxes paid by
+          employers. No money is deducted from your paycheck to pay for UI benefits. »
+          Enrolled CS for CS SB 1053 (2026, https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb1053%20sub2%20enr.htm) :
+          « an employer shall make payments to the unemployment compensation fund » ; la
+          « annual unemployment automation and administration fee » est a la charge de
+          l'employeur. => pas d'employeePrograms. Base salariale non citee sur la page.
+       8. PAS DE CONGE PAYE NI D'ASSURANCE INVALIDITE D'ETAT TROUVES : aucun document lu (IT-100.2.A,
+          IT-104, page d'aide, TSD 381, Claimant Handbook) n'en decrit un ; « we found no »,
+          jamais « West Virginia has no ».
+       9. NON MODELE : case 5 de l'IT-104 (bareme ONE EARNER), personnes a charge, ligne 6 (retenue
+          supplementaire), statut non-resident, reciprocite (KY, MD, OH, PA, VA), city service fee,
+          conjoint avec revenu (chaque conjoint a son certificat), primes, arrondi au dollar par
+          periode.
+       ----------------------------------------------------------------------- */
+    "west-virginia": {
+      name: "West Virginia",
+      abbr: "WV",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* « Gross Wage Minus $2,000.00 for Each Exemption Claimed Equals Taxable Wage »
+           (table annuelle) x 1 / 2 / 1 exemptions. Aucune deduction standard dans la formule. */
+        personalExemption: {
+          single: 2000,
+          marriedJoint: 4000,
+          headOfHousehold: 2000
+        },
+        /* Bareme « TWO EARNER/TWO OR MORE JOBS », table annuelle : jusqu'a 7 500 $ 2,11 % ;
+           158,25 $ + 2,81 % (7 500-18 750) ; 474,38 $ + 3,16 % (18 750-30 000) ;
+           829,88 $ + 4,22 % (30 000-45 000) ; 1 462,88 $ + 4,58 % au-dela de 45 000 $.
+           (Les bases imprimees sont les cumuls ARRONDIS au cent : 474,375 -> 474,38.) */
+        brackets: {
+          single:          [[7500, 0.0211], [18750, 0.0281], [30000, 0.0316], [45000, 0.0422], [Infinity, 0.0458]],
+          marriedJoint:    [[7500, 0.0211], [18750, 0.0281], [30000, 0.0316], [45000, 0.0422], [Infinity, 0.0458]],
+          headOfHousehold: [[7500, 0.0211], [18750, 0.0281], [30000, 0.0316], [45000, 0.0422], [Infinity, 0.0458]]
+        }
+      }
     }
   }
 };

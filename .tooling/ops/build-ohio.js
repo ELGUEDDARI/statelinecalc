@@ -835,6 +835,8 @@ ${blocSources("ohio")}
     nearest neighbour, and the other state here where a city tax changes the answer.</li>
     <li><a href="/paycheck-calculator/utah/">Utah paycheck calculator</a> &mdash; the mirror
     image: a higher flat rate, but no local layer on top of it at all.</li>
+    <li><a href="/paycheck-calculator/west-virginia/">West Virginia paycheck calculator</a> &mdash; the neighbor
+    to the southeast, with five rates from 2.11% to 4.58% after a $2,000 exemption for each person you claim.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
     with its official source, and what these calculators deliberately do not model.</li>
     <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,

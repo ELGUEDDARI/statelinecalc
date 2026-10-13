@@ -113,6 +113,20 @@ const LOCAL_PAR_ETAT = {
     This calculator adds no local line for Kentucky. The only local income tax lines on this site are on the
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
     calculators.</li>`,
+  /* West Virginia (13/10/2026) : pas d'impot local en pourcentage trouve dans les documents lus, mais des villes
+     (Wheeling, Charleston) imposent une « city service fee » forfaitaire par semaine de travail dans la ville.
+     Wheeling, reglement : l'employeur retient le montant integral sur la paie. Charleston, Bill 7757 : frais
+     imposes a chaque salarie par semaine civile de travail dans la ville. Montant 2026 NON relu (le texte lu
+     est un document surcharge de revisions) : la page ne chiffre rien et dit « we found », jamais « West Virginia has no ». */
+  "west-virginia": `    <li><strong>City service fees</strong> &mdash; some West Virginia cities charge a flat fee for each week
+    you work inside the city, not a percentage of pay. The City of Wheeling&rsquo;s regulations tell the employer to
+    withhold the fee from the employee&rsquo;s paycheck, and a 2017 ordinance of the City of Charleston imposed a city
+    service fee on each employee per calendar week of employment within the city. We did not read a current schedule
+    of these fees or confirm what each city charges in 2026, so this calculator adds none, and if you work in a city that charges one, your actual take-home
+    pay may be lower than the figure shown. We found no percentage-based local income tax on wages in the documents
+    we read. This calculator adds no local line for West Virginia. The only local income tax lines on this site are on the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators.</li>`,
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

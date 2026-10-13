@@ -78,9 +78,10 @@ const gainVA = a75.etat - calcul(CLE, 75000, "single", PCT_401K).etat;
 const pa75 = calcul("pennsylvania", 75000);
 const gainPA = pa75.etat - calcul("pennsylvania", 75000, "single", PCT_401K).etat;
 
-/* Voisins directs de la Virginie deja publies : Caroline du Nord, Tennessee. */
-const voisins = ["north-carolina", "tennessee"].map(k => ({ cle: k, r: calcul(k, 75000) }));
-const NOMS = { "north-carolina": "North Carolina", tennessee: "Tennessee" };
+/* Voisins directs de la Virginie deja publies : Caroline du Nord, Tennessee (indices 0 et 1, utilises plus bas),
+   puis Kentucky, Maryland, Virginie-Occidentale (13/10/2026). Le Maryland comprend son impot local au taux du comte par defaut. */
+const voisins = ["north-carolina", "tennessee", "kentucky", "maryland", "west-virginia"].map(k => ({ cle: k, r: calcul(k, 75000) }));
+const NOMS = { "north-carolina": "North Carolina", tennessee: "Tennessee", kentucky: "Kentucky", maryland: "Maryland", "west-virginia": "West Virginia" };
 const article = nom => /^[AEIO]/.test(nom) ? "An" : "A";
 
 const $ = n => "$" + c0(n);
@@ -607,7 +608,9 @@ ${voisins.map(v => {
     + `Virginian on the same salary.</li>`;
 }).join("\n")}
   </ul>
-  <p>Virginia borders two states already on this site.
+  <p>Virginia also borders Kentucky, Maryland and West Virginia, and the District of Columbia; we have a calculator for each of the three states.
+  Maryland&rsquo;s figure includes its local income tax at the Montgomery County rate, and Kentucky&rsquo;s leaves out local occupational license taxes, so those two rows are not a like-for-like comparison of state tax alone.
+  Two of Virginia&rsquo;s neighbors, Tennessee and North Carolina, make the contrast plain.
   <a href="/paycheck-calculator/tennessee/">Tennessee</a> has no state income tax at all, which is
   why a Tennessee worker keeps ${N($$(Math.abs(voisins[1].r.net - a75.net)))} more of the same
   salary. <a href="/paycheck-calculator/north-carolina/">North Carolina</a>'s flat 3.99% rate looks
@@ -623,6 +626,12 @@ ${blocSources("virginia")}
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/north-carolina/">North Carolina paycheck calculator</a>
     &mdash; a bordering state with a single flat rate instead of Virginia's four brackets.</li>
+    <li><a href="/paycheck-calculator/west-virginia/">West Virginia paycheck calculator</a>
+    &mdash; the neighbor to the northwest, with five rates from 2.11% to 4.58% after a $2,000 exemption for each person you claim.</li>
+    <li><a href="/paycheck-calculator/kentucky/">Kentucky paycheck calculator</a>
+    &mdash; the neighbor to the west, a flat 3.5% after a $3,360 deduction.</li>
+    <li><a href="/paycheck-calculator/maryland/">Maryland paycheck calculator</a>
+    &mdash; the neighbor to the north, which adds a local income tax.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
     with its official source, and what these calculators deliberately do not model.</li>
     <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,
