@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1015,6 +1015,56 @@ const PAR_ETAT = {
     { type: "agence",
       url: "https://web.sos.ky.gov/occupationaltax/",
       titre: "Kentucky Secretary of State &mdash; Occupational Taxes (list of local tax districts and their forms)" }
+  ],
+  delaware: [
+    { type: "document",
+      url: "https://revenue.delaware.gov/employers-guide-withholding-regulations-employers-duties/",
+      titre: "Delaware Division of Revenue &mdash; Employer&rsquo;s Guide (Withholding Regulations and Employer&rsquo;s Duties)",
+      quoi: "the annualized withholding method: a $3,250 standard deduction ($6,500 married filing jointly), the tax computation table with rates from 2.20% to 6.60%, and a $110 credit for each personal exemption; the guide labels its schedule &ldquo;Effective January 1, 2025&rdquo;",
+      motif: ["An approved method, based on annualized wages", "Tax Computation Table Effective January 1, 2025", "personal exemption by $110"] },
+    { type: "document",
+      url: "https://revenuefiles.delaware.gov/docs/month16.pdf",
+      titre: "Delaware Division of Revenue &mdash; Withholding tables, monthly payroll period, effective January 1, 2025 (PDF)",
+      quoi: "the printed monthly wage-bracket table, one of five the Division prints (daily, weekly, biweekly, semi-monthly, monthly), which this calculator&rsquo;s formula reproduces",
+      motif: ["MONTHLY", "Tax to be Withheld"] },
+    { type: "document",
+      url: "https://revenuefiles.delaware.gov/2025/PITForms_Instructions/PIT-RES_2025-01_PaperInteractiveIPM.pdf",
+      titre: "Delaware Division of Revenue &mdash; Form PIT-RES, 2025 resident return (PDF)",
+      quoi: "the standard deduction by filing status ($3,250 for statuses 1, 3 and 5, which include head of household, and $6,500 for status 2) and the $110 personal credit",
+      motif: ["Filing Statuses 1, 3, & 5 enter $3250", "x $110"] },
+    { type: "document",
+      url: "https://revenue.delaware.gov/tax-season-updates/",
+      titre: "Delaware Division of Revenue &mdash; 2025-2026 Tax Season Updates",
+      quoi: "the Division&rsquo;s list of changes for the 2025 tax year, which mentions no change to personal income tax rates, the standard deduction or the personal credit",
+      motif: ["2025-2026 Tax Season Updates"] },
+    { type: "document",
+      url: "https://delcode.delaware.gov/title19/c037/index.html",
+      titre: "Delaware Code, Title 19, Chapter 37 &mdash; Healthy Delaware Families Act (section 3705, Contributions)",
+      quoi: "the 2025 and 2026 paid leave contribution rates (0.4% medical, 0.08% family caregiving, 0.32% parental) and the rule that an employer shall deduct not greater than 50% of the contribution from an employee&rsquo;s wages",
+      motif: ["contribution rate for medical leave benefits as a percentage of wages is 0.4%", "not greater than 50% of the contribution required for the employee"] },
+    { type: "document",
+      url: "https://labor.delaware.gov/delaware-paid-leave/",
+      titre: "Delaware Department of Labor &mdash; Delaware Paid Leave",
+      quoi: "the statement that employers can require employees to contribute up to half the cost, and which employers must take part (nine or fewer employees exempt, 10 to 24 parental leave only, 25 or more full coverage)",
+      motif: ["Employers can require employees to contribute up to half the cost", "Parental Leave Only"] },
+    { type: "document",
+      url: "https://laborfiles.delaware.gov/main/pfl/Regulations.pdf",
+      titre: "Delaware Department of Labor &mdash; Regulations for Delaware Paid Leave (PDF)",
+      quoi: "the rule that contributions stop once an employee&rsquo;s paid leave wages reach the FICA limit for the year, and the 50/50 default split of the contribution between employer and employee",
+      motif: ["FICA Limits", "default of 50/50"] },
+    { type: "document",
+      url: "https://laborfiles.delaware.gov/main/dui/handbook/UI%20Employer%20Handbook.pdf",
+      titre: "Delaware Division of Unemployment Insurance &mdash; Unemployment Insurance Employer Handbook (PDF)",
+      quoi: "the statement that workers do not pay any part of the Delaware unemployment tax and that employers can make no payroll deductions for it",
+      motif: ["Workers do not pay any part of the Delaware tax"] },
+    { type: "document",
+      url: "https://www.wilmingtonde.gov/home/showpublisheddocument/462/638206223264700000",
+      titre: "City of Wilmington &mdash; Earned Income Tax Regulations (revised May 25, 2023, PDF)",
+      quoi: "the 1.25% city wage tax on residents of the city and on nonresidents for work done in the city, and the employer&rsquo;s duty to withhold and remit it",
+      motif: ["one and one quarter percent (1.25%)"] },
+    { type: "agence",
+      url: "https://www.wilmingtonde.gov/residents/earned-income-tax-and-net-profits-tax",
+      titre: "City of Wilmington &mdash; City Wage &amp; Net Profits Taxes" }
   ],
   "west-virginia": [
     { type: "document",

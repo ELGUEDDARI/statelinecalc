@@ -604,6 +604,8 @@ ${blocSources("pennsylvania")}
   <ul>
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/delaware/">Delaware paycheck calculator</a> &mdash; the neighbor
+    to the southeast, with rates from 2.2% to 6.6% after a $3,250 standard deduction and a $110 credit for each exemption.</li>
     <li><a href="/paycheck-calculator/west-virginia/">West Virginia paycheck calculator</a> &mdash; the neighbor
     to the south, with five rates from 2.11% to 4.58% after a $2,000 exemption for each person you claim.</li>
     <li><a href="/salary-to-hourly-calculator/pennsylvania/">Pennsylvania salary to hourly</a>

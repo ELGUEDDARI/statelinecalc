@@ -21,7 +21,8 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
-const { calcul, c2, c0, HEURES } = require("../lib/paie.js");
+const { calcul, c2, c0, HEURES, R } = require("../lib/paie.js");
+const { PUBLIES: PUBLIES_OH } = require("../lib/etats-publies.js");
 
 const RACINE = path.join(__dirname, "..", "..");
 const CLE = "ohio";
@@ -158,6 +159,23 @@ const muniEgalite = a75.etat / 75000;
 const sdBas75 = 75000 * SD_MIN;
 const sdHaut75 = 75000 * SD_MAX;
 
+/* LE CLASSEMENT, CALCULE ET NON AFFIRME. La premiere version de cette page disait « Ohio leaves you the most »
+   parmi les Etats publies qui ont un impot sur le revenu : FAUX a 75 000 $ celibataire (North Dakota 61 254 $ et
+   Arizona 60 093 $ gardent plus que l'Ohio, 59 974 $), et « the lowest state income tax » l'etait aussi (North Dakota
+   339 $ et Arizona 1 500 $ prelevent moins que les 1 619 $ de l'Ohio). Les deux listes sortent maintenant de
+   PUBLIES a chaque generation : publier un Etat qui bat l'Ohio change la phrase au lieu de la rendre fausse. */
+const imposants = Object.values(PUBLIES_OH).filter(k => k !== CLE && R.states[k] && R.states[k].incomeTax.hasIncomeTax)
+  .map(k => { const r = calcul(k, 75000); return { nom: R.states[k].name, etat: r.etat, net: r.net }; });
+const NB_IMPOSANTS = imposants.length + 1;                                          // l'Ohio compris
+const listeNoms = tab => tab.map(x => x.nom).join(", ").replace(/, ([^,]*)$/, " and $1");
+const gardentPlus = imposants.filter(x => x.net > a75.net).sort((a, b) => b.net - a.net);
+const prelevent_moins = imposants.filter(x => x.etat < a75.etat).sort((a, b) => a.etat - b.etat);
+const PHRASE_RANG = gardentPlus.length === 0
+  ? "Ohio leaves a single filer on this salary the most take-home pay"
+  : "only " + listeNoms(gardentPlus) + " leave a single filer on this salary with more take-home pay than Ohio";
+const PHRASE_BAS = prelevent_moins.length === 0
+  ? "On a salary of $75,000, Ohio has the lowest state income tax of any state on this site that levies one"
+  : "On a salary of $75,000, only " + listeNoms(prelevent_moins) + " take less state income tax than Ohio among the states on this site that levy one";
 const voisins = ["utah", "michigan", "illinois", "pennsylvania"].map(k => ({
   cle: k, r: calcul(k, 75000)
 }));
@@ -203,8 +221,8 @@ const faq = [
    "About " + $(a75.net) + " a year, or " + $$(a75.net / 12) + " a month, for a single filer with "
    + "no retirement contribution. That is after " + $(a75.federal) + " of federal income tax, $"
    + c0(a75.ss + a75.med) + " of Social Security and Medicare and only " + $$(a75.etat)
-   + " of Ohio income tax — a state rate of " + effet75.toFixed(2) + "%. Of the states published "
-   + "here that levy an income tax at all, Ohio leaves you the most. School district and municipal "
+   + " of Ohio income tax — a state rate of " + effet75.toFixed(2) + "%. Of the " + NB_IMPOSANTS + " states published "
+   + "here that levy an income tax on wages, " + PHRASE_RANG + ". School district and municipal "
    + "income taxes are not included."],
 
   ["Why does my Ohio employer withhold more than I owe?",
@@ -454,8 +472,7 @@ ${blocChecklist()}
   <div class="prose">
 
     <h2>How this calculator works</h2>
-    <p>Ohio has the lowest state income tax of any state on this site that levies one, and the
-    strangest shape. There are no brackets in the usual sense. Instead the statute says that
+    <p>${PHRASE_BAS}, and Ohio&rsquo;s schedule has the strangest shape. There are no brackets in the usual sense. Instead the statute says that
     nothing is owed at or below ${N($(SEUIL))} of taxable income, and that above it you owe
     <strong>${N($(MARCHE))} plus 2.75%</strong> of the excess. Taxable income is your pay less a
     personal exemption for every person in the household &mdash; and the size of that exemption
@@ -813,13 +830,13 @@ ${voisins.map(v => {
     + `Ohioan on the same salary.</li>`;
 }).join("\n")}
   </ul>
-  <p>Of every state published here that levies an income tax, <strong>Ohio leaves you the
-  most</strong>. The comparison comes with a warning, though, and it runs the other way from the
+  <p>Ohio keeps more of this salary than every state above, and of the ${NB_IMPOSANTS} states published here that levy an income tax on wages,
+  ${PHRASE_RANG.replace(/^only (.*) leave /, "<strong>only $1</strong> leave ")}. The comparison comes with a warning, though, and it runs the other way from the
   ranking: the states above are compared on their state layer alone, and Ohio&rsquo;s state layer
   is the smallest part of an Ohio tax bill, and the states above have no city layer at all. At the
   ${N("1%")} a city can set unaided, an Ohioan still keeps
   ${N($$(a75.net - muniVote75 - voisins[0].r.net))} more than a
-  <a href="/paycheck-calculator/utah/">Utah</a> worker. The ranking only turns over once the city
+  <a href="/paycheck-calculator/utah/">Utah</a> worker. The ranking against Utah only turns over once the city
   rate passes ${N(((a75.net - voisins[0].r.net) / 75000 * 100).toFixed(2) + "%")}, which
   ${N(String(MUNI_AU_DESSUS_UT)) + " of the " + MUNI_NB} municipalities in the
   Department&rsquo;s table exceed. Only the states with no income tax at all are unambiguously cheaper at every

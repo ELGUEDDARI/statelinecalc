@@ -127,6 +127,18 @@ const LOCAL_PAR_ETAT = {
     we read. This calculator adds no local line for West Virginia. The only local income tax lines on this site are on the
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
     calculators.</li>`,
+  /* Delaware (13/10/2026) : la ville de Wilmington impose 1,25 % (Earned Income Tax Regulations, rev. 5/25/2023,
+     Section 201) : residents de la ville quel que soit le lieu de travail, non-residents pour le travail fait dans la
+     ville ; Section 401 : l'employeur du Delaware retient pour les residents de la ville, l'employeur qui a un lieu de
+     travail dans la ville retient pour les non-residents qui y travaillent. NON MODELISE (le calculateur ne sait ni ou
+     l'on habite ni ou l'on travaille) ; la page dit « about 1.25% », jamais « your employer withholds ». */
+  delaware: `    <li><strong>City of Wilmington wage tax</strong> &mdash; Wilmington taxes the pay of city residents
+    wherever they work, and of nonresidents for work done in the city, at 1.25% under its Earned Income Tax
+    Regulations (revised 2023). This calculator adds no local line for Delaware, because it cannot know where you
+    live or work. If the city tax applies to you, your take-home pay is about 1.25% of your pay lower than the
+    figure shown. We found no other local income tax on wages in the documents we read. The only local income tax
+    lines on this site are on the <a href="/paycheck-calculator/indiana/">Indiana</a> and
+    <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

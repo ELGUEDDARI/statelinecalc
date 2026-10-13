@@ -118,14 +118,14 @@ const tableRate = (tab) => lignesTable(tab).map(l =>
 /* Voisins publies : Pennsylvanie (seul voisin publie), + Rhode Island et
    Colorado, qui prennent eux aussi une prime d'assurance salariee. */
 const REF = 75000;
-const COMPARE = [CLE, "pennsylvania", "rhode-island", "colorado"];
-const NOMS = { [CLE]: "New Jersey", pennsylvania: "Pennsylvania", "rhode-island": "Rhode Island", colorado: "Colorado" };
+const COMPARE = [CLE, "pennsylvania", "delaware", "rhode-island", "colorado"];
+const NOMS = { [CLE]: "New Jersey", pennsylvania: "Pennsylvania", delaware: "Delaware", "rhode-island": "Rhode Island", colorado: "Colorado" };
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const pa75 = calcul("pennsylvania", REF), ri75 = calcul("rhode-island", REF), co75 = calcul("colorado", REF);
+const pa75 = calcul("pennsylvania", REF), ri75 = calcul("rhode-island", REF), co75 = calcul("colorado", REF), de75 = calcul("delaware", REF);
 const plusMoins = d => d >= 0 ? $$(d) + " more" : $$(-d) + " less";   // d = NJ - autre
 
 /* --- les tableaux, produits par les generateurs generiques ---------------- */
@@ -710,7 +710,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. New Jersey borders New York, Pennsylvania and Delaware; Pennsylvania is the only one of
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. New Jersey borders New York, Pennsylvania and Delaware; Pennsylvania and Delaware are two of
   the three that we publish so far. Rhode Island and Colorado are included because each also takes an employee-paid insurance premium on top of income tax.
   New Jersey is shown with one allowance.</p>
   <div class="table-scroll">
@@ -733,7 +733,7 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
   </div>
   <p>A <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> worker keeps ${N($$(pa75.net - a75.net))} more than a New Jersey worker on the
   same salary: Pennsylvania takes a flat 3.07% and a 0.07% unemployment deduction, with no disability or family leave premium in this
-  calculator. A <a href="/paycheck-calculator/rhode-island/">Rhode Island</a> worker keeps ${N($$(Math.abs(ri75.net - a75.net)))} ${ri75.net < a75.net ? "less" : "more"}, and a
+  calculator. A <a href="/paycheck-calculator/delaware/">Delaware</a> worker keeps ${N($$(Math.abs(de75.net - a75.net)))} ${de75.net < a75.net ? "less" : "more"}, counting Delaware income tax and up to 0.40% for paid leave but not the Wilmington wage tax. A <a href="/paycheck-calculator/rhode-island/">Rhode Island</a> worker keeps ${N($$(Math.abs(ri75.net - a75.net)))} ${ri75.net < a75.net ? "less" : "more"}, and a
   <a href="/paycheck-calculator/colorado/">Colorado</a> worker keeps ${N($$(Math.abs(co75.net - a75.net)))} ${co75.net < a75.net ? "less" : "more"}.</p>
 
 ${blocSources(CLE)}
@@ -744,6 +744,8 @@ ${blocSources(CLE)}
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania paycheck calculator</a> &mdash; the neighbor across the Delaware
     River, with a flat 3.07% tax and a reciprocal agreement with New Jersey.</li>
+    <li><a href="/paycheck-calculator/delaware/">Delaware paycheck calculator</a> &mdash; the neighbor across the Delaware
+    River and Bay, with rates from 2.2% to 6.6% after a $3,250 standard deduction and a $110 credit for each exemption.</li>
     <li><a href="/paycheck-calculator/rhode-island/">Rhode Island paycheck calculator</a> &mdash; another state with progressive
     withholding and an employee-paid disability insurance deduction.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
@@ -835,6 +837,7 @@ const debut61 = tab => (tab.find(b => b[1] === 0.061) ? tab[tab.findIndex(b => b
 if (debut61(TAB_A) !== 40000 || debut61(TAB_B) !== 80000) {
   console.error("ARRET : « 6.1 % a 40 000 / 80 000 » est faux"); process.exit(2);
 }
+if (!(de75.net < a75.net)) { console.error("ARRET : « New Jersey keeps more than Delaware » est faux"); process.exit(2); }
 if (!(pa75.net > a75.net)) { console.error("ARRET : « Pennsylvania keeps more » est faux"); process.exit(2); }
 if ((R.states.pennsylvania.employeePrograms || []).length !== 1 || R.states.pennsylvania.incomeTax.brackets.single[0][1] !== 0.0307 ||
     R.states.pennsylvania.employeePrograms[0].rate !== 0.0007) {

@@ -109,18 +109,18 @@ const TAUX_PRIME = 0.065 + TAUX_DEF;                          // 9,70 % : table 
 const prime = BONUS * TAUX_PRIME;
 const FAMLI = 75000 * 0.0045;
 
-/* Voisins : les trois Etats frontaliers deja publies (Pennsylvanie, Virginie, Virginie-Occidentale). */
+/* Voisins : les quatre Etats frontaliers publies (Delaware, Pennsylvanie, Virginie, Virginie-Occidentale). */
 const REF = 75000;
 const { PUBLIES: PUB, grilleEtats } = require("../lib/etats-publies.js");
-const COMPARE = [CLE, "pennsylvania", "virginia", "west-virginia"];
-const NOMS = { [CLE]: "Maryland", pennsylvania: "Pennsylvania", virginia: "Virginia", "west-virginia": "West Virginia" };
+const COMPARE = [CLE, "delaware", "pennsylvania", "virginia", "west-virginia"];
+const NOMS = { [CLE]: "Maryland", delaware: "Delaware", pennsylvania: "Pennsylvania", virginia: "Virginia", "west-virginia": "West Virginia" };
 const progs = r => r.programmes.reduce((t, p) => t + p.montant, 0);
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const pa75 = calcul("pennsylvania", REF), va75 = calcul("virginia", REF), wv75 = calcul("west-virginia", REF);
+const pa75 = calcul("pennsylvania", REF), va75 = calcul("virginia", REF), wv75 = calcul("west-virginia", REF), de75 = calcul("delaware", REF);
 /* Les autres Etats frontaliers : on dit lesquels n'ont pas de calculateur, sans les inventer. */
 const FRONTALIERS = ["Delaware", "Pennsylvania", "Virginia", "West Virginia"];
 const absents = FRONTALIERS.filter(n => !PUB[n]);
@@ -753,7 +753,7 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
     </table>
   </div>
   <p>A <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> worker keeps ${N($$(Math.abs(pa75.net - a75.net)))} ${pa75.net < a75.net ? "less" : "more"} than a Maryland worker in ${DEF[0]} County on the
-  same salary, a <a href="/paycheck-calculator/virginia/">Virginia</a> worker keeps ${N($$(Math.abs(va75.net - a75.net)))} ${va75.net < a75.net ? "less" : "more"}, and a <a href="/paycheck-calculator/west-virginia/">West Virginia</a> worker keeps ${N($$(Math.abs(wv75.net - a75.net)))} ${wv75.net < a75.net ? "less" : "more"}. Pennsylvania&rsquo;s figure leaves out local earned income tax, which this calculator does not model.</p>
+  same salary, a <a href="/paycheck-calculator/virginia/">Virginia</a> worker keeps ${N($$(Math.abs(va75.net - a75.net)))} ${va75.net < a75.net ? "less" : "more"}, a <a href="/paycheck-calculator/west-virginia/">West Virginia</a> worker keeps ${N($$(Math.abs(wv75.net - a75.net)))} ${wv75.net < a75.net ? "less" : "more"}, and a <a href="/paycheck-calculator/delaware/">Delaware</a> worker keeps ${N($$(Math.abs(de75.net - a75.net)))} ${de75.net < a75.net ? "less" : "more"}. Pennsylvania&rsquo;s figure leaves out local earned income tax, and Delaware&rsquo;s leaves out the City of Wilmington wage tax; this calculator models neither.</p>
 
 ${blocSources(CLE)}
 
@@ -761,6 +761,7 @@ ${blocSources(CLE)}
   <ul>
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/delaware/">Delaware paycheck calculator</a> &mdash; the neighbor to the east, with rates from 2.2% to 6.6% after a $3,250 standard deduction and a $110 credit for each exemption.</li>
     <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania paycheck calculator</a> &mdash; the neighbor to the north, with a flat 3.07% from the first dollar.</li>
     <li><a href="/paycheck-calculator/virginia/">Virginia paycheck calculator</a> &mdash; the neighbor to the south, with four brackets from 2% to 5.75% and no local income tax.</li>
     <li><a href="/paycheck-calculator/west-virginia/">West Virginia paycheck calculator</a> &mdash; the neighbor to the southwest, with five rates from 2.11% to 4.58% after a $2,000 exemption for each person you claim.</li>
@@ -855,9 +856,9 @@ if (!(haut.map(c => c.nom).join() === "Dorchester,Kent" && reel(haut[0]) === 0.0
 if (!(n320 === 12)) echec("12 juridictions a 3,20 % attendues, " + n320);
 if (!(estGrad(LIGNES.find(c => c.cle === "anne-arundel")) && estGrad(LIGNES.find(c => c.cle === "frederick")) && LIGNES.filter(estGrad).length === 2)) echec("Anne Arundel et Frederick sont les deux seuls comtes progressifs");
 if (!(AA[2].actualSchedule.single[0][1] === 0.027 && FR[2].actualSchedule.single[2][1] === 0.0296)) echec("baremes progressifs != memorandum");
-if (!(pa75.net !== a75.net && va75.net !== a75.net && wv75.net !== a75.net)) echec("la comparaison (PA, VA, WV) n'est plus celle ecrite");
-if (!(R.states.pennsylvania.incomeTax.hasIncomeTax && R.states.virginia.incomeTax.hasIncomeTax && R.states["west-virginia"].incomeTax.hasIncomeTax)) echec("un voisin n'a plus d'impot");
-if (!(absents.join() === "Delaware")) echec("le seul voisin absent n'est plus le Delaware : " + absents.join());
+if (!(pa75.net !== a75.net && va75.net !== a75.net && wv75.net !== a75.net && de75.net !== a75.net)) echec("la comparaison (DE, PA, VA, WV) n'est plus celle ecrite");
+if (!(R.states.pennsylvania.incomeTax.hasIncomeTax && R.states.virginia.incomeTax.hasIncomeTax && R.states["west-virginia"].incomeTax.hasIncomeTax && R.states.delaware.incomeTax.hasIncomeTax)) echec("un voisin n'a plus d'impot");
+if (absents.length !== 0) echec("un Etat frontalier n'est pas publie : " + absents.join());
 if (progs(a75) !== loc(a75)) echec("a 75 000 $, le seul « programme » doit etre le local");
 if (MD.paidLeave || MD.employeePrograms) echec("un programme salarie apparait : la page dit qu'il n'y en a aucun en 2026");
 const nbMotsReponse = reponse.replace(/&[a-z]+;/g, " ").split(/\s+/).length;

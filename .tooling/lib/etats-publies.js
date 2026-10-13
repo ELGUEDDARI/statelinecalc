@@ -28,6 +28,7 @@ const PUBLIES = {
   Arizona: "arizona",
   Arkansas: "arkansas",
   Colorado: "colorado",
+  Delaware: "delaware",
   Florida: "florida",
   Georgia: "georgia",
   Hawaii: "hawaii",

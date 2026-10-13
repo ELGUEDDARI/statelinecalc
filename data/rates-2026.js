@@ -4344,6 +4344,128 @@ const RATES_2026 = {
     },
 
     /* =======================================================================
+       DELAWARE  -  lu le 2026-10-13 (revenue.delaware.gov, revenuefiles.delaware.gov,
+       laborfiles.delaware.gov, delcode.delaware.gov : HTTP 200 ; wilmingtonde.gov : 403 a curl,
+       lu avec un navigateur reel, profil ephemere, le meme jour)
+       42e Etat. Moteur : AUCUN mecanisme nouveau. standardDeduction par statut + brackets
+       progressives + taxCredit (credit de 110 $ par exemption, retranche de l'impot apres
+       calcul, sans extinction) + employeePrograms (conge paye). Meme famille que le Massachusetts.
+       -----------------------------------------------------------------------
+       1. LA FORMULE DE RETENUE. Delaware Division of Revenue, « Employer's Guide (Withholding
+          Regulations and Employer's Duties) »
+          (https://revenue.delaware.gov/employers-guide-withholding-regulations-employers-duties/,
+          page modifiee le 2026-01-09 d'apres ses metadonnees, lue le 2026-10-13), Section 17,
+          « Computing Withholding Taxes », verbatim : « An approved method, based on annualized
+          wages, is shown below. » Etapes lues : annualiser (« daily gross by 300, weekly gross by
+          52, monthly gross by 12, semi-monthly gross by 24 and bi-weekly by 26 ») ; « Determine
+          the standard deduction; $3,250 if the taxpayer is single, $6,500 for married filing
+          jointly or $3,250 or married filing separate returns. » ; « Determine taxable income by
+          subtracting the standard deduction » ; table « Tax Computation Table Effective January 1,
+          2025 » ; « Multiply the number of employee's personal exemption by $110. » ; « Subtract
+          the total amount of the employee's personal exemption credit (Step 5) from the computed
+          tax » ; « Divide the resulting amount by the appropriate number of payroll period ».
+          ATTENTION : c'est le DERNIER bareme que la Division publie. Elle l'etiquette « Effective
+          January 1, 2025 » et ses tables de retenue « Effective January 1, 2025 (No changes from
+          January 1, 2014) ». Aucune table etiquetee 2026 n'existe : la page dit « the Division's
+          current guide », jamais « the 2026 tables ». Le site ne trouve aucun changement 2026 :
+          la page « Tax Season Updates » (lue le 2026-10-13) ne traite que l'annee d'imposition
+          2025 et ne mentionne aucun changement de taux, de deduction ou de credit.
+          Le tableau imprime donne « Pay / Plus / On Amounts Over » : 0,00/0,00 %/0 ; 0,00/2,20 %/2 000 ;
+          66,00/3,90 %/5 000 ; 261,00/4,80 %/10 000 ; 741,00/5,20 %/20 000 ; 1 001,00/5,55 %/25 000 ;
+          2 943,50/6,60 %/60 000. Les bases se recoupent entre elles : 3 000 x 2,20 % = 66 ;
+          + 5 000 x 3,90 % = 261 ; + 10 000 x 4,80 % = 741 ; + 5 000 x 5,20 % = 1 001 ;
+          + 35 000 x 5,55 % = 2 943,50. Exemple imprime (celibataire, 1 allowance, 25 000 $) :
+          « Tax on $21,750.00 ($741.00 + $91.00 [$1,750.00 x 5.20%]) » = 832,00 $ ; moins 110 $ =
+          722,00 $ par an : reproduit par ce moteur. Tables par periode (daily16/weekly16/bi-wk16/
+          semi-mth16/month16.pdf, revenuefiles.delaware.gov/docs/) recoupees par
+          .tooling/test/verif-retenue-de.js.
+       2. DEDUCTION STANDARD : 3 250 $ celibataire et chef de famille, 6 500 $ couple en commun.
+          Guide (ci-dessus) pour le celibataire et le couple. Chef de famille : le guide ne le nomme
+          pas ; formulaire PIT-RES 2025 (« Revision 20260407 »,
+          https://revenuefiles.delaware.gov/2025/PITForms_Instructions/PIT-RES_2025-01_PaperInteractiveIPM.pdf,
+          lu le 2026-10-13) verbatim : « Filing Statuses 1, 3, & 5 enter $3250 in Column B; Filing
+          Status 2 enter $6500 in Column B » ; les instructions (« FILING STATUS 5 - HEAD OF
+          HOUSEHOLD ») confirment que le statut 5 est le chef de famille. Choix du site : 3 250 $.
+       3. CREDIT PERSONNEL : 110 $ par exemption. Guide, verbatim : « Multiply the number of
+          employee's personal exemption by $110. » ; instructions PIT-RES 2025, ligne 27a :
+          « Example: If you filed your federal return as married filing jointly and have no
+          dependents, enter $220. » Statuts du site : single = 1 (110 $) ; marriedJoint = 2 (220 $) ;
+          headOfHousehold = 1 (110 $). Les personnes a charge ne sont pas demandees. Le guide dit
+          que l'employeur « may rely upon the number of Federal withholding exemptions claimed by
+          the employee » et que le salarie remet un « Federal Form W-4 or W-4A ». Credit additionnel
+          de 110 $ a 60 ans et plus (ligne 27b) et deduction supplementaire de 2 500 $ a 65 ans et
+          plus ou aveugle : non modelises, dits.
+       4. CONGE PAYE (Delaware Paid Leave). 19 Del. C. § 3705 (delcode.delaware.gov, chapitre 37,
+          lu le 2026-10-13), verbatim : « For 2025 and 2026, the contribution rate for medical leave
+          benefits as a percentage of wages is 0.4%. » ; « ... family caregiving leave benefits ...
+          is 0.08%. » ; « ... parental leave benefits ... is 0.32%. » (total 0,8 %) ; « From the wages
+          of an employee for whom a contribution is required under paragraph (b)(1) of this
+          section, an employer shall deduct not greater than 50% of the contribution required for
+          the employee. » (idem (b)(2), (b)(3)). Division of Paid Leave, FAQ « How Paid Leave Works »
+          (laborfiles.delaware.gov/main/pfl/FAQs/DDOL41583_HowPaidLeaveWorks_FAQs_v1.pdf) : « The
+          rates are guaranteed through 2026 at 0.8% of wages ... Employers can require their
+          employees to pay up to 50% of the cost of the program through payroll deductions. » ;
+          Regulations 5.5 : « The required contribution is subject to the FICA limits each year ...
+          Once the employee's PFML eligible wages reach the FICA limit in a calendar year, the
+          employer and employee's required contributions will cease » ; 6.3 : « the Act's default of
+          50/50 ». Page du programme (labor.delaware.gov/delaware-paid-leave/) : « Nine or fewer
+          employees : Exempt ; 10 to 24 employees : Parental Leave Only ; 25 or more employees : Full
+          Coverage » ; « Employers can require employees to contribute up to half the cost. »
+          => PART SALARIE MAXIMALE : 0,40 % (moitie de 0,8 %) pour un employeur de 25 salaries ou plus,
+          jusqu'a la base FICA (184 500 $ en 2026). Employeur de 10 a 24 salaries : seulement le
+          conge parental (0,32 %), donc 0,16 % au plus. L'employeur PEUT payer plus de sa moitie.
+          Le site modelise le MAXIMUM de 0,40 % ; la page dit « up to » et « we assume ».
+       5. IMPOT LOCAL : WILMINGTON. City of Wilmington, « Earned Income Tax Regulations » (Revised
+          5/25/2023, https://www.wilmingtonde.gov/home/showpublisheddocument/462/638206223264700000,
+          liee depuis https://www.wilmingtonde.gov/residents/earned-income-tax-and-net-profits-tax,
+          lues le 2026-10-13), Section 201, verbatim : « An annual tax for general revenue purposes
+          is imposed on residents of the City regardless of the place where their services are
+          performed and on nonresidents of the City, for work done or services rendered in the City
+          on salaries, wages, commissions, and other compensation earned on and after July 1, 1978,
+          at the rate of one and one quarter percent (1.25%). » ; Section 401 : employeurs tenus de
+          retenir, et de remettre, l'impot pour les residents de la ville et, si l'employeur a un lieu de
+          travail dans la ville, pour les non-residents qui y travaillent ; § 101 P : les remunerations
+          differees (plan de retraite) sont taxees au moment du report. Le taux de 1,25 % est lu dans
+          ces Regulations (revision de 2023) : la page ne dit pas « in 2026 ». NON MODELISE (le
+          calculateur ne sait pas ou l'on habite ni ou l'on travaille) ; chiffre sur la page :
+          1,25 % de 75 000 $ = 937,50 $. Aucune autre taxe locale sur le revenu lue.
+       6. AUTRES RETENUES. Pas de retenue de chomage salariee dans les documents lus : non verifie
+          par un document de l'agence ; la page dit « we found no », jamais « Delaware has no ».
+       7. NON MODELE : credit de 110 $ a 60 ans, deduction de 2 500 $ a 65 ans/aveugle, personnes a
+          charge, primes (Section 14 : methode du supplement), impot de la ville de Wilmington,
+          employeur de 10 a 24 salaries (0,16 %), employeur qui prend la part salariale a sa charge,
+          non-residents (W-4NR).
+       ----------------------------------------------------------------------- */
+    delaware: {
+      name: "Delaware",
+      abbr: "DE",
+      incomeTax: {
+        hasIncomeTax: true,
+        standardDeduction: {
+          single: 3250,
+          marriedJoint: 6500,
+          headOfHousehold: 3250
+        },
+        /* « Multiply the number of employee's personal exemption by $110. » x 1 / 2 / 1.
+           Credit retranche de l'impot APRES le calcul, jamais negatif, sans extinction. */
+        taxCredit: {
+          base: { single: 110, marriedJoint: 220, headOfHousehold: 110 },
+          phaseOutStart: { single: 0, marriedJoint: 0, headOfHousehold: 0 },
+          phaseOutRate: 0
+        },
+        /* « Tax Computation Table Effective January 1, 2025 », sur le salaire imposable. */
+        brackets: {
+          single:          [[2000, 0], [5000, 0.022], [10000, 0.039], [20000, 0.048], [25000, 0.052], [60000, 0.0555], [Infinity, 0.066]],
+          marriedJoint:    [[2000, 0], [5000, 0.022], [10000, 0.039], [20000, 0.048], [25000, 0.052], [60000, 0.0555], [Infinity, 0.066]],
+          headOfHousehold: [[2000, 0], [5000, 0.022], [10000, 0.039], [20000, 0.048], [25000, 0.052], [60000, 0.0555], [Infinity, 0.066]]
+        }
+      },
+      employeePrograms: [
+        { label: "DE paid leave (up to 0.40%)", rate: 0.004, wageCap: 184500 }
+      ]
+    },
+
+    /* =======================================================================
        WEST VIRGINIA  -  lu le 2026-10-07 (tax.wv.gov, workforcewv.org,
        code.wvlegislature.gov, wheelingwv.gov, charlestonwv.gov : HTTP 200 a curl
        avec un User-Agent de navigateur ; workforcewv.org/employers/ renvoie 403 a curl, non lu)

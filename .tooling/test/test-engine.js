@@ -2621,5 +2621,110 @@ check("WV : 5 tranches 2,11/2,81/3,16/4,22/4,58 (jamais les taux 2025 2,22/2,96/
   check("WV : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
+console.log("\n=== Delaware (42e Etat) ===");
+
+/* Sources (lues le 2026-10-13) : Delaware Division of Revenue, « Employer's Guide », Section 17 (methode annualisee) :
+   deduction standard 3 250 $ celibataire, 6 500 $ couple en commun ; « Tax Computation Table Effective January 1, 2025 » :
+   0-2 000 : 0 % ; 2 000-5 000 : 2,20 % ; 5 000-10 000 : 66 + 3,90 % ; 10 000-20 000 : 261 + 4,80 % ; 20 000-25 000 : 741 + 5,20 % ;
+   25 000-60 000 : 1 001 + 5,55 % ; 60 000 et plus : 2 943,50 + 6,60 % ; « Multiply the number of employee's personal exemption
+   by $110 ». Chef de famille : 3 250 $ (formulaire PIT-RES 2025). Conge paye : 19 Del. C. § 3705, 0,8 % au total en 2026, part
+   salariale au plus 50 % => 0,40 %, jusqu'a la limite FICA (184 500 $). Tous les attendus sont recalcules a la main, PAS copies de
+   la sortie du code. Federal et FICA : memes valeurs que les cas IA/OK/WV (independants de l'Etat). */
+const deC = (b, st, rp) => calcul("delaware", b, st || "single", rp || 0);
+
+/* Cas DE-1 - 75 000 $ celibataire. Federal 7 670 ; FICA 5 737,50. Etat : 75 000 - 3 250 = 71 750 imposables ;
+   2 943,50 + (71 750 - 60 000) x 6,60 % = 2 943,50 + 775,50 = 3 719 ; moins 110 = 3 609. Conge paye : 75 000 x 0,40 % = 300.
+   Net : 75 000 - 7 670 - 5 737,50 - 3 609 - 300 = 57 683,50. */
+check("DE 75 000 $ celibataire : impot d'Etat", deC(75000).etat, 3609, 0.0005);
+check("DE 75 000 $ celibataire : conge paye", deC(75000).programmes[0].montant, 300, 0.0005);
+check("DE 75 000 $ celibataire : net", deC(75000).net, 57683.5, 0.0005);
+
+/* Cas DE-2 - 75 000 $ marie. Federal 4 640. Etat : 75 000 - 6 500 = 68 500 ; 2 943,50 + 8 500 x 6,60 % = 2 943,50 + 561 = 3 504,50 ;
+   moins 220 (2 exemptions) = 3 284,50. Net : 75 000 - 4 640 - 5 737,50 - 3 284,50 - 300 = 61 038. */
+check("DE 75 000 $ marie : impot d'Etat", deC(75000, "marriedJoint").etat, 3284.5, 0.0005);
+check("DE 75 000 $ marie : net", deC(75000, "marriedJoint").net, 61038, 0.0005);
+
+/* Cas DE-3 - 75 000 $ chef de famille (3 250 $ et 1 exemption, comme le celibataire). Federal 5 748.
+   Etat 3 609. Net : 75 000 - 5 748 - 5 737,50 - 3 609 - 300 = 59 605,50. */
+check("DE 75 000 $ chef de famille : impot d'Etat", deC(75000, "headOfHousehold").etat, 3609, 0.0005);
+check("DE 75 000 $ chef de famille : net", deC(75000, "headOfHousehold").net, 59605.5, 0.0005);
+
+/* Cas DE-4 - 30 000 $ celibataire. Federal 1 420 ; FICA 2 295. Etat : 26 750 imposables ; 1 001 + 1 750 x 5,55 % = 1 001 + 97,125 = 1 098,125 ;
+   moins 110 = 988,125. Conge paye 120. Net : 30 000 - 1 420 - 2 295 - 988,125 - 120 = 25 176,875. */
+check("DE 30 000 $ celibataire : impot d'Etat", deC(30000).etat, 988.125, 0.0005);
+check("DE 30 000 $ celibataire : net", deC(30000).net, 25176.875, 0.0005);
+
+/* Cas DE-5 - 250 000 $ celibataire. Federal 51 304 ; FICA 11 439 + 4 075 = 15 514. Etat : 246 750 imposables ;
+   2 943,50 + 186 750 x 6,60 % = 2 943,50 + 12 325,50 = 15 269 ; moins 110 = 15 159. Conge paye : plafonne a 184 500 x 0,40 % = 738.
+   Net : 250 000 - 51 304 - 15 514 - 15 159 - 738 = 167 285. */
+check("DE 250 000 $ celibataire : impot d'Etat", deC(250000).etat, 15159, 0.0005);
+check("DE 250 000 $ celibataire : conge paye plafonne a 738 $", deC(250000).programmes[0].montant, 738, 0.0005);
+check("DE 250 000 $ celibataire : net", deC(250000).net, 167285, 0.0005);
+
+/* Cas DE-6 - 75 000 $ avec 6 % de 401(k) : 70 500 - 3 250 = 67 250 ; 2 943,50 + 7 250 x 6,60 % = 2 943,50 + 478,50 = 3 422 ; moins 110 = 3 312.
+   Gain : 3 609 - 3 312 = 297 (= 4 500 x 6,60 %). Le conge paye reste a 300 (salaire FICA, 401(k) compris). */
+check("DE 75 000 $ avec 6 % de 401(k) : impot d'Etat", deC(75000, "single", 0.06).etat, 3312, 0.0005);
+check("DE 75 000 $ avec 6 % de 401(k) : le conge paye reste 300", deC(75000, "single", 0.06).programmes[0].montant, 300, 0.0005);
+
+/* Cas DE-7 - 25 $ l'heure, 2 080 h = 52 000 $. Federal 4 060 ; FICA 3 224 + 754 = 3 978. Etat : 48 750 imposables ;
+   1 001 + 23 750 x 5,55 % = 1 001 + 1 318,125 = 2 319,125 ; moins 110 = 2 209,125. Conge paye 208.
+   Net : 52 000 - 4 060 - 3 978 - 2 209,125 - 208 = 41 544,875. */
+check("DE 25 $/h (52 000 $) : impot d'Etat", deC(25 * 2080).etat, 2209.125, 0.0005);
+check("DE 25 $/h (52 000 $) : net", deC(25 * 2080).net, 41544.875, 0.0005);
+
+/* Cas DE-8 - l'exemple IMPRIME par le guide : celibataire, 1 exemption, 25 000 $ annualises : « Tax on $21,750.00 ($741.00 + $91.00
+   [$1,750.00 x 5.20%]) » = 832 ; moins 110 = 722. */
+check("DE 25 000 $ : l'exemple imprime du guide donne 722 $", deC(25000).etat, 722, 0.0005);
+
+/* Bornes. 5 250 $ = exactement la deduction + 2 000 $ imposables -> 0. 5 251 $ -> 2 001 imposables x 2,20 % = 0,022, absorbe par le credit -> 0.
+   L'impot depasse le credit quand 66 + (x - 5 000) x 3,90 % > 110, c'est-a-dire x > 6 128,21 imposables : 9 378 $ -> 0 ; 10 000 $ ->
+   6 750 imposables : 66 + 1 750 x 3,90 % = 66 + 68,25 = 134,25 ; moins 110 = 24,25. */
+check("DE 5 250 $ : impot d'Etat = 0", deC(5250).etat, 0, 0);
+check("DE 5 251 $ : impot d'Etat = 0 (le credit absorbe 0,022 $)", deC(5251).etat, 0, 0);
+check("DE 9 378 $ : impot d'Etat = 0 (impot 109,99 < credit 110)", deC(9378).etat, 0, 0);
+check("DE 10 000 $ : impot d'Etat = 24,25", deC(10000).etat, 24.25, 0.0005);
+/* Continuite aux bornes : 28 250 $ = 25 000 imposables -> 1 001 - 110 = 891 ; 28 251 $ -> 891 + 0,0555.
+   63 250 $ = 60 000 imposables -> 2 943,50 - 110 = 2 833,50 ; 63 251 $ -> + 0,066. */
+check("DE 28 250 $ : impot d'Etat = 891", deC(28250).etat, 891, 0.0005);
+check("DE 28 251 $ : impot d'Etat = 891,0555", deC(28251).etat, 891.0555, 0.00001);
+check("DE 63 250 $ : impot d'Etat = 2 833,50", deC(63250).etat, 2833.5, 0.0005);
+check("DE 63 251 $ : impot d'Etat = 2 833,566", deC(63251).etat, 2833.566, 0.00001);
+
+check("DE : un seul programme salarie (0,40 %, plafond 184 500 $), pas de conge paye separe, pas d'impot local, une deduction standard et un credit",
+  (() => { const D = R.states.delaware;
+    return D.employeePrograms.length === 1 && D.employeePrograms[0].rate === 0.004 && D.employeePrograms[0].wageCap === 184500 &&
+      !D.paidLeave && !D.waCares && !D.incomeTax.countyTax && !D.incomeTax.personalExemption && !D.incomeTax.notch &&
+      JSON.stringify(D.incomeTax.standardDeduction) === JSON.stringify({ single: 3250, marriedJoint: 6500, headOfHousehold: 3250 }) &&
+      JSON.stringify(D.incomeTax.taxCredit.base) === JSON.stringify({ single: 110, marriedJoint: 220, headOfHousehold: 110 }) &&
+      D.incomeTax.taxCredit.phaseOutRate === 0 ? 1 : 0; })(), 1, 0);
+check("DE : 7 paliers 0/2,20/3,90/4,80/5,20/5,55/6,60 % (jamais 6,95 % ni 6,75 %, taux anciens), seuils 2 000/5 000/10 000/20 000/25 000/60 000, memes aux 3 statuts",
+  (() => { const A = R.states.delaware.incomeTax;
+    const B = [[2000, 0], [5000, 0.022], [10000, 0.039], [20000, 0.048], [25000, 0.052], [60000, 0.0555], [Infinity, 0.066]];
+    return JSON.stringify(A.brackets.single) === JSON.stringify(B) && JSON.stringify(A.brackets.marriedJoint) === JSON.stringify(B) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(B) ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes de la deduction, du credit, du plafond du conge paye x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 5250, 5251, 9378, 10000, 28250, 28251, 47000, 63250, 75000, 184500, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "delaware", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("delaware", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("DE : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
