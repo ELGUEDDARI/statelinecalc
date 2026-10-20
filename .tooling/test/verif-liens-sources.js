@@ -25,6 +25,7 @@
  *          node .tooling/test/verif-liens-sources.js --vite   (codes seuls)
  */
 const https = require("https");
+const http = require("http");
 const path = require("path");
 const os = require("os");
 const fs = require("fs");
@@ -39,7 +40,9 @@ fs.mkdirSync(TMP, { recursive: true });
 
 function curl(url, n = 0) {
   return new Promise(ok => {
-    const req = https.get(url, { headers: { "User-Agent": UA } }, r => {
+    let req;
+    try {
+    req = (url.startsWith("http:") ? http : https).get(url, { headers: { "User-Agent": UA } }, r => {
       if ([301, 302, 303, 307, 308].includes(r.statusCode) && r.headers.location && n < 4) {
         r.resume();
         const suite = r.headers.location.startsWith("http")
@@ -49,6 +52,7 @@ function curl(url, n = 0) {
       r.resume();
       ok({ code: r.statusCode, type: String(r.headers["content-type"] || "") });
     });
+    } catch (e) { return ok({ code: 0, type: "" }); }
     req.on("error", () => ok({ code: 0, type: "" }));
     req.setTimeout(25000, () => { req.destroy(); ok({ code: 0, type: "" }); });
   });
