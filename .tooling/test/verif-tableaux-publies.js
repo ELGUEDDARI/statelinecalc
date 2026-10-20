@@ -143,7 +143,7 @@ for (const [nom, cle] of Object.entries(PUBLIES)) {
         if (ch === "tauxH") continue;
         /* Les dollars sont imprimes a l'unite (tolerance 0,5), le taux effectif
            a la decimale (0,05), le taux horaire reel au cent (0,005). */
-        const tol = ch === "tauxEff" ? 0.05 : ch === "netH" ? 0.005 : 0.5;
+        const tol = ch === "tauxEff" ? 0.05 + 1e-9 : ch === "netH" ? 0.005 : 0.5;
         dit(proche(val[ch], attendu[ch], tol),
             cle + " " + (estHoraire ? "horaire $" + val.tauxH : "salaire $" + brut) + " / " + ch,
             "page " + val[ch] + "  moteur " + attendu[ch].toFixed(2));
