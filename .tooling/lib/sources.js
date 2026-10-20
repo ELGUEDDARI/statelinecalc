@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1110,6 +1110,38 @@ const PAR_ETAT = {
     { type: "agence",
       url: "https://tax.wv.gov/Business/Withholding/Pages/WithholdingTaxForms.aspx",
       titre: "West Virginia Tax Division &mdash; Withholding Tax Forms (lists IT-100.2.A, IT-100.2.B and IT-104)" }
+  ],
+  missouri: [
+    { type: "document",
+      url: "https://web.archive.org/web/20260808194643/https://dor.mo.gov/forms/4282_2026.pdf",
+      titre: "Missouri Department of Revenue &mdash; Employer&rsquo;s Tax Guide, Form-4282 (revised March 2026; PDF, Internet Archive snapshot of August 8, 2026)",
+      quoi: "the 2026 Missouri withholding formula (a $16,100 standard deduction, $32,200 for a married filer whose spouse does not work, $24,150 for head of household), the annual percentage table from 0% to 4.7%, the whole-dollar rounding rule and the statement that Missouri has no reciprocity agreement with any other state; the department&rsquo;s own site refuses automated requests, so we link the archived copy",
+      motif: ["2026 Missouri Withholding Tax Formula", "Married and Spouse Does Not Work", "does not have a reciprocity agreement"] },
+    { type: "document",
+      url: "https://revisor.mo.gov/main/OneSection.aspx?section=288.090",
+      titre: "Revisor of Missouri &mdash; RSMo section 288.090, Contributions required",
+      quoi: "the rule that unemployment contributions shall not be deducted in whole or in part from the wages of individuals in employment",
+      motif: ["Contributions shall not be deducted in whole or in part from the wages"] },
+    { type: "document",
+      url: "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/index.cfm",
+      titre: "City of St. Louis Collector of Revenue &mdash; Earnings Tax",
+      quoi: "the one percent earnings tax collected from residents of the city and from people who work in the city",
+      motif: ["The one percent earnings tax is collected from"] },
+    { type: "document",
+      url: "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/payroll-tax-info.cfm",
+      titre: "City of St. Louis Collector of Revenue &mdash; Employer Withholding and Payroll Expense Tax Information",
+      quoi: "the 1% tax on wages of employees living or working in the city, and the employer&rsquo;s duty to withhold it",
+      motif: ["The Withholding Tax is a 1% tax imposed on the wages of employees living or working in the City of St. Louis"] },
+    { type: "document",
+      url: "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/taxable-items.cfm",
+      titre: "City of St. Louis Collector of Revenue &mdash; Taxable and Non-Taxable Items",
+      quoi: "the list of items the city earnings tax does and does not reach, which includes deferred compensation such as 401(k) contributions among the non-taxable items",
+      motif: ["Deferred Compensation (IRC Sec. 401"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260609143109/https://www.kcmo.gov/city-hall/departments/finance/tax-home/tax-guides/tax-guide-for-non-resident-businesses",
+      titre: "City of Kansas City, Missouri &mdash; Tax Guide for Non-Resident Businesses (Internet Archive snapshot of June 9, 2026)",
+      quoi: "the one percent earnings tax that an employer registered with the city withholds on all wages of city residents and on the part of a nonresident&rsquo;s pay earned in the city, in a guide for employers outside the city; the city&rsquo;s own site refuses automated requests, so we link the archived copy",
+      motif: ["the employer must withhold the one percent earnings tax on all salaries and wages"] }
   ],
   iowa: [
     { type: "document",

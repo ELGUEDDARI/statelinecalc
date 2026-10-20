@@ -102,10 +102,10 @@ const seuilH = DED.headOfHousehold + AH / TAUX;          // 21 605,26
 const a14052 = calcul(CLE, 14052), a14053 = calcul(CLE, 14053);
 const surtaxe10 = a75.etat * 0.10, surtaxe20 = a75.etat * 0.20;
 
-/* Voisins : Minnesota, Wisconsin, Illinois, Nebraska, South Dakota (publies) ; le Missouri ne l'est pas. */
+/* Voisins : Minnesota, Wisconsin, Illinois, Nebraska, South Dakota, Missouri (les six sont publies). */
 const REF = 75000;
-const COMPARE = [CLE, "illinois", "minnesota", "wisconsin", "nebraska", "south-dakota"];
-const NOMS = { [CLE]: "Iowa", illinois: "Illinois", minnesota: "Minnesota", wisconsin: "Wisconsin", nebraska: "Nebraska", "south-dakota": "South Dakota" };
+const COMPARE = [CLE, "illinois", "minnesota", "wisconsin", "nebraska", "south-dakota", "missouri"];
+const NOMS = { [CLE]: "Iowa", illinois: "Illinois", minnesota: "Minnesota", wisconsin: "Wisconsin", nebraska: "Nebraska", "south-dakota": "South Dakota", missouri: "Missouri" };
 const progs = r => r.programmes.reduce((t, p) => t + p.montant, 0);
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
@@ -628,7 +628,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Iowa borders six states: Minnesota, Wisconsin, Illinois, Nebraska, South Dakota and Missouri. We have a calculator for the first five; Missouri is not published yet.
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Iowa borders six states: Minnesota, Wisconsin, Illinois, Nebraska, South Dakota and Missouri. We have a calculator for all six. Missouri&rsquo;s row leaves out the Kansas City and St. Louis earnings taxes.
   For Iowa, the state-level deductions are only the income tax withholding; the other states may add payroll programs.</p>
   <div class="table-scroll">
     <table>
@@ -660,6 +660,7 @@ ${blocSources(CLE)}
     <li><a href="/paycheck-calculator/wisconsin/">Wisconsin paycheck calculator</a> &mdash; the neighbor to the northeast.</li>
     <li><a href="/paycheck-calculator/illinois/">Illinois paycheck calculator</a> &mdash; the neighbor to the east.</li>
     <li><a href="/paycheck-calculator/nebraska/">Nebraska paycheck calculator</a> &mdash; the neighbor to the west.</li>
+    <li><a href="/paycheck-calculator/missouri/">Missouri paycheck calculator</a> &mdash; the neighbor to the south, with rates from 0% to 4.7% and a 1% earnings tax in Kansas City and St. Louis.</li>
     <li><a href="/paycheck-calculator/south-dakota/">South Dakota paycheck calculator</a> &mdash; the neighbor to the northwest; that page documents why it levies no state tax on wages.</li>
     <li><a href="/75000-salary-take-home-pay-by-state/">$75,000 take-home pay in every state we publish</a> &mdash; where Iowa ranks on one salary.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure

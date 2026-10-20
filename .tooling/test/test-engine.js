@@ -2726,5 +2726,83 @@ check("DE : 7 paliers 0/2,20/3,90/4,80/5,20/5,55/6,60 % (jamais 6,95 % ni 6,75 %
   check("DE : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
+console.log("\n=== Missouri (43e Etat) ===");
+
+/* Sources (lues le 2026-10-20) : Missouri DOR, Employer's Tax Guide Form-4282 (rev. 03-2026), p. 12 « 2026 Missouri Withholding Tax
+   Formula » : deduction standard 16 100 $ (celibataire), 32 200 $ (marie, conjoint sans emploi), 24 150 $ (chef de famille) ; p. 13
+   table annuelle : 0 % jusqu'a 1 348 $, puis 2 / 2,5 / 3 / 3,5 / 4 / 4,5 % par echelons de 1 348 $, puis 4,7 % au-dela de 9 436 $.
+   Cumul au sommet de 9 436 $ : 1 348 x 19,5 % = 262,86. Tous les attendus sont recalcules a la main, PAS copies de la sortie du code. */
+const moC = (b, st, rp) => calcul("missouri", b, st || "single", rp || 0);
+
+/* Cas MO-1 - 75 000 $ celibataire. Federal 7 670 ; FICA 5 737,50. Etat : 75 000 - 16 100 = 58 900 ; 262,86 + (58 900 - 9 436) x 4,7 % =
+   262,86 + 49 464 x 0,047 = 262,86 + 2 324,808 = 2 587,668. Net : 75 000 - 7 670 - 5 737,50 - 2 587,668 = 59 004,832. */
+check("MO 75 000 $ celibataire : impot d'Etat", moC(75000).etat, 2587.668, 0.0005);
+check("MO 75 000 $ celibataire : net", moC(75000).net, 59004.832, 0.0005);
+
+/* Cas MO-2 - 75 000 $ marie (conjoint sans emploi). Federal 4 640. Etat : 75 000 - 32 200 = 42 800 ; 262,86 + 33 364 x 0,047 =
+   262,86 + 1 568,108 = 1 830,968. Net : 75 000 - 4 640 - 5 737,50 - 1 830,968 = 62 791,532. */
+check("MO 75 000 $ marie : impot d'Etat", moC(75000, "marriedJoint").etat, 1830.968, 0.0005);
+check("MO 75 000 $ marie : net", moC(75000, "marriedJoint").net, 62791.532, 0.0005);
+
+/* Cas MO-3 - 75 000 $ chef de famille. Federal 5 748. Etat : 75 000 - 24 150 = 50 850 ; 262,86 + 41 414 x 0,047 = 262,86 + 1 946,458 = 2 209,318.
+   Net : 75 000 - 5 748 - 5 737,50 - 2 209,318 = 61 305,182. */
+check("MO 75 000 $ chef de famille : impot d'Etat", moC(75000, "headOfHousehold").etat, 2209.318, 0.0005);
+check("MO 75 000 $ chef de famille : net", moC(75000, "headOfHousehold").net, 61305.182, 0.0005);
+
+/* Cas MO-4 - 30 000 $ celibataire. Federal 1 420 ; FICA 2 295. Etat : 13 900 imposables ; 262,86 + 4 464 x 0,047 = 262,86 + 209,808 = 472,668.
+   Net : 30 000 - 1 420 - 2 295 - 472,668 = 25 812,332. */
+check("MO 30 000 $ celibataire : impot d'Etat", moC(30000).etat, 472.668, 0.0005);
+check("MO 30 000 $ celibataire : net", moC(30000).net, 25812.332, 0.0005);
+
+/* Cas MO-5 - 250 000 $ celibataire. Federal 51 304 ; FICA 11 439 + 4 075 = 15 514. Etat : 233 900 imposables ; 262,86 + 224 464 x 0,047 =
+   262,86 + 10 549,808 = 10 812,668. Net : 250 000 - 51 304 - 15 514 - 10 812,668 = 172 369,332. */
+check("MO 250 000 $ celibataire : impot d'Etat", moC(250000).etat, 10812.668, 0.0005);
+check("MO 250 000 $ celibataire : net", moC(250000).net, 172369.332, 0.0005);
+
+/* Cas MO-6 - l'exemple imprime du guide (p. 13) : 35 000 $ - 16 100 = 18 900 imposables ; 262,86 + 9 464 x 0,047 = 262,86 + 444,808 = 707,668.
+   Le guide imprime 707,81 (il additionne 263 arrondi) ; ecart 0,14 $, arrondi au dollar par paie : 707,668 / 12 = 58,97 -> 59 $ comme le guide. */
+check("MO exemple du guide : 35 000 $ celibataire", moC(35000).etat, 707.668, 0.0005);
+check("MO exemple du guide : 59 $ par mois apres arrondi au dollar", Math.round(moC(35000).etat / 12), 59, 0);
+
+/* Cas MO-7 - sous la tranche a 0 % : 17 000 $ - 16 100 = 900 imposables < 1 348 -> 0. */
+check("MO 17 000 $ celibataire : zero retenue", moC(17000).etat, 0, 0.0005);
+
+/* Cas MO-8 - 401(k) 6 % sur 75 000 $ : salaire 70 500 ; 54 400 imposables ; 262,86 + 44 964 x 0,047 = 262,86 + 2 113,308 = 2 376,168. */
+check("MO 75 000 $ avec 401(k) 6 % : impot d'Etat", moC(75000, "single", 0.06).etat, 2376.168, 0.0005);
+
+/* Cas MO-9 - aucun programme salarie (le chomage est a la charge de l'employeur, RSMo 288.090). */
+check("MO : aucun programme salarie", moC(75000).programmes.length + moC(75000).paidLeave + moC(75000).waCares, 0, 0);
+
+/* Cas MO-10 - garde-fou : le bareme du moteur est celui du guide, aux 3 statuts. */
+check("MO : bareme et deductions == guide (annuel, p. 12-13)",
+  (() => { const A = R.states.missouri.incomeTax;
+    const B = [[1348, 0], [2696, 0.02], [4044, 0.025], [5392, 0.03], [6740, 0.035], [8088, 0.04], [9436, 0.045], [Infinity, 0.047]];
+    return JSON.stringify(A.brackets.single) === JSON.stringify(B) && JSON.stringify(A.brackets.marriedJoint) === JSON.stringify(B) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(B) &&
+      A.standardDeduction.single === 16100 && A.standardDeduction.marriedJoint === 32200 && A.standardDeduction.headOfHousehold === 24150 ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes de la tranche a 0 % et des echelons x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 17448, 17449, 18796, 25536, 41336, 75000, 184500, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "missouri", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("missouri", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("MO : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

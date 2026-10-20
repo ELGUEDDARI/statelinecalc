@@ -4594,6 +4594,103 @@ const RATES_2026 = {
           headOfHousehold: [[7500, 0.0211], [18750, 0.0281], [30000, 0.0316], [45000, 0.0422], [Infinity, 0.0458]]
         }
       }
+    },
+
+    /* =======================================================================
+       MISSOURI  -  lu le 2026-10-20 (43e Etat). dor.mo.gov, labor.mo.gov et www.kcmo.gov repondent 403 a curl, a
+       WebFetch et a un navigateur Playwright : la source principale est lue par la copie Wayback de l'agence
+       (PDF intact, 16 pages) ; stlouis-mo.gov et revisor.mo.gov : HTTP 200 en direct.
+       Moteur : AUCUN mecanisme nouveau. Meme forme que le Delaware sans credit : standardDeduction par statut +
+       brackets progressives dont la premiere tranche est a 0 %.
+       SEMrush (data/semrush-us-paycheck-2026-09-01.csv) : « missouri paycheck calculator » 5 400 / mois, KD 21.
+       -----------------------------------------------------------------------
+       1. LA FORMULE DE RETENUE. Missouri Department of Revenue, « Employer's Tax Guide », Form-4282
+          (« Published by Missouri Department of Revenue, December 2025 » ; pied de page « Form-4282 (Revised 03-2026) »),
+          https://dor.mo.gov/forms/4282_2026.pdf (403 en direct) lu dans la copie Wayback du 2026-08-08
+          (https://web.archive.org/web/20260808194643if_/https://dor.mo.gov/forms/4282_2026.pdf, 16 pages, pdftotext le
+          2026-10-20), page 12, « 2026 Missouri Withholding Tax Formula », verbatim :
+            « Step 1--Using Annual Amounts ... 1. Gross Taxable Income -- Determine the employee's total wages for the payroll
+            period. Multiply this amount by the number of payroll periods you have in a year. The result is the employee's
+            annual wage. (Multiply by: 260 if you pay daily, 52 if you pay weekly, 26 if you pay bi-weekly, 24 if you pay
+            semi-monthly, or 12 if you pay monthly.) »
+            « 2. Filing Status - Standard Deduction (annual amounts) Single: $16,100 / Married and Spouse Works: $16,100 /
+            Married Filing Separate: $16,100 / Married and Spouse Does Not Work (this is determined by the check box on Form
+            MO W-4, Line 1, and is not a separate filing status): $32,200 / Head of Household: $24,150 »
+            « 3. Missouri Taxable Income -- Subtract the annual Standard Deduction from the annual gross taxable income. »
+            « Step 2 1. Missouri Withholding Tax -- Multiply the employee's Missouri taxable income by the applicable annual
+            payroll period rate. Begin at the lowest rate and accumulate the total withholding amount for each rate. »
+            « 2. Missouri Withholding Tax Per Payroll Period -- Divide the employee's annual Missouri withholding amount by:
+            260 if you pay daily, 52 if weekly, 26 bi-weekly, 24 semi-monthly, 12 monthly. »
+            « Rounding on Missouri Withholding Reports. You must round the amounts that you withhold from your employees
+            to the nearest whole dollar. » (page 3 : « For 1 cent through 49 cents, round down ... For 50 cents through 99
+            cents, round up »). Le moteur n'arrondit pas : ecart d'au plus 0,50 $ par paie, dit sur la page.
+       2. LE BAREME. Page 13, « Income Tax Withholding Percentage Table (Annual Payroll Period) » : 0,00 % de 0 a 1 348 $ ;
+            2,00 % : 1 348,01-2 696 ; 2,50 % : 2 696,01-4 044 ; 3,00 % : 4 044,01-5 392 ; 3,50 % : 5 392,01-6 740 ;
+            4,00 % : 6 740,01-8 088 ; 4,50 % : 8 088,01-9 436 ; 4,70 % : 9 436,01 et plus.
+            Exemple imprime page 13, verbatim : « Employee is married (spouse works) Annual Gross Taxable Income $35,000.00
+            Annual Standard Deduction 16,100.00 Missouri Taxable Income 18,900.00 ... 9,436.00 263.00 ... $ 9,464.00 EXCESS
+            x 4.70% $ 444.81 ... $ 707.81 Annual Missouri Withholding ... 707.81 / 12 = $59.00 Monthly Missouri Withholding
+            (Rounded to the nearest whole dollar.) ». Recalcule : 1 348 x (2 + 2,5 + 3 + 3,5 + 4 + 4,5) % = 1 348 x 19,5 % =
+            262,86 (l'agence imprime 263 : arrondi) ; 9 464 x 4,7 % = 444,808 ; 262,86 + 444,808 = 707,668 (l'agence additionne
+            les 263 arrondis : 707,81). Le site calcule le cumul exact (262,86, pas 263) : ecart de 0,14 $ par an au plus. Les
+            tables par periode (quotidien ... mensuel) sont les seuils annuels / N arrondis a l'unite (verif-retenue-mo.js).
+       3. LE TAUX 4,7 %. « Withhold a flat percentage rate of 4.7 percent of the supplemental wages » (page 12) ; « Missouri
+          Income x 4.7% = Missouri Withholding Tax » (artistes non residents, page 2). Taux sommital 4,7 % = celui du bareme.
+       4. LES STATUTS DU SITE. single = 16 100 $ ; headOfHousehold = 24 150 $ ; marriedJoint = 32 200 $ = « Married and Spouse
+          Does Not Work » (case a cocher de la ligne 1 du MO W-4 ; le guide dit « If the employee is married, but spouse does
+          not work, apply the full standard deduction »). Si le conjoint travaille : 16 100 $ ; la page chiffre l'ecart. Meme
+          choix que l'Iowa (conjoint sans revenu). Aucune exemption personnelle dans la formule.
+       5. PAS DE RECIPROCITE : « Note: Missouri does not have a reciprocity agreement with any other state. » (page 4).
+          Resident du Missouri qui travaille dans un autre Etat : « A Missouri employer must withhold Missouri tax if its
+          Missouri resident employee performs services in a state with an income tax rate that is lower than Missouri's »
+          (page 4), sauf MO W-4C. NON modelise (le calculateur suppose un salarie qui vit et travaille au Missouri).
+       6. TAXES LOCALES : l'earnings tax de 1 % de Kansas City et de Saint-Louis. NON MODELISEES, DITES, chiffrees sur la
+          page (750 $ a 75 000 $). Saint-Louis, Collector of Revenue,
+          https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/index.cfm (HTTP 200, lu le 2026-10-20) :
+          « The one percent earnings tax is collected from : Residents of the City of St. Louis, regardless of the location of
+          their employer. Employees of businesses located or performing work/services within the City of St. Louis,
+          regardless of where they live. » ; page employeurs (.../payroll-tax-info.cfm, lue le 2026-10-20) : « The
+          Withholding Tax is a 1% tax imposed on the wages of employees living or working in the City of St. Louis. Every
+          employer who has employees working in the City of St. Louis, is required to withhold St. Louis City earnings tax
+          on their gross earnings. » ; liste « Taxable and Non-Taxable Items » (.../taxable-items.cfm) : « Deferred
+          Compensation (IRC Sec. 401, 403, 414, 457, 501, etc) » figure parmi les revenus NON imposables. Kansas City, « Tax
+          Guide for Non-Resident Businesses »
+          (https://www.kcmo.gov/city-hall/departments/finance/tax-home/tax-guides/tax-guide-for-non-resident-businesses,
+          403 en direct, lu dans la copie Wayback du 2026-06-09), verbatim : « For employees residing in the City limits of
+          Kansas City, Mo., 100% of the taxable wages are subject to the withholding tax. As such the employer must withhold
+          the one percent earnings tax on all salaries and wages. For employees who are nonresidents of the city,
+          withholding is required on the portion of the compensation attributable to services rendered, work performed, or
+          other activities engaged in within the City. » ; « taxable earnings include gross compensation less contributions
+          to cafeteria plans and qualified deferred compensation plans ». Aucune autre ville lue ; la page dit « we found ».
+       7. ASSURANCE CHOMAGE : RSMo § 288.090.1(2) (https://revisor.mo.gov/main/OneSection.aspx?section=288.090, HTTP 200, lu le
+          2026-10-20), verbatim : « Contributions shall not be deducted in whole or in part from the wages of individuals in
+          employment. » => pas d'employeePrograms.
+       8. PAS DE CONGE PAYE NI D'ASSURANCE INVALIDITE D'ETAT TROUVES : ni le guide, ni le MO W-4, ni la formule n'en decrivent ;
+          « we found no », jamais « Missouri has no ». Les sites labor.mo.gov et dor.mo.gov (403) n'ont pas pu etre parcourus.
+       9. NON MODELE : MO W-4 ligne 2 (retenue supplementaire) et ligne 3 (retenue reduite), exoneration (ligne 4), conjoint
+          qui travaille (16 100 $), non-residents (MO W-4A), primes (4,7 % forfaitaire), arrondi au dollar par paie, impots
+          locaux.
+       ----------------------------------------------------------------------- */
+    missouri: {
+      name: "Missouri",
+      abbr: "MO",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* « Filing Status - Standard Deduction (annual amounts) » : Single 16 100 ; Married and Spouse Does Not Work 32 200 ;
+           Head of Household 24 150. */
+        standardDeduction: {
+          single: 16100,
+          marriedJoint: 32200,
+          headOfHousehold: 24150
+        },
+        /* « Income Tax Withholding Percentage Table (Annual Payroll Period) » : 0 % jusqu'a 1 348 $ puis six echelons de
+           1 348 $ de large (2 / 2,5 / 3 / 3,5 / 4 / 4,5 %) jusqu'a 9 436 $, puis 4,7 %. Le meme bareme aux trois statuts. */
+        brackets: {
+          single:          [[1348, 0], [2696, 0.02], [4044, 0.025], [5392, 0.03], [6740, 0.035], [8088, 0.04], [9436, 0.045], [Infinity, 0.047]],
+          marriedJoint:    [[1348, 0], [2696, 0.02], [4044, 0.025], [5392, 0.03], [6740, 0.035], [8088, 0.04], [9436, 0.045], [Infinity, 0.047]],
+          headOfHousehold: [[1348, 0], [2696, 0.02], [4044, 0.025], [5392, 0.03], [6740, 0.035], [8088, 0.04], [9436, 0.045], [Infinity, 0.047]]
+        }
+      }
     }
   }
 };

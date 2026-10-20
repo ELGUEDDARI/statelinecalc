@@ -139,6 +139,22 @@ const LOCAL_PAR_ETAT = {
     figure shown. We found no other local income tax on wages in the documents we read. The only local income tax
     lines on this site are on the <a href="/paycheck-calculator/indiana/">Indiana</a> and
     <a href="/paycheck-calculator/maryland/">Maryland</a> calculators.</li>`,
+  /* Missouri (20/10/2026) : Kansas City et Saint-Louis levent chacune 1 % de « earnings tax » ; l'employeur
+     retient (KC : « the employer must withhold the one percent earnings tax on all salaries and wages » pour les
+     residents, et la part du travail fait dans la ville pour les non-residents ; STL : « Every employer who has
+     employees working in the City of St. Louis, is required to withhold » ; les deux : base hors cotisations de
+     cafeteria / compensation differee). NON MODELE (le calculateur ne sait ni ou l'on habite ni ou l'on travaille) ;
+     la page chiffre 750 $ a 75 000 $ et dit « we found », jamais « no other city ». */
+  missouri: `    <li><strong>Kansas City and St. Louis earnings taxes</strong> &mdash; each city taxes pay at 1%.
+    Kansas City&rsquo;s guide for employers outside the city, which may withhold the tax voluntarily, says that once they register they must withhold the one percent on all wages of
+    city residents, and on the part of a nonresident&rsquo;s pay earned in the city. The St. Louis Collector of Revenue
+    says every employer with employees working in the city must withhold it, and that the tax reaches residents wherever their employer is.
+    This calculator adds no local line for Missouri, because it cannot know where you live or work. If one of
+    these taxes applies to you, your take-home pay is about 1% of your pay lower than the figure shown. We found no other
+    local income tax on wages in the documents we read. The only local income tax lines on this site are on the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators.</li>`,
+
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

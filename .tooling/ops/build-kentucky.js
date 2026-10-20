@@ -78,10 +78,10 @@ const ecartQuatre = aQuatre - a75.etat;                  // 361,80
 const unPourCent = 75000 * 0.01;                         // 750 : repere d'echelle, pas un calcul d'impot local
 const a3360 = calcul(CLE, DED.single), a3361 = calcul(CLE, DED.single + 1);
 
-/* Voisins publies : Illinois, Indiana, Ohio, Tennessee, Virginie, Virginie-Occidentale (7 frontaliers au total ; Missouri absent). */
+/* Voisins publies : Illinois, Indiana, Ohio, Tennessee, Virginie, Virginie-Occidentale (7 frontaliers au total ; Missouri publie le 20/10/2026, donc les sept). */
 const REF = 75000;
-const COMPARE = [CLE, "illinois", "indiana", "ohio", "tennessee", "virginia", "west-virginia"];
-const NOMS = { [CLE]: "Kentucky", illinois: "Illinois", indiana: "Indiana", ohio: "Ohio", tennessee: "Tennessee", virginia: "Virginia", "west-virginia": "West Virginia" };
+const COMPARE = [CLE, "illinois", "indiana", "ohio", "tennessee", "virginia", "west-virginia", "missouri"];
+const NOMS = { [CLE]: "Kentucky", illinois: "Illinois", indiana: "Indiana", ohio: "Ohio", tennessee: "Tennessee", virginia: "Virginia", "west-virginia": "West Virginia", missouri: "Missouri" };
 const progs = r => r.programmes.reduce((t, p) => t + p.montant, 0);
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
@@ -89,7 +89,7 @@ const lignesCompare = COMPARE.map(k => {
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
 const il75 = calcul("illinois", REF), in75 = calcul("indiana", REF), oh75 = calcul("ohio", REF),
-      tn75 = calcul("tennessee", REF), va75 = calcul("virginia", REF), wv75 = calcul("west-virginia", REF);
+      tn75 = calcul("tennessee", REF), va75 = calcul("virginia", REF), wv75 = calcul("west-virginia", REF), mo75 = calcul("missouri", REF);
 const plusMoins = (autre) => autre.net > a75.net
   ? "keeps " + N($$(autre.net - a75.net)) + " more"
   : "keeps " + N($$(a75.net - autre.net)) + " less";
@@ -594,7 +594,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Kentucky borders seven states: Illinois, Indiana, Ohio, West Virginia, Virginia, Tennessee and Missouri. We have a calculator for all of them except Missouri, which is not published yet.
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Kentucky borders seven states: Illinois, Indiana, Ohio, West Virginia, Virginia, Tennessee and Missouri. We have a calculator for all seven. Missouri&rsquo;s row leaves out the Kansas City and St. Louis earnings taxes.
   Indiana is shown with the Marion County income tax included in its state-level deductions, and Kentucky without any local tax.</p>
   <div class="table-scroll">
     <table>
@@ -614,7 +614,7 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
       </tbody>
     </table>
   </div>
-  <p>The table rounds take-home pay to the dollar; the differences in this paragraph use the exact amounts. Compared with a Kentucky worker on the same salary, an <a href="/paycheck-calculator/illinois/">Illinois</a> worker ${plusMoins(il75)}, an <a href="/paycheck-calculator/indiana/">Indiana</a> worker ${plusMoins(in75)}, an <a href="/paycheck-calculator/ohio/">Ohio</a> worker ${plusMoins(oh75)}, a <a href="/paycheck-calculator/virginia/">Virginia</a> worker ${plusMoins(va75)}, a <a href="/paycheck-calculator/west-virginia/">West Virginia</a> worker ${plusMoins(wv75)}, and a <a href="/paycheck-calculator/tennessee/">Tennessee</a> worker ${plusMoins(tn75)}. Tennessee takes nothing from wages at the state level, as the Tennessee page explains. Ohio&rsquo;s figure leaves out city and school district income tax, which that calculator does not model. A worker who lives in one of those states and commutes into Kentucky is a different case that this calculator does not model: it assumes a Kentucky resident working in Kentucky.</p>
+  <p>The table rounds take-home pay to the dollar; the differences in this paragraph use the exact amounts. Compared with a Kentucky worker on the same salary, an <a href="/paycheck-calculator/illinois/">Illinois</a> worker ${plusMoins(il75)}, an <a href="/paycheck-calculator/indiana/">Indiana</a> worker ${plusMoins(in75)}, an <a href="/paycheck-calculator/ohio/">Ohio</a> worker ${plusMoins(oh75)}, a <a href="/paycheck-calculator/virginia/">Virginia</a> worker ${plusMoins(va75)}, a <a href="/paycheck-calculator/west-virginia/">West Virginia</a> worker ${plusMoins(wv75)}, a <a href="/paycheck-calculator/tennessee/">Tennessee</a> worker ${plusMoins(tn75)}, and a <a href="/paycheck-calculator/missouri/">Missouri</a> worker ${plusMoins(mo75)}. Tennessee takes nothing from wages at the state level, as the Tennessee page explains. Ohio&rsquo;s figure leaves out city and school district income tax, which that calculator does not model. A worker who lives in one of those states and commutes into Kentucky is a different case that this calculator does not model: it assumes a Kentucky resident working in Kentucky.</p>
 
 ${blocSources(CLE)}
 
@@ -628,6 +628,7 @@ ${blocSources(CLE)}
     <li><a href="/paycheck-calculator/virginia/">Virginia paycheck calculator</a> &mdash; the neighbor to the southeast; Virginia residents who commute daily are on the reciprocal list.</li>
     <li><a href="/paycheck-calculator/west-virginia/">West Virginia paycheck calculator</a> &mdash; the neighbor to the east, with five rates from 2.11% to 4.58% after a $2,000 exemption for each person you claim; West Virginia residents are on the reciprocal list.</li>
     <li><a href="/paycheck-calculator/tennessee/">Tennessee paycheck calculator</a> &mdash; the neighbor to the south, which takes nothing from wages at state level.</li>
+    <li><a href="/paycheck-calculator/missouri/">Missouri paycheck calculator</a> &mdash; the neighbor across the Mississippi River to the west, with rates from 0% to 4.7% and a 1% earnings tax in Kansas City and St. Louis.</li>
     <li><a href="/75000-salary-take-home-pay-by-state/">$75,000 take-home pay in every state we publish</a> &mdash; where Kentucky ranks on one salary.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
     with its official source, and what these calculators deliberately do not model.</li>
@@ -722,9 +723,9 @@ if (!(IT.brackets.single.length === 1 && TAUX === 0.035 && IT.brackets.marriedJo
 if (IT.personalExemption !== undefined) echec("le Kentucky ne doit avoir aucune exemption dans le moteur");
 if (!(progs(a75) === 0 && a75.programmes.length === 0 && a75.paidLeave === 0 && a75.waCares === 0)) echec("le Kentucky ne doit avoir aucun programme");
 /* Les phrases de comparaison sont generees (plusMoins) ; on fige l'ordre observe pour qu'un changement de donnees alerte. */
-const ordre = ["illinois", "indiana", "ohio", "virginia", "tennessee", "west-virginia"].map(k => calcul(k, REF).net > a75.net ? "+" : "-").join("");
-if (ordre !== "--+-+-") echec("ordre de comparaison change : " + ordre + " (attendu --+-+- : IL -, IN -, OH +, VA -, TN +, WV -)");
-console.log("comparaison des voisins (IL, IN, OH, VA, TN, WV vs Kentucky) : " + ordre);
+const ordre = ["illinois", "indiana", "ohio", "virginia", "tennessee", "west-virginia", "missouri"].map(k => calcul(k, REF).net > a75.net ? "+" : "-").join("");
+if (ordre !== "--+-+--") echec("ordre de comparaison change : " + ordre + " (attendu --+-+-- : IL -, IN -, OH +, VA -, TN +, WV -, MO -)");
+console.log("comparaison des voisins (IL, IN, OH, VA, TN, WV, MO vs Kentucky) : " + ordre);
 if (!(R.states.tennessee.incomeTax.hasIncomeTax === false)) echec("le Tennessee n'a plus le regime ecrit (rien retenu sur les salaires)");
 const nbMotsReponse = reponse.replace(/&[a-z]+;/g, " ").split(/\s+/).length;
 if (nbMotsReponse < 40 || nbMotsReponse > 60) echec("la reponse directe fait " + nbMotsReponse + " mots (40-60 attendus)");
