@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20", "south-carolina": "2026-10-20" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1250,6 +1250,36 @@ const PAR_ETAT = {
       titre: "Office of the Governor of Vermont &mdash; Vermont Family and Medical Leave Plan",
       quoi: "the description of Vermont&rsquo;s paid family and medical leave program as voluntary, with contributions paid by the employer, split with employees, or paid by employees as a voluntary benefit",
       motif: ["voluntary paid family and medical leave program"] }
+  ],
+  /* South Carolina (20/10/2026) : dor.sc.gov repond en direct (HTTP 200) ; les PDF lus sont ceux des URL courantes. dew.sc.gov est bloque depuis cette machine (403) : la regle sur le chomage est lue dans le code de l'Etat. */
+  "south-carolina": [
+    { type: "document",
+      url: "https://dor.sc.gov/sites/dor/files/forms/WH1603F_2026.pdf",
+      titre: "South Carolina Department of Revenue &mdash; Formula for Computing South Carolina 2026 Withholding Tax, WH-1603F (PDF, Rev. 11/4/25)",
+      quoi: "the formula: a $5,000 personal allowance for each allowance claimed, a standard deduction of 10% of gross wages up to $7,500 when one or more allowances are claimed, then 0% up to $3,640, 3% up to $18,230 and 6% above that, with the printed example of $750 a week and 3 allowances",
+      motif: ["FORMULA FOR COMPUTING SOUTH CAROLINA", "10% of gross wages"] },
+    { type: "document",
+      url: "https://dor.sc.gov/sites/dor/files/forms/WH1603_2026.pdf",
+      titre: "South Carolina Department of Revenue &mdash; 2026 Withholding Tax Tables, WH-1603 (PDF, Rev. 10/30/25)",
+      quoi: "the printed daily, weekly, biweekly, twice-a-month and monthly wage-bracket tables for 0 to 10 allowances, and the 6.0% rate printed for pay above the last bracket",
+      motif: ["WITHHOLDING TAX TABLES", "Number of Allowances"] },
+    { type: "document",
+      url: "https://dor.sc.gov/sites/dor/files/forms/SCW4_2026.pdf",
+      titre: "South Carolina Department of Revenue &mdash; 2026 Form SC W-4, Employee&rsquo;s Withholding Allowance Certificate (PDF, Rev. 12/5/25)",
+      quoi: "the Personal Allowances Worksheet: one for yourself, one if you file jointly, one if you file as head of household, one if you have only one job (or a spouse who does not work), and one for each dependent",
+      motif: ["Personal Allowances Worksheet", "Enter 1 for yourself"] },
+    { type: "document",
+      url: "https://dor.sc.gov/sites/dor/files/policies/IL26-20.pdf",
+      titre: "South Carolina Department of Revenue &mdash; SC Information Letter #26-20, Individual Income Tax Reform (PDF, August 31, 2026)",
+      quoi: "Act 110 of 2026: the new 1.99% and 5.21% rates for tax years beginning after 2025, and the statement that the Department will adjust the withholding tables to reflect the changes",
+      motif: ["Act 110", "withholding tables"] },
+    { type: "agence", url: "https://dor.sc.gov/tax/withholding",
+      titre: "South Carolina Department of Revenue &mdash; Withholding Tax, with the 2026 withholding tables, formula and SC W-4" },
+    { type: "document",
+      url: "https://scstatehouse.gov/code/t41c031.php",
+      titre: "South Carolina Code of Laws &mdash; Title 41, Chapter 31, Contributions (Section 41-31-310)",
+      quoi: "the rule that unemployment contributions are paid by each employer and shall not be deducted, in whole or in part, from the wages of the employer&rsquo;s employees",
+      motif: ["shall not be deducted, in whole or in part, from the wages"] }
   ],
   iowa: [
     { type: "document",

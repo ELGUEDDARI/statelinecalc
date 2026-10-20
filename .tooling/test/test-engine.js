@@ -3027,5 +3027,85 @@ check("VT : bareme et allocations == guide (table annuelle, GB-1210-2026 p. 5-6)
   check("VT : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
+console.log("\n=== South Carolina (47e Etat) ===");
+/* =======================================================================
+   SOUTH CAROLINA (47e Etat) - mecanisme nouveau : percentDeduction {rate 10 %, cap 7 500 $}, WH-1603F 2026 (Rev. 11/4/25).
+   Allocations 5 000 $ : celibataire 2 (10 000 $), marie et chef de famille 3 (15 000 $). Bareme : 0 % jusqu'a 3 640, 3 % jusqu'a 18 230, 6 % au-dela.
+   ======================================================================= */
+const scC = (b, st, rp) => calcul("south-carolina", b, st || "single", rp || 0);
+
+/* Cas SC-1 - 75 000 $ celibataire. Imposable : 75 000 - 10 000 - min(7 500 ; 10 % x 75 000 = 7 500) = 57 500 ; 57 500 x 6 % = 3 450 ; - 656,10 = 2 793,90.
+   Methode par addition : (57 500 - 18 230) x 6 % = 2 356,20 ; + 437,70 = 2 793,90. Federal 7 670 ; FICA 5 737,50 ; net 75 000 - 7 670 - 5 737,50 - 2 793,90 = 58 798,60. */
+check("SC 75 000 $ celibataire : impot d'Etat", scC(75000).etat, 2793.90, 0.0005);
+check("SC 75 000 $ celibataire : net", scC(75000).net, 58798.60, 0.0005);
+
+/* Cas SC-2 - 75 000 $ marie : 75 000 - 15 000 - 7 500 = 52 500 ; x 6 % = 3 150 ; - 656,10 = 2 493,90. Federal 4 640 ; net 75 000 - 4 640 - 5 737,50 - 2 493,90 = 62 128,60. */
+check("SC 75 000 $ marie : impot d'Etat", scC(75000, "marriedJoint").etat, 2493.90, 0.0005);
+check("SC 75 000 $ marie : net", scC(75000, "marriedJoint").net, 62128.60, 0.0005);
+
+/* Cas SC-3 - 75 000 $ chef de famille : memes 3 allocations, meme bareme : 2 493,90. Federal 5 748 ; net 75 000 - 5 748 - 5 737,50 - 2 493,90 = 61 020,60. */
+check("SC 75 000 $ chef de famille : impot d'Etat", scC(75000, "headOfHousehold").etat, 2493.90, 0.0005);
+check("SC 75 000 $ chef de famille : net", scC(75000, "headOfHousehold").net, 61020.60, 0.0005);
+
+/* Cas SC-4 - 30 000 $ : la deduction standard n'est PAS au plafond : 10 % x 30 000 = 3 000. 30 000 - 10 000 - 3 000 = 17 000 ; (17 000 - 3 640) x 3 % = 400,80. */
+check("SC 30 000 $ : deduction standard a 10 % (sous le plafond)", scC(30000).etat, 400.80, 0.0005);
+
+/* Cas SC-5 - 17 000 $ : 17 000 - 10 000 - 1 700 = 5 300 ; (5 300 - 3 640) x 3 % = 49,80. */
+check("SC 17 000 $ : premiere tranche a 3 %", scC(17000).etat, 49.80, 0.0005);
+
+/* Cas SC-6 - 12 000 $ : 12 000 - 10 000 - 1 200 = 800 < 3 640 : rien n'est retenu. */
+check("SC 12 000 $ : tranche a 0 %", scC(12000).etat, 0, 0.0005);
+
+/* Cas SC-7 - 250 000 $ : plafond 7 500 ; 250 000 - 17 500 = 232 500 ; x 6 % = 13 950 ; - 656,10 = 13 293,90. */
+check("SC 250 000 $ : plafond de la deduction standard", scC(250000).etat, 13293.90, 0.0005);
+
+/* Cas SC-8 - 75 000 $ avec 6 % de 401(k) : salaire apres 401(k) 70 500 ; 10 % = 7 050 ; 70 500 - 10 000 - 7 050 = 53 450 ; x 6 % = 3 207 ; - 656,10 = 2 550,90. Gain 243,00. */
+check("SC 75 000 $, 401(k) 6 % : impot d'Etat", scC(75000, "single", 0.06).etat, 2550.90, 0.0005);
+check("SC : gain 401(k) 6 %", scC(75000).etat - scC(75000, "single", 0.06).etat, 243.00, 0.0005);
+
+/* Cas SC-9 - 20 $/h x 2 080 = 41 600 : 41 600 - 10 000 - 4 160 = 27 440 ; x 6 % = 1 646,40 ; - 656,10 = 990,30. */
+check("SC 20 $/h : impot d'Etat", scC(41600).etat, 990.30, 0.0005);
+
+/* Cas SC-10 - exemple imprime de la formule (750 $ par semaine, 3 allocations) : 39 000 - 15 000 - 3 900 = 20 100 ; (20 100 - 18 230) x 6 % + 437,70 = 549,90.
+   Le moteur reproduit ce cas par le marie a 39 000 $ (3 allocations) : meme retenue. */
+check("SC exemple imprime WH-1603F : 549,90 $ par an (marie, 3 allocations, 39 000 $)", scC(39000, "marriedJoint").etat, 549.90, 0.0005);
+
+/* Cas SC-11 - aucun programme salarie : le chomage est a la charge de l'employeur (S.C. Code § 41-31-310). */
+check("SC : aucun programme salarie", scC(75000).programmes.length + scC(75000).paidLeave + scC(75000).waCares, 0, 0);
+
+/* Cas SC-12 - garde-fou : le bareme et les montants du moteur sont ceux de la formule ; percentDeduction n'existe que pour la Caroline du Sud. */
+check("SC : bareme, allocations et deduction standard == WH-1603F",
+  (() => { const A = R.states["south-carolina"].incomeTax;
+    return JSON.stringify(A.brackets.single) === JSON.stringify([[3640, 0], [18230, 0.03], [Infinity, 0.06]]) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify(A.brackets.single) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(A.brackets.single) &&
+      A.standardDeduction.single === 10000 && A.standardDeduction.marriedJoint === 15000 && A.standardDeduction.headOfHousehold === 15000 &&
+      A.percentDeduction.rate === 0.10 && A.percentDeduction.cap === 7500 ? 1 : 0; })(), 1, 0);
+check("SC : percentDeduction n'existe que pour la Caroline du Sud",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.percentDeduction).join() === "south-carolina" ? 1 : 0, 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes x 401(k)), y compris le plafond de 7 500 $ (75 000 $) et la frontiere de 3 640 $. */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 13640, 13641, 17000, 30000, 74999, 75000, 75001, 184500, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "south-carolina", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("south-carolina", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("SC : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

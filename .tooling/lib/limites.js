@@ -175,6 +175,13 @@ const LOCAL_PAR_ETAT = {
     calculators.</li>`,
 
   /* Vermont (20/10/2026) : le guide GB-1210-2026 ne decrit que l'impot d'Etat : « we found no », jamais « Vermont has no ». */
+  /* South Carolina (20/10/2026) : ni la formule ni le formulaire ne decrivent d'impot local : « we found no », jamais « South Carolina has no ». */
+  "south-carolina": `    <li><strong>Local taxes</strong> &mdash; the South Carolina withholding formula, tables and Form SC W-4 we read
+    describe state withholding only, and we found no South Carolina city or county income tax on wages in them. That is not
+    proof that none exists. This calculator adds no local line for South Carolina. The only local income tax lines on this site
+    are on the <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators.</li>`,
+
   vermont: `    <li><strong>Local taxes</strong> &mdash; the Vermont withholding guide we read describes state withholding
     only, and we found no Vermont city or county income tax on wages in it. That is not proof that none exists.
     This calculator adds no local line for Vermont. The only local income tax lines on this site are on the

@@ -4993,6 +4993,78 @@ const RATES_2026 = {
           headOfHousehold: [[3925, 0], [54675, 0.0335], [126775, 0.066], [260225, 0.076], [Infinity, 0.0875]]
         }
       }
+    },
+
+    /* =======================================================================
+       SOUTH CAROLINA  -  lu le 2026-10-20 (47e Etat). dor.sc.gov repond en direct (HTTP 200) ; dew.sc.gov bloque cette machine (HTTP 403
+       CloudFront « configured to block access from your country ») : la regle sur le chomage est lue dans le CODE de l'Etat.
+       DIAGNOSTIC DU « MOTEUR NON SUPPORTE » (reporte le 17/09). La raison alors notee - la « South Carolina Income Adjusted Deduction »
+       (SCIAD, degressive selon l'AGI) - concerne la DECLARATION ANNUELLE (SC Information Letter #26-20, 31/08/2026), PAS la retenue.
+       La formule de retenue du SCDOR (WH-1603F) n'utilise ni l'AGI ni la SCIAD. Le seul mecanisme manquant au moteur etait une deduction
+       standard en POURCENTAGE du salaire, PLAFONNEE : champ percentDeduction {rate, cap}, ajoute le 2026-10-20 (calc-paycheck.js,
+       lib/paie.js, test-engine).
+       -----------------------------------------------------------------------
+       1. LA FORMULE. SC Department of Revenue, « FORMULA FOR COMPUTING SOUTH CAROLINA 2026 WITHHOLDING TAX », WH-1603F (Rev. 11/4/25),
+          https://dor.sc.gov/sites/dor/files/forms/WH1603F_2026.pdf (HTTP 200, Last-Modified 2025-11-05, pdftotext -layout le 2026-10-20) :
+          « Deduct from gross wages: Personal Allowance $0 if zero allowances claimed OR $5,000 per personal allowance claimed AND Standard
+          Deduction $0 if zero allowances claimed OR 10% of gross wages if claiming one or more allowances, up to $7,500 total ». Bareme
+          (methode par soustraction) : « $0 - $3,640 : 0% ; $3,640 - $18,230 : 3%, then subtract $109.20 ; $18,230 and above : 6%, then
+          subtract $656.10 » ; methode par addition : « Subtract $3,640, multiply by 3% ; Subtract $18,230, multiply by 6.0%, then add
+          $437.70 ». Un seul bareme, pour tous les statuts. Exemple imprime : 750 $ par semaine, 3 allocations -> 39 000 - 15 000 - 3 900 =
+          20 100 -> 549,90 $ par an -> 10,58 $ par semaine. Constantes par periode imprimees (hebdomadaire : 96,15 / 144,23 / 8,42).
+          Le meme jour la page dor.sc.gov/tax/withholding liste « 2026 Withholding Tax Tables, 2026 SC Withholding Tax Formula, 2026 SC W-4 » ;
+          SCDOR News 2025-11-06 : « Employers and payroll providers should begin using both the 2026 Withholding Tables and the 2026 SC W-4
+          on January 1, 2026. » TABLES IMPRIMEES : WH-1603 (Rev. 10/30/25) https://dor.sc.gov/sites/dor/files/forms/WH1603_2026.pdf, tables
+          quotidienne, hebdomadaire, toutes les deux semaines, deux fois par mois, mensuelle, 0 a 10 allocations ; verif-retenue-sc.js.
+       2. ACT 110 DE 2026 (SC Information Letter #26-20, 31/08/2026, https://dor.sc.gov/sites/dor/files/policies/IL26-20.pdf, lu le
+          2026-10-20) : « The Governor signed Act 110 of 2026 into law on March 30, 2026 » ; pour les annees d'imposition commencant apres
+          2025, impot de 1,99 % jusqu'a 29 999 $ puis « (5.21% times taxable income) minus $966 » ; « 7. Adjusts withholding tables to reflect
+          tax changes » ; section Withholding Tables : « The SCDOR will consult with the Revenue and Fiscal Affairs Office to adjust the income
+          tax withholding tables to reflect the income tax changes. Adjustments to withholding tables must be made in accordance with fiscal
+          responsibility. » Au 2026-10-20 le SCDOR n'a PAS publie de formule ou de tables modifiees : WH-1603F et WH-1603 portent toujours
+          les dates de novembre 2025 (en-tetes HTTP Last-Modified du 2025-11-05). Le site chiffre donc la formule PUBLIEE (celle que
+          l'employeur doit appliquer aujourd'hui) et DIT sur la page que l'impot de la declaration suit d'autres taux. A RELIRE si le SCDOR
+          publie une formule revisee : le chiffre de cette page changera alors.
+       3. LES STATUTS DU SITE (SC W-4, Rev. 12/5/25, https://dor.sc.gov/sites/dor/files/forms/SCW4_2026.pdf, lu le 2026-10-20). Feuille
+          « Personal Allowances Worksheet » : « A Enter 1 for yourself ; B Enter 1 if you will file as married filing jointly ; C Enter 1 if
+          you will file as head of household ; D Enter 1 if: You are single, or married filing separately, and have only one job; or You are
+          married filing jointly, have only one job, and your spouse doesn't work ; E Dependents ; F Dependents under the age of 6 ».
+          Le site : single = A + D = 2 allocations (10 000 $) ; marriedJoint = A + B + D = 3 (15 000 $) ; headOfHousehold = A + C + D = 3
+          (15 000 $) ; LECTURE A NOUS : la ligne D ne nomme pas le chef de famille, on le compte comme « single » (celibataire sans conjoint) ;
+          dit sur la page. Dependants (E, F), second emploi / conjoint qui travaille (D vide), case « Married, but withhold at higher Single
+          rate » : NON modelises, dits. La formule est la meme pour tous les statuts : seul le nombre d'allocations change.
+       4. 401(k) : le formulaire dit « gross wages » ; le calculateur retire le 401(k) avant l'impot d'Etat, comme pour les autres Etats :
+          hypothese dite sur la page.
+       5. CHOMAGE (SUI) : S.C. Code Ann. § 41-31-310 (https://scstatehouse.gov/code/t41c031.php, lu le 2026-10-20) : « Contributions shall
+          become due and be paid by each employer to the department for the fund ... and shall not be deducted, in whole or in part, from the
+          wages of the employer's employees. » -> aucune retenue salariale : pas d'employeePrograms.
+       6. CONGE FAMILIAL / INVALIDITE : aucun programme obligatoire d'Etat trouve (aucun n'est mentionne par le SCDOR ni par le formulaire) ;
+          la page dit « we found none », jamais « South Carolina has no ».
+       7. TAXES LOCALES : aucun impot local sur le revenu trouve dans le formulaire, la formule ni les pages du SCDOR sur la retenue ; la
+          page dit « we found no », jamais « has no ».
+       8. NON MODELE : Act 110 (formule non encore revisee), dependants, second emploi, « higher Single rate », ligne 6, exoneration, primes,
+          non-residents, arrondi par paie.
+       ----------------------------------------------------------------------- */
+    "south-carolina": {
+      name: "South Carolina",
+      abbr: "SC",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Allocations annuelles : 5 000 $ chacune, 2 / 3 / 3 allocations (SC W-4 lignes A + D ; A + B + D ; A + C + D). */
+        standardDeduction: {
+          single: 10000,
+          marriedJoint: 15000,
+          headOfHousehold: 15000
+        },
+        /* Deduction standard de la formule : 10 % du salaire, plafond 7 500 $ (WH-1603F 2026), des qu'il y a une allocation. */
+        percentDeduction: { rate: 0.10, cap: 7500 },
+        /* Un seul bareme pour tous les statuts : 0 % jusqu'a 3 640 $, 3 % jusqu'a 18 230 $, 6 % au-dela (WH-1603F 2026). */
+        brackets: {
+          single:          [[3640, 0], [18230, 0.03], [Infinity, 0.06]],
+          marriedJoint:    [[3640, 0], [18230, 0.03], [Infinity, 0.06]],
+          headOfHousehold: [[3640, 0], [18230, 0.03], [Infinity, 0.06]]
+        }
+      }
     }
   }
 };

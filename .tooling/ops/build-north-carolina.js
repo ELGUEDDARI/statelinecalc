@@ -96,10 +96,10 @@ const effet25 = a25.etat / 25000 * 100;
 const effet75 = a75.etat / 75000 * 100;
 const effet250 = a250.etat / 250000 * 100;
 
-const voisins = ["georgia", "tennessee", "pennsylvania", "texas"].map(k => ({
+const voisins = ["georgia", "south-carolina", "tennessee", "pennsylvania", "texas"].map(k => ({
   cle: k, r: calcul(k, 75000)
 }));
-const NOMS = { georgia: "Georgia", tennessee: "Tennessee",
+const NOMS = { georgia: "Georgia", "south-carolina": "South Carolina", tennessee: "Tennessee",
                pennsylvania: "Pennsylvania", texas: "Texas" };
 
 const $ = n => "$" + c0(n);

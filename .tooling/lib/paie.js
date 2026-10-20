@@ -50,7 +50,8 @@ function deductionEtat(S, statut, base) {
   const paliers = S.incomeTax.deductionByIncome;
   const pente = S.incomeTax.slidingDeduction;
   const ex = S.incomeTax.personalExemption;
-  if (!d && !paliers && !pente && !ex) return 0;
+  const pd = S.incomeTax.percentDeduction;
+  if (!d && !paliers && !pente && !ex && !pd) return 0;
   let v;
   if (pente && base !== undefined) {
     const segs = (statut in pente) ? pente[statut] : pente.single;
@@ -77,6 +78,12 @@ function deductionEtat(S, statut, base) {
      ne recoit que sa propre part (700 $), comme les autres Etats a foyer. */
   if (ex) {
     v += (statut in ex) ? ex[statut] : ex.single;
+  }
+  /* La Caroline du Sud est le premier Etat ou la formule de retenue ajoute a l'allocation une DEDUCTION STANDARD en
+     pourcentage du salaire, plafonnee : WH-1603F 2026 (Rev. 11/4/25), « 10% of gross wages if claiming one or more
+     allowances, up to $7,500 total ». Le moteur suppose toujours au moins une allocation. Miroir de assets/calc-paycheck.js. */
+  if (pd && base !== undefined) {
+    v += Math.min(pd.cap, pd.rate * base);
   }
   return v;
 }

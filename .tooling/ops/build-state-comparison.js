@@ -124,7 +124,7 @@ const faq = [
    "overall. Those figures are outside what a paycheck calculator can honestly tell you."]
 ];
 
-const titre = "Paycheck Calculator: Compare Take-Home Pay Between Two States (2026)";
+const titre = "Paycheck Calculator: Compare Take-Home Pay by State (2026)";
 /* Sous ~155-160 caracteres : au-dela, Google tronque la description dans la
    SERP, souvent en plein milieu d'un mot. Controle du 12/09/2026. */
 const desc = "Compare " + A_NOM + " vs " + B_NOM + ", or any two of the " + Object.keys(PUBLIES).length +

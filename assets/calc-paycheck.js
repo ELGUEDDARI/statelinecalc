@@ -167,6 +167,13 @@
       if (pe) {
         sd = (sd || 0) + ((input.filingStatus in pe) ? pe[input.filingStatus] : pe.single);
       }
+      /* South Carolina is the first state here whose withholding formula adds, to the allowance, a STANDARD DEDUCTION that
+         is a percentage of the wage with a ceiling: WH-1603F 2026 (Rev. 11/4/25), "10% of gross wages if claiming one or
+         more allowances, up to $7,500 total". The calculator always assumes at least one allowance. Added 2026-10-20. */
+      var pd = state.incomeTax.percentDeduction;
+      if (pd) {
+        sd = (sd || 0) + Math.min(pd.cap, pd.rate * baseEtat);
+      }
       /* Massachusetts is the first state here that lets the employer subtract
          the Social Security and Medicare actually withheld from the wage
          before the state rate is applied, up to a yearly maximum: Circular M
