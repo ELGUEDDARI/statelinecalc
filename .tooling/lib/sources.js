@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1181,6 +1181,42 @@ const PAR_ETAT = {
       titre: "City of Kansas City, Missouri &mdash; Tax Guide for Non-Resident Businesses (Internet Archive snapshot of June 9, 2026)",
       quoi: "the one percent earnings tax that an employer registered with the city withholds on the part of a nonresident&rsquo;s pay earned in Kansas City, Missouri, which matters to Kansans who commute there; the city&rsquo;s own site refuses automated requests, so we link the archived copy",
       motif: ["the employer must withhold the one percent earnings tax on all salaries and wages"] }
+  ],
+  /* Connecticut (20/10/2026) : portal.ct.gov, cga.ct.gov et ctpaidleave.org repondent (HTTP 200 a curl, User-Agent de navigateur) ;
+     PDF telecharges et lus le 20/10/2026. Les tables imprimees n'ont pas de couche de texte : lien en type « agence ». */
+  connecticut: [
+    { type: "document",
+      url: "https://portal.ct.gov/-/media/drs/forms/2025/wth/tpg-211_1225.pdf",
+      titre: "Connecticut Department of Revenue Services &mdash; Withholding Calculation Rules, TPG-211 (Rev. 12/25; effective January 1, 2026)",
+      quoi: "the sixteen steps of the withholding formula (annualize the pay, subtract the personal exemption for the withholding code, apply the initial tax rates of 2% to 6.99%, add the 2% phase-out add-back and the tax recapture, multiply by one minus the personal tax credit decimal), the tables behind them, and the statement that the 2026 rules and tables are unchanged from 2025",
+      motif: ["unchanged from 2025", "Withholding Calculation Rules"] },
+    { type: "document",
+      url: "https://portal.ct.gov/-/media/drs/forms/2026/wth/ct-w4_1225fillable.pdf",
+      titre: "Connecticut Department of Revenue Services &mdash; Form CT-W4, Employee&rsquo;s Withholding Certificate (Rev. 12/25; effective January 1, 2026)",
+      quoi: "the withholding codes: F for a single filer earning more than $15,000, B for head of household, C for married filing jointly with a spouse who is not employed, A for a married couple who both work",
+      motif: ["Withholding Code", "My spouse is not employed"] },
+    { type: "document",
+      url: "https://portal.ct.gov/-/media/drs/publications/pubsip/2026/ip-2026-1.pdf",
+      titre: "Connecticut Department of Revenue Services &mdash; Connecticut Employer&rsquo;s Tax Guide, Circular CT, IP 2026(1)",
+      quoi: "the rule that wages subject to federal withholding are wages for Connecticut withholding, the 6.99% rate for an employee who gives no CT-W4, and the treatment of bonuses paid with regular wages",
+      motif: ["also wages for Connecticut income tax withholding purposes", "6.99%"] },
+    { type: "document",
+      url: "https://www.ctpaidleave.org/how-ct-paid-leave-works/contributions",
+      titre: "CT Paid Leave Authority &mdash; Contributions",
+      quoi: "the 0.5% employee contribution for 2026, deducted by the employer, up to the Social Security contribution limit",
+      motif: ["maintain the contribution rate at 0.5% for 2026", "Employers deduct 0.5%"] },
+    { type: "document",
+      url: "https://www.ctpaidleave.org/remit-contributions",
+      titre: "CT Paid Leave Authority &mdash; Remit Contributions",
+      quoi: "the rule that the 0.5% rate applies to total wages up to the Social Security contribution and benefit base, and that benefits excluded from FICA wages are excluded",
+      motif: ["one-half of one percent (0.5%)", "FICA taxable wage"] },
+    { type: "document",
+      url: "https://www.cga.ct.gov/current/pub/chap_567.htm",
+      titre: "Connecticut General Assembly &mdash; Chapter 567, Unemployment Compensation, Sec. 31-225",
+      quoi: "the rule that an employer&rsquo;s unemployment contributions &ldquo;shall not be deducted or deductible from wages&rdquo;",
+      motif: ["shall not be deducted or deductible from wages"] },
+    { type: "agence", url: "https://portal.ct.gov/DRS/DRS-Forms/Current-Year-Forms/Withholding-Forms",
+      titre: "Connecticut Department of Revenue Services &mdash; Withholding forms, with the 2026 Withholding Tables and the supplemental table for married couples" }
   ],
   iowa: [
     { type: "document",

@@ -704,8 +704,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Rhode Island&rsquo;s neighbor Connecticut is not published on this site yet,
-  while Massachusetts has its own page. The table lines it up against
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Rhode Island&rsquo;s two neighbors, Connecticut and Massachusetts, each have their own page. The table lines it up against
   three states we do have: one that taxes wages at a flat rate, one with no income tax, and one
   whose paychecks still carry state payroll programs.</p>
   <div class="table-scroll">
@@ -742,7 +741,9 @@ ${blocSources(CLE)}
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/new-hampshire/">New Hampshire paycheck calculator</a>
-    &mdash; the only other New England state published so far, with no tax on wages.</li>
+    &mdash; another New England state, with no tax on wages.</li>
+    <li><a href="/paycheck-calculator/connecticut/">Connecticut paycheck calculator</a> &mdash; the neighbor to the west.</li>
+    <li><a href="/paycheck-calculator/massachusetts/">Massachusetts paycheck calculator</a> &mdash; the neighbor to the north.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
     with its official source, and what these calculators deliberately do not model.</li>
     <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,

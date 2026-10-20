@@ -597,7 +597,7 @@ check("OH : l'impot d'Etat n'est jamais negatif, meme a 10 000 $",
 check("OH : aucun autre Etat n'a de marche",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.notch).length, 1, 0);
 check("OH : seuls le Maryland (35e Etat) et l'Alabama (36e Etat) ont aussi une deduction par palier de revenu (deductionByIncome)",
-  Object.keys(R.states).filter(k => k !== "maryland" && k !== "alabama" && R.states[k].incomeTax.deductionByIncome).length, 1, 0);
+  Object.keys(R.states).filter(k => k !== "maryland" && k !== "alabama" && k !== "connecticut" && R.states[k].incomeTax.deductionByIncome).length, 1, 0);
 
 
 /* --- WISCONSIN --------------------------------------------------------
@@ -1943,7 +1943,7 @@ check("MD : un comte inconnu est une ERREUR, jamais un defaut silencieux",
 check("MD : seuls l'Indiana et le Maryland ont un impot de comte (countyTax)",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.countyTax).sort().join(",") === "indiana,maryland" ? 1 : 0, 1, 0);
 check("MD : seuls l'Alabama, le Maryland et l'Ohio ont une deduction par palier de revenu",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.deductionByIncome).sort().join(",") === "alabama,maryland,ohio" ? 1 : 0, 1, 0);
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.deductionByIncome).sort().join(",") === "alabama,connecticut,maryland,ohio" ? 1 : 0, 1, 0);
 check("MD : 24 juridictions (23 comtes + Baltimore City), defaut Montgomery, une seule ville",
   (() => { const c = R.states.maryland.incomeTax.countyTax;
     return Object.keys(c.rates).length === 24 && c.defaultCounty === "montgomery" &&
@@ -2885,6 +2885,55 @@ check("KS : bareme et allocations == guide (annuel, p. 6 et 19-20)",
         }
       }
   check("KS : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
+console.log("\n=== Connecticut (45e Etat) ===");
+/* Source : TPG-211 (Rev. 12/25), lue le 2026-10-20. Attendus recalcules a la main.
+   single (code F) 75 000 : exoneration 0 (44 000 et plus) ; 2 000 + 25 000 x 5,5 % = 3 375 ; Table C (71 500-76 500) = 100 ; D = 0 ; E = 0 -> 3 475,00
+   marie (code C) 75 000  : exoneration 0 ; 400 + 55 000 x 4,5 % = 2 875 ; C = 0 ; E (52 000-96 000) = 0,10 -> 2 875 x 0,90 = 2 587,50
+   chef de famille (B)    : exoneration 0 ; 320 + 59 000 x 4,5 % = 2 975 ; C = 0 ; E (74 500-75 000) = 0,08 -> 2 975 x 0,92 = 2 737,00
+   single 30 000          : exoneration 15 000 ; 200 + 5 000 x 4,5 % = 425 ; E (26 500-31 300) = 0,15 -> 361,25
+   ligne imprimee hebdomadaire 461-471, milieu 466 x 52 = 24 232 : F : (24 232 - 15 000) x 2 % = 184,64 x (1 - 0,35) = 120,016 -> /52 = 2,31 (imprime 2,31) ;
+     B : (24 232 - 19 000) x 2 % = 104,64 x 0,30 = 31,392 -> 0,60 (imprime 0,60) ; C : (24 232 - 24 000) x 2 % = 4,64 x 0,25 = 1,16 -> 0,02 (imprime 0,02)
+   single 300 000 : 14 000 + 50 000 x 6,9 % = 17 450 ; C = 250 ; D (295 000-300 000) = 2 050 -> 19 750
+   single 75 000 avec 6 % au 401(k) : base 70 500 ; 2 000 + 20 500 x 5,5 % = 3 127,50 ; C (66 500-71 500) = 75 -> 3 202,50
+   Paid Leave : 75 000 x 0,5 % = 375 ; plafond 184 500 x 0,5 % = 922,50. Net single 75 000 = 75 000 - 7 670 - 4 650 - 1 087,50 - 3 475 - 375 = 57 742,50 */
+check("CT : single 75 000", calcul("connecticut", 75000).etat, 3475, 0.005);
+check("CT : marie 75 000", calcul("connecticut", 75000, "marriedJoint").etat, 2587.5, 0.005);
+check("CT : chef de famille 75 000", calcul("connecticut", 75000, "headOfHousehold").etat, 2737, 0.005);
+check("CT : single 30 000", calcul("connecticut", 30000).etat, 361.25, 0.005);
+check("CT : F, ligne imprimee 461-471 (annualise 24 232)", calcul("connecticut", 24232).etat / 52, 2.31, 0.005);
+check("CT : B, ligne imprimee 461-471", calcul("connecticut", 24232, "headOfHousehold").etat / 52, 0.60, 0.005);
+check("CT : C, ligne imprimee 461-471", calcul("connecticut", 24232, "marriedJoint").etat / 52, 0.02, 0.005);
+check("CT : single 300 000 (recuperation Table D)", calcul("connecticut", 300000).etat, 19750, 0.005);
+check("CT : 401(k) 6 % a 75 000 (Table C a 70 500)", calcul("connecticut", 75000, "single", 0.06).etat, 3202.5, 0.005);
+check("CT : borne incluse, 71 500 -> add-back 75", calcul("connecticut", 71500).etat, 2000 + 21500 * 0.055 + 75, 0.005);
+check("CT : borne incluse, 71 501 -> add-back 100", calcul("connecticut", 71501).etat, 2000 + 21501 * 0.055 + 100, 0.005);
+check("CT : sous l'exoneration, aucune retenue", calcul("connecticut", 14000).etat, 0, 0);
+check("CT : Paid Leave 75 000", calcul("connecticut", 75000).programmes[0].montant, 375, 0.005);
+check("CT : Paid Leave plafonne a 184 500", calcul("connecticut", 300000).programmes[0].montant, 922.5, 0.005);
+check("CT : plafond Paid Leave = base FICA", R.states.connecticut.employeePrograms[0].wageCap, R.fica.socialSecurity.wageBase, 0);
+check("CT : net single 75 000", calcul("connecticut", 75000).net, 57742.5, 0.005);
+check("CT : seul Etat avec stepAdjustments", Object.keys(R.states).filter(k => R.states[k].incomeTax.stepAdjustments).join(",") === "connecticut" ? 1 : 0, 1, 0);
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of [900, 15000, 24232, 30000, 56500, 56501, 71500, 71501, 75000, 100500, 105000, 184500, 300000, 1500000])
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "connecticut", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("connecticut", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("CT : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

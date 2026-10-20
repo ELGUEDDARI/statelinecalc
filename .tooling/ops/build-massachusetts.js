@@ -111,14 +111,14 @@ const N = s => '<span class="num">' + s + "</span>";
 /* Voisins publies : New Hampshire et Rhode Island (frontaliers), + Colorado,
    autre Etat a taux plat avec une prime de conge payee. */
 const REF = 75000;
-const COMPARE = [CLE, "new-hampshire", "rhode-island", "colorado"];
-const NOMS = { [CLE]: "Massachusetts", "new-hampshire": "New Hampshire", "rhode-island": "Rhode Island", colorado: "Colorado" };
+const COMPARE = [CLE, "new-hampshire", "rhode-island", "connecticut", "colorado"];
+const NOMS = { [CLE]: "Massachusetts", "new-hampshire": "New Hampshire", "rhode-island": "Rhode Island", connecticut: "Connecticut", colorado: "Colorado" };
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const nh75 = calcul("new-hampshire", REF), ri75 = calcul("rhode-island", REF), co75 = calcul("colorado", REF);
+const nh75 = calcul("new-hampshire", REF), ri75 = calcul("rhode-island", REF), ct75 = calcul("connecticut", REF), co75 = calcul("colorado", REF);
 
 /* --- les tableaux, produits par les generateurs generiques ---------------- */
 const gen = (script, arg) => execFileSync(process.execPath,
@@ -691,8 +691,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Massachusetts borders New Hampshire, Rhode Island, Connecticut, New York and Vermont; New Hampshire and
-  Rhode Island are the two we publish so far. Colorado is included because it, too, has a flat income tax and an employee-paid leave premium. Massachusetts is shown with one exemption.</p>
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Massachusetts borders New Hampshire, Rhode Island, Connecticut, New York and Vermont; New Hampshire, Rhode Island and Connecticut are the three we publish so far; New York and Vermont are not published on this site yet. Colorado is included because it, too, has a flat income tax and an employee-paid leave premium. Massachusetts is shown with one exemption.</p>
   <div class="table-scroll">
     <table>
       <caption class="caption caption-left">
@@ -712,7 +711,7 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
     </table>
   </div>
   <p>A <a href="/paycheck-calculator/new-hampshire/">New Hampshire</a> worker keeps ${N($$(nh75.net - a75.net))} more than a Massachusetts worker on the
-  same salary, because New Hampshire withholds no income tax on wages in this calculator. A <a href="/paycheck-calculator/rhode-island/">Rhode Island</a> worker keeps ${N($$(Math.abs(ri75.net - a75.net)))} ${ri75.net < a75.net ? "less" : "more"}, and a
+  same salary, because New Hampshire withholds no income tax on wages in this calculator. A <a href="/paycheck-calculator/rhode-island/">Rhode Island</a> worker keeps ${N($$(Math.abs(ri75.net - a75.net)))} ${ri75.net < a75.net ? "less" : "more"}, a <a href="/paycheck-calculator/connecticut/">Connecticut</a> worker keeps ${N($$(Math.abs(ct75.net - a75.net)))} ${ct75.net < a75.net ? "less" : "more"}, and a
   <a href="/paycheck-calculator/colorado/">Colorado</a> worker keeps ${N($$(Math.abs(co75.net - a75.net)))} ${co75.net < a75.net ? "less" : "more"}.</p>
 
 ${blocSources(CLE)}
@@ -725,6 +724,8 @@ ${blocSources(CLE)}
     withhold income tax on wages.</li>
     <li><a href="/paycheck-calculator/rhode-island/">Rhode Island paycheck calculator</a> &mdash; the neighbor to the south, with
     progressive withholding and an employee-paid disability insurance deduction.</li>
+    <li><a href="/paycheck-calculator/connecticut/">Connecticut paycheck calculator</a> &mdash; the neighbor to the south, with rates from 2% to 6.99%
+    and a 0.5% paid leave contribution.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
     with its official source, and what these calculators deliberately do not model.</li>
     <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,

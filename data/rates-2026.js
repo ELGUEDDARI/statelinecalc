@@ -4782,6 +4782,148 @@ const RATES_2026 = {
           headOfHousehold: [[3605, 0], [26605, 0.052], [Infinity, 0.0558]]
         }
       }
+    },
+
+    /* =======================================================================
+       CONNECTICUT  -  lu le 2026-10-20 (45e Etat). portal.ct.gov, cga.ct.gov, ctpaidleave.org : HTTP 200 a curl avec un
+       User-Agent de navigateur ; tous les PDF telecharges et lus en PyMuPDF / pdftotext le 2026-10-20.
+       -----------------------------------------------------------------------
+       MOTEUR : UN mecanisme nouveau, stepAdjustments (ajoute le 2026-10-20, avec tests dans test-engine.js, miroir dans
+       assets/calc-paycheck.js et .tooling/lib/paie.js). Le Connecticut ne connait pas de deduction standard : sa formule retranche une
+       EXONERATION PERSONNELLE qui s'efface par marches de 1 000 $ (deductionByIncome, mecanisme existant, deja celui de l'Ohio), applique un
+       bareme progressif (brackets, existant), puis AJOUTE deux montants lus par marches dans des tables (stepAdjustments.addBack = Table C,
+       stepAdjustments.recapture = Table D) et MULTIPLIE par (1 - decimale de la Table E, stepAdjustments.credit). Chaque table est une liste
+       de [borne haute INCLUSE, valeur] ; la derniere borne est Infinity (« and up »).
+       -----------------------------------------------------------------------
+       1. LA FORMULE. Connecticut Department of Revenue Services, « Withholding Calculation Rules, Effective January 1, 2026 », TPG-211
+          (Rev. 12/25), https://portal.ct.gov/-/media/drs/forms/2025/wth/tpg-211_1225.pdf, 6 pages, lu le 2026-10-20. Verbatim : « The 2026
+          withholding calculation rules and 2026 withholding tables are unchanged from 2025. » ; « Employers: Use either the withholding
+          calculation rules or the withholding tables to determine the amount of tax to be withheld from the wages of employees. There is no
+          percentage method available to determine Connecticut wage withholding. » Les 16 etapes : annualiser le salaire (periode x nombre de
+          periodes) ; code de retenue (A, B, C, D ou F, CT-W4 ligne 1) ; exoneration (Table A) ; revenu imposable annualise = salaire annualise -
+          exoneration (« If the annualized taxable income is equal to or less than zero, the initial withholding amount should equal zero ») ;
+          impot initial (Table B) ; + recuperation de la tranche a 2 % (Table C, « 2% Tax Rate PhaseOut Add-Back ») ; + recuperation d'impot
+          (Table D, « Tax Recapture ») ; x (1,00 - decimale de la Table E, « Personal Tax Credits ») ; / nombre de periodes ; + ligne 2 du CT-W4 ;
+          - ligne 3 ; jamais negatif. Les tables A, C, D et E (codes A, B, C, D, F) sont extraites par .tooling/test/ct-tables-extract.py dans
+          .tooling/sources/connecticut-tpg211-tables.json et recoupees contre les tables imprimees (verif-retenue-ct.js).
+       2. LE BAREME (Table B, verbatim). Codes A, D, F : « Less than or equal to $10,000: 2.00% ; More than $10,000 ... $50,000: $200 plus 4.5% of
+          the excess over $10,000 ; ... $100,000: $2,000 plus 5.5% ... over $50,000 ; ... $200,000: $4,750 plus 6.0% ; ... $250,000: $10,750 plus 6.5% ;
+          ... $500,000: $14,000 plus 6.9% ; More than $500,000: $31,250 plus 6.99% ». Code B (chef de famille) : seuils 16 000 / 80 000 / 160 000 /
+          320 000 / 400 000 / 800 000. Code C (couple en commun) : 20 000 / 100 000 / 200 000 / 400 000 / 500 000 / 1 000 000. Les bases se recoupent :
+          10 000 x 2 % = 200 ; + 40 000 x 4,5 % = 2 000 ; + 50 000 x 5,5 % = 4 750 ; + 100 000 x 6 % = 10 750 ; + 50 000 x 6,5 % = 14 000 ;
+          + 250 000 x 6,9 % = 31 250 (idem les deux autres). Les tranches sont donc les MEMES que des tranches marginales ordinaires.
+       3. LES CODES DE RETENUE (Form CT-W4, Rev. 12/25, « Effective January 1, 2026 », https://portal.ct.gov/-/media/drs/forms/2026/wth/ct-w4_1225fillable.pdf,
+          lu le 2026-10-20). Single : « My expected annual gross income is greater than $15,000. » = F ; Head of Household : « greater than $19,000 » = B ;
+          Married Filing Jointly : « My spouse is not employed and our expected combined annual gross income is greater than $24,000. » = C ;
+          « My spouse is employed and our expected combined annual gross income is greater than $24,000 and less than or equal to $100,500 » = A (les deux
+          conjoints choisissent A et peuvent avoir besoin des « Supplemental Tables » de la page des tables) ; « I have significant nonwage income » = D (aucune
+          exoneration, aucun credit) ; E = pas de retenue. Choix du site : single = F, marriedJoint = C (conjoint SANS emploi, meme choix que le Kansas, l'Iowa et
+          le Missouri), headOfHousehold = B. Le code A (conjoint qui travaille ; marie separe), D, E, les lignes 2 et 3 et les tables supplementaires
+          pour couples (https://portal.ct.gov/-/media/drs/forms/2025/wth/2026-supplemental-table.pdf, « Married Couples Filing Jointly - Effective January 1, 2026 »,
+          « For married couples who both select Withholding Code "A" ... (combined income is $100,500 or less) ») : NON modelises, dits sur la page.
+       4. LES TABLES IMPRIMEES. « State of Connecticut 2026 Withholding Tables (Effective January 1, 2026) », 8 pages, periodes hebdomadaire, toutes les deux semaines,
+          deux fois par mois, mensuelle, https://portal.ct.gov/-/media/drs/forms/2025/wth/2026-withholding-tables.pdf, lue le 2026-10-20. Le PDF n'a pas de couche de
+          texte (impression en vectoriel) : lu par OCR Windows (Windows.Media.Ocr) sur des PNG a 250 dpi ; les lignes dont l'OCR a lu proprement les bornes de salaire sont
+          recoupees avec la formule, au milieu de chaque ligne (verif-retenue-ct.js, qui dit combien). Le milieu de ligne est la regle du DRS : 466 x 52 = 24 232 $, code A :
+          exoneration 11 000, impot initial 345,44, credit 0,15 -> 293,62 / 52 = 5,65 $ = montant imprime pour la ligne 461-471.
+       5. LES SALAIRES SOUMIS. Circular CT, Informational Publication 2026(1), https://portal.ct.gov/-/media/drs/publications/pubsip/2026/ip-2026-1.pdf, lue le 2026-10-20, p. 7 :
+          « In general, all amounts that are wages and subject to federal withholding are also wages for Connecticut income tax withholding purposes. » => un 401(k)
+          traditionnel, qui n'est pas du salaire pour la retenue federale, est hors assiette : base apres versement, comme les autres Etats. Sans CT-W4 :
+          « you must withhold at a flat rate of 6.99%, without allowance for exemption » (non modelise). Primes versees avec le salaire : « the tax withheld should be
+          determined as if the total of the supplemental and regular wages were a single payment for the regular payroll period. » (p. 12) ; primes versees a part : non modelise.
+       6. CONGE PAYE (CT Paid Leave). CT Paid Leave Authority, https://www.ctpaidleave.org/how-ct-paid-leave-works/contributions, lue le 2026-10-20, verbatim :
+          « The CT Paid Leave Board of Directors has voted to maintain the contribution rate at 0.5% for 2026. » ; « Employers deduct 0.5% from an employee's pay. » ;
+          « Employees contribute until they reach the Social Security contribution limit. » ; « If you work for a covered employer in Connecticut, you are required to
+          contribute 0.5% of your income up to the Social Security contribution limit. Individuals may not opt-out of CT Paid Leave. » ; page « Remit Contributions »
+          (https://www.ctpaidleave.org/remit-contributions, lue le 2026-10-20) : « The contribution rate of one-half of one percent (0.5%) applies to an employee's total wages, up to
+          the Social Security contribution and benefit base. » ; « Employers should exclude from the employees' total wages any benefits that are excluded for the purposes of
+          calculating the employee's FICA taxable wage. » => base = salaire brut (le 401(k) n'est pas exclu de la FICA), plafond = base FICA 184 500 $ (meme valeur que
+          fica.socialSecurity.wageBase ; un test egalise). Il n'y a pas de part employeur (« Employers deduct 0.5% »). Un employeur avec un plan prive approuve peut offrir autre chose : non modelise.
+       7. CHOMAGE : Conn. Gen. Stat. § 31-225(a), https://www.cga.ct.gov/current/pub/chap_567.htm, lue le 2026-10-20, verbatim : « Each contributing employer who is subject to
+          this chapter shall pay to the administrator contributions, which shall not be deducted or deductible from wages ». => pas d'employeePrograms pour le chomage.
+       8. IMPOT LOCAL : aucun lu. La Circular CT et la TPG-211 ne decrivent que l'impot d'Etat : « we found no », jamais « Connecticut has no ».
+       9. NON MODELE : code A (conjoint qui travaille ; marie separe), codes D et E, tables supplementaires pour couples, lignes 2 et 3 du CT-W4, retenue a 6,99 % sans CT-W4,
+          primes versees a part, non-residents (CT-W4NA, convenience-of-the-employer rule), exoneration MSRRA, arrondi (le moteur n'arrondit pas ; les tables sont au cent).
+       ----------------------------------------------------------------------- */
+    connecticut: {
+      name: "Connecticut",
+      abbr: "CT",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Table A - Personal Exemptions, par code : single = F, marriedJoint = C, headOfHousehold = B. Borne haute incluse. */
+        deductionByIncome: [
+          { upTo: 30000, amounts: { single: 15000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 31000, amounts: { single: 14000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 32000, amounts: { single: 13000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 33000, amounts: { single: 12000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 34000, amounts: { single: 11000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 35000, amounts: { single: 10000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 36000, amounts: { single: 9000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 37000, amounts: { single: 8000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 38000, amounts: { single: 7000, marriedJoint: 24000, headOfHousehold: 19000 } },
+          { upTo: 39000, amounts: { single: 6000, marriedJoint: 24000, headOfHousehold: 18000 } },
+          { upTo: 40000, amounts: { single: 5000, marriedJoint: 24000, headOfHousehold: 17000 } },
+          { upTo: 41000, amounts: { single: 4000, marriedJoint: 24000, headOfHousehold: 16000 } },
+          { upTo: 42000, amounts: { single: 3000, marriedJoint: 24000, headOfHousehold: 15000 } },
+          { upTo: 43000, amounts: { single: 2000, marriedJoint: 24000, headOfHousehold: 14000 } },
+          { upTo: 44000, amounts: { single: 1000, marriedJoint: 24000, headOfHousehold: 13000 } },
+          { upTo: 45000, amounts: { single: 0, marriedJoint: 24000, headOfHousehold: 12000 } },
+          { upTo: 46000, amounts: { single: 0, marriedJoint: 24000, headOfHousehold: 11000 } },
+          { upTo: 47000, amounts: { single: 0, marriedJoint: 24000, headOfHousehold: 10000 } },
+          { upTo: 48000, amounts: { single: 0, marriedJoint: 24000, headOfHousehold: 9000 } },
+          { upTo: 49000, amounts: { single: 0, marriedJoint: 23000, headOfHousehold: 8000 } },
+          { upTo: 50000, amounts: { single: 0, marriedJoint: 22000, headOfHousehold: 7000 } },
+          { upTo: 51000, amounts: { single: 0, marriedJoint: 21000, headOfHousehold: 6000 } },
+          { upTo: 52000, amounts: { single: 0, marriedJoint: 20000, headOfHousehold: 5000 } },
+          { upTo: 53000, amounts: { single: 0, marriedJoint: 19000, headOfHousehold: 4000 } },
+          { upTo: 54000, amounts: { single: 0, marriedJoint: 18000, headOfHousehold: 3000 } },
+          { upTo: 55000, amounts: { single: 0, marriedJoint: 17000, headOfHousehold: 2000 } },
+          { upTo: 56000, amounts: { single: 0, marriedJoint: 16000, headOfHousehold: 1000 } },
+          { upTo: 57000, amounts: { single: 0, marriedJoint: 15000, headOfHousehold: 0 } },
+          { upTo: 58000, amounts: { single: 0, marriedJoint: 14000, headOfHousehold: 0 } },
+          { upTo: 59000, amounts: { single: 0, marriedJoint: 13000, headOfHousehold: 0 } },
+          { upTo: 60000, amounts: { single: 0, marriedJoint: 12000, headOfHousehold: 0 } },
+          { upTo: 61000, amounts: { single: 0, marriedJoint: 11000, headOfHousehold: 0 } },
+          { upTo: 62000, amounts: { single: 0, marriedJoint: 10000, headOfHousehold: 0 } },
+          { upTo: 63000, amounts: { single: 0, marriedJoint: 9000, headOfHousehold: 0 } },
+          { upTo: 64000, amounts: { single: 0, marriedJoint: 8000, headOfHousehold: 0 } },
+          { upTo: 65000, amounts: { single: 0, marriedJoint: 7000, headOfHousehold: 0 } },
+          { upTo: 66000, amounts: { single: 0, marriedJoint: 6000, headOfHousehold: 0 } },
+          { upTo: 67000, amounts: { single: 0, marriedJoint: 5000, headOfHousehold: 0 } },
+          { upTo: 68000, amounts: { single: 0, marriedJoint: 4000, headOfHousehold: 0 } },
+          { upTo: 69000, amounts: { single: 0, marriedJoint: 3000, headOfHousehold: 0 } },
+          { upTo: 70000, amounts: { single: 0, marriedJoint: 2000, headOfHousehold: 0 } },
+          { upTo: 71000, amounts: { single: 0, marriedJoint: 1000, headOfHousehold: 0 } },
+          { upTo: null, amounts: { single: 0, marriedJoint: 0, headOfHousehold: 0 } }
+        ],
+        /* Table B - Initial Tax Calculation : codes A/D/F (single), C (marriedJoint), B (headOfHousehold). */
+        brackets: {
+          single:          [[10000, 0.02], [50000, 0.045], [100000, 0.055], [200000, 0.06], [250000, 0.065], [500000, 0.069], [Infinity, 0.0699]],
+          marriedJoint:    [[20000, 0.02], [100000, 0.045], [200000, 0.055], [400000, 0.06], [500000, 0.065], [1000000, 0.069], [Infinity, 0.0699]],
+          headOfHousehold: [[16000, 0.02], [80000, 0.045], [160000, 0.055], [320000, 0.06], [400000, 0.065], [800000, 0.069], [Infinity, 0.0699]]
+        },
+        /* Tables C (addBack), D (recapture) et E (credit, decimale) : [borne haute incluse, valeur] par statut du site. */
+        stepAdjustments: {
+          addBack: {
+            single: [[56500, 0], [61500, 25], [66500, 50], [71500, 75], [76500, 100], [81500, 125], [86500, 150], [91500, 175], [96500, 200], [101500, 225], [Infinity, 250]],
+            marriedJoint: [[100500, 0], [105500, 50], [110500, 100], [115500, 150], [120500, 200], [125500, 250], [130500, 300], [135500, 350], [140500, 400], [145500, 450], [Infinity, 500]],
+            headOfHousehold: [[78500, 0], [82500, 40], [86500, 80], [90500, 120], [94500, 160], [98500, 200], [102500, 240], [106500, 280], [110500, 320], [114500, 360], [Infinity, 400]]
+          },
+          recapture: {
+            single: [[105000, 0], [110000, 25], [115000, 50], [120000, 75], [125000, 100], [130000, 125], [135000, 150], [140000, 175], [145000, 200], [150000, 225], [200000, 250], [205000, 340], [210000, 430], [215000, 520], [220000, 610], [225000, 700], [230000, 790], [235000, 880], [240000, 970], [245000, 1060], [250000, 1150], [255000, 1240], [260000, 1330], [265000, 1420], [270000, 1510], [275000, 1600], [280000, 1690], [285000, 1780], [290000, 1870], [295000, 1960], [300000, 2050], [305000, 2140], [310000, 2230], [315000, 2320], [320000, 2410], [325000, 2500], [330000, 2590], [335000, 2680], [340000, 2770], [345000, 2860], [500000, 2950], [505000, 3000], [510000, 3050], [515000, 3100], [520000, 3150], [525000, 3200], [530000, 3250], [535000, 3300], [540000, 3350], [Infinity, 3400]],
+            marriedJoint: [[210000, 0], [220000, 50], [230000, 100], [240000, 150], [250000, 200], [260000, 250], [270000, 300], [280000, 350], [290000, 400], [300000, 450], [400000, 500], [410000, 680], [420000, 860], [430000, 1040], [440000, 1220], [450000, 1400], [460000, 1580], [470000, 1760], [480000, 1940], [490000, 2120], [500000, 2300], [510000, 2480], [520000, 2660], [530000, 2840], [540000, 3020], [550000, 3200], [560000, 3380], [570000, 3560], [580000, 3740], [590000, 3920], [600000, 4100], [610000, 4280], [620000, 4460], [630000, 4640], [640000, 4820], [650000, 5000], [660000, 5180], [670000, 5360], [680000, 5540], [690000, 5720], [1000000, 5900], [1010000, 6000], [1020000, 6100], [1030000, 6200], [1040000, 6300], [1050000, 6400], [1060000, 6500], [1070000, 6600], [1080000, 6700], [Infinity, 6800]],
+            headOfHousehold: [[168000, 0], [176000, 40], [184000, 80], [192000, 120], [200000, 160], [208000, 200], [216000, 240], [224000, 280], [232000, 320], [240000, 360], [320000, 400], [328000, 540], [336000, 680], [344000, 820], [352000, 960], [360000, 1100], [368000, 1240], [376000, 1380], [384000, 1520], [392000, 1660], [400000, 1800], [408000, 1940], [416000, 2080], [424000, 2220], [432000, 2360], [440000, 2500], [448000, 2640], [456000, 2780], [464000, 2920], [472000, 3060], [480000, 3200], [488000, 3340], [496000, 3480], [504000, 3620], [512000, 3760], [520000, 3900], [528000, 4040], [536000, 4180], [544000, 4320], [552000, 4460], [800000, 4600], [808000, 4680], [816000, 4760], [824000, 4840], [832000, 4920], [840000, 5000], [848000, 5080], [856000, 5160], [864000, 5240], [Infinity, 5320]]
+          },
+          credit: {
+            single: [[18800, 0.75], [19300, 0.7], [19800, 0.65], [20300, 0.6], [20800, 0.55], [21300, 0.5], [21800, 0.45], [22300, 0.4], [25000, 0.35], [25500, 0.3], [26000, 0.25], [26500, 0.2], [31300, 0.15], [31800, 0.14], [32300, 0.13], [32800, 0.12], [33300, 0.11], [60000, 0.1], [60500, 0.09], [61000, 0.08], [61500, 0.07], [62000, 0.06], [62500, 0.05], [63000, 0.04], [63500, 0.03], [64000, 0.02], [64500, 0.01], [Infinity, 0]],
+            marriedJoint: [[30000, 0.75], [30500, 0.7], [31000, 0.65], [31500, 0.6], [32000, 0.55], [32500, 0.5], [33000, 0.45], [33500, 0.4], [40000, 0.35], [40500, 0.3], [41000, 0.25], [41500, 0.2], [50000, 0.15], [50500, 0.14], [51000, 0.13], [51500, 0.12], [52000, 0.11], [96000, 0.1], [96500, 0.09], [97000, 0.08], [97500, 0.07], [98000, 0.06], [98500, 0.05], [99000, 0.04], [99500, 0.03], [100000, 0.02], [100500, 0.01], [Infinity, 0]],
+            headOfHousehold: [[24000, 0.75], [24500, 0.7], [25000, 0.65], [25500, 0.6], [26000, 0.55], [26500, 0.5], [27000, 0.45], [27500, 0.4], [34000, 0.35], [34500, 0.3], [35000, 0.25], [35500, 0.2], [44000, 0.15], [44500, 0.14], [45000, 0.13], [45500, 0.12], [46000, 0.11], [74000, 0.1], [74500, 0.09], [75000, 0.08], [75500, 0.07], [76000, 0.06], [76500, 0.05], [77000, 0.04], [77500, 0.03], [78000, 0.02], [78500, 0.01], [Infinity, 0]]
+          }
+        }
+      },
+      employeePrograms: [
+        { label: "CT Paid Leave (0.50%)", rate: 0.005, wageCap: 184500 }
+      ]
     }
   }
 };

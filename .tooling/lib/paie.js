@@ -152,6 +152,24 @@ function plafondImpotFederal(S, statut, salaire) {
   return palier ? palier[1] : 0;
 }
 
+/* Le Connecticut est le premier Etat ou la formule de retenue ajoute a l'impot DEUX montants lus par marches
+   dans des tables (Table C : recuperation de la tranche a 2 %, Table D : recuperation d'impot) puis le multiplie
+   par (1 - une decimale de la Table E, « Personal Tax Credits ») : TPG-211, Rev. 12/25, etapes 8 a 12. Chaque table
+   est une liste [borne haute INCLUSE, valeur] lue sur le salaire annualise apres 401(k), pas sur le revenu imposable.
+   Rien n'est ajoute si le revenu imposable annualise est nul (« Proceed to Step 14 »). Miroir de
+   assets/calc-paycheck.js. */
+function valeurParPaliers(table, base) {
+  for (const [haut, v] of table) if (base <= haut) return v;
+  return table[table.length - 1][1];
+}
+function ajustementsPaliers(S, statut, base, imposable, impot) {
+  const a = S.incomeTax.stepAdjustments;
+  if (!a || !(imposable > 0)) return impot;
+  const pick = (t) => (statut in t) ? t[statut] : t.single;
+  return (impot + valeurParPaliers(pick(a.addBack), base) + valeurParPaliers(pick(a.recapture), base))
+    * (1 - valeurParPaliers(pick(a.credit), base));
+}
+
 /* Les « allowances » de l'Oregon (OR-W-4) valent chacune un CREDIT retranche de
    l'impot APRES le calcul : « Is the personal exemption credit subtracted before
    or after the other calculations? After. » Et la formule n'en tient plus aucune
@@ -212,11 +230,12 @@ function calcul(cle, brut, statut = "single", retraitePct = 0, comte = undefined
   const imposableEtat = Math.max(0, baseEtat - deductionEtat(S, statut, baseEtat) - ficaDeduite - impotFedSoustrait);
   const table = S.incomeTax.bracketTable;
   const etatBrut = S.incomeTax.hasIncomeTax
-    ? Math.max(0, (table
+    ? Math.max(0, ajustementsPaliers(S, statut, baseEtat, imposableEtat,
+                  (table
                     ? impotTable((statut in table) ? table[statut] : table.single, imposableEtat)
                     : progressiveTax(imposableEtat,
                                      S.incomeTax.brackets[statut] || S.incomeTax.brackets.single))
-                  + marcheEtat(S, imposableEtat)
+                  + marcheEtat(S, imposableEtat))
                   - creditEtat(S, statut, baseEtat)
                   - creditAllowances(S, statut, baseEtat))
     : 0;
@@ -282,5 +301,5 @@ const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFra
 const c0 = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
 module.exports = { R, HEURES, progressiveTax, deductionEtat, creditEtat, marcheEtat,
-                   plafondImpotFederal, creditAllowances, tauxLocal,
+                   plafondImpotFederal, creditAllowances, tauxLocal, valeurParPaliers, ajustementsPaliers,
                    impotTable, calcul, c2, c0 };

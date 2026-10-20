@@ -235,6 +235,21 @@
          cannot express that jump. Added 2026-09-02. */
       var nt = state.incomeTax.notch;
       if (nt && imposableEtat > nt.over) stateTax += nt.add;
+      /* Connecticut is the first state here whose formula ADDS two amounts read from step tables to the
+         tax, then multiplies by one minus a decimal from a third table: TPG-211 (Rev. 12/25), steps 8 to
+         12 - Table C (2% tax rate phase-out add-back), Table D (tax recapture), Table E (personal tax
+         credits). Each table is a list of [upper bound INCLUDED, value] read on the annualized pay after
+         401(k), not on taxable income. Nothing is added when annualized taxable income is zero.
+         Added 2026-10-20. */
+      var sa = state.incomeTax.stepAdjustments;
+      if (sa && imposableEtat > 0) {
+        var pickStep = function (t) {
+          var rows = (input.filingStatus in t) ? t[input.filingStatus] : t.single;
+          for (var pi = 0; pi < rows.length; pi++) { if (baseEtat <= rows[pi][0]) return rows[pi][1]; }
+          return rows[rows.length - 1][1];
+        };
+        stateTax = (stateTax + pickStep(sa.addBack) + pickStep(sa.recapture)) * (1 - pickStep(sa.credit));
+      }
       /* Some states do not shrink the taxable income at all: they charge the
          full rate, then subtract a CREDIT that fades out as pay rises. Utah is
          the first one here - Publication 14, schedules 1 to 8: tax is 4.45% of
