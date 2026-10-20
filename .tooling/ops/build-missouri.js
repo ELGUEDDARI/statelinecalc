@@ -105,11 +105,11 @@ const bimensuel75 = a75.etat / 26;                                        // 99,
 const PAIE_HAUT = SEUIL_HAUT + SD.single;                                 // 25 536
 const PAIE_ZERO = ZERO + SD.single;                                       // 17 448
 
-/* Voisins : sept des huit frontaliers sont publies (Kansas ne l'est pas). */
+/* Voisins : les huit frontaliers sont publies (Kansas depuis le 20/10/2026). */
 const REF = 75000;
-const COMPARE = [CLE, "iowa", "illinois", "kentucky", "tennessee", "arkansas", "oklahoma", "nebraska"];
+const COMPARE = [CLE, "iowa", "illinois", "kentucky", "tennessee", "arkansas", "oklahoma", "kansas", "nebraska"];
 const NOMS = { [CLE]: "Missouri", iowa: "Iowa", illinois: "Illinois", kentucky: "Kentucky", tennessee: "Tennessee",
-  arkansas: "Arkansas", oklahoma: "Oklahoma", nebraska: "Nebraska" };
+  arkansas: "Arkansas", oklahoma: "Oklahoma", kansas: "Kansas", nebraska: "Nebraska" };
 const progs = r => r.programmes.reduce((t, p) => t + p.montant, 0);
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
@@ -732,7 +732,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Missouri borders eight states: Iowa, Illinois, Kentucky, Tennessee, Arkansas, Oklahoma, Kansas and Nebraska. We have a calculator for seven of them; Kansas is not published yet.
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Missouri borders eight states: Iowa, Illinois, Kentucky, Tennessee, Arkansas, Oklahoma, Kansas and Nebraska. We have a calculator for all eight.
   Missouri is shown with its income tax withholding and no city earnings tax, as the other rows leave out their own local taxes. Tennessee&rsquo;s page explains that the state taxes no wages.</p>
   <div class="table-scroll">
     <table>
@@ -766,6 +766,7 @@ ${blocSources(CLE)}
     <li><a href="/paycheck-calculator/tennessee/">Tennessee paycheck calculator</a> &mdash; the neighbor to the southeast, which taxes no wages.</li>
     <li><a href="/paycheck-calculator/arkansas/">Arkansas paycheck calculator</a> &mdash; the neighbor to the south.</li>
     <li><a href="/paycheck-calculator/oklahoma/">Oklahoma paycheck calculator</a> &mdash; the neighbor to the southwest.</li>
+    <li><a href="/paycheck-calculator/kansas/">Kansas paycheck calculator</a> &mdash; the neighbor to the west, with rates of 5.2% and 5.58% after a $9,160 allowance.</li>
     <li><a href="/paycheck-calculator/nebraska/">Nebraska paycheck calculator</a> &mdash; the neighbor to the northwest.</li>
     <li><a href="/75000-salary-take-home-pay-by-state/">$75,000 take-home pay in every state we publish</a> &mdash; where Missouri ranks on one salary.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure

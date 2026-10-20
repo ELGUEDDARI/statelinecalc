@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1141,6 +1141,45 @@ const PAR_ETAT = {
       url: "https://web.archive.org/web/20260609143109/https://www.kcmo.gov/city-hall/departments/finance/tax-home/tax-guides/tax-guide-for-non-resident-businesses",
       titre: "City of Kansas City, Missouri &mdash; Tax Guide for Non-Resident Businesses (Internet Archive snapshot of June 9, 2026)",
       quoi: "the one percent earnings tax that an employer registered with the city withholds on all wages of city residents and on the part of a nonresident&rsquo;s pay earned in the city, in a guide for employers outside the city; the city&rsquo;s own site refuses automated requests, so we link the archived copy",
+      motif: ["the employer must withhold the one percent earnings tax on all salaries and wages"] }
+  ],
+  /* Kansas (20/10/2026) : ksrevenue.gov ne repond pas depuis cette machine (delai depasse) ; les cinq documents de l'agence
+     sont lus et lies par leur copie Wayback (HTTP 200, PDF intacts), dont la date est dite dans le titre. */
+  kansas: [
+    { type: "document",
+      url: "https://web.archive.org/web/20261009005330/https://ksrevenue.gov/pdf/kw100.pdf",
+      titre: "Kansas Department of Revenue &mdash; Withholding Tax Guide, KW-100 (Rev. 10-24; PDF, Internet Archive snapshot of October 9, 2026)",
+      quoi: "the percentage formula (the withholding allowance amount comes off the pay, then the table: 0% up to $3,605, 5.2% up to $26,605 and 5.58% above for a single filer, with higher steps for a married one), the printed wage-bracket tables, the whole-dollar rounding rule and the 5% rate on separately stated bonuses; the agency&rsquo;s site did not answer our requests, so we link the archived copy",
+      motif: ["5.2% of excess over $3,605", "Withholding Tax Guide"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20261009164909/https://www.ksrevenue.gov/pdf/k-4.pdf",
+      titre: "Kansas Department of Revenue &mdash; Form K-4, Employee&rsquo;s Withholding Allowance Certificate (Rev. 7-24; PDF, Internet Archive snapshot of October 9, 2026)",
+      quoi: "the allowance worksheet: &ldquo;Single&rdquo; or &ldquo;Joint&rdquo; (joint only if your spouse has no income), the allowance for each dependent, and the &ldquo;2&rdquo; entered by a head of household",
+      motif: ["if you will file head of household"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260508122248/https://ksrevenue.gov/taxnotices/notice25-06.pdf",
+      titre: "Kansas Department of Revenue &mdash; Notice 25-06, Decreases of income and privilege tax rates contingent on revenue (October 2, 2025; PDF, Internet Archive snapshot of May 8, 2026)",
+      quoi: "the statement that the Secretary of Revenue will not publish new income tax rates and there will be no rate reduction for tax year 2026",
+      motif: ["there will be no rate reduction for tax year 2026"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260508120315/https://ksrevenue.gov/taxnotices/notice25-07.pdf",
+      titre: "Kansas Department of Revenue &mdash; Notice 25-07, Changes to individual income tax personal exemptions (November 19, 2025; PDF, Internet Archive snapshot of May 8, 2026)",
+      quoi: "the additional $2,320 exemption for a head of household filer, for tax year 2024 and all tax years after it",
+      motif: ["exemption of $2,320 for tax year 2024"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260226215004/https://www.ksrevenue.gov/taxnotices/notice24-06.pdf",
+      titre: "Kansas Department of Revenue &mdash; Notice 24-06, Withholding tax tables updated (July 17, 2024; PDF, Internet Archive snapshot of February 26, 2026)",
+      quoi: "the statement that the withholding tables reflect the new rates, the higher standard deduction and the higher personal exemption for tax year 2024 and all tax years after it",
+      motif: ["WITHHOLDING TAX TABLES UPDATED"] },
+    { type: "document",
+      url: "https://ksrevisor.gov/statutes/chapters/ch44/044_007_0010.html",
+      titre: "Kansas Office of Revisor of Statutes &mdash; K.S.A. 44-710, Employer contributions",
+      quoi: "the rule that an employer&rsquo;s unemployment contributions shall not be deducted, in whole or in part, from the wages of the people it employs",
+      motif: ["shall not be deducted, in whole or in part, from the wages"] },
+    { type: "document",
+      url: "https://web.archive.org/web/20260609143109/https://www.kcmo.gov/city-hall/departments/finance/tax-home/tax-guides/tax-guide-for-non-resident-businesses",
+      titre: "City of Kansas City, Missouri &mdash; Tax Guide for Non-Resident Businesses (Internet Archive snapshot of June 9, 2026)",
+      quoi: "the one percent earnings tax that an employer registered with the city withholds on the part of a nonresident&rsquo;s pay earned in Kansas City, Missouri, which matters to Kansans who commute there; the city&rsquo;s own site refuses automated requests, so we link the archived copy",
       motif: ["the employer must withhold the one percent earnings tax on all salaries and wages"] }
   ],
   iowa: [

@@ -4691,6 +4691,97 @@ const RATES_2026 = {
           headOfHousehold: [[1348, 0], [2696, 0.02], [4044, 0.025], [5392, 0.03], [6740, 0.035], [8088, 0.04], [9436, 0.045], [Infinity, 0.047]]
         }
       }
+    },
+
+    /* =======================================================================
+       KANSAS  -  lu le 2026-10-20 (44e Etat). ksrevenue.gov ne repond pas depuis cette machine (curl : delai
+       depasse, HTTP 000) : la source principale est lue dans la copie Wayback de l'agence (PDF intact) ;
+       ksrevisor.gov : HTTP 200 en direct.
+       Moteur : AUCUN mecanisme nouveau. Meme forme que le Missouri : montant deduit par statut + bareme par statut
+       dont la premiere tranche est a 0 %. Ici le bareme DIFFERE selon le statut (seuils celibataire / marie).
+       SEMrush (data/semrush-us-paycheck-2026-09-01.csv) : « kansas paycheck calculator » 2 900 / mois, KD 15.
+       -----------------------------------------------------------------------
+       1. LA FORMULE. Kansas Department of Revenue, « Withholding Tax Guide », KW-100 (Rev. 10-24),
+          https://www.ksrevenue.gov/pdf/kw100.pdf lu dans la copie Wayback du 2026-10-09
+          (https://web.archive.org/web/20261009005330/https://ksrevenue.gov/pdf/kw100.pdf, PDF, pdftotext et PyMuPDF le
+          2026-10-20 ; page de garde : « NEW WITHHOLDING TAX RATES for wages paid on or after July 1, 2024 »). C'est la
+          version en ligne a cette date : la copie du 09/10/2026 est celle de l'URL courante de l'agence.
+          Pages 5-6 : « The percentage formula is a mathematical formula based on the Kansas personal income tax rates. ...
+          To compute the net amount of the payment, you must first calculate the employee's/payee's withholding allowance
+          amount and deduct it from the gross wage or payment for the period before using the percentage rate tables. »
+          « An individual's withholding allowance amount is their total Kansas individual income tax personal exemption
+          amount divided by the number of payroll periods in the calendar year. The personal exemption amount is $9,160
+          for those who are single, head of household, or married filing separate. For individuals who are married filing
+          joint, the personal exemption amount is $18,320 (equivalent to two exemptions of $9,160). Individuals filing as
+          Head of Household may claim an additional withholding allowance in the amount of $2,320. There is also an
+          additional $2,320 personal exemption per dependent. »
+          Arrondi : « Round to the nearest whole dollar by dropping amounts under 50 cents and increasing amounts from 50 to
+          99 cents to the next higher dollar. » Le moteur n'arrondit pas.
+       2. LE BAREME. Pages 19-20, « TABLES FOR PERCENTAGE METHOD OF KANSAS WITHHOLDING (For wages paid on and after July
+          1, 2024) », « The wage amounts are after withholding allowances have been subtracted », TABLE 7 -- ANNUAL PAYROLL
+          PERIOD : (a) SINGLE person (including Head of Household) : « $0 $3,605 : $0 ; $3,605 $26,605 : 5.2% of excess over
+          $3,605 ; $26,605 : $1,196.00 plus 5.58% of excess over $26,605 » ; (b) MARRIED person : « $0 $8,240 : $0 ; $8,240
+          $54,240 : 5.2% of excess over $8,240 ; $54,240 : $2,392.00 plus 5.58% of excess over $54,240 ». Recalcule :
+          23 000 x 5,2 % = 1 196 ; 46 000 x 5,2 % = 2 392. Les tables par periode (hebdo, aux 2 semaines, 2 fois par mois,
+          mensuel, quotidien) sont imprimees avec leurs propres seuils arrondis ; verif-retenue-ks.js recoupe les cellules
+          (11 440) du bareme par tranches de salaire imprime (pages 21-40).
+       3. LES TAUX 5,2 % / 5,58 % EN 2026. Notice 25-06 du Department of Revenue (« DECREASES OF INCOME AND PRIVILEGE TAX
+          RATES - CONTINGENT ON REVENUE », 2 octobre 2025 ; lue dans la copie Wayback du 2026-05-08,
+          https://web.archive.org/web/20260508122248/https://ksrevenue.gov/taxnotices/notice25-06.pdf), verbatim : « As a
+          result of this certification, the Secretary of Revenue will not calculate and publish new income tax rates, and
+          there will be no rate reduction for tax year 2026. » Notice 24-06 (17 juillet 2024, copie Wayback du 2026-02-26) :
+          « the Department has updated the withholding tax tables to reflect the new tax rates, higher standard deduction, and
+          higher personal exemption amount for tax years 2024, and all tax years thereafter. » Aucune notice 2026 sur la
+          retenue n'a ete trouvee ; la page dit « the guide we read », jamais « Kansas did not change ».
+       4. LES STATUTS DU SITE. single = 9 160 $ (une allocation) ; marriedJoint = 18 320 $ = K-4, case « Joint » (« If you are
+          married and your spouse does not have income mark "Joint" ») ; la page chiffre l'ecart si le conjoint travaille
+          (case « Single »). headOfHousehold = 11 480 $ = 9 160 $ + UNE allocation de 2 320 $ : le texte du guide (p. 6, « Individuals
+          filing as Head of Household may claim an additional withholding allowance in the amount of $2,320 ») et la Notice 25-07
+          (19 novembre 2025 : K.S.A. 79-32,121(b)(1), « an additional Kansas exemption of $2,320 for tax year 2024 and all tax years
+          thereafter ») disent la meme chose. Le K-4 (ligne D : « Enter "2" if you will file head of household ») conduirait, dans les
+          tables imprimees par tranches de salaire (premiere allocation 9 160 $, les suivantes 2 320 $ : ecart de 20 $ puis 5 $ a
+          2 000 $ par quinzaine), a 13 800 $ : trois textes officiels contre une ligne de formulaire, le site retient la loi (la moins
+          favorable au net) et la page chiffre l'autre lecture (129,46 $ par an de MOINS de retenue a 75 000 $). Le bareme du chef de
+          famille est celui du celibataire (« SINGLE person (including Head of Household) »).
+          Le K-4 compte aussi 1 allocation par personne a charge : NON modelise (le calculateur ne demande pas les personnes a
+          charge), dit sur la page.
+       5. 401(k) : « Kansas withholding on deferred compensation plans follows federal withholding rules. Contributions to a
+          deferred compensation plan are generally not subject to withholding. » (p. 4) => base apres versement pretax, comme
+          les autres Etats.
+       6. PRIMES : « Kansas withholding on a supplemental wage payment is computed using the same method that you use at the
+          federal level... If you state the supplemental wage separately and compute federal withholding as a percentage of the
+          payment (usually 25%), then compute Kansas withholding at 5% of the gross payment. For example, Kansas withholding on a
+          $1,000 bonus paid would be $50 ($1,000 X 5%). » (p. 8). NON modelise, dit.
+       7. ASSURANCE CHOMAGE : K.S.A. 44-710(a) (https://ksrevisor.gov/statutes/chapters/ch44/044_007_0010.html, HTTP 200, lu le
+          2026-10-20), verbatim : « Such contributions shall become due and be paid by each contributing employer to the secretary
+          for the employment security fund ... and shall not be deducted, in whole or in part, from the wages of individuals in such
+          employer's employ. » => pas d'employeePrograms.
+       8. PAS DE CONGE PAYE NI D'ASSURANCE INVALIDITE D'ETAT TROUVES ; aucune taxe locale sur les salaires trouvee dans les
+          documents lus (le guide KW-100 n'en decrit aucune) : « we found no », jamais « Kansas has no ». Le guide dit seulement
+          que le Kansas ne connait pas de retenue sur interets et dividendes.
+       9. NON MODELE : personnes a charge du K-4, ligne 5 (retenue supplementaire), exoneration (ligne 6), conjoint qui travaille
+          (case « Single »), non-residents et residents qui travaillent dans un autre Etat, primes a 5 %, arrondi au dollar par paie.
+       ----------------------------------------------------------------------- */
+    kansas: {
+      name: "Kansas",
+      abbr: "KS",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* « withholding allowance amount » annuel : 9 160 (celibataire) ; 18 320 (« Joint » : deux exemptions de 9 160) ;
+           chef de famille : 9 160 + UNE allocation de 2 320 = 11 480 (guide p. 6 et Notice 25-07 ; le K-4 ligne D dit « 2 », soit 13 800 : lecture non retenue, chiffree sur la page). */
+        standardDeduction: {
+          single: 9160,
+          marriedJoint: 18320,
+          headOfHousehold: 11480
+        },
+        /* TABLE 7 -- ANNUAL PAYROLL PERIOD. Celibataire (chef de famille inclus) : 0 % jusqu'a 3 605 $, 5,2 % jusqu'a
+           26 605 $, 5,58 % au-dela. Marie : 0 % jusqu'a 8 240 $, 5,2 % jusqu'a 54 240 $, 5,58 % au-dela. */
+        brackets: {
+          single:          [[3605, 0], [26605, 0.052], [Infinity, 0.0558]],
+          marriedJoint:    [[8240, 0], [54240, 0.052], [Infinity, 0.0558]],
+          headOfHousehold: [[3605, 0], [26605, 0.052], [Infinity, 0.0558]]
+        }
+      }
     }
   }
 };

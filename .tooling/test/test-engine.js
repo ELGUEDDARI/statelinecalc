@@ -2804,5 +2804,88 @@ check("MO : bareme et deductions == guide (annuel, p. 12-13)",
   check("MO : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
+console.log("\n=== Kansas (44e Etat) ===");
+
+/* Sources (lues le 2026-10-20) : Kansas DOR, Withholding Tax Guide KW-100 (Rev. 10-24), p. 6 : montant d'allocation 9 160 $ (celibataire,
+   chef de famille), 18 320 $ (« Joint »), + 2 320 $ par personne a charge ; K-4 (Rev. 7-24) ligne D : chef de famille = « 2 » allocations ;
+   TABLE 7 annuelle : celibataire 0 % jusqu'a 3 605 $, 5,2 % jusqu'a 26 605 $ (1 196 $), 5,58 % au-dela ; marie 0 % jusqu'a 8 240 $, 5,2 % jusqu'a
+   54 240 $ (2 392 $), 5,58 % au-dela. Tous les attendus sont recalcules a la main, PAS copies de la sortie du code. */
+const ksC = (b, st, rp) => calcul("kansas", b, st || "single", rp || 0);
+
+/* Cas KS-1 - 75 000 $ celibataire. Federal 7 670 ; FICA 5 737,50. Etat : 75 000 - 9 160 = 65 840 ; 1 196 + (65 840 - 26 605) x 5,58 % =
+   1 196 + 39 235 x 0,0558 = 1 196 + 2 189,313 = 3 385,313. Net : 75 000 - 7 670 - 5 737,50 - 3 385,313 = 58 207,187. */
+check("KS 75 000 $ celibataire : impot d'Etat", ksC(75000).etat, 3385.313, 0.0005);
+check("KS 75 000 $ celibataire : net", ksC(75000).net, 58207.187, 0.0005);
+
+/* Cas KS-2 - 75 000 $ marie (case « Joint »). Federal 4 640. Etat : 75 000 - 18 320 = 56 680 ; 2 392 + (56 680 - 54 240) x 5,58 % =
+   2 392 + 2 440 x 0,0558 = 2 392 + 136,152 = 2 528,152. Net : 75 000 - 4 640 - 5 737,50 - 2 528,152 = 62 094,348. */
+check("KS 75 000 $ marie : impot d'Etat", ksC(75000, "marriedJoint").etat, 2528.152, 0.0005);
+check("KS 75 000 $ marie : net", ksC(75000, "marriedJoint").net, 62094.348, 0.0005);
+
+/* Cas KS-3 - 75 000 $ chef de famille (11 480 $ = 9 160 + 2 320, guide p. 6 et Notice 25-07). Federal 5 748. Etat : 75 000 - 11 480 = 63 520 ;
+   1 196 + (63 520 - 26 605) x 5,58 % = 1 196 + 36 915 x 0,0558 = 1 196 + 2 059,857 = 3 255,857. Net : 75 000 - 5 748 - 5 737,50 - 3 255,857 = 60 258,643. */
+check("KS 75 000 $ chef de famille : impot d'Etat", ksC(75000, "headOfHousehold").etat, 3255.857, 0.0005);
+check("KS 75 000 $ chef de famille : net", ksC(75000, "headOfHousehold").net, 60258.643, 0.0005);
+
+/* Cas KS-4 - 30 000 $ celibataire. Federal 1 420 ; FICA 2 295. Etat : 20 840 imposables ; (20 840 - 3 605) x 5,2 % = 17 235 x 0,052 = 896,22.
+   Net : 30 000 - 1 420 - 2 295 - 896,22 = 25 388,78. */
+check("KS 30 000 $ celibataire : impot d'Etat", ksC(30000).etat, 896.22, 0.0005);
+check("KS 30 000 $ celibataire : net", ksC(30000).net, 25388.78, 0.0005);
+
+/* Cas KS-5 - 250 000 $ celibataire. Federal 51 304 ; FICA 11 439 + 4 075 = 15 514. Etat : 240 840 imposables ; 1 196 + (240 840 - 26 605) x 5,58 % =
+   1 196 + 214 235 x 0,0558 = 1 196 + 11 954,313 = 13 150,313. Net : 250 000 - 51 304 - 15 514 - 13 150,313 = 170 031,687. */
+check("KS 250 000 $ celibataire : impot d'Etat", ksC(250000).etat, 13150.313, 0.0005);
+check("KS 250 000 $ celibataire : net", ksC(250000).net, 170031.687, 0.0005);
+
+/* Cas KS-6 - l'exemple imprime du guide (p. 6), a 2 allocations (marie, sans enfant) : 2 000 $ par quinzaine = 48 000 $ ; 48 000 - 18 320 = 29 680 ;
+   (29 680 - 8 240) x 5,2 % = 21 440 x 0,052 = 1 114,88 ; / 24 = 46,4533 $. La grille imprimee (1 970-2 010, 2 allocations) donne 46 $. */
+check("KS exemple du guide : 48 000 $ marie, par quinzaine", ksC(48000, "marriedJoint").etat / 24, 46.45333, 0.0005);
+check("KS exemple du guide : 46 $ par quinzaine apres arrondi au dollar", Math.round(ksC(48000, "marriedJoint").etat / 24), 46, 0);
+
+/* Cas KS-7 - sous la tranche a 0 % : 12 000 $ - 9 160 = 2 840 imposables < 3 605 -> 0 ; et au seuil exact : 12 765 $ -> 3 605 imposables -> 0. */
+check("KS 12 000 $ celibataire : zero retenue", ksC(12000).etat, 0, 0.0005);
+check("KS 12 765 $ celibataire : zero retenue au seuil", ksC(12765).etat, 0, 0.0005);
+
+/* Cas KS-8 - 17 000 $ celibataire : 7 840 imposables ; (7 840 - 3 605) x 5,2 % = 4 235 x 0,052 = 220,22. */
+check("KS 17 000 $ celibataire : impot d'Etat", ksC(17000).etat, 220.22, 0.0005);
+
+/* Cas KS-9 - 401(k) 6 % sur 75 000 $ : salaire 70 500 ; 61 340 imposables ; 1 196 + (61 340 - 26 605) x 5,58 % = 1 196 + 34 735 x 0,0558 =
+   1 196 + 1 938,213 = 3 134,213. */
+check("KS 75 000 $ avec 401(k) 6 % : impot d'Etat", ksC(75000, "single", 0.06).etat, 3134.213, 0.0005);
+
+/* Cas KS-10 - aucun programme salarie (le chomage est a la charge de l'employeur, K.S.A. 44-710). */
+check("KS : aucun programme salarie", ksC(75000).programmes.length + ksC(75000).paidLeave + ksC(75000).waCares, 0, 0);
+
+/* Cas KS-11 - garde-fou : le bareme du moteur est celui du guide (TABLE 7), le chef de famille suit le celibataire. */
+check("KS : bareme et allocations == guide (annuel, p. 6 et 19-20)",
+  (() => { const A = R.states.kansas.incomeTax;
+    return JSON.stringify(A.brackets.single) === JSON.stringify([[3605, 0], [26605, 0.052], [Infinity, 0.0558]]) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify([[8240, 0], [54240, 0.052], [Infinity, 0.0558]]) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(A.brackets.single) &&
+      A.standardDeduction.single === 9160 && A.standardDeduction.marriedJoint === 18320 && A.standardDeduction.headOfHousehold === 11480 ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes des deux tranches x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 12765, 12766, 22960, 26560, 26561, 35765, 72560, 75000, 184500, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "kansas", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("kansas", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("KS : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);

@@ -103,17 +103,17 @@ const zeroBrutS = zeroS + EX.single;                                    // 11 10
 const zeroBrutM = zeroM + EX.marriedJoint;                              // 22 200
 const a30tax = a30.etat;
 
-/* Voisins : Texas, Arkansas, Colorado, New Mexico, Missouri (publies) ; Kansas ne l'est pas. */
+/* Voisins : Texas, Arkansas, Colorado, New Mexico, Missouri, Kansas (tous publies ; Kansas depuis le 20/10/2026). */
 const REF = 75000;
-const COMPARE = [CLE, "texas", "arkansas", "colorado", "new-mexico", "missouri"];
-const NOMS = { [CLE]: "Oklahoma", texas: "Texas", arkansas: "Arkansas", colorado: "Colorado", "new-mexico": "New Mexico", missouri: "Missouri" };
+const COMPARE = [CLE, "texas", "arkansas", "colorado", "new-mexico", "missouri", "kansas"];
+const NOMS = { [CLE]: "Oklahoma", texas: "Texas", arkansas: "Arkansas", colorado: "Colorado", "new-mexico": "New Mexico", missouri: "Missouri", kansas: "Kansas" };
 const progs = r => r.programmes.reduce((t, p) => t + p.montant, 0);
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const tx75 = calcul("texas", REF), ar75 = calcul("arkansas", REF), co75 = calcul("colorado", REF), nm75 = calcul("new-mexico", REF), mo75 = calcul("missouri", REF);
+const tx75 = calcul("texas", REF), ar75 = calcul("arkansas", REF), co75 = calcul("colorado", REF), nm75 = calcul("new-mexico", REF), mo75 = calcul("missouri", REF), ks75 = calcul("kansas", REF);
 const plusMoins = (autre, nom) => autre.net > a75.net
   ? "a " + nom + " worker keeps " + N($$(autre.net - a75.net)) + " more"
   : "a " + nom + " worker keeps " + N($$(a75.net - autre.net)) + " less";
@@ -672,7 +672,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Oklahoma borders six states, and we have calculators for five of them: Texas, Arkansas, Colorado, New Mexico and Missouri. Kansas is not on this site yet. Missouri&rsquo;s row leaves out the Kansas City and St. Louis earnings taxes.
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Oklahoma borders six states, and we have calculators for all six: Texas, Arkansas, Colorado, New Mexico, Missouri and Kansas. Missouri&rsquo;s row leaves out the Kansas City and St. Louis earnings taxes.
   For Oklahoma, the state-level deductions are only the income tax withholding; the other states may add payroll programs.</p>
   <div class="table-scroll">
     <table>
@@ -692,7 +692,7 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
       </tbody>
     </table>
   </div>
-  <p>The table rounds take-home pay to the dollar; the differences below use the exact amounts. Compared with an Oklahoma worker on the same salary, ${plusMoins(tx75, "<a href=\"/paycheck-calculator/texas/\">Texas</a>")}, because, as the Texas page documents, Texas levies no state tax on wages. ${plusMoins(ar75, "<a href=\"/paycheck-calculator/arkansas/\">Arkansas</a>").replace(/^a </, "An <")}, ${plusMoins(nm75, "<a href=\"/paycheck-calculator/new-mexico/\">New Mexico</a>")}, ${plusMoins(mo75, "<a href=\"/paycheck-calculator/missouri/\">Missouri</a>")}, and ${plusMoins(co75, "<a href=\"/paycheck-calculator/colorado/\">Colorado</a>")}. A worker who lives in one of those states and commutes into Oklahoma is a different case that this calculator does not model: it assumes an Oklahoma resident working in Oklahoma.</p>
+  <p>The table rounds take-home pay to the dollar; the differences below use the exact amounts. Compared with an Oklahoma worker on the same salary, ${plusMoins(tx75, "<a href=\"/paycheck-calculator/texas/\">Texas</a>")}, because, as the Texas page documents, Texas levies no state tax on wages. ${plusMoins(ar75, "<a href=\"/paycheck-calculator/arkansas/\">Arkansas</a>").replace(/^a </, "An <")}, ${plusMoins(nm75, "<a href=\"/paycheck-calculator/new-mexico/\">New Mexico</a>")}, ${plusMoins(mo75, "<a href=\"/paycheck-calculator/missouri/\">Missouri</a>")}, ${plusMoins(ks75, "<a href=\"/paycheck-calculator/kansas/\">Kansas</a>")}, and ${plusMoins(co75, "<a href=\"/paycheck-calculator/colorado/\">Colorado</a>")}. A worker who lives in one of those states and commutes into Oklahoma is a different case that this calculator does not model: it assumes an Oklahoma resident working in Oklahoma.</p>
 
 ${blocSources(CLE)}
 
@@ -703,6 +703,7 @@ ${blocSources(CLE)}
     <li><a href="/paycheck-calculator/texas/">Texas paycheck calculator</a> &mdash; the neighbor to the south; that page documents why it levies no state tax on wages.</li>
     <li><a href="/paycheck-calculator/arkansas/">Arkansas paycheck calculator</a> &mdash; the neighbor to the east.</li>
     <li><a href="/paycheck-calculator/missouri/">Missouri paycheck calculator</a> &mdash; the neighbor to the northeast, with rates from 0% to 4.7% after a $16,100 standard deduction.</li>
+    <li><a href="/paycheck-calculator/kansas/">Kansas paycheck calculator</a> &mdash; the neighbor to the north, with rates of 5.2% and 5.58% after a $9,160 allowance.</li>
     <li><a href="/paycheck-calculator/colorado/">Colorado paycheck calculator</a> &mdash; the neighbor to the northwest, with a flat withholding rate.</li>
     <li><a href="/paycheck-calculator/new-mexico/">New Mexico paycheck calculator</a> &mdash; the neighbor to the west.</li>
     <li><a href="/paycheck-calculator/alabama/">Alabama paycheck calculator</a> &mdash; another state with a short series of low rates, and a withholding formula that subtracts your federal income tax.</li>
@@ -723,7 +724,7 @@ ${listeEtats}
 
   <p class="dates">
     Published <time datetime="${AUJOURD_HUI}">${LISIBLE}</time> &middot;
-    Last updated <time datetime="${AUJOURD_HUI}">${LISIBLE}</time>.
+    Last updated <time datetime="2026-10-20">October 20, 2026</time>.
   </p>
 
   <p class="disclaimer">

@@ -154,6 +154,18 @@ const LOCAL_PAR_ETAT = {
     local income tax on wages in the documents we read. The only local income tax lines on this site are on the
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
     calculators.</li>`,
+  /* Kansas (20/10/2026) : le guide KW-100 ne decrit aucune taxe locale sur les salaires : « we found no », jamais
+     « Kansas has no ». Un Kansan qui travaille a Kansas City (Missouri) peut devoir l'earnings tax de 1 % de cette
+     ville sur la part gagnee la-bas (KC : « withholding is required on the portion of the compensation attributable
+     to services rendered, work performed, or other activities engaged in within the City » pour les non-residents ;
+     copie Wayback du 09/06/2026). NON MODELE (le calculateur ne sait pas ou l'on travaille). */
+  kansas: `    <li><strong>Local taxes</strong> &mdash; the Kansas withholding guide we read describes state withholding
+    only, and we found no Kansas city or county income tax on wages in it. That is not proof that none exists. If you
+    live in Kansas but work in Kansas City, Missouri, that city&rsquo;s 1% earnings tax may apply to the part of
+    your pay earned there; see the <a href="/paycheck-calculator/missouri/">Missouri calculator</a>. This calculator
+    adds no local line for Kansas. The only local income tax lines on this site are on the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators.</li>`,
 
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county

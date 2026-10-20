@@ -36,6 +36,7 @@ const PUBLIES = {
   Illinois: "illinois",
   Indiana: "indiana",
   Iowa: "iowa",
+  Kansas: "kansas",
   Kentucky: "kentucky",
   Louisiana: "louisiana",
   Maryland: "maryland",
