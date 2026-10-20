@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1217,6 +1217,39 @@ const PAR_ETAT = {
       motif: ["shall not be deducted or deductible from wages"] },
     { type: "agence", url: "https://portal.ct.gov/DRS/DRS-Forms/Current-Year-Forms/Withholding-Forms",
       titre: "Connecticut Department of Revenue Services &mdash; Withholding forms, with the 2026 Withholding Tables and the supplemental table for married couples" }
+  ],
+  /* Vermont (20/10/2026) : tax.vermont.gov repond en direct (HTTP 200 le 2026-10-20) ; le PDF lu est octet pour octet celui de l'URL courante. */
+  vermont: [
+    { type: "document",
+      url: "https://tax.vermont.gov/sites/tax/files/documents/GB-1210-2026.pdf",
+      titre: "Vermont Department of Taxes &mdash; 2026 Income Tax Withholding Instructions, Tables, and Charts, GB-1210-2026 (PDF; effective January 1, 2026, expires December 31, 2026)",
+      quoi: "the percentage method (wages after subtracting withholding allowances, then the table: 3.35%, 6.60%, 7.60% and 8.75% above a zero step), the yearly allowance of $5,400.00, the single and married tables, the printed wage-bracket charts, the rule that civil union partners use the married table, and the Child Care Contribution paid by employers",
+      motif: ["Vermont Percentage Method Withholding Tables", "one withholding allowance equals $5400.00"] },
+    { type: "document",
+      url: "https://tax.vermont.gov/sites/tax/files/documents/W-4VT.pdf",
+      titre: "Vermont Department of Taxes &mdash; Form W-4VT, Employee&rsquo;s Withholding Allowance Certificate (PDF, Rev. 12/18)",
+      quoi: "the allowances worksheet: one for yourself, one more if you file jointly and your spouse does not work, one for each dependent, and one if you plan to file as head of household",
+      motif: ["Vermont Allowances Worksheet", "plan to file as"] },
+    { type: "document",
+      url: "https://tax.vermont.gov/business/child-care-contribution",
+      titre: "Vermont Department of Taxes &mdash; Child Care Contribution",
+      quoi: "the 0.44% payroll tax that employers pay, and the choice an employer has to withhold up to 25 percent of it (0.11%) from employee wages",
+      motif: ["may choose to deduct and withhold a maximum of 25 percent"] },
+    { type: "document",
+      url: "https://tax.vermont.gov/sites/tax/files/documents/GB-1326.pdf",
+      titre: "Vermont Department of Taxes &mdash; Vermont Child Care Contribution Guide, GB-1326 (PDF)",
+      quoi: "the rule that employees are not required to pay the contribution, and that an employer may withhold a smaller portion or none at all, and not more than 0.11% of any employee&rsquo;s wages",
+      motif: ["not more than 0.11%"] },
+    { type: "document",
+      url: "https://tax.vermont.gov/business/withholding",
+      titre: "Vermont Department of Taxes &mdash; Withholding for Employers",
+      quoi: "the rule that an out-of-state employer is not required to begin withholding Vermont tax until an employee has worked from a Vermont location for thirty days, and the advice that employers work with such employees, with a W-4VT to set allowances",
+      motif: ["thirty days"] },
+    { type: "document",
+      url: "https://governor.vermont.gov/vtfmli",
+      titre: "Office of the Governor of Vermont &mdash; Vermont Family and Medical Leave Plan",
+      quoi: "the description of Vermont&rsquo;s paid family and medical leave program as voluntary, with contributions paid by the employer, split with employees, or paid by employees as a voluntary benefit",
+      motif: ["voluntary paid family and medical leave program"] }
   ],
   iowa: [
     { type: "document",

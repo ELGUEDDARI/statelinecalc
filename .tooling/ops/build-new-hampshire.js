@@ -42,8 +42,8 @@ const RACINE = path.join(__dirname, "..", "..");
 const ETAT = "new-hampshire";
 const NOM = "New Hampshire";
 const URL = "https://statelinecalc.com/paycheck-calculator/new-hampshire/";
-const AUJOURD_HUI = "2026-09-29";
-const LISIBLE = "September 29, 2026";
+const AUJOURD_HUI = "2026-10-20";
+const LISIBLE = "October 20, 2026";
 
 const c2 = n => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const c0 = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
@@ -389,8 +389,8 @@ ${blocLimites()}
     </ul>
 
     <h2>Compare with other states</h2>
-    <p>The same ${$0(REF)}, single filer, 2026. New Hampshire&rsquo;s real neighbors Maine and Vermont
-    are not yet published on this site, while Massachusetts has its own page. The table
+    <p>The same ${$0(REF)}, single filer, 2026. New Hampshire&rsquo;s real neighbors are Maine, Massachusetts and Vermont.
+    <a href="/paycheck-calculator/massachusetts/">Massachusetts</a> and <a href="/paycheck-calculator/vermont/">Vermont</a> have their own pages; Maine is not yet published on this site. The table
     below lines it up against the other states here with no wage tax, plus Pennsylvania as a
     contrast that does tax wages.</p>
     <div class="table-scroll">

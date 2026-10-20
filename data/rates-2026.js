@@ -4924,6 +4924,75 @@ const RATES_2026 = {
       employeePrograms: [
         { label: "CT Paid Leave (0.50%)", rate: 0.005, wageCap: 184500 }
       ]
+    },
+
+    /* =======================================================================
+       VERMONT  -  lu le 2026-10-20 (46e Etat). tax.vermont.gov repond en direct (HTTP 200) : source principale lue sur le site de
+       l'agence, PDF telecharge et recoupe octet par octet avec la copie lue par un premier agent (cmp : identique).
+       Moteur : AUCUN mecanisme nouveau. Meme forme que le Kansas : montant deduit par statut (allocations du W-4VT) + bareme
+       par statut dont la premiere tranche est a 0 %. Ici 4 taux (3,35 / 6,6 / 7,6 / 8,75 %).
+       SEMrush : aucune ligne propre relue pour « vermont paycheck calculator » (a mesurer, non invente).
+       -----------------------------------------------------------------------
+       1. LA FORMULE. Vermont Department of Taxes, « 2026 Income Tax Withholding Instructions, Tables, and Charts », GB-1210-2026,
+          https://tax.vermont.gov/sites/tax/files/documents/GB-1210-2026.pdf (HTTP 200, pdftotext -layout le 2026-10-20 ;
+          page de garde : « EFFECTIVE JANUARY 1, 2026 - EXPIRES DECEMBER 31, 2026 »). Page 3 : « The Vermont Income Tax Withholding is
+          calculated similarly to the federal withholding by using the Vermont withholding tables or wage bracket charts. The filing
+          status, number of withholding allowances, and any extra withholding for each pay period are determined from the employee's
+          Form W-4VT ». Tables : « *use wages after subtracting withholding allowances (one withholding allowance equals $5400.00) »
+          (annuel) ; 103,85 $ par semaine, 207,69 $ aux 2 semaines, 225,00 $ deux fois par mois, 450,00 $ par mois, 1 350,00 $ par trimestre,
+          20,77 $ par jour. Exemple imprime (p. 6) : 1 800 $ par semaine, marie, 2 allocations -> 1 592,30 $ -> 45,77 $.
+       2. LE BAREME. Meme document, p. 5, « ANNUAL PAYROLLS » (pdftotext) : SINGLE : « $0 $3,925 : $0 of amount over ; 3,925 54,675 :
+          0 + 3.35% $3,925 ; 54,675 126,775 : 1,700.13 + 6.60% 54,675 ; 126,775 260,225 : 6,458.73 + 7.60% 126,775 ; 260,225 - :
+          16,600.93 + 8.75% 260,225 » ; MARRIED : « $0 $11,775 ; 11,775 96,475 : 0 + 3.35% ; 96,475 216,525 : 2,837.45 + 6.60% ;
+          216,525 323,825 : 10,760.75 + 7.60% ; 323,825 - : 18,915.55 + 8.75% ». Recalcule : 50 750 x 3,35 % = 1 700,125 ; + 72 100 x
+          6,6 % = 6 458,725 ; + 133 450 x 7,6 % = 16 600,925 ; marie : 84 700 x 3,35 % = 2 837,45 ; + 120 050 x 6,6 % = 10 760,75 ;
+          + 107 300 x 7,6 % = 18 915,55. « Civil union partners use Married table ». Les tables par periode sont imprimees avec leurs
+          propres seuils arrondis ; verif-retenue-vt.js recoupe les montants imprimes et les cellules des grilles par tranches.
+       3. LES STATUTS DU SITE (W-4VT, formulaire Rev. 12/18, publie par l'agence, lu le 2026-10-20 ; le formulaire n'est pas date 2026).
+          Feuille des allocations : « 1. Enter "1" for yourself if no one can claim you as a dependent. 2. Enter "1" if you are filing
+          jointly and your spouse does not work. 3. ... dependents ... 4. Enter "1" if you plan to file as "head of household". »
+          single = 1 allocation = 5 400 $ ; marriedJoint = 1 + 1 (conjoint sans emploi) = 2 = 10 800 $ ; headOfHousehold = 1 + 1 (ligne 4)
+          = 2 = 10 800 $, sur le BAREME CELIBATAIRE (la case de statut du W-4VT est « Single » ; il n'y a pas de case chef de famille).
+          Les personnes a charge (ligne 3, 5 400 $ chacune) ne sont pas demandees par le calculateur : NON modelise, dit, chiffre.
+          Conjoint qui travaille (1 allocation, bareme marie) et case « Married, but withhold at higher single rate » : NON modelises, dits.
+       4. 401(k) : le guide ne decrit pas de regle propre ; la retenue d'Etat suit la retenue federale (« calculated similarly to the
+          federal withholding »). Le calculateur retire le 401(k) avant l'impot d'Etat, comme pour les autres Etats : dit.
+       5. CHILD CARE CONTRIBUTION (CCC). Guide p. 4 : « Employers must pay a 0.44% payroll tax, the Child Care Contribution (CCC), on
+          their employees' wages paid on or after July 1, 2024 ». Page tax.vermont.gov/business/child-care-contribution (HTTP 200,
+          2026-10-20) : « An employer may choose to deduct and withhold a maximum of 25 percent of the required contribution (i.e.,
+          0.11%) from employee wages. » ; GB-1326 : « The employer may choose to withhold a smaller portion from employee wages or choose
+          not to withhold any amount from employees. There is no requirement for employers to withhold the same amount from every
+          employee. » => NON modelise (l'employeur choisit, rien n'est exige) ; la page chiffre le plafond : 0,11 % de 75 000 $ = 82,50 $.
+       6. CONGE FAMILIAL : pas de programme obligatoire trouve. governor.vermont.gov/vtfmli (2026-10-20) : « a voluntary paid family
+          and medical leave program » ; cotisations « fully paid by the employer, split between the employer and employees » ou « by the
+          employees as a voluntary benefit » ; employeurs de 2 salaries ou plus « will have the opportunity to design a plan ». =>
+          pas d'employeePrograms ; la page dit « we found none ».
+       7. ASSURANCE CHOMAGE : non lue dans une source de l'Etat -> la page ne l'affirme pas ; elle dit seulement que le guide de retenue
+          n'en decrit aucune a la charge du salarie.
+       8. TAXES LOCALES : aucune trouvee dans le guide GB-1210-2026 : « we found no », jamais « Vermont has no ».
+       9. NON MODELE : personnes a charge, conjoint qui travaille, « higher single rate », ligne 6 (retenue supplementaire), exoneration
+          (« Exempt »), non-residents et residents qui travaillent hors de l'Etat (ratio d'heures), primes (non periodiques : 30 % de la
+          retenue federale, guide p. 4), arrondi par paie.
+       ----------------------------------------------------------------------- */
+    vermont: {
+      name: "Vermont",
+      abbr: "VT",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Allocations annuelles du W-4VT (5 400 $ chacune) : 1 (celibataire) ; 2 (marie, conjoint sans emploi : ligne 1 + ligne 2) ;
+           2 (chef de famille : ligne 1 + ligne 4). */
+        standardDeduction: {
+          single: 5400,
+          marriedJoint: 10800,
+          headOfHousehold: 10800
+        },
+        /* ANNUAL PAYROLLS, GB-1210-2026. Le chef de famille suit le bareme celibataire (case « Single » du W-4VT). */
+        brackets: {
+          single:          [[3925, 0], [54675, 0.0335], [126775, 0.066], [260225, 0.076], [Infinity, 0.0875]],
+          marriedJoint:    [[11775, 0], [96475, 0.0335], [216525, 0.066], [323825, 0.076], [Infinity, 0.0875]],
+          headOfHousehold: [[3925, 0], [54675, 0.0335], [126775, 0.066], [260225, 0.076], [Infinity, 0.0875]]
+        }
+      }
     }
   }
 };

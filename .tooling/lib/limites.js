@@ -174,6 +174,13 @@ const LOCAL_PAR_ETAT = {
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
     calculators.</li>`,
 
+  /* Vermont (20/10/2026) : le guide GB-1210-2026 ne decrit que l'impot d'Etat : « we found no », jamais « Vermont has no ». */
+  vermont: `    <li><strong>Local taxes</strong> &mdash; the Vermont withholding guide we read describes state withholding
+    only, and we found no Vermont city or county income tax on wages in it. That is not proof that none exists.
+    This calculator adds no local line for Vermont. The only local income tax lines on this site are on the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators.</li>`,
+
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

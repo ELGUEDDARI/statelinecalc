@@ -1,0 +1,1081 @@
+2026 Income Tax Withholding
+Instructions, Tables, and Charts
+
+EFFECTIVE JANUARY 1, 2026 - EXPIRES DECEMBER 31, 2026
+
+This document is designed to provide an overview of Vermont Withholding. If you need further
+clarification, please contact the Taxpayer Services Division Business Section by phone at 802-
+828-2551 or by email at tax.business@vermont.gov.
+
+                                                                                                                                      1
+Table of Contents
+
+Instructions .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 3
+
+  Payments Subject to Vermont Income Tax Withholding. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+  How Vermont Income Tax Withholding is Calculated. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+  Adjustments for Services Not Performed in Vermont. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+  Civil Unions or Civil Marriages . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+  Child Care Contribution. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+  Annuities, Supplemental Payments, and Deferred Compensation Payments. . . . . . . . . . . . . . . . 4
+  Payments Under a Non-Qualified Deferred Compensation Plan. . . . . . . . . . . . . . . . . . . . . . . . . . 4
+  Reporting and Remitting Vermont Income Tax Withheld. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+  Filing Forms W-2 and/or 1099. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+  Combined Fed/State Program. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+Resources .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 5
+
+  Fact Sheets, Guidance, and Forms. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+  Other Helpful Resources. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+  Contact Us. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+Withholding Tables and Charts.  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  . 7
+
+2026 INCOME TAX WITHHOLDING INSTRUCTIONS, TABLES, AND CHARTS - GB-1210-2026                                                                                                                           2
+Instructions
+
+Payments Subject to Vermont Income Tax Withholding
+
+Wages, pensions, annuities, and other payments are generally subject to Vermont income tax
+withholding if the payments are subject to federal tax withholding and the payments are made to:
+
+  1. a Vermont resident or
+
+  2. a nonresident of Vermont for services performed in Vermont.
+
+For further information on wages or payments subject to federal withholding tax, see IRS Publication
+15 (Circular E) (www.irs.gov/pub/irs-pdf/p15.pdf).
+
+How Vermont Income Tax Withholding is Calculated
+
+The Vermont Income Tax Withholding is calculated similarly to the federal withholding by using
+the Vermont withholding tables or wage bracket charts. The filing status, number of withholding
+allowances, and any extra withholding for each pay period are determined from the employee's Form
+W-4VT, Vermont Employee's Withholding Allowance Certificate.
+
+Employees who have adjusted their federal withholding in anticipation of a credit(s) and employees
+in civil unions or civil marriages will not have the correct Vermont tax withheld unless they complete
+form W-4VT.
+
+An employer may use the information from federal form W-4 if a Vermont form is not submitted,
+but there is a possibility that not enough tax will be withheld. This could result in a tax liability or tax
+owed when employees file their taxes. If federal form W-4 indicates an additional amount of federal
+withholding for each pay period on Line 6, Vermont's withholding should be increased by 30% of the
+extra federal withholding.
+
+ Employees should complete or update form W-4VT. The Department
+ strongly recommends that employers require their employees to complete
+ or update form W-4VT.
+
+Adjustments for Services Not Performed in Vermont
+
+Nonresidents: When an employee is not a Vermont resident and works in Vermont and another state
+during a payroll period, compute the tax on the full payment and then multiply the ratio of Vermont
+hours to total hours. For example, a nonresident employee worked in Vermont for 16 hours during
+a 40-hour pay period. If the Vermont withholding on the wages for the entire 40 hours is $48.00, the
+Vermont withholding for the 16 hours is:
+
+                              Calculation: $48.00 x 16/40 = $19.20
+
+Residents: If a payment to a Vermont resident includes payment for services performed outside this
+state, the withholding is computed on the full payment, then reduced by the income tax withheld for
+the state where services were performed. An employee who moves into Vermont during a tax year is
+considered a resident for withholding purposes.
+
+2026 INCOME TAX WITHHOLDING INSTRUCTIONS, TABLES, AND CHARTS - GB-1210-2026  3
+Civil Unions or Civil Marriages
+
+Vermont withholding for employees who are partners in civil unions or civil marriages is determined
+by the filing status of the employee - either married filing joint or married filing separate. The Vermont
+taxable wages may differ from the federal wages due to the treatment of fringe benefits affecting the
+employee's partner.
+
+For the purpose of treating a cafeteria plan payment as pretax or imputing income from an employer-
+paid benefit, the federal rules for the payment are applied for state purposes as though the
+employee's partner is a spouse.
+
+Note: This applies only to civil unions and civil marriages, not to domestic partnership arrangements.
+
+Child Care Contribution
+
+Employers must pay a 0.44% payroll tax, the Child Care Contribution (CCC), on their employees'
+wages paid on or after July 1, 2024, to the Department. All wages as defined under Section 3401 of
+the Internal Revenue Code that are subject to Vermont income tax withholding are also subject to
+the 0.44% CCC. For example, wages paid for work physically performed in Vermont (whether at a
+Vermont job site or from an employee's Vermont remote work location) are subject to both Vermont
+income tax withholding and the CCC. For employers, contributions are paid in the same manner and
+frequency as withholding.
+
+Wages for which Vermont income tax withholding is not required, such as wages paid in connection
+with work physically performed outside of Vermont and paid by an out-of-state employer, are not
+subject to the CCC. An employer who voluntarily withholds and remits Vermont income tax for such
+wages as a courtesy to its Vermont-resident employees is not required to remit CCC on those wages.
+
+Visit our Child Care Contribution webpage to learn more about the CCC and how it is calculated (tax.
+vermont.gov/business/child-care-contribution).
+
+Annuities, Supplemental Payments, and Deferred Compensation Payments
+
+You must withhold Vermont income tax on payments to Vermont residents when federal withholding is
+required. Vermont withholding is also required where the recipient elects optional federal withholding
+and does not specifically state that the payment is exempt from Vermont withholding.
+
+For periodic payments, the tax is computed using the Vermont wage charts or tables. For non-
+periodic payments, the Vermont withholding can be estimated at 30% of the federal withholding. In all
+cases, the taxpayer is responsible for ensuring the correct amount is withheld to avoid underpayment
+of the Vermont tax liability.
+
+Payments Under a Non-Qualified Deferred Compensation Plan
+
+When a person makes a payment previously deferred under a non-qualified deferred compensation
+plan, the correct withholding rate is 6% of the deferred payment. The withholding is based on both the
+deferred payment and any income that may be derived from the deferred compensation.
+
+Reporting and Remitting Vermont Income Tax Withheld
+
+If you pay wages or make payments to Vermont income tax withholding, you must register with the
+Vermont Department of Taxes for a withholding account. You may register through myVTax (myvtax.
+vermont.gov) or using Form BR-400, Application for a Business Tax Account (tax.vermont.gov/sites/
+tax/files/documents/BR-400.pdf).
+
+2026 INCOME TAX WITHHOLDING INSTRUCTIONS, TABLES, AND CHARTS - GB-1210-2026  4
+The department will determine your filing frequency based on your annual withholding totals. You may
+file your returns and pay the tax due online through myVTax (myvtax.vermont.gov) or you may file
+using paper forms available on our website.
+
+Filing Forms W-2 and/or 1099
+
+All employers are required to file Form WHT-434, Annual Withholding Reconciliation (tax.vermont.
+gov/sites/tax/files/documents/WHT-434.pdf) by January 31 each year. This form serves as the
+transmittal for forms W-2 and/or 1099 and reconciles the amount of Vermont income tax withholding
+reported during the previous year to the amount of withholding tax shown on the W-2 and/or 1099
+forms. Form WHT-434 and Forms W-2 and 1099 may be filed through myVTax (myvtax.vermont.gov).
+
+Electronic filing is required for form WHT-434 and the accompanying forms for all employers who will
+submit 10 or more W-2 and/or 1099 forms. Payroll filing services must submit all filings electronically.
+
+Combined Fed/State Program
+
+The Vermont Department of Taxes no longer participates in the Combined Fed/State program for
+submitting W-2 and 1099 forms with the IRS. You must file these forms directly with the department.
+
+Resources
+
+Fact Sheets, Guidance, and Forms
+
+  � Withholding for Employers
+     (tax.vermont.gov/business/withholding)
+
+  � Form BR-400, Application for a Business Tax Account
+     (tax.vermont.gov/sites/tax/files/documents/BR-400.pdf)
+
+  � Form W-4VT, Vermont Employee's Withholding Allowance Certificate
+     (tax.vermont.gov/sites/tax/files/documents/W-4VT.pdf)
+
+  � Form WHT-434, Annual Withholding Reconciliation
+     (tax.vermont.gov/sites/tax/files/documents/WHT-434.pdf)
+
+  � GB-1326, Vermont Child Care Contribution Guide
+     (tax.vermont.gov/sites/tax/files/documents/GB-1326.pdf)
+
+  � IRS Publication 15 (Circular E)
+     (www.irs.gov/pub/irs-pdf/p15.pdf)
+
+Other Helpful Resources
+
+  � Internal Revenue Service - Federal Income Tax (www.irs.gov) Phone: 800-829-1040
+
+  � Social Security Administration - Social Security/Medicare (www.ssa.gov) Phone: 800-772-1213
+
+  � Vermont Department of Labor - Unemployment Insurance, Minimum Wage, Overtime, Worker
+     Compensation (labor.vermont.gov) Phone: 802-828-4000
+
+Contact Us
+
+If you have questions, contact the Taxpayer Services Division at 802-828-2551 or tax.business@
+vermont.gov.
+
+2026 INCOME TAX WITHHOLDING INSTRUCTIONS, TABLES, AND CHARTS - GB-1210-2026                      5
+Mailing Address:
+Vermont Department of Taxes
+Taxpayer Services Division
+133 State Street
+Montpelier, VT 05633-1401
+
+2026 INCOME TAX WITHHOLDING INSTRUCTIONS, TABLES, AND CHARTS - GB-1210-2026  6
+                   Vermont Percentage Method Withholding Tables
+
+                                                       (for wages paid in 2026)
+
+                                 WEEKLY PAYROLLS
+
+                   Single                                              Married
+
+If Wages* are:                                      If Wages* are:
+
+over but not over  Vermont withholding is:          over but not over  Vermont withholding is:
+
+$0         $75     $0            of amount over     $0     $226        $0        of amount over
+
+    75  1,051      0 + 3.35%                $75     226    1,855       0 + 3.35%                $226
+1,051   2,438
+                   32.70 + 6.60% 1,051              1,855  4,164       54.57 + 6.60%            1,855
+
+2,438   5,004      124.24 + 7.60% 2,438             4,164  6,227       206.96 + 7.60%           4,164
+
+5,004   -          319.25 + 8.75% 5,004             6,227  -           363.75 + 8.75%           6,227
+
+        *use wages after subtracting withholding allowances (one withholding allowance equals $103.85)
+
+                                 BIWEEKLY PAYROLLS
+
+                   Single                                              Married
+
+If Wages* are:                                      If Wages* are:
+
+over but not over  Vermont withholding is:          over but not over  Vermont withholding is:
+
+$0      $151       $0            of amount over     $0     $453        $0        of amount over
+
+151     2,103      0 + 3.35% $151                   453    3,711       0 + 3.35%                $453
+
+2,103   4,876      65.39 + 6.60% 2,103              3,711  8,328       109.14 + 6.60%           3,711
+
+ 4,876  10,009     248.41 + 7.60% 4,876             8,328 12,455       413.87 + 7.60%           8,328
+10,009    -
+                   638.52 + 8.75% 10,009         12,455    -           727.52 + 8.75% 12,455
+
+        *use wages after subtracting withholding allowances (one withholding allowance equals $207.69)
+
+                           SEMIMONTHLY PAYROLLS
+
+                   Single                                              Married
+
+If Wages* are:                                      If Wages* are:
+
+over but not over  Vermont withholding is:          over but not over  Vermont withholding is:
+
+$0      $164       $0            of amount over     $0     $491        $0        of amount over
+
+  164    2,278     0 + 3.35% $164                   491    4,020       0 + 3.35%                $491
+2,278    5,282
+5,282   10,843     70.82 + 6.60% 2,278              4,020  9,022       118.22 + 6.60%           4,020
+
+                   269.08 + 7.60% 5,282             9,022 13,493       448.35 + 7.60%           9,022
+
+10,843  -          691.72 + 8.75% 10,843         13,493    -           788.15 + 8.75% 13,493
+
+        *use wages after subtracting withholding allowances (one withholding allowance equals $225.00)
+
+                                 MONTHLY PAYROLLS
+
+                   Single                                              Married
+
+If Wages* are:                                      If Wages* are:
+
+over but not over  Vermont withholding is:          over but not over  Vermont withholding is:
+
+$0      $327       $0            of amount over     $0     $981        $0        of amount over
+
+327     4,556      0 + 3.35% $327                   981    8,040       0 + 3.35%                $981
+
+4,556 10,565       141.67 + 6.60% 4,556             8,040 18,044       236.48 + 6.60%           8,040
+
+10,565 21,685      538.27 + 7.60% 10,565         18,044 26,985         896.74 + 7.60% 18,044
+
+21,685  -          1,383.39 + 8.75% 21,685       26,985    -           1,576.26 + 8.75% 26,985
+
+        *use wages after subtracting withholding allowances (one withholding allowance equals $450.00)
+
+Effective Date: January 1, 2026                  5                  Civil union partners use Married table
+                         Vermont Percentage Method Withholding Tables
+
+                                                             (for wages paid in 2026)
+
+                                 QUARTERLY PAYROLLS
+
+                         Single                                                      Married
+
+If Wages* are:                                                 If Wages* are:
+
+over but not over        Vermont withholding is:               over but not over     Vermont withholding is:
+
+$0        $981           $0      of amount over                $0 $2,944             $0                of amount over
+
+981 13,669               0 + 3.35% $981                        2,944 24,119          0 + 3.35% $2,944
+
+13,669 31,694            425.05 + 6.60% 13,669              24,119 54,131            709.36 + 6.60% 24,119
+
+31,694    65,056         1,614.70 + 7.60% 31,694            54,131 80,956            2,690.15 + 7.60% 54,131
+65,056      -
+                         4,150.21 + 8.75% 65,056            80,956    -              4,728.85 + 8.75% 80,956
+
+          *use wages after subtracting withholding allowances (one withholding allowance equals $1350.00)
+
+                                 ANNUAL PAYROLLS
+
+                         Single                                                      Married
+
+If Wages* are:                                                 If Wages* are:
+
+over but not over        Vermont withholding is:               over but not over     Vermont withholding is:
+
+$0 $3,925                $0      of amount over                $0 $11,775            $0                of amount over
+
+3,925 54,675             0 + 3.35% $3,925                   11,775 96,475            0 + 3.35% $11,775
+
+ 54,675 126,775          1,700.13 + 6.60% 54,675            96,475 216,525           2,837.45 + 6.60% 96,475
+126,775 260,225
+                         6,458.73 + 7.60% 126,775           216,525 323,825          10,760.75 + 7.60% 216,525
+
+260,225   -              16,600.93 + 8.75% 260,225          323,825   -              18,915.55 + 8.75% 323,825
+
+          *use wages after subtracting withholding allowances (one withholding allowance equals $5400.00)
+
+                         DAILY or MISCELLANEOUS PAYROLLS (per day)
+
+                         Single                                                      Married
+
+ If Wages* divided by                                       If Wages* divided by
+the number of days in                                       the number of days in
+the payroll period are:                                     the payroll period are:
+
+over but not over        Vermont withholding (per day) is:     over but not over     Vermont withholding (per day) is:
+
+$0 $15.10                $0      of amount over                $0 $45.30             $0.00             of amount over
+
+15.10 210.30             0.00 + 3.35% $15.10                   45.30 371.10          0.00 + 3.35% $45.30
+
+210.30 487.60            6.54 + 6.60% 210.30                371.10 832.80            10.91 + 6.60% 371.10
+
+487.60 1,000.90          24.84 + 7.60% 487.60               832.80 1,245.50          41.39 + 7.60% 832.80
+
+1,000.90  -              63.85 + 8.75% 1,000.90             1,245.50  -              72.75 + 8.75% 1,245.50
+
+          *use wages after subtracting withholding allowances (one withholding allowance equals $20.77)
+
+                                                  INSTRUCTIONS FOR USING TABLES
+
+1. Locate the correct table for your payroll frequency.                                                  EXAMPLE
+    Note the amount of one payroll allowance listed at the  An employee is paid $1800 each week. Her W-4VT form claims two
+    bottom of the table.                                    withholding allowances and married status. Her state withholding is
+                                                            computed from the WEEKLY/Married table on the previous page.
+
+2. Multiply the amount of one allowance by the number Her total withholding allowance is: 2 x $103.85 = $207.70.
+
+of allowances claimed by the employee on form W-4VT. Her wages (after allowances) are: $1800 - $207.70 = $1592.30.
+
+Subtract this amount from the amount of payment.            Because $1592.30 falls between $226 and $1855, the tax is computed as
+
+                                                            $0.00 plus 3.35% of the amount over $226.
+
+3. Compute the Vermont tax on the amount from step #2,                               $1592.30 - 226.00 = $1366.30
+
+using the table.                                            Vermont withholding is $45.77. $1366.30 x 0.0335 = $ 45.77
+
+                                                                                     $45.77 + 0.00 = $45.77
+
+Effective Date: January 1, 2026                             6                  Civil union partners use Married table
+            2026       Vermont Wage Bracket Withholding Charts                                          2026
+
+Payment 0 1            Single Weekly                                                    Married Weekly
+
+             but less           Number of Exemptions Claimed                            Number of Exemptions Claimed
+at least than
+                       2 3 4 5 6 7 8 9 10                        Payment 0 1 2 3 4 5 6 7 8 9 10
+ 0 85 0 0
+ 85 100 1 0                    Vermont Withholding is:                        but less  Vermont Withholding is:
+100 115 1 0            000000000                                 at least than
+115 130 2 0            000000000
+130 145 2 0            000000000                                 0 240 0 0 0 0 0 0 0 0 0 0 0
+                       000000000
+                       000000000                                 240 255 1 0 0 0 0 0 0 0 0 0 0
+
+                                                                 255 270 1 0 0 0 0 0 0 0 0 0 0
+
+                                                                 270 285 2 0 0 0 0 0 0 0 0 0 0
+
+                                                                 285 300 2 0 0 0 0 0 0 0 0 0 0
+
+145 160 3 0 0 0 0 0 0 0 0 0 0                                    300 315 3 0 0 0 0 0 0 0 0 0 0
+160 175 3 0 0 0 0 0 0 0 0 0 0                                    315 330 3 0 0 0 0 0 0 0 0 0 0
+175 190 4 0 0 0 0 0 0 0 0 0 0                                    330 345 4 0 0 0 0 0 0 0 0 0 0
+190 205 4 1 0 0 0 0 0 0 0 0 0                                    345 360 4 1 0 0 0 0 0 0 0 0 0
+205 220 5 1 0 0 0 0 0 0 0 0 0                                    360 375 5 1 0 0 0 0 0 0 0 0 0
+
+220 235 5 2 0 0 0 0 0 0 0 0 0                                    375 390 5 2 0 0 0 0 0 0 0 0 0
+235 250 6 2 0 0 0 0 0 0 0 0 0                                    390 405 6 2 0 0 0 0 0 0 0 0 0
+250 265 6 3 0 0 0 0 0 0 0 0 0                                    405 420 6 3 0 0 0 0 0 0 0 0 0
+265 280 7 3 0 0 0 0 0 0 0 0 0                                    420 435 7 3 0 0 0 0 0 0 0 0 0
+280 295 7 4 0 0 0 0 0 0 0 0 0                                    435 450 7 4 0 0 0 0 0 0 0 0 0
+
+295 310 8 4 1 0 0 0 0 0 0 0 0                                    450 465 8 4 1 0 0 0 0 0 0 0 0
+310 325 8 5 1 0 0 0 0 0 0 0 0                                    465 480 8 5 1 0 0 0 0 0 0 0 0
+325 340 9 5 2 0 0 0 0 0 0 0 0                                    480 495 9 5 2 0 0 0 0 0 0 0 0
+340 355 9 6 2 0 0 0 0 0 0 0 0                                    495 510 9 6 2 0 0 0 0 0 0 0 0
+355 370 10 6 3 0 0 0 0 0 0 0 0                                   510 525 10 6 3 0 0 0 0 0 0 0 0
+
+370 385 10 7 3 0 0 0 0 0 0 0 0                                   525 540 10 7 3 0 0 0 0 0 0 0 0
+385 400 11 7 4 0 0 0 0 0 0 0 0                                   540 555 11 7 4 0 0 0 0 0 0 0 0
+400 415 11 8 4 1 0 0 0 0 0 0 0                                   555 570 11 8 4 1 0 0 0 0 0 0 0
+415 430 12 8 5 1 0 0 0 0 0 0 0                                   570 585 12 8 5 1 0 0 0 0 0 0 0
+430 445 12 9 5 2 0 0 0 0 0 0 0                                   585 600 12 9 5 2 0 0 0 0 0 0 0
+
+445 460 13 9 6 2 0 0 0 0 0 0 0                                   600 615 13 9 6 2 0 0 0 0 0 0 0
+460 475 13 10 6 3 0 0 0 0 0 0 0                                  615 630 13 10 6 3 0 0 0 0 0 0 0
+475 490 14 10 7 3 0 0 0 0 0 0 0                                  630 645 14 10 7 3 0 0 0 0 0 0 0
+490 505 14 11 7 4 0 0 0 0 0 0 0                                  645 660 14 11 7 4 0 0 0 0 0 0 0
+505 520 15 11 8 4 1 0 0 0 0 0 0                                  660 675 15 11 8 4 1 0 0 0 0 0 0
+
+520 535 15 12 8 5 1 0 0 0 0 0 0                                  675 690 15 12 8 5 1 0 0 0 0 0 0
+535 550 16 12 9 5 2 0 0 0 0 0 0                                  690 705 16 12 9 5 2 0 0 0 0 0 0
+550 565 16 13 9 6 2 0 0 0 0 0 0                                  705 720 16 13 9 6 2 0 0 0 0 0 0
+565 580 17 13 10 6 3 0 0 0 0 0 0                                 720 735 17 13 10 6 3 0 0 0 0 0 0
+580 595 17 14 10 7 3 0 0 0 0 0 0                                 735 750 17 14 10 7 3 0 0 0 0 0 0
+
+595 610 18 14 11 7 4 0 0 0 0 0 0                                 750 765 18 14 11 7 4 0 0 0 0 0 0
+610 625 18 15 11 8 4 1 0 0 0 0 0                                 765 780 18 15 11 8 4 1 0 0 0 0 0
+625 640 19 15 12 8 5 1 0 0 0 0 0                                 780 795 19 15 12 8 5 1 0 0 0 0 0
+640 655 19 16 12 9 5 2 0 0 0 0 0                                 795 810 19 16 12 9 5 2 0 0 0 0 0
+655 670 20 16 13 9 6 2 0 0 0 0 0                                 810 825 20 16 13 9 6 2 0 0 0 0 0
+
+670 685 20 17 13 10 6 3 0 0 0 0 0                                825 840 20 17 13 10 6 3 0 0 0 0 0
+685 700 21 17 14 10 7 3 0 0 0 0 0                                840 855 21 17 14 10 7 3 0 0 0 0 0
+700 715 21 18 14 11 7 4 0 0 0 0 0                                855 870 21 18 14 11 7 4 0 0 0 0 0
+715 730 22 18 15 11 8 4 1 0 0 0 0                                870 885 22 18 15 11 8 4 1 0 0 0 0
+730 745 22 19 15 12 8 5 1 0 0 0 0                                885 900 22 19 15 12 8 5 1 0 0 0 0
+
+Effective Date: January 1, 2026                               7                         Civil union partners use Married chart
+                       2026  Vermont Wage Bracket Withholding Charts                                 2026
+
+                             Single Weekly                                           Married Weekly
+
+                             Number of Exemptions Claimed                            Number of Exemptions Claimed
+
+Payment 0 1 2 3 4 5 6 7 8 9 10                                Payment 0 1 2 3 4 5 6 7 8                            9 10
+
+             but less        Vermont Withholding is:                       but less  Vermont Withholding is:       00
+at least than                                                 at least than                                        00
+                                                                                                                   00
+745 760 23 19 16 12 9 5 2 0 0 0 0                             900 915 23 19 16 12 9 5 2 0 0                        00
+                                                                                                                   00
+760 775 23 20 16 13 9 6 2 0 0 0 0                             915 930 23 20 16 13 9 6 2 0 0
+
+775 790 24 20 17 13 10 6 3 0 0 0 0                            930 945 24 20 17 13 10 6 3 0 0
+
+790 805 24 21 17 14 10 7 3 0 0 0 0                            945 960 24 21 17 14 10 7 3 0 0
+
+805 820 25 21 18 14 11 7 4 0 0 0 0                            960 975 25 21 18 14 11 7 4 0 0
+
+820 835 25 22 18 15 11 8 4 1 0 0 0                            975 990 25 22 18 15 11 8 4 1 0 0 0
+835 850 26 22 19 15 12 8 5 1 0 0 0                            990 1005 26 22 19 15 12 8 5 1 0 0 0
+850 865 26 23 19 16 12 9 5 2 0 0 0                            1005 1020 26 23 19 16 12 9 5 2 0 0 0
+865 880 27 23 20 16 13 9 6 2 0 0 0                            1020 1035 27 23 20 16 13 9 6 2 0 0 0
+880 895 27 24 20 17 13 10 6 3 0 0 0                           1035 1050 27 24 20 17 13 10 6 3 0 0 0
+
+895 910 28 24 21 17 14 10 7 3 0 0 0                           1050 1065 28 24 21 17 14 10 7 3 0 0 0
+910 925 28 25 21 18 14 11 7 4 0 0 0                           1065 1080 28 25 21 18 14 11 7 4 1 0 0
+925 940 29 25 22 18 15 11 8 4 1 0 0                           1080 1095 29 25 22 18 15 11 8 4 1 0 0
+940 955 29 26 22 19 15 12 8 5 1 0 0                           1095 1110 29 26 22 19 15 12 8 5 2 0 0
+955 970 30 26 23 19 16 12 9 5 2 0 0                           1110 1125 30 26 23 19 16 12 9 5 2 0 0
+
+970 985 30 27 23 20 16 13 9 6 2 0 0                           1125 1140 30 27 23 20 16 13 9 6 3 0 0
+985 1000 31 27 24 20 17 13 10 6 3 0 0                         1140 1155 31 27 24 20 17 13 10 7 3 0 0
+1000 1015 31 28 24 21 17 14 10 7 3 0 0                        1155 1170 31 28 24 21 17 14 10 7 4 0 0
+1015 1030 32 28 25 21 18 14 11 7 4 0 0                        1170 1185 32 28 25 21 18 14 11 8 4 1 0
+1030 1045 32 29 25 22 18 15 11 8 4 1 0                        1185 1200 32 29 25 22 18 15 11 8 5 1 0
+
+1045 1060 33 29 26 22 19 15 12 8 5 1 0                        1200 1215 33 29 26 22 19 15 12 9 5 2 0
+1060 1075 34 30 26 23 19 16 12 9 5 2 0                        1215 1230 33 30 26 23 19 16 12 9 6 2 0
+1075 1090 35 30 27 23 20 16 13 9 6 2 0                        1230 1245 34 30 27 23 20 16 13 10 6 3 0
+1090 1105 36 31 27 24 20 17 13 10 6 3 0                       1245 1260 34 31 27 24 20 17 13 10 7 3 0
+1105 1120 37 31 28 24 21 17 14 10 7 3 0                       1260 1275 35 31 28 24 21 17 14 11 7 4 0
+
+1120 1135 38 32 28 25 21 18 14 11 7 4 0                       1275 1290 35 32 28 25 21 18 15 11 8 4 1
+1135 1150 39 32 29 25 22 18 15 11 8 4 1                       1290 1305 36 32 29 25 22 18 15 12 8 5 1
+1150 1165 40 33 29 26 22 19 15 12 8 5 1                       1305 1320 36 33 29 26 22 19 16 12 9 5 2
+1165 1180 41 34 30 26 23 19 16 12 9 5 2                       1320 1335 37 33 30 26 23 19 16 13 9 6 2
+1180 1195 42 35 30 27 23 20 16 13 9 6 2                       1335 1350 37 34 30 27 23 20 17 13 10 6 3
+
+1195 1210 43 36 31 27 24 20 17 13 10 6 3                      1350 1365 38 34 31 27 24 20 17 14 10 7 3
+1210 1225 44 37 31 28 24 21 17 14 10 7 3                      1365 1380 38 35 31 28 24 21 18 14 11 7 4
+1225 1240 45 38 32 28 25 21 18 14 11 7 4                      1380 1395 39 35 32 28 25 22 18 15 11 8 4
+1240 1255 46 39 32 29 25 22 18 15 11 8 4                      1395 1410 39 36 32 29 25 22 19 15 12 8 5
+1255 1270 47 40 33 29 26 22 19 15 12 8 5                      1410 1425 40 36 33 29 26 23 19 16 12 9 5
+
+1270 1285 48 41 34 30 26 23 19 16 12 9 5                      1425 1440 40 37 33 30 26 23 20 16 13 9 6
+1285 1300 49 42 35 30 27 23 20 16 13 9 6                      1440 1455 41 37 34 30 27 24 20 17 13 10 6
+1300 1315 50 43 36 31 27 24 20 17 13 10 6                     1455 1470 41 38 34 31 27 24 21 17 14 10 7
+1315 1330 51 44 37 31 28 24 21 17 14 10 7                     1470 1485 42 38 35 31 28 25 21 18 14 11 7
+1330 1345 52 45 38 32 28 25 21 18 14 11 7                     1485 1500 42 39 35 32 28 25 22 18 15 11 8
+
+1345 1360 53 46 39 32 29 25 22 18 15 11 8                     1500 1515 43 39 36 32 29 26 22 19 15 12 8
+1360 1375 54 47 40 33 29 26 22 19 15 12 8                     1515 1530 43 40 36 33 30 26 23 19 16 12 9
+1375 1390 55 48 41 34 30 26 23 19 16 12 9                     1530 1545 44 40 37 33 30 27 23 20 16 13 9
+1390 1405 56 49 42 35 30 27 23 20 16 13 9                     1545 1560 44 41 37 34 31 27 24 20 17 13 10
+1405 1420 57 50 43 36 31 27 24 20 17 13 10                    1560 1575 45 41 38 34 31 28 24 21 17 14 10
+
+Effective Date: January 1, 2026                            8                         Civil union partners use Married chart
+            2026       Vermont Wage Bracket Withholding Charts                                            2026
+
+Payment 0 1            Single Biweekly                                                  Married Biweekly
+
+             but less           Number of Exemptions Claimed                            Number of Exemptions Claimed
+at least than
+                       2 3 4 5 6 7 8 9 10                        Payment 0 1 2 3 4 5 6 7 8 9 10
+ 0 170 0 0
+170 200 1 0                    Vermont Withholding is:                        but less  Vermont Withholding is:
+200 230 2 0            000000000                                 at least than
+230 260 3 0            000000000
+260 290 4 0            000000000                                 0 480 0 0 0 0 0 0 0 0 0 0 0
+                       000000000
+                       000000000                                 480 510 1 0 0 0 0 0 0 0 0 0 0
+
+                                                                 510 540 2 0 0 0 0 0 0 0 0 0 0
+
+                                                                 540 570 3 0 0 0 0 0 0 0 0 0 0
+
+                                                                 570 600 4 0 0 0 0 0 0 0 0 0 0
+
+290 320 5 0 0 0 0 0 0 0 0 0 0                                    600 630 5 0 0 0 0 0 0 0 0 0 0
+320 350 6 0 0 0 0 0 0 0 0 0 0                                    630 660 6 0 0 0 0 0 0 0 0 0 0
+350 380 7 0 0 0 0 0 0 0 0 0 0                                    660 690 7 0 0 0 0 0 0 0 0 0 0
+380 410 8 1 0 0 0 0 0 0 0 0 0                                    690 720 8 1 0 0 0 0 0 0 0 0 0
+410 440 9 2 0 0 0 0 0 0 0 0 0                                    720 750 9 2 0 0 0 0 0 0 0 0 0
+
+440 470 10 3 0 0 0 0 0 0 0 0 0                                   750 780 10 3 0 0 0 0 0 0 0 0 0
+470 500 11 4 0 0 0 0 0 0 0 0 0                                   780 810 11 5 0 0 0 0 0 0 0 0 0
+500 530 12 5 0 0 0 0 0 0 0 0 0                                   810 840 12 6 0 0 0 0 0 0 0 0 0
+530 560 13 6 0 0 0 0 0 0 0 0 0                                   840 870 13 7 0 0 0 0 0 0 0 0 0
+560 590 14 7 0 0 0 0 0 0 0 0 0                                   870 900 14 8 1 0 0 0 0 0 0 0 0
+
+590 620 15 8 1 0 0 0 0 0 0 0 0                                   900 930 15 9 2 0 0 0 0 0 0 0 0
+620 650 16 9 2 0 0 0 0 0 0 0 0                                   930 960 16 10 3 0 0 0 0 0 0 0 0
+650 680 17 10 3 0 0 0 0 0 0 0 0                                  960 990 17 11 4 0 0 0 0 0 0 0 0
+680 710 18 11 4 0 0 0 0 0 0 0 0                                  990 1020 18 12 5 0 0 0 0 0 0 0 0
+710 740 19 12 5 0 0 0 0 0 0 0 0                                  1020 1050 20 13 6 0 0 0 0 0 0 0 0
+
+740 770 20 13 6 0 0 0 0 0 0 0 0                                  1050 1080 21 14 7 0 0 0 0 0 0 0 0
+770 800 21 14 7 0 0 0 0 0 0 0 0                                  1080 1110 22 15 8 1 0 0 0 0 0 0 0
+800 830 22 15 8 1 0 0 0 0 0 0 0                                  1110 1140 23 16 9 2 0 0 0 0 0 0 0
+830 860 23 16 9 2 0 0 0 0 0 0 0                                  1140 1170 24 17 10 3 0 0 0 0 0 0 0
+860 890 24 17 10 3 0 0 0 0 0 0 0                                 1170 1200 25 18 11 4 0 0 0 0 0 0 0
+
+890 920 25 18 11 4 0 0 0 0 0 0 0                                 1200 1230 26 19 12 5 0 0 0 0 0 0 0
+920 950 26 19 12 5 0 0 0 0 0 0 0                                 1230 1260 27 20 13 6 0 0 0 0 0 0 0
+950 980 27 20 13 6 0 0 0 0 0 0 0                                 1260 1290 28 21 14 7 0 0 0 0 0 0 0
+980 1010 28 21 14 7 0 0 0 0 0 0 0                                1290 1320 29 22 15 8 1 0 0 0 0 0 0
+1010 1040 29 22 15 8 1 0 0 0 0 0 0                               1320 1350 30 23 16 9 2 0 0 0 0 0 0
+
+1040 1070 30 23 16 9 2 0 0 0 0 0 0                               1350 1380 31 24 17 10 3 0 0 0 0 0 0
+1070 1100 31 24 17 10 3 0 0 0 0 0 0                              1380 1410 32 25 18 11 4 0 0 0 0 0 0
+1100 1130 32 25 18 11 4 0 0 0 0 0 0                              1410 1440 33 26 19 12 5 0 0 0 0 0 0
+1130 1160 33 26 19 12 5 0 0 0 0 0 0                              1440 1470 34 27 20 13 6 0 0 0 0 0 0
+1160 1190 34 27 20 13 6 0 0 0 0 0 0                              1470 1500 35 28 21 14 7 0 0 0 0 0 0
+
+1190 1220 35 28 21 14 7 1 0 0 0 0 0                              1500 1530 36 29 22 15 8 1 0 0 0 0 0
+1220 1250 36 29 22 15 8 2 0 0 0 0 0                              1530 1560 37 30 23 16 9 2 0 0 0 0 0
+1250 1280 37 30 23 16 9 3 0 0 0 0 0                              1560 1590 38 31 24 17 10 3 0 0 0 0 0
+1280 1310 38 31 24 17 10 4 0 0 0 0 0                             1590 1620 39 32 25 18 11 4 0 0 0 0 0
+1310 1340 39 32 25 18 11 5 0 0 0 0 0                             1620 1650 40 33 26 19 12 5 0 0 0 0 0
+
+1340 1370 40 33 26 19 13 6 0 0 0 0 0                             1650 1680 41 34 27 20 13 6 0 0 0 0 0
+1370 1400 41 34 27 20 14 7 0 0 0 0 0                             1680 1710 42 35 28 21 14 7 0 0 0 0 0
+1400 1430 42 35 28 21 15 8 1 0 0 0 0                             1710 1740 43 36 29 22 15 8 1 0 0 0 0
+1430 1460 43 36 29 22 16 9 2 0 0 0 0                             1740 1770 44 37 30 23 16 9 2 0 0 0 0
+1460 1490 44 37 30 23 17 10 3 0 0 0 0                            1770 1800 45 38 31 24 17 10 3 0 0 0 0
+
+Effective Date: January 1, 2026                               9                         Civil union partners use Married chart
+                       2026  Vermont Wage Bracket Withholding Charts                                          2026
+
+                             Single Biweekly                                                Married Biweekly
+
+                             Number of Exemptions Claimed                                   Number of Exemptions Claimed
+
+Payment 0 1 2 3 4 5 6 7 8                                  9 10      Payment 0 1 2 3 4 5 6 7 8                            9 10
+
+             but less        Vermont Withholding is:       00                     but less  Vermont Withholding is:       00
+at least than                                              00        at least than                                        00
+                                                           00                                                             00
+1490 1520 45 38 31 24 18 11 4 0 0                          00        1800 1830 46 39 32 25 18 11 4 0 0                    00
+                                                           00                                                             00
+1520 1550 46 39 32 25 19 12 5 0 0                                    1830 1860 47 40 33 26 19 12 5 0 0
+
+1550 1580 47 40 33 26 20 13 6 0 0                                    1860 1890 48 41 34 27 20 13 6 0 0
+
+1580 1610 48 41 34 28 21 14 7 0 0                                    1890 1920 49 42 35 28 21 14 7 0 0
+
+1610 1640 49 42 35 29 22 15 8 1 0                                    1920 1950 50 43 36 29 22 15 8 1 0
+
+1640 1670 50 43 36 30 23 16 9 2 0 0 0                                1950 1980 51 44 37 30 23 16 9 2 0 0 0
+1670 1700 51 44 37 31 24 17 10 3 0 0 0                               1980 2010 52 45 38 31 24 17 10 3 0 0 0
+1700 1730 52 45 38 32 25 18 11 4 0 0 0                               2010 2040 53 46 39 32 25 18 11 4 0 0 0
+1730 1760 53 46 39 33 26 19 12 5 0 0 0                               2040 2070 54 47 40 33 26 19 12 5 0 0 0
+1760 1790 54 47 40 34 27 20 13 6 0 0 0                               2070 2100 55 48 41 34 27 20 13 6 0 0 0
+
+1790 1820 55 48 41 35 28 21 14 7 0 0 0                               2100 2130 56 49 42 35 28 21 14 7 0 0 0
+1820 1850 56 49 42 36 29 22 15 8 1 0 0                               2130 2160 57 50 43 36 29 22 15 8 1 0 0
+1850 1880 57 50 44 37 30 23 16 9 2 0 0                               2160 2190 58 51 44 37 30 23 16 9 2 0 0
+1880 1910 58 51 45 38 31 24 17 10 3 0 0                              2190 2220 59 52 45 38 31 24 17 10 3 0 0
+1910 1940 59 52 46 39 32 25 18 11 4 0 0                              2220 2250 60 53 46 39 32 25 18 11 4 0 0
+
+1940 1970 60 53 47 40 33 26 19 12 5 0 0                              2250 2280 61 54 47 40 33 26 19 12 5 0 0
+1970 2000 61 54 48 41 34 27 20 13 6 0 0                              2280 2310 62 55 48 41 34 27 20 13 6 0 0
+2000 2030 62 55 49 42 35 28 21 14 7 0 0                              2310 2340 63 56 49 42 35 28 21 14 7 0 0
+2030 2060 63 56 50 43 36 29 22 15 8 1 0                              2340 2370 64 57 50 43 36 29 22 15 8 1 0
+2060 2090 64 57 51 44 37 30 23 16 9 2 0                              2370 2400 65 58 51 44 37 30 23 16 9 2 0
+
+2090 2120 66 59 52 45 38 31 24 17 10 3 0                             2400 2430 66 59 52 45 38 31 24 17 10 3 0
+2120 2150 68 60 53 46 39 32 25 18 11 4 0                             2430 2460 67 60 53 46 39 32 25 18 11 4 0
+2150 2180 69 61 54 47 40 33 26 19 12 5 0                             2460 2490 68 61 54 47 40 33 26 19 12 5 0
+2180 2210 71 62 55 48 41 34 27 20 13 6 0                             2490 2520 69 62 55 48 41 34 27 20 13 6 0
+2210 2240 73 63 56 49 42 35 28 21 14 7 0                             2520 2550 70 63 56 49 42 35 28 21 14 7 0
+
+2240 2270 75 64 57 50 43 36 29 22 15 8 1                             2550 2580 71 64 57 50 43 36 29 22 15 8 1
+2270 2300 77 65 58 51 44 37 30 23 16 9 2                             2580 2610 72 65 58 51 44 37 30 23 16 9 2
+2300 2330 79 66 59 52 45 38 31 24 17 10 3                            2610 2640 73 66 59 52 45 38 31 24 17 10 3
+2330 2360 81 68 60 53 46 39 32 25 18 11 4                            2640 2670 74 67 60 53 46 39 32 25 18 11 4
+2360 2390 83 70 61 54 47 40 33 26 19 12 5                            2670 2700 75 68 61 54 47 40 33 26 19 12 5
+
+2390 2420 85 72 62 55 48 41 34 27 20 13 6                            2700 2730 76 69 62 55 48 41 34 27 20 13 6
+2420 2450 87 74 63 56 49 42 35 28 21 14 7                            2730 2760 77 70 63 56 49 42 35 28 21 14 7
+2450 2480 89 76 64 57 50 43 36 29 22 15 8                            2760 2790 78 71 64 57 50 43 36 29 22 15 8
+2480 2510 91 78 65 58 51 44 37 30 23 16 9                            2790 2820 79 72 65 58 51 44 37 30 23 16 9
+2510 2540 93 80 66 59 52 45 38 31 24 17 10                           2820 2850 80 73 66 59 52 45 38 31 24 17 10
+
+2540 2570 95 82 68 60 53 46 39 32 25 18 11                           2850 2880 81 74 67 60 53 46 39 32 25 18 11
+2570 2600 97 84 70 61 54 47 40 33 26 19 12                           2880 2910 82 75 68 61 54 47 40 33 26 19 12
+2600 2630 99 85 72 62 55 48 41 34 27 20 13                           2910 2940 83 76 69 62 55 48 41 34 27 20 13
+2630 2660 101 87 74 63 56 49 42 35 28 21 14                          2940 2970 84 77 70 63 56 49 42 35 28 21 14
+2660 2690 103 89 76 64 57 50 43 36 29 22 15                          2970 3000 85 78 71 64 57 50 43 36 29 22 15
+
+2690 2720 105 91 78 65 58 51 44 37 30 23 16                          3000 3030 86 79 72 65 58 51 44 37 30 23 16
+2720 2750 107 93 80 66 59 52 45 38 31 24 17                          3030 3060 87 80 73 66 59 52 45 38 31 24 17
+2750 2780 109 95 82 68 60 53 46 39 32 25 18                          3060 3090 88 81 74 67 60 53 46 39 32 25 18
+2780 2810 111 97 84 70 61 54 47 40 33 26 19                          3090 3120 89 82 75 68 61 54 47 40 33 26 19
+2810 2840 113 99 86 72 62 55 48 41 34 27 20                          3120 3150 90 83 76 69 62 55 48 41 34 27 20
+
+Effective Date: January 1, 2026                                  10                         Civil union partners use Married chart
+                       2026  Vermont Wage Bracket Withholding Charts                                       2026
+
+                             Single Semimonthly                                       Married Semimonthly
+
+                             Number of Exemptions Claimed                             Number of Exemptions Claimed
+
+Payment 0 1 2 3 4 5 6 7 8 9 10                                 Payment 0 1 2 3 4 5 6 7 8 9 10
+
+             but less        Vermont Withholding is:                        but less  Vermont Withholding is:
+at least than                                                  at least than
+
+0 180 0 0 0 0 0 0 0 0 0 0 0                                    0 520 0 0 0 0 0 0 0 0 0 0 0
+
+180 210 1 0 0 0 0 0 0 0 0 0 0                                  520 550 1 0 0 0 0 0 0 0 0 0 0
+
+210 240 2 0 0 0 0 0 0 0 0 0 0                                  550 580 2 0 0 0 0 0 0 0 0 0 0
+
+240 270 3 0 0 0 0 0 0 0 0 0 0                                  580 610 3 0 0 0 0 0 0 0 0 0 0
+
+270 300 4 0 0 0 0 0 0 0 0 0 0                                  610 640 5 0 0 0 0 0 0 0 0 0 0
+
+300 330 5 0 0 0 0 0 0 0 0 0 0                                  640 670 6 0 0 0 0 0 0 0 0 0 0
+330 360 6 0 0 0 0 0 0 0 0 0 0                                  670 700 7 0 0 0 0 0 0 0 0 0 0
+360 390 7 0 0 0 0 0 0 0 0 0 0                                  700 730 8 0 0 0 0 0 0 0 0 0 0
+390 420 8 1 0 0 0 0 0 0 0 0 0                                  730 760 9 1 0 0 0 0 0 0 0 0 0
+420 450 9 2 0 0 0 0 0 0 0 0 0                                  760 790 10 2 0 0 0 0 0 0 0 0 0
+
+450 480 10 3 0 0 0 0 0 0 0 0 0                                 790 820 11 3 0 0 0 0 0 0 0 0 0
+480 510 11 4 0 0 0 0 0 0 0 0 0                                 820 850 12 4 0 0 0 0 0 0 0 0 0
+510 540 12 5 0 0 0 0 0 0 0 0 0                                 850 880 13 5 0 0 0 0 0 0 0 0 0
+540 570 13 6 0 0 0 0 0 0 0 0 0                                 880 910 14 6 0 0 0 0 0 0 0 0 0
+570 600 14 7 0 0 0 0 0 0 0 0 0                                 910 940 15 7 0 0 0 0 0 0 0 0 0
+
+600 630 15 8 0 0 0 0 0 0 0 0 0                                 940 970 16 8 0 0 0 0 0 0 0 0 0
+630 660 16 9 1 0 0 0 0 0 0 0 0                                 970 1000 17 9 1 0 0 0 0 0 0 0 0
+660 690 17 10 2 0 0 0 0 0 0 0 0                                1000 1030 18 10 2 0 0 0 0 0 0 0 0
+690 720 18 11 3 0 0 0 0 0 0 0 0                                1030 1060 19 11 3 0 0 0 0 0 0 0 0
+720 750 19 12 4 0 0 0 0 0 0 0 0                                1060 1090 20 12 5 0 0 0 0 0 0 0 0
+
+750 780 20 13 5 0 0 0 0 0 0 0 0                                1090 1120 21 13 6 0 0 0 0 0 0 0 0
+780 810 21 14 6 0 0 0 0 0 0 0 0                                1120 1150 22 14 7 0 0 0 0 0 0 0 0
+810 840 22 15 7 0 0 0 0 0 0 0 0                                1150 1180 23 15 8 0 0 0 0 0 0 0 0
+840 870 23 16 8 1 0 0 0 0 0 0 0                                1180 1210 24 16 9 1 0 0 0 0 0 0 0
+870 900 24 17 9 2 0 0 0 0 0 0 0                                1210 1240 25 17 10 2 0 0 0 0 0 0 0
+
+900 930 25 18 10 3 0 0 0 0 0 0 0                               1240 1270 26 18 11 3 0 0 0 0 0 0 0
+930 960 26 19 11 4 0 0 0 0 0 0 0                               1270 1300 27 19 12 4 0 0 0 0 0 0 0
+960 990 27 20 12 5 0 0 0 0 0 0 0                               1300 1330 28 20 13 5 0 0 0 0 0 0 0
+990 1020 28 21 13 6 0 0 0 0 0 0 0                              1330 1360 29 21 14 6 0 0 0 0 0 0 0
+1020 1050 29 22 14 7 0 0 0 0 0 0 0                             1360 1390 30 22 15 7 0 0 0 0 0 0 0
+
+1050 1080 30 23 15 8 0 0 0 0 0 0 0                             1390 1420 31 23 16 8 0 0 0 0 0 0 0
+1080 1110 31 24 16 9 1 0 0 0 0 0 0                             1420 1450 32 24 17 9 1 0 0 0 0 0 0
+1110 1140 32 25 17 10 2 0 0 0 0 0 0                            1450 1480 33 25 18 10 2 0 0 0 0 0 0
+1140 1170 33 26 18 11 3 0 0 0 0 0 0                            1480 1510 34 26 19 11 3 0 0 0 0 0 0
+1170 1200 34 27 19 12 4 0 0 0 0 0 0                            1510 1540 35 27 20 12 5 0 0 0 0 0 0
+
+1200 1230 35 28 20 13 5 0 0 0 0 0 0                            1540 1570 36 28 21 13 6 0 0 0 0 0 0
+1230 1260 36 29 21 14 6 0 0 0 0 0 0                            1570 1600 37 29 22 14 7 0 0 0 0 0 0
+1260 1290 37 30 22 15 7 0 0 0 0 0 0                            1600 1630 38 30 23 15 8 0 0 0 0 0 0
+1290 1320 38 31 23 16 8 1 0 0 0 0 0                            1630 1660 39 31 24 16 9 1 0 0 0 0 0
+1320 1350 39 32 24 17 9 2 0 0 0 0 0                            1660 1690 40 32 25 17 10 2 0 0 0 0 0
+
+1350 1380 40 33 25 18 10 3 0 0 0 0 0                           1690 1720 41 33 26 18 11 3 0 0 0 0 0
+1380 1410 41 34 26 19 11 4 0 0 0 0 0                           1720 1750 42 34 27 19 12 4 0 0 0 0 0
+1410 1440 42 35 27 20 12 5 0 0 0 0 0                           1750 1780 43 35 28 20 13 5 0 0 0 0 0
+1440 1470 43 36 28 21 13 6 0 0 0 0 0                           1780 1810 44 36 29 21 14 6 0 0 0 0 0
+1470 1500 44 37 29 22 14 7 0 0 0 0 0                           1810 1840 45 37 30 22 15 7 0 0 0 0 0
+
+Effective Date: January 1, 2026                            11                         Civil union partners use Married chart
+                       2026  Vermont Wage Bracket Withholding Charts                                             2026
+
+                             Single Semimonthly                                             Married Semimonthly
+
+                             Number of Exemptions Claimed                                   Number of Exemptions Claimed
+
+Payment 0 1 2 3 4 5 6 7 8                                  9 10      Payment 0 1 2 3 4 5 6 7 8                            9 10
+
+             but less        Vermont Withholding is:       00                     but less  Vermont Withholding is:       00
+at least than                                              00        at least than                                        00
+                                                           00                                                             00
+1500 1530 45 38 30 23 15 8 0 0 0                           00        1840 1870 46 38 31 23 16 8 0 0 0                     00
+                                                           00                                                             00
+1530 1560 46 39 31 24 16 9 1 0 0                                     1870 1900 47 39 32 24 17 9 1 0 0
+
+1560 1590 47 40 32 25 17 10 2 0 0                                    1900 1930 48 40 33 25 18 10 2 0 0
+
+1590 1620 48 41 33 26 18 11 3 0 0                                    1930 1960 49 41 34 26 19 11 3 0 0
+
+1620 1650 49 42 34 27 19 12 4 0 0                                    1960 1990 50 42 35 27 20 12 5 0 0
+
+1650 1680 50 43 35 28 20 13 5 0 0 0 0                                1990 2020 51 43 36 28 21 13 6 0 0 0 0
+1680 1710 51 44 36 29 21 14 6 0 0 0 0                                2020 2050 52 44 37 29 22 14 7 0 0 0 0
+1710 1740 52 45 37 30 22 15 7 0 0 0 0                                2050 2080 53 45 38 30 23 15 8 0 0 0 0
+1740 1770 53 46 38 31 23 16 8 1 0 0 0                                2080 2110 54 46 39 31 24 16 9 1 0 0 0
+1770 1800 54 47 39 32 24 17 9 2 0 0 0                                2110 2140 55 47 40 32 25 17 10 2 0 0 0
+
+1800 1830 55 48 40 33 25 18 10 3 0 0 0                               2140 2170 56 48 41 33 26 18 11 3 0 0 0
+1830 1860 56 49 41 34 26 19 11 4 0 0 0                               2170 2200 57 49 42 34 27 19 12 4 0 0 0
+1860 1890 57 50 42 35 27 20 12 5 0 0 0                               2200 2230 58 50 43 35 28 20 13 5 0 0 0
+1890 1920 58 51 43 36 28 21 13 6 0 0 0                               2230 2260 59 51 44 36 29 21 14 6 0 0 0
+1920 1950 59 52 44 37 29 22 14 7 0 0 0                               2260 2290 60 52 45 37 30 22 15 7 0 0 0
+
+1950 1980 60 53 45 38 30 23 15 8 0 0 0                               2290 2320 61 53 46 38 31 23 16 8 0 0 0
+1980 2010 61 54 46 39 31 24 16 9 1 0 0                               2320 2350 62 54 47 39 32 24 17 9 1 0 0
+2010 2040 62 55 47 40 32 25 17 10 2 0 0                              2350 2380 63 55 48 40 33 25 18 10 2 0 0
+2040 2070 63 56 48 41 33 26 18 11 3 0 0                              2380 2410 64 56 49 41 34 26 19 11 3 0 0
+2070 2100 64 57 49 42 34 27 19 12 4 0 0                              2410 2440 65 57 50 42 35 27 20 12 5 0 0
+
+2100 2130 65 58 50 43 35 28 20 13 5 0 0                              2440 2470 66 58 51 43 36 28 21 13 6 0 0
+2130 2160 66 59 51 44 36 29 21 14 6 0 0                              2470 2500 67 59 52 44 37 29 22 14 7 0 0
+2160 2190 67 60 52 45 37 30 22 15 7 0 0                              2500 2530 68 60 53 45 38 30 23 15 8 0 0
+2190 2220 68 61 53 46 38 31 23 16 8 1 0                              2530 2560 69 61 54 46 39 31 24 16 9 1 0
+2220 2250 69 62 54 47 39 32 24 17 9 2 0                              2560 2590 70 62 55 47 40 32 25 17 10 2 0
+
+2250 2280 70 63 55 48 40 33 25 18 10 3 0                             2590 2620 71 63 56 48 41 33 26 18 11 3 0
+2280 2310 72 64 56 49 41 34 26 19 11 4 0                             2620 2650 72 64 57 49 42 34 27 19 12 4 0
+2310 2340 74 65 57 50 42 35 27 20 12 5 0                             2650 2680 73 65 58 50 43 35 28 20 13 5 0
+2340 2370 76 66 58 51 43 36 28 21 13 6 0                             2680 2710 74 66 59 51 44 36 29 21 14 6 0
+2370 2400 78 67 59 52 44 37 29 22 14 7 0                             2710 2740 75 67 60 52 45 37 30 22 15 7 0
+
+2400 2430 80 68 60 53 45 38 30 23 15 8 0                             2740 2770 76 68 61 53 46 38 31 23 16 8 0
+2430 2460 82 69 61 54 46 39 31 24 16 9 1                             2770 2800 77 69 62 54 47 39 32 24 17 9 1
+2460 2490 84 70 62 55 47 40 32 25 17 10 2                            2800 2830 78 70 63 55 48 40 33 25 18 10 2
+2490 2520 86 71 63 56 48 41 33 26 18 11 3                            2830 2860 79 71 64 56 49 41 34 26 19 11 3
+2520 2550 88 73 64 57 49 42 34 27 19 12 4                            2860 2890 80 72 65 57 50 42 35 27 20 12 5
+
+2550 2580 90 75 65 58 50 43 35 28 20 13 5                            2890 2920 81 73 66 58 51 43 36 28 21 13 6
+2580 2610 92 77 66 59 51 44 36 29 21 14 6                            2920 2950 82 74 67 59 52 44 37 29 22 14 7
+2610 2640 94 79 67 60 52 45 37 30 22 15 7                            2950 2980 83 75 68 60 53 45 38 30 23 15 8
+2640 2670 96 81 68 61 53 46 38 31 23 16 8                            2980 3010 84 76 69 61 54 46 39 31 24 16 9
+2670 2700 98 83 69 62 54 47 39 32 24 17 9                            3010 3040 85 77 70 62 55 47 40 32 25 17 10
+
+2700 2730 100 85 70 63 55 48 40 33 25 18 10                          3040 3070 86 78 71 63 56 48 41 33 26 18 11
+2730 2760 102 87 72 64 56 49 41 34 26 19 11                          3070 3100 87 79 72 64 57 49 42 34 27 19 12
+2760 2790 104 89 74 65 57 50 42 35 27 20 12                          3100 3130 88 80 73 65 58 50 43 35 28 20 13
+2790 2820 106 91 76 66 58 51 43 36 28 21 13                          3130 3160 89 81 74 66 59 51 44 36 29 21 14
+2820 2850 108 93 78 67 59 52 44 37 29 22 14                          3160 3190 90 82 75 67 60 52 45 37 30 22 15
+
+Effective Date: January 1, 2026                                  12                         Civil union partners use Married chart
+            2026       Vermont Wage Bracket Withholding Charts                                            2026
+
+Payment 0 1            Single Monthly                                                    Married Monthly
+
+             but less           Number of Exemptions Claimed                             Number of Exemptions Claimed
+at least than
+                       2 3 4 5 6 7 8 9 10                         Payment 0 1 2 3 4 5 6 7 8 9 10
+ 0 360 0 0
+360 420 2 0                    Vermont Withholding is:                         but less  Vermont Withholding is:
+420 480 4 0            000000000                                  at least than
+480 540 6 0            000000000
+540 600 8 0            000000000                                  0 1040 0 0 0 0 0 0 0 0 0 0 0
+                       000000000
+                       000000000                                  1040 1100 3 0 0 0 0 0 0 0 0 0 0
+
+                                                                  1100 1160 5 0 0 0 0 0 0 0 0 0 0
+
+                                                                  1160 1220 7 0 0 0 0 0 0 0 0 0 0
+
+                                                                  1220 1280 9 0 0 0 0 0 0 0 0 0 0
+
+600 660 10 0 0 0 0 0 0 0 0 0 0                                    1280 1340 11 0 0 0 0 0 0 0 0 0 0
+660 720 12 0 0 0 0 0 0 0 0 0 0                                    1340 1400 13 0 0 0 0 0 0 0 0 0 0
+720 780 14 0 0 0 0 0 0 0 0 0 0                                    1400 1460 15 0 0 0 0 0 0 0 0 0 0
+780 840 16 1 0 0 0 0 0 0 0 0 0                                    1460 1520 17 2 0 0 0 0 0 0 0 0 0
+840 900 18 3 0 0 0 0 0 0 0 0 0                                    1520 1580 19 4 0 0 0 0 0 0 0 0 0
+
+900 960 20 5 0 0 0 0 0 0 0 0 0                                    1580 1640 21 6 0 0 0 0 0 0 0 0 0
+960 1020 22 7 0 0 0 0 0 0 0 0 0                                   1640 1700 23 8 0 0 0 0 0 0 0 0 0
+1020 1080 24 9 0 0 0 0 0 0 0 0 0                                  1700 1760 25 10 0 0 0 0 0 0 0 0 0
+1080 1140 26 11 0 0 0 0 0 0 0 0 0                                 1760 1820 27 12 0 0 0 0 0 0 0 0 0
+1140 1200 28 13 0 0 0 0 0 0 0 0 0                                 1820 1880 29 14 0 0 0 0 0 0 0 0 0
+
+1200 1260 30 15 0 0 0 0 0 0 0 0 0                                 1880 1940 31 16 1 0 0 0 0 0 0 0 0
+1260 1320 32 17 2 0 0 0 0 0 0 0 0                                 1940 2000 33 18 3 0 0 0 0 0 0 0 0
+1320 1380 34 19 4 0 0 0 0 0 0 0 0                                 2000 2060 35 20 5 0 0 0 0 0 0 0 0
+1380 1440 36 21 6 0 0 0 0 0 0 0 0                                 2060 2120 37 22 7 0 0 0 0 0 0 0 0
+1440 1500 38 23 8 0 0 0 0 0 0 0 0                                 2120 2180 39 24 9 0 0 0 0 0 0 0 0
+
+1500 1560 40 25 10 0 0 0 0 0 0 0 0                                2180 2240 41 26 11 0 0 0 0 0 0 0 0
+1560 1620 42 27 12 0 0 0 0 0 0 0 0                                2240 2300 43 28 13 0 0 0 0 0 0 0 0
+1620 1680 44 29 14 0 0 0 0 0 0 0 0                                2300 2360 45 30 15 0 0 0 0 0 0 0 0
+1680 1740 46 31 16 1 0 0 0 0 0 0 0                                2360 2420 47 32 17 2 0 0 0 0 0 0 0
+1740 1800 48 33 18 3 0 0 0 0 0 0 0                                2420 2480 49 34 19 4 0 0 0 0 0 0 0
+
+1800 1860 50 35 20 5 0 0 0 0 0 0 0                                2480 2540 51 36 21 6 0 0 0 0 0 0 0
+1860 1920 52 37 22 7 0 0 0 0 0 0 0                                2540 2600 53 38 23 8 0 0 0 0 0 0 0
+1920 1980 54 39 24 9 0 0 0 0 0 0 0                                2600 2660 55 40 25 10 0 0 0 0 0 0 0
+1980 2040 56 41 26 11 0 0 0 0 0 0 0                               2660 2720 57 42 27 12 0 0 0 0 0 0 0
+2040 2100 58 43 28 13 0 0 0 0 0 0 0                               2720 2780 59 44 29 14 0 0 0 0 0 0 0
+
+2100 2160 60 45 30 15 0 0 0 0 0 0 0                               2780 2840 61 46 31 16 1 0 0 0 0 0 0
+2160 2220 62 47 32 17 2 0 0 0 0 0 0                               2840 2900 63 48 33 18 3 0 0 0 0 0 0
+2220 2280 64 49 34 19 4 0 0 0 0 0 0                               2900 2960 65 50 35 20 5 0 0 0 0 0 0
+2280 2340 66 51 36 21 6 0 0 0 0 0 0                               2960 3020 67 52 37 22 7 0 0 0 0 0 0
+2340 2400 68 53 38 23 8 0 0 0 0 0 0                               3020 3080 69 54 39 24 9 0 0 0 0 0 0
+
+2400 2460 70 55 40 25 10 0 0 0 0 0 0                              3080 3140 71 56 41 26 11 0 0 0 0 0 0
+2460 2520 72 57 42 27 12 0 0 0 0 0 0                              3140 3200 73 58 43 28 13 0 0 0 0 0 0
+2520 2580 74 59 44 29 14 0 0 0 0 0 0                              3200 3260 75 60 45 30 15 0 0 0 0 0 0
+2580 2640 76 61 46 31 16 1 0 0 0 0 0                              3260 3320 77 62 47 32 17 2 0 0 0 0 0
+2640 2700 78 63 48 33 18 3 0 0 0 0 0                              3320 3380 79 64 49 34 19 4 0 0 0 0 0
+
+2700 2760 80 65 50 35 20 5 0 0 0 0 0                              3380 3440 81 66 51 36 21 6 0 0 0 0 0
+2760 2820 83 67 52 37 22 7 0 0 0 0 0                              3440 3500 83 68 53 38 23 8 0 0 0 0 0
+2820 2880 85 69 54 39 24 9 0 0 0 0 0                              3500 3560 85 70 55 40 25 10 0 0 0 0 0
+2880 2940 87 71 56 41 26 11 0 0 0 0 0                             3560 3620 87 72 57 42 27 12 0 0 0 0 0
+2940 3000 89 73 58 43 28 13 0 0 0 0 0                             3620 3680 89 74 59 44 29 14 0 0 0 0 0
+
+Effective Date: January 1, 2026                               13                         Civil union partners use Married chart
+                       2026  Vermont Wage Bracket Withholding Charts                                         2026
+
+                             Single Monthly                                                 Married Monthly
+
+                             Number of Exemptions Claimed                                   Number of Exemptions Claimed
+
+Payment 0 1 2 3 4 5 6 7 8                                  9 10      Payment 0 1 2 3 4 5 6 7 8                            9 10
+
+             but less        Vermont Withholding is:       00                     but less  Vermont Withholding is:       00
+at least than                                              00        at least than                                        00
+                                                           00                                                             00
+3000 3060 91 75 60 45 30 15 0 0 0                          00        3680 3740 91 76 61 46 31 16 1 0 0                    00
+                                                           00                                                             00
+3060 3120 93 77 62 47 32 17 2 0 0                                    3740 3800 93 78 63 48 33 18 3 0 0
+
+3120 3180 95 79 64 49 34 19 4 0 0                                    3800 3860 95 80 65 50 35 20 5 0 0
+
+3180 3240 97 82 66 51 36 21 6 0 0                                    3860 3920 97 82 67 52 37 22 7 0 0
+
+3240 3300 99 84 68 53 38 23 8 0 0                                    3920 3980 99 84 69 54 39 24 9 0 0
+
+3300 3360 101 86 70 55 40 25 10 0 0 0 0                              3980 4040 101 86 71 56 41 26 11 0 0 0 0
+3360 3420 103 88 72 57 42 27 12 0 0 0 0                              4040 4100 103 88 73 58 43 28 13 0 0 0 0
+3420 3480 105 90 74 59 44 29 14 0 0 0 0                              4100 4160 105 90 75 60 45 30 15 0 0 0 0
+3480 3540 107 92 76 61 46 31 16 1 0 0 0                              4160 4220 107 92 77 62 47 32 17 2 0 0 0
+3540 3600 109 94 78 63 48 33 18 3 0 0 0                              4220 4280 110 94 79 64 49 34 19 4 0 0 0
+
+3600 3660 111 96 80 65 50 35 20 5 0 0 0                              4280 4340 112 96 81 66 51 36 21 6 0 0 0
+3660 3720 113 98 83 67 52 37 22 7 0 0 0                              4340 4400 114 98 83 68 53 38 23 8 0 0 0
+3720 3780 115 100 85 69 54 39 24 9 0 0 0                             4400 4460 116 100 85 70 55 40 25 10 0 0 0
+3780 3840 117 102 87 71 56 41 26 11 0 0 0                            4460 4520 118 102 87 72 57 42 27 12 0 0 0
+3840 3900 119 104 89 73 58 43 28 13 0 0 0                            4520 4580 120 104 89 74 59 44 29 14 0 0 0
+
+3900 3960 121 106 91 75 60 45 30 15 0 0 0                            4580 4640 122 106 91 76 61 46 31 16 1 0 0
+3960 4020 123 108 93 77 62 47 32 17 2 0 0                            4640 4700 124 108 93 78 63 48 33 18 3 0 0
+4020 4080 125 110 95 79 64 49 34 19 4 0 0                            4700 4760 126 111 95 80 65 50 35 20 5 0 0
+4080 4140 127 112 97 82 66 51 36 21 6 0 0                            4760 4820 128 113 97 82 67 52 37 22 7 0 0
+4140 4200 129 114 99 84 68 53 38 23 8 0 0                            4820 4880 130 115 99 84 69 54 39 24 9 0 0
+
+4200 4260 131 116 101 86 70 55 40 25 10 0 0                          4880 4940 132 117 101 86 71 56 41 26 11 0 0
+4260 4320 133 118 103 88 72 57 42 27 12 0 0                          4940 5000 134 119 103 88 73 58 43 28 13 0 0
+4320 4380 135 120 105 90 74 59 44 29 14 0 0                          5000 5060 136 121 105 90 75 60 45 30 15 0 0
+4380 4440 137 122 107 92 76 61 46 31 16 1 0                          5060 5120 138 123 107 92 77 62 47 32 17 2 0
+4440 4500 139 124 109 94 78 63 48 33 18 3 0                          5120 5180 140 125 110 94 79 64 49 34 19 4 0
+
+4500 4560 141 126 111 96 80 65 50 35 20 5 0                          5180 5240 142 127 112 96 81 66 51 36 21 6 0
+4560 4620 144 128 113 98 83 67 52 37 22 7 0                          5240 5300 144 129 114 98 83 68 53 38 23 8 0
+4620 4680 148 130 115 100 85 69 54 39 24 9 0                         5300 5360 146 131 116 100 85 70 55 40 25 10 0
+4680 4740 152 132 117 102 87 71 56 41 26 11 0                        5360 5420 148 133 118 102 87 72 57 42 27 12 0
+4740 4800 156 134 119 104 89 73 58 43 28 13 0                        5420 5480 150 135 120 104 89 74 59 44 29 14 0
+
+4800 4860 160 136 121 106 91 75 60 45 30 15 0                        5480 5540 152 137 122 106 91 76 61 46 31 16 1
+4860 4920 164 138 123 108 93 77 62 47 32 17 2                        5540 5600 154 139 124 108 93 78 63 48 33 18 3
+4920 4980 168 140 125 110 95 79 64 49 34 19 4                        5600 5660 156 141 126 111 95 80 65 50 35 20 5
+4980 5040 172 142 127 112 97 82 66 51 36 21 6                        5660 5720 158 143 128 113 97 82 67 52 37 22 7
+5040 5100 176 146 129 114 99 84 68 53 38 23 8                        5720 5780 160 145 130 115 99 84 69 54 39 24 9
+
+5100 5160 180 150 131 116 101 86 70 55 40 25 10                      5780 5840 162 147 132 117 101 86 71 56 41 26 11
+5160 5220 184 154 133 118 103 88 72 57 42 27 12                      5840 5900 164 149 134 119 103 88 73 58 43 28 13
+5220 5280 187 158 135 120 105 90 74 59 44 29 14                      5900 5960 166 151 136 121 105 90 75 60 45 30 15
+5280 5340 191 162 137 122 107 92 76 61 46 31 16                      5960 6020 168 153 138 123 107 92 77 62 47 32 17
+5340 5400 195 166 139 124 109 94 78 63 48 33 18                      6020 6080 170 155 140 125 110 94 79 64 49 34 19
+
+5400 5460 199 170 141 126 111 96 80 65 50 35 20                      6080 6140 172 157 142 127 112 96 81 66 51 36 21
+5460 5520 203 174 144 128 113 98 83 67 52 37 22                      6140 6200 174 159 144 129 114 98 83 68 53 38 23
+5520 5580 207 178 148 130 115 100 85 69 54 39 24                     6200 6260 176 161 146 131 116 100 85 70 55 40 25
+5580 5640 211 182 152 132 117 102 87 71 56 41 26                     6260 6320 178 163 148 133 118 102 87 72 57 42 27
+5640 5700 215 185 156 134 119 104 89 73 58 43 28                     6320 6380 180 165 150 135 120 104 89 74 59 44 29
+
+Effective Date: January 1, 2026                                  14                         Civil union partners use Married chart
+                       2026  Vermont Wage Bracket Withholding Charts                       2026
+
+                       Single Daily or Miscellaneous                                       Married Daily or Miscellaneous
+
+                             Number of Exemptions Claimed                                  Number of Exemptions Claimed
+
+Payment                                                             Payment
+
+(per day) 0 1 2 3 4 5 6 7 8 9 10                                    (per day) 0 1 2 3 4 5 6 7 8 9 10
+
+             but less        Vermont Withholding is:                             but less  Vermont Withholding is:
+at least than                                                       at least than
+
+0 17 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00         0 48 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+17 20 0.11 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        48 51 0.14 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+20 23 0.21 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        51 54 0.24 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+23 26 0.32 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        54 57 0.34 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+26 29 0.42 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        57 60 0.44 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+29 32 0.52 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        60 63 0.54 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+32 35 0.62 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        63 66 0.64 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+35 38 0.72 0.02 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        66 69 0.74 0.05 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+38 41 0.82 0.12 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        69 72 0.84 0.15 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+41 44 0.92 0.22 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        72 75 0.95 0.25 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+44 47 1.02 0.32 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        75 78 1.05 0.35 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+47 50 1.12 0.42 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        78 81 1.15 0.45 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+50 53 1.22 0.52 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        81 84 1.25 0.55 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+53 56 1.32 0.62 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        84 87 1.35 0.65 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+56 59 1.42 0.72 0.03 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        87 90 1.45 0.75 0.06 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+59 62 1.52 0.83 0.13 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        90 93 1.55 0.85 0.16 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+62 65 1.62 0.93 0.23 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        93 96 1.65 0.95 0.26 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+65 68 1.72 1.03 0.33 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        96 99 1.75 1.05 0.36 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+68 71 1.82 1.13 0.43 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        99 102 1.85 1.15 0.46 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+71 74 1.92 1.23 0.53 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        102 105 1.95 1.25 0.56 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+74 77 2.02 1.33 0.63 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00        105 108 2.05 1.35 0.66 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+77 80 2.12 1.43 0.73 0.04 0.00 0.00 0.00 0.00 0.00 0.00 0.00        108 111 2.15 1.46 0.76 0.06 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+80 83 2.22 1.53 0.83 0.14 0.00 0.00 0.00 0.00 0.00 0.00 0.00        111 114 2.25 1.56 0.86 0.16 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+83 86 2.33 1.63 0.93 0.24 0.00 0.00 0.00 0.00 0.00 0.00 0.00        114 117 2.35 1.66 0.96 0.26 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+86 89 2.43 1.73 1.03 0.34 0.00 0.00 0.00 0.00 0.00 0.00 0.00        117 120 2.45 1.76 1.06 0.37 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+
+89 92 2.53 1.83 1.13 0.44 0.00 0.00 0.00 0.00 0.00 0.00 0.00        120 123 2.55 1.86 1.16 0.47 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+92 95 2.63 1.93 1.23 0.54 0.00 0.00 0.00 0.00 0.00 0.00 0.00        123 126 2.65 1.96 1.26 0.57 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+95 98 2.73 2.03 1.34 0.64 0.00 0.00 0.00 0.00 0.00 0.00 0.00        126 129 2.75 2.06 1.36 0.67 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+98 101 2.83 2.13 1.44 0.74 0.04 0.00 0.00 0.00 0.00 0.00 0.00       129 132 2.85 2.16 1.46 0.77 0.07 0.00 0.00 0.00 0.00 0.00 0.00
+101 104 2.93 2.23 1.54 0.84 0.14 0.00 0.00 0.00 0.00 0.00 0.00      132 135 2.96 2.26 1.56 0.87 0.17 0.00 0.00 0.00 0.00 0.00 0.00
+
+104 107 3.03 2.33 1.64 0.94 0.25 0.00 0.00 0.00 0.00 0.00 0.00      135 138 3.06 2.36 1.66 0.97 0.27 0.00 0.00 0.00 0.00 0.00 0.00
+107 110 3.13 2.43 1.74 1.04 0.35 0.00 0.00 0.00 0.00 0.00 0.00      138 141 3.16 2.46 1.76 1.07 0.37 0.00 0.00 0.00 0.00 0.00 0.00
+110 113 3.23 2.53 1.84 1.14 0.45 0.00 0.00 0.00 0.00 0.00 0.00      141 144 3.26 2.56 1.87 1.17 0.47 0.00 0.00 0.00 0.00 0.00 0.00
+113 116 3.33 2.63 1.94 1.24 0.55 0.00 0.00 0.00 0.00 0.00 0.00      144 147 3.36 2.66 1.97 1.27 0.57 0.00 0.00 0.00 0.00 0.00 0.00
+116 119 3.43 2.73 2.04 1.34 0.65 0.00 0.00 0.00 0.00 0.00 0.00      147 150 3.46 2.76 2.07 1.37 0.67 0.00 0.00 0.00 0.00 0.00 0.00
+
+119 122 3.53 2.84 2.14 1.44 0.75 0.05 0.00 0.00 0.00 0.00 0.00      150 153 3.56 2.86 2.17 1.47 0.78 0.08 0.00 0.00 0.00 0.00 0.00
+122 125 3.63 2.94 2.24 1.54 0.85 0.15 0.00 0.00 0.00 0.00 0.00      153 156 3.66 2.96 2.27 1.57 0.88 0.18 0.00 0.00 0.00 0.00 0.00
+125 128 3.73 3.04 2.34 1.64 0.95 0.25 0.00 0.00 0.00 0.00 0.00      156 159 3.76 3.06 2.37 1.67 0.98 0.28 0.00 0.00 0.00 0.00 0.00
+128 131 3.83 3.14 2.44 1.75 1.05 0.35 0.00 0.00 0.00 0.00 0.00      159 162 3.86 3.16 2.47 1.77 1.08 0.38 0.00 0.00 0.00 0.00 0.00
+131 134 3.93 3.24 2.54 1.85 1.15 0.45 0.00 0.00 0.00 0.00 0.00      162 165 3.96 3.26 2.57 1.87 1.18 0.48 0.00 0.00 0.00 0.00 0.00
+
+134 137 4.03 3.34 2.64 1.95 1.25 0.55 0.00 0.00 0.00 0.00 0.00      165 168 4.06 3.36 2.67 1.97 1.28 0.58 0.00 0.00 0.00 0.00 0.00
+137 140 4.13 3.44 2.74 2.05 1.35 0.66 0.00 0.00 0.00 0.00 0.00      168 171 4.16 3.47 2.77 2.07 1.38 0.68 0.00 0.00 0.00 0.00 0.00
+140 143 4.23 3.54 2.84 2.15 1.45 0.76 0.06 0.00 0.00 0.00 0.00      171 174 4.26 3.57 2.87 2.17 1.48 0.78 0.09 0.00 0.00 0.00 0.00
+143 146 4.34 3.64 2.94 2.25 1.55 0.86 0.16 0.00 0.00 0.00 0.00      174 177 4.36 3.67 2.97 2.27 1.58 0.88 0.19 0.00 0.00 0.00 0.00
+146 149 4.44 3.74 3.04 2.35 1.65 0.96 0.26 0.00 0.00 0.00 0.00      177 180 4.46 3.77 3.07 2.38 1.68 0.98 0.29 0.00 0.00 0.00 0.00
+
+Effective Date: January 1, 2026                                 15                         Civil union partners use Married chart
+                       2026  Vermont Wage Bracket Withholding Charts                        2026
+
+                       Single Daily or Miscellaneous                                        Married Daily or Miscellaneous
+
+                             Number of Exemptions Claimed                                   Number of Exemptions Claimed
+
+Payment                                                              Payment
+
+(per day) 0 1 2 3 4 5 6 7 8 9 10                                     (per day) 0 1 2 3 4 5 6 7 8 9 10
+
+             but less        Vermont Withholding is:                              but less  Vermont Withholding is:
+at least than                                                        at least than
+
+149 152 4.54 3.84 3.14 2.45 1.75 1.06 0.36 0.00 0.00 0.00 0.00       180 183 4.56 3.87 3.17 2.48 1.78 1.08 0.39 0.00 0.00 0.00 0.00
+
+152 155 4.64 3.94 3.24 2.55 1.85 1.16 0.46 0.00 0.00 0.00 0.00       183 186 4.66 3.97 3.27 2.58 1.88 1.18 0.49 0.00 0.00 0.00 0.00
+
+155 158 4.74 4.04 3.35 2.65 1.95 1.26 0.56 0.00 0.00 0.00 0.00       186 189 4.76 4.07 3.37 2.68 1.98 1.29 0.59 0.00 0.00 0.00 0.00
+
+158 161 4.84 4.14 3.45 2.75 2.05 1.36 0.66 0.00 0.00 0.00 0.00       189 192 4.86 4.17 3.47 2.78 2.08 1.39 0.69 0.00 0.00 0.00 0.00
+
+161 164 4.94 4.24 3.55 2.85 2.15 1.46 0.76 0.07 0.00 0.00 0.00       192 195 4.97 4.27 3.57 2.88 2.18 1.49 0.79 0.09 0.00 0.00 0.00
+
+164 167 5.04 4.34 3.65 2.95 2.26 1.56 0.86 0.17 0.00 0.00 0.00       195 198 5.07 4.37 3.67 2.98 2.28 1.59 0.89 0.20 0.00 0.00 0.00
+167 170 5.14 4.44 3.75 3.05 2.36 1.66 0.96 0.27 0.00 0.00 0.00       198 201 5.17 4.47 3.77 3.08 2.38 1.69 0.99 0.30 0.00 0.00 0.00
+170 173 5.24 4.54 3.85 3.15 2.46 1.76 1.06 0.37 0.00 0.00 0.00       201 204 5.27 4.57 3.88 3.18 2.48 1.79 1.09 0.40 0.00 0.00 0.00
+173 176 5.34 4.64 3.95 3.25 2.56 1.86 1.17 0.47 0.00 0.00 0.00       204 207 5.37 4.67 3.98 3.28 2.58 1.89 1.19 0.50 0.00 0.00 0.00
+176 179 5.44 4.74 4.05 3.35 2.66 1.96 1.27 0.57 0.00 0.00 0.00       207 210 5.47 4.77 4.08 3.38 2.68 1.99 1.29 0.60 0.00 0.00 0.00
+
+179 182 5.54 4.85 4.15 3.45 2.76 2.06 1.37 0.67 0.00 0.00 0.00       210 213 5.57 4.87 4.18 3.48 2.79 2.09 1.39 0.70 0.00 0.00 0.00
+182 185 5.64 4.95 4.25 3.55 2.86 2.16 1.47 0.77 0.08 0.00 0.00       213 216 5.67 4.97 4.28 3.58 2.89 2.19 1.49 0.80 0.10 0.00 0.00
+185 188 5.74 5.05 4.35 3.65 2.96 2.26 1.57 0.87 0.18 0.00 0.00       216 219 5.77 5.07 4.38 3.68 2.99 2.29 1.59 0.90 0.20 0.00 0.00
+188 191 5.84 5.15 4.45 3.76 3.06 2.36 1.67 0.97 0.28 0.00 0.00       219 222 5.87 5.17 4.48 3.78 3.09 2.39 1.69 1.00 0.30 0.00 0.00
+191 194 5.94 5.25 4.55 3.86 3.16 2.46 1.77 1.07 0.38 0.00 0.00       222 225 5.97 5.27 4.58 3.88 3.19 2.49 1.80 1.10 0.40 0.00 0.00
+
+194 197 6.04 5.35 4.65 3.96 3.26 2.56 1.87 1.17 0.48 0.00 0.00       225 228 6.07 5.37 4.68 3.98 3.29 2.59 1.90 1.20 0.50 0.00 0.00
+197 200 6.14 5.45 4.75 4.06 3.36 2.67 1.97 1.27 0.58 0.00 0.00       228 231 6.17 5.48 4.78 4.08 3.39 2.69 2.00 1.30 0.60 0.00 0.00
+200 203 6.24 5.55 4.85 4.16 3.46 2.77 2.07 1.37 0.68 0.00 0.00       231 234 6.27 5.58 4.88 4.18 3.49 2.79 2.10 1.40 0.71 0.01 0.00
+203 206 6.35 5.65 4.95 4.26 3.56 2.87 2.17 1.47 0.78 0.08 0.00       234 237 6.37 5.68 4.98 4.28 3.59 2.89 2.20 1.50 0.81 0.11 0.00
+206 209 6.45 5.75 5.05 4.36 3.66 2.97 2.27 1.58 0.88 0.18 0.00       237 240 6.47 5.78 5.08 4.39 3.69 2.99 2.30 1.60 0.91 0.21 0.00
+
+209 212 6.55 5.85 5.15 4.46 3.76 3.07 2.37 1.68 0.98 0.28 0.00       240 243 6.57 5.88 5.18 4.49 3.79 3.09 2.40 1.70 1.01 0.31 0.00
+212 215 6.75 5.95 5.25 4.56 3.86 3.17 2.47 1.78 1.08 0.38 0.00       243 246 6.67 5.98 5.28 4.59 3.89 3.19 2.50 1.80 1.11 0.41 0.00
+215 218 6.95 6.05 5.36 4.66 3.96 3.27 2.57 1.88 1.18 0.49 0.00       246 249 6.77 6.08 5.38 4.69 3.99 3.30 2.60 1.90 1.21 0.51 0.00
+218 221 7.15 6.15 5.46 4.76 4.06 3.37 2.67 1.98 1.28 0.59 0.00       249 252 6.87 6.18 5.48 4.79 4.09 3.40 2.70 2.00 1.31 0.61 0.00
+221 224 7.34 6.25 5.56 4.86 4.16 3.47 2.77 2.08 1.38 0.69 0.00       252 255 6.98 6.28 5.58 4.89 4.19 3.50 2.80 2.10 1.41 0.71 0.02
+
+224 227 7.54 6.35 5.66 4.96 4.27 3.57 2.87 2.18 1.48 0.79 0.09       255 258 7.08 6.38 5.68 4.99 4.29 3.60 2.90 2.21 1.51 0.81 0.12
+227 230 7.74 6.45 5.76 5.06 4.37 3.67 2.97 2.28 1.58 0.89 0.19       258 261 7.18 6.48 5.78 5.09 4.39 3.70 3.00 2.31 1.61 0.91 0.22
+230 233 7.94 6.57 5.86 5.16 4.47 3.77 3.07 2.38 1.68 0.99 0.29       261 264 7.28 6.58 5.89 5.19 4.49 3.80 3.10 2.41 1.71 1.01 0.32
+233 236 8.14 6.77 5.96 5.26 4.57 3.87 3.18 2.48 1.78 1.09 0.39       264 267 7.38 6.68 5.99 5.29 4.59 3.90 3.20 2.51 1.81 1.12 0.42
+236 239 8.33 6.96 6.06 5.36 4.67 3.97 3.28 2.58 1.88 1.19 0.49       267 270 7.48 6.78 6.09 5.39 4.69 4.00 3.30 2.61 1.91 1.22 0.52
+
+239 242 8.53 7.16 6.16 5.46 4.77 4.07 3.38 2.68 1.98 1.29 0.59       270 273 7.58 6.88 6.19 5.49 4.80 4.10 3.40 2.71 2.01 1.32 0.62
+242 245 8.73 7.36 6.26 5.56 4.87 4.17 3.48 2.78 2.09 1.39 0.69       273 276 7.68 6.98 6.29 5.59 4.90 4.20 3.50 2.81 2.11 1.42 0.72
+245 248 8.93 7.56 6.36 5.66 4.97 4.27 3.58 2.88 2.19 1.49 0.79       276 279 7.78 7.08 6.39 5.69 5.00 4.30 3.60 2.91 2.21 1.52 0.82
+248 251 9.13 7.76 6.46 5.77 5.07 4.37 3.68 2.98 2.29 1.59 0.89       279 282 7.88 7.18 6.49 5.79 5.10 4.40 3.70 3.01 2.31 1.62 0.92
+251 254 9.32 7.95 6.58 5.87 5.17 4.47 3.78 3.08 2.39 1.69 1.00       282 285 7.98 7.28 6.59 5.89 5.20 4.50 3.81 3.11 2.41 1.72 1.02
+
+254 257 9.52 8.15 6.78 5.97 5.27 4.57 3.88 3.18 2.49 1.79 1.10       285 288 8.08 7.38 6.69 5.99 5.30 4.60 3.91 3.21 2.51 1.82 1.12
+257 260 9.72 8.35 6.98 6.07 5.37 4.68 3.98 3.28 2.59 1.89 1.20       288 291 8.18 7.49 6.79 6.09 5.40 4.70 4.01 3.31 2.61 1.92 1.22
+260 263 9.92 8.55 7.18 6.17 5.47 4.78 4.08 3.38 2.69 1.99 1.30       291 294 8.28 7.59 6.89 6.19 5.50 4.80 4.11 3.41 2.72 2.02 1.32
+263 266 10.12 8.75 7.38 6.27 5.57 4.88 4.18 3.48 2.79 2.09 1.40      294 297 8.38 7.69 6.99 6.29 5.60 4.90 4.21 3.51 2.82 2.12 1.42
+266 269 10.31 8.94 7.57 6.37 5.67 4.98 4.28 3.59 2.89 2.19 1.50      297 300 8.48 7.79 7.09 6.40 5.70 5.00 4.31 3.61 2.92 2.22 1.52
+
+269 272 10.51 9.14 7.77 6.47 5.77 5.08 4.38 3.69 2.99 2.29 1.60      300 303 8.58 7.89 7.19 6.50 5.80 5.10 4.41 3.71 3.02 2.32 1.63
+272 275 10.71 9.34 7.97 6.60 5.87 5.18 4.48 3.79 3.09 2.39 1.70      303 306 8.68 7.99 7.29 6.60 5.90 5.20 4.51 3.81 3.12 2.42 1.73
+275 278 10.91 9.54 8.17 6.80 5.97 5.28 4.58 3.89 3.19 2.50 1.80      306 309 8.78 8.09 7.39 6.70 6.00 5.31 4.61 3.91 3.22 2.52 1.83
+278 281 11.11 9.74 8.37 6.99 6.07 5.38 4.68 3.99 3.29 2.60 1.90      309 312 8.88 8.19 7.49 6.80 6.10 5.41 4.71 4.01 3.32 2.62 1.93
+281 284 11.30 9.93 8.56 7.19 6.17 5.48 4.78 4.09 3.39 2.70 2.00      312 315 8.99 8.29 7.59 6.90 6.20 5.51 4.81 4.11 3.42 2.72 2.03
+
+Effective Date: January 1, 2026                                  16                         Civil union partners use Married chart
+

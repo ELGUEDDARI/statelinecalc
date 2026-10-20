@@ -2936,5 +2936,96 @@ check("CT : seul Etat avec stepAdjustments", Object.keys(R.states).filter(k => R
   check("CT : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
+console.log("\n=== Vermont (46e Etat) ===");
+
+/* Sources (lues le 2026-10-20) : Vermont Department of Taxes, GB-1210-2026 (« EFFECTIVE JANUARY 1, 2026 - EXPIRES DECEMBER 31, 2026 »), table
+   annuelle : celibataire 0 % jusqu'a 3 925 $, 3,35 % jusqu'a 54 675 $ (1 700,13 $), 6,6 % jusqu'a 126 775 $ (6 458,73 $), 7,6 % jusqu'a 260 225 $
+   (16 600,93 $), 8,75 % au-dela ; marie 0 % jusqu'a 11 775 $, 3,35 % jusqu'a 96 475 $, 6,6 % jusqu'a 216 525 $, 7,6 % jusqu'a 323 825 $, 8,75 %
+   au-dela ; allocation 5 400 $ par allocation. W-4VT : ligne 1 (soi-meme) + ligne 2 (conjoint sans emploi) + ligne 4 (chef de famille).
+   Tous les attendus sont recalcules a la main, PAS copies de la sortie du code. */
+const vtC = (b, st, rp) => calcul("vermont", b, st || "single", rp || 0);
+
+/* Cas VT-1 - 75 000 $ celibataire. Federal 7 670 ; FICA 5 737,50. Etat : 75 000 - 5 400 = 69 600 ; 1 700,125 + (69 600 - 54 675) x 6,6 % =
+   1 700,125 + 14 925 x 0,066 = 1 700,125 + 985,05 = 2 685,175. Net : 75 000 - 7 670 - 5 737,50 - 2 685,175 = 58 907,325. */
+check("VT 75 000 $ celibataire : impot d'Etat", vtC(75000).etat, 2685.175, 0.0005);
+check("VT 75 000 $ celibataire : net", vtC(75000).net, 58907.325, 0.0005);
+
+/* Cas VT-2 - 75 000 $ marie, conjoint sans emploi (2 allocations = 10 800). Federal 4 640. Etat : 64 200 ; (64 200 - 11 775) x 3,35 % =
+   52 425 x 0,0335 = 1 756,2375. Net : 75 000 - 4 640 - 5 737,50 - 1 756,2375 = 62 866,2625. */
+check("VT 75 000 $ marie : impot d'Etat", vtC(75000, "marriedJoint").etat, 1756.2375, 0.0005);
+check("VT 75 000 $ marie : net", vtC(75000, "marriedJoint").net, 62866.2625, 0.0005);
+
+/* Cas VT-3 - 75 000 $ chef de famille (2 allocations, bareme celibataire). Federal 5 748. Etat : 64 200 ; 1 700,125 + (64 200 - 54 675) x 6,6 % =
+   1 700,125 + 9 525 x 0,066 = 1 700,125 + 628,65 = 2 328,775. Net : 75 000 - 5 748 - 5 737,50 - 2 328,775 = 61 185,725. */
+check("VT 75 000 $ chef de famille : impot d'Etat", vtC(75000, "headOfHousehold").etat, 2328.775, 0.0005);
+check("VT 75 000 $ chef de famille : net", vtC(75000, "headOfHousehold").net, 61185.725, 0.0005);
+
+/* Cas VT-4 - 30 000 $ celibataire. Federal 1 420 ; FICA 2 295. Etat : 24 600 ; (24 600 - 3 925) x 3,35 % = 20 675 x 0,0335 = 692,6125.
+   Net : 30 000 - 1 420 - 2 295 - 692,6125 = 25 592,3875. */
+check("VT 30 000 $ celibataire : impot d'Etat", vtC(30000).etat, 692.6125, 0.0005);
+check("VT 30 000 $ celibataire : net", vtC(30000).net, 25592.3875, 0.0005);
+
+/* Cas VT-5 - 250 000 $ celibataire. Federal 51 304 ; FICA 11 439 + 4 075 = 15 514. Etat : 244 600 ; 6 458,725 + (244 600 - 126 775) x 7,6 % =
+   6 458,725 + 117 825 x 0,076 = 6 458,725 + 8 954,7 = 15 413,425. Net : 250 000 - 51 304 - 15 514 - 15 413,425 = 167 768,575. */
+check("VT 250 000 $ celibataire : impot d'Etat", vtC(250000).etat, 15413.425, 0.0005);
+check("VT 250 000 $ celibataire : net", vtC(250000).net, 167768.575, 0.0005);
+
+/* Cas VT-6 - l'exemple imprime du guide (p. 6) : 1 800 $ par semaine, marie, 2 allocations = 93 600 $ par an ; 93 600 - 10 800 = 82 800 ;
+   (82 800 - 11 775) x 3,35 % = 71 025 x 0,0335 = 2 379,3375 ; / 52 = 45,7565 $. Le guide imprime 45,77 $ (table hebdomadaire arrondie). */
+check("VT exemple du guide : 93 600 $ marie, par semaine", vtC(93600, "marriedJoint").etat / 52, 45.7565, 0.0005);
+check("VT exemple du guide : 46 $ par semaine apres arrondi au dollar", Math.round(vtC(93600, "marriedJoint").etat / 52), 46, 0);
+
+/* Cas VT-7 - sous la tranche a 0 % : 9 000 $ - 5 400 = 3 600 < 3 925 -> 0 ; au seuil exact : 9 325 $ -> 3 925 imposables -> 0. */
+check("VT 9 000 $ celibataire : zero retenue", vtC(9000).etat, 0, 0.0005);
+check("VT 9 325 $ celibataire : zero retenue au seuil", vtC(9325).etat, 0, 0.0005);
+
+/* Cas VT-8 - 17 000 $ celibataire : 11 600 imposables ; (11 600 - 3 925) x 3,35 % = 7 675 x 0,0335 = 257,1125. */
+check("VT 17 000 $ celibataire : impot d'Etat", vtC(17000).etat, 257.1125, 0.0005);
+
+/* Cas VT-9 - 401(k) 6 % sur 75 000 $ : salaire 70 500 ; 65 100 imposables ; 1 700,125 + (65 100 - 54 675) x 6,6 % = 1 700,125 + 10 425 x 0,066 =
+   1 700,125 + 688,05 = 2 388,175. */
+check("VT 75 000 $ avec 401(k) 6 % : impot d'Etat", vtC(75000, "single", 0.06).etat, 2388.175, 0.0005);
+
+/* Cas VT-10 - 400 000 $ celibataire (tranche a 8,75 %) : 394 600 imposables ; 16 600,925 + (394 600 - 260 225) x 8,75 % = 16 600,925 +
+   134 375 x 0,0875 = 16 600,925 + 11 757,8125 = 28 358,7375. */
+check("VT 400 000 $ celibataire : impot d'Etat", vtC(400000).etat, 28358.7375, 0.0005);
+
+/* Cas VT-11 - 150 000 $ marie : 139 200 imposables ; 2 837,45 + (139 200 - 96 475) x 6,6 % = 2 837,45 + 42 725 x 0,066 = 2 837,45 + 2 819,85 = 5 657,30. */
+check("VT 150 000 $ marie : impot d'Etat", vtC(150000, "marriedJoint").etat, 5657.30, 0.0005);
+
+/* Cas VT-12 - aucun programme salarie (CCC : a la charge de l'employeur sauf choix de retenir jusqu'a 0,11 % ; conge : volontaire). */
+check("VT : aucun programme salarie", vtC(75000).programmes.length + vtC(75000).paidLeave + vtC(75000).waCares, 0, 0);
+
+/* Cas VT-13 - garde-fou : le bareme du moteur est celui du guide, le chef de famille suit le celibataire. */
+check("VT : bareme et allocations == guide (table annuelle, GB-1210-2026 p. 5-6)",
+  (() => { const A = R.states.vermont.incomeTax;
+    return JSON.stringify(A.brackets.single) === JSON.stringify([[3925, 0], [54675, 0.0335], [126775, 0.066], [260225, 0.076], [Infinity, 0.0875]]) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify([[11775, 0], [96475, 0.0335], [216525, 0.066], [323825, 0.076], [Infinity, 0.0875]]) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(A.brackets.single) &&
+      A.standardDeduction.single === 5400 && A.standardDeduction.marriedJoint === 10800 && A.standardDeduction.headOfHousehold === 10800 ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes des tranches x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 9325, 9326, 59000, 60075, 132175, 265625, 75000, 184500, 250000, 1500000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "vermont", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("vermont", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("VT : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");
 process.exit(fail === 0 ? 0 : 1);
