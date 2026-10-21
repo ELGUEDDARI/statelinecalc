@@ -40,6 +40,7 @@ const PUBLIES = {
   Kansas: "kansas",
   Kentucky: "kentucky",
   Louisiana: "louisiana",
+  Maine: "maine",
   Maryland: "maryland",
   Massachusetts: "massachusetts",
   Michigan: "michigan",

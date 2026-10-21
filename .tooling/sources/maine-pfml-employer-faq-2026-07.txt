@@ -1,0 +1,823 @@
+      Paid Family and Medical Leave (PFML) Frequently Asked Questions (FAQ's) for
+                                                    Employers
+
+Note: This FAQ is designed to help employers and employees better understand their rights and
+responsibilities and to navigate Maine Paid Family Medical Leave Law. This document provides
+guidance but does not replace the authority of the Law or program Rules. The information in
+this guidance may be subject to change. Visit https://www.maine.gov/paidleave/ for the most
+up-to-date information.
+
+Overview of the Paid Family and Medical Leave law:
+
+1. What is the Paid Family and Medical Leave Program (PFML Program)?
+Maine's PFML law will provide up to 12 weeks of paid leave for family leave, medical leave, to
+deal with the transition of a family member's pending military deployment or stay safe after
+abuse or violence. This law went into effect in October 2023, with the major components of the
+law having 2025 and 2026 implementation dates. The Maine Department of Labor (MDOL) is
+responsible for the implementation of this new program.
+
+Contributions:
+
+2. Where do the contributions come from beginning January 1, 2025? Are the
+contributions paid by the employee, the employer, or combined?
+Both the employer and the employee contribute to the PFML Fund. All funds are pooled to pay
+for future claims and other administrative costs. Payroll withholdings from employee's pay for
+the Paid Family Medical Leave program will begin with pay dates on or after January 1, 2025,
+and be transferred to the Maine Paid Family and Medical Leave Fund. ("PFML Fund").
+
+3. If benefits do not go live until 2026, why are contributions being made in 2025?
+Although benefits are scheduled to begin on May 1, 2026, payroll contributions will begin in
+2025 to allow time to accumulate sufficient funds to pay for benefits and the operations of the
+program.
+
+July 2026
+4. What is the contribution rate for Paid Family and Medical Leave?
+For calendar years 2025-2027, the joint contribution rate for employers and employees is set at
+either 0.5 or 1 percent of wages based on the size of the employer. No more than 0.5 percent can
+come from the employee. Employers with 15 or more employees will contribute 1 percent of
+wages and may deduct up to half of the contribution from the employees' wages. Employers with
+less than 15 employees will contribute 0.5 percent of wages and may deduct the entire amount
+from the employees' wages.
+
+5. What is the definition of wages for the program?
+
+Wages include all forms of compensation for personal services, such as regular salary, tips,
+commissions, bonuses, and severance pay. It does not cover payments made to independent
+contractors.
+
+For payroll and premium purposes, wages are calculated similarly to how Maine Unemployment
+wages are determined but applied to a larger base of employees that are not traditionally subject
+to the Maine Unemployment contributions tax. All wages earned in Maine should be reported on
+wage reporting and the premium amount will be calculated to exclude amounts above the annual
+base limit set by the U.S. Social Security Administration.
+
+6. How is the locality of Wages earned in Maine determined?
+
+The PFML program will use the same test of locality under the Maine unemployment law. In
+general ­ if an employer subject to Maine Unemployment Insurance (UI) includes an employee
+on a Maine UI report based on UI locality, that employee is also subject to Maine PFML. If an
+employer includes an employee on a UI report to another state based on UI locality, PFML takes
+the position that the employee's work is localized in that same state for PFML purposes.
+However, in instances where an employer or an employee type is not subject to Maine or other
+state unemployment law but is subject to Maine PFML, then locality must be established. A
+worker earning Maine wages can be determined through a four criteria sequential test, applied to
+the employee:
+
+Four factors, taken in sequence, determine whether or not employment is reportable in Maine:
+
+    · Place Where Work Is Performed: If the employee performs all work in Maine, or if the
+         work outside Maine is incidental (temporary or minor), then Maine law applies. If this
+         does not apply, continue to next factor.
+
+July 2026
+    · Base of Operations: If the employee performs work in Maine and other states, if the
+         base of operations is in Maine, Maine law applies. The base of operations is the primary
+         location from which the employee starts work and returns regularly. If this does not
+         apply continue to next factor.
+
+    · Place from Which Service Is Directed or Controlled: If the employee performs some
+         work in Maine and the service is directed or controlled from Maine, Maine law applies.
+         This refers to the place of general authority rather than direct supervision. If this does not
+         apply, continue to next factor.
+
+    · Place of Residence: If none of the above criteria apply, and the employee performs work
+         in Maine and other states, and resides in Maine, then Maine law applies. If none of the
+         above apply, the employment is not reportable in Maine.
+
+7. Who is responsible for remitting contributions to the PFML Fund?
+Employers are responsible for remitting contributions to the PFML Fund through the Maine Paid
+Leave portal.
+
+8. Are PFML wages gross wages?
+Similar to State Unemployment Insurance definition of wages, PFML wages are not gross wages
+but "total subject wages". Total subject wages are gross wages excluding the same exempted
+payment types as specified in State Unemployment Insurance statute and Federal Unemployment
+Tax Act. More information on excluded payment types can be found in IRS Publication 15
+Circular E: 2025 Publication 15.
+
+9. Are wages for the PFML program calculated pre-tax or post-tax?
+
+Premiums are calculated on total subject wages, before federal income tax, state income tax, and
+Social Security and Medicare taxes are deducted.
+
+10. Are PFML Premiums taxable?
+
+The question of whether PFML premiums are taxable is reliant on the guidance and processes of
+the Federal Internal Revenue Service. The IRS has released formal guidance on issues of
+taxability which can be viewed here: RR-25-04.
+
+July 2026
+11. How do PFML premiums affect the taxable wages for employees?
+PFML premiums do not reduce wages imputed for other federal and state tax programs. PFML
+premiums are withheld from employee pay after federal and state taxes are deducted.
+If an employer has made the determination to cover the employee portion of PFML premiums,
+the employer contribution is additional compensation and is included in the in the employee's
+federal gross income as wages.
+Employees may be entitled to deduct PFML premium payments as a state income tax if they
+itemize their deductions on their federal income tax return. Review RR-25-04 for more
+information on this.
+
+12. How do PFML premiums affect employer taxes?
+Employers may deduct the required employer portion of PFML premiums as an excise tax.
+If the employer chooses to pay the employee's portion of PFML premiums, they may deduct that
+as an ordinary and necessary business expense.
+Review RR-25-04 for more information.
+
+13. What should be listed in Box 14 on the W-2 form for employee contributions?
+Employee premium contributions must be listed under Box 14 of the W-2 form with the label
+"MEPFML".
+If an employer pays the premium contribution for the employee's portion, this must be included
+as wages on the employee's Form W-2.
+
+14. Are employer-sponsored disability payments and third-party sick pay subject to Maine
+PFML premiums?
+In accordance with the State Unemployment Insurance definition of wages, that PFML also
+uses, employer-sponsored disability payments and third-party sick pay (short term disability
+payments provided by the agent of an employer, generally an insurance company) are considered
+
+July 2026
+to be wages until the "expiration of 6 calendar months following the last calendar month in
+which the employee worked for that employer" and therefore subject to PFML premiums.
+
+If these payments are made by a third party, the employer should speak with their agent to
+account for these wages. If the employee is receiving a insufficient paycheck from the employer
+during this leave to cover these premiums, the employer may retroactively deduct the missed
+premiums owed by the employee under PFML rules Section X (L) and report those wages in the
+quarter in which those deductions were made.
+
+15. Are PFML benefits taxable?
+
+Please note: On December 19th, 2025, the IRS issued an extension for certain requirements of
+PFML benefit taxation as it relates to the treatment of medical leave benefits as wages: Extension
+of Transition Period to Calendar Year 2026 for Certain Requirements in Revenue Ruling 2025-4.
+For tax year 2026, Maine PFML will report the taxable portion of medical leave benefits as
+income and issue Form 1099-G to the employee. The employee will have the option to withhold
+state and federal income taxes, but no PFML benefits will be subject to payroll taxes for Social
+Security and Medicare during 2026. Starting in tax year 2027, the taxable portion of medical
+leave benefits will be treated as wages and reported on Form W-2 to the employee as specified
+above. The taxable portion of PFML benefits for medical leave will be subject to payroll taxes
+for Social Security and Medicare in 2027 and going forward. Our guidance for tax year 2027 on
+the treatment of PFML benefits is below:
+
+Sometimes Maine PFML benefits are taxable, and sometimes they're not. The Internal Revenue
+Service (IRS) is the best source of information on taxability questions. They have released
+formal guidance on this question. You can view that here: IRS Revised Rule 2025-4. Table 2 on
+page 29 provides a good summary, along with the information below.
+
+Benefits paid for family leave claims are considered taxable income, but they are not considered
+wages. This is similar to how unemployment benefits are treated. You can choose to have
+withholdings from your benefits for state and federal income taxes. You'll get a Form 1099-G at
+the end of the year for when you file your income tax return. Benefits paid for medical leave
+claims are treated differently depending on who is required to pay the premiums for coverage:
+the employee or the employer.
+
+    · When the employee pays all of the premiums, their medical leave benefits are not taxable
+         at all. In Maine, employers who have less than 15 workers are exempted from their
+         portion of the premium, so the employee would pay all of the premium.
+
+    · When the employee pays only a portion of the premiums, then only the proportion of
+         benefits corresponding to their contributions are exempt from tax. The proportion
+         attributable to the employer's contribution would be taxable wages.
+
+July 2026
+    · Even if an employer voluntarily pays a portion of the employee's premium share, the
+         taxation rules are still the same as what is assumed in law for cost sharing.
+
+Generally, this will mean that if you take leave from an employer with less than 15 employees
+(where the law assumes all of the premiums are paid by employees), none of your medical leave
+benefits are taxable. If you take leave from an employer of 15 employees or more (where the law
+assumes half of the premiums are paid by employees and half of the premiums are paid by the
+employer), half of your medical leave benefits will be taxable as wages. Payroll taxes for Social
+Security and Medicare will be taken out of this taxable part of medical leave benefits. You can
+also elect to voluntarily withhold state and federal income taxes. You'll get a Form W-2 for the
+taxable portion for when you file your income tax return.
+
+16. Who is responsible for paying employer payroll taxes for the taxable portion of PFML
+benefits?
+For the portion of medical leave benefits that are subject to payroll taxes, the Department will
+cover the responsibility of calculating and paying the required employer payroll tax
+matches. The Administrator will remit payroll taxes and issue Forms W-2 to employees as
+needed, on behalf of the Department.
+Starting in tax year 2027, the Department will assume this responsibility and associated costs
+during the initial phase of the program to reduce complexity in the tax treatment of benefits. The
+Department acknowledges that employers already comply with the payroll tax requirements for
+short-term disability programs and reserves the right to adopt a comparable process for PFML
+benefits in the future.
+
+17.What are the penalties for an employer if the employer fails to pay contributions or
+submit wage reports on time?
+
+The penalty for an employer failing to pay contributions and/or submit wage reports is 1 percent
+of the employer's total quarterly payroll. This penalty shall be assessed if the employer fails to
+pay all or a part of the contributions owed to the Department on a quarterly basis. Employers
+will receive a notification if they have failed to pay contributions or submit a wage report and
+will have a period of time to correct the issue before the penalty is assessed. If an employer
+discovers they need to amend a wage report after the due date to make corrections, they will be
+provided with a timeframe to remit a new premium obligation before the penalty is assessed.
+
+July 2026
+18. I am a self-employed individual, am I eligible?
+Self-employed individuals are eligible for Paid Family and Medical Leave but must choose to
+opt in for coverage. For calendar years 2025-2027, the premium rate has been set at 0.5 percent
+of the individual's income from self-employment. Self-employed individuals can elect coverage
+through the Maine Paid Leave portal.
+
+19. I am a self-employed individual but earn wages as an employee of my company, am I
+automatically covered in the law?
+
+The wages that a self-employed individual makes as an employee of their company are subject to
+premiums and must be included in wage reports. For example ­ the reasonable wages that a self-
+employed individual receives as an employee of their S-Corp business is subject to premiums
+and must be included on wage reports.
+
+20. How are Tribal Governments affected by this law?
+Tribal governments have the option in the law to elect coverage for their employees if they wish.
+Tribal governments can opt-in as an employer through the Maine Paid Leave portal to elect this
+coverage.
+
+Collective Bargaining Agreements:
+
+21. How does the PFML law apply to public sector collective bargaining agreements?
+
+Public employers and employees that are subject to a collective bargaining agreement that was in
+effect on October 25, 2023, are not required to participate until the collective bargaining
+agreement expires. Neither party will make contributions pertaining to the Paid Family and
+Medical Leave program until that collective bargaining agreement expires, and individuals will
+not be eligible for benefits until either the expiration of the collective bargaining agreement or
+May 2026, whichever comes later. MDOL will use the end date listed on the applicable
+collective bargaining agreement, regardless of when the subsequent collective bargaining
+agreement is ratified.
+
+July 2026
+22. What if both parties in a public sector collective bargaining agreement agree to
+contributions prior to the agreement expiring?
+
+Public employers and employees who agree, through relevant public bargaining law and process,
+to contribute to the Paid Family Medical Leave program prior to the expiration of a collective
+bargaining agreement that was in effect on October 25, 2023 may do so. Withholdings would
+begin on the first pay date after an agreement was ratified or the first pay date in January 2025,
+whichever is later.
+
+23. How does this apply to public employees not subject to a collective bargaining
+agreement?
+
+The Paid Family and Medical Leave law will apply to any public employees who were not
+subject to a collective bargaining agreement on October 25, 2023. Also, any public employees
+who are not subject to a collective bargaining agreement in general are covered by the program
+in the same manner as private sector employees.
+
+24. Are employees exempted from the law due to a public collective bargaining agreement
+described above listed on wage reports?
+
+Employees who are exempt from the law due to being subject to a public collective agreement
+should not be included in wage reports until the end date of the collective bargaining agreement.
+
+25. How does PFML law apply to private sector collective bargaining agreements?
+
+The exemption in section 850-B (10)(D) does not apply to private sector collective bargaining
+agreements.
+
+Maine Paid Leave Portal:
+
+26. Where will employers be able to submit premiums and wage reports?
+
+Employers can submit premiums and wage reports through the Maine Paid Leave Portal that
+will be available in early 2025. All employers will be required to register with the Department
+via this portal to determine their liability for PFML contributions and to designate a third-party
+payroll or employee leasing company if they wish. All liable and active employers must create
+an account in the portal to electronically file quarterly wage reports and make contribution
+payments.
+
+July 2026
+27. How frequently are employers to submit premiums and wage reports for the PFML
+Program?
+
+Employers must submit their premium amounts and contribution reports quarterly and are due
+on or before the last day of the month following the end of each quarter. Payments and reports
+are considered timely if received electronically by the due date. If the due date falls on a
+Saturday, Sunday, or legal holiday, the due date is extended to the next business day. Employers
+may have their payments and reports submitted by an employee leasing company or an
+authorized third-party administrator.
+
+28. Will there be an ability to submit bulk uploads to the portal?
+
+Third party administrators will be able to submit bulk wage reports in specified file formats.
+Employers will be able to upload an excel sheet of their employee and wage information in their
+quarterly wage report. They will have to follow a template that the Department provides.
+
+Definition of Covered Employee and Premium Liability:
+
+29. Who is the covered employee?
+
+A "covered employee" is an employee who earns wages in Maine. However, wages do not
+include wages earned from federal employment, federal work study financial aid, during
+incarceration, by certain volunteers as specified in the proposed rule, or by an employee subject
+to the Railroad Unemployment Insurance Act. Independent contractors may elect coverage, and
+if so would report wages earned and submit contributions in order to be a covered individual.
+
+30. To determine premium liability for employers, how do you count the number of
+employees?
+
+For the purposes of determining premium liability, any employer that employed 15 or more
+covered employees per the employer's Federal Employer Identification Number (FEIN) on their
+established payroll in 20 or more calendar workweeks in the 12-month period preceding September
+30th of each year, will be considered to be an employer of 15 or more covered employees for the
+calendar year thereafter. This count includes the total number of persons on establishment payrolls
+employed full or part time who received pay for any part of the pay period.
+
+July 2026
+Temporary and intermittent employees are included, as are any workers who are on paid sick
+leave, on paid holiday, or who work during only part of the specified pay period. On October 1,
+2024, and October 1 of each year thereafter, the employer shall calculate its size for the purpose
+of determining premium liability for calendar year 2025 and each calendar year thereafter. This
+employer count will be reported upon first registering with the Maine Paid Leave Portal, and
+during Quarter 3 wage reporting annually thereafter.
+
+31. Are employees included in the employer size count and on wage reports even if they do
+not earn enough to be eligible for benefits?
+
+For the purposes of employer size count, wage reporting, and premium liability, employees with
+any wages earned in Maine must be included. Thus, the employee has the opportunity to earn
+the wage base necessary for benefit eligibility across multiple jobs and through changes in
+employment throughout their benefit year. Eligibility of benefits from meeting the wage
+threshold is determined when a covered employee applies for benefits.
+
+Private Plans:
+32. I am an employer with a current policy that provides paid time off (PTO), sick leave
+and/or a short-term disability policy. Can my leave policy be considered a substantially
+equivalent plan under the Maine PFML Law?
+Section 850-H(2) states that to be approved as a substantially equivalent private plans, among
+other requirements which will be outlined in rule, the plan must be either a self-funded plan that
+requires a surety bond paid to the State or a fully-funded plan purchased from an insurance
+company. An internal leave policy, on its own, does not meet these requirements. Additional
+details regarding the process and requirements for private plans are outlined in rule.
+
+Type of Private Plans:
+
+33. What types of plans are considered to be a private plan under the Maine Paid Family and
+Medical Leave law?
+
+A plan must be a fully insured plan or a self-insured plan.
+
+July 2026
+34. What is a fully insured plan?
+
+A fully insured plan is an insurance plan offered by an insurance carrier authorized to do business in
+the State of Maine. The plan must have been certified as compliant with the requirements under the
+Maine Paid Family and Medical Leave Act and Rule. Insurance plans that have not received
+certification of compliance with the Act and Rule are not eligible for substitution.
+
+35. What documentation is required for a fully insured substitution application?
+
+Fully insured plans will require the name of the insurance company, policy number, and an uploaded
+scan of the insurance policy issued to that specific employer. While the employer must have been
+issued the policy of a certified plan at the time of their application, the employer can choose to delay
+benefit coverage for claims until May 1, 2026.
+
+36. What is a self-insured plan?
+
+A self-insured plan is an insurance plan provided directly by an employer, rather than through an
+insurance carrier.
+
+37. What documentation is required for a self-insured plan?
+
+Employers must provide through the Maine Paid Leave Portal a scan of the proposed plan
+documents, the self-insurance private plan application, provided by the Department, along with a
+scan of the surety bond from an authorized surety company in the form and amount specified by
+the Department in the application document. The surety bond must be signed by a corporate
+officer of the surety company or an attorney-in-fact under an appropriate Power of Attorney. If
+signed by an attorney-in-fact, both the surety bond and the Power of Attorney must be uploaded
+into the portal.
+
+38. Can an employer hire another entity to administer its self-insured private plan
+substitution?
+
+Employers can contract with an entity that is licensed with the Maine Bureau of Insurance as a
+third-party administrator with health authority. Insurance companies licensed with the Maine
+Bureau of Insurance with health authority can also provide claims administration for an
+employer's self-insured private plan substitution. Third party claims administrators licensed by
+the Bureau of Insurance should not register in the Maine Paid Leave Contributions Portal.
+
+July 2026
+39. Are group policies allowed for fully-insured plans? Are group trusts of multiple
+employers allowed for self-insured plans?
+Group policies or trusts are not allowable for private plan substitution consideration. For fully-
+insured policies, the employer must be listed as the policy holder. For self-insured policies, the
+individual employer is responsible for the operation of the plan, even if they contract the plan to
+a third-party benefits administrator, and the individual employer is liable for the bond to the
+State.
+
+Application Process and Review:
+
+40. When and how can employers apply for a private plan substitution?
+
+Applications may be submitted after April 1, 2025. Applications must be submitted online through
+the Maine Paid Leave Portal, which is set to release in early 2025.
+
+41. How much does it cost to apply for a private plan substitution?
+
+There is an application fee of $250 for review which is non-refundable whether the application is
+approved or denied. There is an additional $250 administrative cost reimbursement fee if approved.
+Fees are subject to increase.
+
+42. How long is an approved private plan substitution valid for?
+
+An approved substitution is valid for three years.
+
+43. Who will be responsible for the review of applications?
+
+The Department will be responsible for review of private plan applications.
+
+44. If an application is approved, when will the substitution take effect?
+
+The exemption from the obligation of premiums begins on the first day of the quarter in which the
+substitution is approved, except if the application for substitution is submitted less than 30 days prior
+to the end of a quarter, in which case the exemption is effective on the first day of the quarter
+following when the application for substitution was submitted, assuming it is approved. Premiums
+owed prior to the exemption effective date must still be remitted to the program through the Maine
+Paid Leave Portal.
+
+July 2026
+To view an explanatory graphic when exemptions and deductions start and end relative to private
+plan type using hypothetical dates, please click on the link below to learn more:
+PrivatePlanapprovalanddeductionstimeframesv2.pdf
+
+45. Can an employer appeal a decision regarding their private plan substitution?
+
+Yes, an employer can appeal a denial of substitution, a denial of cancellation, a revocation, or the
+issuance of any penalty for violation. Appeals must be made within 15 business days of receiving
+notice of the decision.
+
+Employer Requirements for Compliance with Private Plan:
+
+46. Could my private plan substitution be revoked during the three-year period.
+
+Yes, if the Department finds the terms and conditions have been violated. Examples of a violation
+could be an employer fails to submit quarterly wage reports or fails to submit data reports if the
+employer is using a fully insured plan.
+
+47. What are the consequences of a violation of the terms and conditions with the approved
+plan?
+
+Violation of the terms and conditions may lead to revocation of the substitution and the employer will
+be responsible for paying premiums to the PFML Fund beginning the first quarter following
+revocation. Employers with a revoked substitution cannot reapply for a new substitution for three
+years from the date of the revocation. If the employer's plan is self-insured, payments for missed
+premiums may be collected through the surety bond provided.
+
+48. What reporting requirements are there during an approved substitution period?
+
+Employers must continue to submit wage reports quarterly through the Maine Paid Leave Portal.
+Premium liability will be zero on these reports during the substitution period. For private plans
+that began paying benefits May 1, 2026, employers must also submit an annual data report
+through the Maine Paid Leave Portal by July 31, 2027, and annually thereafter that outlines
+performance metrics of the private plan. Failure to submit required reports may result in a
+revocation of a private plan substitution.
+
+Employers should contact their insurance carrier or third-party claims administrator to confirm
+whether they will be filing the annual claims data report on the employer's behalf.
+
+July 2026
+49. How much can be deducted from an employee to help pay for an approved private plan
+substitution policy?
+
+The employer may deduct up to what the employee would be required to pay for the State plan to
+help pay for a private plan substitution policy once it has been approved. This is a maximum of
+.5% of the employees' wages until at least 2028.
+
+50. Can I deduct more than .5% of wages if the private plan policy costs more that 1%
+total?
+No ­ the maximum amount that an employee can contribute towards the approved private plan
+policy is .5% of wages, even if they policy costs more than 1% total of wages.
+
+51. Can I deduct the .5% of wages from the employee if the private plan policy costs less
+than 1% total?
+Yes ­ the statute and rules only require that the employee is not charged more than what they
+would pay under the State plan, which is .5% of wages until at least 2028.
+52. I have a self-insured private plan substitution approved, but I have delayed the start of
+benefits until May 1, 2026 as allowed in rules. Can I start deducting from the employee to
+pay towards the eventual benefits paid by my self-insured private plan?
+Yes. To view an explanatory graphic when exemptions and deductions start and end relative to
+private plan type using hypothetical dates, please click on the link below to learn more:
+PrivatePlanapprovalanddeductionstimeframesv2.pdf
+
+Renewal of approved substitution:
+
+53. How can an employer renew an approved private plan substitution?
+
+Employers must apply for renewal at least 30 days before the end date of their approved substitution.
+The Department will notify employers through the Maine Paid Leave Portal 60 days before the end
+date of the employer's approved substitution.
+
+54. What happens if an employer fails to renew an approved private plan substitution?
+
+July 2026
+If an employer does not apply to renew their substitution or if the renewal is denied, the employer is
+responsible for premiums to the PFML Fund starting on the day of the substitution expiration.
+
+Changes & Cancellations of Private Plan Substitution:
+
+55. What happens if an insurer decides to stop offering a fully insured plan?
+
+If an insurer decides to stop offering a fully insured plan, the insurer must notify the Maine Bureau of
+Insurance three months in advance and provide six months' notice to the affected employers prior to
+non-renewal.
+
+56. Can an employer cancel an approved substitution before it expires?
+
+Employers may only request cancellation if they can demonstrate a significant direct negative
+business impact, such as a evidence of an unanticipated and unreasonable premium increase. If a
+cancellation is approved by the department for the employer to return to coverage from the State
+fund, the employer cannot apply for another substitution for a period of 3 years. Requests to
+withdraw a substitution can be done through the Maine Paid Leave Portal.
+
+57. Can an employer make changes to an approved plan?
+
+Employers must notify the Department at least 60 days in advance of any material changes to the plan
+and receive written approval.
+
+58. Can an employer switch an approved plan (between insurance carriers or between fully
+insured and self-insured)?
+
+The employer can apply for a new private plan substitution through the Maine Paid Leave Portal
+during a period of a substitution. The application and administration fee must be repaid and if
+approved, the substitution 3 years will start anew based on the new approval date.
+
+59. Can an employer with an approved private plan require a new hire to build wages with the
+employer before the employee can apply for benefits under the private plan?
+
+A new employee is eligible for paid family and medical leave benefits under the private plan
+immediately upon the date of hire, provided they have met the wage threshold with previous Maine
+earnings. Benefit amounts and prior wage earnings should be calculated consistent with the terms of
+
+July 2026
+the insurance policy purchased or the terms of the self-insured private plan document and cannot
+require a new hire to earn wages with the current employer prior to applying for benefits.
+
+60. Can the employer with an approved private plan implement human resource policies and
+procedures that differ from the terms of the insurance policy they purchased or the language
+and terms of their approved self-insured private plan document?
+
+No. An approved private plan must administer and implement the plan consistent with the terms of
+the approved insurance policy or approved self-insured plan document. No changes can be made to
+the plan document without prior approval of the Department. Implementing terms that have not
+received prior approval may result in the revocation of the private plan.
+
+Collective Bargaining Agreements and Private Plans:
+
+61. How does the provision in the PFML law on public sector collective bargaining
+agreements (CBA) apply to private plans?
+
+Per rule, for a private plan to be eligible for a substitution, the plan must provide benefit
+coverage for all employees in their organization equally, regardless of CBA status.
+
+                      Benefits and Notice Related Questions
+
+Notice Requirements:
+
+62. What are employers required to include in the written notice about PFML program to
+employees?
+
+· The benefits available under the program.
+· The employee's right to job protection and continuation of health insurance.
+· The process for filing a claim.
+· Employers are required to display a workplace poster about PFML.
+
+This notice must be given at the time of the hire.
+
+63. What kind of notice must employees give to employers before taking leave?
+
+Employees must provide at least 30 days' written advance notice for leave the employee knows
+they will need to take. However, in some circumstances for foreseeable leave, 30 days may not
+be enough advance notice if the type of work performed for the employer requires longer notice
+and the leave may affect the employer's operations.
+
+July 2026
+64. What kind of notice must employees give to employers in cases of emergency leave?
+If an emergency arises, the employee must provide notice to the employer as soon as practicable
+under the circumstances. Notice must be given in writing, which can include email or text
+message to the employer. Notice can also be given for the employee through a family member or
+health care provider to the employer.
+
+65. Do employees on leave have job protection?
+Yes, if an employee has been employed with an employer for at least 120 consecutive days the
+employee must be returned to their own or an equivalent position when they return from
+leave. An employee who has been employed for less than 120 consecutive days with an
+employer is not entitled job protections during a leave.
+
+66. What information can an employer request when an employee gives notice?
+    · The type of leave (e.g., family leave, medical leave, safe leave or situations related to a
+         family members' upcoming military deployment).
+    · The expected start date and duration of the leave.
+    · Whether the leave will be continuous, intermittent or reduced schedule.
+
+Employers may not request medical records or personal details.
+
+67. What must an employer do after being notified of an employee's claim?
+The Administrator will send a notification to each company the worker says they need leave
+from. It will include a verification form with information gathered during the claim intake
+process. An employer can use that form to correct or clarify information, or to provide new
+information. If an employer thinks there's a reason the worker's claim should be excluded, they
+can use this form to indicate that too. The verification form must be returned within 10 business
+days. Otherwise, the Administrator will proceed with the information they have.
+Also, if an employer feels as though the worker's leave would cause an "undue hardship" ­ a
+significant cost or other impact that can't be overcome with the amount of notice provided ­ and
+thinks the leave could be rescheduled to a less disruptive time, they can complete an Undue
+Hardship form to let the Administrator know. This also has to happen within 10 business days.
+
+July 2026
+Undue Hardship:
+68. What is "undue hardship," and can an employer deny leave based on it?
+No, employers cannot deny Paid Family Medical Leave (PFML) based on undue hardship.
+However, undue hardship is a factor employers may consider when coordinating timing of the
+employee's leave.
+
+69. What is considered an "undue hardship"
+An undue hardship means a significant impact on the operation of the business or significant
+expenses that cannot be overcome with the amount of notice given by the employee
+It is evaluated based on the employers' financial resource, workforce size and industry type.
+
+70. When can an employer raise an undue hardship concern?
+An employer may raise an undue hardship only after receiving notice of an employee's
+application for PFML from the Administrator.
+The employer then has 10 business days to:
+
+    · Provide a written explanation to the employee and Administrator describing the specific
+         impact of the requested leave on the business
+
+    · Include any proposed alternative leave schedule
+    · Provide documentation if it believes the leave schedule will cause undue hardship.
+
+71. What happens if my employee and I agree that the scheduling of their leave will not
+cause an undue hardship?
+
+If the employees requested leave will not disrupt the operations of your business so much that it
+will cause an undue hardship, you will be able to sign a waiver saying the employees' claim can
+move forward without waiting the 10 business days you would otherwise have to raise a concern.
+
+Leave Benefits:
+72. How much PFML leave can an employee take?
+An employee can take up to 12 weeks of paid leave during their benefit year for qualifying
+reasons.
+
+July 2026
+73. What is a benefit year?
+An employee's benefit year is the 52-week period beginning on the Sunday prior to when their
+leave starts.
+
+74. How are leave benefits effected by the federal Family and Medical Leave Act (FMLA)
+and unpaid Maine Family and Medical Leave (Maine FMLA)?
+
+Maine PFML is designed to be taken at the same time as unpaid federal FMLA and Maine
+FMLA when applicable. Employers subject to federal FMLA and Maine FMLA should follow
+their normal process for designating leave time under these programs.
+
+Some absences will only be approvable under Maine PFML or federal/Maine FMLA, but not the
+other, because of things like different eligibility rules and different covered leave reasons. Keep
+in mind, though, employees can't choose to take one leave and "save" the other leave to use later.
+If an employee used federal or Maine FMLA without concurrent Maine PFML in the previous
+year, and the employer provides documentation of it, that non-concurrent unpaid leave will
+reduce the amount of Maine PFML time the employee has available. The employer will be able
+to provide this documentation to the Administrator after being notified about the employee's
+claim application for Maine PFML.
+
+75. Can an employer still request medical documentation that's required under the federal
+Family and Medical Leave Act and other laws?
+
+Yes. Employers subject to federal FMLA and Maine FMLA can still follow their normal process
+for confirming and designating a leave under those laws. An employer is not entitled to medical
+information that is provided to the Maine PFML Administrator.
+
+76. Aren't there situations in which an employee may not be eligible for FMLA and PFML
+at the same time?
+
+Yes. While the intent of the law was to limit employees getting more than 12 weeks of leave in a
+benefit year from various leave laws, this is not always possible with the structuring of the
+different laws.
+
+There may be times when an employee is eligible to take Maine PFML but is not eligible to take
+FMLA ­ such as the first year of employment at a new employer, or for family members covered
+under the Maine PFML law but not FMLA.
+
+July 2026
+There also may be times when an employee is eligible for federal or Maine FMLA but is not
+eligible for Maine PFML. For example, if an employee's Maine PFML claim is rescheduled due
+to an employer's under hardship, the employee may still be entitled to take unpaid federal or
+Maine FMLA time if they qualify. Additionally, employees are entitled to take FMLA in smaller
+units of time for intermittent leave (such as 15-minute blocks), but the smallest unit of time
+available for Maine PFML is 1 hour.
+
+Employers should track unpaid federal and Maine FMLA as they normally do. The
+Administrator will track Maine PFML use and adjust time as appropriate when notified by the
+employer.
+
+Employee Job Protections & Benefits:
+77. Are employees guaranteed job protection while on PFML?
+Yes. Employees who have been employed for at least 120 consecutive days with an employer
+before taking PFML leave are entitled to:
+
+    · Job protection: They must be restored to the same or equivalent position upon return.
+    · Continuation of health insurance: Employers must continue coverage under the same
+
+         terms as if the employee were not on leave.
+
+78. Does taking PFML affect employees' ability to earn other benefits (like PTO or
+bonuses)?
+No. Taking PFML does not affect an employee's right to accrue or receive other employment
+benefits. While on leave, the employee is still entitled to:
+
+    · Accrue vacation time and sick time (if employer policy provides for such time).
+    · Continue earning bonuses, advancement, seniority, or service credit.
+    · Maintain participation in benefit plans or programs.
+
+This means employers must treat the leave period as if the employee were actively working for
+the purpose of these benefits.
+
+79. What happens to the employee's health insurance during PFML leave?
+    During the leave, employers must:
+    · Continue the employee's health insurance coverage.
+    · Contribute to premiums at the same level as if the employee were working.
+
+July 2026
+    · The employee remains responsible for any employee portion of premiums.
+    · Maintain coverage under the same conditions as if the employee had not taken leave.
+
+80. How does job protection pertain to employees who take leave without notifying their
+employer?
+
+An employee is required to give reasonable notice to their employer on their intent to use leave
+and must provide notice as soon as practicable in cases of emergency use of leave. If an
+employee fails to give reasonable notice after starting an emergency leave, by failing to follow
+the employer's usual notice requirement for work absences and provided there are no unusual or
+extenuating circumstances that prevent the employee from providing such reasonable notice,
+then the employee may not be entitled to job protection if the leave is approved by the
+Administrator.
+
+81. How do PFML benefits relate to an employee's accrued paid time off (PTO)?
+
+By law, an employer cannot force an employee to use PTO (such as vacation, sick time, and/or
+Earned Pay Leave) during a PFML absence, or to use up all their PTO before taking PFML.
+Keep in mind, PFML benefits don't replace all of an employee's regular earnings. So, employees
+often want to use some PTO to close that gap (often called a "top up"). This can help an
+employee end up with the same amount of money they usually get each week. It can also help by
+making payroll deductions ­ for things like health insurance premiums ­ continue uninterrupted.
+An employer must allow an employee to use accrued time to "top up," consistent with the PTO
+policy and applicable law. An employer may choose to simply pay employees the amount to
+close the gap without the employees having to use PTO.
+
+In any event, the PFML program will not reduce benefits paid to account for "top up" payments
+or PTO usage. PFML is not intended to lead to situations where workers end up with more
+money in a week than they would have gotten while working. Employers should make sure the
+amount they're "topping up" (or the amount employees are getting via PTO), combined with
+their PFML benefits, doesn't add up to more than an approximate estimate of the amount they
+would have earned while working.
+
+82. How can I help my employees accomplish this "top up" before we know how much they
+will receive in Maine PFML benefits? And how can I help my employees continue to be
+paid while they wait for their Maine PFML claim to be processed, knowing they may
+eventually get benefits, and they're not supposed to get benefits plus their regular pay?
+
+An employer may continue paying employees pending their receipt of PFML benefits. Such
+payments may be considered an advance against future earnings, which can be deducted from a
+
+July 2026
+future paycheck if the employee later gets Maine PFML benefits for the same week, as long as
+the employee agrees to that arrangement in writing.
+
+83. How are my employee's PFML benefits affected by other payments from other
+programs they may be receiving?
+
+It depends on what other payments your employee is receiving.
+
+By law, PFML benefits will be reduced dollar-for-dollar by any payments an employee is
+receiving at the same time from:
+
+    · State unemployment insurance
+    · Worker's compensation, except for benefits for partial incapacity for an injury that
+
+         occurred prior to the PFML claim
+    · Any government provided short-term disability or long-term disability program (such as
+
+         Social Security Disability Insurance)
+    · A long-term disability insurance plan provided by your company or by a prior employer
+
+         of your employee
+
+The Administrator will ask your employee if they're receiving payments from any of these
+programs when they create a claim. The Administrator will let you know a new claim has been
+created and give you an opportunity to share any information you may have about payments
+from one of these programs. If PFML benefits are calculated and paid, then the Administrator
+later learns that the employee also got payments from one of these programs, the employee will
+be expected to pay back the amount that should have been reduced from their PFML benefits.
+
+PFML benefits will NOT be reduced for the following:
+   · Benefits from your company's short-term disability insurance plan
+   · "Top up" payments you choose to provide to employees to get them to 100% of their
+       regular pay
+   · Wages from PTO that employees choose to use to get themselves to 100% of their regular
+       pay
+   · Worker's compensation benefits for partial incapacity for an injury that occurred prior to
+       the PFML claim
+
+July 2026
+

@@ -68,8 +68,8 @@ const lignesHoraire = TAUX_HORAIRES.map(t => {
   return { taux: t, brut: t * HEURES, net: r.net, netH: r.net / HEURES };
 });
 
-/* Aucun voisin reel (Maine, Vermont, Massachusetts) n'est publie sur ce
- * site : la comparaison porte sur les autres Etats sans impot, plus la
+/* Les voisins reels (Maine, Vermont, Massachusetts) sont publies depuis le 21/10/2026 et lies dans la prose ; la comparaison porte
+ * sur sur les autres Etats sans impot, plus la
  * Pennsylvanie comme contraste impose (meme choix editorial que l'Alaska). */
 const COMPARE = ["new-hampshire", "texas", "washington", "wyoming", "tennessee", "pennsylvania"];
 const lignesCompare = COMPARE.map(k => {
@@ -390,7 +390,7 @@ ${blocLimites()}
 
     <h2>Compare with other states</h2>
     <p>The same ${$0(REF)}, single filer, 2026. New Hampshire&rsquo;s real neighbors are Maine, Massachusetts and Vermont.
-    <a href="/paycheck-calculator/massachusetts/">Massachusetts</a> and <a href="/paycheck-calculator/vermont/">Vermont</a> have their own pages; Maine is not yet published on this site. The table
+    <a href="/paycheck-calculator/maine/">Maine</a>, <a href="/paycheck-calculator/massachusetts/">Massachusetts</a> and <a href="/paycheck-calculator/vermont/">Vermont</a> have their own pages. The table
     below lines it up against the other states here with no wage tax, plus Pennsylvania as a
     contrast that does tax wages.</p>
     <div class="table-scroll">

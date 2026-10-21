@@ -5065,6 +5065,119 @@ const RATES_2026 = {
           headOfHousehold: [[3640, 0], [18230, 0.03], [Infinity, 0.06]]
         }
       }
+    },
+
+    /* =======================================================================
+       MAINE  -  lu le 2026-10-21 (48e Etat). www.maine.gov repond en direct (HTTP 200) avec un en-tete User-Agent de navigateur (sans lui :
+       HTTP 403 CloudFront) ; les documents lus sont ceux de l'agence, aucune source tierce n'est utilisee pour un chiffre.
+       DIAGNOSTIC DU « MOTEUR NON SUPPORTE » (reporte le 17/09 : « abattement degressif selon l'AGI »). La degressivite dont parlait la note
+       est celle de la deduction standard de la DECLARATION ; la formule de RETENUE, elle, est une deduction standard degressive selon le
+       SALAIRE ANNUALISE (pas l'AGI), lineaire, qu'exprime deja `slidingDeduction` (Wisconsin) + `personalExemption` (allocations du W-4ME).
+       AUCUN mecanisme nouveau au moteur : seulement des donnees. Le surcharge de 2 % au-dela de 1 000 000 $ (celibataire) / 1 500 000 $
+       (marie) est une tranche de plus du bareme.
+       -----------------------------------------------------------------------
+       1. LA FORMULE. Maine Revenue Services, « 2026 Withholding Tables for Individual Income Tax », « REVISED - to reflect the increased Maine
+          standard deduction amounts and the new income tax surcharge », pied de page « Revised: August 2026 »,
+          https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_wh_tab_instr_August2026.pdf (HTTP 200, Last-Modified
+          Thu, 13 Aug 2026 19:27:34 GMT, pdftotext -layout le 2026-10-21 ; lien depuis www.maine.gov/revenue/tax-return-forms/employment-tax-returns-2026).
+          « Maine Income Tax Withholding -- Percentage Method -- 2026 » : « Step 1 Convert total wages to annualized wage amount. Multiply by the
+          payroll frequency: 52 for weekly, 26 for biweekly, 24 for semimonthly, 12 for monthly, 260 for daily » ; « Step 2 Multiply the number of
+          withholding allowances the employee claims by $5,300. » ; « Step 3 ... If the annualized wage amount ... is $102,250 or less for a single
+          taxpayer, the Maine standard deduction amount for withholding purposes is $12,850. If the annualized income ... is $204,550 or less for a
+          married taxpayer, ... $28,550. If the annualized wage amount ... is $177,250 or more for a single taxpayer or $354,550 or more for a married
+          taxpayer, the Maine standard deduction amount is $0. If ... between $102,250 and $177,250 for a single taxpayer or between $204,550 and
+          $354,550 for a married taxpayer, calculate ... Single : $12,850*($177,250 - Amount from Step 1) / $75,000 ; Married : $28,550*($354,550 -
+          Amount from Step 1) / $150,000 ; *Round to 4 decimals » ; « Step 4 Subtract the results from Steps 2 and 3 from the annualized wage amount ...
+          to compute the annualized income. Step 5 Compute the annualized withholding amount using the withholding rate schedules ... Step 6 Divide ...
+          by the payroll frequency ... and round to the nearest dollar. » Bareme celibataire : « Less than $27,400 : 5.80% of income ; $27,400 but less
+          than $64,850 : $1,589 plus 6.75% of excess over $27,400 ; $64,850 or more (1) : $4,117 plus 7.15% of excess over $64,850 » ; marie :
+          « Less than $54,850 : 5.80% ; $54,850 but less than $129,750 : $3,181 plus 6.75% of excess over $54,850 ; $129,750 or more (1) : $8,237 plus
+          7.15% of excess over $129,750 ». « Note (1): Income Tax Surcharge: For tax years beginning on or after January 1, 2026, the tax calculated
+          above is increased by a surcharge of 2% on the portion of the taxpayer's annualized income greater than $1,000,000 for single taxpayers, or
+          $1,500,000 for married taxpayers. » Recalcule : 27 400 x 5,8 % = 1 589,20 ; + 37 450 x 6,75 % = 4 117,075 ; marie 54 850 x 5,8 % = 3 181,30 ;
+          + 74 900 x 6,75 % = 8 237,05. Exemples imprimes : (2) 1 000 $ par semaine, celibataire, 2 allocations -> 32 $ ; (3) 4 500 $ par semaine, marie,
+          2 allocations -> 256 $ (deduction standard 22 945 $ ; recalculee : 28 550 x 120 550 / 150 000 = 22 944,68 ; le livret arrondit a l'unite).
+       2. LES GRILLES IMPRIMEES NE SUIVENT PAS CETTE REVISION. Les grilles par tranches de salaire du MEME document (pages 9-18, 10 grilles :
+          hebdomadaire, toutes les deux semaines, deux fois par mois, mensuelle, quotidienne, celibataire et marie, 0 a 10 allocations) sont
+          reproduites a la cellule pres par la formule avec la deduction standard d'AVANT la revision (12 450 $ celibataire, 27 750 $ marie) et le HAUT
+          de chaque tranche de salaire ; avec 12 850 $ / 28 550 $ et le milieu de tranche, la plupart des cellules different d'un a deux dollars.
+          La page chiffre la METHODE EN POURCENTAGE (celle dont le texte est « revised » et qui porte 12 850 $ / 28 550 $) et DIT que les grilles
+          imprimees donnent un peu plus. Voir verif-retenue-me.js.
+       3. LES STATUTS DU SITE (W-4ME, https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_form_w-4me_fillable.pdf, HTTP 200,
+          Last-Modified 2026-01-27, lu le 2026-10-21). Ligne 3 : « Single or Head of Household » / « Married » / « Married, but withholding at higher
+          single rate ». Feuille « Personal Allowances Worksheet » : « A. Enter "1" for yourself if no one else can claim you as a dependent. B.
+          Enter "1" for your spouse if you will file as married filing jointly. You may choose to enter "0" if you are married and have either a working
+          spouse or more than one job. C. Enter "1" if you will be filing as Head of Household. D. Enter the number of children and dependents eligible
+          for the federal child tax credit or the federal credit for other dependents. E. Add lines A through D. » Le site : single = A = 1 allocation
+          (5 300 $) ; marriedJoint = A + B = 2 (10 600 $, bareme marie) ; headOfHousehold = A + C = 2 (10 600 $) ET BAREME CELIBATAIRE : la case de
+          statut du formulaire regroupe « Single or Head of Household ». Dependants (ligne D), conjoint qui travaille (B = 0), case « higher single
+          rate » : NON modelises, dits.
+       4. 401(k) : le livret dit « total wages » ; il precise « Do not reduce the amount of Maine withholding by any federal deduction amounts claimed
+          on federal Form W-4, Step 4(b) ». Le calculateur retire le 401(k) avant l'impot d'Etat, comme pour les autres Etats : hypothese dite sur la page.
+       5. CONGE FAMILIAL ET MEDICAL (Maine Paid Family and Medical Leave) : retenue SALARIALE, plafond 0,5 % des salaires. Maine Department of Labor,
+          FAQ employeurs (https://www.maine.gov/paidleave/docs/2026/employers/faq/employerFAQenglish.pdf, HTTP 200, Last-Modified 2026-09-04, datee
+          « July 2026 », lue le 2026-10-21), question 4 : « For calendar years 2025-2027, the joint contribution rate for employers and employees is set
+          at either 0.5 or 1 percent of wages based on the size of the employer. No more than 0.5 percent can come from the employee. Employers with 15
+          or more employees will contribute 1 percent of wages and may deduct up to half of the contribution from the employees' wages. Employers with
+          less than 15 employees will contribute 0.5 percent of wages and may deduct the entire amount from the employees' wages. » Question 5 : prime
+          calculee « to exclude amounts above the annual base limit set by the U.S. Social Security Administration » (184 500 $ en 2026). Question 3 :
+          « benefits are scheduled to begin on May 1, 2026 ». Question 9 : primes calculees « before federal income tax, state income tax, and Social
+          Security and Medicare taxes are deducted ». « What Employers Need to Know: Premiums & Counting Employees »
+          (https://www.maine.gov/paidleave/docs/2026/employers/WhatEmployersNeedtoKnowPremiumsandCountingEmployees.pdf, Last-Modified 2026-10-05) : « You
+          may withhold up to 0.5% of your employees' wages ». C'est une retenue FACULTATIVE jusqu'a 0,5 % (l'employeur « may deduct ») : le calculateur
+          applique le MAXIMUM de 0,5 % sur le salaire jusqu'a 184 500 $, comme pour le Connecticut ; dit sur la page, ainsi que le fait que l'employeur decide.
+       6. CHOMAGE : 26 M.R.S. § 1221, sous-section 1 (https://legislature.maine.gov/statutes/26/title26sec1221.html, HTTP 200, lu le 2026-10-21) :
+          « These contributions become due and must be paid by each employer to the bureau for the fund ... and may not be deducted, in whole or in
+          part, from the wages of the employees. » -> aucune retenue salariale.
+       7. TAXES LOCALES : aucune trouvee dans le livret de retenue, le W-4ME ni les pages de retenue de Maine Revenue Services ; la page dit « we
+          found no », jamais « Maine has no ».
+       8. NON MODELE : dependants (ligne D), conjoint qui travaille, « higher single rate », ligne 5 (retenue supplementaire), exonerations de la
+          ligne 6, primes versees a part (taux forfaitaire de 5 %, livret), non-residents, arrondi a l'unite par paie.
+       ----------------------------------------------------------------------- */
+    maine: {
+      name: "Maine",
+      abbr: "ME",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Deduction standard de la formule de retenue (Step 3) : 12 850 $ (celibataire) jusqu'a 102 250 $ de salaire annualise, nulle a partir de
+           177 250 $, lineaire entre les deux : 12 850 x (177 250 - salaire) / 75 000 = 12 850 - (12 850 / 75 000) x (salaire - 102 250). Marie :
+           28 550 $ jusqu'a 204 550 $, nulle a partir de 354 550 $, pente 28 550 / 150 000. Le chef de famille suit le celibataire (case unique
+           « Single or Head of Household » du W-4ME). */
+        slidingDeduction: {
+          single: [
+            { upTo: 102250, amount: 12850 },
+            { upTo: 177250, from: 102250, base: 12850, rate: 12850 / 75000 },
+            { upTo: null, amount: 0 }
+          ],
+          marriedJoint: [
+            { upTo: 204550, amount: 28550 },
+            { upTo: 354550, from: 204550, base: 28550, rate: 28550 / 150000 },
+            { upTo: null, amount: 0 }
+          ],
+          headOfHousehold: [
+            { upTo: 102250, amount: 12850 },
+            { upTo: 177250, from: 102250, base: 12850, rate: 12850 / 75000 },
+            { upTo: null, amount: 0 }
+          ]
+        },
+        /* Allocations du W-4ME (5 300 $ chacune) : 1 (celibataire : ligne A) ; 2 (marie : A + B) ; 2 (chef de famille : A + C). */
+        personalExemption: {
+          single: 5300,
+          marriedJoint: 10600,
+          headOfHousehold: 10600
+        },
+        /* Bareme annuel de la methode en pourcentage, sur le revenu annualise apres allocations et deduction standard. La derniere tranche
+           (9,15 %) est le taux de 7,15 % plus le surcharge de 2 % de la Note (1), au-dela de 1 000 000 $ (celibataire) / 1 500 000 $ (marie). */
+        brackets: {
+          single:          [[27400, 0.058], [64850, 0.0675], [1000000, 0.0715], [Infinity, 0.0915]],
+          marriedJoint:    [[54850, 0.058], [129750, 0.0675], [1500000, 0.0715], [Infinity, 0.0915]],
+          headOfHousehold: [[27400, 0.058], [64850, 0.0675], [1000000, 0.0715], [Infinity, 0.0915]]
+        }
+      },
+      /* Retenue salariale facultative, jusqu'a 0,5 % des salaires, plafonnee au plafond Social Security (184 500 $ en 2026). */
+      employeePrograms: [
+        { label: "Maine Paid Family & Medical Leave (0.50%)", rate: 0.005, wageCap: 184500 }
+      ]
     }
   }
 };

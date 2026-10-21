@@ -692,10 +692,10 @@ check("WI : aucun programme salarie retenu (assurance chomage employeur seul)",
   (R.states.wisconsin.employeePrograms || []).length, 0, 0);
 check("WI : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("wisconsin", 5000).etat >= 0 ? 1 : 0, 1, 0);
-check("WI : la deduction glissante n'existe que pour le Wisconsin",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).length, 1, 0);
-check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026), l'Alabama, l'Oklahoma (06/10/2026) et la Virginie-Occidentale (13/10/2026)",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 6, 0);
+check("WI : la deduction glissante n'existe que pour le Wisconsin et le Maine (21/10/2026)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).sort().join() === "maine,wisconsin" ? 1 : 0, 1, 0);
+check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026), l'Alabama, l'Oklahoma (06/10/2026) la Virginie-Occidentale (13/10/2026) et le Maine (21/10/2026)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 7, 0);
 
 /* --- ARKANSAS -----------------------------------------------------------
    Source, lue le 2026-09-12 : "State of Arkansas, Estimated Tax Declaration
@@ -3105,6 +3105,114 @@ check("SC : percentDeduction n'existe que pour la Caroline du Sud",
         }
       }
   check("SC : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
+console.log("\n=== Maine (48e Etat) ===");
+/* =======================================================================
+   MAINE (48e Etat) - AUCUN mecanisme nouveau : deduction standard degressive (slidingDeduction, comme le Wisconsin) + allocations du W-4ME
+   (personalExemption, 5 300 $ chacune) + surcharge de 2 % comme tranche de plus. Source (lue le 2026-10-21) : Maine Revenue Services, « 2026
+   Withholding Tables for Individual Income Tax » (Revised: August 2026), methode en pourcentage : deduction standard 12 850 $ (celibataire) jusqu'a
+   102 250 $, nulle a 177 250 $, lineaire entre les deux (12 850 x (177 250 - salaire) / 75 000) ; marie 28 550 $ jusqu'a 204 550 $, nulle a
+   354 550 $ (28 550 x (354 550 - salaire) / 150 000) ; bareme celibataire 5,8 % jusqu'a 27 400 $, 6,75 % jusqu'a 64 850 $, 7,15 % au-dela ; marie
+   5,8 % jusqu'a 54 850 $, 6,75 % jusqu'a 129 750 $, 7,15 % au-dela ; surcharge 2 % au-dela de 1 000 000 $ / 1 500 000 $. Retenue Maine PFML : 0,5 %
+   des salaires jusqu'a 184 500 $. Tous les attendus sont recalcules a la main (fractions exactes), PAS copies de la sortie du code.
+   ======================================================================= */
+const meC = (b, st, rp) => calcul("maine", b, st || "single", rp || 0);
+
+/* Cas ME-1 - 75 000 $ celibataire (1 allocation). 75 000 - 5 300 - 12 850 = 56 850 ; 1 589,20 + (56 850 - 27 400) x 6,75 % = 1 589,20 + 29 450 x 0,0675
+   = 1 589,20 + 1 987,875 = 3 577,075. PFML 0,5 % x 75 000 = 375. Federal 7 670 ; FICA 5 737,50. Net : 75 000 - 7 670 - 5 737,50 - 3 577,075 - 375 = 57 640,425. */
+check("ME 75 000 $ celibataire : impot d'Etat", meC(75000).etat, 3577.075, 0.0005);
+check("ME 75 000 $ celibataire : retenue PFML", meC(75000).programmes[0].montant, 375, 0.0005);
+check("ME 75 000 $ celibataire : net", meC(75000).net, 57640.425, 0.0005);
+
+/* Cas ME-2 - 75 000 $ marie (2 allocations = 10 600, deduction 28 550). 75 000 - 10 600 - 28 550 = 35 850 ; x 5,8 % = 2 079,30. Federal 4 640.
+   Net : 75 000 - 4 640 - 5 737,50 - 2 079,30 - 375 = 62 168,20. */
+check("ME 75 000 $ marie : impot d'Etat", meC(75000, "marriedJoint").etat, 2079.30, 0.0005);
+check("ME 75 000 $ marie : net", meC(75000, "marriedJoint").net, 62168.20, 0.0005);
+
+/* Cas ME-3 - 75 000 $ chef de famille (2 allocations, bareme celibataire, deduction 12 850). 75 000 - 10 600 - 12 850 = 51 550 ;
+   1 589,20 + (51 550 - 27 400) x 6,75 % = 1 589,20 + 24 150 x 0,0675 = 1 589,20 + 1 630,125 = 3 219,325. Federal 5 748.
+   Net : 75 000 - 5 748 - 5 737,50 - 3 219,325 - 375 = 59 920,175. */
+check("ME 75 000 $ chef de famille : impot d'Etat", meC(75000, "headOfHousehold").etat, 3219.325, 0.0005);
+check("ME 75 000 $ chef de famille : net", meC(75000, "headOfHousehold").net, 59920.175, 0.0005);
+
+/* Cas ME-4 - 30 000 $ celibataire : 30 000 - 5 300 - 12 850 = 11 850 ; x 5,8 % = 687,30. */
+check("ME 30 000 $ celibataire : impot d'Etat", meC(30000).etat, 687.30, 0.0005);
+
+/* Cas ME-5 - dans la pente (celibataire, 150 000 $) : deduction 12 850 x (177 250 - 150 000) / 75 000 = 12 850 x 27 250 / 75 000 = 4 668,8333 ;
+   imposable 150 000 - 5 300 - 4 668,8333 = 140 031,1667 ; 4 117,075 + (140 031,1667 - 64 850) x 7,15 % = 4 117,075 + 75 181,1667 x 0,0715 =
+   4 117,075 + 5 375,4534 = 9 492,5284. */
+check("ME 150 000 $ celibataire : deduction standard en pente", meC(150000).etat, 9492.5284167, 0.0005);
+
+/* Cas ME-6 - au-dela de 177 250 $ la deduction est nulle (celibataire, 200 000 $) : 200 000 - 5 300 = 194 700 ; 4 117,075 + (194 700 - 64 850) x 7,15 % =
+   4 117,075 + 129 850 x 0,0715 = 4 117,075 + 9 284,275 = 13 401,35. */
+check("ME 200 000 $ celibataire : deduction standard nulle", meC(200000).etat, 13401.35, 0.0005);
+
+/* Cas ME-7 - dans la pente (marie, 300 000 $) : 28 550 x (354 550 - 300 000) / 150 000 = 28 550 x 54 550 / 150 000 = 10 383,2333 ; imposable
+   300 000 - 10 600 - 10 383,2333 = 279 016,7667 ; 8 237,05 + (279 016,7667 - 129 750) x 7,15 % = 8 237,05 + 149 266,7667 x 0,0715 = 8 237,05 + 10 672,6131 =
+   18 909,6631. */
+check("ME 300 000 $ marie : deduction standard en pente", meC(300000, "marriedJoint").etat, 18909.6631417, 0.0005);
+
+/* Cas ME-8 - surcharge (celibataire, 1 500 000 $) : imposable 1 500 000 - 5 300 = 1 494 700 ; 4 117,075 + (1 000 000 - 64 850) x 7,15 % + (1 494 700 - 1 000 000) x 9,15 % =
+   4 117,075 + 66 863,225 + 45 265,05 = 116 245,35. */
+check("ME 1 500 000 $ celibataire : surcharge de 2 % au-dela de 1 000 000 $", meC(1500000).etat, 116245.35, 0.0005);
+
+/* Cas ME-9 - 401(k) 6 % sur 75 000 $ : salaire 70 500 ; 70 500 - 5 300 - 12 850 = 52 350 ; 1 589,20 + 24 950 x 6,75 % = 1 589,20 + 1 684,125 = 3 273,325.
+   La retenue PFML reste sur le brut (375). */
+check("ME 75 000 $, 401(k) 6 % : impot d'Etat", meC(75000, "single", 0.06).etat, 3273.325, 0.0005);
+check("ME 75 000 $, 401(k) 6 % : PFML sur le brut", meC(75000, "single", 0.06).programmes[0].montant, 375, 0.0005);
+
+/* Cas ME-10 - seuil d'imposition : 5 300 + 12 850 = 18 150 $ -> imposable 0 -> rien n'est retenu ; 18 151 $ -> 1 x 5,8 % = 0,058. */
+check("ME 18 150 $ celibataire : zero retenue au seuil", meC(18150).etat, 0, 0.0005);
+check("ME 18 151 $ celibataire : premier dollar a 5,8 %", meC(18151).etat, 0.058, 0.0005);
+
+/* Cas ME-11 - plafond de la retenue PFML : 0,5 % x 184 500 = 922,50 (250 000 $). */
+check("ME 250 000 $ : PFML plafonnee au plafond Social Security", meC(250000).programmes[0].montant, 922.50, 0.0005);
+
+/* Cas ME-12 - exemple 3 imprime : 4 500 $ par semaine = 234 000 $, marie, 2 allocations. Le livret : 255,62 $ -> 256 $ ; deduction 28 550 x 120 550 / 150 000 =
+   22 944,6833 ; imposable 234 000 - 10 600 - 22 944,6833 = 200 455,3167 ; 8 237,05 + (200 455,3167 - 129 750) x 7,15 % = 8 237,05 + 5 055,4301 = 13 292,4801 ; / 52 = 255,6246. */
+check("ME exemple imprime n 3 : 234 000 $ marie, par semaine", meC(234000, "marriedJoint").etat / 52, 255.6246, 0.0005);
+check("ME exemple imprime n 3 : 256 $ par semaine apres arrondi", Math.round(meC(234000, "marriedJoint").etat / 52), 256, 0);
+
+/* Cas ME-13 - une seule retenue salariale hors impot : la PFML. Le chomage est a la charge de l'employeur (26 M.R.S. § 1221). */
+check("ME : une seule retenue salariale (PFML)", meC(75000).programmes.length + meC(75000).paidLeave + meC(75000).waCares, 1, 0);
+
+/* Cas ME-14 - garde-fou : les donnees du moteur sont celles du livret. */
+check("ME : bareme, deduction degressive, allocations et PFML == livret d'aout 2026",
+  (() => { const A = R.states.maine.incomeTax, P = R.states.maine.employeePrograms[0];
+    const sl = A.slidingDeduction;
+    return JSON.stringify(A.brackets.single) === JSON.stringify([[27400, 0.058], [64850, 0.0675], [1000000, 0.0715], [Infinity, 0.0915]]) &&
+      JSON.stringify(A.brackets.marriedJoint) === JSON.stringify([[54850, 0.058], [129750, 0.0675], [1500000, 0.0715], [Infinity, 0.0915]]) &&
+      JSON.stringify(A.brackets.headOfHousehold) === JSON.stringify(A.brackets.single) &&
+      A.personalExemption.single === 5300 && A.personalExemption.marriedJoint === 10600 && A.personalExemption.headOfHousehold === 10600 &&
+      sl.single[0].amount === 12850 && sl.single[0].upTo === 102250 && sl.single[1].upTo === 177250 && sl.single[1].from === 102250 &&
+      Math.abs(sl.single[1].rate - 12850 / 75000) < 1e-15 &&
+      sl.marriedJoint[0].amount === 28550 && sl.marriedJoint[0].upTo === 204550 && sl.marriedJoint[1].upTo === 354550 && sl.marriedJoint[1].from === 204550 &&
+      Math.abs(sl.marriedJoint[1].rate - 28550 / 150000) < 1e-15 &&
+      JSON.stringify(sl.headOfHousehold) === JSON.stringify(sl.single) &&
+      P.rate === 0.005 && P.wageCap === 184500 ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes de la pente et du surcharge x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 18150, 18151, 30000, 75000, 102250, 102251, 140000, 177250, 177251, 184500, 204550, 204551, 300000, 354550, 354551, 1000000, 1500000, 2000000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "maine", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("maine", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("ME : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

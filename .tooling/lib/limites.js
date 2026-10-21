@@ -188,6 +188,13 @@ const LOCAL_PAR_ETAT = {
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
     calculators.</li>`,
 
+  /* Maine (21/10/2026) : le livret de retenue, le W-4ME et les pages de retenue ne decrivent que l'impot d'Etat : « we found no », jamais « Maine has no ». */
+  maine: `    <li><strong>Local taxes</strong> &mdash; the Maine withholding tables and Form W-4ME we read describe state
+    withholding only, and we found no Maine city or county income tax on wages in them. That is not proof that none
+    exists. This calculator adds no local line for Maine. The only local income tax lines on this site are on the
+    <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    calculators.</li>`,
+
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

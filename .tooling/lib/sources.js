@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20", "south-carolina": "2026-10-20" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20", "south-carolina": "2026-10-20", maine: "2026-10-21" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1280,6 +1280,38 @@ const PAR_ETAT = {
       titre: "South Carolina Code of Laws &mdash; Title 41, Chapter 31, Contributions (Section 41-31-310)",
       quoi: "the rule that unemployment contributions are paid by each employer and shall not be deducted, in whole or in part, from the wages of the employer&rsquo;s employees",
       motif: ["shall not be deducted, in whole or in part, from the wages"] }
+  ],
+  /* Maine (21/10/2026) : www.maine.gov repond avec un User-Agent de navigateur (HTTP 403 sans) ; les PDF lus sont ceux des URL courantes (en-tetes Last-Modified notes dans rates-2026.js). */
+  maine: [
+    { type: "document",
+      url: "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_wh_tab_instr_August2026.pdf",
+      titre: "Maine Revenue Services &mdash; 2026 Withholding Tables for Individual Income Tax (PDF, revised August 2026)",
+      quoi: "the percentage method (a $5,300 allowance for each allowance claimed, a standard deduction of $12,850 or $28,550 that phases out as annualized pay rises, then rates of 5.80%, 6.75% and 7.15% plus the 2% surcharge), its three worked examples and the printed wage-bracket tables for 0 to 10 allowances",
+      motif: ["Percentage Method", "Income Tax Surcharge"] },
+    { type: "document",
+      url: "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_form_w-4me_fillable.pdf",
+      titre: "Maine Revenue Services &mdash; Form W-4ME, Employee&rsquo;s Withholding Allowance Certificate (PDF)",
+      quoi: "the Personal Allowances Worksheet: one allowance for yourself, one for a spouse if you file jointly, one for head of household, and one for each child or dependent eligible for the federal credit, with a single filing-status box for &ldquo;Single or Head of Household&rdquo;",
+      motif: ["Personal Allowances Worksheet", "Head of Household"] },
+    { type: "document",
+      url: "https://www.maine.gov/paidleave/docs/2026/employers/faq/employerFAQenglish.pdf",
+      titre: "Maine Department of Labor &mdash; Paid Family and Medical Leave, frequently asked questions for employers (PDF, July 2026)",
+      quoi: "the joint contribution of 0.5% or 1% of wages for 2025 to 2027, the limit of 0.5% on the employee&rsquo;s share, the Social Security wage base as the yearly cap, and the May 1, 2026 start of benefits",
+      motif: ["No more than 0.5 percent can come from the employee", "May 1, 2026"] },
+    { type: "document",
+      url: "https://www.maine.gov/paidleave/docs/2026/employers/WhatEmployersNeedtoKnowPremiumsandCountingEmployees.pdf",
+      titre: "Maine Department of Labor &mdash; What Employers Need to Know: Premiums &amp; Counting Employees (PDF)",
+      quoi: "the statement that an employer may withhold up to 0.5% of employees&rsquo; wages for the paid leave premium",
+      motif: ["You may withhold up to 0.5%"] },
+    { type: "agence", url: "https://www.maine.gov/revenue/taxes/income-estate-tax/employer-withholding",
+      titre: "Maine Revenue Services &mdash; Employer Withholding, with the 2026 forms and withholding tables" },
+    { type: "agence", url: "https://www.maine.gov/paidleave/",
+      titre: "Maine Department of Labor &mdash; Maine Paid Family and Medical Leave" },
+    { type: "document",
+      url: "https://legislature.maine.gov/statutes/26/title26sec1221.html",
+      titre: "Maine Revised Statutes &mdash; Title 26, Section 1221, Contributions",
+      quoi: "the rule that unemployment contributions are paid by each employer and may not be deducted, in whole or in part, from the wages of the employees",
+      motif: ["may not be deducted, in whole or in part, from the wages of the employees"] }
   ],
   iowa: [
     { type: "document",

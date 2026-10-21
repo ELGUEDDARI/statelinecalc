@@ -1,0 +1,1250 @@
+      Maine Revenue Services
+
+2026  Withholding Tables for
+      Individual Income Tax
+
+         REVISED - to reflect the increased Maine standard
+      deduction amounts and the new income tax surcharge.
+
+               IMPORTANT. The 2026 Maine personal exemption amount is $5,300 and the
+               Maine basic standard deduction amounts are $15,700* for single and $31,400* for
+               married individuals filing joint returns. Also, the Maine standard deduction amounts
+               for 2026 are phased out for single taxpayers with Maine income over $102,250
+               and married taxpayers filing joint returns with Maine income over $204,550.
+
+*Note: The Maine basic standard deduction amounts listed above differ slightly from
+the standard deduction amounts used to calculate the Maine withholding tables and the
+percentage method of withholding in this booklet. The percentage method for calculating
+Maine withholding and the withholding tables in this booklet have been adjusted to reflect the
+2026 exemption and deduction amounts. Also note the updated tax rate schedules in Step 6.
+
+Note: Do not reduce the amount of Maine withholding by any federal deduction amounts claimed on federal Form W-4, Step
+4(b) or federal Form W-4P, Step 4(b) that were used to calculate federal income tax withholding. Currently, Maine does not
+conform to the federal deductions that may be used to reduce the required federal withholding amount. For more information
+on Maine withholding requirements, see instructions and MRS Rule 803 (Income Tax Withholding Reports and Payments).
+
+Electronic Filing Required. All employers and non-wage payers registered for Maine income tax withholding accounts must
+electronically file Maine quarterly withholding tax returns. Waivers from this requirement are available if the requirement
+causes undue hardship. See MRS Rule 104 (Filing of Maine Tax Returns) at maine.gov/revenue/publications/rules and the
+instructions for Reporting Maine Income Tax Withheld below.
+
+Electronic Payments Required. Taxpayers with a combined annual tax liability for all Maine taxes that is $10,000 or more
+for the prior calendar year must remit all Maine tax payments electronically and continue to remit taxes electronically in
+future years. Thus, in addition to other entities affected by the requirement, employers and non-wage payers required to
+remit on a semiweekly basis must do so electronically. See MRS Rule 102 (Electronic Funds Transfer), Section 2 at maine.
+gov/revenue/publications/rules and the instructions for Electronic Payment Options below.
+
+Electronic Filing of Information Return Data Required. Information return data must be filed electronically with Maine
+Revenue Services by January 31st following the calendar year to which the information return relates; paper copies of
+Forms W-2 and 1099 are not acceptable. For more information, see the Maine Tax Portal Bulk File Upload Specifications
+and Instructions at maine.gov/revenue/taxes/income-estate-tax/employer-withholding.
+
+                                                           Payroll Processing Companies
+Payroll processors must register annually with, and be licensed by, the Bureau of Consumer Credit Protection. For more
+information on the licensing requirements, contact the Superintendent, Bureau of Consumer Credit Protection by phone
+(207) 624-8527, by fax (207) 582-7699, or by writing to: 35 State House Station, Augusta, ME 04333.
+
+                                                         Mission Statement
+MRS' mission is to fairly and efficiently administer the State's tax laws with integrity and professionalism.
+
+                                                                                                                                                           Revised: August 2026
+                   Electronic Payment Options                              that provides this service (generally larger commercial banks) and
+                                                                           you must obtain the correct EFT Addendum Record information
+Electronic Payment Required. Maine Revenue Services (MRS)                  from MRS.
+Rule 102 (Electronic Funds Transfer) requires that taxpayers with
+an annual total combined tax liability for all Maine taxes that is         Penalty for Insufficient Funds. The penalty for insufficient funds
+$10,000 or more pay electronically. Payroll processing companies           applies to electronic funds transfers. The penalty is $20 or 1% of
+must remit electronically for all clients, even if clients are not         the payment amount, whichever is greater.
+mandated to pay electronically. MRS also encourages voluntary
+participation by those not required to pay electronically. You may         Penalty for Failure to Pay by Electronic Funds Transfer. Any
+request a waiver from this requirement for good cause. To obtain           person required to pay by electronic funds transfer who fails to do
+a waiver request form, see the last paragraph of this section. MRS         so is liable for a penalty equal to the lesser of 5% of the tax due or
+accepts electronic payments by ACH credit and ACH debit methods.           $5,000.
+There are several options for making payments electronically, each
+of which is described below.                                               For more information about electronic payment requirements, a
+                                                                           waiver request form, or a copy of MRS Rule 102, visit maine.gov/
+                         Use the Maine Tax Portal (MTP) to create          revenue; send an email to taxpayerassist@maine.gov; send a fax
+                         and manage your withholding tax account, file     to (207) 287-6975; or write to: Maine Revenue Services, Taxpayer
+                         tax returns, and pay Maine withholding tax        Assistance, P.O. Box 1060, Augusta, ME 04332-1060.
+at revenue.maine.gov. Bulk filing for income tax withholding is
+available on the MTP. Bulk filers must register for the MTP and                                    Pass-through Entities
+obtain a MTP username.
+                                                                           In addition to employee withholding, pass-through entities (such as
+ACH Debit. A taxpayer may make payments using this method by               partnerships, S corporations, and LLCs) with nonresident members
+authorizing MRS to electronically transfer tax payments from the           (such as partners and shareholders) must withhold income taxes
+taxpayer's deposit account to the MRS deposit account. ACH debit           from those nonresident members on Maine-source distributive
+payments can be made using the MTP.                                        income. Estimated payments must be remitted to the state
+                                                                           quarterly. Certain exemptions apply. Pass-through entities must
+ACH Credit. A taxpayer may make payments using this method                 withhold income taxes at the highest Maine rate -- do not use this
+by authorizing their bank to withdraw the tax payment from the             booklet to calculate withholding for nonresident members. For
+taxpayer's deposit account and transfer it to the state's account.         more information, see Form 941P-ME at maine.gov/revenue/tax-
+You must have previously established a relationship with a bank            return-forms.
+
+                                            DOs and DON'Ts for Clients of Payroll Processors in Maine:
+
+Using the services of a payroll processor can be a convenient and economical way for an employer or non-wage filer to file and
+pay withholding taxes. However, employers or non-wage filers face certain risks associated with the use of a processor, including
+possible lack of compliance and the risk of loss of funds that are under the control of the processor. Ultimately, it is the employer or
+non-wage filer who bears the responsibility for meeting its payroll tax obligations. If you are an employer or non-wage filer that
+uses the services of a payroll processor, you should take the following precautions:
+
+  a Educate yourself to understand your filing requirements and the risks associated with using a payroll processor.
+
+  a Verify with the Bureau of Consumer Credit Protection, (207) 624-8527 or maine.gov/pfr/consumercredit, that the processor is
+      licensed and has provided proof of fidelity insurance to protect payroll funds, including coverage for crimes such as fraud and
+      theft. If the processor has access to your company's tax funds, verify with the Bureau of Consumer Credit Protection that the
+      company has also posted a surety bond or letter of credit, or is enrolled in the state's Payroll Processor Recovery Fund.
+
+  a Obtain verification from the payroll processor and its insurer that the processor's liability insurance will remain in effect for a
+      specified period of time.
+
+  a Read your contract with your processor carefully.
+
+  a Ensure that the agreement/contract and any power of attorney that your processor has with you specifically requires
+      that all notices sent by the IRS and state tax agencies be sent directly to you.
+
+  a Never hesitate to contact tax authorities or the Bureau of Consumer Credit Protection directly when you feel it necessary.
+
+  a Check with the appropriate tax agency periodically to ensure that returns and payments are filed in a timely manner.
+
+  a Insist on verification from your processor that any problem for which the employer has received a tax agency notice has been resolved.
+
+  a Never assume that returns have been filed and taxes paid solely because you have not received notice of any problems from
+      the IRS or MRS.
+
+  a Never sign a tax return before it is completed.
+
+  a Require that the processor provide copies of returns, not just summaries, at the time of filing.
+
+  a If you are using a payroll service, be sure you are assigned a direct contact person and telephone number.
+
+                                                                        2
+                                               Maine Revenue Services
+                                                       P.O. Box 1060
+
+                                             Augusta, Maine 04332-1060
+
+Maine Revenue Services telephone assistance is available Monday through Friday between
+                             9:00 a.m. and 12:00 p.m., excluding state holidays.
+
+       Email Call
+
+       Taxpayer Assistance for Withholding Taxes:...............withholding.tax@maine.gov............(207) 624-7661
+       Payment Plans or Collection Questions:.....................compliance.tax@maine.gov............(207) 624-9595
+       Employer Registration Assistance:..............................taxpayerassist@maine.gov.............(207) 624-9784
+
+       For general information and downloadable forms, visit: maine.gov/revenue.
+
+       For federal tax forms (W-2, W-4, 1098, 1099, or 5498), visit: irs.gov.
+
+Employer Withholding Tax Calendar
+
+                       Filing          Form Number     Due Date
+Semiweekly Payments of Withheld
+Income Taxes                           900ME           If your Withholding Tax Remittance Frequency is
+                                       941ME           semiweekly and wages or non-wages are paid on
+Quarterly Return of                                    Wednesday, Thursday or Friday, payment of withheld income
+Income Tax Withholding                                 taxes is due the following Wednesday. If the wages or non-
+                                                       wages are paid on Saturday, Sunday, Monday or Tuesday,
+Wage and Tax Statement or Information                  the payment of withheld income taxes is due the following
+Statement                                              Friday.
+
+                                                       Note: Taxpayers with a combined annual tax liability for
+                                                       all taxes that is $10,000 or more for the prior calendar
+                                                       year must remit all Maine tax payments electronically and
+                                                       continue to remit tax payments electronically in future
+                                                       years. Thus, in addition to other entities affected by the
+                                                       requirement, employers and non-wage payers required to
+                                                       remit on a semiweekly basis must do so electronically. See
+                                                       MRS Rule 102 at maine.gov/revenue/publications/rules and
+                                                       the instructions for Electronic Payment Options above.
+
+                                                       This form must be filed by all employers or non-payroll filers
+                                                       registered to remit income tax withholding. The form is used
+                                                       to report income taxes withheld for the quarter, to reconcile
+                                                       payments of income taxes withheld and remitted during
+                                                       the quarter and to make payment for any balance due for
+                                                       income taxes withheld. Each quarterly return is due the last
+                                                       day of the month following the end of the calendar quarter,
+                                                       even if there is no withholding tax to report. Employers or
+                                                       non-payroll filers are required to complete the withholding
+                                                       detail pages on the quarterly return. A non-payroll filer who
+                                                       is not able to comply with this requirement must obtain a
+                                                       waiver from MRS.
+
+                                       W-2, 1098,      Furnish payee the applicable statement on or before the
+                                       1099, 5498,     date the federal statement is due, or within 30 days after the
+                                       etc.            last payment of wages or termination of employment, if the
+                                                       statement is requested in writing.
+
+                                                    3
+Instructions
+
+1. Introduction. The Maine withholding tax system operates in                  For more information, see Rule 803 (Income Tax Withholding
+    much the same manner as the federal system. Employers or                   Reports and Payments). For a copy of MRS Rule 803 or 806,
+    non-payroll filers must withhold Maine income tax from their               visit the MRS website at maine.gov/revenue/publications/
+    employees'/payees' earnings and remit the withheld funds                   rules, email withholding.tax@maine.gov, or write to: Maine
+    to MRS. The law also requires withholding from non-wage                    Revenue Services, P.O. Box 1060, Augusta, ME 04332-1060.
+    payments, such as distributions from pensions and annuities,
+    and certain other payments when there is federal withholding.              Generally, income earned on Maine tribal land by enrolled
+                                                                               members of the Passamaquoddy Tribe, the Penobscot Nation,
+    In these instructions, "person" means an individual, firm,                 the Houlton Band of Maliseet Indians, or the Mi'kmaq Nation
+    partnership, association, society, club, corporation, estate,              residing on tribal land is not subject to Maine income tax and,
+    trust, business trust, receiver, assignee, the state or federal            therefore, is not subject to Maine income tax withholding. See
+    government or any other political subdivision or agency of either          36 M.R.S. § 5122(2)(ZZ).
+    government, or any other group or combination thereof acting
+    as a unit.                                                             4. Computing the Amount of Maine Taxes to Withhold. Any
+                                                                               of the following methods may be used to calculate the amount
+2. Registration for Withholding Purposes. Use the Maine Tax                    of Maine income tax to withhold from payments subject to the
+    Portal (MTP) at revenue.maine.gov to register a new business               federal wage method of withholding:
+    or, if already registered, to create a new withholding account,
+    reopen a closed withholding account, or maintain an existing               (a) Percentage Method. See the instructions for Maine Income
+    withholding account or complete the paper application with                      Tax Withholding -- Percentage Method -- 2026 below.
+    the Central Registration Unit. If necessary, contact Taxpayer
+    Assistance at taxpayerassist@maine.gov to obtain the proper                (b) Wage Bracket Tables. The tables below show the amount
+    form.                                                                           of Maine income tax to be withheld by wage bracket and
+                                                                                    by number of withholding allowances claimed on a weekly,
+    Fiscal agents planning to act for their client employers within                 biweekly, semimonthly, monthly, and daily or miscellaneous
+    the meaning of 36 M.R.S. § 5250(5) will need to register with                   basis.
+    MRS by submitting the Registration Application available at
+    maine.gov/revenue/tax-return-forms. Complete Sections 1 and                     To ensure adequate withholding, employers must use
+    2, check the box in Section 2, line 9 for fiscal agents and follow              the withholding tax rate schedule or the table that directly
+    all other relevant instructions for registration. Upon receipt of               corresponds to the status checked by the employee in box
+    the application, MRS will contact the fiscal agent to request                   3 of Maine Form W-4ME. If the "Married" box is checked,
+    additional information and required documents to complete                       the employer/payer must use the married percentage or the
+    the registration process. MRS will also inform the fiscal agent                 married withholding table. If the "Married, but withholding
+    of special tax filing and payment requirements, as well as                      at higher single rate" or "Single or Head of Household"
+    other legal and administrative responsibilities of a fiscal agent               box is checked, the employer/payer must use the single
+    designated under 36 M.R.S. § 5250(5).                                           percentage rate schedule or the single withholding table.
+
+3. Payments Subject to Maine Withholding. Any person who                       (c) Flat-Amount or Fixed Percentage Rate Method. If a payee
+    maintains an office or transacts business in Maine and who                      requests an amount of withholding that exceeds the amount
+    is required to withhold federal income tax from a particular                    that would otherwise be required, the request may be
+    payment must also withhold state income tax if the payment                      granted.
+    constitutes income that is not excluded from taxation under
+    Maine law.                                                                 (d) Alternate Method. Another method devised by a withholding
+                                                                                    agent that produces the same result as the percentage
+    Agricultural employees are also subject to the withholding                      method or the wage bracket tables, or that produces a result
+    requirements.                                                                   that falls between those methods.
+
+    If payments from an employer-sponsored retirement plan are                 If supplemental wages (such as bonuses, commissions,
+    subject to federal withholding, then Maine income tax must also            overtime pay, etc.) are paid with regular wages, the amount of
+    be withheld, unless the payee elects out of Maine withholding.             withholding is calculated as if the total were a single payment of
+    However, pensions, annuities, and other income from intangible             wages for the regular payroll period. If the supplemental wages
+    sources paid to a nonresident are not subject to withholding of            are paid separately, the payer may withhold a flat five percent.
+    Maine income tax.
+                                                                               Maine income tax law requires a person who withholds
+    The withholding requirement applies to nonresident and                     for federal purposes to withhold for Maine an amount that
+    resident individuals. For purposes of the income tax withholding           approximates the payee's liability for the taxable year. If this
+    requirements, Maine-source income of a nonresident individual              condition is met, the payer may use a withholding method
+    includes income attributable to an occupation, trade, or business          that best approximates the payee's liability. For non-wage
+    carried on in Maine. Included in Maine-source income are such              payments, other than gambling winnings, that are subject to flat
+    items as unemployment compensation connected with Maine                    rate federal withholding, withholding at a rate of five percent of
+    employment.                                                                the total payment is required for Maine. For more information on
+                                                                               withholding rates for non-wage payments, see Common Items
+    Maine-source income of a nonresident individual may not be                 of Income Subject to Withholding of Maine Income Tax below.
+    subject to income tax withholding if the number of days worked
+    in Maine falls below the threshold defined by 36 M.R.S. §              5. Withholding Allowances - Form W-4ME. Maine requires
+    5142(8-B) and MRS Rule 806 (Nonresident Individual Income                  new employees or payees and employees or payees making
+    Tax). If a nonresident employee works in Maine for more than               changes to their federal Form W-4 to furnish a state withholding
+    twelve days and earns more than $3,000 during the year, you                allowance certificate (Form W-4ME). Maine withholding
+    must ordinarily withhold Maine income tax from that employee.              allowances claimed on Form W-4ME are no longer based on
+                                                                               federal Form W-4 information. The Maine Form W-4ME must be
+
+                                                                        4
+    provided to the employer or non-payroll filer on the same date          The request must state the reason for hardship, how long the
+    the federal Form W-4 is provided. An employee or payee may              waiver will be required, and must be mailed to: Maine Revenue
+    not claim a number of withholding allowances for Maine income           Services, Withholding Unit, P.O. Box 1060, Augusta, ME
+    tax withholding that exceeds the number to which he or she is           04332-1060. If a waiver is granted, MRS will provide printed
+    entitled without an approved Personal Withholding Allowance             forms necessary for quarterly and annual filings. The electronic
+    Variance Certificate.                                                   filing requirement does not apply to amended returns. For
+                                                                            more information, see MRS Rule 104 at maine.gov/revenue/
+    (a) An employee or payee may claim a greater number of                  publications/rules.
+         allowances for state than what is allowed on Maine Form
+         W-4ME. To do so, the employee or payee must obtain a               Household Employees. If you withhold Maine income tax from
+         Personal Withholding Allowance Variance Certificate from           household employees (required if federal tax is withheld), you
+         MRS. Each certificate expires on December 31, or whenever          must report the tax withheld on the withholding tax form. You
+         the employee or payee no longer qualifies for the certificate,     cannot report the tax withheld on your Maine individual income
+         whichever is sooner.                                               tax return. Follow the reporting requirements above to report the
+                                                                            tax withheld.
+    (b) An employee or payee may claim fewer withholding
+         allowances than what is allowed on Maine Form W-4ME                Cancelling an Account. A person who is registered to withhold
+         without a Personal Withholding Allowance Variance                  Maine income tax must continue to file quarterly withholding
+         Certificate.                                                       returns, even if no tax has been withheld. If withholding is no
+                                                                            longer required the account should be closed. Accounts may be
+    (c) An employee or payee may request an additional dollar               closed via the MTP at revenue.maine.gov or by submitting Form
+         amount or a flat dollar amount of withholding that exceeds         941BN-ME available at maine/gov/revenue/tax-return-forms.
+         the withholding tax amount specified by the tables.
+                                                                            7. Payment. Employers and non-wage payers whose total
+    The employee or payee who chooses any of the above options                  withholding during the lookback period of July 1, 2024 to June
+    will reflect the option on the Maine Employee's Withholding                 30, 2025 was $18,000 or more are required to make payments
+    Allowance Certificate (Form W-4ME).                                         of income tax withholding on a semiweekly schedule (see
+                                                                                below). All other employers and non-wage payers are required
+    Form W-4ME may also be used as the state counterpart to                     to make payments on or before the date the quarterly return is
+    federal Form W-4P.                                                          due. The total amount withheld and the total payments made
+                                                                                during the quarter are reported and reconciled on the quarterly
+    Download Form W-4ME and the Personal Withholding                            return (Form 941ME).
+    Allowance Variance Certificate at maine.gov/revenue/tax-
+    return-forms.                                                               Your account will be reviewed at the end of 2026 to determine
+                                                                                the proper remittance frequency for 2027. MRS will notify you if
+    Invalid Forms W-4. If, on request, the employee or payee does               your remittance frequency is changed for 2027.
+    not provide a valid Form W-4ME, the employer or non-payroll
+    filer must withhold as if the employee or payee were single and             The State Tax Assessor may require more frequent remittances
+    claiming no allowances. Also, if MRS notifies an employer or                if the collection of withheld taxes is in jeopardy. 36 M.R.S. § 145.
+    non-payroll filer that a Form W-4ME is invalid, the employer or
+    non-payroll filer must withhold as if the employee or payee were            Electronic Payments Required. For more information on
+    single and claiming no allowances until the employee or payee               Maine electronic payment requirements, see MRS Rule 102 at
+    provides a valid Form W-4ME.                                                maine.gov/revenue/publications/rules and Electronic Payment
+                                                                                Options above.
+    Submission of Forms W-4. An employer is required to submit
+    a copy of Form W-4ME, along with a copy of any supporting                           Semiweekly Schedule
+    information provided by the employee, to MRS if either of the
+    following circumstances apply.                                          Day Wages Paid     Remittance Due
+
+       A. The employer is required to submit a copy of federal Form         Wednesday,         On or before the following
+            W-4 to the IRS either by written notice or by published
+            guidance.                                                       Thursday, or Friday.......... Wednesday
+
+       B. An employee with a non-Maine address claims exemption             Saturday, Sunday,  On or before the following
+            from Maine withholding and the employer expects to pay
+            the employee $5,000 or more in Maine-source income for          Monday, or Tuesday......... Friday
+            the year.
+                                                                            8. Error in Reporting Withholding. If you need to make a
+6. Reporting Maine Income Tax Withheld. Persons required to                     correction in the withholding reported for a particular period,
+    withhold must report the Maine income taxes withheld to MRS                 submit an amended return (Form 941ME with the amended
+    on a quarterly basis. Form 941ME is due quarterly by the last               return check-box completed) for that period. Do not make the
+    day of the month following the end of the quarter. Note: special            adjustment on a return for a subsequent period.
+    payment requirements apply to persons whose withholding
+    during the period July 1, 2024 to June 30, 2025 was $18,000 or          9. Payee Statement. Federal law requires employers to furnish
+    more (see item 7 below).                                                    Forms W-2 to employees to report the payment of wages, taxes
+                                                                                withheld, etc. Persons who make other payments are required
+    Electronic Filing Required: All employers and non-wage                      to furnish information returns (1098, 1099 series) to the payees.
+    payers registered for Maine income tax withholding must                     Compliance with these federal requirements will satisfy state
+    electronically file Maine quarterly tax returns. Employers and              requirements if the information return provided includes state
+    non-payroll payers may request a waiver from the electronic                 wages (or other payment) and state withholding information.
+    filing requirement if the requirement causes undue hardship.
+                                                                                Consistent with federal law, annual employee income and
+                                                                                withholding statements (such as Forms W-2 and 1099) must be
+                                                                                furnished to payees by the date the federal statement is due. In
+
+                                                                         5
+    the case of an employee who is terminated before the close of            the interest rate is 9%, compounded monthly. The penalty for
+    the calendar year, that employee must submit a written request           late payment is 1% per month, or fraction thereof, of the tax
+    in order to receive the income statement within 30 days, if that         due up to a maximum of 25%. The penalty for late filing is $25
+    30-day period ends before January 31st.                                  or 10% of the tax due, whichever is greater. If a tax return is
+                                                                             not filed on demand, the late filing penalty is the greater of
+    Penalties apply for failure to file accurate and timely Forms            $25 or 25% of the tax due. The law also provides penalties for
+    W-2/1099 statements to MRS and furnish the statements to                 negligence, fraud and substantial understatement.
+    payees. A person who files or furnishes a false or fraudulent
+    statement or fails to file or furnish a statement commits a civil    11. Backup Withholding. If backup withholding is required at the
+    violation for which a fine of $50 for each failure must be imposed.      federal level, Maine requires withholding at a flat rate of 5%.
+
+10.Interest and Penalties. Interest and penalties will be charged        12.Other Questions. If you have questions, contact the Income
+    for withheld tax not remitted by the due date. In addition, a            Tax Withholding Unit for assistance.
+    penalty will be assessed for late filing. For calendar year 2026,
+
+                        Maine Income Tax Withholding -- Percentage Method -- 2026
+
+If you use the percentage method to compute Maine income tax withholding, use the following steps:
+
+Step 1 Convert total wages to annualized wage amount. Multiply by the payroll frequency: 52 for weekly, 26 for biweekly, 24 for
+            semimonthly, 12 for monthly, 260 for daily or miscellaneous payroll period.
+
+Step 2 Multiply the number of withholding allowances the employee claims by $5,300.
+
+Step 3 Calculate the Maine Standard Deduction.
+
+            If the annualized wage amount determined under Step 1 is $102,250 or less for a single taxpayer, the Maine standard
+            deduction amount for withholding purposes is $12,850. If the annualized income determined under Step 1 is $204,550 or less
+            for a married taxpayer, the Maine standard deduction amount for withholding purposes is $28,550.
+
+            If the annualized wage amount determined under Step 1 is $177,250 or more for a single taxpayer or $354,550 or more for a
+            married taxpayer, the Maine standard deduction amount is $0.
+
+            If the annualized wage amount determined under Step 1 is between $102,250 and $177,250 for a single taxpayer or between
+            $204,550 and $354,550 for a married taxpayer, calculate the Maine standard deduction amount as follows:
+
+            Single Taxpayers
+
+            $12,850*($177,250 - Amount from Step 1) / $75,000
+
+            Married Taxpayers
+
+            $28,550*($354,550 - Amount from Step 1) / $150,000
+
+            *Round to 4 decimals (see Example 3 below)
+
+Step 4 Subtract the results from Steps 2 and 3 from the annualized wage amount calculated in Step 1 to compute the annualized
+            income.
+
+Step 5 Compute the annualized withholding amount using the withholding rate schedules below based on the annualized income
+            computed in Step 4.
+
+Step 6 Divide the annualized withholding amount computed in Step 5 by the payroll frequency used in Step 1 and round to the
+            nearest dollar. The result is the amount of Maine income tax to be withheld from the payment being made.
+
+See Note (1) below regarding the income tax surcharge.
+
+                               For Single Taxpayers
+
+If the annualized income is:                                                          The annualized withholding is:
+Less than $27,400                                                                     5.80% of income
+$27,400 but less than $64,850                                                         $1,589 plus 6.75% of excess over $27,400
+$64,850 or more (1)                                                                   $4,117 plus 7.15% of excess over $64,850
+
+                                                               For Married Taxpayers  The annualized withholding is:
+If the annualized income is:                                                          5.80% of income
+Less than $54,850                                                                     $3,181 plus 6.75% of excess over $54,850
+$54,850 but less than $129,750                                                        $8,237 plus 7.15% of excess over $129,750
+$129,750 or more (1)
+
+Note (1): Income Tax Surcharge: For tax years beginning on or after January 1, 2026, the tax calculated above is
+increased by a surcharge of 2% on the portion of the taxpayer's annualized income greater than $1,000,000 for single
+taxpayers, or $1,500,000 for married taxpayers.
+
+                                                                                                    6
+Example 1: A single employee is paid $300 each week. The employee claims two withholding allowances on Form W-4ME. Using the
+                  percentage method, compute the employee's withholding as follows:
+
+(1)  Gross pay of $300 x 52 weeks = $15,600
+
+(2)  Compute personal exemption amount:
+
+     2 allowances x $5,300 = $10,600
+
+(3)  As the annual wage amount is less than $102,250 the standard deduction amount is $12,850.
+
+(4)  Compute annualized income:
+
+     Annualized wage $15,600
+
+     Allowances                                 - 10,600
+
+     Standard Deduction                         - 12,850
+
+     Annualized Income                          ($7,850)
+
+     Because the annualized income amount is less than $0, the amount to be withheld is zero.
+
+Example 2: A single employee is paid $1,000 each week. The employee claims two withholding allowances on Form W-4ME. Using
+                  the percentage method, compute the employee's withholding as follows:
+
+(1)  Gross pay of $1,000 x 52 weeks = $52,000
+
+(2)  Compute personal exemption amount:
+
+     2 allowances x $5,300 = $10,600
+
+(3)  As the annual wage amount is less than $102,250 the standard deduction amount is $12,850.
+
+(4)  Compute annualized income:
+
+     Annualized wage                             $52,000
+     Allowances                                 - 10,600
+     Standard Deduction                         - 12,850
+     Annualized Income
+                                                 $28,550
+
+(5)  Compute annualized withholding amount:
+
+ Rate                                            Tax
+
+ $28,550                                       $1,589
+                                               + 78
+- 27,400                 See Schedule          $1,667
+
+     $1,150              x 6.75%
+
+     Annualized Withholding Amount
+
+(6)  Annualized withholding of $1,667 divided by 52 = $32.06 rounded to $32. Withhold $32 each week.
+
+Example 3: A married employee is paid $4,500 each week. The employee claims two withholding allowances on Form W-4ME. Using
+                  the percentage method, compute the employee's withholding as follows:
+
+(1)  Gross pay of $4,500 x 52 weeks = $234,000
+
+(2)  Compute personal exemption amount:
+
+     2 allowances x $5,300 = $10,600
+
+(3)  Compute the standard deduction:
+
+     $28,550*($354,550 - $234,000) / $150,000
+
+     $28,550*$120,550 / $150,000 = $22,945
+
+(4)  Compute annualized income:
+
+     Annualized wage                            $234,000
+     Allowances                                 - 10,600
+     Standard Deduction                         - 22,945
+     Annualized Income                          $200,455
+
+(5)  Compute annualized withholding amount:
+
+ Rate                                          Tax
+
+$200,455
+
+- 129,750                See Schedule $8,237
+
+     $70,705             x 7.15%             + 5,055
+
+     Annualized Withholding Amount           $13,292
+
+(6)  Annualized withholding of $13,292 divided by 52 = $255.62 rounded to $256. Withhold $256 each week.
+
+     Note:       If the payment involved is subject to flat rate federal withholding (backup withholding), a flat
+                 rate state withholding of 5% must be withheld. Multiply the amount of payment by 5% to
+                 compute the amount of tax to withhold. Do not use the above steps.
+
+                                                                                      7
+Common Items of Income Subject to Withholding of Maine Income Tax
+
+Income Type                                    Withholding Requirement                     Withholding Basis
+                                                           Mandatory           Wage methods (wage bracket tables
+Wages -- including tips, commissions,                                          or permitted alternatives)
+bonuses, severance pay or "golden                          Mandatory
+parachute" payments, supplemental                   Payee must request                        Wage methods
+unemployment benefits (IRC § 3402)       Required, unless payee elects out of        Amount requested by payee
+                                         federal withholding
+Sick pay paid by employer or             Required, unless payee elects out of                 Wage methods
+employer's agent                         federal withholding                                   Flat 5 percent
+                                         Required, unless payee elects out of                  Flat 5 percent
+Third-party sick pay not paid by an      federal withholding                                   Flat 5 percent
+employer or employer's agent             Required, unless payee elects out of                 Wage methods
+                                         federal withholding                                 Flat 7.15 percent
+Periodic payments from employer-
+sponsored retirement plan (pension,                        Mandatory                           Flat 5 percent
+profit-sharing, stock bonus, etc.) (IRC                    Mandatory
+§ 3405)                                                                                        Flat 5 percent
+                                                           Mandatory
+Lump-sum or other nonperiodic                                                                  Flat 5 percent
+payment from employer-sponsored                            Mandatory
+retirement plan
+                                                           Mandatory
+Distribution from Individual Retirement
+Account (IRA) or self-employed                                              8
+pension (Keough) plan
+
+Private employer-sponsored deferred
+compensation plan (IRC § 401(k))
+
+Distribution from government
+
+employer-sponsored  deferred
+
+compensation plan (IRC § 457)
+
+Gambling winnings in excess of
+$5,000; lotteries, parimutuel horse
+and dog races when odds are at
+least 300 to 1 (IRC § 3402(q)). Note:
+Winnings below these thresholds are
+still generally subject to Maine income
+tax.
+
+Reportable payments subject to
+federal backup withholding when
+payee fails to furnish proper Federal
+Tax Identification Number, or when
+payee or payer is notified by the
+Internal Revenue Service that federal
+backup withholding is required (IRC §
+3406)
+
+Wages, interest, dividends, rent or
+other payments to nonresident aliens
+of the United States when federal
+income tax withholding is required
+(IRC § 1441)
+
+Effectively connected income of
+foreign partner (IRC § 1446)
+                                       2026 Maine Income Tax Withholding Wage Bracket Tables SINGLE ­ WEEKLY
+
+   Wages are ­                      Number of withholding allowances claimed is ­            Wages are ­                            Number of withholding allowances claimed is ­
+
+           But      0      1     2  3  4  5              6  7                      8  9  10               But     0       1      2      3      4      5      6        7            8      9             10
+           less                                                                                        less than
+At least   than     0.25   0.75     Amount of income tax to withhold is ­                    At least                                   Amount of income tax to withhold is ­
+                    0.75   1.25
+     0.00  230.00   1.25   1.75   0.50                                                        845.00    860.00     37.00  30.00  24.00  18.00  12.00   6.00   0.75     0.50         0.50   0.25          0.25
+ 230.00    240.00   2.00   2.25   1.00                                                        860.00    875.00     38.00  31.00  25.00  19.00  13.00   7.00   1.50     1.75         1.50   1.50          1.25
+ 240.00    250.00   2.50   3.00   1.75                                                        875.00    890.00     39.00  32.00  26.00  20.00  14.00   8.00   2.50     2.75         2.75   2.75          2.50
+ 250.00    260.00   3.00   3.50   2.50                                                        890.00    905.00     40.00  33.00  27.00  21.00  15.00   9.00   3.25     4.00         4.00   3.75          3.75
+ 260.00    270.00   3.75   4.00   3.50                                                        905.00    920.00     41.00  34.00  28.00  22.00  16.00  10.00   4.25     5.00         5.00   5.00          4.75
+ 270.00    280.00   4.25   4.75   4.25                                                        920.00    940.00     42.00  35.00  29.00  23.00  17.00  11.00   5.00     6.00         6.00   6.00          6.00
+ 280.00    290.00   4.75   5.00   5.00                                                        940.00    960.00     44.00  37.00  30.00  24.00  18.00  12.00   6.00     7.00         7.00   7.00          7.00
+ 290.00    300.00   5.00   6.00   6.00                                                        960.00    980.00     45.00  38.00  31.00  25.00  19.00  13.00   7.00     9.00         8.00   8.00          8.00
+ 300.00    310.00   6.00   6.00   7.00 1.00                                                   980.00   1000.00     46.00  39.00  33.00  26.00  20.00  15.00   9.00    10.00        10.00   9.00          9.00
+ 310.00    320.00   6.00   7.00   8.00 1.75                                                  1000.00   1020.00     48.00  41.00  34.00  28.00  22.00  16.00  10.00    11.00        11.00  11.00         11.00
+ 320.00    330.00   7.00   7.00   9.00 2.75                                                  1020.00   1040.00     49.00  42.00  35.00  29.00  23.00  17.00  11.00    12.00        12.00  12.00         12.00
+ 330.00    340.00   8.00   8.00   9.00 3.50                                                  1040.00   1060.00     50.00  44.00  37.00  30.00  24.00  18.00  12.00    13.00        13.00  13.00         13.00
+ 340.00    350.00   8.00   9.00  10.00 4.50                                                  1060.00   1080.00     52.00  45.00  38.00  31.00  25.00  19.00  13.00    14.00        14.00  14.00         14.00
+ 350.00    360.00   9.00  10.00  11.00 5.00                                                  1080.00   1100.00     53.00  46.00  39.00  32.00  26.00  20.00  14.00    15.00        15.00  15.00         15.00
+ 360.00    370.00   9.00  11.00  12.00 6.00 0.25                                             1100.00   1120.00     54.00  48.00  41.00  34.00  27.00  22.00  16.00    17.00        17.00  16.00         16.00
+ 370.00    380.00  10.00  12.00  13.00 7.00 1.25                                             1120.00   1140.00     56.00  49.00  42.00  35.00  29.00  23.00  17.00    18.00        18.00  18.00         17.00
+ 380.00    390.00  10.00  13.00  14.00 8.00 2.00                                             1140.00   1160.00     57.00  50.00  43.00  36.00  30.00  24.00  18.00    19.00        19.00  19.00         19.00
+ 390.00    400.00  11.00  14.00  15.00 9.00 3.00                                             1160.00   1180.00     58.00  52.00  45.00  38.00  31.00  25.00  19.00    20.00        20.00  20.00         20.00
+ 400.00    410.00  12.00  14.00  15.00 10.00 3.75                                            1180.00   1200.00     60.00  53.00  46.00  39.00  32.00  26.00  20.00    21.00        21.00  21.00         21.00
+ 410.00    420.00  12.00  15.00  16.00 10.00 4.75                                            1200.00   1220.00     61.00  54.00  47.00  41.00  34.00  27.00  21.00    22.00        22.00  22.00         22.00
+ 420.00    430.00  13.00  16.00  17.00 11.00 5.00                                            1220.00   1240.00     63.00  56.00  49.00  42.00  35.00  28.00  23.00    24.00        24.00  23.00         23.00
+ 430.00    440.00  13.00  17.00  18.00 12.00 6.00 0.50                                       1240.00   1260.00     64.00  57.00  50.00  43.00  36.00  30.00  24.00    25.00        25.00  25.00         24.00
+ 440.00    450.00  14.00  18.00  19.00 13.00 7.00 1.25                                       1260.00   1280.00     65.00  58.00  51.00  45.00  38.00  31.00  25.00    26.00        26.00  26.00         26.00
+ 450.00    460.00  15.00  19.00  20.00 14.00 8.00 2.25                                       1280.00   1300.00     67.00  60.00  53.00  46.00  39.00  32.00  26.00    27.00        27.00  27.00         27.00
+ 460.00    470.00  16.00  20.00  21.00 15.00 9.00 3.00                                       1300.00   1320.00     68.00  61.00  54.00  47.00  40.00  34.00  27.00    28.00        28.00  28.00         28.00
+ 470.00    485.00  17.00  21.00  22.00 16.00 10.00 4.00                                      1320.00   1340.00     69.00  62.00  56.00  49.00  42.00  35.00  28.00    29.00        29.00  29.00         29.00
+ 485.00    500.00  18.00  21.00  22.00 17.00 11.00 4.75                                      1340.00   1360.00     71.00  64.00  57.00  50.00  43.00  36.00  30.00    31.00        30.00  30.00         30.00
+ 500.00    515.00  19.00  22.00  23.00 17.00 11.00 6.00                                      1360.00   1380.00     72.00  65.00  58.00  51.00  44.00  38.00  31.00    32.00        32.00  32.00         32.00
+ 515.00    530.00  19.00  23.00                                                              1380.00   1400.00     73.00  66.00  60.00  53.00  46.00  39.00  32.00    33.00        33.00  33.00         33.00
+ 530.00    545.00  20.00  24.00                                                              1400.00   1420.00     75.00  68.00  61.00  54.00  47.00  40.00  33.00    35.00        34.00  34.00
+ 545.00    560.00  21.00  25.00                                                              1420.00   1440.00     76.00  69.00  62.00  55.00  49.00  42.00  35.00    36.00        36.00  36.00
+ 560.00    575.00  22.00  26.00                                                              1440.00   1460.00     77.00  71.00  64.00  57.00  50.00  43.00  36.00    37.00        37.00  37.00
+ 575.00    590.00  23.00  27.00                                                              1460.00   1480.00     79.00  72.00  65.00  58.00  51.00  44.00  37.00    39.00        39.00  38.00
+ 590.00    605.00  24.00  27.00                                                              1480.00   1500.00     80.00  73.00  66.00  59.00  53.00  46.00  39.00    40.00        40.00  40.00
+ 605.00    620.00  25.00  28.00                                                              1500.00   1520.00     82.00  75.00  68.00  61.00  54.00  47.00  40.00    41.00        41.00
+ 620.00    635.00  26.00  29.00                                                              1520.00   1540.00     83.00  76.00  69.00  62.00  55.00  48.00  42.00    43.00        43.00
+ 635.00    650.00  26.00                                                                     1540.00   1560.00     84.00  77.00  70.00  63.00  57.00  50.00  43.00    44.00        44.00
+ 650.00    665.00  27.00                                                                     1560.00   1580.00     86.00  79.00  72.00  65.00  58.00  51.00  44.00    45.00        45.00
+ 665.00    680.00  28.00                                                                     1580.00   1600.00     87.00  80.00  73.00  66.00  59.00  52.00  46.00    47.00        47.00
+ 680.00    695.00  29.00                                                                     1600.00   1620.00     89.00  81.00  74.00  68.00  61.00  54.00  47.00    48.00
+ 695.00    710.00  30.00                                                                     1620.00   1640.00     90.00  83.00  76.00  69.00  62.00  55.00  48.00    49.00
+ 710.00    725.00  31.00                                                                     1640.00   1660.00     92.00  84.00  77.00  70.00  63.00  56.00  50.00    51.00
+ 725.00    740.00  32.00                                                                     1660.00   1680.00     93.00  86.00  78.00  72.00  65.00  58.00  51.00    52.00
+ 740.00    755.00  33.00                                                                     1680.00   1700.00     94.00  87.00  80.00  73.00  66.00  59.00  52.00    54.00
+ 755.00    770.00  34.00                                                                     1700.00   1720.00     96.00  89.00  81.00  74.00  67.00  61.00  54.00
+ 770.00    785.00  35.00                                                                     1720.00   1740.00     97.00  90.00  83.00  76.00  69.00  62.00  55.00
+ 785.00    800.00  36.00                                                                     1740.00   1760.00     99.00  91.00  84.00  77.00  70.00  63.00  56.00
+ 800.00    815.00                                                                            1760.00   1780.00    100.00  93.00  86.00  78.00  71.00  65.00  58.00
+ 815.00    830.00                                                                            1780.00   1800.00    102.00  94.00  87.00  80.00  73.00  66.00  59.00
+ 830.00    845.00                                                                            1800.00   1820.00    103.00  96.00  88.00  81.00  74.00  67.00  60.00
+
+                                                                                             1820.00   3410.00                                 Use percentage method
+
+                                                                                             3410.00 19235.00                           7.15% of the excess over 3410 plus -
+
+                                                                                                                  234.00 227.00 219.00 212.00 205.00 197.00 190.00 183.00 176.00 168.00 161.00
+
+                                                                                             19235.00* and over                         9.15% of the excess over 19235 plus 1365
+
+9                                                                                            *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                                         2026 Maine Income Tax Withholding Wage Bracket Tables SINGLE ­ BIWEEKLY
+
+    Wages are ­                       Number of withholding allowances claimed is ­            Wages are ­                             Number of withholding allowances claimed is ­
+
+                But   0      1     2  3  4  5              6  7                      8  9  10               But     0       1       2       3       4       5        6        7        8      9           10
+At least less                                                                                            less than
+                      0.75   0.50     Amount of income tax to withhold is ­                    At least                                     Amount of income tax to withhold is ­
+               than   2.00   1.75
+                      3.00   2.75
+     0.00   470.00    4.25   4.00   0.25                                                       1600.00   1630.00     68.00   55.00   43.00   31.00   19.00     8.00     1.25     0.25   0.25   2.25        2.00
+ 470.00     490.00    5.00   5.00   1.50                                                       1630.00   1660.00     70.00   57.00   45.00   33.00   21.00     9.00     3.00     2.75   2.50   4.50        4.25
+ 490.00     510.00    6.00   6.00   2.75                                                       1660.00   1690.00     72.00   58.00   47.00   35.00   23.00   11.00      5.00     5.00   4.75   7.00        7.00
+ 510.00     530.00    8.00   7.00   3.75                                                       1690.00   1720.00     74.00   60.00   48.00   37.00   25.00   13.00      7.00     7.00   7.00   9.00        9.00
+ 530.00     550.00    9.00   9.00   5.00                                                       1720.00   1750.00     76.00   62.00   50.00   38.00   26.00   15.00    10.00    10.00    9.00  11.00       11.00
+ 550.00     570.00   10.00  10.00   6.00                                                       1750.00   1790.00     78.00   65.00   52.00   41.00   29.00   17.00    12.00    12.00   12.00  14.00       13.00
+ 570.00     590.00   11.00  11.00   7.00                                                       1790.00   1830.00     81.00   67.00   55.00   43.00   31.00   19.00    14.00    14.00   14.00  16.00       16.00
+ 590.00     610.00   12.00  12.00   8.00                                                       1830.00   1870.00     84.00   70.00   57.00   45.00   33.00   22.00    17.00    16.00   16.00  18.00       18.00
+ 610.00     630.00   13.00  13.00   9.00                                                       1870.00   1910.00     87.00   73.00   59.00   48.00   36.00   24.00    19.00    19.00   19.00  21.00       20.00
+ 630.00     650.00   15.00  14.00  11.00                                                       1910.00   1950.00     89.00   76.00   62.00   50.00   38.00   26.00    21.00    21.00   21.00  23.00       23.00
+ 650.00     670.00   16.00  16.00  12.00                                                       1950.00   1990.00     92.00   78.00   64.00   52.00   40.00   29.00    24.00    23.00   23.00  25.00       25.00
+ 670.00     690.00   17.00  17.00  13.00 1.25                                                  1990.00   2030.00     95.00   81.00   67.00   54.00   43.00   31.00    26.00    26.00   26.00  28.00       27.00
+ 690.00     710.00   18.00  18.00  14.00 2.50                                                  2030.00   2070.00     97.00   84.00   70.00   57.00   45.00   33.00    28.00    28.00   28.00  30.00       30.00
+ 710.00     730.00   19.00  19.00  15.00 3.50                                                  2070.00   2110.00    100.00   86.00   73.00   59.00   47.00   35.00    31.00    30.00   30.00  32.00       32.00
+ 730.00     750.00   20.00  20.00  17.00 5.00                                                  2110.00   2150.00    103.00   89.00   75.00   62.00   50.00   38.00    33.00    33.00   33.00  35.00       34.00
+ 750.00     770.00   22.00  21.00  19.00 7.00                                                  2150.00   2190.00    105.00   92.00   78.00   64.00   52.00   40.00    35.00    35.00   35.00  37.00       37.00
+ 770.00     790.00   23.00  22.00  21.00 9.00                                                  2190.00   2230.00    108.00   94.00   81.00   67.00   54.00   42.00    38.00    37.00   37.00  39.00       39.00
+ 790.00     810.00   24.00  24.00  22.00 10.00                                                 2230.00   2270.00    111.00   97.00   83.00   70.00   57.00   45.00    40.00    40.00   39.00  42.00       41.00
+ 810.00     830.00   25.00  25.00  24.00 12.00 0.50                                            2270.00   2310.00    114.00  100.00   86.00   72.00   59.00   47.00    42.00    42.00   42.00  44.00       44.00
+ 830.00     850.00   26.00  26.00  26.00 14.00 2.25                                            2310.00   2350.00    116.00  103.00   89.00   75.00   61.00   49.00    45.00    44.00   44.00  46.00       46.00
+ 850.00     870.00   27.00  27.00  27.00 16.00 4.00                                            2350.00   2390.00    119.00  105.00   91.00   78.00   64.00   52.00    47.00    47.00   46.00  49.00       48.00
+ 870.00     890.00   28.00  29.00  29.00 17.00 6.00                                            2390.00   2430.00    122.00  108.00   94.00   80.00   67.00   54.00    49.00    49.00   49.00  51.00       51.00
+ 890.00     910.00   30.00  31.00  31.00 19.00 7.00                                            2430.00   2470.00    124.00  111.00   97.00   83.00   69.00   56.00    52.00    51.00   51.00  53.00       53.00
+ 910.00     930.00   31.00  32.00  33.00 21.00 9.00                                            2470.00   2510.00    127.00  113.00  100.00   86.00   72.00   59.00    54.00    54.00   53.00  55.00       55.00
+ 930.00     950.00   32.00  34.00  34.00 23.00 11.00                                           2510.00   2550.00    130.00  116.00  102.00   89.00   75.00   61.00    56.00    56.00   56.00  58.00       58.00
+ 950.00     970.00   33.00  36.00  36.00 24.00 13.00 0.75                                      2550.00   2590.00    132.00  119.00  105.00   91.00   77.00   64.00    58.00    58.00   58.00  60.00       60.00
+ 970.00     990.00   34.00  38.00  38.00 26.00 14.00 2.50                                      2590.00   2630.00    135.00  121.00  108.00   94.00   80.00   66.00    61.00    61.00   60.00  63.00
+ 990.00    1010.00   35.00  39.00  40.00 28.00 16.00 4.25                                      2630.00   2670.00    138.00  124.00  110.00   97.00   83.00   69.00    63.00    63.00   63.00  65.00
+1010.00    1030.00   37.00  41.00  41.00 30.00 18.00 6.00                                      2670.00   2710.00    141.00  127.00  113.00   99.00   86.00   72.00    66.00    66.00   66.00  68.00
+1030.00    1050.00   38.00  43.00                                                              2710.00   2750.00    143.00  130.00  116.00  102.00   88.00   74.00    69.00    69.00   68.00  71.00
+1050.00    1070.00   39.00  45.00                                                              2750.00   2790.00    146.00  132.00  118.00  105.00   91.00   77.00    72.00    71.00   71.00  73.00
+1070.00    1090.00   41.00  46.00                                                              2790.00   2830.00    149.00  135.00  121.00  107.00   94.00   80.00    74.00    74.00   74.00
+1090.00    1110.00   42.00  48.00                                                              2830.00   2870.00    151.00  138.00  124.00  110.00   96.00   83.00    77.00    77.00   76.00
+1110.00    1130.00   44.00  50.00                                                              2870.00   2910.00    154.00  140.00  127.00  113.00   99.00   85.00    80.00    79.00   79.00
+1130.00    1150.00   46.00  51.00                                                              2910.00   2950.00    157.00  143.00  129.00  116.00  102.00   88.00    82.00    82.00   82.00
+1150.00    1180.00   48.00  53.00                                                              2950.00   2990.00    160.00  146.00  132.00  118.00  104.00   91.00    85.00    85.00   85.00
+1180.00    1210.00   49.00                                                                     2990.00   3030.00    162.00  148.00  135.00  121.00  107.00   93.00    88.00    87.00   87.00
+1210.00    1240.00   51.00                                                                     3030.00   3070.00    165.00  151.00  137.00  124.00  110.00   96.00    90.00    90.00
+1240.00    1270.00   53.00                                                                     3070.00   3110.00    168.00  154.00  140.00  126.00  113.00   99.00    93.00    93.00
+1270.00    1300.00   55.00                                                                     3110.00   3150.00    171.00  157.00  143.00  129.00  115.00  101.00    96.00    96.00
+1300.00    1330.00   56.00                                                                     3150.00   3190.00    174.00  159.00  145.00  132.00  118.00  104.00    99.00    98.00
+1330.00    1360.00   58.00                                                                     3190.00   3230.00    177.00  162.00  148.00  134.00  121.00  107.00   101.00   101.00
+1360.00    1390.00   60.00                                                                     3230.00   3270.00    180.00  165.00  151.00  137.00  123.00  110.00   104.00
+1390.00    1420.00   62.00                                                                     3270.00   3310.00    182.00  168.00  154.00  140.00  126.00  112.00   107.00
+1420.00    1450.00   64.00                                                                     3310.00   3350.00    185.00  171.00  156.00  143.00  129.00  115.00   109.00
+1450.00    1480.00   66.00                                                                     3350.00   3390.00    188.00  174.00  159.00  145.00  131.00  118.00   112.00
+1480.00    1510.00                                                                             3390.00   3430.00    191.00  176.00  162.00  148.00  134.00  120.00   115.00
+1510.00    1540.00                                                                             3430.00   3470.00    194.00  179.00  165.00  151.00  137.00  123.00
+1540.00    1570.00                                                                             3470.00   3510.00    197.00  182.00  168.00  153.00  140.00  126.00
+1570.00    1600.00                                                                             3510.00   3550.00    200.00  185.00  170.00  156.00  142.00  128.00
+
+                                                                                               3550.00   6820.00                                    Use percentage method
+
+                                                                                               6820.00 38465.00                             7.15% of the excess over 6820 plus -
+
+                                                                                                                    468.00 453.00 438.00 424.00 409.00 395.00 380.00 366.00 351.00 336.00 322.00
+
+                                                                                               38465.00 and over                            9.15% of the excess over 38465 plus 2730
+
+10                                                                                             *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                                         2026 Maine Income Tax Withholding Wage Bracket Tables SINGLE ­ SEMI-MONTHLY
+
+    Wages are ­                       Number of withholding allowances claimed is ­            Wages are ­                             Number of withholding allowances claimed is ­
+
+                But   0      1     2  3  4  5  6                 7                   8  9  10               But     0       1       2       3       4       5       6        7        8      9            10
+At least less                                                                                            less than
+                      0.25   0.25     Amount of income tax to withhold is ­                    At least                                     Amount of income tax to withhold is ­
+               than   1.25   1.25
+                      2.50   2.50
+     0.00   500.00    3.75   3.75   1.25                                                       1880.00   1920.00     84.00   69.00   56.00   43.00   30.00   17.00     4.50     1.00   2.25   1.00         2.00
+ 500.00     520.00    4.75   4.75   3.00                                                       1920.00   1960.00     86.00   72.00   58.00   45.00   32.00   20.00     7.00     3.25   4.50   3.25         4.25
+ 520.00     540.00    6.00   6.00   4.75                                                       1960.00   2000.00     89.00   74.00   60.00   47.00   35.00   22.00     9.00     6.00   7.00   5.00         7.00
+ 540.00     560.00    7.00   7.00   6.00                                                       2000.00   2040.00     92.00   77.00   63.00   50.00   37.00   24.00   11.00      8.00   9.00   8.00         9.00
+ 560.00     580.00    8.00   8.00   8.00                                                       2040.00   2080.00     95.00   80.00   65.00   52.00   39.00   27.00   14.00    10.00   11.00  10.00        11.00
+ 580.00     600.00    9.00   9.00  10.00                                                       2080.00   2120.00     97.00   82.00   67.00   54.00   42.00   29.00   16.00    12.00   14.00  12.00        14.00
+ 600.00     620.00   11.00  10.00  12.00                                                       2120.00   2160.00    100.00   85.00   70.00   57.00   44.00   31.00   18.00    15.00   16.00  15.00        16.00
+ 620.00     640.00   12.00  12.00  13.00 0.75                                                  2160.00   2200.00    103.00   88.00   73.00   59.00   46.00   33.00   21.00    17.00   18.00  17.00        18.00
+ 640.00     660.00   13.00  13.00  15.00 2.25                                                  2200.00   2240.00    105.00   90.00   76.00   61.00   49.00   36.00   23.00    19.00   21.00  19.00        20.00
+ 660.00     680.00   14.00  14.00  17.00 4.00                                                  2240.00   2280.00    108.00   93.00   78.00   64.00   51.00   38.00   25.00    22.00   23.00  22.00        23.00
+ 680.00     700.00   15.00  16.00  19.00 6.00                                                  2280.00   2320.00    111.00   96.00   81.00   66.00   53.00   40.00   28.00    24.00   25.00  24.00        25.00
+ 700.00     720.00   16.00  17.00  21.00 8.00                                                  2320.00   2360.00    113.00   99.00   84.00   69.00   56.00   43.00   30.00    26.00   28.00  26.00        27.00
+ 720.00     740.00   17.00  19.00  23.00 10.00                                                 2360.00   2400.00    116.00  101.00   86.00   71.00   58.00   45.00   32.00    29.00   30.00  29.00        30.00
+ 740.00     760.00   19.00  21.00  25.00 13.00                                                 2400.00   2440.00    119.00  104.00   89.00   74.00   60.00   47.00   35.00    31.00   32.00  31.00        32.00
+ 760.00     780.00   20.00  23.00  28.00 15.00 2.25                                            2440.00   2480.00    122.00  107.00   92.00   77.00   63.00   50.00   37.00    33.00   34.00  33.00        34.00
+ 780.00     800.00   21.00  24.00  30.00 17.00 4.75                                            2480.00   2520.00    124.00  109.00   94.00   80.00   65.00   52.00   39.00    36.00   37.00  36.00        37.00
+ 800.00     820.00   22.00  26.00  32.00 20.00 7.00                                            2520.00   2560.00    127.00  112.00   97.00   82.00   67.00   54.00   42.00    38.00   39.00  38.00        39.00
+ 820.00     840.00   23.00  28.00  35.00 22.00 9.00                                            2560.00   2600.00    130.00  115.00  100.00   85.00   70.00   57.00   44.00    40.00   41.00  40.00        41.00
+ 840.00     860.00   24.00  30.00  37.00 24.00 11.00                                           2600.00   2640.00    132.00  117.00  103.00   88.00   73.00   59.00   46.00    43.00   44.00  43.00        44.00
+ 860.00     880.00   26.00  31.00  39.00 27.00 14.00 1.00                                      2640.00   2680.00    135.00  120.00  105.00   90.00   75.00   61.00   49.00    45.00   46.00  45.00        46.00
+ 880.00     900.00   27.00  34.00  42.00 29.00 16.00 3.50                                      2680.00   2720.00    138.00  123.00  108.00   93.00   78.00   64.00   51.00    47.00   48.00  47.00        48.00
+ 900.00     920.00   28.00  36.00  44.00 31.00 18.00 6.00                                      2720.00   2760.00    140.00  126.00  111.00   96.00   81.00   66.00   53.00    50.00   51.00  50.00        51.00
+ 920.00     940.00   30.00  38.00  46.00 34.00 21.00 8.00                                      2760.00   2800.00    143.00  128.00  113.00   98.00   84.00   69.00   55.00    52.00   53.00  52.00        53.00
+ 940.00     960.00   32.00  41.00  49.00 36.00 23.00 10.00                                     2800.00   2840.00    146.00  131.00  116.00  101.00   86.00   71.00   58.00    54.00   55.00  54.00        55.00
+ 960.00     980.00   34.00  43.00  51.00 38.00 25.00 13.00                                     2840.00   2880.00    149.00  134.00  119.00  104.00   89.00   74.00   60.00    57.00   58.00  56.00        58.00
+ 980.00    1010.00   35.00  45.00  53.00 41.00 28.00 15.00 2.25                                2880.00   2920.00    151.00  136.00  121.00  107.00   92.00   77.00   62.00    59.00   60.00  59.00        60.00
+1010.00    1040.00   37.00  48.00                                                              2920.00   2960.00    154.00  139.00  124.00  109.00   94.00   79.00   65.00    61.00   62.00  61.00        62.00
+1040.00    1070.00   39.00  50.00                                                              2960.00   3000.00    157.00  142.00  127.00  112.00   97.00   82.00   67.00    64.00   65.00  63.00        65.00
+1070.00    1100.00   41.00  52.00                                                              3000.00   3040.00    159.00  144.00  130.00  115.00  100.00   85.00   70.00    66.00   67.00  66.00        67.00
+1100.00    1130.00   42.00  55.00                                                              3040.00   3080.00    162.00  147.00  132.00  117.00  102.00   88.00   73.00    68.00   70.00  68.00
+1130.00    1160.00   44.00  57.00                                                              3080.00   3120.00    165.00  150.00  135.00  120.00  105.00   90.00   75.00    71.00   72.00  71.00
+1160.00    1190.00   46.00  59.00                                                              3120.00   3160.00    167.00  153.00  138.00  123.00  108.00   93.00   78.00    74.00   75.00  74.00
+1190.00    1220.00   49.00  62.00                                                              3160.00   3200.00    170.00  155.00  140.00  125.00  111.00   96.00   81.00    77.00   78.00  76.00
+1220.00    1250.00   51.00  64.00                                                              3200.00   3240.00    173.00  158.00  143.00  128.00  113.00   98.00   83.00    79.00   81.00  79.00
+1250.00    1280.00   53.00  66.00                                                              3240.00   3280.00    176.00  161.00  146.00  131.00  116.00  101.00   86.00    82.00   83.00  82.00
+1280.00    1320.00   56.00                                                                     3280.00   3320.00    179.00  163.00  148.00  134.00  119.00  104.00   89.00    85.00   86.00
+1320.00    1360.00   58.00                                                                     3320.00   3360.00    181.00  166.00  151.00  136.00  121.00  106.00   92.00    87.00   89.00
+1360.00    1400.00   60.00                                                                     3360.00   3400.00    184.00  169.00  154.00  139.00  124.00  109.00   94.00    90.00   91.00
+1400.00    1440.00   63.00                                                                     3400.00   3440.00    187.00  171.00  157.00  142.00  127.00  112.00   97.00    93.00   94.00
+1440.00    1480.00   65.00                                                                     3440.00   3480.00    190.00  174.00  159.00  144.00  129.00  115.00  100.00    95.00   97.00
+1480.00    1520.00   68.00                                                                     3480.00   3520.00    193.00  177.00  162.00  147.00  132.00  117.00  102.00    98.00
+1520.00    1560.00   70.00                                                                     3520.00   3560.00    196.00  180.00  165.00  150.00  135.00  120.00  105.00   101.00
+1560.00    1600.00   73.00                                                                     3560.00   3600.00    199.00  183.00  167.00  152.00  138.00  123.00  108.00   104.00
+1600.00    1640.00   76.00                                                                     3600.00   3640.00    202.00  186.00  170.00  155.00  140.00  125.00  110.00   106.00
+1640.00    1680.00   78.00                                                                     3640.00   3680.00    204.00  189.00  173.00  158.00  143.00  128.00  113.00   109.00
+1680.00    1720.00   81.00                                                                     3680.00   3720.00    207.00  191.00  176.00  161.00  146.00  131.00  116.00   112.00
+1720.00    1760.00                                                                             3720.00   3760.00    210.00  194.00  179.00  163.00  148.00  133.00  119.00
+1760.00    1800.00                                                                             3760.00   3800.00    213.00  197.00  181.00  166.00  151.00  136.00  121.00
+1800.00    1840.00                                                                             3800.00   3840.00    216.00  200.00  184.00  169.00  154.00  139.00  124.00
+1840.00    1880.00                                                                             3840.00   3880.00    219.00  203.00  187.00  171.00  156.00  142.00  127.00
+
+                                                                                               3880.00   7390.00                                    Use percentage method
+
+                                                                                               7390.00 41670.00                             7.15% of the excess over 7390 plus -
+
+                                                                                                                    507.00 491.00 475.00 459.00 444.00 428.00 412.00 396.00 380.00 365.00 349.00
+
+                                                                                               41670.00 and over                            9.15% of the excess over 41670 plus 2958
+
+11                                                                                             *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                                                    2026 Maine Income Tax Withholding Wage Bracket Tables SINGLE ­ MONTHLY
+
+    Wages are ­                          Number of withholding allowances claimed is ­            Wages are ­                             Number of withholding allowances claimed is ­
+
+             But       0        1     2      3      4      5      6  7                  8  9  10               But     0       1       2       3       4       5       6        7        8        9          10
+             less                                                                                           less than
+At least    than       0.25     0.25         Amount of income tax to withhold is ­                At least                                     Amount of income tax to withhold is ­
+                       2.00     2.50
+     0.00  1010.00     3.75     4.75   1.25   3.50   2.25   4.50                                  3480.00   3560.00    149.00  121.00   95.00   69.00   44.00   18.00     2.00     4.25     1.75     4.00     1.50
+1010.00    1040.00     5.00     7.00   4.75   7.00   6.00   9.00                                  3560.00   3640.00    154.00  125.00  100.00   74.00   48.00   23.00     7.00     9.00     6.00     9.00     6.00
+1040.00    1070.00     7.00     9.00   8.00  10.00   9.00  14.00                                  3640.00   3720.00    159.00  130.00  104.00   79.00   53.00   28.00   11.00    13.00    11.00    13.00    11.00
+1070.00    1100.00     9.00   12.00   12.00  14.00  13.00                                         3720.00   3800.00    165.00  135.00  109.00   83.00   58.00   32.00   16.00    18.00    16.00    18.00    15.00
+1100.00    1130.00   11.00    14.00   15.00  17.00  16.00                                         3800.00   3880.00    170.00  140.00  114.00   88.00   62.00   37.00   20.00    23.00    20.00    22.00    20.00
+1130.00    1160.00   12.00    16.00   19.00  21.00  21.00                                         3880.00   3960.00    176.00  146.00  118.00   93.00   67.00   41.00   25.00    27.00    25.00    27.00    25.00
+1160.00    1190.00   14.00    19.00   22.00  24.00  25.00                                         3960.00   4040.00    181.00  151.00  123.00   97.00   72.00   46.00   30.00    32.00    30.00    32.00    29.00
+1190.00    1220.00   16.00    21.00   25.00  28.00  30.00                                         4040.00   4120.00    186.00  157.00  128.00  102.00   76.00   51.00   34.00    37.00    34.00    36.00    34.00
+1220.00    1250.00   19.00    23.00   29.00  31.00  35.00                                         4120.00   4200.00    192.00  162.00  132.00  107.00   81.00   55.00   39.00    41.00    39.00    41.00    39.00
+1250.00    1280.00   21.00    27.00   32.00  35.00  39.00                                         4200.00   4280.00    197.00  167.00  138.00  111.00   86.00   60.00   44.00    46.00    43.00    46.00    43.00
+1280.00    1320.00   23.00    30.00   36.00  38.00                                                4280.00   4360.00    203.00  173.00  143.00  116.00   90.00   65.00   48.00    51.00    48.00    50.00    48.00
+1320.00    1360.00   26.00    34.00   39.00  42.00                                                4360.00   4440.00    208.00  178.00  148.00  120.00   95.00   69.00   53.00    55.00    53.00    55.00    53.00
+1360.00    1400.00   28.00    37.00   43.00  46.00                                                4440.00   4520.00    213.00  184.00  154.00  125.00  100.00   74.00   58.00    60.00    57.00    60.00    57.00
+1400.00    1440.00   30.00    41.00   46.00  51.00                                                4520.00   4600.00    219.00  189.00  159.00  130.00  104.00   79.00   62.00    64.00    62.00    64.00    62.00
+1440.00    1480.00   33.00    44.00   50.00  56.00                                                4600.00   4680.00    224.00  194.00  165.00  135.00  109.00   83.00   67.00    69.00    67.00    69.00    66.00
+1480.00    1520.00   35.00    48.00   53.00  60.00                                                4680.00   4760.00    230.00  200.00  170.00  140.00  113.00   88.00   71.00    74.00    71.00    74.00    71.00
+1520.00    1560.00   37.00    51.00   57.00  65.00                                                4760.00   4840.00    235.00  205.00  175.00  146.00  118.00   92.00   76.00    78.00    76.00    78.00    76.00
+1560.00    1600.00   40.00    55.00   60.00                                                       4840.00   4920.00    240.00  211.00  181.00  151.00  123.00   97.00   81.00    83.00    81.00    83.00    80.00
+1600.00    1640.00   42.00    58.00   64.00                                                       4920.00   5000.00    246.00  216.00  186.00  156.00  127.00  102.00   85.00    88.00    85.00    87.00    85.00
+1640.00    1680.00   44.00    62.00   67.00                                                       5000.00   5080.00    251.00  221.00  192.00  162.00  132.00  106.00   90.00    92.00    90.00    92.00    90.00
+1680.00    1720.00   47.00    65.00   72.00                                                       5080.00   5160.00    257.00  227.00  197.00  167.00  137.00  111.00   95.00    97.00    94.00    97.00    94.00
+1720.00    1760.00   49.00    68.00   77.00                                                       5160.00   5240.00    262.00  232.00  202.00  173.00  143.00  116.00   99.00   102.00    99.00   101.00    99.00
+1760.00    1800.00   52.00    72.00   81.00                                                       5240.00   5320.00    267.00  238.00  208.00  178.00  148.00  120.00  104.00   106.00   104.00   106.00   104.00
+1800.00    1840.00   56.00    75.00   86.00                                                       5320.00   5400.00    273.00  243.00  213.00  183.00  154.00  125.00  109.00   111.00   108.00   111.00   108.00
+1840.00    1880.00   59.00    79.00   90.00                                                       5400.00   5480.00    278.00  248.00  219.00  189.00  159.00  130.00  113.00   115.00   113.00   115.00   113.00
+1880.00    1940.00   63.00    82.00                                                               5480.00   5560.00    284.00  254.00  224.00  194.00  164.00  135.00  118.00   120.00   118.00   120.00   117.00
+1940.00    2000.00   66.00    86.00                                                               5560.00   5640.00    289.00  259.00  229.00  200.00  170.00  140.00  123.00   125.00   122.00   125.00
+2000.00    2060.00   70.00    89.00                                                               5640.00   5720.00    294.00  265.00  235.00  205.00  175.00  145.00  127.00   129.00   127.00   129.00
+2060.00    2120.00   73.00    93.00                                                               5720.00   5800.00    300.00  270.00  240.00  210.00  181.00  151.00  132.00   134.00   132.00   134.00
+2120.00    2180.00   77.00    97.00                                                               5800.00   5880.00    305.00  275.00  246.00  216.00  186.00  156.00  137.00   140.00   137.00   139.00
+2180.00    2240.00   80.00   102.00                                                               5880.00   5960.00    311.00  281.00  251.00  221.00  191.00  162.00  143.00   145.00   142.00   145.00
+2240.00    2300.00   84.00   107.00                                                               5960.00   6040.00    316.00  286.00  256.00  227.00  197.00  167.00  148.00   150.00   148.00
+2300.00    2360.00   87.00   111.00                                                               6040.00   6120.00    321.00  292.00  262.00  232.00  202.00  172.00  153.00   156.00   153.00
+2360.00    2420.00   91.00   116.00                                                               6120.00   6200.00    327.00  297.00  267.00  237.00  208.00  178.00  159.00   161.00   158.00
+2420.00    2480.00   94.00                                                                        6200.00   6280.00    332.00  302.00  273.00  243.00  213.00  183.00  164.00   167.00   164.00
+2480.00    2540.00   98.00                                                                        6280.00   6360.00    338.00  308.00  278.00  248.00  218.00  189.00  170.00   172.00   169.00
+2540.00    2600.00  101.00                                                                        6360.00   6440.00    343.00  313.00  283.00  254.00  224.00  194.00  175.00   177.00   175.00
+2600.00    2660.00  105.00                                                                        6440.00   6520.00    349.00  319.00  289.00  259.00  229.00  199.00  180.00   183.00
+2660.00    2720.00  108.00                                                                        6520.00   6600.00    354.00  324.00  294.00  264.00  235.00  205.00  186.00   188.00
+2720.00    2780.00  112.00                                                                        6600.00   6680.00    360.00  329.00  300.00  270.00  240.00  210.00  191.00   194.00
+2780.00    2840.00  115.00                                                                        6680.00   6760.00    366.00  335.00  305.00  275.00  245.00  216.00  197.00   199.00
+2840.00    2900.00  118.00                                                                        6760.00   6840.00    372.00  340.00  310.00  281.00  251.00  221.00  202.00   204.00
+2900.00    2960.00  123.00                                                                        6840.00   6920.00    377.00  346.00  316.00  286.00  256.00  226.00  207.00
+2960.00    3020.00  128.00                                                                        6920.00   7000.00    383.00  351.00  321.00  291.00  262.00  232.00  213.00
+3020.00    3080.00  132.00                                                                        7000.00   7080.00    389.00  357.00  327.00  297.00  267.00  237.00  218.00
+3080.00    3160.00  138.00                                                                        7080.00   7160.00    394.00  363.00  332.00  302.00  272.00  243.00  224.00
+3160.00    3240.00  143.00                                                                        7160.00   7240.00    400.00  369.00  337.00  308.00  278.00  248.00  229.00
+3240.00    3320.00                                                                                7240.00   7320.00    406.00  374.00  343.00  313.00  283.00  253.00  234.00
+3320.00    3400.00                                                                                7320.00   7400.00    412.00  380.00  348.00  318.00  289.00  259.00
+3400.00    3480.00                                                                                7400.00   7480.00    417.00  386.00  354.00  324.00  294.00  264.00
+
+                                                                                                  7480.00 14775.00                                     Use percentage method
+
+                                                                                                  14775.00 83335.00                            7.15% of the excess over 14775 plus -
+
+                                                                                                                       1013.00 982.00 950.00 918.00 887.00 855.00 824.00 792.00 760.00 729.00 697.00
+
+                                                                                                  83335.00 and over                            9.15% of the excess over 83335 plus 5915
+
+12                                                                                                *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                               2026 Maine Income Tax Withholding Wage Bracket Tables SINGLE ­ DAILY OR MISCELLANEOUS
+
+    Wages are ­                   Number of withholding allowances claimed is ­            Wages are ­                   Number of withholding allowances claimed is ­
+
+           But     0     1     2  3  4  5           6  7                         8  9  10               But     0  1  2  3  4  5  6                7                    8  9                          10
+           less                                                                                      less than
+At least   than    0.25  0.25     Amount of income tax to withhold is ­                    At least                      Amount of income tax to withhold is ­
+                   0.25  0.25
+     0.00   46.00  0.25  0.50  0.25                                                        154.00 157.00 6.00 5.00 4.00 3.00 1.75 0.50
+   46.00    48.00  0.50  0.50  0.25                                                        157.00 160.00 7.00 5.00 4.25 3.00 2.00 0.75
+   48.00    50.00  0.50  0.75  0.50                                                        160.00 163.00 7.00 5.00 4.50 3.25 2.00 1.00
+   50.00    52.00  0.75  0.75  0.50                                                        163.00 166.00 7.00 6.00 4.50 3.50 2.25 1.00
+   52.00    54.00  0.75  1.00  0.75                                                        166.00 169.00 7.00 6.00 4.75 3.50 2.50 1.25
+   54.00    56.00  1.00  1.00  0.75                                                        169.00 172.00 7.00 6.00 5.00 3.75 2.50 1.50 0.25
+   56.00    58.00  1.00  1.25  1.00                                                        172.00 175.00 8.00 6.00 5.00 4.00 2.75 1.50 0.50
+   58.00    60.00  1.25  1.25  1.00                                                        175.00 178.00 8.00 6.00 5.00 4.00 3.00 1.75 0.50
+   60.00    62.00  1.25  1.50  1.25                                                        178.00 181.00 8.00 7.00 5.00 4.25 3.00 2.00 0.75
+   62.00    64.00  1.50  1.50  1.25                                                        181.00 184.00 8.00 7.00 6.00 4.50 3.25 2.00 1.00
+   64.00    66.00  1.50  1.50  1.25 0.25                                                   184.00 187.00 8.00 7.00 6.00 4.75 3.50 2.25 1.00
+   66.00    68.00  1.75  1.75  1.50 0.25                                                   187.00 190.00 9.00 7.00 6.00 4.75 3.75 2.50 1.25
+   68.00    70.00  1.75  1.75  1.50 0.50                                                   190.00 193.00 9.00 7.00 6.00 5.00 3.75 2.75 1.50 0.25
+   70.00    72.00  1.75  2.00  1.75 0.50                                                   193.00 196.00 9.00 8.00 6.00 5.00 4.00 2.75 1.50 0.50
+   72.00    74.00  2.00  2.00  1.75 0.75                                                   196.00 199.00 9.00 8.00 6.00 5.00 4.25 3.00 1.75 0.50
+   74.00    76.00  2.00  2.25  2.00 0.75                                                   199.00 202.00 9.00 8.00 7.00 5.00 4.25 3.25 2.00 0.75
+   76.00    78.00  2.25  2.25  2.00 1.00                                                   202.00 205.00 10.00 8.00 7.00 6.00 4.50 3.25 2.25 1.00
+   78.00    80.00  2.25  2.50  2.25 1.00                                                   205.00 208.00 10.00 8.00 7.00 6.00 4.75 3.50 2.25 1.25
+   80.00    82.00  2.50  2.50  2.25 1.25                                                   208.00 211.00 10.00 9.00 7.00 6.00 4.75 3.75 2.50 1.25 0.25
+   82.00    84.00  2.50  2.75  2.50 1.25 0.25                                              211.00 214.00 10.00 9.00 7.00 6.00 5.00 3.75 2.75 1.50 0.25
+   84.00    86.00  2.75  2.75  2.75 1.50 0.25                                              214.00 217.00 10.00 9.00 8.00 6.00 5.00 4.00 2.75 1.75 0.50
+   86.00    88.00  2.75  3.00  2.75 1.75 0.50                                              217.00 220.00 11.00 9.00 8.00 6.00 5.00 4.25 3.00 1.75 0.75
+   88.00    90.00  3.00  3.00  3.00 1.75 0.75                                              220.00 223.00 11.00 9.00 8.00 7.00 5.00 4.25 3.25 2.00 0.75
+   90.00    92.00  3.00  3.25  3.25 2.00 0.75                                              223.00 226.00 11.00 10.00 8.00 7.00 6.00 4.50 3.25 2.25 1.00
+   92.00    94.00  3.25  3.25  3.50 2.25 1.00                                              226.00 229.00 11.00 10.00 8.00 7.00 6.00 4.75 3.50 2.25 1.25
+   94.00    96.00  3.25  3.25  3.50 2.50 1.25                                              229.00 232.00 11.00 10.00 9.00 7.00 6.00 5.00 3.75 2.50 1.25 0.25
+   96.00    98.00  3.50  3.50  3.75 2.50 1.50 0.25                                         232.00 235.00 12.00 10.00 9.00 8.00 6.00 5.00 4.00 2.75 1.50 0.25
+   98.00   100.00  3.50  3.75  4.00 2.75 1.50 0.25                                         235.00 238.00 12.00 10.00 9.00 8.00 6.00 5.00 4.00 3.00 1.75 0.50
+ 100.00    102.00  3.50  4.00                                                              238.00 241.00 12.00 11.00 9.00 8.00 7.00 5.00 4.25 3.00 1.75 0.75
+ 102.00    104.00  3.75  4.00                                                              241.00 244.00 12.00 11.00 9.00 8.00 7.00 5.00 4.50 3.25 2.00 0.75
+ 104.00    106.00  3.75  4.25                                                              244.00 247.00 12.00 11.00 10.00 8.00 7.00 6.00 4.50 3.50 2.25 1.00
+ 106.00    108.00  4.00  4.50                                                              247.00 250.00 13.00 11.00 10.00 9.00 7.00 6.00 4.75 3.50 2.50 1.25
+ 108.00    110.00  4.00  4.50                                                              250.00 253.00 13.00 11.00 10.00 9.00 7.00 6.00 5.00 3.75 2.50 1.50 0.25
+  110.00   112.00  4.25  4.75                                                              253.00 256.00 13.00 12.00 10.00 9.00 8.00 6.00 5.00 4.00 2.75 1.50 0.25
+  112.00   114.00  4.25  5.00                                                              256.00 259.00 13.00 12.00 10.00 9.00 8.00 6.00 5.00 4.00 3.00 1.75 0.50
+  114.00   116.00  4.50  5.00                                                              259.00 262.00 13.00 12.00 11.00 9.00 8.00 7.00 5.00 4.25 3.00 2.00 0.75
+  116.00   118.00  4.50                                                                    262.00 265.00 14.00 12.00 11.00 10.00 8.00 7.00 5.00 4.50 3.25 2.00 1.00
+  118.00   120.00  4.75                                                                    265.00 268.00 14.00 12.00 11.00 10.00 8.00 7.00 6.00 4.50 3.50 2.25 1.00
+ 120.00    122.00  5.00                                                                    268.00 271.00 14.00 13.00 11.00 10.00 9.00 7.00 6.00 4.75 3.50 2.50 1.25
+ 122.00    124.00  5.00                                                                    271.00 274.00 14.00 13.00 12.00 10.00 9.00 7.00 6.00 5.00 3.75 2.50 1.50
+ 124.00    127.00  5.00                                                                    274.00 277.00 14.00 13.00 12.00 10.00 9.00 8.00 6.00 5.00 4.00 2.75 1.50
+ 127.00    130.00  5.00                                                                    277.00 280.00 15.00 13.00 12.00 11.00 9.00 8.00 6.00 5.00 4.25 3.00 1.75
+ 130.00    133.00  5.00                                                                    280.00 283.00 15.00 13.00 12.00 11.00 9.00 8.00 7.00 5.00 4.25 3.00 2.00
+ 133.00    136.00  6.00                                                                    283.00 286.00 15.00 14.00 12.00 11.00 10.00 8.00 7.00 6.00 4.50 3.25 2.00
+ 136.00    139.00  6.00                                                                    286.00 289.00 15.00 14.00 13.00 11.00 10.00 8.00 7.00 6.00 4.75 3.50 2.25
+ 139.00    142.00  6.00                                                                    289.00 292.00 15.00 14.00 13.00 11.00 10.00 9.00 7.00 6.00 4.75 3.75 2.50
+ 142.00    145.00  6.00                                                                    292.00 295.00 16.00 14.00 13.00 12.00 10.00 9.00 7.00 6.00 5.00 3.75 2.75
+ 145.00    148.00                                                                          295.00 298.00 16.00 15.00 13.00 12.00 10.00 9.00 8.00 6.00 5.00 4.00 2.75
+ 148.00    151.00                                                                          298.00 301.00 16.00 15.00 13.00 12.00 11.00 9.00 8.00 6.00 5.00 4.25 3.00
+ 151.00    154.00                                                                          301.00 304.00 16.00 15.00 14.00 12.00 11.00 9.00 8.00 7.00 5.00 4.25 3.25
+
+                                                                                           304.00 682.00                    Use percentage method
+
+                                                                                           682.00 3847.00                7.15% of the excess over 682 plus -
+
+                                                                                                                47.00 45.00 44.00 42.00 41.00 39.00 38.00 37.00 35.00 34.00 32.00
+
+                                                                                           3847.00 and over              9.15% of the excess over 3847 plus 273
+
+13                                                                                         *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                                         2026 Maine Income Tax Withholding Wage Bracket Tables MARRIED ­ WEEKLY
+
+    Wages are ­                       Number of withholding allowances claimed is ­            Wages are ­                             Number of withholding allowances claimed is ­
+
+                But   0      1     2  3  4  5  6  7                                  8  9  10               But     0       1       2       3       4       5       6       7         8       9           10
+At least less                                                                                            less than
+                      0.50   0.75     Amount of income tax to withhold is ­                    At least                                     Amount of income tax to withhold is ­
+               than   1.25   1.50
+                      2.25   2.50
+     0.00   525.00    3.00   3.25   1.25                                                       1535.00   1565.00     60.00   54.00   48.00   42.00   36.00   30.00   24.00   18.00     13.00   7.00        0.75
+ 525.00     540.00    4.00   4.25   2.25                                                       1565.00   1595.00     62.00   56.00   50.00   44.00   38.00   32.00   26.00   20.00     14.00   8.00        2.50
+ 540.00     555.00    4.75   5.00   3.50                                                       1595.00   1625.00     64.00   57.00   51.00   46.00   40.00   34.00   28.00   22.00     16.00  10.00        4.25
+ 555.00     570.00    6.00   6.00   4.50                                                       1625.00   1655.00     66.00   59.00   53.00   47.00   41.00   35.00   30.00   24.00     18.00  12.00        6.00
+ 570.00     585.00    6.00   7.00   6.00                                                       1655.00   1685.00     68.00   61.00   55.00   49.00   43.00   37.00   31.00   25.00     19.00  14.00        8.00
+ 585.00     600.00    7.00   8.00   7.00 1.00                                                  1685.00   1715.00     70.00   63.00   57.00   51.00   45.00   39.00   33.00   27.00     21.00  15.00        9.00
+ 600.00     615.00    8.00   9.00   8.00 2.25                                                  1715.00   1745.00     72.00   65.00   58.00   53.00   47.00   41.00   35.00   29.00     23.00  17.00       11.00
+ 615.00     630.00    9.00  10.00   9.00 3.25                                                  1745.00   1775.00     74.00   67.00   60.00   54.00   48.00   42.00   37.00   31.00     25.00  19.00       13.00
+ 630.00     645.00   10.00  12.00  10.00 4.50                                                  1775.00   1805.00     76.00   69.00   62.00   56.00   50.00   44.00   38.00   32.00     26.00  21.00       15.00
+ 645.00     660.00   11.00  13.00  11.00 6.00                                                  1805.00   1835.00     78.00   71.00   64.00   58.00   52.00   46.00   40.00   34.00     28.00  22.00       16.00
+ 660.00     675.00   12.00  14.00  13.00 7.00 1.00                                             1835.00   1865.00     80.00   73.00   66.00   59.00   54.00   48.00   42.00   36.00     30.00  24.00       18.00
+ 675.00     690.00   13.00  15.00  14.00 8.00 2.00                                             1865.00   1895.00     82.00   75.00   68.00   61.00   55.00   49.00   43.00   38.00     32.00  26.00       20.00
+ 690.00     705.00   14.00  16.00  15.00 9.00 3.25                                             1895.00   1925.00     84.00   77.00   70.00   63.00   57.00   51.00   45.00   39.00     33.00  27.00       22.00
+ 705.00     720.00   15.00  17.00  16.00 10.00 4.50                                            1925.00   1955.00     86.00   79.00   72.00   65.00   59.00   53.00   47.00   41.00     35.00  29.00       23.00
+ 720.00     735.00   16.00  19.00  17.00 11.00 5.00                                            1955.00   1985.00     88.00   81.00   74.00   67.00   61.00   55.00   49.00   43.00     37.00  31.00       25.00
+ 735.00     755.00   17.00  20.00  18.00 13.00 7.00 0.75                                       1985.00   2015.00     90.00   83.00   76.00   69.00   62.00   56.00   50.00   45.00     39.00  33.00       27.00
+ 755.00     775.00   19.00  21.00  20.00 14.00 8.00 2.00                                       2015.00   2045.00     92.00   85.00   78.00   71.00   64.00   58.00   52.00   46.00     40.00  34.00       29.00
+ 775.00     795.00   20.00  22.00  21.00 15.00 9.00 3.25                                       2045.00   2075.00     94.00   87.00   80.00   73.00   67.00   60.00   54.00   48.00     42.00  36.00       30.00
+ 795.00     815.00   21.00  23.00  22.00 16.00 10.00 4.25                                      2075.00   2105.00     96.00   89.00   82.00   75.00   69.00   62.00   56.00   50.00     44.00  38.00       32.00
+ 815.00     835.00   22.00  24.00  23.00 17.00 11.00 5.00                                      2105.00   2135.00     98.00   91.00   84.00   77.00   71.00   64.00   57.00   51.00     46.00  40.00       34.00
+ 835.00     855.00   23.00  25.00  25.00 19.00 13.00 7.00 1.00                                 2135.00   2165.00    100.00   93.00   86.00   79.00   73.00   66.00   59.00   53.00     47.00  41.00       36.00
+ 855.00     875.00   24.00  27.00  26.00 20.00 14.00 8.00 2.50                                 2165.00   2195.00    102.00   95.00   88.00   81.00   75.00   68.00   61.00   55.00     49.00  43.00       37.00
+ 875.00     895.00   26.00  28.00  27.00 21.00 16.00 10.00 4.00                                2195.00   2225.00    104.00   97.00   90.00   84.00   77.00   70.00   63.00   57.00     51.00  45.00       39.00
+ 895.00     915.00   27.00  29.00  29.00 23.00 17.00 11.00 5.00                                2225.00   2255.00    106.00   99.00   92.00   86.00   79.00   72.00   65.00   58.00     53.00  47.00       41.00
+ 915.00     935.00   28.00  30.00  30.00 24.00 18.00 13.00 7.00 0.75                           2255.00   2285.00    108.00  101.00   94.00   88.00   81.00   74.00   67.00   60.00     54.00  48.00       42.00
+ 935.00     955.00   29.00  32.00  32.00 26.00 20.00 14.00 8.00 2.25                           2285.00   2315.00    110.00  103.00   96.00   90.00   83.00   76.00   69.00   62.00     56.00  50.00       44.00
+ 955.00     975.00   30.00  33.00  33.00 27.00 21.00 15.00 10.00 3.75                          2315.00   2345.00    112.00  105.00   98.00   92.00   85.00   78.00   71.00   64.00     58.00  52.00       46.00
+ 975.00     995.00   31.00  35.00  35.00 29.00 23.00 17.00 11.00 5.00                          2345.00   2375.00    114.00  107.00  101.00   94.00   87.00   80.00   73.00   66.00     60.00  54.00       48.00
+ 995.00    1015.00   33.00  36.00  36.00 30.00 24.00 18.00 12.00 7.00 0.75                     2375.00   2405.00    116.00  109.00  103.00   96.00   89.00   82.00   75.00   68.00     61.00  55.00       49.00
+1015.00    1035.00   34.00  38.00  38.00 32.00 26.00 20.00 14.00 8.00 2.25                     2405.00   2435.00    118.00  111.00  105.00   98.00   91.00   84.00   77.00   70.00     63.00  57.00       51.00
+1035.00    1055.00   35.00  39.00  39.00 33.00 27.00 22.00 16.00 10.00 4.00                    2435.00   2465.00    120.00  113.00  107.00  100.00   93.00   86.00   79.00   72.00     65.00  59.00       53.00
+1055.00    1075.00   36.00  41.00  41.00 35.00 29.00 23.00 17.00 11.00 6.00                    2465.00   2495.00    122.00  115.00  109.00  102.00   95.00   88.00   81.00   74.00     67.00  61.00       55.00
+1075.00    1095.00   38.00  42.00  43.00 37.00 31.00 25.00 19.00 13.00 7.00 1.50               2495.00   2525.00    124.00  118.00  111.00  104.00   97.00   90.00   83.00   76.00     69.00  62.00       56.00
+1095.00    1115.00   39.00  43.00  45.00 39.00 33.00 27.00 21.00 15.00 9.00 3.25               2525.00   2555.00    126.00  120.00  113.00  106.00   99.00   92.00   85.00   78.00     71.00  65.00       58.00
+1115.00    1135.00   41.00  45.00  46.00 40.00 34.00 29.00 23.00 17.00 11.00 5.00              2555.00   2585.00    128.00  122.00  115.00  108.00  101.00   94.00   87.00   80.00     73.00  67.00       60.00
+1135.00    1160.00   42.00  47.00                                                              2585.00   2615.00    130.00  124.00  117.00  110.00  103.00   96.00   89.00   82.00     75.00  69.00       62.00
+1160.00    1185.00   44.00  49.00                                                              2615.00   2645.00    132.00  126.00  119.00  112.00  105.00   98.00   91.00   84.00     77.00  71.00       64.00
+1185.00    1210.00   45.00  50.00                                                              2645.00   2675.00    135.00  128.00  121.00  114.00  107.00  100.00   93.00   86.00     79.00  73.00       66.00
+1210.00    1235.00   46.00  52.00                                                              2675.00   2705.00    137.00  130.00  123.00  116.00  109.00  102.00   95.00   88.00     82.00  75.00       68.00
+1235.00    1260.00   48.00                                                                     2705.00   2735.00    139.00  132.00  125.00  118.00  111.00  104.00   97.00   90.00     84.00  77.00       70.00
+1260.00    1285.00   49.00                                                                     2735.00   2765.00    141.00  134.00  127.00  120.00  113.00  106.00   99.00   92.00     86.00  79.00       72.00
+1285.00    1310.00   51.00                                                                     2765.00   2795.00    143.00  136.00  129.00  122.00  115.00  108.00  101.00   94.00     88.00  81.00       74.00
+1310.00    1335.00   53.00                                                                     2795.00   2825.00    145.00  138.00  131.00  124.00  117.00  110.00  103.00   96.00     90.00  83.00       76.00
+1335.00    1360.00   55.00                                                                     2825.00   2855.00    147.00  140.00  133.00  126.00  119.00  112.00  105.00   99.00     92.00  85.00       78.00
+1360.00    1385.00   56.00                                                                     2855.00   2885.00    149.00  142.00  135.00  128.00  121.00  114.00  107.00  101.00     94.00  87.00       80.00
+1385.00    1415.00   58.00                                                                     2885.00   2915.00    151.00  144.00  137.00  130.00  123.00  116.00  109.00  103.00     96.00  89.00       82.00
+1415.00    1445.00                                                                             2915.00   2945.00    153.00  146.00  139.00  132.00  125.00  118.00  111.00  105.00     98.00  91.00       84.00
+1445.00    1475.00                                                                             2945.00   2975.00    155.00  148.00  141.00  134.00  127.00  120.00  113.00  107.00    100.00  93.00       86.00
+1475.00    1505.00                                                                             2975.00   3005.00    157.00  150.00  143.00  136.00  129.00  122.00  116.00  109.00    102.00  95.00       88.00
+1505.00    1535.00                                                                             3005.00   3035.00    159.00  152.00  145.00  138.00  131.00  124.00  118.00  111.00    104.00  97.00       90.00
+
+                                                                                               3035.00   6820.00                                    Use percentage method
+
+                                                                                               6820.00 28850.00                             7.15% of the excess over 6820 plus -
+
+                                                                                                                    468.00 460.00 453.00 446.00 438.00 431.00 424.00 417.00 409.00 402.00 395.00
+
+                                                                                               28850.00 and over                            9.15% of the excess over 28850 plus 2043
+
+14                                                                                             *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                                                 2026 Maine Income Tax Withholding Wage Bracket Tables MARRIED ­ BIWEEKLY
+
+    Wages are ­                       Number of withholding allowances claimed is ­            Wages are ­                             Number of withholding allowances claimed is ­
+
+                But   0      1     2      3      4      5      6      7              8  9  10               But     0       1       2       3       4       5       6       7         8        9          10
+At least less                                                                                            less than
+                      0.25   1.50         Amount of income tax to withhold is ­                At least                                     Amount of income tax to withhold is ­
+               than   1.75   3.00
+                      3.25   4.50
+     0.00  1045.00    4.75   6.00   1.50   2.00   0.25   0.50   1.00   2.50                    2670.00   2720.00     96.00   84.00   72.00   60.00   49.00   37.00   25.00   13.00       1.50     1.25     1.00
+1045.00    1070.00    6.00   7.00   3.50   4.00   2.25   2.75   3.00   5.00                    2720.00   2770.00     99.00   87.00   75.00   63.00   51.00   40.00   28.00   16.00       4.25     4.00     3.75
+1070.00    1095.00    7.00   9.00   6.00   6.00   4.25   4.75   5.00   8.00                    2770.00   2820.00    102.00   90.00   78.00   66.00   54.00   43.00   31.00   19.00       7.00     7.00     7.00
+1095.00    1120.00    9.00  11.00   8.00   8.00   6.00   7.00   7.00  10.00                    2820.00   2870.00    105.00   93.00   81.00   69.00   57.00   45.00   34.00   22.00     10.00    10.00    10.00
+1120.00    1145.00   10.00  13.00  10.00  10.00   8.00   9.00   9.00                           2870.00   2920.00    107.00   96.00   84.00   72.00   60.00   48.00   37.00   25.00     13.00    13.00    12.00
+1145.00    1170.00   12.00  15.00  12.00  12.00  10.00  11.00  12.00                           2920.00   2970.00    110.00   99.00   87.00   75.00   63.00   51.00   39.00   28.00     16.00    16.00    15.00
+1170.00    1195.00   13.00  17.00  14.00  14.00  12.00  13.00  14.00                           2970.00   3020.00    113.00  101.00   90.00   78.00   66.00   54.00   42.00   30.00     19.00    18.00    18.00
+1195.00    1220.00   15.00  19.00  16.00  16.00  14.00  15.00  17.00                           3020.00   3070.00    116.00  104.00   93.00   81.00   69.00   57.00   45.00   33.00     22.00    21.00    22.00
+1220.00    1245.00   16.00  21.00  18.00  18.00  16.00  17.00  19.00                           3070.00   3120.00    119.00  107.00   95.00   84.00   72.00   60.00   48.00   36.00     24.00    24.00    26.00
+1245.00    1270.00   18.00  23.00  20.00  20.00  18.00  19.00  22.00                           3120.00   3170.00    122.00  110.00   98.00   86.00   75.00   63.00   51.00   39.00     27.00    27.00    30.00
+1270.00    1295.00   19.00  25.00  22.00  22.00  20.00  21.00                                  3170.00   3220.00    125.00  113.00  101.00   89.00   78.00   66.00   54.00   42.00     30.00    30.00    33.00
+1295.00    1320.00   21.00  27.00  24.00  24.00  22.00  23.00                                  3220.00   3270.00    129.00  116.00  104.00   92.00   80.00   69.00   57.00   45.00     33.00    34.00    37.00
+1320.00    1345.00   23.00  30.00  26.00  26.00  24.00  26.00                                  3270.00   3320.00    132.00  119.00  107.00   95.00   83.00   72.00   60.00   48.00     36.00    38.00    41.00
+1345.00    1370.00   25.00  32.00  28.00  28.00  27.00  29.00                                  3320.00   3370.00    135.00  122.00  110.00   98.00   86.00   74.00   63.00   51.00     39.00    41.00    45.00
+1370.00    1395.00   27.00  34.00  30.00  30.00  29.00  31.00                                  3370.00   3420.00    139.00  125.00  113.00  101.00   89.00   77.00   66.00   54.00     42.00    45.00    48.00
+1395.00    1430.00   29.00  36.00  32.00  32.00  31.00  34.00                                  3420.00   3485.00    143.00  129.00  117.00  105.00   93.00   81.00   69.00   57.00     46.00    49.00    52.00
+1430.00    1465.00   31.00  38.00  34.00  34.00  33.00                                         3485.00   3550.00    148.00  134.00  120.00  109.00   97.00   85.00   73.00   61.00     49.00    53.00    56.00
+1465.00    1500.00   33.00  40.00  36.00  36.00  35.00                                         3550.00   3615.00    152.00  138.00  124.00  112.00  100.00   89.00   77.00   65.00     53.00    56.00    60.00
+1500.00    1535.00   35.00  42.00  38.00  38.00  38.00                                         3615.00   3680.00    156.00  143.00  129.00  116.00  104.00   92.00   81.00   69.00     57.00    60.00    63.00
+1535.00    1570.00   37.00  44.00  40.00  40.00  40.00                                         3680.00   3745.00    161.00  147.00  133.00  120.00  108.00   96.00   84.00   73.00     61.00    64.00    67.00
+1570.00    1605.00   39.00  46.00  42.00  42.00  43.00                                         3745.00   3810.00    165.00  151.00  138.00  124.00  112.00  100.00   88.00   76.00     64.00    68.00    71.00
+1605.00    1640.00   41.00  48.00  44.00  44.00  46.00                                         3810.00   3875.00    169.00  156.00  142.00  128.00  116.00  104.00   92.00   80.00     68.00    72.00    75.00
+1640.00    1675.00   43.00  50.00  46.00  47.00                                                3875.00   3940.00    174.00  160.00  146.00  133.00  119.00  108.00   96.00   84.00     72.00    75.00    79.00
+1675.00    1710.00   45.00  52.00  48.00  50.00                                                3940.00   4005.00    178.00  164.00  151.00  137.00  123.00  111.00   99.00   88.00     76.00    79.00    82.00
+1710.00    1745.00   47.00  54.00  50.00  52.00                                                4005.00   4070.00    183.00  169.00  155.00  141.00  128.00  115.00  103.00   91.00     80.00    83.00    86.00
+1745.00    1780.00   49.00  56.00  52.00  55.00                                                4070.00   4135.00    187.00  173.00  160.00  146.00  132.00  119.00  107.00   95.00     83.00    87.00    90.00
+1780.00    1815.00   51.00  58.00  54.00  57.00                                                4135.00   4200.00    191.00  178.00  164.00  150.00  136.00  123.00  111.00   99.00     87.00    90.00    94.00
+1815.00    1850.00   54.00  60.00  56.00                                                       4200.00   4265.00    196.00  182.00  168.00  155.00  141.00  127.00  115.00  103.00     91.00    94.00    97.00
+1850.00    1885.00   56.00  62.00  59.00                                                       4265.00   4330.00    200.00  186.00  173.00  159.00  145.00  131.00  118.00  106.00     95.00    98.00   101.00
+1885.00    1920.00   58.00  64.00  61.00                                                       4330.00   4395.00    205.00  191.00  177.00  163.00  150.00  136.00  122.00  110.00     98.00   102.00   105.00
+1920.00    1955.00   60.00  66.00  64.00                                                       4395.00   4460.00    209.00  195.00  181.00  168.00  154.00  140.00  126.00  114.00    102.00   105.00   109.00
+1955.00    1990.00   62.00  68.00  67.00                                                       4460.00   4525.00    213.00  200.00  186.00  172.00  158.00  145.00  131.00  118.00    106.00   109.00   112.00
+1990.00    2025.00   64.00  71.00  69.00                                                       4525.00   4590.00    218.00  204.00  190.00  176.00  163.00  149.00  135.00  122.00    110.00   113.00   116.00
+2025.00    2060.00   66.00  73.00                                                              4590.00   4655.00    222.00  208.00  195.00  181.00  167.00  153.00  140.00  126.00    114.00   117.00   120.00
+2060.00    2095.00   68.00  76.00                                                              4655.00   4720.00    227.00  213.00  199.00  185.00  171.00  158.00  144.00  130.00    117.00   121.00   124.00
+2095.00    2130.00   70.00  79.00                                                              4720.00   4785.00    231.00  217.00  203.00  190.00  176.00  162.00  148.00  135.00    121.00   125.00   128.00
+2130.00    2165.00   72.00  81.00                                                              4785.00   4850.00    235.00  222.00  208.00  194.00  180.00  166.00  153.00  139.00    125.00   129.00   133.00
+2165.00    2200.00   74.00                                                                     4850.00   4915.00    240.00  226.00  212.00  198.00  185.00  171.00  157.00  143.00    130.00   133.00   137.00
+2200.00    2235.00   76.00                                                                     4915.00   4980.00    244.00  230.00  217.00  203.00  189.00  175.00  162.00  148.00    134.00   138.00   142.00
+2235.00    2270.00   78.00                                                                     4980.00   5045.00    248.00  235.00  221.00  207.00  193.00  180.00  166.00  152.00    138.00   142.00   146.00
+2270.00    2305.00   80.00                                                                     5045.00   5110.00    253.00  239.00  225.00  212.00  198.00  184.00  170.00  157.00    143.00   147.00   150.00
+2305.00    2340.00   83.00                                                                     5110.00   5175.00    257.00  243.00  230.00  216.00  202.00  188.00  175.00  161.00    147.00   151.00   155.00
+2340.00    2375.00   85.00                                                                     5175.00   5240.00    262.00  248.00  234.00  220.00  207.00  193.00  179.00  165.00    152.00   155.00
+2375.00    2410.00   88.00                                                                     5240.00   5305.00    266.00  252.00  238.00  225.00  211.00  197.00  183.00  170.00    156.00   160.00
+2410.00    2445.00   90.00                                                                     5305.00   5370.00    270.00  257.00  243.00  229.00  215.00  202.00  188.00  174.00    160.00   164.00
+2445.00    2490.00   93.00                                                                     5370.00   5435.00    275.00  261.00  247.00  233.00  220.00  206.00  192.00  178.00    165.00   168.00
+2490.00    2535.00                                                                             5435.00   5500.00    279.00  265.00  252.00  238.00  224.00  210.00  197.00  183.00    169.00
+2535.00    2580.00                                                                             5500.00   5565.00    284.00  270.00  256.00  242.00  229.00  215.00  201.00  187.00    173.00
+2580.00    2625.00                                                                             5565.00   5630.00    288.00  274.00  260.00  247.00  233.00  219.00  205.00  192.00    178.00
+2625.00    2670.00                                                                             5630.00   5695.00    292.00  279.00  265.00  251.00  237.00  224.00  210.00  196.00    182.00
+
+                                                                                               5695.00 13640.00                                     Use percentage method
+
+                                                                                               13640.00 57695.00                            7.15% of the excess over 13640 plus -
+
+                                                                                                                    935.00 921.00 906.00 892.00 877.00 862.00 848.00 833.00 819.00 804.00 790.00
+
+                                                                                               57695.00 and over                            9.15% of the excess over 57695 plus 4085
+
+15                                                                                             *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                                               2026 Maine Income Tax Withholding Wage Bracket Tables MARRIED ­ SEMI-MONTHLY
+
+    Wages are ­                       Number of withholding allowances claimed is ­                     Wages are ­                   Number of withholding allowances claimed is ­
+
+             But       0        1        2     3      4      5      6      7           8      9     10               But     0  1  2  3  4  5  6                7                    8  9                          10
+             less                                                                                                 less than
+At least    than       1.00     0.25     0.75  Amount of income tax to withhold is ­   0.50   1.75      At least                      Amount of income tax to withhold is ­
+                       2.75     2.00     3.25                                          4.00   5.00
+     0.00  1140.00     4.50     4.25     5.00   2.00   1.25   3.00   1.75   3.00       7.00   8.00            3410.00 3470.00 134.00 121.00 109.00 96.00 83.00 70.00 57.00 45.00 32.00 19.00 6.00
+1140.00    1170.00     6.00     7.00     8.00   4.25   4.25   6.00   5.00   6.00      11.00  12.00            3470.00 3530.00 139.00 125.00 112.00 99.00 86.00 74.00 61.00 48.00 35.00 22.00 10.00
+1170.00    1200.00     8.00     9.00   10.00    6.00   7.00   9.00   9.00  10.00      14.00  15.00            3530.00 3590.00 143.00 128.00 116.00 103.00 90.00 77.00 64.00 51.00 39.00 26.00 13.00
+1200.00    1230.00     9.00   11.00    12.00    9.00  10.00  12.00  12.00  13.00      18.00                   3590.00 3650.00 147.00 132.00 119.00 106.00 93.00 81.00 68.00 55.00 42.00 29.00 17.00
+1230.00    1260.00   11.00    14.00    15.00   11.00  13.00  14.00  16.00  17.00      21.00                   3650.00 3710.00 151.00 136.00 123.00 110.00 97.00 84.00 71.00 58.00 46.00 33.00 20.00
+1260.00    1290.00   13.00    16.00    17.00   14.00  16.00  18.00  19.00  20.00      25.00                   3710.00 3770.00 155.00 140.00 126.00 113.00 100.00 88.00 75.00 62.00 49.00 36.00 24.00
+1290.00    1320.00   15.00    18.00    19.00   17.00  19.00  21.00  23.00  24.00      28.00                   3770.00 3830.00 159.00 144.00 129.00 117.00 104.00 91.00 78.00 65.00 53.00 40.00 27.00
+1320.00    1350.00   17.00    20.00    22.00   20.00  21.00  25.00  26.00  27.00                              3830.00 3890.00 163.00 148.00 133.00 120.00 107.00 95.00 82.00 69.00 56.00 43.00 30.00
+1350.00    1380.00   19.00    23.00    24.00   23.00  24.00  28.00  30.00  31.00                              3890.00 3950.00 167.00 152.00 137.00 124.00 111.00 98.00 85.00 72.00 60.00 47.00 34.00
+1380.00    1410.00   22.00    25.00    27.00   26.00  27.00  32.00  33.00  34.00                              3950.00 4010.00 171.00 156.00 141.00 127.00 114.00 101.00 89.00 76.00 63.00 50.00 37.00
+1410.00    1450.00   24.00    27.00    30.00   28.00  31.00  35.00  36.00  38.00                              4010.00 4070.00 175.00 160.00 145.00 131.00 118.00 105.00 92.00 79.00 67.00 54.00 41.00
+1450.00    1490.00   26.00    30.00    33.00   31.00  34.00  39.00  40.00  41.00                              4070.00 4130.00 179.00 164.00 149.00 134.00 121.00 108.00 96.00 83.00 70.00 57.00 44.00
+1490.00    1530.00   29.00    32.00    36.00   34.00  38.00  42.00  43.00                                     4130.00 4190.00 183.00 168.00 153.00 138.00 125.00 112.00 99.00 86.00 73.00 61.00 48.00
+1530.00    1570.00   31.00    34.00    38.00   37.00  41.00  46.00  47.00                                     4190.00 4250.00 187.00 172.00 157.00 142.00 128.00 115.00 103.00 90.00 77.00 64.00 51.00
+1570.00    1610.00   33.00    37.00    41.00   40.00  45.00  49.00  50.00                                     4250.00 4310.00 191.00 176.00 161.00 146.00 132.00 119.00 106.00 93.00 80.00 68.00 55.00
+1610.00    1650.00   36.00    40.00    44.00   44.00  48.00  53.00  54.00                                     4310.00 4370.00 195.00 180.00 165.00 150.00 136.00 122.00 110.00 97.00 84.00 71.00 58.00
+1650.00    1690.00   38.00    43.00    47.00   47.00  52.00  56.00                                            4370.00 4430.00 199.00 184.00 169.00 155.00 140.00 126.00 113.00 100.00 87.00 75.00 62.00
+1690.00    1730.00   40.00    45.00    50.00   51.00  55.00  60.00                                            4430.00 4490.00 203.00 188.00 174.00 159.00 144.00 129.00 117.00 104.00 91.00 78.00 65.00
+1730.00    1770.00   43.00    48.00    53.00   54.00  59.00  63.00                                            4490.00 4550.00 207.00 192.00 178.00 163.00 148.00 133.00 120.00 107.00 94.00 82.00 69.00
+1770.00    1810.00   45.00    51.00    56.00   57.00  62.00  67.00                                            4550.00 4610.00 211.00 197.00 182.00 167.00 152.00 137.00 123.00 111.00 98.00 85.00 72.00
+1810.00    1850.00   47.00    54.00    60.00   61.00  66.00                                                   4610.00 4670.00 215.00 201.00 186.00 171.00 156.00 141.00 127.00 114.00 101.00 89.00 76.00
+1850.00    1890.00   50.00    57.00    63.00   64.00  69.00                                                   4670.00 4730.00 220.00 205.00 190.00 175.00 160.00 145.00 130.00 118.00 105.00 92.00 79.00
+1890.00    1930.00   52.00    60.00    67.00   68.00  73.00                                                   4730.00 4790.00 224.00 209.00 194.00 179.00 164.00 149.00 134.00 121.00 108.00 95.00 83.00
+1930.00    1970.00   55.00    63.00    70.00   71.00  76.00                                                   4790.00 4850.00 228.00 213.00 198.00 183.00 168.00 153.00 138.00 125.00 112.00 99.00 86.00
+1970.00    2010.00   58.00    66.00    74.00   75.00  79.00                                                   4850.00 4910.00 232.00 217.00 202.00 187.00 172.00 157.00 142.00 128.00 115.00 102.00 90.00
+2010.00    2060.00   61.00    69.00    77.00   78.00                                                          4910.00 4970.00 236.00 221.00 206.00 191.00 176.00 161.00 146.00 132.00 119.00 106.00 93.00
+2060.00    2110.00   64.00    73.00    81.00   82.00                                                          4970.00 5030.00 240.00 225.00 210.00 195.00 180.00 165.00 150.00 135.00 122.00 109.00 97.00
+2110.00    2160.00   67.00    76.00    84.00   85.00                                                          5030.00 5090.00 244.00 229.00 214.00 199.00 184.00 169.00 154.00 139.00 126.00 113.00 100.00
+2160.00    2210.00   70.00    80.00    88.00   89.00                                                          5090.00 5150.00 248.00 233.00 218.00 203.00 188.00 173.00 158.00 144.00 129.00 116.00 104.00
+2210.00    2260.00   73.00    83.00    91.00   92.00                                                          5150.00 5210.00 252.00 237.00 222.00 207.00 192.00 177.00 162.00 148.00 133.00 120.00 107.00
+2260.00    2310.00   76.00    87.00    95.00                                                                  5210.00 5270.00 256.00 241.00 226.00 211.00 196.00 181.00 167.00 152.00 137.00 123.00 111.00
+2310.00    2360.00   79.00    90.00    98.00                                                                  5270.00 5330.00 260.00 245.00 230.00 215.00 200.00 185.00 171.00 156.00 141.00 127.00 114.00
+2360.00    2410.00   82.00    94.00   102.00                                                                  5330.00 5390.00 264.00 249.00 234.00 219.00 204.00 190.00 175.00 160.00 145.00 130.00 117.00
+2410.00    2460.00   85.00    97.00   105.00                                                                  5390.00 5450.00 268.00 253.00 238.00 223.00 208.00 194.00 179.00 164.00 149.00 134.00 121.00
+2460.00    2510.00   89.00   101.00                                                                           5450.00 5510.00 272.00 257.00 242.00 227.00 213.00 198.00 183.00 168.00 153.00 138.00 124.00
+2510.00    2570.00   92.00   104.00                                                                           5510.00 5570.00 276.00 261.00 246.00 231.00 217.00 202.00 187.00 172.00 157.00 142.00 128.00
+2570.00    2630.00   96.00   107.00                                                                           5570.00 5630.00 280.00 265.00 250.00 236.00 221.00 206.00 191.00 176.00 161.00 146.00 131.00
+2630.00    2690.00   99.00   111.00                                                                           5630.00 5690.00 284.00 269.00 255.00 240.00 225.00 210.00 195.00 180.00 165.00 150.00 135.00
+2690.00    2750.00  103.00   114.00                                                                           5690.00 5750.00 288.00 273.00 259.00 244.00 229.00 214.00 199.00 184.00 169.00 154.00 139.00
+2750.00    2810.00  106.00   118.00                                                                           5750.00 5810.00 292.00 278.00 263.00 248.00 233.00 218.00 203.00 188.00 173.00 158.00 143.00
+2810.00    2870.00  110.00                                                                                    5810.00 5870.00 296.00 282.00 267.00 252.00 237.00 222.00 207.00 192.00 177.00 162.00 147.00
+2870.00    2930.00  113.00                                                                                    5870.00 5930.00 301.00 286.00 271.00 256.00 241.00 226.00 211.00 196.00 181.00 166.00 151.00
+2930.00    2990.00  117.00                                                                                    5930.00 5990.00 305.00 290.00 275.00 260.00 245.00 230.00 215.00 200.00 185.00 170.00 156.00
+2990.00    3050.00  120.00                                                                                    5990.00 6050.00 309.00 294.00 279.00 264.00 249.00 234.00 219.00 204.00 189.00 174.00 160.00
+3050.00    3110.00  124.00                                                                                    6050.00 6110.00 313.00 298.00 283.00 268.00 253.00 238.00 223.00 208.00 193.00 179.00 164.00
+3110.00    3170.00  127.00                                                                                    6110.00 6170.00 317.00 302.00 287.00 272.00 257.00 242.00 227.00 212.00 197.00 183.00 168.00
+3170.00    3230.00  131.00                                                                                    6170.00 6230.00 321.00 306.00 291.00 276.00 261.00 246.00 231.00 216.00 202.00 187.00 172.00
+3230.00    3290.00                                                                                            6230.00 6290.00 325.00 310.00 295.00 280.00 265.00 250.00 235.00 220.00 206.00 191.00 176.00
+3290.00    3350.00                                                                                            6290.00 6350.00 329.00 314.00 299.00 284.00 269.00 254.00 239.00 225.00 210.00 195.00 180.00
+3350.00    3410.00                                                                                  2.75 6350.00 6410.00 333.00 318.00 303.00 288.00 273.00 258.00 243.00 229.00 214.00 199.00 184.00
+
+                                                                                                        6410.00 14775.00                 Use percentage method
+
+                                                                                                        14775.00 62500.00             7.15% of the excess over 14775 plus -
+
+                                                                                                                             1013.00 997.00 981.00 966.00 950.00 934.00 918.00 903.00 887.00 871.00 855.00
+
+                                                                                                        62500.00 and over             9.15% of the excess over 62500 plus 4425
+
+16                                                                                                      *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                                                         2026 Maine Income Tax Withholding Wage Bracket Tables MARRIED ­ MONTHLY
+
+    Wages are ­                           Number of withholding allowances claimed is ­                Wages are ­                             Number of withholding allowances claimed is ­
+
+           But       0        1        2        3        4        5      6      7        8      9  10               But     0       1       2       3       4       5       6       7          8       9          10
+                                                                                                                 less than
+At least less                                   Amount of income tax to withhold is ­                  At least                                     Amount of income tax to withhold is ­
+               than
+
+     0.00  2280.00      1.75     0.50     0.25     2.50     0.25   2.50   3.50   1.00     4.50          6220.00   6340.00   234.00  208.00  182.00  157.00  131.00  106.00   80.00   54.00      29.00     3.25     5.00
+2280.00    2340.00      5.00     4.00     5.00     7.00     4.75   7.00   9.00   7.00    10.00          6340.00   6460.00   241.00  215.00  189.00  164.00  138.00  112.00   87.00   61.00      36.00   10.00    12.00
+2340.00    2400.00      9.00     7.00   10.00    12.00      9.00  12.00  15.00  13.00    16.00          6460.00   6580.00   248.00  222.00  196.00  171.00  145.00  119.00   94.00   68.00      43.00   17.00    19.00
+2400.00    2460.00    12.00    11.00    14.00    16.00    14.00   17.00  21.00  18.00    22.00          6580.00   6700.00   254.00  229.00  203.00  178.00  152.00  126.00  101.00   75.00      50.00   24.00    26.00
+2460.00    2520.00    16.00    14.00    19.00    21.00    19.00   23.00  27.00  24.00                   6700.00   6820.00   261.00  236.00  210.00  185.00  159.00  133.00  108.00   82.00      57.00   31.00    33.00
+2520.00    2580.00    19.00    18.00    23.00    26.00    23.00   29.00  32.00  30.00                   6820.00   6940.00   269.00  243.00  217.00  192.00  166.00  140.00  115.00   89.00      63.00   38.00    40.00
+2580.00    2640.00    22.00    21.00    28.00    30.00    28.00   35.00  38.00  36.00                   6940.00   7060.00   277.00  250.00  224.00  199.00  173.00  147.00  122.00   96.00      70.00   45.00    47.00
+2640.00    2700.00    26.00    26.00    33.00    35.00    33.00   41.00  44.00  42.00                   7060.00   7180.00   285.00  257.00  231.00  205.00  180.00  154.00  129.00  103.00      77.00   52.00    54.00
+2700.00    2760.00    29.00    30.00    37.00    40.00    37.00   46.00  50.00  47.00                   7180.00   7300.00   293.00  264.00  238.00  212.00  187.00  161.00  136.00  110.00      84.00   59.00    61.00
+2760.00    2820.00    33.00    35.00    42.00    44.00    43.00   52.00  56.00                          7300.00   7420.00   301.00  272.00  245.00  219.00  194.00  168.00  143.00  117.00      91.00   66.00    68.00
+2820.00    2880.00    36.00    40.00    47.00    49.00    49.00   58.00  61.00                          7420.00   7540.00   309.00  280.00  252.00  226.00  201.00  175.00  149.00  124.00      98.00   73.00    75.00
+2880.00    2940.00    40.00    44.00    51.00    54.00    55.00   64.00  67.00                          7540.00   7660.00   318.00  288.00  259.00  233.00  208.00  182.00  156.00  131.00     105.00   80.00    82.00
+2940.00    3000.00    43.00    49.00    56.00    58.00    60.00   70.00  73.00                          7660.00   7780.00   326.00  296.00  266.00  240.00  215.00  189.00  163.00  138.00     112.00   87.00    89.00
+3000.00    3060.00    47.00    54.00    61.00    63.00    66.00   75.00                                 7780.00   7900.00   334.00  304.00  274.00  247.00  222.00  196.00  170.00  145.00     119.00   94.00    96.00
+3060.00    3120.00    51.00    58.00    65.00    69.00    72.00   81.00                                 7900.00   8020.00   342.00  312.00  282.00  254.00  229.00  203.00  177.00  152.00     126.00  100.00   103.00
+3120.00    3200.00    56.00    63.00    70.00    74.00    78.00   87.00                                 8020.00   8140.00   350.00  320.00  290.00  261.00  236.00  210.00  184.00  159.00     133.00  107.00   110.00
+3200.00    3280.00    61.00    68.00    74.00    80.00    84.00   93.00                                 8140.00   8260.00   358.00  328.00  298.00  269.00  242.00  217.00  191.00  166.00     140.00  114.00   117.00
+3280.00    3360.00    65.00    72.00    79.00    86.00    89.00   99.00                                 8260.00   8380.00   366.00  336.00  307.00  277.00  249.00  224.00  198.00  173.00     147.00  121.00   124.00
+3360.00    3440.00    70.00    77.00    84.00    92.00    95.00                                         8380.00   8500.00   374.00  344.00  315.00  285.00  256.00  231.00  205.00  180.00     154.00  128.00   131.00
+3440.00    3520.00    75.00    82.00    88.00    98.00   101.00                                         8500.00   8620.00   382.00  353.00  323.00  293.00  263.00  238.00  212.00  187.00     161.00  135.00   138.00
+3520.00    3600.00    79.00    86.00    94.00   103.00   107.00                                         8620.00   8740.00   390.00  361.00  331.00  301.00  271.00  245.00  219.00  193.00     168.00  142.00   144.00
+3600.00    3680.00    84.00    91.00   100.00   109.00   113.00                                         8740.00   8860.00   399.00  369.00  339.00  309.00  279.00  252.00  226.00  200.00     175.00  149.00   151.00
+3680.00    3760.00    89.00    95.00   106.00   115.00   118.00                                         8860.00   8980.00   407.00  377.00  347.00  317.00  287.00  259.00  233.00  207.00     182.00  156.00   158.00
+3760.00    3840.00    93.00   100.00   112.00   121.00   124.00                                         8980.00   9100.00   415.00  385.00  355.00  325.00  295.00  266.00  240.00  214.00     189.00  163.00   165.00
+3840.00    3920.00    98.00   105.00   117.00   127.00                                                  9100.00   9220.00   423.00  393.00  363.00  333.00  304.00  274.00  247.00  221.00     196.00  170.00   172.00
+3920.00    4000.00   103.00   109.00   123.00   132.00                                                  9220.00   9340.00   431.00  401.00  371.00  341.00  312.00  282.00  254.00  228.00     203.00  177.00   179.00
+4000.00    4080.00   107.00   114.00   129.00   138.00                                                  9340.00   9460.00   439.00  409.00  379.00  350.00  320.00  290.00  261.00  235.00     210.00  184.00   186.00
+4080.00    4160.00   112.00   120.00   135.00   144.00                                                  9460.00   9580.00   447.00  417.00  388.00  358.00  328.00  298.00  268.00  242.00     217.00  191.00   193.00
+4160.00    4240.00   116.00   126.00   141.00   150.00                                                  9580.00   9700.00   455.00  425.00  396.00  366.00  336.00  306.00  276.00  249.00     224.00  198.00   200.00
+4240.00    4320.00   121.00   131.00   146.00                                                           9700.00   9820.00   463.00  434.00  404.00  374.00  344.00  314.00  284.00  256.00     231.00  205.00   207.00
+4320.00    4400.00   126.00   137.00   152.00                                                           9820.00   9940.00   471.00  442.00  412.00  382.00  352.00  322.00  293.00  263.00     237.00  212.00   214.00
+4400.00    4480.00   130.00   143.00   158.00                                                           9940.00  10060.00   480.00  450.00  420.00  390.00  360.00  330.00  301.00  271.00     244.00  219.00   221.00
+4480.00    4560.00   135.00   149.00   164.00                                                          10060.00  10180.00   488.00  458.00  428.00  398.00  368.00  339.00  309.00  279.00     251.00  226.00   228.00
+4560.00    4640.00   140.00   155.00   170.00                                                          10180.00  10300.00   496.00  466.00  436.00  406.00  376.00  347.00  317.00  287.00     258.00  233.00   235.00
+4640.00    4720.00   145.00   160.00   175.00                                                          10300.00  10420.00   504.00  474.00  444.00  414.00  385.00  355.00  325.00  295.00     265.00  240.00   242.00
+4720.00    4820.00   151.00   166.00                                                                   10420.00  10540.00   512.00  482.00  452.00  422.00  393.00  363.00  333.00  303.00     273.00  247.00   249.00
+4820.00    4920.00   157.00   172.00                                                                   10540.00  10660.00   520.00  490.00  460.00  431.00  401.00  371.00  341.00  311.00     282.00  254.00   256.00
+4920.00    5020.00   163.00   178.00                                                                   10660.00  10780.00   528.00  498.00  469.00  439.00  409.00  379.00  349.00  319.00     290.00  261.00   263.00
+5020.00    5120.00   169.00   184.00                                                                   10780.00  10900.00   536.00  506.00  477.00  447.00  417.00  387.00  357.00  328.00     298.00  268.00   271.00
+5120.00    5220.00   174.00   189.00                                                                   10900.00  11020.00   544.00  515.00  485.00  455.00  425.00  395.00  365.00  336.00     306.00  276.00   279.00
+5220.00    5320.00   180.00   195.00                                                                   11020.00  11140.00   552.00  523.00  493.00  463.00  433.00  403.00  374.00  344.00     314.00  284.00   287.00
+5320.00    5420.00   186.00   201.00                                                                   11140.00  11260.00   561.00  531.00  501.00  471.00  441.00  411.00  382.00  352.00     322.00  292.00   295.00
+5420.00    5520.00   192.00                                                                            11260.00  11380.00   569.00  539.00  509.00  479.00  449.00  420.00  390.00  360.00     330.00  300.00   303.00
+5520.00    5620.00   198.00                                                                            11380.00  11500.00   577.00  547.00  517.00  487.00  457.00  428.00  398.00  368.00     338.00  308.00   311.00
+5620.00    5720.00   203.00                                                                            11500.00  11620.00   585.00  555.00  525.00  495.00  466.00  436.00  406.00  376.00     346.00  317.00   319.00
+5720.00    5820.00   209.00                                                                            11620.00  11740.00   593.00  563.00  533.00  503.00  474.00  444.00  414.00  384.00     354.00  325.00   327.00
+5820.00    5920.00   215.00                                                                            11740.00  11860.00   601.00  571.00  541.00  512.00  482.00  452.00  422.00  392.00     363.00  333.00
+5920.00    6020.00   221.00                                                                            11860.00  11980.00   609.00  579.00  550.00  520.00  490.00  460.00  430.00  400.00     371.00  341.00
+6020.00    6120.00   227.00                                                                            11980.00  12100.00   617.00  587.00  558.00  528.00  498.00  468.00  438.00  409.00     379.00  349.00
+6120.00    6220.00                                                                                     12100.00  12220.00   625.00  596.00  566.00  536.00  506.00  476.00  446.00  417.00     387.00  357.00
+
+                                                                                                       12220.00 29550.00                                    Use percentage method
+
+                                                                                                       29550.00 125000.00                           7.15% of the excess over 29550 plus -
+
+                                                                                                                            2026.00 1995.00 1963.00 1931.00 1900.00 1868.00 1837.00 1805.00 1774.00 1742.00 1710.00
+
+                                                                                                       125000.00 and over                           9.15% of the excess over 125000 plus 8851
+
+17                                                                                                     *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+                                2026 Maine Income Tax Withholding Wage Bracket Tables MARRIED ­ DAILY OR MISCELLANEOUS
+
+    Wages are ­                    Number of withholding allowances claimed is ­            Wages are ­                           Number of withholding allowances claimed is ­
+
+           But      0     1     2  3  4  5  6  7                                  8  9  10               But     0      1      2      3      4      5      6        7            8      9              10
+           less                                                                                       less than
+At least   than     0.25  0.25     Amount of income tax to withhold is ­                    At least                                  Amount of income tax to withhold is ­
+                    0.50  0.50
+     0.00  106.00   0.50  0.75  0.25                                                        283.00     288.00    11.00   9.00   8.00   7.00   6.00   4.75   3.50     2.25         1.25   0.25           0.25
+ 106.00    109.00   0.75  0.75  0.25                                                        288.00     293.00    11.00  10.00   8.00   7.00   6.00   5.00   3.75     2.75         1.50   0.50           0.50
+ 109.00    112.00   1.00  1.00  0.50                                                        293.00     298.00    11.00  10.00   9.00   8.00   6.00   5.00   4.00     3.00         1.75   0.75           0.75
+  112.00   115.00   1.25  1.25  0.75                                                        298.00     303.00    11.00  10.00   9.00   8.00   7.00   5.00   4.50     3.25         2.00   1.25           1.25
+  115.00   118.00   1.25  1.25  0.75                                                        303.00     308.00    12.00  10.00   9.00   8.00   7.00   6.00   4.75     3.50         2.25   1.50           1.50
+  118.00   121.00   1.50  1.50  1.00                                                        308.00     313.00    12.00  11.00  10.00   8.00   7.00   6.00   5.00     3.75         2.75   1.75           1.75
+ 121.00    124.00   1.75  1.75  1.25                                                        313.00     318.00    12.00  11.00  10.00   9.00   8.00   6.00   5.00     4.00         3.00   2.00           2.00
+ 124.00    127.00   1.75  1.75  1.25 0.25                                                   318.00     323.00    13.00  11.00  10.00   9.00   8.00   7.00   5.00     4.50         3.25   2.25           2.25
+ 127.00    130.00   2.00  2.00  1.50 0.25                                                   323.00     328.00    13.00  12.00  10.00   9.00   8.00   7.00   6.00     4.75         3.50   2.50           2.50
+ 130.00    133.00   2.25  2.25  1.75 0.50                                                   328.00     333.00    13.00  12.00  11.00  10.00   8.00   7.00   6.00     5.00         3.75   3.00           3.00
+ 133.00    136.00   2.25  2.50  2.00 0.75                                                   333.00     338.00    14.00  12.00  11.00  10.00   9.00   8.00   6.00     5.00         4.00   3.25           3.25
+ 136.00    139.00   2.50  2.50  2.25 1.00                                                   338.00     343.00    14.00  13.00  11.00  10.00   9.00   8.00   7.00     5.00         4.25   3.50           3.50
+ 139.00    142.00   2.75  2.75  2.25 1.25                                                   343.00     348.00    14.00  13.00  12.00  10.00   9.00   8.00   7.00     6.00         4.75   3.75           3.75
+ 142.00    145.00   2.75  3.00  2.50 1.50 0.25                                              348.00     353.00    15.00  13.00  12.00  11.00  10.00   8.00   7.00     6.00         5.00   4.00           4.00
+ 145.00    148.00   3.00  3.00  2.75 1.75 0.50                                              353.00     358.00    15.00  14.00  12.00  11.00  10.00   9.00   7.00     6.00         5.00   4.25           4.25
+ 148.00    151.00   3.25  3.25  3.00 1.75 0.75                                              358.00     363.00    15.00  14.00  13.00  11.00  10.00   9.00   8.00     7.00         5.00   4.75           4.75
+ 151.00    154.00   3.50  3.50  3.25 2.00 1.00                                              363.00     368.00    16.00  14.00  13.00  12.00  10.00   9.00   8.00     7.00         6.00   5.00           5.00
+ 154.00    157.00   3.50  3.75  3.50 2.25 1.25                                              368.00     373.00    16.00  15.00  13.00  12.00  11.00  10.00   8.00     7.00         6.00   5.00           5.00
+ 157.00    160.00   3.75  4.00  3.75 2.50 1.50 0.25                                         373.00     378.00    16.00  15.00  14.00  12.00  11.00  10.00   9.00     7.00         6.00   5.00           6.00
+ 160.00    163.00   4.00  4.25  4.00 2.75 1.50 0.50                                         378.00     383.00    17.00  15.00  14.00  13.00  11.00  10.00   9.00     8.00         7.00   6.00           6.00
+ 163.00    166.00   4.00  4.50  4.25 3.00 1.75 0.75                                         383.00     389.00    17.00  16.00  14.00  13.00  12.00  10.00   9.00     8.00         7.00   6.00           6.00
+ 166.00    169.00   4.25  4.75  4.50 3.25 2.00 1.00                                         389.00     395.00    17.00  16.00  15.00  13.00  12.00  11.00  10.00     8.00         7.00   6.00           7.00
+ 169.00    172.00   4.50  5.00  4.75 3.50 2.25 1.25                                         395.00     401.00    18.00  16.00  15.00  14.00  12.00  11.00  10.00     9.00         8.00   7.00           7.00
+ 172.00    175.00   4.75  5.00  5.00 3.75 2.50 1.25 0.25                                    401.00     407.00    18.00  17.00  16.00  14.00  13.00  12.00  10.00     9.00         8.00   7.00           7.00
+ 175.00    178.00   5.00  5.00  5.00 4.00 2.75 1.50 0.50                                    407.00     413.00    19.00  17.00  16.00  15.00  13.00  12.00  11.00     9.00         8.00   7.00           8.00
+ 178.00    182.00   5.00  6.00  5.00 4.25 3.00 1.75 0.75                                    413.00     419.00    19.00  18.00  16.00  15.00  14.00  12.00  11.00    10.00         9.00   8.00           8.00
+ 182.00    186.00   5.00  6.00  5.00 4.50 3.25 2.00 1.00                                    419.00     425.00    19.00  18.00  17.00  15.00  14.00  13.00  11.00    10.00         9.00   8.00           8.00
+ 186.00    190.00   6.00  6.00  6.00 4.75 3.50 2.25 1.00                                    425.00     431.00    20.00  19.00  17.00  16.00  14.00  13.00  12.00    11.00         9.00   9.00           9.00
+ 190.00    194.00   6.00  6.00  6.00 5.00 3.75 2.50 1.25 0.25                               431.00     437.00    20.00  19.00  18.00  16.00  15.00  13.00  12.00    11.00        10.00   9.00           9.00
+ 194.00    198.00   6.00  6.00  6.00 5.00 4.00 2.75 1.50 0.50                               437.00     443.00    21.00  19.00  18.00  17.00  15.00  14.00  12.00    11.00        10.00   9.00           9.00
+ 198.00    202.00   6.00  7.00  6.00 5.00 4.25 3.00 1.75 0.50                               443.00     449.00    21.00  20.00  18.00  17.00  16.00  14.00  13.00    12.00        10.00  10.00          10.00
+ 202.00    206.00   6.00  7.00  7.00 6.00 4.50 3.25 2.00 1.00                               449.00     455.00    22.00  20.00  19.00  17.00  16.00  15.00  13.00    12.00        11.00  10.00          10.00
+ 206.00    210.00   7.00  7.00  7.00 6.00 4.75 3.50 2.50 1.25                               455.00     461.00    22.00  21.00  19.00  18.00  16.00  15.00  14.00    12.00        11.00  10.00          10.00
+ 210.00    214.00   7.00  7.00  7.00 6.00 5.00 3.75 2.75 1.50 0.25                          461.00     467.00    22.00  21.00  20.00  18.00  17.00  15.00  14.00    13.00        11.00  11.00          11.00
+ 214.00    218.00   7.00  8.00  8.00 6.00 5.00 4.25 3.00 1.75 0.50                          467.00     473.00    23.00  21.00  20.00  19.00  17.00  16.00  14.00    13.00        12.00  11.00          11.00
+ 218.00    222.00   7.00  8.00  8.00 7.00 5.00 4.50 3.25 2.00 1.00                          473.00     479.00    23.00  22.00  20.00  19.00  18.00  16.00  15.00    13.00        12.00  11.00          12.00
+ 222.00    226.00   8.00  8.00                                                              479.00     485.00    24.00  22.00  21.00  19.00  18.00  17.00  15.00    14.00        13.00  12.00          12.00
+ 226.00    230.00   8.00  8.00                                                              485.00     491.00    24.00  23.00  21.00  20.00  18.00  17.00  16.00    14.00        13.00  12.00          12.00
+ 230.00    234.00   8.00  9.00                                                              491.00     497.00    24.00  23.00  22.00  20.00  19.00  17.00  16.00    15.00        13.00  12.00          13.00
+ 234.00    238.00   8.00  9.00                                                              497.00     503.00    25.00  23.00  22.00  21.00  19.00  18.00  16.00    15.00        14.00  13.00          13.00
+ 238.00    242.00   9.00                                                                    503.00     509.00    25.00  24.00  22.00  21.00  20.00  18.00  17.00    16.00        14.00  13.00          13.00
+ 242.00    246.00   9.00                                                                    509.00     515.00    26.00  24.00  23.00  21.00  20.00  19.00  17.00    16.00        15.00  14.00          14.00
+ 246.00    250.00   9.00                                                                    515.00     521.00    26.00  25.00  23.00  22.00  20.00  19.00  18.00    16.00        15.00  14.00          14.00
+ 250.00    254.00   9.00                                                                    521.00     527.00    26.00  25.00  24.00  22.00  21.00  19.00  18.00    17.00        15.00  14.00          15.00
+ 254.00    258.00  10.00                                                                    527.00     533.00    27.00  25.00  24.00  23.00  21.00  20.00  19.00    17.00        16.00  15.00          15.00
+ 258.00    263.00  10.00                                                                    533.00     539.00    27.00  26.00  24.00  23.00  22.00  20.00  19.00    18.00        16.00  15.00
+ 263.00    268.00  10.00                                                                    539.00     545.00    28.00  26.00  25.00  23.00  22.00  21.00  19.00    18.00        17.00  16.00
+ 268.00    273.00                                                                           545.00     551.00    28.00  27.00  25.00  24.00  22.00  21.00  20.00    18.00        17.00  16.00
+ 273.00    278.00                                                                           551.00     557.00    28.00  27.00  26.00  24.00  23.00  22.00  20.00    19.00        17.00  16.00
+ 278.00    283.00                                                                           557.00     563.00    29.00  27.00  26.00  25.00  23.00  22.00  21.00    19.00        18.00
+
+                                                                                            563.00    1364.00                                Use percentage method
+
+                                                                                            1364.00 5770.00                           7.15% of the excess over 1364 plus -
+
+                                                                                                                 94.00 92.00 91.00 89.00 88.00 86.00 85.00 83.00 82.00 80.00 79.00
+
+                                                                                            5770.00 and over                          9.15% of the excess over 5770 plus 409
+
+18                                                                                          *Based on the annualized income amount for this wage bracket, withholding allowances are fully phased out
+
