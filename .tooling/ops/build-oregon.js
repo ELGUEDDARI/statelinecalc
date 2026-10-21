@@ -121,16 +121,16 @@ const PLAFOND_ATTEINT_S = salairePlafond("single");
 const PLAFOND_8500_S = Math.round(salairePlafond("single", 8500) / 100) * 100;   // ~78 800 : la ou le texte du livret (2025) et ses formules (2026) divergent         // ~79 910
 const PLAFOND_ATTEINT_M = salairePlafond("marriedJoint");   // ~109 250
 
-/* Voisins : Washington, Idaho, Nevada (frontaliers publies). */
+/* Voisins : Washington, Idaho, Nevada, California (les quatre frontaliers, tous publies depuis le 21/10/2026). */
 const REF = 75000;
-const COMPARE = [CLE, "washington", "idaho", "nevada"];
-const NOMS = { [CLE]: "Oregon", washington: "Washington", idaho: "Idaho", nevada: "Nevada" };
+const COMPARE = [CLE, "washington", "idaho", "nevada", "california"];
+const NOMS = { [CLE]: "Oregon", washington: "Washington", idaho: "Idaho", nevada: "Nevada", california: "California" };
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const wa75 = calcul("washington", REF), id75 = calcul("idaho", REF), nv75 = calcul("nevada", REF);
+const wa75 = calcul("washington", REF), id75 = calcul("idaho", REF), nv75 = calcul("nevada", REF), ca75 = calcul("california", REF);
 
 /* --- les tableaux, produits par les generateurs generiques ---------------- */
 const gen = (script, arg) => execFileSync(process.execPath,
@@ -674,7 +674,7 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Oregon borders California, Idaho, Nevada and Washington; Idaho, Nevada and Washington are the three we publish so far.
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Oregon borders California, Idaho, Nevada and Washington, and we publish all four.
   For Oregon, the state-level deductions include income tax withholding for one allowance plus the three payroll deductions.</p>
   <div class="table-scroll">
     <table>
@@ -695,7 +695,7 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
     </table>
   </div>
   <p>A <a href="/paycheck-calculator/washington/">Washington</a> worker keeps ${N($$(wa75.net - a75.net))} more than an Oregon worker on the same salary, because Washington has no tax on wages, though it does take Paid Family and Medical Leave and WA Cares premiums. A
-  <a href="/paycheck-calculator/nevada/">Nevada</a> worker keeps ${N($$(nv75.net - a75.net))} more, and an <a href="/paycheck-calculator/idaho/">Idaho</a> worker keeps ${N($$(id75.net - a75.net))} more. A worker who lives in one of those states and commutes into Oregon is a different case that this calculator does not model: it assumes an Oregon resident working in Oregon.</p>
+  <a href="/paycheck-calculator/nevada/">Nevada</a> worker keeps ${N($$(nv75.net - a75.net))} more, and an <a href="/paycheck-calculator/idaho/">Idaho</a> worker keeps ${N($$(id75.net - a75.net))} more. A <a href="/paycheck-calculator/california/">California</a> worker also keeps ${N($$(ca75.net - a75.net))} more, with one allowance and after California&rsquo;s 1.3% disability insurance deduction. A worker who lives in one of those states and commutes into Oregon is a different case that this calculator does not model: it assumes an Oregon resident working in Oregon.</p>
 
 ${blocSources(CLE)}
 
@@ -706,6 +706,7 @@ ${blocSources(CLE)}
     <li><a href="/paycheck-calculator/washington/">Washington paycheck calculator</a> &mdash; the neighbor to the north, with no income tax on wages and two payroll premiums.</li>
     <li><a href="/paycheck-calculator/idaho/">Idaho paycheck calculator</a> &mdash; the neighbor to the east, with a flat state rate.</li>
     <li><a href="/paycheck-calculator/nevada/">Nevada paycheck calculator</a> &mdash; the neighbor to the southeast, with no state income tax.</li>
+    <li><a href="/paycheck-calculator/california/">California paycheck calculator</a> &mdash; the neighbor to the south, with withholding rates from 1.1% to 14.63% and a 1.3% disability insurance deduction.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
     with its official source, and what these calculators deliberately do not model.</li>
     <li><a href="/disclaimer/">Why your pay stub will differ</a> &mdash; pre-tax deductions,

@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20", "south-carolina": "2026-10-20", maine: "2026-10-21", "new-york": "2026-10-21" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20", "south-carolina": "2026-10-20", maine: "2026-10-21", "new-york": "2026-10-21", california: "2026-10-21" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1363,6 +1363,26 @@ const PAR_ETAT = {
       titre: "New York State Senate &mdash; Labor Law, Section 570, Payment of contributions (unemployment insurance)",
       quoi: "subdivision 6, which says an employee&rsquo;s agreement to pay any part of the employer&rsquo;s contribution is not valid and that no employer shall make a deduction for that purpose from an employee&rsquo;s pay",
       motif: ["no employer shall make a deduction for such purpose"] }
+  ],
+  /* California (21/10/2026) : edd.ca.gov repond 200 avec un User-Agent de navigateur ; le DE 44 (PDF, 132 pages) porte la Methode B, la SDI et les taux de retenue sur primes. Texte local : .tooling/sources/california-*. */
+  california: [
+    { type: "document",
+      url: "https://edd.ca.gov/siteassets/files/pdf_pub_ctr/de44.pdf",
+      titre: "California Employment Development Department &mdash; DE 44, California Employer&rsquo;s Guide, 2026 (PDF)",
+      quoi: "Method B, the exact calculation method for state income tax withholding (a standard deduction of $5,706 or $11,412, the annual tax rate tables from 1.1%, and a $168.30 credit for each allowance), the 2026 State Disability Insurance rate of 1.3% with no wage limit, and the flat rates for bonuses and other supplemental wages",
+      motif: ["Exact Calculation Method", "Standard Deduction Table"] },
+    { type: "document",
+      url: "https://edd.ca.gov/siteassets/files/pdf_pub_ctr/de4.pdf",
+      titre: "California Employment Development Department &mdash; DE 4, Employee&rsquo;s Withholding Allowance Certificate (PDF)",
+      quoi: "the three filing-status boxes (&ldquo;Single or Married (with two or more incomes),&rdquo; &ldquo;Married (one income)&rdquo; and &ldquo;Head of Household&rdquo;), the allowances for yourself, your spouse and your dependents, the $168.30 for each allowance, and the rule that an employer without a completed form must use Single with zero allowances",
+      motif: ["Married (one income)", "Head of Household", "$168.30"] },
+    { type: "document",
+      url: "https://edd.ca.gov/en/payroll_taxes/rates_and_withholding/",
+      titre: "California Employment Development Department &mdash; Payroll tax rates and withholding schedules",
+      quoi: "the 2026 State Disability Insurance withholding rate of 1.3 percent on all wages, and the two withholding methods, the wage bracket table method and the exact calculation method",
+      motif: ["The SDI withholding rate for 2026 is 1.3 percent", "Exact Calculation Method"] },
+    { type: "agence", url: "https://edd.ca.gov/en/payroll_taxes/",
+      titre: "California Employment Development Department &mdash; Payroll taxes for employers" }
   ],
   iowa: [
     { type: "document",

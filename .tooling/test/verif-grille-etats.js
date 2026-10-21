@@ -51,7 +51,11 @@ const srv = http.createServer((q,r)=>{ let p=decodeURIComponent(q.url.split("?")
          navigation n'en a qu'un par Etat PUBLIE, jamais 50) : on la
          retrouve par ce compte, toujours independant du nom de classe et
          d'un Etat en particulier. */
-      const ul = [...document.querySelectorAll("ul")]
+      /* ⛔ Depuis le 21/10/2026 les 50 Etats sont publies : le menu de navigation (entete()) et la liste du pied de page
+         comptent EUX AUSSI 50 <li>, et le menu precede la grille dans le DOM. La grille est la seule liste de 50 <li>
+         a l'interieur de <main> (le menu et le pied de page sont hors de <main>). */
+      const racine = document.querySelector("main") || document;
+      const ul = [...racine.querySelectorAll("ul")]
         .find(u => u.querySelectorAll(":scope > li").length === 50);
       if(!ul) return {trouve:false};
       const cs=getComputedStyle(ul);

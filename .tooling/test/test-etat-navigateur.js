@@ -110,6 +110,15 @@ if (ETAT === "new-york") {
            { brut: 100000, statut: "headOfHousehold" }, { brut: 250000, statut: "marriedJoint" });
 }
 
+/* Californie : table de segments (constante imprimee + taux x exces), credit par allocation retranche apres le calcul (zero aux seuils d'exoneration), SDI sans plafond :
+   on encadre le seuil d'exoneration (18 896 $ celibataire, 37 791 $ marie et chef de famille), les bornes des tranches et le million. */
+if (ETAT === "california") {
+  CAS.push({ brut: 18896, statut: "single" }, { brut: 18897, statut: "single" }, { brut: 37791, statut: "marriedJoint" }, { brut: 37792, statut: "marriedJoint" },
+           { brut: 37791, statut: "headOfHousehold" }, { brut: 37792, statut: "headOfHousehold" }, { brut: 16785, statut: "single" }, { brut: 78430, statut: "single" },
+           { brut: 78431, statut: "single" }, { brut: 377185, statut: "single" }, { brut: 1005706, statut: "single" }, { brut: 1005707, statut: "single" },
+           { brut: 500000, statut: "single" }, { brut: 100000, statut: "headOfHousehold" }, { brut: 400000, statut: "marriedJoint" });
+}
+
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript",
                 ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon",
                 ".webmanifest": "application/manifest+json", ".xml": "application/xml" };

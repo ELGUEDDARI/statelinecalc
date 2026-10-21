@@ -409,8 +409,7 @@ ${faq.map(([n, a]) => `      <h3>${n}</h3>
     <ul class="linkgrid">
 ${grilleEtats}
     </ul>
-    <p class="caption">More states are being added; each one needs its own rates read from that
-    state's own agency before it appears here or in the comparator &mdash; see the
+    <p class="caption">${Object.keys(PUBLIES).length === 50 ? "All 50 states are published. Each state's rates were read from that state's own agency, and we re-read them every January" : "More states are being added; each one needs its own rates read from that state's own agency before it appears here or in the comparator"} &mdash; see the
     <a href="/paycheck-calculator/">state index</a>.</p>
 
     <p class="dates">Published 2026-09-12 &middot; Updated ${VERIFIE_LE}. Figures are read from

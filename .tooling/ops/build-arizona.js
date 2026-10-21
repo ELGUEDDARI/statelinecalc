@@ -86,16 +86,16 @@ const manque15 = impotFinal75 - a4(75000, 0.015);                   // 356.25
 const partImpot = impotFinal75 / 75000 * 100;                       // 1.975 %
 
 /* Voisins publies : Nevada, Utah, New Mexico, Colorado (Four Corners).
-   California n'est pas publie. */
+   California est publie depuis le 21/10/2026. */
 const REF = 75000;
-const COMPARE = [CLE, "nevada", "utah", "new-mexico", "colorado"];
-const NOMS = { [CLE]: "Arizona", nevada: "Nevada", utah: "Utah", "new-mexico": "New Mexico", colorado: "Colorado" };
+const COMPARE = [CLE, "california", "nevada", "utah", "new-mexico", "colorado"];
+const NOMS = { [CLE]: "Arizona", california: "California", nevada: "Nevada", utah: "Utah", "new-mexico": "New Mexico", colorado: "Colorado" };
 const total = r => r.etat + r.paidLeave + r.waCares + r.programmes.reduce((t, p) => t + p.montant, 0);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const nv75 = calcul("nevada", REF), ut75 = calcul("utah", REF), nm75 = calcul("new-mexico", REF), co75 = calcul("colorado", REF);
+const nv75 = calcul("nevada", REF), ut75 = calcul("utah", REF), nm75 = calcul("new-mexico", REF), co75 = calcul("colorado", REF), ca75 = calcul("california", REF);
 
 const $ = n => "$" + c0(n);
 const $$ = n => "$" + c2(n);
@@ -674,8 +674,8 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates, against four states around Arizona
-  that we publish (Colorado meets it only at the Four Corners point). California is not on this site yet. Arizona is shown at the ${N("2.0%")} default.</p>
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates, against five states around Arizona
+  that we publish (Colorado meets it only at the Four Corners point). Arizona is shown at the ${N("2.0%")} default.</p>
   <div class="table-scroll">
     <table>
       <caption class="caption caption-left">
@@ -698,8 +698,8 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
   worker keeps ${N($$(nv75.net - a75.net))} more than an Arizonan at the default on the same salary.
   <a href="/paycheck-calculator/new-mexico/">New Mexico</a> leaves ${N($$(a75.net - nm75.net))} less,
   <a href="/paycheck-calculator/utah/">Utah</a> ${N($$(a75.net - ut75.net))} less and
-  <a href="/paycheck-calculator/colorado/">Colorado</a> ${N($$(a75.net - co75.net))} less. If you chose
-  ${N("3.5%")} on Form A-4, Arizona would take ${N($$(a4(75000, 0.035)))}, still less than any of those three
+  <a href="/paycheck-calculator/colorado/">Colorado</a> ${N($$(a75.net - co75.net))} less. <a href="/paycheck-calculator/california/">California</a> leaves ${N($$(a75.net - ca75.net))} less, with a progressive schedule and a 1.3% disability insurance deduction. If you chose
+  ${N("3.5%")} on Form A-4, Arizona would take ${N($$(a4(75000, 0.035)))}, still less than any of those four
   states withholds.</p>
 
 ${blocSources(CLE)}
@@ -708,6 +708,8 @@ ${blocSources(CLE)}
   <ul>
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/california/">California paycheck calculator</a> &mdash; the neighbor
+    to the west, with a progressive withholding schedule and a disability insurance deduction on every dollar of pay.</li>
     <li><a href="/paycheck-calculator/nevada/">Nevada paycheck calculator</a> &mdash; the neighbor
     that takes no state income tax from wages.</li>
     <li><a href="/paycheck-calculator/utah/">Utah paycheck calculator</a> &mdash; a neighboring
@@ -780,12 +782,12 @@ if (!OPTIONS.some(p => Math.abs(p - DEFAUT) < 1e-9)) {
   console.error("ARRET : le defaut n'est pas l'un des sept choix du A-4"); process.exit(2);
 }
 /* Les phrases de la page qui donnent une DIRECTION sont verifiees ici. */
-if (!(nv75.net > a75.net && a75.net > nm75.net && a75.net > ut75.net && a75.net > co75.net)) {
+if (!(nv75.net > a75.net && a75.net > nm75.net && a75.net > ut75.net && a75.net > co75.net && a75.net > ca75.net)) {
   console.error("ARRET : la comparaison avec les voisins n'a plus la forme ecrite dans la page");
   process.exit(2);
 }
-if (!(a4(75000, 0.035) < Math.min(total(calcul("new-mexico", REF)), total(calcul("utah", REF)), total(calcul("colorado", REF))))) {
-  console.error("ARRET : « 3.5 % ... still less than any of those three » est faux");
+if (!(a4(75000, 0.035) < Math.min(total(calcul("new-mexico", REF)), total(calcul("utah", REF)), total(calcul("colorado", REF)), total(calcul("california", REF))))) {
+  console.error("ARRET : « 3.5 % ... still less than any of those four » est faux");
   process.exit(2);
 }
 if (nv75.etat !== 0 || (R.states.nevada.employeePrograms || []).length) {

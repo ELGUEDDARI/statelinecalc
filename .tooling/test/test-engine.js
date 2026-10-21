@@ -770,8 +770,8 @@ check("AR : aucun programme salarie retenu (assurance chomage employeur seul)",
   (R.states.arkansas.employeePrograms || []).length, 0, 0);
 check("AR : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("arkansas", 5000).etat >= 0 ? 1 : 0, 1, 0);
-check("AR : la table de segments (bracketTable) n'existe que pour l'Arkansas, l'Oregon et New York (qui y rangent leurs constantes imprimees)",
-  Object.keys(R.states).filter(function (k) { return R.states[k].incomeTax.bracketTable; }).join() === "arkansas,oregon,new-york" ? 1 : 0,
+check("AR : la table de segments (bracketTable) n'existe que pour l'Arkansas, l'Oregon, New York et la Californie (qui y rangent leurs constantes imprimees)",
+  Object.keys(R.states).filter(function (k) { return R.states[k].incomeTax.bracketTable; }).join() === "arkansas,oregon,new-york,california" ? 1 : 0,
   1, 0);
 
 /* --- IDAHO ----------------------------------------------------------------
@@ -1771,9 +1771,9 @@ check("OR : continuite du bareme marie a 9 100 $, 22 800 $ et 250 000 $ (a 1 $ p
   (() => { const t = R.states.oregon.incomeTax.bracketTable.marriedJoint;
     const at = (i, x) => t[i].base + t[i].rate * (x - t[i].from);
     return Math.abs(at(0, 9100) - 432) < 1 && Math.abs(at(1, 22800) - 1357) < 1 && Math.abs(at(2, 250000) - 21237) < 1 ? 1 : 0; })(), 1, 0);
-check("OR : seuls l'Oregon et l'Alabama (sans plafond) portent federalTaxSubtraction ; l'Oregon et l'Iowa, withholdingAllowances ; l'Oregon seul, un programme perHour",
+check("OR : seuls l'Oregon et l'Alabama (sans plafond) portent federalTaxSubtraction ; l'Oregon, l'Iowa et la Californie, withholdingAllowances ; l'Oregon seul, un programme perHour",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.federalTaxSubtraction).join() === "oregon,alabama" &&
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.withholdingAllowances).join() === "oregon,iowa" &&
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.withholdingAllowances).join() === "oregon,iowa,california" &&
   Object.keys(R.states).filter(k => (R.states[k].employeePrograms || []).some(p => p.perHour !== undefined)).join() === "oregon" ? 1 : 0, 1, 0);
 
 /* Le moteur NAVIGATEUR (assets/calc-paycheck.js) et le moteur NODE (lib/paie.js)
@@ -3330,6 +3330,106 @@ check("NY : Table A, allocations, constantes imprimees et methode III == NYS-50-
         }
       }
   check("NY : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
+console.log("\n=== California (50e Etat) ===");
+/* =======================================================================
+   CALIFORNIA (50e et dernier Etat) - AUCUN mecanisme nouveau : standardDeduction par statut (Table 3 annuelle de la Methode B : 5 706 $ celibataire ;
+   11 412 $ marie a 2 allocations et chef de famille), bracketTable (Tables 5, 6 et 7 annuelles : base imprimee + taux x exces), withholdingAllowances
+   (Table 4 : 168,30 $ par allocation, retranche APRES le calcul ; 1 allocation celibataire, 2 marie et chef de famille) et un programme salarial sans plafond (SDI
+   1,3 %). Source (lue le 2026-10-21) : EDD, DE 44 Rev. 52 (4-26), pages 51 et 54 a 56 ; DE 4 Rev. 56 (1-26). Tous les attendus sont recalcules a la main,
+   PAS copies de la sortie du code.
+   ======================================================================= */
+const caC = (b, st, rp) => calcul("california", b, st || "single", rp || 0);
+
+/* Cas CA-1 - 75 000 $ celibataire. 75 000 - 5 706 = 69 294 ; tranche 57 542 a 72 724 : 2 186,15 + (69 294 - 57 542) x 8,8 % = 2 186,15 + 11 752 x 0,088 = 2 186,15 + 1 034,176 = 3 220,326 ;
+   moins 1 allocation (168,30) = 3 052,026. SDI 75 000 x 1,3 % = 975. Federal 7 670 ; SS 4 650 ; Medicare 1 087,50. Net = 75 000 - 7 670 - 4 650 - 1 087,50 - 3 052,026 - 975 = 57 565,474. */
+check("CA 75 000 $ celibataire : impot d'Etat", caC(75000).etat, 3052.026, 0.0005);
+check("CA 75 000 $ celibataire : SDI 1,3 %", caC(75000).programmes[0].montant, 975, 0.0005);
+check("CA 75 000 $ celibataire : net", caC(75000).net, 57565.474, 0.0005);
+
+/* Cas CA-2 - 75 000 $ marie (deduction 11 412, 2 allocations). 63 588 ; tranche 52 528 a 82 904 : 911,88 + (63 588 - 52 528) x 4,4 % = 911,88 + 11 060 x 0,044 = 911,88 + 486,64 = 1 398,52 ;
+   moins 2 x 168,30 = 336,60 -> 1 061,92. Federal 4 640. Net = 75 000 - 4 640 - 4 650 - 1 087,50 - 1 061,92 - 975 = 62 585,58. */
+check("CA 75 000 $ marie : impot d'Etat", caC(75000, "marriedJoint").etat, 1061.92, 0.0005);
+check("CA 75 000 $ marie : net", caC(75000, "marriedJoint").net, 62585.58, 0.0005);
+
+/* Cas CA-3 - 75 000 $ chef de famille (table chef de famille, 11 412, 2 allocations). 63 588 ; tranche 52 530 a 67 716 : 911,75 + (63 588 - 52 530) x 4,4 % = 911,75 + 11 058 x 0,044 = 911,75 + 486,552 = 1 398,302 ;
+   moins 336,60 = 1 061,702. Federal 5 748. Net = 75 000 - 5 748 - 4 650 - 1 087,50 - 1 061,702 - 975 = 61 477,798. */
+check("CA 75 000 $ chef de famille : impot d'Etat", caC(75000, "headOfHousehold").etat, 1061.702, 0.0005);
+check("CA 75 000 $ chef de famille : net", caC(75000, "headOfHousehold").net, 61477.798, 0.0005);
+
+/* Cas CA-4 - exoneration des bas revenus (Table 1) : a 18 896 $ la formule donne 13 190 -> 121,87 + 2,2 % x 2 111 = 168,312 ; moins 168,30 = 0,012 (le livret : « rien retenu » a ce seuil).
+   A 18 000 $ : 12 294 -> 121,87 + 0,022 x 1 215 = 148,60 < 168,30 -> 0. A 5 000 $ : 0. */
+check("CA 18 896 $ celibataire : au seuil d'exoneration, 0,012 $ (formule = exoneration a un centime)", caC(18896).etat, 0.012, 0.0005);
+check("CA 18 000 $ celibataire : sous le seuil, rien retenu", caC(18000).etat, 0, 0);
+check("CA 5 000 $ celibataire : rien retenu", caC(5000).etat, 0, 0);
+/* Marie a 37 791 $ : 26 379 -> 243,74 + 0,022 x 4 221 = 336,602 ; moins 336,60 = 0,002. */
+check("CA 37 791 $ marie : au seuil d'exoneration, 0,002 $", caC(37791, "marriedJoint").etat, 0.002, 0.0005);
+
+/* Cas CA-5 - 100 000 $ celibataire : 94 294 ; tranche 10,23 % a partir de 72 724 : 3 522,17 + 21 570 x 0,1023 = 3 522,17 + 2 206,611 = 5 728,781 ; moins 168,30 = 5 560,481. */
+check("CA 100 000 $ celibataire : tranche a 10,23 %", caC(100000).etat, 5560.481, 0.0005);
+/* Cas CA-6 - 250 000 $ celibataire : 244 294 ; 3 522,17 + 171 570 x 0,1023 = 3 522,17 + 17 551,611 = 21 073,781 ; moins 168,30 = 20 905,481. */
+check("CA 250 000 $ celibataire : tranche a 10,23 %", caC(250000).etat, 20905.481, 0.0005);
+/* Cas CA-7 - 500 000 $ celibataire : 494 294 ; tranche 12,43 % a partir de 445 771 : 42 502,09 + 48 523 x 0,1243 = 42 502,09 + 6 031,4089 = 48 533,4989 ; moins 168,30 = 48 365,1989. */
+check("CA 500 000 $ celibataire : tranche a 12,43 %", caC(500000).etat, 48365.1989, 0.0005);
+/* Cas CA-8 - 1 500 000 $ celibataire : 1 494 294 ; tranche 14,63 % a partir de 1 000 000 : 114 220,27 + 494 294 x 0,1463 = 114 220,27 + 72 315,2122 = 186 535,4822 ; moins 168,30 = 186 367,1822. */
+check("CA 1 500 000 $ celibataire : tranche a 14,63 %", caC(1500000).etat, 186367.1822, 0.0005);
+/* Cas CA-9 - 400 000 $ marie : 388 588 ; 7 044,33 + (388 588 - 145 448) x 0,1023 = 7 044,33 + 243 140 x 0,1023 = 7 044,33 + 24 873,222 = 31 917,552 ; moins 336,60 = 31 580,952. */
+check("CA 400 000 $ marie : tranche a 10,23 %", caC(400000, "marriedJoint").etat, 31580.952, 0.0005);
+/* Cas CA-10 - 120 000 $ chef de famille : 108 588 ; 3 978,08 + (108 588 - 98 990) x 0,1023 = 3 978,08 + 9 598 x 0,1023 = 3 978,08 + 981,8754 = 4 959,9554 ; moins 336,60 = 4 623,3554. */
+check("CA 120 000 $ chef de famille : tranche a 10,23 %", caC(120000, "headOfHousehold").etat, 4623.3554, 0.0005);
+
+/* Cas CA-11 - SDI : 1,3 % de TOUS les salaires, SANS plafond (SB 951) : 500 000 x 0,013 = 6 500 ; 1 000 000 x 0,013 = 13 000 (un plafond de 184 500 $ donnerait 2 398,50 $). */
+check("CA 500 000 $ : SDI sans plafond", caC(500000).programmes[0].montant, 6500, 0.0005);
+check("CA 1 000 000 $ : SDI sans plafond", caC(1000000).programmes[0].montant, 13000, 0.0005);
+
+/* Cas CA-12 - 401(k) 6 % sur 75 000 $ : salaire 70 500 ; 70 500 - 5 706 = 64 794 ; 2 186,15 + (64 794 - 57 542) x 0,088 = 2 186,15 + 7 252 x 0,088 = 2 186,15 + 638,176 = 2 824,326 ; moins 168,30 = 2 656,026.
+   Le SDI reste sur le BRUT (DE 44 : « Employee salary reduction contributions ... are generally included as subject wages ») : 975. */
+check("CA 75 000 $, 401(k) 6 % : impot d'Etat sur le salaire apres 401(k)", caC(75000, "single", 0.06).etat, 2656.026, 0.0005);
+check("CA 75 000 $, 401(k) 6 % : SDI sur le brut", caC(75000, "single", 0.06).programmes[0].montant, 975, 0.0005);
+
+/* Cas CA-13 - un seul programme salarial (SDI) ; ni PFML separee ni WA Cares. */
+check("CA : un seul programme salarial (SDI) et rien d'autre", caC(75000).programmes.length * 10 + caC(75000).paidLeave + caC(75000).waCares, 10, 0);
+
+/* Cas CA-14 - garde-fou : les donnees du moteur sont celles de la Methode B du DE 44 (Rev. 52 (4-26)). */
+check("CA : Table 3 / Table 4 / Tables 5 a 7 annuelles et SDI == DE 44 (4-26)",
+  (() => { const A = R.states.california.incomeTax, T = A.bracketTable;
+    const lignes = t => t.map(s => [s.from, s.base, s.rate]);
+    const attS = [[0, 0, 0.011], [11079, 121.87, 0.022], [26264, 455.94, 0.044], [41452, 1124.21, 0.066], [57542, 2186.15, 0.088], [72724, 3522.17, 0.1023],
+      [371479, 34084.81, 0.1133], [445771, 42502.09, 0.1243], [742953, 79441.81, 0.1353], [1000000, 114220.27, 0.1463]];
+    const attM = [[0, 0, 0.011], [22158, 243.74, 0.022], [52528, 911.88, 0.044], [82904, 2248.42, 0.066], [115084, 4372.3, 0.088], [145448, 7044.33, 0.1023],
+      [742958, 68169.6, 0.1133], [891542, 85004.17, 0.1243], [1000000, 98485.5, 0.1353], [1485906, 164228.58, 0.1463]];
+    const attH = [[0, 0, 0.011], [22173, 243.9, 0.022], [52530, 911.75, 0.044], [67716, 1579.93, 0.066], [83805, 2641.8, 0.088], [98990, 3978.08, 0.1023],
+      [505208, 45534.18, 0.1133], [606251, 56982.35, 0.1243], [1000000, 105925.35, 0.1353], [1010417, 107334.77, 0.1463]];
+    return JSON.stringify(lignes(T.single)) === JSON.stringify(attS) && JSON.stringify(lignes(T.marriedJoint)) === JSON.stringify(attM) &&
+      JSON.stringify(lignes(T.headOfHousehold)) === JSON.stringify(attH) &&
+      A.standardDeduction.single === 5706 && A.standardDeduction.marriedJoint === 11412 && A.standardDeduction.headOfHousehold === 11412 &&
+      A.withholdingAllowances.credit === 168.3 &&
+      JSON.stringify(A.withholdingAllowances.perFiler) === JSON.stringify({ single: 1, marriedJoint: 2, headOfHousehold: 2 }) &&
+      R.states.california.employeePrograms[0].rate === 0.013 && R.states.california.employeePrograms[0].wageCap === undefined &&
+      !A.personalExemption && !A.deductionByIncome && !A.federalTaxSubtraction && !A.noWithholdingBelow ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes des tranches x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 5706, 16785, 18896, 20000, 37791, 40000, 75000, 100000, 150000, 250000, 400000, 500000, 750000, 1000000, 1005706, 1500000, 3000000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "california", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("california", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("CA : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

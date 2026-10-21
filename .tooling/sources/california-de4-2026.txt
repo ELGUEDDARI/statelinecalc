@@ -1,0 +1,276 @@
+                                                                                                                  Clear Form
+
+                                Employee's Withholding Allowance Certificate
+
+Complete this form so that your employer can withhold the correct California state income tax from your pay.
+
+Personal Information
+
+First, Middle, Last Name                                           Social Security Number
+
+Address                         State ZIP Code                     Filing Status
+City
+                                                                        Single or Married (with two or more incomes)
+                                                                        Married (one income)
+                                                                        Head of Household
+
+1. Use Worksheet A for Regular Withholding allowances. Use other worksheets on the following pages as applicable.
+
+1a. Number of Regular Withholding Allowances (Worksheet A)
+
+1b. Number of allowances from the Estimated Deductions (Worksheet B)
+
+1c. Total Number of Allowances you are claiming
+
+2. Additional amount, if any, you want withheld each pay period (if employer agrees), (Worksheet C)
+
+OR
+
+Exemption from Withholding
+
+3. I claim exemption from withholding for 2026, and I certify I meet both conditions for exemption.               (Check box here)
+
+OR
+
+4. I certify under penalty of perjury that I am not subject to California withholding. I meet the conditions set
+
+forth under the Service Member Civil Relief Act, as amended by the Military Spouses Residency Relief Act
+
+and the Veterans Benefits and Transition Act of 2018.                                                             (Check box here)
+
+Under penalty of perjury, I certify that the number of withholding allowances claimed on this certificate does not exceed the number to
+which I am entitled or, if claiming exemption from withholding, that I am entitled to claim the exempt status.
+
+Employee's Signature                                                                                 Date
+
+Employer's Section: Employer's Name and Address                    California Employer Payroll Tax Account Number
+
+The Employee's Withholding Allowance Certificate (DE 4) is for     1. You did not owe any federal and state income tax last year,
+                                                                         and
+California Personal Income Tax (PIT) withholding purposes
+only. The DE 4 is used to compute the amount of taxes to be        2. You do not expect to owe any federal and state income tax
+withheld from your wages, by your employer, to accurately reflect        this year.
+your state tax withholding obligation.
+                                                                   If you continue to qualify for the exempt filing status, a new DE 4
+As of January 1, 2020, the Employee's Withholding Allowance        designating exempt must be submitted by February 15 each year to
+Certificate (Form W-4) from the Internal Revenue Service (IRS)     continue your exemption. If you are not having federal and state
+is used for federal income tax withholding only. You must file     income tax withheld this year but expect to have a tax liability next
+the state form DE 4 to determine the appropriate California PIT    year, you are required to give your employer a new DE 4 by
+withholding.                                                       December 1.
+
+If you do not provide your employer a completed DE 4, your         Member Service Civil Relief Act: Under this act, as provided by the
+employer must use Single with Zero withholding allowance.          Military Spouses Residency Relief Act and the Veterans Benefits and
+                                                                   Transition Act of 2018, you may be exempt from California income
+Check Your Withholding: After your DE 4 takes effect, compare      tax withholding on your wages if
+the state income tax withheld with your estimated total annual
+tax. For state withholding, use the worksheets on this form.       (i) Your spouse is a member of the armed forces present in
+                                                                         California in compliance with military orders;
+
+Exemption From Withholding: If you wish to claim exempt,           (ii) You are present in California solely to be with your spouse;
+complete the federal Form W-4 and the state DE 4. You may                and
+claim exempt from withholding California income tax if you meet
+both of the following conditions for exemption:                    (iii) You maintain your domicile in another state.
+
+                                                                   If you claim exemption under this act, check the box on Line 4.
+                                                                   You may be required to provide proof of exemption upon request.
+
+DE 4 Rev. 56 (1-26) (INTERNET)                         Page 1 of 4                                                    CU
+The California Employer's Guide (DE 44) (edd.ca.gov/pdf_pub_ctr/de44.pdf) provides the income tax withholding tables.
+This publication can be found by visiting Payroll Taxes - Forms and Publications (edd.ca.gov/Payroll_Taxes/Forms_and_
+Publications.htm). To assist you in calculating your tax liability, visit the Franchise Tax Board (FTB) (ftb.ca.gov).
+
+If you need information on your last California Resident Income Tax Return (FTB Form 540), visit the FTB (ftb.ca.gov).
+
+Notification: The burden of proof rests with the             Penalty: You may be fined $500 if you file, with no
+employee to show the correct California income               reasonable basis, a DE 4 that results in less tax being
+tax withholding. Pursuant to section 4340-1(e) of            withheld than is properly allowable. Criminal penalties
+Title 22, California Code of Regulations (CCR) (govt.        apply for willfully supplying false or fraudulent information
+westlaw.com/calregs/Search/Index), the FTB or the EDD        or failing to supply information requiring an increase in
+may require an employer to submit a Form W-4 or DE 4         withholding. This is provided by section 13101 of the
+when such forms are necessary for the administration of the  California Unemployment Insurance Code (leginfo.
+withholding tax programs.                                    legislature.ca.gov/faces/codes.xhtml) and section 19176 of
+                                                             the Revenue and Taxation Code (leginfo.legislature.ca.gov/
+                                                             faces/codes.xhtml).
+
+DE 4 Rev. 56 (1-26) (INTERNET)  Page 2 of 4
+                                                                          Worksheets
+
+Instructions -- 1 -- Allowances*
+
+When determining your withholding allowances, you must consider your             Married But Not Living With Your Spouse: You may check the "Head of
+personal situation:                                                              Household" marital status box if you meet all of the following:
+-- Do you claim allowances for dependents or blindness?                          (1) Your spouse will not live with you at any time during the year;
+-- Will you itemize your deductions?                                             (2) You will furnish over half of the cost of maintaining a home for the
+-- Do you have more than one income coming into the household?
+                                                                                       entire year for yourself and your child or stepchild who qualifies as
+Two-Earners or Multiple Incomes: When earnings come from more                          your dependent; and
+than one source, under-withholding may occur. If you have a working              (3) You will file a separate return for the year.
+spouse or more than one job, it is best to check the box "Single or
+Married (with two or more incomes)." Figure the total number of                  Head of Household: To qualify, you must be unmarried or legally
+allowances you are entitled to claim on all jobs using only one DE 4 form.       separated from your spouse and pay more than 50 percent of the costs of
+Claim allowances with one employer.                                              maintaining a home for the entire year for yourself and your dependent(s)
+                                                                                 or other qualifying individuals. Cost of maintaining the home includes
+Do not claim the same allowances with more than one employer. Your               such items as rent, property insurance, property taxes, mortgage interest,
+withholding will usually be most accurate when all allowances are claimed        repairs, utilities, and cost of food. It does not include the individual's
+on the DE 4 filed for the highest paying job and zero allowances are             personal expenses or any amount which represents value of services
+claimed for the others.                                                          performed by a member of the household of the taxpayer.
+
+Worksheet A                                         Regular Withholding Allowances
+
+(A) Allowance for yourself -- enter 1                                                             (A)
+
+(B) Allowance for your spouse (if not separately claimed by your spouse) -- enter 1               (B)
+
+(C) Allowance for blindness -- yourself -- enter 1                                                (C)
+
+(D) Allowance for blindness -- your spouse (if not separately claimed by your spouse) -- enter 1  (D)
+
+(E) Allowance(s) for dependent(s) -- do not include yourself or your spouse                       (E)
+
+(F) Total -- add lines (A) through (E) above and enter on line 1a of the DE 4                     (F)
+
+Instructions -- 2 -- Additional Withholding Allowances (Optional)
+
+If you expect to itemize deductions on your California income tax return, you can claim additional withholding allowances. Use Worksheet B to determine
+whether your expected estimated deductions may entitle you to claim one or more additional withholding allowances. Use last year's FTB Form 540 as
+a model to calculate this year's withholding amounts.
+
+Do not include deferred compensation, qualified pension payments, or flexible benefits, etc., that are deducted from your gross pay but are not taxed on
+this worksheet.
+
+You may reduce the amount of tax withheld from your wages by claiming one additional withholding allowance for each $1,000, or fraction of $1,000, by
+which you expect your estimated deductions for the year to exceed your allowable standard deduction.
+
+Worksheet B                                         Estimated Deductions
+
+Use this worksheet only if you plan to itemize deductions, claim certain adjustments to income, or have a large amount of nonwage income not subject
+
+to withholding.
+
+1. Enter an estimate of your itemized deductions for California taxes for this tax year as listed in the schedules in the FTB Form 540 1.
+
+2. Enter $11,412 if married filing joint with two or more allowances, unmarried head of household, or qualifying widow(er)
+     with dependent(s) or $5,706 if single or married filing separately, dual income married, or married with multiple employers ­ 2.
+
+3. Subtract line 2 from line 1, enter difference                                                  = 3.
+
+4. Enter an estimate of your adjustments to income (alimony payments, IRA deposits)               + 4.
+
+5. Add line 4 to line 3, enter sum                                                                = 5.
+
+6. Enter an estimate of your nonwage income (dividends, interest income, alimony receipts)        ­ 6.
+
+7. If line 5 is greater than line 6 (if less, see below [go to line 9]);                          = 7.
+     Subtract line 6 from line 5, enter difference
+
+8. Divide the amount on line 7 by $1,000, round any fraction to the nearest whole number          8.
+
+enter this number on line 1b of the DE 4. Complete Worksheet C, if needed, otherwise stop here.
+
+9. If line 6 is greater than line 5;
+
+Enter amount from line 6 (nonwage income)                                                         9.
+
+10. Enter amount from line 5 (deductions)                                                         10.
+
+11. Subtract line 10 from line 9, enter difference. Then, complete Worksheet C.                   11.
+
+*Wages paid to registered domestic partners will be treated the same for state income tax purposes as wages paid to spouses for California PIT
+withholding and PIT wages. This law does not impact federal income tax law. A registered domestic partner means an individual partner in a domestic
+partner relationship within the meaning of section 297 of the Family Code. For more information, call our Taxpayer Assistance Center at 1-888-745-3886.
+
+DE 4 Rev. 56 (1-26) (INTERNET)                                            Page 3 of 4
+Worksheet C                                         Additional Tax Withholding and Estimated Tax
+
+1. Enter estimate of total wages for tax year 2026.                                                                               1.
+
+2. Enter estimate of nonwage income (line 6 of Worksheet B).                                                                      2.
+
+3. Add line 1 and line 2. Enter sum.                                                                                              3.
+
+4. Enter itemized deductions or standard deduction (line 1 or 2 of Worksheet B, whichever is largest).                            4.
+
+5. Enter adjustments to income (line 4 of Worksheet B).                                                                           5.
+
+6. Add line 4 and line 5. Enter sum.                                                                                              6.
+
+7. Subtract line 6 from line 3. Enter difference.                                                                                 7.
+
+8. Figure your tax liability for the amount on line 7 by using the 2026 tax rate schedules below.                                 8.
+
+9. Enter personal exemptions (line F of Worksheet A x $168.30).                                                                   9.
+
+10. Subtract line 9 from line 8. Enter difference.                                                                           10.
+
+11. Enter any tax credits. (See FTB Form 540).                                                                                    11.
+
+12. Subtract line 11 from line 10. Enter difference. This is your total tax liability.                                       12.
+
+13. Calculate the tax withheld and estimated to be withheld during 2026. Contact your employer to request
+
+the amount that will be withheld on your wages based on the marital status and number of withholding
+
+allowances you will claim for 2026. Multiply the estimated amount to be withheld by the number of pay
+
+periods left in the year. Add the total to the amount already withheld for 2026.                                             13.
+
+14. Subtract line 13 from line 12. Enter difference. If this is less than zero, you do not need to have additional
+
+taxes withheld.                                                                                                              14.
+
+15. Divide line 14 by the number of pay periods remaining in the year. Enter this figure on line 2 of the DE 4.              15.
+
+Note: Your employer is not required to withhold the additional amount requested on line 2 of your DE 4. If your employer does not agree to withhold the
+additional amount, you may increase your withholdings as much as possible by using the "single" status with "zero" allowances. If the amount withheld
+still results in an underpayment of state income taxes, you may need to file quarterly estimates on Form 540-ES with the FTB to avoid a penalty.
+
+                                      These Tables Are for Calculating Worksheet C and for 2026 Only
+
+               Single Persons, Dual Income Married                                                               Married Persons
+                or Married With Multiple Employers
+
+IF THE TAXABLE INCOME IS           COMPUTED TAX IS                                      IF THE TAXABLE INCOME IS           COMPUTED TAX IS
+                            OF AMOUNT OVER...                                                                       OF AMOUNT OVER...
+ OVER          BUT NOT                                   PLUS                            OVER       BUT NOT                                      PLUS
+                   OVER                                                                                 OVER
+       $0                    1.100%              $0           $0.00                            $0                    1.100%                  $0           $0.00
+$11,079           $11,079    2.200%       $11,079         $121.87                       $22,158       $22,158        2.200%           $22,158         $243.74
+$26,264          $26,264     4.400%       $26,264         $455.94                       $52,528       $52,528        4.400%           $52,528          $911.88
+$41,452          $41,452     6.600%       $41,452       $1,124.21                       $82,904       $82,904        6.600%           $82,904       $2,248.42
+                 $57,542     8.800%       $57,542       $2,186.15                                    $115,084        8.800%         $115,084        $4,372.30
+                            10.230%       $72,724       $3,522.17                                                   10.230%         $145,448        $7,044.33
+$57,542        $72,724      11.330%     $371,479      $34,084.81                        $115,084    $145,448        11.330%         $742,958      $68,169.60
+                            12.430%     $445,771      $42,502.09                                                    12.430%         $891,542      $85,004.17
+$72,724        $371,479     13.530%     $742,953      $79,441.81                        $145,448    $742,958        13.530%       $1,000,000      $98,485.50
+                            14.630%   $1,000,000     $114,220.27                                                    14.630%       $1,485,906     $164,228.58
+$371,479       $445,771                                                                 $742,958    $891,542
+
+  $445,771       $742,953                                                                 $891,542  $1,000,000
+  $742,953     $1,000,000                                                               $1,000,000  $1,485,906
+$1,000,000                                                                              $1,485,906
+                  and over                                                                             and over
+
+               Unmarried/Head of Household
+
+IF THE TAXABLE INCOME IS           COMPUTED TAX IS
+                            OF AMOUNT OVER...
+      OVER      BUT NOT                                  PLUS
+                     OVER
+           $0                1.100%              $0           $0.00                     If you need information on your last California Resident Income Tax
+    $22,173        $22,173   2.200%       $22,173         $243.90                       Return, FTB Form 540, visit FTB (ftb.ca.gov).
+    $52,530        $52,530   4.400%       $52,530          $911.75
+    $67,716        $67,716   6.600%       $67,716       $1,579.93
+    $83,805        $83,805   8.800%       $83,805       $2,641.80
+    $98,990        $98,990  10.230%       $98,990       $3,978.08
+  $505,208       $505,208   11.330%     $505,208      $45,534.18
+  $606,251       $606,251   12.430%     $606,251      $56,982.35
+$1,000,000     $1,000,000   13.530%   $1,000,000     $105,925.35
+$1,010,417     $1,010,417   14.630%   $1,010,417     $107,334.77
+                  and over
+
+The DE 4 information is collected for purposes of administering the PIT law and under the authority of Title 22, CCR, section 4340-1, and the California
+Revenue and Taxation Code, including section 18624. The Information Practices Act of 1977 requires that individuals be notified of how information they
+provide may be used. More information is in the instructions that came with your last California resident income tax return.
+
+DE 4 Rev. 56 (1-26) (INTERNET)                                       Page 4 of 4
+

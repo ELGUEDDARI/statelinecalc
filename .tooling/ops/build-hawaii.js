@@ -119,8 +119,8 @@ const ligneTranches = BANDES.map((b, i) => {
 const faq = [
   ["What is the Hawaii income tax rate in 2026?",
    "Hawaii does not have one rate. It has " + NB_TRANCHES + " brackets running from "
-   + TAUX_BAS.toFixed(2) + "% to " + TAUX_HAUT.toFixed(2) + "%, which is the widest range of any "
-   + "state published here. For a single filer the top " + TAUX_HAUT.toFixed(0) + "% rate does not "
+   + TAUX_BAS.toFixed(2) + "% to " + TAUX_HAUT.toFixed(2) + "%. "
+   + "For a single filer the top " + TAUX_HAUT.toFixed(0) + "% rate does not "
    + "begin until " + $(SEUIL_HAUT) + " of taxable income. The brackets come from Act 46, Session "
    + "Laws of Hawaii 2024, in the block that applies to taxable years beginning after December 31, "
    + "2024 - which covers both 2025 and 2026."],
@@ -284,8 +284,7 @@ ${entete("paycheck")}
 
   <div class="answer">
     <p>Hawaii taxes income across <strong>${NB_TRANCHES} brackets</strong>, from
-    ${N(TAUX_BAS.toFixed(2) + "%")} to ${N(TAUX_HAUT.toFixed(2) + "%")} &mdash; the widest range of
-    any state on this site. The top rate does not start until ${N($(SEUIL_HAUT))} of taxable income
+    ${N(TAUX_BAS.toFixed(2) + "%")} to ${N(TAUX_HAUT.toFixed(2) + "%")}. The top rate does not start until ${N($(SEUIL_HAUT))} of taxable income
     for a single filer, so almost nobody pays it. On ${N($(75000))}, a single filer pays
     ${N($$(a75.etat))} to the state &mdash; ${N(eff75.toFixed(2) + "%")} of gross pay, not 11% &mdash;
     and keeps about ${N($(a75.net))} a year.</p>
@@ -378,8 +377,8 @@ ${blocChecklist()}
   <div class="prose">
 
     <h2>How this calculator works</h2>
-    <p>Hawaii runs the most detailed income tax schedule of any state published here:
-    <strong>${NB_TRANCHES} brackets</strong> where most states now use one or two. That detail is
+    <p>Hawaii runs a detailed income tax schedule:
+    <strong>${NB_TRANCHES} brackets</strong>, where 13 of the 50 states we publish use a single rate. That detail is
     the reason the headline rate misleads so badly. An ${TAUX_HAUT.toFixed(0)}% top rate sounds
     punishing, but it applies only to taxable income above ${N($(SEUIL_HAUT))} for a single filer,
     and the eleven bands underneath it do the actual work.</p>
@@ -561,7 +560,7 @@ ${blocLimites()}
   filer, from ${N($(DED_AVANT * 2))} to ${N($(DED_M))} for a couple filing jointly, and to
   ${N($(DED_H))} for head of household. It is written into the statute as a schedule rather than a
   single change: the deduction rises again in 2028, 2030 and 2031, reaching ${N("$12,000")} single
-  by then. This is the single largest change to a Hawaii paycheck this year.</p>
+  by then.</p>
 
   <h3>${NB_TRANCHES} brackets, and the top one almost never applies</h3>
   <p>Hawaii's ${TAUX_HAUT.toFixed(0)}% top rate is among the highest state rates in the country and
@@ -689,7 +688,7 @@ ${voisins.map(v => {
     + `Hawaii worker on the same salary.</li>`;
 }).join("\n")}
   </ul>
-  <p>At ${N($(75000))} Hawaii takes more than any other state published here. That ranking is not
+  <p>At ${N($(75000))} Hawaii takes more than each of the states listed above. That ranking is not
   fixed, though: it comes from the brackets a ${N($(75000))} salary reaches, and lower down the
   scale Hawaii's newly doubled ${N($(DED))} deduction and its ${N(TAUX_BAS.toFixed(2) + "%")}
   opening band close much of the gap. The states that levy nothing at all remain in a category of

@@ -5308,6 +5308,125 @@ const RATES_2026 = {
         { label: "New York Paid Family Leave (0.432%)", rate: 0.00432, wageCap: 95348.76 },
         { label: "New York Disability Insurance (0.50%, max $0.60 a week)", rate: 0.005, wageCap: 6240 }
       ]
+    },
+
+    /* -----------------------------------------------------------------------
+       CALIFORNIA (ajoute le 2026-10-21) - 50e et DERNIER Etat. Retenue d'Etat par la METHODE B (« Exact Calculation Method ») de l'Employment
+       Development Department (EDD). AUCUN MECANISME NOUVEAU : `standardDeduction` par statut, `bracketTable` (constante imprimee + taux x (net - seuil)),
+       `withholdingAllowances` (credit par allocation retranche de l'impot APRES calcul, plafond de revenu infini : meme forme que l'Iowa), programme salarial sans plafond.
+       Sources (toutes lues le 2026-10-21 sur edd.ca.gov, HTTP 200 avec un User-Agent de navigateur ; pdftotext -layout + PyMuPDF, copies dans .tooling/sources/california-*) :
+       1. DE 44 « California Employer's Guide » 2026, « DE 44 Rev. 52 (4-26) (INTERNET) », https://edd.ca.gov/siteassets/files/pdf_pub_ctr/de44.pdf
+          (Last-Modified Fri, 17 Apr 2026 17:14:19 GMT, 132 pages). Page 51 (livret p. 43), « Method B - Exact Calculation Method » : « This method is
+          based upon applying a given percentage to the wages (after deductions) which fall within a taxable income class, adding to this product the
+          accumulated tax for all lower tax brackets; and then subtracting a tax credit based upon the number of allowances claimed on the Employee's
+          Withholding Allowance Certificate (Form W-4 or DE 4). » Etapes : « Subtract the standard deduction amount shown in Table 3 - Standard Deduction
+          Table to arrive at the employee's taxable income. », « Use Tables 5-28 - Tax Rate Table for the payroll period and marital status », « Subtract
+          the tax credit shown in Table 4 - Exemption Allowance Table from the computed tax liability to arrive at the amount of tax to be withheld. »
+          Pages 54 a 56 (livret p. 46 a 48), periode ANNUELLE : Table 3 « Standard Deduction Table » : $5,706 (« Single, Dual Income Married or Married with
+          Multiple Employers » ; « Married - (Allowances on DE 4 of Form W-4) '0' or '1' ») ; $11,412 (« Married - ... '2' or more » ; « Unmarried Head of
+          Household ») ; Table 4 « Exemption Allowance Table » : $168.30 par allocation (annuel) ; Table 1 « Low Income Exemption Table » (annuel) : $18,896 /
+          $37,791 ; Tables 5, 6 et 7 (annuel, celibataire / marie / chef de famille), colonnes « If The Taxable Income Is Over / But Not Over / The Computed Tax is /
+          Of the Amount Over / Plus » : voir `bracketTable` ci-dessous, recopie ligne a ligne et RECOUPEE par verif-retenue-ca.js sur le texte extrait du PDF. Les
+          taux imprimes (1,1 %, 2,2 %, 4,4 %, 6,6 %, 8,8 %, 10,23 %, 11,33 %, 12,43 %, 13,53 %, 14,63 %) sont des taux de RETENUE, pas ceux de la declaration ;
+          le livret ne dit pas pourquoi. Le calculateur les applique tels qu'imprimes.
+          Exemples imprimes du livret (page 53) recoupes par verif-retenue-ca.js : « Example E: Semi-monthly earnings of $2,400, married, and claiming four
+          allowances » -> annuel 99,20 $ ; « Example F: Annual earnings of $57,000 ... married, and claiming four allowances » -> 86,00 $.
+          Page 3 : « The 2026 SDI withholding rate is 1.3 percent (.013), which provides for both State Disability Insurance (SDI) and Paid Family
+          Leave (PFL) benefits. » ; « There is no SDI taxable wage limit beginning January 1, 2024. » ; page 2 : « Effective January 1, 2024, Senate Bill 951 removed the
+          taxable wage limit and maximum withholdings for each employee subject to State Disability Insurance (SDI) contributions. » ; page 16 : « The SDI program is funded
+          through a payroll deduction from employees' wages. Employers withhold 1.3 percent (.013) for SDI on all subject wages paid to each employee in a calendar year. »
+          Page 22 : « Employee salary reduction contributions to a qualified retirement or pension plan are generally included as subject wages but are not reportable
+          as PIT wages. » -> le 401(k) reste soumis au SDI (et a la FICA) mais sort de la base de l'impot d'Etat (le moteur le fait deja). Page 26 : retenue sur
+          primes et options : « Bonuses and stock options 10.23 percent (.1023) » ; « Other types (such as overtime pay, commissions, sales awards, severance, and
+          vacation pay) 6.6 percent (.066) » (NON modelise, dit). Chomage (UI) et formation (ETT, 0,1 %) : taxes de l'EMPLOYEUR (page 16, « ETT is an employer-paid tax » ; « The UI program is funded through payroll taxes paid by the employer »).
+       2. https://edd.ca.gov/en/payroll_taxes/rates_and_withholding/ (HTTP 200, lu le 2026-10-21) : « The SDI withholding rate for 2026 is 1.3 percent. Effective January 1,
+          2024, all wages are subject to SDI contributions. » ; « If an employee does not give you a properly completed state DE 4, you must withhold state income taxes from
+          the employee's wages, as if the employee were single and claiming zero withholding allowances. »
+       3. FORMULAIRE DE 4 « Employee's Withholding Allowance Certificate », Rev. 56 (1-26), https://edd.ca.gov/siteassets/files/pdf_pub_ctr/de4.pdf (Last-Modified Wed, 31 Dec
+          2025 17:20:02 GMT) : cases d'etat civil « Single or Married (with two or more incomes) », « Married (one income) », « Head of Household » ; Worksheet A, « Allowance
+          for yourself -- enter 1 », « Allowance for your spouse (if not separately claimed by your spouse) -- enter 1 », « Allowance(s) for dependent(s) » ; Worksheet C, ligne 9 :
+          « Enter personal exemptions (line F of Worksheet A x $168.30). » ; « If you do not provide your employer a completed DE 4, your employer must use Single with Zero
+          withholding allowance. » Mapping du site : celibataire = case 1, 1 allocation (soi-meme) ; marie = case 2, 2 allocations (soi-meme + conjoint) ; chef de famille =
+          case 3, 2 allocations (soi-meme + une personne a charge : un chef de famille doit entretenir un foyer pour une personne a charge ou « other qualifying individuals »).
+          Les tables du livret traitent le chef de famille comme le marie a 2 allocations ou plus (meme deduction 11 412 $, meme exoneration 37 791 $).
+       4. EXONERATION DES BAS REVENUS (Table 1) : pour un salaire annuel <= 18 896 $ (celibataire, 1 allocation) ou <= 37 791 $ (marie ou chef de famille, 2 allocations) rien n'est
+          retenu. Avec ces allocations la FORMULE donne deja 0 a ces seuils (celibataire : (18 896 - 5 706) = 13 190 -> 121,87 + 2,2 % x 2 111 = 168,31 - 168,30 ~ 0 ; marie :
+          26 379 -> 243,74 + 2,2 % x 4 221 = 336,60 - 336,60 = 0), donc aucun mecanisme d'exoneration n'est ajoute ; verif-retenue-ca.js le controle.
+       5. TROUVAILLE (NOTRE lecture, a verifier par l'agence) : les tables par tranches de salaire du livret (Methode A) sont reproduites a quelques centimes par la formule
+          ci-dessous pour les tables hebdomadaire, semi-mensuelle et mensuelle, mais les tables MARIE BIMENSUELLE (Table 7) et MARIE JOURNALIERE (Table 16) ne le sont que si on
+          applique la deduction de 5 706 $ (annuelle) a TOUTES les allocations, alors que le livret imprime 11 412 $ (Table 3) a partir de 2 allocations. Le calculateur suit la
+          Methode B (Table 3).
+       6. NON MODELE : bonus et options (10,23 % / 6,6 %), allocations pour personnes a charge ou cecite, deductions estimees (Table 2), retenue supplementaire (DE 4, ligne 2),
+          exemption de retenue (DE 4, ligne 3), deuxieme emploi ou conjoint qui travaille (« Single » recommande par le livret), arrondi par paie, taxes locales (aucune lue),
+          Voluntary Plan, salaires >= 1 M$ pour la Methode A (la Methode B les couvre, le moteur aussi).
+       ----------------------------------------------------------------------- */
+    california: {
+      name: "California",
+      abbr: "CA",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Table 3 annuelle : 5 706 $ (celibataire) ; 11 412 $ (marie a 2 allocations, chef de famille). */
+        standardDeduction: {
+          single: 5706,
+          marriedJoint: 11412,
+          headOfHousehold: 11412
+        },
+        /* Pour l'affichage et le taux marginal ; le calcul passe par bracketTable (constantes imprimees). */
+        brackets: {
+          single:          [[11079, 0.011], [26264, 0.022], [41452, 0.044], [57542, 0.066], [72724, 0.088], [371479, 0.1023], [445771, 0.1133], [742953, 0.1243], [1000000, 0.1353], [Infinity, 0.1463]],
+          marriedJoint:    [[22158, 0.011], [52528, 0.022], [82904, 0.044], [115084, 0.066], [145448, 0.088], [742958, 0.1023], [891542, 0.1133], [1000000, 0.1243], [1485906, 0.1353], [Infinity, 0.1463]],
+          headOfHousehold: [[22173, 0.011], [52530, 0.022], [67716, 0.044], [83805, 0.066], [98990, 0.088], [505208, 0.1023], [606251, 0.1133], [1000000, 0.1243], [1010417, 0.1353], [Infinity, 0.1463]]
+        },
+        /* Tables 5, 6 et 7 de la Methode B (periode annuelle) : base imprimee + taux x (revenu imposable - seuil). */
+        bracketTable: {
+          single: [
+            { upTo: 11079, base: 0, rate: 0.011, from: 0 },
+            { upTo: 26264, base: 121.87, rate: 0.022, from: 11079 },
+            { upTo: 41452, base: 455.94, rate: 0.044, from: 26264 },
+            { upTo: 57542, base: 1124.21, rate: 0.066, from: 41452 },
+            { upTo: 72724, base: 2186.15, rate: 0.088, from: 57542 },
+            { upTo: 371479, base: 3522.17, rate: 0.1023, from: 72724 },
+            { upTo: 445771, base: 34084.81, rate: 0.1133, from: 371479 },
+            { upTo: 742953, base: 42502.09, rate: 0.1243, from: 445771 },
+            { upTo: 1000000, base: 79441.81, rate: 0.1353, from: 742953 },
+            { upTo: null, base: 114220.27, rate: 0.1463, from: 1000000 }
+          ],
+          marriedJoint: [
+            { upTo: 22158, base: 0, rate: 0.011, from: 0 },
+            { upTo: 52528, base: 243.74, rate: 0.022, from: 22158 },
+            { upTo: 82904, base: 911.88, rate: 0.044, from: 52528 },
+            { upTo: 115084, base: 2248.42, rate: 0.066, from: 82904 },
+            { upTo: 145448, base: 4372.30, rate: 0.088, from: 115084 },
+            { upTo: 742958, base: 7044.33, rate: 0.1023, from: 145448 },
+            { upTo: 891542, base: 68169.60, rate: 0.1133, from: 742958 },
+            { upTo: 1000000, base: 85004.17, rate: 0.1243, from: 891542 },
+            { upTo: 1485906, base: 98485.50, rate: 0.1353, from: 1000000 },
+            { upTo: null, base: 164228.58, rate: 0.1463, from: 1485906 }
+          ],
+          headOfHousehold: [
+            { upTo: 22173, base: 0, rate: 0.011, from: 0 },
+            { upTo: 52530, base: 243.90, rate: 0.022, from: 22173 },
+            { upTo: 67716, base: 911.75, rate: 0.044, from: 52530 },
+            { upTo: 83805, base: 1579.93, rate: 0.066, from: 67716 },
+            { upTo: 98990, base: 2641.80, rate: 0.088, from: 83805 },
+            { upTo: 505208, base: 3978.08, rate: 0.1023, from: 98990 },
+            { upTo: 606251, base: 45534.18, rate: 0.1133, from: 505208 },
+            { upTo: 1000000, base: 56982.35, rate: 0.1243, from: 606251 },
+            { upTo: 1010417, base: 105925.35, rate: 0.1353, from: 1000000 },
+            { upTo: null, base: 107334.77, rate: 0.1463, from: 1010417 }
+          ]
+        },
+        /* Table 4 annuelle : 168,30 $ de credit par allocation, retranche de l'impot apres calcul, a tous les salaires. Celibataire : 1 ; marie : 2 ; chef de famille : 2. */
+        withholdingAllowances: {
+          perFiler: { single: 1, marriedJoint: 2, headOfHousehold: 2 },
+          credit: 168.30,
+          noneAbove: { single: Infinity, marriedJoint: Infinity, headOfHousehold: Infinity }
+        }
+      },
+      /* SDI 2026 : 1,3 % de TOUS les salaires, sans plafond (SB 951, depuis le 1er janvier 2024) ; couvre aussi le Paid Family Leave. */
+      employeePrograms: [
+        { label: "California State Disability Insurance (1.30%)", rate: 0.013 }
+      ]
     }
   }
 };

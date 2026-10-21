@@ -172,6 +172,28 @@ function newYorkSelonLaLoi(salaire, statut) {
 }
 const newYorkProgrammes = salaire => Math.min(salaire, 1833.63 * 52) * 0.00432 + Math.min(salaire, 6240) * 0.005;
 
+/* ------------------------------------------------------------ CALIFORNIE --
+   EDD, DE 44 Rev. 52 (4-26), « Method B - Exact Calculation Method » (p. 51, 54 a 56), periode ANNUELLE : deduction standard (Table 3) 5 706 $ celibataire,
+   11 412 $ marie a 2 allocations et chef de famille ; tables 5, 6 et 7 (base imprimee + taux x exces) ; credit de 168,30 $ par allocation (Table 4), 1 allocation
+   celibataire, 2 marie et chef de famille. SDI : 1,3 % de TOUS les salaires, sans plafond (p. 2, 3 et 16). Ecrit a la main, sans paie.js. */
+function californieSelonLaLoi(salaire, statut) {
+  statut = statut || "single";
+  const net = salaire - (statut === "single" ? 5706 : 11412);
+  if (net <= 0) return 0;
+  const T = statut === "single"
+    ? [[11079, 0, 0, 0.011], [26264, 11079, 121.87, 0.022], [41452, 26264, 455.94, 0.044], [57542, 41452, 1124.21, 0.066], [72724, 57542, 2186.15, 0.088], [371479, 72724, 3522.17, 0.1023],
+       [445771, 371479, 34084.81, 0.1133], [742953, 445771, 42502.09, 0.1243], [1000000, 742953, 79441.81, 0.1353], [Infinity, 1000000, 114220.27, 0.1463]]
+    : statut === "married"
+    ? [[22158, 0, 0, 0.011], [52528, 22158, 243.74, 0.022], [82904, 52528, 911.88, 0.044], [115084, 82904, 2248.42, 0.066], [145448, 115084, 4372.30, 0.088], [742958, 145448, 7044.33, 0.1023],
+       [891542, 742958, 68169.60, 0.1133], [1000000, 891542, 85004.17, 0.1243], [1485906, 1000000, 98485.50, 0.1353], [Infinity, 1485906, 164228.58, 0.1463]]
+    : [[22173, 0, 0, 0.011], [52530, 22173, 243.90, 0.022], [67716, 52530, 911.75, 0.044], [83805, 67716, 1579.93, 0.066], [98990, 83805, 2641.80, 0.088], [505208, 98990, 3978.08, 0.1023],
+       [606251, 505208, 45534.18, 0.1133], [1000000, 606251, 56982.35, 0.1243], [1010417, 1000000, 105925.35, 0.1353], [Infinity, 1010417, 107334.77, 0.1463]];
+  let v = 0;
+  for (const [haut, bas, base, taux] of T) if (net <= haut) { v = base + (net - bas) * taux; break; }
+  return Math.max(0, v - (statut === "single" ? 1 : 2) * 168.30);
+}
+const californieProgrammes = salaire => salaire * 0.013;
+
 (async () => {
   console.log("\n=== OHIO : la prose et le tableau, contre ORC 5747.02 et 5747.025 ===");
   const oh = await get("https://statelinecalc.com/paycheck-calculator/ohio/");
@@ -422,6 +444,43 @@ const newYorkProgrammes = salaire => Math.min(salaire, 1833.63 * 52) * 0.00432 +
   present("la page dit que PFL et SDI sont un choix de l'employeur", nyTexte, "allowed, but not required");
   present("la page cite le taux de Yonkers de 16,75 %", nyTexte, "16.75%");
   present("la page dit « we found no » pour les autres taxes locales", nyTexte, "We found no others in the publications we read");
+
+  console.log("\n=== CALIFORNIE : la prose et le tableau, contre le DE 44 (Rev. 52 (4-26)), la Methode B et la SDI ===");
+  const ca = await get("https://statelinecalc.com/paycheck-calculator/california/");
+  const caTexte = ca.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+
+  check("impot d'Etat sur 75 000, celibataire (1 allocation)", 3052.03, californieSelonLaLoi(75000), 0.01);
+  check("impot d'Etat sur 75 000, marie (2 allocations)", 1061.92, californieSelonLaLoi(75000, "married"), 0.01);
+  check("impot d'Etat sur 75 000, chef de famille (2 allocations)", 1061.70, californieSelonLaLoi(75000, "hoh"), 0.01);
+  check("impot d'Etat sur 100 000", 5560.48, californieSelonLaLoi(100000), 0.01);
+  check("impot d'Etat sur 500 000 : tranche a 12,43 %", 48365.20, californieSelonLaLoi(500000), 0.01);
+  check("impot d'Etat sur 1 500 000 : tranche a 14,63 %", 186367.18, californieSelonLaLoi(1500000), 0.01);
+  check("SDI sur 75 000 : 1,3 %", 975, californieProgrammes(75000), 0.01);
+  check("SDI sur 500 000 : sans plafond", 6500, californieProgrammes(500000), 0.01);
+  check("a 18 000 $ : sous le seuil d'exoneration, zero", 0, californieSelonLaLoi(18000), 0.001);
+
+  /* Le tableau servi : colonne « CA state tax + disability insurance » = impot d'Etat + SDI. */
+  const caLignes = ca.split("<tr>").slice(1)
+    .map(b => [...b.matchAll(/<td[^>]*>(?:<strong>)?([^<]+)/g)].map(m => m[1].trim()))
+    .filter(c => c.length >= 6 && c[0].startsWith("$") && !c[0].includes("."));
+  let ecartsCa = 0;
+  for (const c of caLignes) {
+    const w = nb(c[0]), attendu = californieSelonLaLoi(w) + californieProgrammes(w);
+    if (Math.abs(nb(c[3]) - attendu) > 1) {
+      ecartsCa++;
+      console.log("  ECHEC | tableau California a " + c[0] + " : page " + c[3] + ", loi " + attendu.toFixed(2));
+    }
+  }
+  if (ecartsCa || caLignes.length < 25) fail++; else pass++;
+  console.log("  %s | les %d lignes du tableau servi contre la loi ecrite a la main", (ecartsCa || caLignes.length < 25) ? "ECHEC" : "OK   ", caLignes.length);
+
+  present("la page nomme le DE 44", caTexte, "DE 44");
+  present("la page dit que la SDI n'a pas de plafond depuis 2024", caTexte, "no taxable wage limit since January 1, 2024");
+  present("la page cite la loi SB 951", caTexte, "Senate Bill 951");
+  present("la page cite le credit de 168,30 $", caTexte, "$168.30");
+  present("la page cite le taux de 14,63 %", caTexte, "14.63%");
+  present("la page dit « we found none » pour les taxes locales", caTexte, "We found none in the guide we read");
+  present("la page presente la trouvaille des tables comme NOTRE lecture", caTexte, "In our reading");
 
   console.log("\n=== PROSE CONTRE LOI : " + pass + " OK, " + fail + " ECHEC ===\n");
   process.exit(fail === 0 ? 0 : 1);

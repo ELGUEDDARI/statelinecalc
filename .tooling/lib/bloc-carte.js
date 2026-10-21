@@ -71,14 +71,15 @@ function carteUsa(actif, options) {
     (nom === actif ? ' aria-current="page"' : "") + ">" + nom + "</a></li>").join("");
 
   const ou = avecListe ? "listed below the map" : "listed just below";
+  /* Les 50 Etats sont publies depuis le 21/10/2026 : « The rest are being added » serait faux. */
+  const complet = nbPublies === 50;
   return `<section class="bloc-carte">
   <h2>Pick your state</h2>
   <p class="bloc-carte-intro">Every state treats income differently, and nine of them do not tax
-  wages at all. ${nbPublies} states are live so far &mdash; they are shown in blue and ${ou}.
-  The rest are being added.</p>
+  wages at all. ${complet ? "All 50 states have a calculator here" : nbPublies + " states are live so far"} &mdash; they are shown in blue and ${ou}.${complet ? "" : " The rest are being added."}</p>
   <div class="carte-usa-wrap">
     <svg class="carte-usa" viewBox="0 0 ${CADRE.largeur} ${CADRE.hauteur}"
-         role="img" aria-label="Map of the United States. ${nbPublies} states have a paycheck calculator; they are ${ou}.">
+         role="img" aria-label="Map of the United States. ${complet ? "All 50 states" : nbPublies + " states"} have a paycheck calculator; they are ${ou}.">
 ${traces}
     </svg>
   </div>${avecListe ? `
