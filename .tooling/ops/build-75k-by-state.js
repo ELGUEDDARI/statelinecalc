@@ -350,7 +350,7 @@ ${entete(null)}
   <h2>${D} after tax, ranked by state</h2>
   <p>&ldquo;Other state deductions&rdquo; are the amounts a state takes from a pay stub that are
   not the state income tax &mdash; paid-leave and long-term-care premiums, mostly. They are why two states
-  with no income tax do not land on the same line.${IN_NOTE}</p>
+  with no income tax do not land on the same line. Where the employer decides whether to collect a premium, as in New York and Maine, the calculator takes the maximum.${IN_NOTE}</p>
 
   <div class="table-scroll">
     <table>

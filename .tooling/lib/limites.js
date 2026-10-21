@@ -195,6 +195,14 @@ const LOCAL_PAR_ETAT = {
     <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
     calculators.</li>`,
 
+  /* New York (21/10/2026) : les taxes locales EXISTENT (New York City, Yonkers) et la page les CHIFFRE sans les modeliser. */
+  "new-york": `    <li><strong>New York City and Yonkers income taxes</strong> &mdash; residents of New York City and Yonkers owe a local
+    income tax that the same Form IT-2104 tells an employer to withhold. This calculator adds no local line for New York, so
+    it shows New York State only. The page prices both local taxes by salary in a separate section, from the
+    state&rsquo;s own New York City and Yonkers withholding tables. The only local income tax lines in the calculators on this
+    site are on the <a href="/paycheck-calculator/indiana/">Indiana</a> and <a href="/paycheck-calculator/maryland/">Maryland</a>
+    pages.</li>`,
+
   indiana: `    <li><strong>Local taxes other than Indiana county income tax</strong> &mdash; any city income
     tax or school-district tax that may apply to you. This calculator does add one local line for Indiana, the county
     income tax, at the rate for the county you choose above. The only other local line on this site is on the

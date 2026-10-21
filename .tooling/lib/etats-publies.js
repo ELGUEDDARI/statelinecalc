@@ -53,6 +53,7 @@ const PUBLIES = {
   "New Hampshire": "new-hampshire",
   "New Jersey": "new-jersey",
   "New Mexico": "new-mexico",
+  "New York": "new-york",
   "North Carolina": "north-carolina",
   "North Dakota": "north-dakota",
   Ohio: "ohio",

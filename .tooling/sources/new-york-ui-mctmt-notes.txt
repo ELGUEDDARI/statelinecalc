@@ -1,0 +1,12 @@
+Lectures du 2026-10-21.
+
+1. CHOMAGE - New York Labor Law, article 18, section 570 « Payment of contributions ». nysenate.gov refuse curl (Cloudflare, HTTP 403) ; texte lu sur
+https://codes.findlaw.com/ny/labor-law/lab-sect-570/ (HTTP 200) et confirme par l'outil de lecture de pages sur
+https://www.nysenate.gov/legislation/laws/LAB/570 :
+ « 6. Agreement to contributions by employees void. No agreement by an employee to pay any portion of the payment made by his employer for the
+ purpose of providing benefits required by this article shall be valid and no employer shall make a deduction for such purpose from the remuneration of any employee. »
+ Subdivision 1 (lue par l'outil de lecture) : « Each employer liable under this article shall pay contributions on all wages paid by him. »
+
+2. MCTMT - https://www.tax.ny.gov/bus/mctmt/ (HTTP 200, NYS Department of Taxation and Finance) :
+ « The metropolitan commuter transportation mobility tax (MCTMT) is imposed on certain employers and self-employed individuals engaging in business within the
+ Metropolitan Commuter Transportation District (MCTD). »

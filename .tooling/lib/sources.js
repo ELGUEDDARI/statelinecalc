@@ -66,7 +66,7 @@ const VERIFIE_LE = "2026-09-30";
 /* Etats dont TOUS les liens (propres + federaux) ont ete re-controles plus tard que
    VERIFIE_LE : Minnesota, 06/10/2026 (HTTP 200 sur les 8 URL, dont les 3 federales ;
    texte des documents du Minnesota relu le meme jour). */
-const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20", "south-carolina": "2026-10-20", maine: "2026-10-21" };
+const VERIFIE_ETAT = { minnesota: "2026-10-06", indiana: "2026-10-06", oregon: "2026-10-06", "south-dakota": "2026-10-06", maryland: "2026-10-06", alabama: "2026-10-06", oklahoma: "2026-10-06", louisiana: "2026-10-06", iowa: "2026-10-07", kentucky: "2026-10-07", "west-virginia": "2026-10-13", delaware: "2026-10-13", missouri: "2026-10-20", kansas: "2026-10-20", connecticut: "2026-10-20", vermont: "2026-10-20", "south-carolina": "2026-10-20", maine: "2026-10-21", "new-york": "2026-10-21" };
 
 /* type "document" -> doit contenir `motif`, teste en machine.
    type "agence"   -> on ne promet rien sur son contenu.        */
@@ -1312,6 +1312,57 @@ const PAR_ETAT = {
       titre: "Maine Revised Statutes &mdash; Title 26, Section 1221, Contributions",
       quoi: "the rule that unemployment contributions are paid by each employer and may not be deducted, in whole or in part, from the wages of the employees",
       motif: ["may not be deducted, in whole or in part, from the wages of the employees"] }
+  ],
+  /* New York (21/10/2026) : www.tax.ny.gov repond avec un User-Agent de navigateur ; paidfamilyleave.ny.gov, dfs.ny.gov et nysenate.gov sont derriere un controle anti-robot (HTTP 403 pour curl) :
+     leur texte a ete lu par un outil de lecture de pages (voir .tooling/sources/new-york-pfl-2026-notes.txt et new-york-ui-mctmt-notes.txt) ; a RELIRE dans un navigateur. */
+  "new-york": [
+    { type: "document",
+      url: "https://www.tax.ny.gov/pdf/publications/withholding/nys50_t_nys.pdf",
+      titre: "New York State Department of Taxation and Finance &mdash; NYS-50-T-NYS, New York State Withholding Tax Tables and Methods, effective January 1, 2026 (PDF)",
+      quoi: "the exact calculation method (a combined deduction and exemption allowance of $7,400 or $7,950 plus $1,000 for each allowance, the annual tax rate schedule from 3.90%, and the top income tax rates method above $1,077,550 or $2,155,350), its worked examples and the printed wage-bracket tables",
+      motif: ["Annual Tax Rate Schedule", "Top Income Tax Rates Method"] },
+    { type: "document",
+      url: "https://www.tax.ny.gov/pdf/publications/withholding/nys50_t_nyc.pdf",
+      titre: "New York State Department of Taxation and Finance &mdash; NYS-50-T-NYC, New York City Withholding Tax Tables and Methods, effective January 1, 2026 (PDF)",
+      quoi: "the New York City resident tax withholding method (a $5,000 or $5,500 deduction, rates from 2.05% to 4.25%), its worked examples and the printed wage-bracket tables",
+      motif: ["Annual Tax Rate Schedule", "New York City"] },
+    { type: "document",
+      url: "https://www.tax.ny.gov/pdf/publications/withholding/nys50_t_y.pdf",
+      titre: "New York State Department of Taxation and Finance &mdash; NYS-50-T-Y, Yonkers Withholding Tax Tables and Methods, effective January 1, 2026 (PDF)",
+      quoi: "the Yonkers resident surcharge (16.75% of the New York State amount) and the Yonkers nonresident earnings tax (0.50%)",
+      motif: ["16.75%", "Nonresident Earnings Tax"] },
+    { type: "document",
+      url: "https://www.tax.ny.gov/pdf/current_forms/it/it2104_fill_in.pdf",
+      titre: "New York State Department of Taxation and Finance &mdash; Form IT-2104, Employee&rsquo;s Withholding Allowance Certificate (PDF)",
+      quoi: "the filing-status boxes (&ldquo;Single or Head of household,&rdquo; &ldquo;Married,&rdquo; &ldquo;Married, but withhold at higher single rate&rdquo;) and the note telling a single taxpayer with one job and no dependents to enter 0 allowances",
+      motif: ["Single or Head of household", "enter 0 on lines 1 and 2"] },
+    { type: "document",
+      url: "https://www.tax.ny.gov/pdf/current_forms/it/it2104i.pdf",
+      titre: "New York State Department of Taxation and Finance &mdash; IT-2104-I, Instructions for Form IT-2104 (PDF)",
+      quoi: "the allowances worksheet (one for each dependent and for certain credits, two for a head of household with one job) and the rule that you may not claim an allowance for yourself or your spouse",
+      motif: ["Head of household status and only one job", "You may not claim a withholding allowance for yourself"] },
+    { type: "agence", url: "https://www.tax.ny.gov/bus/wt/wtidx.htm",
+      titre: "New York State Department of Taxation and Finance &mdash; Withholding tax" },
+    { type: "document", url: "https://paidfamilyleave.ny.gov/2026",
+      titre: "New York Paid Family Leave &mdash; 2026 updates",
+      quoi: "the 2026 employee contribution of 0.432% of gross wages, the maximum annual contribution of $411.91 and the state average weekly wage of $1,833.63",
+      motif: ["0.432", "$411.91"] },
+    { type: "document", url: "https://www.dfs.ny.gov/apps-and-licensing/health-insurers/pfl-rate-decision-2026-page",
+      titre: "New York State Department of Financial Services &mdash; Paid Family Leave rate decision for 2026",
+      quoi: "the 2026 rate of 0.432% of an employee&rsquo;s wages and the maximum annual employee contribution of $411.91, in a decision dated August 29, 2025",
+      motif: ["0.432%", "$411.91"] },
+    { type: "document", url: "https://apps.wcb.ny.gov/content/main/DisabilityBenefits/employee-disability-benefits.jsp",
+      titre: "New York State Workers&rsquo; Compensation Board &mdash; Disability benefits for employees",
+      quoi: "the employee contribution of one half of one percent of wages, no more than 60 cents a week, and the statement that the employer is allowed, but not required, to collect it",
+      motif: ["allowed, but not required", "60 cents a week"] },
+    { type: "document", url: "https://www.tax.ny.gov/bus/mctmt/",
+      titre: "New York State Department of Taxation and Finance &mdash; Metropolitan commuter transportation mobility tax (MCTMT)",
+      quoi: "the statement that the tax is imposed on certain employers and self-employed individuals engaging in business within the Metropolitan Commuter Transportation District",
+      motif: ["imposed on certain employers"] },
+    { type: "document", url: "https://www.nysenate.gov/legislation/laws/LAB/570",
+      titre: "New York State Senate &mdash; Labor Law, Section 570, Payment of contributions (unemployment insurance)",
+      quoi: "subdivision 6, which says an employee&rsquo;s agreement to pay any part of the employer&rsquo;s contribution is not valid and that no employer shall make a deduction for that purpose from an employee&rsquo;s pay",
+      motif: ["no employer shall make a deduction for such purpose"] }
   ],
   iowa: [
     { type: "document",

@@ -604,6 +604,8 @@ ${blocSources("pennsylvania")}
   <ul>
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/new-york/">New York paycheck calculator</a> &mdash; the neighbor
+    to the north, with a withholding schedule that climbs in steps from 3.9%.</li>
     <li><a href="/paycheck-calculator/delaware/">Delaware paycheck calculator</a> &mdash; the neighbor
     to the southeast, with rates from 2.2% to 6.6% after a $3,250 standard deduction and a $110 credit for each exemption.</li>
     <li><a href="/paycheck-calculator/west-virginia/">West Virginia paycheck calculator</a> &mdash; the neighbor

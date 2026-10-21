@@ -5178,6 +5178,136 @@ const RATES_2026 = {
       employeePrograms: [
         { label: "Maine Paid Family & Medical Leave (0.50%)", rate: 0.005, wageCap: 184500 }
       ]
+    },
+
+    /* -----------------------------------------------------------------------
+       NEW YORK (ajoute le 2026-10-21) - 49e Etat. Retenue d'Etat par les TABLES DE LA METHODE II du NYS Department of Taxation and Finance.
+       AUCUN MECANISME NOUVEAU : `bracketTable` (Arkansas/Oregon) exprime exactement « constante imprimee + taux x (net - seuil) » ; deduction
+       standard + exemption personnelle existantes. Sources (toutes lues le 2026-10-21 sur www.tax.ny.gov, HTTP 200 avec un User-Agent de
+       navigateur ; pdftotext -layout + PyMuPDF, copies dans .tooling/sources/new-york-*) :
+       1. NYS-50-T-NYS « New York State Withholding Tax Tables and Methods », (1/26), « Effective January 1, 2026 - December 31, 2026 »,
+          https://www.tax.ny.gov/pdf/publications/withholding/nys50_t_nys.pdf (Last-Modified Mon, 03 Nov 2025 15:36:20 GMT, 23 pages).
+          Page 3, « General changes for 2026 » : « The 2026 New York State personal income tax rate schedules have been revised to reflect
+          certain income tax rate reductions enacted under Chapter 59 of the Laws of 2025 (Part A). Accordingly, effective for payrolls made on or
+          after January 1, 2026, employers must use the revised withholding tax tables and methods in this publication to calculate the amount of
+          New York State taxes to be withheld from employees. » Page 14, Table A « Combined deduction and exemption allowance (full year) » :
+          annuel, celibataire 7 400 $ (0 allocation), 8 400 $ (1)... ; marie 7 950 $, 8 950 $... ; Table C « Based on a full year exemption of
+          $1,000 ». Pages 16 et 18, methode II, etape 1 : « Subtract the total exemption and deduction amount from the wages to get net wages. »
+          et « Note: If the annualized amount of net wages is at least $1,077,550, then you must use Method III to determine the amount to
+          withhold. » (celibataire ; 2 155 350 $ marie). Pages 17 et 19, « Annual Tax Rate Schedule » (« Subtract column 3 amount from net wages.
+          Multiply the result by column 4 amount. Add the result to column 5 amount ») ; celibataire, colonnes 3 / 4 / 5 : 0 / 3,90 % / 0 ; 8 500 /
+          4,40 % / 332 ; 11 700 / 5,15 % / 472 ; 13 900 / 5,40 % / 586 ; 80 650 / 5,90 % / 4 190 ; 96 800 / 7,03 % / 5 143 ; 107 650 / 7,53 % /
+          5 906 ; 157 650 / 6,40 % / 9 673 ; 215 400 / 11,44 % / 13 369 ; 265 400 / 7,35 % / 19 091 (jusqu'a 1 077 550 $) ; marie : 0 / 3,90 % / 0 ;
+          8 500 / 4,40 % / 332 ; 11 700 / 5,15 % / 472 ; 13 900 / 5,40 % / 586 ; 80 650 / 5,90 % / 4 190 ; 96 800 / 6,57 % / 5 143 ; 107 650 /
+          7,07 % / 5 855 ; 157 650 / 8,01 % / 9 388 ; 211 550 / 6,40 % / 13 708 ; 323 200 / 13,49 % / 20 854 ; 373 200 / 7,35 % / 27 600 ;
+          1 077 550 / 7,65 % / 79 369 (jusqu'a 2 155 350 $). Ces taux « de retenue » (7,03 %, 11,44 %...) incluent la recuperation de la
+          tranche basse : ce sont les chiffres imprimes, pas les taux de la declaration. Page 22, methode III : « Multiply the amount of annualized
+          net wages from Step 1 by the decimal in column 3 » : 10,45 % de 1 077 550 $ (celibataire) ou 2 155 350 $ (marie) a 5 000 000 $ ; 11,10 %
+          jusqu'a 25 000 000 $ ; 11,70 % au-dela (sur TOUT le salaire net annualise, pas sur l'exces). Taux supplementaire des primes versees a part :
+          11,70 %. Les constantes par periode (hebdomadaire, etc.) sont les constantes annuelles / N, arrondies par l'agence ; verif-retenue-ny.js
+          les recoupe avec les 10 grilles imprimees.
+       2. FORMULAIRE ET INSTRUCTIONS IT-2104 (2026) : https://www.tax.ny.gov/pdf/current_forms/it/it2104_fill_in.pdf (Last-Modified Wed, 15 Oct 2025
+          21:30:41 GMT) : « Note: Single taxpayers with one job and zero dependents, enter 0 on lines 1 and 2 (if applicable). Married taxpayers
+          with or without dependents, heads of household or taxpayers that expect to itemize deductions or claim tax credits, or both, complete the
+          worksheet in the instructions. » ; cases « Single or Head of household » / « Married » / « Married, but withhold at higher single rate » ;
+          https://www.tax.ny.gov/pdf/current_forms/it/it2104i.pdf (IT-2104-I (2026), Last-Modified Wed, 15 Oct 2025 21:03:27 GMT) : « You may not
+          claim a withholding allowance for yourself or, if married, your spouse. » ; « Heads of households with only one job: If you will use the
+          head of household filing status on your state income tax return, mark the Single or Head of household box on Form IT-2104. If you have only
+          one job, you may also choose to claim two additional withholding allowances on line 15 of the worksheet. » ; ligne 15 : « Head of household
+          status and only one job: if applicable, enter 2 ». Le site : celibataire = 0 allocation (7 400 $), marie = 0 allocation (7 950 $, bareme
+          marie), chef de famille = bareme celibataire + 2 allocations (2 000 $ ; CHOIX permis, dit sur la page). Dependants, credits (lignes 6 a
+          14), deductions detaillees, deuxieme emploi, case « higher single rate » : NON modelises, dits.
+       3. CONGE FAMILIAL PAYE (PFL) 2026 : https://paidfamilyleave.ny.gov/2026 (Cloudflare : refuse curl/Playwright ; texte lu par l'outil de
+          lecture de pages le 2026-10-21) : « For 2026, employees will contribute 0.432 % of their gross wages per pay period » ; « a maximum annual
+          contribution of $411.91 » ; « the NYSAWW is $1,833.63 ». Decision de l'agence : NYS Department of Financial Services, « PFL rate decision 2026 »,
+          https://www.dfs.ny.gov/apps-and-licensing/health-insurers/pfl-rate-decision-2026-page : « The 2026 PFL rate will be set at 0.432% of an
+          employee's wages each pay period », « up to and not to exceed an annual maximum employee contribution of $411.91 », « Dated: August 29,
+          2025 ». Plafond de salaire : 411,91 / 0,00432 = 95 349 $ ; le site prend 1 833,63 $ x 52 = 95 348,76 $ (le plafond annuel retombe a
+          411,91 $). La contribution salariale est un CHOIX de l'employeur (« may be funded by employees through payroll deductions ») : le
+          calculateur applique le maximum, dit sur la page.
+       4. ASSURANCE INVALIDITE (DBL / SDI) : Workers' Compensation Board, https://apps.wcb.ny.gov/content/main/DisabilityBenefits/employee-disability-benefits.jsp
+          (HTTP 200, lu le 2026-10-21) : « Your employer is allowed, but not required, to take a contribution from you to offset the cost of
+          providing disability benefits. Your contribution is calculated at the rate of one half of one percent of your wages, but no more than 60
+          cents a week (WCL §209). » ; « If you have more than one job at the same time, with combined wages of more than $120 per week... ».
+          0,60 $ x 52 = 31,20 $ par an = 0,5 % de 6 240 $ : le site applique 0,5 % jusqu'a 6 240 $ de salaire annuel.
+       5. NEW YORK CITY (NON MODELISEE, chiffree sur la page) : NYS-50-T-NYC (1/26), https://www.tax.ny.gov/pdf/publications/withholding/nys50_t_nyc.pdf
+          (Last-Modified Mon, 03 Nov 2025 15:37:46 GMT) : Table A annuelle 5 000 $ celibataire / 5 500 $ marie (+ 1 000 $ par allocation) ; « Annual
+          Tax Rate Schedule » (celibataire et marie) : 0 / 2,05 % / 0 ; 8 000 / 2,80 % / 164 ; 8 700 / 3,25 % / 184 ; 15 000 / 3,95 % / 388 ; 25 000 /
+          4,15 % / 783 ; 60 000 / 4,25 % / 2 236 ; prime separee : 4,25 %. YONKERS (NON MODELISEE) : NYS-50-T-Y (1/26), .../nys50_t_y.pdf
+          (Last-Modified Mon, 03 Nov 2025 15:34:45 GMT) : « Multiply the result by 16.75% (0.1675). Withhold the resulting product from wages. » (resident
+          surtax) ; non-residents : « applies the tax rate of 0.50% (0.0050) to the wages remaining after the allowed exclusion ». MCTMT : employeur
+          seul, non lu a la source, la page ne le chiffre pas. CHOMAGE : a la charge de l'employeur (non relu ici : la page dit « we found none »).
+       6. NON MODELE : NYC, Yonkers, dependants, credits, deuxieme emploi, « higher single rate », lignes 3 a 5 (retenue supplementaire), exonerations,
+          primes versees a part (11,70 %), non-residents, arrondi par paie, pre-tax NY (Section 125, transit).
+       ----------------------------------------------------------------------- */
+    "new-york": {
+      name: "New York",
+      abbr: "NY",
+      incomeTax: {
+        hasIncomeTax: true,
+        /* Table A annuelle a 0 allocation : 7 400 $ (celibataire, chef de famille) / 7 950 $ (marie). */
+        standardDeduction: {
+          single: 7400,
+          marriedJoint: 7950,
+          headOfHousehold: 7400
+        },
+        /* Allocations de l'IT-2104 : 1 000 $ chacune. Celibataire : 0 ; marie sans personne a charge : 0 ; chef de famille avec un emploi : 2 (ligne 15). */
+        personalExemption: {
+          single: 0,
+          marriedJoint: 0,
+          headOfHousehold: 2000
+        },
+        /* Pour l'affichage et le taux marginal ; le calcul passe par bracketTable (constantes imprimees). */
+        brackets: {
+          single:          [[8500, 0.039], [11700, 0.044], [13900, 0.0515], [80650, 0.054], [96800, 0.059], [107650, 0.0703], [157650, 0.0753], [215400, 0.064], [265400, 0.1144], [1077550, 0.0735], [5000000, 0.1045], [25000000, 0.111], [Infinity, 0.117]],
+          marriedJoint:    [[8500, 0.039], [11700, 0.044], [13900, 0.0515], [80650, 0.054], [96800, 0.059], [107650, 0.0657], [157650, 0.0707], [211550, 0.0801], [323200, 0.064], [373200, 0.1349], [1077550, 0.0735], [2155350, 0.0765], [5000000, 0.1045], [25000000, 0.111], [Infinity, 0.117]],
+          headOfHousehold: [[8500, 0.039], [11700, 0.044], [13900, 0.0515], [80650, 0.054], [96800, 0.059], [107650, 0.0703], [157650, 0.0753], [215400, 0.064], [265400, 0.1144], [1077550, 0.0735], [5000000, 0.1045], [25000000, 0.111], [Infinity, 0.117]]
+        },
+        /* « Annual Tax Rate Schedule » imprime (NYS-50-T-NYS p. 17 et 19) : base + taux x (net - seuil). Les bornes hautes sont a 0,01 $ sous le
+           seuil suivant (« at least / but less than »). Au-dela de 1 077 550 $ (celibataire) ou 2 155 350 $ (marie), methode III : le taux
+           s'applique au salaire net annualise TOUT ENTIER (base 0, depart 0). */
+        bracketTable: (() => {
+          const celibataire = [
+            { upTo: 8499.99, base: 0, rate: 0.039, from: 0 },
+            { upTo: 11699.99, base: 332, rate: 0.044, from: 8500 },
+            { upTo: 13899.99, base: 472, rate: 0.0515, from: 11700 },
+            { upTo: 80649.99, base: 586, rate: 0.054, from: 13900 },
+            { upTo: 96799.99, base: 4190, rate: 0.059, from: 80650 },
+            { upTo: 107649.99, base: 5143, rate: 0.0703, from: 96800 },
+            { upTo: 157649.99, base: 5906, rate: 0.0753, from: 107650 },
+            { upTo: 215399.99, base: 9673, rate: 0.064, from: 157650 },
+            { upTo: 265399.99, base: 13369, rate: 0.1144, from: 215400 },
+            { upTo: 1077549.99, base: 19091, rate: 0.0735, from: 265400 },
+            { upTo: 4999999.99, base: 0, rate: 0.1045, from: 0 },
+            { upTo: 24999999.99, base: 0, rate: 0.111, from: 0 },
+            { upTo: null, base: 0, rate: 0.117, from: 0 }
+          ];
+          const marie = [
+            { upTo: 8499.99, base: 0, rate: 0.039, from: 0 },
+            { upTo: 11699.99, base: 332, rate: 0.044, from: 8500 },
+            { upTo: 13899.99, base: 472, rate: 0.0515, from: 11700 },
+            { upTo: 80649.99, base: 586, rate: 0.054, from: 13900 },
+            { upTo: 96799.99, base: 4190, rate: 0.059, from: 80650 },
+            { upTo: 107649.99, base: 5143, rate: 0.0657, from: 96800 },
+            { upTo: 157649.99, base: 5855, rate: 0.0707, from: 107650 },
+            { upTo: 211549.99, base: 9388, rate: 0.0801, from: 157650 },
+            { upTo: 323199.99, base: 13708, rate: 0.064, from: 211550 },
+            { upTo: 373199.99, base: 20854, rate: 0.1349, from: 323200 },
+            { upTo: 1077549.99, base: 27600, rate: 0.0735, from: 373200 },
+            { upTo: 2155349.99, base: 79369, rate: 0.0765, from: 1077550 },
+            { upTo: 4999999.99, base: 0, rate: 0.1045, from: 0 },
+            { upTo: 24999999.99, base: 0, rate: 0.111, from: 0 },
+            { upTo: null, base: 0, rate: 0.117, from: 0 }
+          ];
+          return { single: celibataire, marriedJoint: marie, headOfHousehold: celibataire };
+        })()
+      },
+      /* Deux retenues salariales FACULTATIVES, au maximum : PFL 0,432 % jusqu'a 411,91 $ (plafond de salaire 1 833,63 $ x 52) ; SDI 0,5 % jusqu'a 0,60 $
+         par semaine (0,5 % de 6 240 $). */
+      employeePrograms: [
+        { label: "New York Paid Family Leave (0.432%)", rate: 0.00432, wageCap: 95348.76 },
+        { label: "New York Disability Insurance (0.50%, max $0.60 a week)", rate: 0.005, wageCap: 6240 }
+      ]
     }
   }
 };

@@ -101,6 +101,15 @@ if (S.incomeTax.federalTaxSubtraction || S.incomeTax.withholdingAllowances) {
   CAS.push({ brut: 100001, statut: "headOfHousehold" }, { brut: 60000, statut: "headOfHousehold" });
 }
 
+/* New York : un bareme PUBLIE comme table de segments (« constante imprimee + taux x (net - seuil) ») et une bascule vers la methode III (taux sur le
+   salaire net ENTIER) au-dela de 1 077 550 $ (celibataire) ou 2 155 350 $ (marie) de salaire net : on encadre ces bornes, au dollar pres. */
+if (ETAT === "new-york") {
+  CAS.push({ brut: 15899, statut: "single" }, { brut: 15900, statut: "single" }, { brut: 16450, statut: "marriedJoint" },
+           { brut: 1084949, statut: "single" }, { brut: 1084950, statut: "single" }, { brut: 1084951, statut: "single" },
+           { brut: 2163299, statut: "marriedJoint" }, { brut: 2163300, statut: "marriedJoint" }, { brut: 2163301, statut: "marriedJoint" },
+           { brut: 100000, statut: "headOfHousehold" }, { brut: 250000, statut: "marriedJoint" });
+}
+
 const TYPES = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript",
                 ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon",
                 ".webmanifest": "application/manifest+json", ".xml": "application/xml" };

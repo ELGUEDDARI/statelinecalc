@@ -152,6 +152,26 @@ function virginiaSelonLaLoi(salaire, statut) {
   return du;
 }
 
+/* ------------------------------------------------------------- NEW YORK --
+   NYS-50-T-NYS (1/26), pages 14, 17, 19 et 22, verbatim : combinee deduction + allocation annuelle 7 400 $ (celibataire) / 7 950 $ (marie), puis
+   « Annual Tax Rate Schedule » : constante imprimee + taux x (net - seuil) ; methode III au-dela de 1 077 550 $ / 2 155 350 $ de salaire net :
+   10,45 % (puis 11,10 % au-dela de 5 M$, 11,70 % au-dela de 25 M$) du salaire net ENTIER. PFL 2026 : 0,432 % jusqu'a 411,91 $ (1 833,63 $ x 52 de salaire) ;
+   SDI : 0,5 %, 0,60 $ par semaine au plus (6 240 $ de salaire). Ecrit a la main, sans paie.js. */
+function newYorkSelonLaLoi(salaire, statut) {
+  const marie = statut === "marriedJoint";
+  const net = salaire - (marie ? 7950 : 7400);
+  if (net <= 0) return 0;
+  const T = marie
+    ? [[8500, 0, 0, 0.039], [11700, 8500, 332, 0.044], [13900, 11700, 472, 0.0515], [80650, 13900, 586, 0.054], [96800, 80650, 4190, 0.059], [107650, 96800, 5143, 0.0657],
+       [157650, 107650, 5855, 0.0707], [211550, 157650, 9388, 0.0801], [323200, 211550, 13708, 0.064], [373200, 323200, 20854, 0.1349], [1077550, 373200, 27600, 0.0735],
+       [2155350, 1077550, 79369, 0.0765]]
+    : [[8500, 0, 0, 0.039], [11700, 8500, 332, 0.044], [13900, 11700, 472, 0.0515], [80650, 13900, 586, 0.054], [96800, 80650, 4190, 0.059], [107650, 96800, 5143, 0.0703],
+       [157650, 107650, 5906, 0.0753], [215400, 157650, 9673, 0.064], [265400, 215400, 13369, 0.1144], [1077550, 265400, 19091, 0.0735]];
+  for (const [haut, bas, base, taux] of T) if (net < haut) return base + (net - bas) * taux;
+  return net * (net < 5e6 ? 0.1045 : net < 25e6 ? 0.111 : 0.117);
+}
+const newYorkProgrammes = salaire => Math.min(salaire, 1833.63 * 52) * 0.00432 + Math.min(salaire, 6240) * 0.005;
+
 (async () => {
   console.log("\n=== OHIO : la prose et le tableau, contre ORC 5747.02 et 5747.025 ===");
   const oh = await get("https://statelinecalc.com/paycheck-calculator/ohio/");
@@ -368,6 +388,40 @@ function virginiaSelonLaLoi(salaire, statut) {
     vaTexte, "$930 personal exemption");
   present("la page dit qu'il n'y a pas d'impot local",
     vaTexte, "no local or city income tax");
+
+  console.log("\n=== NEW YORK : la prose et le tableau, contre NYS-50-T-NYS (1/26), IT-2104, le PFL et le SDI ===");
+  const ny = await get("https://statelinecalc.com/paycheck-calculator/new-york/");
+  const nyTexte = ny.replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+
+  check("impot d'Etat sur 75 000, celibataire (0 allocation)", 3485.80, newYorkSelonLaLoi(75000), 0.01);
+  check("impot d'Etat sur 75 000, marie", 3456.10, newYorkSelonLaLoi(75000, "marriedJoint"), 0.01);
+  check("impot d'Etat sur 75 000, chef de famille (2 allocations)", 3377.80, newYorkSelonLaLoi(75000 - 2000), 0.01);
+  check("impot d'Etat sur 250 000 : taux de retenue imprime de 11,44 %", 16480.68, newYorkSelonLaLoi(250000), 0.01);
+  check("impot d'Etat a 1 084 949 $", 78783.95, newYorkSelonLaLoi(1084949), 0.01);
+  check("le dollar suivant coute 33 820,02 $ (methode III)", 33820.02, newYorkSelonLaLoi(1084950) - newYorkSelonLaLoi(1084949), 0.01);
+  check("PFL + SDI sur 75 000", 324 + 31.20, newYorkProgrammes(75000), 0.01);
+  check("PFL plafonnee : 411,91 $ (+ SDI 31,20 $) a 250 000", 411.91 + 31.20, newYorkProgrammes(250000), 0.01);
+
+  /* Le tableau servi : colonne « NY tax + paid leave and disability » = impot d'Etat + PFL + SDI. */
+  const nyLignes = ny.split("<tr>").slice(1)
+    .map(b => [...b.matchAll(/<td[^>]*>(?:<strong>)?([^<]+)/g)].map(m => m[1].trim()))
+    .filter(c => c.length >= 6 && c[0].startsWith("$") && !c[0].includes("."));
+  let ecartsNy = 0;
+  for (const c of nyLignes) {
+    const w = nb(c[0]), attendu = newYorkSelonLaLoi(w) + newYorkProgrammes(w);
+    if (Math.abs(nb(c[3]) - attendu) > 1) {
+      ecartsNy++;
+      console.log("  ECHEC | tableau New York a " + c[0] + " : page " + c[3] + ", loi " + attendu.toFixed(2));
+    }
+  }
+  if (ecartsNy || nyLignes.length < 25) fail++; else pass++;
+  console.log("  %s | les %d lignes du tableau servi contre la loi ecrite a la main", (ecartsNy || nyLignes.length < 25) ? "ECHEC" : "OK   ", nyLignes.length);
+
+  present("la page nomme la publication NYS-50-T-NYS", nyTexte, "NYS-50-T-NYS");
+  present("la page chiffre l'impot de la Ville sans le modeliser", nyTexte, "This calculator does not add it");
+  present("la page dit que PFL et SDI sont un choix de l'employeur", nyTexte, "allowed, but not required");
+  present("la page cite le taux de Yonkers de 16,75 %", nyTexte, "16.75%");
+  present("la page dit « we found no » pour les autres taxes locales", nyTexte, "We found no others in the publications we read");
 
   console.log("\n=== PROSE CONTRE LOI : " + pass + " OK, " + fail + " ECHEC ===\n");
   process.exit(fail === 0 ? 0 : 1);

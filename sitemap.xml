@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://statelinecalc.com/paycheck-calculator/pennsylvania/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -257,12 +257,12 @@
   </url>
   <url>
     <loc>https://statelinecalc.com/paycheck-calculator/new-jersey/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://statelinecalc.com/paycheck-calculator/massachusetts/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -337,12 +337,12 @@
   </url>
   <url>
     <loc>https://statelinecalc.com/paycheck-calculator/connecticut/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://statelinecalc.com/paycheck-calculator/vermont/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
@@ -352,6 +352,11 @@
   </url>
   <url>
     <loc>https://statelinecalc.com/paycheck-calculator/maine/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://statelinecalc.com/paycheck-calculator/new-york/</loc>
     <lastmod>2026-10-21</lastmod>
     <priority>0.9</priority>
   </url>

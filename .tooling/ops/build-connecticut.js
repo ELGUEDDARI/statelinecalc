@@ -19,7 +19,7 @@
  * ⛔ CE QUE CETTE PAGE NE DIT PAS, ET POURQUOI :
  *   - « Connecticut has no local income tax » : seulement « we found no » ;
  *   - « the withholding tables are the same as the tax you owe » : la retenue est une estimation ;
- *   - « New York ... » : New York n'est pas publie, la page dit « not published on this site yet », sans lien.
+ *   - « New York ... » : New York est publie depuis le 21/10/2026 : la page le lie et le compare.
  *
  * Aucun montant n'est ecrit a la main : tout sort de .tooling/lib/paie.js, hors les attendus recalcules a la main en bas.
  * Lancer : node .tooling/ops/build-connecticut.js
@@ -77,10 +77,10 @@ const tauxUniqueHaut = 75000 * 0.0699;
 const mensuel75 = a75.etat / 12;
 const plMax = PL.wageCap * PL.rate;
 
-/* Voisins : Massachusetts et Rhode Island sont publies, New York ne l'est pas. */
+/* Voisins : Massachusetts, Rhode Island et New York (publie le 21/10/2026) sont publies. */
 const REF = 75000;
-const COMPARE = [CLE, "massachusetts", "rhode-island"];
-const NOMS = { [CLE]: "Connecticut", massachusetts: "Massachusetts", "rhode-island": "Rhode Island" };
+const COMPARE = [CLE, "new-york", "massachusetts", "rhode-island"];
+const NOMS = { [CLE]: "Connecticut", "new-york": "New York", massachusetts: "Massachusetts", "rhode-island": "Rhode Island" };
 const progs = r => r.programmes.reduce((t, p) => t + p.montant, 0);
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
@@ -92,7 +92,7 @@ const plusMoins = k => {
   const lien = "<a href=\"/paycheck-calculator/" + k + "/\">" + nom + "</a>";
   return "a " + lien + " worker keeps " + N($$(Math.abs(r.net - a75.net))) + (r.net > a75.net ? " more" : " less");
 };
-const phraseVoisins = plusMoins("massachusetts") + " and " + plusMoins("rhode-island");
+const phraseVoisins = plusMoins("new-york") + ", " + plusMoins("massachusetts") + " and " + plusMoins("rhode-island");
 
 const gen = (script, arg) => execFileSync(process.execPath,
   [path.join(RACINE, ".tooling", "test", script), arg],
@@ -547,7 +547,7 @@ ${LIGNES_PAS}
     <p>The Circular CT says wages of a nonresident are subject to Connecticut withholding if they are paid for services rendered in Connecticut. Form CT-W4NA is for a nonresident who works partly in and partly outside Connecticut for the same employer; it is not modeled here.</p>
 
     <h3>Which neighboring states have a calculator here</h3>
-    <p>We publish a calculator for <a href="/paycheck-calculator/massachusetts/">Massachusetts</a> and <a href="/paycheck-calculator/rhode-island/">Rhode Island</a>. New York is not published on this site yet.</p>
+    <p>We publish a calculator for <a href="/paycheck-calculator/massachusetts/">Massachusetts</a>, <a href="/paycheck-calculator/new-york/">New York</a> and <a href="/paycheck-calculator/rhode-island/">Rhode Island</a>.</p>
 
     <h2>Connecticut hourly paycheck: what your rate is worth after tax</h2>
 
@@ -703,8 +703,8 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Connecticut borders three states: New York, Massachusetts and Rhode Island. We have a calculator for Massachusetts and Rhode Island, and New York is not published on this site yet.
-  Each row leaves out that state&rsquo;s own local taxes.</p>
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Connecticut borders three states: New York, Massachusetts and Rhode Island, and we publish all three.
+  Each row leaves out that state&rsquo;s own local taxes. The New York row includes Paid Family Leave and disability insurance at their maximums but no New York City or Yonkers tax.</p>
   <div class="table-scroll">
     <table>
       <caption class="caption caption-left">
@@ -731,6 +731,7 @@ ${blocSources(CLE)}
   <ul>
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/new-york/">New York paycheck calculator</a> &mdash; the neighbor to the west.</li>
     <li><a href="/paycheck-calculator/massachusetts/">Massachusetts paycheck calculator</a> &mdash; the neighbor to the north.</li>
     <li><a href="/paycheck-calculator/rhode-island/">Rhode Island paycheck calculator</a> &mdash; the neighbor to the east.</li>
     <li><a href="/75000-salary-take-home-pay-by-state/">$75,000 take-home pay in every state we publish</a> &mdash; where Connecticut ranks on one salary.</li>

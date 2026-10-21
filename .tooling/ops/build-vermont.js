@@ -110,10 +110,10 @@ const PAIE = {
   j: [AL.marriedJoint + M1, AL.marriedJoint + M2, AL.marriedJoint + M3, AL.marriedJoint + M4]
 };
 
-/* Voisins : New Hampshire et Massachusetts sont publies, New York ne l'est pas. */
+/* Voisins : New Hampshire, Massachusetts et New York (publie le 21/10/2026) sont publies. */
 const REF = 75000;
-const COMPARE = [CLE, "new-hampshire", "massachusetts"];
-const NOMS = { [CLE]: "Vermont", "new-hampshire": "New Hampshire", massachusetts: "Massachusetts" };
+const COMPARE = [CLE, "new-hampshire", "massachusetts", "new-york"];
+const NOMS = { [CLE]: "Vermont", "new-hampshire": "New Hampshire", massachusetts: "Massachusetts", "new-york": "New York" };
 const progs = r => r.programmes.reduce((t, p) => t + p.montant, 0);
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
@@ -125,7 +125,7 @@ const plusMoins = k => {
   const lien = "<a href=\"/paycheck-calculator/" + k + "/\">" + nom + "</a>";
   return "a " + lien + " worker keeps about " + N($(Math.abs(r.net - a75.net))) + (r.net > a75.net ? " more" : " less");
 };
-const phraseVoisins = plusMoins("new-hampshire") + " and " + plusMoins("massachusetts");
+const phraseVoisins = plusMoins("new-hampshire") + ", " + plusMoins("massachusetts") + " and " + plusMoins("new-york");
 
 /* --- les tableaux, produits par les generateurs generiques ---------------- */
 const gen = (script, arg) => execFileSync(process.execPath,
@@ -587,7 +587,7 @@ ${LIGNES_STATUT}
     <p>The Department says an out-of-state employer does not have to begin withholding Vermont income tax until an employee has been working from a Vermont location for thirty days. Income earned during the entire period of living in Vermont is subject to Vermont income tax, even if the employee claims another state as home; the thirty days only decide when the employer must start withholding. The Department says employers should work with these employees, and the W-4VT helps them set their allowances.</p>
 
     <h3>New Hampshire, Massachusetts and New York</h3>
-    <p>We publish a calculator for <a href="/paycheck-calculator/new-hampshire/">New Hampshire</a> and <a href="/paycheck-calculator/massachusetts/">Massachusetts</a>. New York is not published on this site yet.</p>
+    <p>We publish a calculator for <a href="/paycheck-calculator/new-hampshire/">New Hampshire</a>, <a href="/paycheck-calculator/massachusetts/">Massachusetts</a> and <a href="/paycheck-calculator/new-york/">New York</a>.</p>
 
     <h2>Two optional deductions: the Child Care Contribution and paid leave</h2>
 
@@ -743,8 +743,8 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Vermont borders three states: New Hampshire, Massachusetts and New York. We have a calculator for New Hampshire and Massachusetts, and New York is not published on this site yet.
-  Each row leaves out its own local taxes and optional employer deductions.</p>
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. Vermont borders three states: New Hampshire, Massachusetts and New York, and we publish all three.
+  Each row leaves out its own local taxes and optional employer deductions. The New York row includes Paid Family Leave and disability insurance at their maximums but no New York City or Yonkers tax.</p>
   <div class="table-scroll">
     <table>
       <caption class="caption caption-left">
@@ -773,6 +773,7 @@ ${blocSources(CLE)}
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/new-hampshire/">New Hampshire paycheck calculator</a> &mdash; the neighbor to the east, where this calculator shows no state tax on wages.</li>
     <li><a href="/paycheck-calculator/massachusetts/">Massachusetts paycheck calculator</a> &mdash; the neighbor to the south.</li>
+    <li><a href="/paycheck-calculator/new-york/">New York paycheck calculator</a> &mdash; the neighbor to the west, with a withholding schedule that climbs in steps from 3.9%.</li>
     <li><a href="/75000-salary-take-home-pay-by-state/">$75,000 take-home pay in every state we publish</a> &mdash; where Vermont ranks on one salary.</li>
     <li><a href="/methodology/">Methodology</a> &mdash; the exact formula, every 2026 figure
     with its official source, and what these calculators deliberately do not model.</li>

@@ -694,8 +694,8 @@ check("WI : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("wisconsin", 5000).etat >= 0 ? 1 : 0, 1, 0);
 check("WI : la deduction glissante n'existe que pour le Wisconsin et le Maine (21/10/2026)",
   Object.keys(R.states).filter(k => R.states[k].incomeTax.slidingDeduction).sort().join() === "maine,wisconsin" ? 1 : 0, 1, 0);
-check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026), l'Alabama, l'Oklahoma (06/10/2026) la Virginie-Occidentale (13/10/2026) et le Maine (21/10/2026)",
-  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 7, 0);
+check("WI : l'exemption personnelle existe pour le Wisconsin, la Virginie, le Mississippi (17/09/2026), l'Alabama, l'Oklahoma (06/10/2026) la Virginie-Occidentale (13/10/2026), le Maine (21/10/2026) et New York (21/10/2026)",
+  Object.keys(R.states).filter(k => R.states[k].incomeTax.personalExemption).length, 8, 0);
 
 /* --- ARKANSAS -----------------------------------------------------------
    Source, lue le 2026-09-12 : "State of Arkansas, Estimated Tax Declaration
@@ -770,8 +770,8 @@ check("AR : aucun programme salarie retenu (assurance chomage employeur seul)",
   (R.states.arkansas.employeePrograms || []).length, 0, 0);
 check("AR : l'impot d'Etat n'est jamais negatif, meme a 5 000 $",
   calcul("arkansas", 5000).etat >= 0 ? 1 : 0, 1, 0);
-check("AR : la table de segments (bracketTable) n'existe que pour l'Arkansas et l'Oregon (qui y range ses constantes imprimees)",
-  Object.keys(R.states).filter(function (k) { return R.states[k].incomeTax.bracketTable; }).join() === "arkansas,oregon" ? 1 : 0,
+check("AR : la table de segments (bracketTable) n'existe que pour l'Arkansas, l'Oregon et New York (qui y rangent leurs constantes imprimees)",
+  Object.keys(R.states).filter(function (k) { return R.states[k].incomeTax.bracketTable; }).join() === "arkansas,oregon,new-york" ? 1 : 0,
   1, 0);
 
 /* --- IDAHO ----------------------------------------------------------------
@@ -3213,6 +3213,123 @@ check("ME : bareme, deduction degressive, allocations et PFML == livret d'aout 2
         }
       }
   check("ME : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
+}
+
+console.log("\n=== New York (49e Etat) ===");
+/* =======================================================================
+   NEW YORK (49e Etat) - AUCUN mecanisme nouveau : bracketTable (Arkansas, Oregon) pour le « Annual Tax Rate Schedule » imprime, standardDeduction
+   (Table A annuelle : 7 400 $ celibataire / 7 950 $ marie) et personalExemption (1 000 $ par allocation de l'IT-2104 ; chef de famille 2). Source (lue
+   le 2026-10-21) : NYS Department of Taxation and Finance, NYS-50-T-NYS (1/26), pages 14, 17, 19 et 22 ; IT-2104 et IT-2104-I (2026). Tous les
+   attendus sont recalcules a la main, PAS copies de la sortie du code.
+   ======================================================================= */
+const nyC = (b, st, rp) => calcul("new-york", b, st || "single", rp || 0);
+
+/* Cas NY-1 - 75 000 $ celibataire (0 allocation). 75 000 - 7 400 = 67 600 ; ligne 4 (13 900 a 80 650) : 586 + (67 600 - 13 900) x 5,40 % = 586 + 53 700 x 0,054 =
+   586 + 2 899,80 = 3 485,80. PFL 0,432 % x 75 000 = 324 ; SDI 31,20. Federal 7 670 ; FICA 5 737,50.
+   Net : 75 000 - 7 670 - 5 737,50 - 3 485,80 - 324 - 31,20 = 57 751,50. */
+check("NY 75 000 $ celibataire : impot d'Etat", nyC(75000).etat, 3485.80, 0.0005);
+check("NY 75 000 $ celibataire : PFL", nyC(75000).programmes[0].montant, 324, 0.0005);
+check("NY 75 000 $ celibataire : SDI", nyC(75000).programmes[1].montant, 31.20, 0.0005);
+check("NY 75 000 $ celibataire : net", nyC(75000).net, 57751.50, 0.0005);
+
+/* Cas NY-2 - 75 000 $ marie (0 allocation, 7 950 $). 75 000 - 7 950 = 67 050 ; 586 + (67 050 - 13 900) x 5,40 % = 586 + 53 150 x 0,054 = 586 + 2 870,10 = 3 456,10.
+   Federal 4 640. Net : 75 000 - 4 640 - 5 737,50 - 3 456,10 - 324 - 31,20 = 60 811,20. */
+check("NY 75 000 $ marie : impot d'Etat", nyC(75000, "marriedJoint").etat, 3456.10, 0.0005);
+check("NY 75 000 $ marie : net", nyC(75000, "marriedJoint").net, 60811.20, 0.0005);
+
+/* Cas NY-3 - 75 000 $ chef de famille (bareme celibataire, 7 400 + 2 x 1 000 = 9 400). 75 000 - 9 400 = 65 600 ; 586 + (65 600 - 13 900) x 0,054 = 586 + 51 700 x 0,054 =
+   586 + 2 791,80 = 3 377,80. Federal 5 748. Net : 75 000 - 5 748 - 5 737,50 - 3 377,80 - 324 - 31,20 = 59 781,50. */
+check("NY 75 000 $ chef de famille : impot d'Etat", nyC(75000, "headOfHousehold").etat, 3377.80, 0.0005);
+check("NY 75 000 $ chef de famille : net", nyC(75000, "headOfHousehold").net, 59781.50, 0.0005);
+
+/* Cas NY-4 - 8 000 $ celibataire : 8 000 - 7 400 = 600 ; x 3,90 % = 23,40. */
+check("NY 8 000 $ celibataire : premiere tranche a 3,90 %", nyC(8000).etat, 23.40, 0.0005);
+
+/* Cas NY-5 - 20 000 $ celibataire : 12 600 ; ligne 3 (11 700 a 13 900) : 472 + (12 600 - 11 700) x 5,15 % = 472 + 46,35 = 518,35. */
+check("NY 20 000 $ celibataire : ligne 3 du bareme", nyC(20000).etat, 518.35, 0.0005);
+
+/* Cas NY-6 - 100 000 $ celibataire : 92 600 ; ligne 5 (80 650 a 96 800) : 4 190 + (92 600 - 80 650) x 5,90 % = 4 190 + 11 950 x 0,059 = 4 190 + 705,05 = 4 895,05. */
+check("NY 100 000 $ celibataire : ligne 5 du bareme", nyC(100000).etat, 4895.05, 0.0005);
+
+/* Cas NY-7 - 150 000 $ celibataire : 142 600 ; ligne 7 (107 650 a 157 650) : 5 906 + (142 600 - 107 650) x 7,53 % = 5 906 + 34 950 x 0,0753 = 5 906 + 2 631,735 = 8 537,735. */
+check("NY 150 000 $ celibataire : ligne 7 du bareme", nyC(150000).etat, 8537.735, 0.0005);
+
+/* Cas NY-8 - 250 000 $ celibataire : 242 600 ; ligne 9 (215 400 a 265 400) : 13 369 + (242 600 - 215 400) x 11,44 % = 13 369 + 27 200 x 0,1144 = 13 369 + 3 111,68 = 16 480,68. */
+check("NY 250 000 $ celibataire : ligne 9 du bareme (taux de retenue 11,44 %)", nyC(250000).etat, 16480.68, 0.0005);
+
+/* Cas NY-9 - 500 000 $ celibataire : 492 600 ; ligne 10 (265 400 a 1 077 550) : 19 091 + (492 600 - 265 400) x 7,35 % = 19 091 + 227 200 x 0,0735 = 19 091 + 16 699,20 = 35 790,20. */
+check("NY 500 000 $ celibataire : ligne 10 du bareme", nyC(500000).etat, 35790.20, 0.0005);
+
+/* Cas NY-10 - methode III (celibataire, 2 000 000 $) : net annualise 1 992 600 >= 1 077 550 ; 10,45 % de TOUT le net = 1 992 600 x 0,1045 = 199 260 + 8 966,70 = 208 226,70. */
+check("NY 2 000 000 $ celibataire : methode III, 10,45 % du net entier", nyC(2000000).etat, 208226.70, 0.0005);
+
+/* Cas NY-11 - 400 000 $ marie : 392 050 ; ligne 11 (373 200 a 1 077 550) : 27 600 + (392 050 - 373 200) x 7,35 % = 27 600 + 18 850 x 0,0735 = 27 600 + 1 385,475 = 28 985,475. */
+check("NY 400 000 $ marie : ligne 11 du bareme", nyC(400000, "marriedJoint").etat, 28985.475, 0.0005);
+
+/* Cas NY-12 - 150 000 $ marie : 142 050 ; ligne 7 (107 650 a 157 650), 7,07 % : 5 855 + (142 050 - 107 650) x 0,0707 = 5 855 + 34 400 x 0,0707 = 5 855 + 2 432,08 = 8 287,08. */
+check("NY 150 000 $ marie : ligne 7 du bareme marie", nyC(150000, "marriedJoint").etat, 8287.08, 0.0005);
+
+/* Cas NY-13 - methode III (marie, 2 500 000 $) : net 2 492 050 >= 2 155 350 ; x 0,1045 = 249 205 + 11 214,225 = 260 419,225. */
+check("NY 2 500 000 $ marie : methode III", nyC(2500000, "marriedJoint").etat, 260419.225, 0.0005);
+
+/* Cas NY-14 - le seuil : 7 400 $ -> net 0 -> rien ; 7 401 $ -> 1 x 3,90 % = 0,039. */
+check("NY 7 400 $ celibataire : zero retenue au seuil", nyC(7400).etat, 0, 0.0005);
+check("NY 7 401 $ celibataire : premier dollar a 3,90 %", nyC(7401).etat, 0.039, 0.0005);
+
+/* Cas NY-15 - la borne « at least » : net exactement 8 500 $ (gross 15 900 $) = ligne 2, 332 $ (et non 8 500 x 3,90 % = 331,50). */
+check("NY net 8 500 $ : ligne 2, constante imprimee 332 $", nyC(15900).etat, 332, 0.0005);
+
+/* Cas NY-16 - 401(k) 6 % sur 75 000 $ : salaire 70 500 ; 70 500 - 7 400 = 63 100 ; 586 + (63 100 - 13 900) x 0,054 = 586 + 49 200 x 0,054 = 586 + 2 656,80 = 3 242,80.
+   PFL et SDI restent sur le brut. */
+check("NY 75 000 $, 401(k) 6 % : impot d'Etat", nyC(75000, "single", 0.06).etat, 3242.80, 0.0005);
+check("NY 75 000 $, 401(k) 6 % : PFL sur le brut", nyC(75000, "single", 0.06).programmes[0].montant, 324, 0.0005);
+
+/* Cas NY-17 - plafonds : PFL a 95 348,76 $ x 0,432 % = 411,9066432 (l'agence : 411,91 $) ; SDI a 6 240 $ x 0,5 % = 31,20 ($0,60 x 52). */
+check("NY 250 000 $ : PFL plafonnee (1 833,63 $ x 52 x 0,432 %)", nyC(250000).programmes[0].montant, 411.9066432, 0.0005);
+check("NY 250 000 $ : PFL arrondie == 411,91 $ de l'agence", Math.round(nyC(250000).programmes[0].montant * 100) / 100, 411.91, 0.0005);
+check("NY 250 000 $ : SDI plafonnee a 31,20 $", nyC(250000).programmes[1].montant, 31.20, 0.0005);
+check("NY 5 000 $ : SDI = 0,5 % du salaire sous le plafond", nyC(5000).programmes[1].montant, 25, 0.0005);
+
+/* Cas NY-18 - deux retenues salariales hors impot (PFL, SDI), ni PFML double ni WA Cares. */
+check("NY : deux retenues salariales (PFL, SDI) et rien d'autre", nyC(75000).programmes.length * 10 + nyC(75000).paidLeave + nyC(75000).waCares, 20, 0);
+
+/* Cas NY-19 - garde-fou : les donnees du moteur sont celles du livret NYS-50-T-NYS. */
+check("NY : Table A, allocations, constantes imprimees et methode III == NYS-50-T-NYS (1/26)",
+  (() => { const A = R.states["new-york"].incomeTax, T = A.bracketTable;
+    const lignes = t => t.map(s => [s.from, s.base, s.rate]);
+    const attS = [[0, 0, 0.039], [8500, 332, 0.044], [11700, 472, 0.0515], [13900, 586, 0.054], [80650, 4190, 0.059], [96800, 5143, 0.0703],
+      [107650, 5906, 0.0753], [157650, 9673, 0.064], [215400, 13369, 0.1144], [265400, 19091, 0.0735], [0, 0, 0.1045], [0, 0, 0.111], [0, 0, 0.117]];
+    const attM = [[0, 0, 0.039], [8500, 332, 0.044], [11700, 472, 0.0515], [13900, 586, 0.054], [80650, 4190, 0.059], [96800, 5143, 0.0657],
+      [107650, 5855, 0.0707], [157650, 9388, 0.0801], [211550, 13708, 0.064], [323200, 20854, 0.1349], [373200, 27600, 0.0735], [1077550, 79369, 0.0765],
+      [0, 0, 0.1045], [0, 0, 0.111], [0, 0, 0.117]];
+    return JSON.stringify(lignes(T.single)) === JSON.stringify(attS) && JSON.stringify(lignes(T.marriedJoint)) === JSON.stringify(attM) &&
+      T.headOfHousehold === T.single &&
+      A.standardDeduction.single === 7400 && A.standardDeduction.marriedJoint === 7950 && A.standardDeduction.headOfHousehold === 7400 &&
+      A.personalExemption.single === 0 && A.personalExemption.marriedJoint === 0 && A.personalExemption.headOfHousehold === 2000 &&
+      R.states["new-york"].employeePrograms[0].rate === 0.00432 && R.states["new-york"].employeePrograms[0].wageCap === 95348.76 &&
+      R.states["new-york"].employeePrograms[1].rate === 0.005 && R.states["new-york"].employeePrograms[1].wageCap === 6240 ? 1 : 0; })(), 1, 0);
+
+/* Moteur NAVIGATEUR == moteur NODE (3 statuts x bornes du bareme et de la methode III x 401(k)). */
+{
+  const vm = require("vm"), fs = require("fs"), path = require("path");
+  const ctx = { window: {}, document: { readyState: "complete", addEventListener() {}, querySelector() { return null; } },
+                RATES_2026: R, Intl, console };
+  vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "..", "..", "assets", "calc-paycheck.js"), "utf8"), ctx);
+  let ecarts = 0, n = 0;
+  const salaires = [900, 7400, 7401, 15900, 20000, 75000, 100000, 150000, 250000, 500000, 1084950, 1084951, 2000000, 2163300, 2163301, 2500000, 5007400, 25007400, 30000000];
+  for (const st of ["single", "marriedJoint", "headOfHousehold"])
+    for (const g of salaires)
+      for (const rp of [0, 0.06]) {
+        const a = ctx.window.StateLineCalc.computeAnnual(
+          { grossAnnual: g, state: "new-york", filingStatus: st, retirementPct: rp, waCaresApplies: false }, R);
+        const b = calcul("new-york", g, st, rp);
+        n++;
+        if (Math.abs(a.stateTax - b.etat) > 0.005 || Math.abs(a.net - b.net) > 0.01) {
+          ecarts++; if (ecarts < 6) console.log("   ecart navigateur/node :", st, g, rp, a.stateTax, b.etat, a.net, b.net);
+        }
+      }
+  check("NY : moteur navigateur == moteur node sur " + n + " entrees", ecarts, 0, 0);
 }
 
 console.log("\n=== RESULTAT : " + pass + " OK, " + fail + " ECHEC ===\n");

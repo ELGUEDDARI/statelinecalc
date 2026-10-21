@@ -118,14 +118,14 @@ const tableRate = (tab) => lignesTable(tab).map(l =>
 /* Voisins publies : Pennsylvanie (seul voisin publie), + Rhode Island et
    Colorado, qui prennent eux aussi une prime d'assurance salariee. */
 const REF = 75000;
-const COMPARE = [CLE, "pennsylvania", "delaware", "rhode-island", "colorado"];
-const NOMS = { [CLE]: "New Jersey", pennsylvania: "Pennsylvania", delaware: "Delaware", "rhode-island": "Rhode Island", colorado: "Colorado" };
+const COMPARE = [CLE, "new-york", "pennsylvania", "delaware", "rhode-island", "colorado"];
+const NOMS = { [CLE]: "New Jersey", "new-york": "New York", pennsylvania: "Pennsylvania", delaware: "Delaware", "rhode-island": "Rhode Island", colorado: "Colorado" };
 const total = r => r.etat + r.paidLeave + r.waCares + progs(r);
 const lignesCompare = COMPARE.map(k => {
   const r = calcul(k, REF);
   return { cle: k, nom: NOMS[k], deductions: total(r), net: r.net, taux: r.taux };
 }).sort((a, b) => b.net - a.net);
-const pa75 = calcul("pennsylvania", REF), ri75 = calcul("rhode-island", REF), co75 = calcul("colorado", REF), de75 = calcul("delaware", REF);
+const pa75 = calcul("pennsylvania", REF), ri75 = calcul("rhode-island", REF), co75 = calcul("colorado", REF), de75 = calcul("delaware", REF), ny75 = calcul("new-york", REF);
 const plusMoins = d => d >= 0 ? $$(d) + " more" : $$(-d) + " less";   // d = NJ - autre
 
 /* --- les tableaux, produits par les generateurs generiques ---------------- */
@@ -710,8 +710,8 @@ ${faq.map(([n, a]) => `    <h3>${n}</h3>\n    <p>${a}</p>`).join("\n\n")}
   </div>
 
   <h2>Compare with other states</h2>
-  <p>The same ${N($(REF))} salary, single filer, 2026 rates. New Jersey borders New York, Pennsylvania and Delaware; Pennsylvania and Delaware are two of
-  the three that we publish so far. Rhode Island and Colorado are included because each also takes an employee-paid insurance premium on top of income tax.
+  <p>The same ${N($(REF))} salary, single filer, 2026 rates. New Jersey borders New York, Pennsylvania and Delaware, and we publish all three. The New York row includes Paid Family Leave and disability insurance at their maximums but no New York City or Yonkers tax.
+  Rhode Island and Colorado are included because each also takes an employee-paid insurance premium on top of income tax.
   New Jersey is shown with one allowance.</p>
   <div class="table-scroll">
     <table>
@@ -731,7 +731,7 @@ ${lignesCompare.map(l => `        <tr><th scope="row">${l.cle === CLE ? "<strong
       </tbody>
     </table>
   </div>
-  <p>A <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> worker keeps ${N($$(pa75.net - a75.net))} more than a New Jersey worker on the
+  <p>A <a href="/paycheck-calculator/new-york/">New York</a> worker keeps ${N($$(Math.abs(ny75.net - a75.net)))} ${ny75.net < a75.net ? "less" : "more"} than a New Jersey worker on the same salary, counting New York State income tax and the family leave and disability deductions at their maximums. A <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> worker keeps ${N($$(pa75.net - a75.net))} more than a New Jersey worker on the
   same salary: Pennsylvania takes a flat 3.07% and a 0.07% unemployment deduction, with no disability or family leave premium in this
   calculator. A <a href="/paycheck-calculator/delaware/">Delaware</a> worker keeps ${N($$(Math.abs(de75.net - a75.net)))} ${de75.net < a75.net ? "less" : "more"}, counting Delaware income tax and up to 0.40% for paid leave but not the Wilmington wage tax. A <a href="/paycheck-calculator/rhode-island/">Rhode Island</a> worker keeps ${N($$(Math.abs(ri75.net - a75.net)))} ${ri75.net < a75.net ? "less" : "more"}, and a
   <a href="/paycheck-calculator/colorado/">Colorado</a> worker keeps ${N($$(Math.abs(co75.net - a75.net)))} ${co75.net < a75.net ? "less" : "more"}.</p>
@@ -742,6 +742,7 @@ ${blocSources(CLE)}
   <ul>
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
+    <li><a href="/paycheck-calculator/new-york/">New York paycheck calculator</a> &mdash; the neighbor to the north and east, with a withholding schedule that climbs in steps from 3.9%.</li>
     <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania paycheck calculator</a> &mdash; the neighbor across the Delaware
     River, with a flat 3.07% tax and a reciprocal agreement with New Jersey.</li>
     <li><a href="/paycheck-calculator/delaware/">Delaware paycheck calculator</a> &mdash; the neighbor across the Delaware
