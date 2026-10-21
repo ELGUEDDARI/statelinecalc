@@ -299,8 +299,8 @@ const { carteUsa } = require("../lib/bloc-carte.js");
 const listeEtats = grilleEtats();
 
 /* La reponse directe : 40 a 60 mots, verifie plus bas. */
-const reponse = "Maine withholds 5.8%, 6.75% or 7.15% of the pay left after a $5,300 allowance and a standard deduction of $12,850 that shrinks above $102,250. " +
-  "On $75,000, a single filer keeps about " + $(a75.net) + " a year, after a paid leave deduction of up to 0.5%. At $25 an hour, full time, you keep about " + $$(h25.netHoraire) + " an hour.";
+const reponse = "Maine withholds 5.8%, 6.75% or 7.15% after a $5,300 allowance and a $12,850 standard deduction that shrinks above $102,250, so between $102,250 and $177,250 of annualized pay the real marginal rate is about 8.38%. " +
+  "On $75,000, a single filer keeps about " + $(a75.net) + " a year, after the paid leave deduction at its 0.5% maximum.";
 
 const html = `<!DOCTYPE html>
 <html lang="en-US">
@@ -324,7 +324,7 @@ const html = `<!DOCTYPE html>
 <meta property="og:title" content="Maine (ME) Paycheck Calculator 2026 &mdash; Hourly &amp; Salary">
 <meta property="og:site_name" content="StateLine Calc">
 <meta name="application-name" content="StateLine Calc">
-<meta property="og:description" content="Maine withholds 5.8% to 7.15% after a $5,300 allowance and a $12,850 standard deduction. On $75,000 a single filer keeps about ${$(a75.net)}.">
+<meta property="og:description" content="Maine base rates of 5.8% to 7.15% apply after a $5,300 allowance and a $12,850 standard deduction. On $75,000 a single filer keeps about ${$(a75.net)}.">
 <meta property="og:url" content="${URL}">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
