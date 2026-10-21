@@ -33,8 +33,8 @@ const RACINE = path.join(__dirname, "..", "..");
 const CLE = "connecticut";
 const NOM = "Connecticut";
 const URL = "https://statelinecalc.com/paycheck-calculator/connecticut/";
-const AUJOURD_HUI = "2026-10-20";
-const LISIBLE = "October 20, 2026";
+const AUJOURD_HUI = "2026-10-21";
+const LISIBLE = "October 21, 2026";
 
 const IT = R.states[CLE].incomeTax;
 const PL = R.states[CLE].employeePrograms[0];                 // 0,5 %, 184 500

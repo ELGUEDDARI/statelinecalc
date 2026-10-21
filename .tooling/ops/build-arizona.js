@@ -48,8 +48,8 @@ const RACINE = path.join(__dirname, "..", "..");
 const CLE = "arizona";
 const NOM = "Arizona";
 const URL = "https://statelinecalc.com/paycheck-calculator/arizona/";
-const AUJOURD_HUI = "2026-10-02";
-const LISIBLE = "October 2, 2026";
+const AUJOURD_HUI = "2026-10-21";
+const LISIBLE = "October 21, 2026";
 
 /* --- les valeurs de droit : le defaut est lu dans rates-2026.js ----------- */
 const AZ = R.states[CLE];

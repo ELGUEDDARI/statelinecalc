@@ -338,7 +338,7 @@ ${blocChecklist()}
     the <strong>Pennsylvania Department of Revenue</strong> for the income tax rate; and the
     <strong>Pennsylvania Department of Labor &amp; Industry</strong> for the employee unemployment
     contribution. Every Pennsylvania figure was read on the agency&rsquo;s own document on
-    <time datetime="2026-08-28">August 28, 2026</time>. Our full sourcing is on the
+    <time datetime="2026-10-21">October 21, 2026</time>. Our full sourcing is on the
     <a href="/methodology/">methodology page</a>.</p>
 
     <p><strong>The one thing this calculator does not model, and it matters more in Pennsylvania
@@ -629,8 +629,8 @@ ${listeEtats}
   </ul>
 
   <p class="dates">
-    Published <time datetime="2026-08-28">August 28, 2026</time> &middot;
-    Last updated <time datetime="2026-08-28">August 28, 2026</time>.
+    Published <time datetime="2026-10-21">October 21, 2026</time> &middot;
+    Last updated <time datetime="2026-10-21">October 21, 2026</time>.
   </p>
 
   <p class="disclaimer">

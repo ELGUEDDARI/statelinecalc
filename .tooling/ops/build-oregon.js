@@ -58,8 +58,8 @@ const RACINE = path.join(__dirname, "..", "..");
 const CLE = "oregon";
 const NOM = "Oregon";
 const URL = "https://statelinecalc.com/paycheck-calculator/oregon/";
-const AUJOURD_HUI = "2026-10-06";
-const LISIBLE = "October 6, 2026";
+const AUJOURD_HUI = "2026-10-21";
+const LISIBLE = "October 21, 2026";
 
 /* --- les valeurs de droit : lues dans rates-2026.js ----------------------- */
 const OR = R.states[CLE];

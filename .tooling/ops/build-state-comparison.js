@@ -30,7 +30,7 @@ const { colonne } = require("../lib/colonne.js");
 const RACINE = path.join(__dirname, "..", "..");
 const SLUG = "state-comparison";
 const URL = "https://statelinecalc.com/" + SLUG + "/";
-const VERIFIE_LE = "2026-09-30";
+const VERIFIE_LE = "2026-10-21";
 
 const q = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/\s+/g, " ").trim();
 const pct = n => (n * 100).toFixed(1) + "%";

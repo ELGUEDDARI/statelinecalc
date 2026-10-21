@@ -400,7 +400,7 @@ ${blocChecklist()}
     <p>Rates come from the agencies and the statutes that set them: the IRS for the federal
     brackets, the standard deduction and FICA, cross-checked against the Social Security
     Administration for the wage base. The Hawaii figures were read on
-    <time datetime="2026-09-05">September 5, 2026</time> in <strong>the law itself</strong> &mdash;
+    <time datetime="2026-10-21">October 21, 2026</time> in <strong>the law itself</strong> &mdash;
     Act 46, Session Laws of Hawaii 2024, obtained from the State Capitol's own document server
     &mdash; rather than in any summary of it. Our full sourcing is on the
     <a href="/methodology/">methodology page</a>.</p>
@@ -719,8 +719,8 @@ ${listeEtats}
   </ul>
 
   <p class="dates">
-    Published <time datetime="2026-09-05">September 5, 2026</time> &middot;
-    Last updated <time datetime="2026-09-05">September 5, 2026</time>.
+    Published <time datetime="2026-10-21">October 21, 2026</time> &middot;
+    Last updated <time datetime="2026-10-21">October 21, 2026</time>.
   </p>
 
   <p class="disclaimer">

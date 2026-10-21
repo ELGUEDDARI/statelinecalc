@@ -300,7 +300,7 @@ const html = `<!DOCTYPE html>
       "creator": { "@id": "https://statelinecalc.com/#organization" },
       "temporalCoverage": "2026",
       "spatialCoverage": "United States",
-      "dateModified": "${VERIFIE_LE}"
+      "dateModified": "2026-10-21"
     },
     {
       "@type": "FAQPage",
@@ -451,7 +451,7 @@ ${faq.map(([n, a]) => `    <dt>${n}</dt>
   arithmetic described on our <a href="/methodology/">methodology page</a>.</p>
 
   <h2>Sources</h2>
-  <p>Checked on ${VERIFIE_LE}. The state pages carry the complete list for each state.</p>
+  <p>Checked on 2026-10-21. The state pages carry the complete list for each state.</p>
   <ul>
 ${sourcesEtat}
   </ul>

@@ -45,8 +45,8 @@ const RACINE = path.join(__dirname, "..", "..");
 const CLE = "new-jersey";
 const NOM = "New Jersey";
 const URL = "https://statelinecalc.com/paycheck-calculator/new-jersey/";
-const AUJOURD_HUI = "2026-10-02";
-const LISIBLE = "October 2, 2026";
+const AUJOURD_HUI = "2026-10-21";
+const LISIBLE = "October 21, 2026";
 
 /* --- les valeurs de droit : lues dans rates-2026.js ----------------------- */
 const NJ = R.states[CLE];

@@ -37,8 +37,8 @@ const RACINE = path.join(__dirname, "..", "..");
 const CLE = "vermont";
 const NOM = "Vermont";
 const URL = "https://statelinecalc.com/paycheck-calculator/vermont/";
-const AUJOURD_HUI = "2026-10-20";
-const LISIBLE = "October 20, 2026";
+const AUJOURD_HUI = "2026-10-21";
+const LISIBLE = "October 21, 2026";
 
 /* --- les valeurs de droit : lues dans rates-2026.js ----------------------- */
 const VTD = R.states[CLE];
