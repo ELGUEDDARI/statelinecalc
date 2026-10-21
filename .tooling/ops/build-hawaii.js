@@ -143,7 +143,7 @@ const faq = [
    "Because a bracket applies only to the dollars above its threshold, never to the whole salary. "
    + "On " + $(75000) + " a single filer pays " + $$(a75.etat) + " to Hawaii, which is "
    + eff75.toFixed(2) + "% of gross pay - not 11%. Applying the top rate to the whole salary would "
-   + "give " + $$(faux75) + ", more than " + $$(faux75 - a75.etat) + " too much. Even on "
+   + "give " + $$(faux75) + ", " + $$(faux75 - a75.etat) + " more than the real tax. Even on "
    + $(250000) + " the real state share is " + eff250.toFixed(2) + "%."],
 
   ["Does Hawaii take Temporary Disability Insurance out of my paycheck?",
@@ -378,7 +378,7 @@ ${blocChecklist()}
 
     <h2>How this calculator works</h2>
     <p>Hawaii runs a detailed income tax schedule:
-    <strong>${NB_TRANCHES} brackets</strong>, where 13 of the 50 states we publish use a single rate. That detail is
+    <strong>${NB_TRANCHES} brackets</strong>, where 13 of the 50 states we publish apply one rate to every dollar of taxable income. That detail is
     the reason the headline rate misleads so badly. An ${TAUX_HAUT.toFixed(0)}% top rate sounds
     punishing, but it applies only to taxable income above ${N($(SEUIL_HAUT))} for a single filer,
     and the eleven bands underneath it do the actual work.</p>
@@ -567,7 +567,7 @@ ${blocLimites()}
   is quoted constantly. For a single filer it begins at ${N($(SEUIL_HAUT))} of <em>taxable</em>
   income &mdash; that is roughly ${N($(SEUIL_HAUT + DED))} of gross salary. A worker on
   ${N($(75000))} is in the ${N((BANDES.find(b => (75000 - DED) <= b[0])[1] * 100).toFixed(2) + "%")}
-  bracket, four bands below the top.</p>
+  bracket, with ${N(String(BANDES.length - 1 - BANDES.findIndex(b => (75000 - DED) <= b[0])))} brackets above it.</p>
 
   <h3>Your effective Hawaii rate rises smoothly and never reaches the headline</h3>
   <p>On ${N($(25000))} the state takes ${N($$(a25.etat))}, an effective state rate of

@@ -207,8 +207,8 @@ const faq = [
    + "after-tax figures are lower and closer to your bank statement."],
   ["Does the state really change the answer that much?",
    "On " + D + " a year, the gap between " + haut.nom + " and " + bas.nom + " is $"
-   + c0(ecartAn) + " a year, or $" + c2(ecartAn / 12) + " a month. It is the single largest "
-   + "variable in the answer after the hours you actually work."]
+   + c0(ecartAn) + " a year, or $" + c2(ecartAn / 12) + " a month. It is a "
+   + "large part of the answer, next to the hours you actually work."]
 ];
 
 const ligneEtats = ETATS.map(e => `        <tr>
