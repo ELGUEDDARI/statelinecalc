@@ -186,6 +186,15 @@
       </nav>
       <a class="btn btn-header" href="/paycheck-calculator/">All states</a>
     </div>
+    <details class="menu-mobile">
+      <summary>Menu</summary>
+      <nav class="menu-mobile-liste" aria-label="Main menu">
+          <a href="/paycheck-calculator/" aria-current="page">Paycheck</a>
+          <a href="/salary-to-hourly-calculator/">Salary&nbsp;to&nbsp;Hourly</a>
+          <a href="/methodology/">Methodology</a>
+          <a href="/paycheck-calculator/">All states</a>
+      </nav>
+    </details>
   </div>
 </header>
 
@@ -268,7 +277,7 @@
 
       <div class="row row-2">
         <div class="field">
-          <label for="retirement">401(k) contribution</label>
+          <label for="retirement">401(k) contribution (% of pay)</label>
           <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
           <span class="help">Percent of gross pay. It lowers your federal tax, and in this calculator
           it lowers your Arizona withholding too.</span>

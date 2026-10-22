@@ -141,7 +141,7 @@ main.wrap {
 .colonne { margin-top: var(--s-12); }
 .col-bloc + .col-bloc { margin-top: var(--s-8); }
 .col-titre {
-  font-size: 12px; font-weight: 700; margin: 0 0 var(--s-3);
+  font-size: 14px; font-weight: 700; margin: 0 0 var(--s-3);
   text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted);
   border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--s-2);
 }
@@ -188,7 +188,7 @@ h2 { font-size: 24px; font-weight: 600; line-height: 1.3; margin: var(--s-12) 0 
 h3 { font-size: 18px; font-weight: 600; line-height: 1.4; margin: var(--s-8) 0 var(--s-2); }
 p  { margin: 0 0 var(--s-4); }
 small, .caption { font-size: 14px; line-height: 1.5; color: var(--text-muted); }
-.micro { font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+.micro { font-size: 14px; line-height: 1.5; color: var(--text-muted); }
 
 a { color: var(--accent); text-underline-offset: 2px; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
@@ -244,13 +244,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
      On le rend invisible et non cliquable, mais il reste focusable. */
   opacity: 0; visibility: hidden; pointer-events: none;
   transition: opacity 120ms ease, visibility 120ms;
+  /* Lot B 22/10/2026 : 50 Etats sur 2 colonnes = 1 003 px de haut, le panneau
+     sortait de l'ecran (bas a 1 059 px pour 900). Il defile maintenant en
+     interne. L'en-tete fait ~72 px + 8 de marge. */
+  max-height: calc(100vh - 96px); overflow-y: auto; overscroll-behavior: contain;
 }
 .nav-item-deroule:hover .nav-panneau,
 .nav-item-deroule:focus-within .nav-panneau {
   opacity: 1; visibility: visible; pointer-events: auto;
 }
 .nav-panneau-titre {
-  margin: 0 0 var(--s-3); font-size: 12px; font-weight: 700;
+  margin: 0 0 var(--s-3); font-size: 14px; font-weight: 700;
   text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted);
 }
 .nav-panneau ul {
@@ -323,7 +327,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media (min-width: 560px)  { .pied-cols { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 900px)  { .pied-cols { grid-template-columns: repeat(4, 1fr); } }
 .pied-titre {
-  font-size: 13px; font-weight: 700; margin: 0 0 var(--s-3);
+  font-size: 14px; font-weight: 700; margin: 0 0 var(--s-3);
   text-transform: uppercase; letter-spacing: .06em; color: #FFFFFF;
 }
 .pied-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
@@ -500,7 +504,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   gap: 2px; text-align: center; pointer-events: none;
 }
 .donut-pct { font-size: 30px; font-weight: 700; line-height: 1; color: var(--success); }
-.donut-mot { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+.donut-mot { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
 
 .parts { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
 .part {
@@ -659,7 +663,7 @@ tbody tr:hover { background: #E8EFF9; }
 .box-neutre li:last-child { margin-bottom: 0; }
 
 .dates { font-size: 14px; color: var(--text-muted); margin-top: var(--s-8); }
-.disclaimer { font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: var(--s-4); margin-top: var(--s-8); }
+.disclaimer { font-size: 14px; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: var(--s-4); margin-top: var(--s-8); }
 
 .linkgrid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-2); }
 @media (min-width: 640px)  { .linkgrid { grid-template-columns: repeat(3, 1fr); } }
@@ -778,3 +782,155 @@ tbody tr:hover { background: #E8EFF9; }
 
 /* 404 and any link-styled button inside main: no underline (2026-10-22) */
 main a.btn { text-decoration: none; }
+
+/* =========================================================================
+   LOT B, 22/10/2026 : MOBILE D'ABORD, SANS TOUCHER AU BUREAU
+   Mesure de depart (Chrome reel, 390x844) : sur la page Georgie le champ de
+   saisie etait a 1 044 px (124 % de l'ecran), le bouton a 217 %. A 360x640 :
+   189 % et 316 %. Trois causes : un en-tete de 113 px, ~900 px de texte
+   (reponse + liste « ce qu'il faut avoir ») AVANT le formulaire, et un
+   formulaire a une colonne avec trois lignes d'aide par champ.
+   Tout est dans une media query <= 767 px : au-dessus, aucune regle ci-dessous
+   ne s'applique. Pas de modification du HTML des pages : l'ordre du DOM reste
+   « H1, reponse, calculateur » — c'est ce que lisent les robots, la reponse de
+   40-60 mots reste avant l'outil dans le document — et seul l'ordre VISUEL
+   change, par `order`. Le focus clavier n'en souffre pas : la reponse et la
+   liste n'ont aucun lien ni champ.
+   ========================================================================= */
+
+/* ---- le menu mobile : <details> natif, zero JavaScript --------------------- */
+.menu-mobile { display: none; }
+@media (max-width: 767px) {
+  .site-header { position: relative; padding-block: var(--s-2); }
+  .site-header .wrap { flex-wrap: nowrap; }
+  /* :has() = filet de securite : un ancien HTML en cache (sans <details>) garde sa navigation */
+  .site-header:has(.menu-mobile) .site-nav-group { display: none; }
+  .menu-mobile { display: block; order: 2; }
+  .brand { order: 1; }
+  .menu-mobile summary {
+    display: flex; align-items: center; gap: var(--s-2);
+    min-height: 44px; min-width: 44px; padding: 0 var(--s-3);
+    list-style: none; cursor: pointer;
+    font-size: 15px; font-weight: 600; color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, .55); border-radius: var(--radius-md);
+  }
+  .menu-mobile summary::-webkit-details-marker { display: none; }
+  /* Les trois barres, dessinees en degrade : aucun SVG, aucune image. */
+  .menu-mobile summary::before {
+    content: ""; width: 18px; height: 14px; flex: none;
+    background: linear-gradient(#FFFFFF, #FFFFFF) 0 0 / 100% 2px no-repeat,
+                linear-gradient(#FFFFFF, #FFFFFF) 0 50% / 100% 2px no-repeat,
+                linear-gradient(#FFFFFF, #FFFFFF) 0 100% / 100% 2px no-repeat;
+  }
+  .menu-mobile summary:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  /* Le panneau se pose PAR-DESSUS le contenu : l'ouvrir ne decale rien (CLS 0). */
+  .menu-mobile-liste {
+    position: absolute; left: 0; right: 0; top: 100%; z-index: 30;
+    display: grid; padding: 0 var(--s-4) var(--s-2);
+    background: var(--dark);
+    border-top: 1px solid rgba(255, 255, 255, .18);
+    box-shadow: var(--shadow-md);
+  }
+  .menu-mobile-liste a {
+    display: flex; align-items: center; min-height: 48px;
+    color: #FFFFFF; font-size: 17px; text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+  }
+  .menu-mobile-liste a:last-child { border-bottom: 0; }
+  .menu-mobile-liste a[aria-current="page"] { font-weight: 700; box-shadow: inset 3px 0 0 #FFFFFF; padding-left: var(--s-3); }
+  .menu-mobile-liste a:focus-visible { outline: 2px solid #FFFFFF; outline-offset: -2px; }
+}
+
+/* ---- le calculateur en haut de l'ecran ------------------------------------- */
+@media (max-width: 767px) {
+  main.wrap { padding-block: var(--s-3); }
+  .crumbs { margin-bottom: var(--s-1); }
+  h1 { font-size: 26px; margin-bottom: var(--s-3); }
+  /* Deux ordres : celui du document (inchange), celui de l'ecran. Le <section>
+     du calculateur est dissous (`display: contents`) pour que son titre, son
+     formulaire et son resultat deviennent freres de la reponse et puissent
+     passer devant elle. Sur les pages « salary to hourly » la liste « ce qu'il
+     faut avoir » est deja hors du <section> ; sur les autres elle est dedans :
+     dans les deux cas elle devient un frere. */
+  .col-contenu { display: flex; flex-direction: column; }
+  .col-contenu > * { order: 3; }
+  .col-contenu > .crumbs, .col-contenu > h1 { order: 0; }
+  section[aria-labelledby="calc-h"] { display: contents; }
+  section[aria-labelledby="calc-h"] > * { order: 1; }
+  .col-contenu > .answer, .col-contenu > .box-neutre,
+  section[aria-labelledby="calc-h"] > .box-neutre { order: 2; }
+  /* Le raccourci « Calculate my pay » n'a plus d'objet : le calculateur EST en
+     haut. Cache sur mobile seulement ; il reste dans le HTML. */
+  .answer-jump { display: none; }
+  /* Le titre du bloc (« Calculate your Georgia take-home pay ») repete le H1 juste
+     au-dessus et coutait 50 px sur 360 px de large. Il reste dans le HTML et dans
+     l'arbre d'accessibilite (il nomme la region) : masque a l'oeil, pas display:none. */
+  section[aria-labelledby="calc-h"] > h2 {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+  }
+  .answer, .col-contenu > .box-neutre, section[aria-labelledby="calc-h"] > .box-neutre { margin-top: var(--s-6); }
+  /* Formulaire compact : deux colonnes, aide masquee a l'oeil (elle reste lue
+     par les lecteurs d'ecran et par les robots — pas de display:none). */
+  .calc { padding: var(--s-3) var(--s-4); }
+  .calc .field { margin-bottom: var(--s-3); }
+  .calc .field input, .calc .field select { min-height: 44px; }
+  .calc .field label { margin-bottom: var(--s-1); font-size: 16px; }
+  .calc .row { gap: 0 var(--s-3); align-items: end; }
+  .calc .row-2 { grid-template-columns: 1fr 1fr; }
+  .calc .field .help {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+  }
+  .calc .field .error { margin-top: var(--s-1); }
+  .calc .btn-primary { width: 100%; }
+  .result { margin-top: var(--s-4); }
+  section[aria-labelledby="calc-h"] > .caption { margin-top: var(--s-3); }
+}
+
+/* ---- cibles tactiles >= 44 px, mobile -------------------------------------- */
+@media (max-width: 767px) {
+  .pied-col ul { gap: 0; }
+  .pied-col a { display: flex; align-items: center; min-height: 44px; }
+  /* 50 Etats en une colonne = 2 200 px de pied de page : deux colonnes. */
+  .pied-col:nth-child(2) ul { grid-template-columns: 1fr 1fr; column-gap: var(--s-3); }
+  .pied-bas a { display: inline-flex; align-items: center; min-height: 44px; }
+  .colonne ul { grid-template-columns: 1fr 1fr; column-gap: var(--s-3); gap: 0 var(--s-3); }
+  .colonne li a { display: flex; align-items: center; min-height: 44px; padding-block: 0; }
+  .col-note a { display: inline-flex; align-items: center; min-height: 44px; }
+  .etats-liste a, .linkgrid a { display: flex; align-items: center; min-height: 44px; }
+  /* Le fil d'Ariane est une ligne de 23 px : la zone tactile est agrandie PAR
+     LE PADDING puis compensee par une marge negative, donc la mise en page ne
+     bouge pas d'un pixel. */
+  .crumbs a { display: inline-block; padding: 12px var(--s-1); margin: -12px calc(var(--s-1) * -1); }
+  .crumbs ol { row-gap: var(--s-1); }
+}
+
+/* Lot B, suite : les dernieres cibles sous 44 px qui ont une classe a elles. */
+@media (max-width: 767px) {
+  .brand { min-height: 44px; }
+  .pied-bas a { min-width: 44px; justify-content: center; }
+  .compare-cta a { display: inline-flex; align-items: center; min-height: 44px; }
+  /* Lien de tete de ligne d'un tableau (« Pennsylvania ») : zone agrandie par le
+     padding, compensee par la marge — la hauteur de ligne ne change pas. */
+  tbody th a { display: block; padding-block: 12px; margin-block: -12px; }
+}
+@media (max-width: 767px) {
+  /* La case a cocher (Washington : WA Cares) : la cible est son LIBELLE, qui
+     declenche la case. 44 px de haut, case centree sur la premiere ligne. */
+  .checkline { align-items: center; }
+  .checkline input { margin-top: 0; }
+  .checkline label { display: flex; align-items: center; min-height: 44px; }
+}
+@media (max-width: 767px) {
+  /* Les cinq pages sans impot d'Etat (Alaska, New Hampshire, South Dakota,
+     Tennessee, Wyoming) n'ont pas de <section> autour du calculateur : le titre,
+     le formulaire, le resultat et la legende sont des enfants directs. */
+  .col-contenu > #calc-h, .col-contenu > form.calc, .col-contenu > .result,
+  .col-contenu > .result + .caption { order: 1; }
+  .col-contenu > #calc-h {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+  }
+  .col-contenu > .result + .caption { margin-top: var(--s-3); }
+}
