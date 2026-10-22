@@ -42,3 +42,9 @@ data/ahrefs-*.csv
 # Config locale de Claude Code : chemins de la machine, jamais publiee (le 06/10 git add -u l a poussee par erreur)
 .claude/
 CLAUDE.md
+
+# L'atelier (generateurs, tests, sources, notes, exports GSC) reste sur le disque
+# mais n'est PLUS publie : GitHub Pages servait ces fichiers en HTTP 200 (decision
+# PDG 22/10/2026, option 1). Le depot reste public : l'historique git les contient
+# encore (verifie le 22/10 : aucun secret). Les .md d'etat restent ignores plus haut.
+.tooling/

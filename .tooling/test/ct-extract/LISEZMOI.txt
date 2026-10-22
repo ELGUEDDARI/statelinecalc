@@ -1,5 +1,0 @@
-Extraction des tables du Connecticut (20/10/2026). Les chemins C:/tmp/ct sont ceux de la session : telecharger
-tpg-211_1225.pdf (-> tpg211.pdf) et 2026-withholding-tables.pdf (-> tables.pdf), puis :
-  python -I build.py && python -I final.py          -> tables.json (= sources/connecticut-tpg211-tables.json)
-  rendre tables.pdf en PNG 250 dpi (p0..p7.png), ocr.ps1 sur chaque PNG, python -I ocrparse.py -> ocr.json (= sources/connecticut-printed-tables.json)
-Les tables imprimees n'ont pas de couche de texte : lues par l'OCR Windows ; verif-retenue-ct.js ecarte les lignes dont les bornes sont mal lues et les compte.
