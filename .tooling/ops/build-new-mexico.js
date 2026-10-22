@@ -252,7 +252,6 @@ const html = `<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XK0HYXJH0E"></script>
 <script src="/assets/analytics.js" defer></script>
 <title>New Mexico (NM) Paycheck Calculator 2026 &mdash; Hourly &amp; Salary</title>
 <meta name="description" content="Free New Mexico (NM) paycheck calculator, 2026. Hourly or salary take-home pay after federal, FICA and NM tax. Six state rates, 1.5% to 5.9%.">

@@ -775,3 +775,6 @@ tbody tr:hover { background: #E8EFF9; }
   .result { box-shadow: none; border: 1px solid var(--dark); margin-top: 0; }
   h1 { margin: 0 0 var(--s-4); }
 }
+
+/* 404 and any link-styled button inside main: no underline (2026-10-22) */
+main a.btn { text-decoration: none; }

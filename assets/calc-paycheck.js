@@ -437,19 +437,63 @@
       return parseFloat(net);
     }
 
+    /* ---- Saisie invalide : ne jamais laisser un ancien chiffre a l'ecran ----
+       Audit UX 22/10/2026 : apres "-5000" ou "abc", le message d'erreur
+       s'affichait MAIS le dernier resultat restait visible, et "99999999999"
+       donnait 4,6 milliards par mois. Trois regles :
+       1. saisie invalide -> le bloc resultat est VIDE (sa hauteur reste
+          reservee par .result{min-height}, donc pas de saut de page) ;
+       2. aria-invalid="true" sur le champ + aria-describedby vers le message ;
+       3. plafond sur le brut ANNUALISE : 10 000 000 $/an. Au-dela de ~600 000 $
+          les tranches federales sont plates et le salaire n'apprend plus rien
+          au visiteur ; une saisie plus haute est presque toujours une faute de
+          frappe (un zero de trop, un montant en cents).
+       Aucun calcul de paie n'est touche : seul ce qui entre dans le moteur. */
+    var PLAFOND_ANNUEL = 10000000;
+    var champSalaire = form.elements.salary;
+    var blocChamp = champSalaire.closest(".field");
+    var msgErreur = blocChamp ? blocChamp.querySelector(".error") : null;
+    if (msgErreur && !msgErreur.id) msgErreur.id = "salary-error";
+    var descriptionInitiale = champSalaire.getAttribute("aria-describedby");
+
+    function verifierMontant(brut, salary, annuel) {
+      if (typeof brut === "string" && /^\s*$/.test(brut)) {
+        return "Enter your pay, for example 75000.";
+      }
+      if (/^\s*[-−]/.test(brut)) return "Enter an amount greater than zero.";
+      if (!isFinite(salary)) return "Enter a number like 75000. Only digits, commas, a dollar sign and one decimal point are accepted.";
+      if (salary <= 0) return "Enter an amount greater than zero.";
+      if (annuel > PLAFOND_ANNUEL) return "That adds up to more than $10,000,000 a year. Enter a smaller amount.";
+      return "";
+    }
+    function marquerInvalide(message) {
+      if (blocChamp) blocChamp.classList.add("is-invalid");
+      if (msgErreur) { msgErreur.textContent = message; }
+      champSalaire.setAttribute("aria-invalid", "true");
+      if (msgErreur) {
+        var ids = (descriptionInitiale ? descriptionInitiale + " " : "") + msgErreur.id;
+        champSalaire.setAttribute("aria-describedby", ids);
+      }
+      out.innerHTML = "";
+    }
+    function marquerValide() {
+      if (blocChamp) blocChamp.classList.remove("is-invalid");
+      champSalaire.removeAttribute("aria-invalid");
+      if (descriptionInitiale) champSalaire.setAttribute("aria-describedby", descriptionInitiale);
+      else champSalaire.removeAttribute("aria-describedby");
+    }
+
     function read() {
-      var salary = montantSaisi(form.elements.salary.value);
+      var texteBrut = form.elements.salary.value;
+      var salary = montantSaisi(texteBrut);
       var per = form.elements.period.value;
-      var field = form.elements.salary.closest(".field");
       var hoursBrut = form.elements.hours ? form.elements.hours.value : String(HOURS_DEFAULT);
       var hours = montantSaisi(hoursBrut);
       if (!isFinite(hours) || hours <= 0) hours = HOURS_DEFAULT;
 
-      if (!isFinite(salary) || salary <= 0) {
-        field.classList.add("is-invalid");
-        return null;
-      }
-      field.classList.remove("is-invalid");
+      var verdict = verifierMontant(texteBrut, salary, salary * (isFinite(salary) ? periodsPerYear(per, hours) : 0));
+      if (verdict) { marquerInvalide(verdict); return null; }
+      marquerValide();
 
       var retraite = montantSaisi(form.elements.retirement.value);
       if (!isFinite(retraite) || retraite < 0) retraite = 0;

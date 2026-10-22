@@ -71,11 +71,43 @@
         '</div>';
     }
 
-    function render() {
-      var salary = montantSaisi(form.elements.salary.value);
-      var champ = form.elements.salary.closest(".field");
-      if (!isFinite(salary) || salary <= 0) { champ.classList.add("is-invalid"); return; }
+    /* Same rules as calc-paycheck.js (audit UX 22/10/2026): an invalid entry
+       empties the result instead of leaving the last figure on screen, flags
+       the field with aria-invalid + aria-describedby, and caps the annual
+       salary at $10,000,000. The field here is already a whole-year amount. */
+    var PLAFOND_ANNUEL = 10000000;
+    var descriptionInitiale = form.elements.salary.getAttribute("aria-describedby");
+    function verifierMontant(brut, salary) {
+      if (/^\s*$/.test(brut)) return "Enter your salary, for example 75000.";
+      if (/^\s*[-−]/.test(brut)) return "Enter an amount greater than zero.";
+      if (!isFinite(salary)) return "Enter a number like 75000. Only digits, commas, a dollar sign and one decimal point are accepted.";
+      if (salary <= 0) return "Enter an amount greater than zero.";
+      if (salary > PLAFOND_ANNUEL) return "That is more than $10,000,000 a year. Enter a smaller amount.";
+      return "";
+    }
+    function marquerInvalide(champ, message) {
+      var msg = champ.querySelector(".error");
+      if (msg) { if (!msg.id) msg.id = "salary-error"; msg.textContent = message; }
+      champ.classList.add("is-invalid");
+      form.elements.salary.setAttribute("aria-invalid", "true");
+      if (msg) form.elements.salary.setAttribute("aria-describedby",
+        (descriptionInitiale ? descriptionInitiale + " " : "") + msg.id);
+      out.innerHTML = "";
+    }
+    function marquerValide(champ) {
       champ.classList.remove("is-invalid");
+      form.elements.salary.removeAttribute("aria-invalid");
+      if (descriptionInitiale) form.elements.salary.setAttribute("aria-describedby", descriptionInitiale);
+      else form.elements.salary.removeAttribute("aria-describedby");
+    }
+
+    function render() {
+      var brut = form.elements.salary.value;
+      var salary = montantSaisi(brut);
+      var champ = form.elements.salary.closest(".field");
+      var verdict = verifierMontant(brut, salary);
+      if (verdict) { marquerInvalide(champ, verdict); return; }
+      marquerValide(champ);
 
       var filing = form.elements.filing.value;
       var stateA = form.elements.stateA.value;
