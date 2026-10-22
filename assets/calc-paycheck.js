@@ -376,6 +376,20 @@
     };
   }
 
+  /* Lot C (22/10/2026) : les barèmes arrivent dans un fichier à part
+     (/data/rates-2026.min.js). S'il n'a pas chargé — réseau coupé, fichier
+     absent, page en cache incohérente — le calculateur ne doit JAMAIS calculer
+     avec rien ni afficher un ancien chiffre : il le dit, et le bloc résultat
+     reste vide. On vérifie aussi l'État demandé : un <select> d'État dont la
+     valeur n'existe pas dans les données ne doit pas lever une exception en
+     silence et laisser le résultat précédent à l'écran. */
+  var MSG_DONNEES = '<p class="data-error" role="alert">We couldn’t load the 2026 tax data, ' +
+    'so there is no result to show. Reload the page and try again.</p>';
+  function donneesDisponibles(etat) {
+    return typeof RATES_2026 !== "undefined" && !!RATES_2026 && !!RATES_2026.federal &&
+      !!RATES_2026.fica && !!RATES_2026.states && !!RATES_2026.states[etat];
+  }
+
   function bandRate(taxable, bands) {
     for (var i = 0; i < bands.length; i++) {
       if (taxable <= bands[i][0]) return bands[i][1];
@@ -390,7 +404,12 @@
   function init() {
     var form = document.querySelector("[data-paycheck-form]");
     var out = document.querySelector("[data-paycheck-result]");
-    if (!form || !out || typeof RATES_2026 === "undefined") return;
+    if (!form || !out) return;
+    if (typeof RATES_2026 === "undefined") {
+      out.innerHTML = MSG_DONNEES;
+      form.addEventListener("submit", function (e) { e.preventDefault(); });
+      return;
+    }
 
     /* L'Etat vient de data-state sur les 10 pages /paycheck-calculator/<etat>/,
        ou il est FIXE. Les pages "X an hour is how much a year" ne portent aucun
@@ -590,6 +609,7 @@
       syncHours();
       var input = read();
       if (!input) return;
+      if (!donneesDisponibles(input.state)) { out.innerHTML = MSG_DONNEES; return; }
 
       var a = computeAnnual(input, RATES_2026);
       var div = periodsPerYear(form.elements.display.value, input.hoursPerWeek);
@@ -770,6 +790,8 @@
      la conversion horaire, donc c'est lui qu'il faut pouvoir tester. */
   window.StateLineCalc = {
     computeAnnual: computeAnnual,
+    donneesDisponibles: donneesDisponibles,
+    MSG_DONNEES: MSG_DONNEES,
     PERIODS: PERIODS,
     periodsPerYear: periodsPerYear
   };

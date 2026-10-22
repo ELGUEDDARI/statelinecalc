@@ -463,6 +463,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: var(--shadow-md);
   padding: var(--s-6);
 }
+.data-error { margin: 0; font-weight: 600; color: var(--danger); }   /* rate data failed to load: say so, show no figure */
 .result-label { font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
 .result-head {
   font-size: 40px; line-height: 1.1; font-weight: 700;

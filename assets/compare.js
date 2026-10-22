@@ -14,8 +14,21 @@
   function init() {
     var form = document.querySelector("[data-compare-form]");
     var out = document.querySelector("[data-compare-result]");
-    if (!form || !out || typeof window.StateLineCalc === "undefined" ||
-        typeof RATES_2026 === "undefined") return;
+    if (!form || !out) return;
+    /* Lot C : si le moteur ou les barèmes n'ont pas chargé, on le dit et on ne calcule rien.
+       Cette copie du message et du contrôle est volontaire : pendant un déploiement, un HTML ou un
+       moteur en cache peut être plus ancien que ce fichier, qui ne doit donc rien exiger de l'autre. */
+    var MSG_DONNEES = '<p class="data-error" role="alert">We couldn’t load the 2026 tax data, ' +
+      'so there is no result to show. Reload the page and try again.</p>';
+    function donneesDisponibles(etat) {
+      return typeof RATES_2026 !== "undefined" && !!RATES_2026 && !!RATES_2026.federal &&
+        !!RATES_2026.fica && !!RATES_2026.states && !!RATES_2026.states[etat];
+    }
+    if (typeof window.StateLineCalc === "undefined" || typeof RATES_2026 === "undefined") {
+      out.innerHTML = MSG_DONNEES;
+      form.addEventListener("submit", function (e) { e.preventDefault(); });
+      return;
+    }
 
     var usd = new Intl.NumberFormat("en-US", {
       style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2
@@ -115,6 +128,7 @@
       var nomA = form.elements.stateA.options[form.elements.stateA.selectedIndex].text;
       var nomB = form.elements.stateB.options[form.elements.stateB.selectedIndex].text;
 
+      if (!donneesDisponibles(stateA) || !donneesDisponibles(stateB)) { out.innerHTML = MSG_DONNEES; return; }
       var inputBase = { grossAnnual: salary, filingStatus: filing, retirementPct: 0,
                          waCaresApplies: true };
       var a = window.StateLineCalc.computeAnnual(
