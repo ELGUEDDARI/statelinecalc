@@ -380,12 +380,30 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,883.21</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-4"></i><i class="stack-seg seg-keep sw-78"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$249.50</span><span class="stack-pct num">4%</span></li></ul><p class="result-note">You keep <strong class="num">78%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
+
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
 
   <!-- Ad slot A -->
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
@@ -393,7 +411,7 @@
   <div class="prose">
 
     <!-- 4. How it works + sources -->
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Georgia is the first state on this site that actually takes a share of your wages, and it
     does it in the simplest way a state can: one rate, applied to everything above the standard
     deduction. There are no brackets to climb, so the arithmetic is the same whether you earn
@@ -429,7 +447,7 @@
   </div>
 
   <!-- 5. The 30-row table: the crawlable version of the calculator -->
-  <h2>Georgia take-home pay by salary</h2>
+  <h2 id="by-salary">Georgia take-home pay by salary</h2>
   <p class="prose">Single filer, standard deduction, no retirement contribution, 2026 rates.
   Use it to place yourself without typing anything. Watch the Georgia column: because the rate is
   flat, it rises in a straight line while the federal column accelerates.</p>
@@ -727,7 +745,7 @@
 
 
   <!-- 5b. Paie horaire -->
-  <h2>Georgia hourly paycheck: what your rate is worth after tax</h2>
+  <h2 id="hourly">Georgia hourly paycheck: what your rate is worth after tax</h2>
 
   <div class="prose">
     <p>Many of the people asking this question are paid by the hour, not by the year. The
@@ -1102,7 +1120,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Georgia</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Georgia</h2>
 
   <h3>The rate is flat, and it fell again this year</h3>
   <p>The Georgia Department of Revenue states that <em>&ldquo;the Georgia income tax rate has been
@@ -1154,7 +1172,7 @@
   and which do not.</p>
 
   <!-- 7. Common mistakes -->
-  <h2>Common mistakes people make</h2>
+  <h2 id="common-mistakes">Common mistakes people make</h2>
 
   <h3>Using last year&rsquo;s Georgia rate</h3>
   <p>The rate has changed repeatedly in recent years, and plenty of pages still quote an older
@@ -1189,7 +1207,7 @@
   a few percent is normal. See the <a href="/disclaimer/">disclaimer</a>.</p>
 
   <!-- 8. Worked example -->
-    <h2>Example calculation</h2>
+    <h2 id="example">Example calculation</h2>
     <p>A single filer earning <span class="num">$75,000</span> a year in Atlanta, taking both
     standard deductions, with no 401(k) contribution:</p>
 
@@ -1219,53 +1237,81 @@
 
     <!-- 9. FAQ -->
     <div class="faq">
-      <h2>Frequently asked questions</h2>
+      <h2 id="faq">Frequently asked questions</h2>
 
-      <h3>What is the Georgia income tax rate in 2026?</h3>
-      <p>A flat <strong>4.99%</strong>. The Georgia Department of Revenue states that the income
+      <details class="faq-item" open>
+        <summary><h3>What is the Georgia income tax rate in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>A flat <strong>4.99%</strong>. The Georgia Department of Revenue states that the income
       tax rate has been reduced to a flat rate of 4.99%, and that the standard deduction has been
       increased to $15,000 for single taxpayers, heads of households, and married taxpayers filing
       separately, or $30,000 for married taxpayers filing jointly. There are no brackets: the same
       rate applies to the first taxable dollar and the last.</p>
+        </div>
+      </details>
 
-      <h3>What is $20 an hour after taxes in Georgia?</h3>
-      <p>About <span class="num">$34,278</span> a year, or <span class="num">$2,856.52</span> a
+      <details class="faq-item">
+        <summary><h3>What is $20 an hour after taxes in Georgia?</h3></summary>
+        <div class="faq-r">
+          <p>About <span class="num">$34,278</span> a year, or <span class="num">$2,856.52</span> a
       month, at 40 hours a week for a single filer in 2026. That is a real take-home rate of
       <span class="num">$16.48</span> an hour, an effective rate of 17.6 percent, after federal
       tax, Social Security, Medicare and Georgia&rsquo;s flat 4.99%.</p>
+        </div>
+      </details>
 
-      <h3>What is take-home pay on a $75,000 salary in Georgia?</h3>
-      <p>About <span class="num">$58,599</span> a year, or <span class="num">$4,883.21</span> a
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Georgia?</h3></summary>
+        <div class="faq-r">
+          <p>About <span class="num">$58,599</span> a year, or <span class="num">$4,883.21</span> a
       month, for a single filer taking the standard deduction in 2026. Georgia&rsquo;s share is
       <span class="num">$2,994</span>, which is 4.99% of the $60,000 left after the $15,000 state
       standard deduction. Total withholding is <span class="num">$16,401.50</span>, an effective
       rate of 21.9 percent.</p>
+        </div>
+      </details>
 
-      <h3>Does Georgia tax tips and overtime the way the federal government does?</h3>
-      <p>No, and this catches people out. The Georgia Department of Revenue states that Georgia
+      <details class="faq-item">
+        <summary><h3>Does Georgia tax tips and overtime the way the federal government does?</h3></summary>
+        <div class="faq-r">
+          <p>No, and this catches people out. The Georgia Department of Revenue states that Georgia
       did not conform to the exemptions from income for overtime and tipped wages in the One Big
       Beautiful Bill Act, and that up to <span class="num">$1,750</span> of each may be exempted
       from the calculation of taxable net income. So the federal deduction reaches
       <span class="num">$25,000</span> of qualified tips while Georgia stops at
       <span class="num">$1,750</span>.</p>
+        </div>
+      </details>
 
-      <h3>Is Georgia unemployment insurance taken out of my paycheck?</h3>
-      <p>No. The Georgia Department of Labor states that in Georgia, employers pay the entire cost
+      <details class="faq-item">
+        <summary><h3>Is Georgia unemployment insurance taken out of my paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>No. The Georgia Department of Labor states that in Georgia, employers pay the entire cost
       of unemployment insurance benefits. It is charged on the first
       <span class="num">$9,500</span> of each employee&rsquo;s annual wages and is never deducted
       from your pay.</p>
+        </div>
+      </details>
 
-      <h3>How much more do I keep in Texas than in Georgia?</h3>
-      <p>On a $75,000 salary, exactly the amount of the Georgia tax:
+      <details class="faq-item">
+        <summary><h3>How much more do I keep in Texas than in Georgia?</h3></summary>
+        <div class="faq-r">
+          <p>On a $75,000 salary, exactly the amount of the Georgia tax:
       <span class="num">$2,994</span> a year. A single filer keeps about
       <span class="num">$58,599</span> in Georgia against
       <span class="num">$61,593</span> in <a href="/paycheck-calculator/texas/">Texas</a>, because
       the federal tax and FICA are identical and Texas levies no income tax at all.</p>
+        </div>
+      </details>
 
-      <h3>Why is my Georgia paycheck smaller than the calculator says?</h3>
-      <p>Almost always because of things that are personal to you rather than to Georgia: health
+      <details class="faq-item">
+        <summary><h3>Why is my Georgia paycheck smaller than the calculator says?</h3></summary>
+        <div class="faq-r">
+          <p>Almost always because of things that are personal to you rather than to Georgia: health
       insurance premiums, a 401(k) contribution, extra withholding on your W-4, or a second job.
       The calculator models one job, the standard deduction and wages only.</p>
+        </div>
+      </details>
     </div>
 
     <!-- 10a. Neighboring states -->
@@ -1292,7 +1338,7 @@
     <a href="/paycheck-calculator/">state index</a>.</p>
 
     <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Georgia ones from the state&rsquo;s own document below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1313,7 +1359,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-    <ul>
+    <ul class="related">
       <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
       index, including which states have no income tax at all.</li>
       <li><a href="/salary-to-hourly-calculator/georgia/">Georgia salary to hourly</a> &mdash; what an annual salary is worth per hour in Georgia, after tax and not just before.</li>
@@ -1417,6 +1463,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,883.21</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1456,8 +1506,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1467,9 +1517,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1522,23 +1572,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1548,6 +1598,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

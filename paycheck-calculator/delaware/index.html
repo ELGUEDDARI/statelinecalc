@@ -301,18 +301,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,806.96</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-5"></i><i class="stack-seg seg-keep sw-77"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$325.75</span><span class="stack-pct num">5%</span></li></ul><p class="result-note">You keep <strong class="num">77%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Delaware&rsquo;s Division of Revenue describes an approved withholding method based on annualized wages, and this calculator follows it. Your pay is scaled up to a year. The standard deduction comes off (<span class="num">$3,250</span> for a single filer, <span class="num">$6,500</span> for a married couple filing jointly), the tax is read from a schedule with rates from <span class="num">2.20%</span> to <span class="num">6.60%</span>, and a <span class="num">$110</span> credit comes off the tax for each exemption. The yearly result is divided by your pay periods. The tax is figured the same way for every filing status; what changes is the deduction and the number of exemptions.</p>
 
     <p>The calculator applies these deductions in this order:</p>
@@ -348,7 +366,7 @@
     <p>What the calculator deliberately leaves out: dependents, the City of Wilmington wage tax, the extra credit and deduction for people age 60, 65 or older, or blind, as well as bonuses, extra withholding, an employer that pays the Paid Leave contribution for you or covers parental leave only, and health insurance premiums and other employer benefit deductions.</p>
   </div>
 
-  <h2>Delaware take-home pay by salary</h2>
+  <h2 id="by-salary">Delaware take-home pay by salary</h2>
   <p class="prose">Single filer, one exemption, no retirement contribution, 2026 federal rates and the Division&rsquo;s current Delaware schedule. The
   DE state tax + programs column is Delaware income tax withholding plus the maximum Paid Leave deduction of 0.40%. It does not include the City of Wilmington wage tax.</p>
 
@@ -743,7 +761,7 @@
     In some cases a nonresident&rsquo;s taxable earnings are apportioned by the days worked in the city. The regulations also tax earnings put into a retirement plan at the time they are deferred, so a 401(k) contribution does not lower this tax.</p>
     <p>We read the rate in the regulations as revised in May 2023 and did not find a more recent change. On <span class="num">$75,000</span> the tax is <span class="num">$937.50</span> a year, or <span class="num">$78.13</span> a month, which would bring a single filer&rsquo;s take-home pay from <span class="num">$57,684</span> to about <span class="num">$56,746</span>. This calculator does not add it, because it cannot know where you live or where you work. We found no other local income tax on wages in the documents we read.</p>
 
-    <h2>Delaware hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Delaware hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask for your hours instead of assuming 2,080</h3>
     <p>Many hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1073,7 +1091,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Delaware</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Delaware</h2>
 
   <h3>The first $2,000 of taxable income is not taxed</h3>
   <p>The schedule starts at <span class="num">0.00%</span> for the first <span class="num">$2,000</span>. With the <span class="num">$3,250</span> standard deduction, a single filer&rsquo;s yearly pay has to pass <span class="num">$5,250</span> before the schedule charges anything. At <span class="num">$30,000</span>, Delaware withholds <span class="num">$988.13</span> a year.</p>
@@ -1105,7 +1123,7 @@
   stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
   extra 0.9% on wages above <span class="num">$200,000</span>. On <span class="num">$250,000</span>, Social Security and Medicare take <span class="num">$15,514.00</span> in total, and Paid Leave stops at the same wage base, at <span class="num">$738.00</span>.</p>
 
-  <h2>Common mistakes</h2>
+  <h2 id="common-mistakes">Common mistakes</h2>
 
   <h3>Forgetting the standard deduction</h3>
   <p>Applying the schedule to the full <span class="num">$75,000</span> instead of <span class="num">$71,750</span> overstates Delaware withholding by <span class="num">$214.50</span>: <span class="num">$3,823.50</span> instead of <span class="num">$3,609.00</span>, after the credit in both cases.</p>
@@ -1127,7 +1145,7 @@
   deductions come out before tax and are not modeled here, and the allowances on your Form W-4 may differ from the
   ones we assume. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>Amounts are shown to the cent, so adding the rounded lines can differ from the total by a cent.</p>
   <p>A single filer earning <span class="num">$75,000</span> in Delaware in 2026, claiming one exemption and no retirement
   contribution, on the Division&rsquo;s current schedule:</p>
@@ -1148,47 +1166,100 @@
     <li>Effective tax rate: <span class="num">23.1%</span></li>
   </ul>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the Delaware income tax withholding rate?</h3>
-    <p>Delaware&rsquo;s withholding schedule has seven steps, and six of them tax something: <span class="num">2.20%</span>, <span class="num">3.90%</span>, <span class="num">4.80%</span>, <span class="num">5.20%</span>, <span class="num">5.55%</span> and <span class="num">6.60%</span>. The first $2,000 of taxable income is taxed at <span class="num">0.00%</span>. Taxable income is your yearly pay minus the $3,250 standard deduction for a single filer, and <span class="num">6.60%</span> applies only to the part above $60,000. On a single filer&rsquo;s $75,000 salary, Delaware withholds $3,609.00 a year.</p>
 
-    <h3>How much Delaware tax is withheld on a $75,000 salary?</h3>
-    <p>For a single filer claiming one exemption, Delaware withholds $3,609.00 a year, which is $300.75 a month. Taxable income is $75,000 minus the $3,250 standard deduction, or $71,750. The schedule gives $3,719.00 on that, and the $110 credit for one exemption brings it to $3,609.00. A married couple filing jointly, with a $6,500 deduction and two credits, has $3,284.50 withheld, and a head of household, treated like a single filer, has $3,609.00 withheld.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the Delaware income tax withholding rate?</h3></summary>
+        <div class="faq-r">
+          <p>Delaware&rsquo;s withholding schedule has seven steps, and six of them tax something: <span class="num">2.20%</span>, <span class="num">3.90%</span>, <span class="num">4.80%</span>, <span class="num">5.20%</span>, <span class="num">5.55%</span> and <span class="num">6.60%</span>. The first $2,000 of taxable income is taxed at <span class="num">0.00%</span>. Taxable income is your yearly pay minus the $3,250 standard deduction for a single filer, and <span class="num">6.60%</span> applies only to the part above $60,000. On a single filer&rsquo;s $75,000 salary, Delaware withholds $3,609.00 a year.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in Delaware?</h3>
-    <p>About $57,684 a year, or $4,806.96 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, $3,609.00 of Delaware income tax and $300.00 for Delaware Paid Leave at its 0.40% maximum employee share &mdash; an effective rate of 23.1%. It is before the City of Wilmington wage tax, which this calculator does not include.</p>
+      <details class="faq-item">
+        <summary><h3>How much Delaware tax is withheld on a $75,000 salary?</h3></summary>
+        <div class="faq-r">
+          <p>For a single filer claiming one exemption, Delaware withholds $3,609.00 a year, which is $300.75 a month. Taxable income is $75,000 minus the $3,250 standard deduction, or $71,750. The schedule gives $3,719.00 on that, and the $110 credit for one exemption brings it to $3,609.00. A married couple filing jointly, with a $6,500 deduction and two credits, has $3,284.50 withheld, and a head of household, treated like a single filer, has $3,609.00 withheld.</p>
+        </div>
+      </details>
 
-    <h3>How much is $20, $25 or $30 an hour after taxes in Delaware?</h3>
-    <p>At 40 hours a week, $20 an hour leaves about $33,807 a year, or $16.25 an hour. $25 an hour leaves about $41,545, or $19.97 an hour. $30 an hour leaves about $49,282, or $23.69 an hour. Those are single-filer figures after federal tax, FICA, Delaware income tax withholding and the maximum paid leave deduction, with no retirement contribution and no Wilmington tax.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Delaware?</h3></summary>
+        <div class="faq-r">
+          <p>About $57,684 a year, or $4,806.96 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, $3,609.00 of Delaware income tax and $300.00 for Delaware Paid Leave at its 0.40% maximum employee share &mdash; an effective rate of 23.1%. It is before the City of Wilmington wage tax, which this calculator does not include.</p>
+        </div>
+      </details>
 
-    <h3>What is the Delaware standard deduction for withholding?</h3>
-    <p>The Division of Revenue&rsquo;s Employer&rsquo;s Guide gives $3,250 for a single filer and $6,500 for a married couple filing jointly, and the same $3,250 for married filing separately. The guide does not name head of household; the Division&rsquo;s 2025 resident return gives a head of household $3,250, so this calculator uses that. Your actual Delaware tax is figured on your return, where you can itemize instead, and where people 65 or older or blind get an additional deduction.</p>
+      <details class="faq-item">
+        <summary><h3>How much is $20, $25 or $30 an hour after taxes in Delaware?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour leaves about $33,807 a year, or $16.25 an hour. $25 an hour leaves about $41,545, or $19.97 an hour. $30 an hour leaves about $49,282, or $23.69 an hour. Those are single-filer figures after federal tax, FICA, Delaware income tax withholding and the maximum paid leave deduction, with no retirement contribution and no Wilmington tax.</p>
+        </div>
+      </details>
 
-    <h3>How many exemptions can I claim for Delaware withholding?</h3>
-    <p>The guide tells employers to rely on the number of allowances an employee claims on the federal Form W-4 or W-4A, and each exemption is worth a $110 credit against the tax. This calculator counts one exemption for a single filer and for a head of household, and two for a married couple filing jointly, and it does not ask about dependents. Each extra exemption would lower Delaware withholding by $110 a year, whatever your pay.</p>
+      <details class="faq-item">
+        <summary><h3>What is the Delaware standard deduction for withholding?</h3></summary>
+        <div class="faq-r">
+          <p>The Division of Revenue&rsquo;s Employer&rsquo;s Guide gives $3,250 for a single filer and $6,500 for a married couple filing jointly, and the same $3,250 for married filing separately. The guide does not name head of household; the Division&rsquo;s 2025 resident return gives a head of household $3,250, so this calculator uses that. Your actual Delaware tax is figured on your return, where you can itemize instead, and where people 65 or older or blind get an additional deduction.</p>
+        </div>
+      </details>
 
-    <h3>Do I need to fill out a Delaware W-4?</h3>
-    <p>The guide says each new employee must give the employer a signed federal Form W-4 or W-4A. It describes a state worksheet, Form SD/W-4A, as a way to work out how many allowances to claim for Delaware, and says it &ldquo;is not required of Delaware wage earners,&rdquo; so we found no Delaware-only form that every employee must file.</p>
+      <details class="faq-item">
+        <summary><h3>How many exemptions can I claim for Delaware withholding?</h3></summary>
+        <div class="faq-r">
+          <p>The guide tells employers to rely on the number of allowances an employee claims on the federal Form W-4 or W-4A, and each exemption is worth a $110 credit against the tax. This calculator counts one exemption for a single filer and for a head of household, and two for a married couple filing jointly, and it does not ask about dependents. Each extra exemption would lower Delaware withholding by $110 a year, whatever your pay.</p>
+        </div>
+      </details>
 
-    <h3>Is there a Delaware Paid Leave deduction on my paycheck?</h3>
-    <p>Possibly. Delaware Paid Leave is funded by contributions of <span class="num">0.80%</span> of wages in 2025 and 2026 for employers that must provide full coverage, and the law says an employer shall deduct not greater than 50% of the contribution from the employee&rsquo;s wages. That makes <span class="num">0.40%</span> the most an employee can be charged at such an employer, which is $300.00 a year on $75,000. An employer may pay the whole contribution itself, and one with 10 to 24 employees covers parental leave only, at a lower rate. The calculator assumes the maximum <span class="num">0.40%</span>, up to the Social Security wage base, and your pay stub shows what your employer actually takes.</p>
+      <details class="faq-item">
+        <summary><h3>Do I need to fill out a Delaware W-4?</h3></summary>
+        <div class="faq-r">
+          <p>The guide says each new employee must give the employer a signed federal Form W-4 or W-4A. It describes a state worksheet, Form SD/W-4A, as a way to work out how many allowances to claim for Delaware, and says it &ldquo;is not required of Delaware wage earners,&rdquo; so we found no Delaware-only form that every employee must file.</p>
+        </div>
+      </details>
 
-    <h3>Is pay taxed differently in Wilmington?</h3>
-    <p>Yes, the City of Wilmington adds its own wage tax of <span class="num">1.25%</span>. Under the city&rsquo;s Earned Income Tax Regulations it applies to city residents on their earnings wherever they work, and to nonresidents for work done in the city. On $75,000 that is $937.50 a year, or $78.13 a month. The calculator does not include it, because it cannot know where you live or where you work. If it applies to you, subtract about <span class="num">1.25%</span> of your pay from the result.</p>
+      <details class="faq-item">
+        <summary><h3>Is there a Delaware Paid Leave deduction on my paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>Possibly. Delaware Paid Leave is funded by contributions of <span class="num">0.80%</span> of wages in 2025 and 2026 for employers that must provide full coverage, and the law says an employer shall deduct not greater than 50% of the contribution from the employee&rsquo;s wages. That makes <span class="num">0.40%</span> the most an employee can be charged at such an employer, which is $300.00 a year on $75,000. An employer may pay the whole contribution itself, and one with 10 to 24 employees covers parental leave only, at a lower rate. The calculator assumes the maximum <span class="num">0.40%</span>, up to the Social Security wage base, and your pay stub shows what your employer actually takes.</p>
+        </div>
+      </details>
 
-    <h3>Did Delaware change its income tax withholding for 2026?</h3>
-    <p>We found no change. The Division of Revenue&rsquo;s guide still labels its tax schedule &ldquo;Effective January 1, 2025,&rdquo; and labels its withholding tables &ldquo;Effective January 1, 2025 (No changes from January 1, 2014).&rdquo; Its tax season updates page, which we read on October 13, 2026, mentions no change to personal income tax rates, the standard deduction or the personal credit. That is why this page refers to the Division&rsquo;s current guide rather than to tables for 2026.</p>
+      <details class="faq-item">
+        <summary><h3>Is pay taxed differently in Wilmington?</h3></summary>
+        <div class="faq-r">
+          <p>Yes, the City of Wilmington adds its own wage tax of <span class="num">1.25%</span>. Under the city&rsquo;s Earned Income Tax Regulations it applies to city residents on their earnings wherever they work, and to nonresidents for work done in the city. On $75,000 that is $937.50 a year, or $78.13 a month. The calculator does not include it, because it cannot know where you live or where you work. If it applies to you, subtract about <span class="num">1.25%</span> of your pay from the result.</p>
+        </div>
+      </details>
 
-    <h3>Are there other deductions from a Delaware paycheck?</h3>
-    <p>Besides Paid Leave, we found none. The Division of Unemployment Insurance&rsquo;s employer handbook says workers do not pay any part of the Delaware unemployment tax and that employers can make no payroll deductions for it. We also found no state disability insurance program run through payroll. That is not proof that none exists; it is only what we found.</p>
+      <details class="faq-item">
+        <summary><h3>Did Delaware change its income tax withholding for 2026?</h3></summary>
+        <div class="faq-r">
+          <p>We found no change. The Division of Revenue&rsquo;s guide still labels its tax schedule &ldquo;Effective January 1, 2025,&rdquo; and labels its withholding tables &ldquo;Effective January 1, 2025 (No changes from January 1, 2014).&rdquo; Its tax season updates page, which we read on October 13, 2026, mentions no change to personal income tax rates, the standard deduction or the personal credit. That is why this page refers to the Division&rsquo;s current guide rather than to tables for 2026.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my Delaware withholding?</h3>
-    <p>In this calculator, yes for the income tax, no for Paid Leave. The guide says Delaware follows federal law on what income is subject to withholding but does not mention 401(k) contributions, so treating them as lowering the wages Delaware taxes is our modeling choice, the same one we use for federal tax and in every other state here. On $75,000 with 6% going into a 401(k), Delaware income tax withholding falls by $297.00 a year. Paid Leave is figured on your full pay here, because those contributions are FICA wages. Wilmington taxes pay that goes into a retirement plan at the time it is deferred. Ask your payroll department how your employer treats it.</p>
+      <details class="faq-item">
+        <summary><h3>Are there other deductions from a Delaware paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>Besides Paid Leave, we found none. The Division of Unemployment Insurance&rsquo;s employer handbook says workers do not pay any part of the Delaware unemployment tax and that employers can make no payroll deductions for it. We also found no state disability insurance program run through payroll. That is not proof that none exists; it is only what we found.</p>
+        </div>
+      </details>
 
-    <h3>Why is my Delaware paycheck different from this calculator?</h3>
-    <p>Common reasons: you claimed a different number of allowances on your federal Form W-4; your employer uses the Division&rsquo;s wage-bracket tables instead of the annualized formula, which differ by at most a cent or so in our check; your employer pays all or part of the Paid Leave contribution, or covers parental leave only; you live or work in Wilmington; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; or part of your pay is a bonus. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my Delaware withholding?</h3></summary>
+        <div class="faq-r">
+          <p>In this calculator, yes for the income tax, no for Paid Leave. The guide says Delaware follows federal law on what income is subject to withholding but does not mention 401(k) contributions, so treating them as lowering the wages Delaware taxes is our modeling choice, the same one we use for federal tax and in every other state here. On $75,000 with 6% going into a 401(k), Delaware income tax withholding falls by $297.00 a year. Paid Leave is figured on your full pay here, because those contributions are FICA wages. Wilmington taxes pay that goes into a retirement plan at the time it is deferred. Ask your payroll department how your employer treats it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Why is my Delaware paycheck different from this calculator?</h3></summary>
+        <div class="faq-r">
+          <p>Common reasons: you claimed a different number of allowances on your federal Form W-4; your employer uses the Division&rsquo;s wage-bracket tables instead of the annualized formula, which differ by at most a cent or so in our check; your employer pays all or part of the Paid Leave contribution, or covers parental leave only; you live or work in Wilmington; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; or part of your pay is a bonus. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates. Delaware borders Maryland, Pennsylvania and New Jersey, and we have a calculator for every one of them.
@@ -1217,7 +1288,7 @@
   <p>The table rounds take-home pay to the dollar; the differences in this paragraph use the exact amounts. Compared with a Delaware worker on the same salary, a <a href="/paycheck-calculator/maryland/">Maryland</a> worker keeps <span class="num">$1,528.80</span> less, a <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> worker keeps <span class="num">$1,554.00</span> more, and a <a href="/paycheck-calculator/new-jersey/">New Jersey</a> worker keeps <span class="num">$534.60</span> more. A worker who lives in one of those states and commutes into Delaware, or the reverse, is a different case that this calculator does not model: it assumes a Delaware resident working in Delaware.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Delaware ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1246,7 +1317,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/maryland/">Maryland paycheck calculator</a> &mdash; the neighbor to the west and south, which adds a local income tax set by your county.</li>
@@ -1339,6 +1410,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,806.96</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1378,8 +1453,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1389,9 +1464,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1444,23 +1519,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1470,6 +1545,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

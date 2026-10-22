@@ -309,18 +309,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,997.79</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-2"></i><i class="stack-seg seg-keep sw-80"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$134.92</span><span class="stack-pct num">2%</span></li></ul><p class="result-note">You keep <strong class="num">80%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>On a salary of $75,000, only North Dakota and Arizona take less state income tax than Ohio among the states on this site that levy one, and Ohio&rsquo;s schedule has the strangest shape. There are no brackets in the usual sense. Instead the statute says that
     nothing is owed at or below <span class="num">$26,050</span> of taxable income, and that above it you owe
     <strong><span class="num">$332</span> plus 2.75%</strong> of the excess. Taxable income is your pay less a
@@ -365,7 +383,7 @@
     premiums and other employer benefit deductions.</p>
   </div>
 
-  <h2>Ohio take-home pay by salary</h2>
+  <h2 id="by-salary">Ohio take-home pay by salary</h2>
   <p class="prose">Single filer with one exemption, no retirement contribution, 2026 state and
   federal rates, municipal and school district income tax excluded. Notice the Ohio column: it is
   zero until about <span class="num">$28,450</span>, jumps to <span class="num">$332.03</span> the moment it starts, and
@@ -666,7 +684,7 @@
 
   <div class="prose">
 
-    <h2>Ohio hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Ohio hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask your hours instead of assuming 2,080</h3>
     <p>Most hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1007,7 +1025,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Ohio</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Ohio</h2>
 
   <h3>Ohio no longer has five brackets, and the top rate is not 4%</h3>
   <p>This is the single most common piece of stale information about Ohio pay. The state used to
@@ -1144,7 +1162,7 @@
   year for high earners &mdash; the paycheck after you cross the Social Security wage base is
   visibly larger.</p>
 
-  <h2>Common mistakes people make</h2>
+  <h2 id="common-mistakes">Common mistakes people make</h2>
 
   <h3>Using an old Ohio bracket table</h3>
   <p>The most expensive error, and the easiest to make, because Ohio changed its schedule several
@@ -1176,7 +1194,7 @@
   withheld alongside it. Treat this as an accurate model of what you <em>owe</em> at the federal
   and state level, and read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>A single filer earning <span class="num">$75,000</span> in Ohio in 2026, claiming one exemption, with no
   retirement contribution:</p>
   <ul>
@@ -1199,38 +1217,79 @@
   <p>Add a city income tax and, if your district levies one, a school district tax, and the picture
   changes materially &mdash; which is exactly why both are called out above rather than buried.</p>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the Ohio income tax rate in 2026?</h3>
-    <p>2.75%, and it applies only to the part of your taxable income above $26,050. Below that, Ohio charges nothing. The rate sits in the statute itself, Ohio Revised Code section 5747.02: “For taxable years beginning in 2026 and thereafter, $332.00 plus 2.75% of the amount in excess of $26,050.” Ohio used to have five brackets topping out near 4%; that structure is gone, and calculators still showing it are years out of date.</p>
 
-    <h3>At what salary does Ohio income tax actually start?</h3>
-    <p>About $28,450 for a single filer, and $30,850 for a married couple filing jointly with two exemptions. Ohio taxes nothing on the first $26,050 of taxable income, and taxable income is your pay minus $2,400 for every exemption you claim. Add the two together and you have the point where the state starts taking anything at all. On $25,000 a single Ohioan pays the state $0.00.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the Ohio income tax rate in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>2.75%, and it applies only to the part of your taxable income above $26,050. Below that, Ohio charges nothing. The rate sits in the statute itself, Ohio Revised Code section 5747.02: “For taxable years beginning in 2026 and thereafter, $332.00 plus 2.75% of the amount in excess of $26,050.” Ohio used to have five brackets topping out near 4%; that structure is gone, and calculators still showing it are years out of date.</p>
+        </div>
+      </details>
 
-    <h3>Is it true that one extra dollar can cost $332 in Ohio?</h3>
-    <p>Yes, and it is in the law rather than a rounding artefact. The statute says nothing is owed at or below $26,050 of taxable income, then “$332.00 plus 2.75% of the amount in excess of $26,050”. So at $28,450 of salary a single filer owes $0.00, and at $28,451 they owe $332.03. That one dollar costs $332.03. Ohio's own IT 1040 booklet describes it the same way: its worked example says the taxpayer “owes $342 on the first $26,050 of income” for 2025, even though the row above it reads 0.000%. The base falls to $332 for 2026.</p>
+      <details class="faq-item">
+        <summary><h3>At what salary does Ohio income tax actually start?</h3></summary>
+        <div class="faq-r">
+          <p>About $28,450 for a single filer, and $30,850 for a married couple filing jointly with two exemptions. Ohio taxes nothing on the first $26,050 of taxable income, and taxable income is your pay minus $2,400 for every exemption you claim. Add the two together and you have the point where the state starts taking anything at all. On $25,000 a single Ohioan pays the state $0.00.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in Ohio?</h3>
-    <p>About $59,974 a year, or $4,997.79 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and only $1,619.00 of Ohio income tax — a state rate of 2.16%. Of the 41 states published here that levy an income tax on wages, only North Dakota and Arizona leave a single filer on this salary with more take-home pay than Ohio. School district and municipal income taxes are not included.</p>
+      <details class="faq-item">
+        <summary><h3>Is it true that one extra dollar can cost $332 in Ohio?</h3></summary>
+        <div class="faq-r">
+          <p>Yes, and it is in the law rather than a rounding artefact. The statute says nothing is owed at or below $26,050 of taxable income, then “$332.00 plus 2.75% of the amount in excess of $26,050”. So at $28,450 of salary a single filer owes $0.00, and at $28,451 they owe $332.03. That one dollar costs $332.03. Ohio's own IT 1040 booklet describes it the same way: its worked example says the taxpayer “owes $342 on the first $26,050 of income” for 2025, even though the row above it reads 0.000%. The base falls to $332 for 2026.</p>
+        </div>
+      </details>
 
-    <h3>Why does my Ohio employer withhold more than I owe?</h3>
-    <p>Because the withholding tables and the tax are two different things in Ohio. The Department's own withholding tables effective August 1, 2026 say: “If the wages exceed $1,923, use the last row of the table plus 3.400% of the excess over $1,923.” That is a 3.4% withholding rate against a 2.75% tax. On $75,000 the gap is roughly $931 over a year. It comes back as a refund when you file, but it is money you do not have during the year.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Ohio?</h3></summary>
+        <div class="faq-r">
+          <p>About $59,974 a year, or $4,997.79 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and only $1,619.00 of Ohio income tax — a state rate of 2.16%. Of the 41 states published here that levy an income tax on wages, only North Dakota and Arizona leave a single filer on this salary with more take-home pay than Ohio. School district and municipal income taxes are not included.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my Ohio tax?</h3>
-    <p>Yes. Ohio taxable income starts from your federal adjusted gross income, and an elective deferral is already out of that figure. On $75,000 with 6% going into a 401(k), your Ohio tax falls by $123.75. That is a small number because the rate is small — the same contribution saves far more federal tax. The rule is not universal either: in Pennsylvania the same worker's state tax falls by $0.00, nothing at all.</p>
+      <details class="faq-item">
+        <summary><h3>Why does my Ohio employer withhold more than I owe?</h3></summary>
+        <div class="faq-r">
+          <p>Because the withholding tables and the tax are two different things in Ohio. The Department's own withholding tables effective August 1, 2026 say: “If the wages exceed $1,923, use the last row of the table plus 3.400% of the excess over $1,923.” That is a 3.4% withholding rate against a 2.75% tax. On $75,000 the gap is roughly $931 over a year. It comes back as a refund when you file, but it is money you do not have during the year.</p>
+        </div>
+      </details>
 
-    <h3>How much is the Ohio personal exemption in 2026?</h3>
-    <p>$2,400 per person if your income is $40,000 or less, $2,150 between $40,001 and $80,000, and $1,900 above that — claimed for yourself, your spouse and each dependant. Two things to know. The amount falls as you earn more, which no other state on this site does. And for 2026 the exemption disappears entirely above $500,000 of income, down from $750,000 in 2025.</p>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my Ohio tax?</h3></summary>
+        <div class="faq-r">
+          <p>Yes. Ohio taxable income starts from your federal adjusted gross income, and an elective deferral is already out of that figure. On $75,000 with 6% going into a 401(k), your Ohio tax falls by $123.75. That is a small number because the rate is small — the same contribution saves far more federal tax. The rule is not universal either: in Pennsylvania the same worker's state tax falls by $0.00, nothing at all.</p>
+        </div>
+      </details>
 
-    <h3>What is $20 an hour after taxes in Ohio?</h3>
-    <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,905 after tax, which works out at $16.78 an hour in real terms. Ohio takes only $700.50 of that for the year — 1.68% of gross. Federal tax and FICA take far more.</p>
+      <details class="faq-item">
+        <summary><h3>How much is the Ohio personal exemption in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>$2,400 per person if your income is $40,000 or less, $2,150 between $40,001 and $80,000, and $1,900 above that — claimed for yourself, your spouse and each dependant. Two things to know. The amount falls as you earn more, which no other state on this site does. And for 2026 the exemption disappears entirely above $500,000 of income, down from $750,000 in 2025.</p>
+        </div>
+      </details>
 
-    <h3>Do Ohio school districts charge their own income tax?</h3>
-    <p>Many do, and it is separate from both the state tax and any city tax. The Department's IT 1040 booklet lists the rate for each district as a four-digit decimal; the rates run from 0.25% to 2%. Districts also use one of two bases: a “traditional” base of modified adjusted gross income less exemptions, or an “earned income” base that looks only at wages. It is filed on a separate return, the SD 100. On $75,000 a school district levy is worth between $187.50 and $1,500.00 a year, and none of it is in the figures on this page. Use the Department's Finder tool at tax.ohio.gov/Finder to see which district you are in.</p>
+      <details class="faq-item">
+        <summary><h3>What is $20 an hour after taxes in Ohio?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,905 after tax, which works out at $16.78 an hour in real terms. Ohio takes only $700.50 of that for the year — 1.68% of gross. Federal tax and FICA take far more.</p>
+        </div>
+      </details>
 
-    <h3>Why is my Ohio paycheck smaller than this calculator says?</h3>
-    <p>In Ohio there are usually three reasons, in this order. Your city may well levy a municipal income tax — 642 Ohio municipalities did so in 2018, per the Department's own Table LG-11 — which is administered by the city rather than the state and is not modeled here. A city may set up to 1% on its own authority and more if its voters approve, so on $75,000 that is $750.00 a year at the 1% floor and more where voters have gone higher: 61 of the 642 municipalities charge above 2.16%, the rate at which a city takes more of a $75,000 salary than Ohio does. Your school district may levy one too. And the state withholding tables take more than the tax you owe, which you get back only at filing. After that come the ordinary causes: health premiums and other benefit deductions come out before tax, and a second job pushes federal withholding up.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>Do Ohio school districts charge their own income tax?</h3></summary>
+        <div class="faq-r">
+          <p>Many do, and it is separate from both the state tax and any city tax. The Department's IT 1040 booklet lists the rate for each district as a four-digit decimal; the rates run from 0.25% to 2%. Districts also use one of two bases: a “traditional” base of modified adjusted gross income less exemptions, or an “earned income” base that looks only at wages. It is filed on a separate return, the SD 100. On $75,000 a school district levy is worth between $187.50 and $1,500.00 a year, and none of it is in the figures on this page. Use the Department's Finder tool at tax.ohio.gov/Finder to see which district you are in.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Why is my Ohio paycheck smaller than this calculator says?</h3></summary>
+        <div class="faq-r">
+          <p>In Ohio there are usually three reasons, in this order. Your city may well levy a municipal income tax — 642 Ohio municipalities did so in 2018, per the Department's own Table LG-11 — which is administered by the city rather than the state and is not modeled here. A city may set up to 1% on its own authority and more if its voters approve, so on $75,000 that is $750.00 a year at the 1% floor and more where voters have gone higher: 61 of the 642 municipalities charge above 2.16%, the rate at which a city takes more of a $75,000 salary than Ohio does. Your school district may levy one too. And the state withholding tables take more than the tax you owe, which you get back only at filing. After that come the ordinary causes: health premiums and other benefit deductions come out before tax, and a second job pushes federal withholding up.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates, state layer only:</p>
@@ -1253,7 +1312,7 @@
   address.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">The federal figures on this page &mdash; the brackets, the standard deduction and FICA &mdash; are read from the official documents below. The Ohio figures are read from the state&rsquo;s own law and withholding guides, which we quote and date on our <a href="/methodology/">methodology page</a>: Ohio does not publish a page we can link that carries its own 2026 figures. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The federal documents these figures are read from</h3>
@@ -1273,7 +1332,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/michigan/">Michigan paycheck calculator</a> &mdash; the
@@ -1368,6 +1427,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,997.79</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1407,8 +1470,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1418,9 +1481,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1473,23 +1536,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1499,6 +1562,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

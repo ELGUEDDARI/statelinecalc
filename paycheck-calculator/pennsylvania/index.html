@@ -305,18 +305,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,936.46</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-3"></i><i class="stack-seg seg-keep sw-79"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$196.25</span><span class="stack-pct num">3%</span></li></ul><p class="result-note">You keep <strong class="num">79%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Pennsylvania is the simplest state income tax in the country to describe and one of the
     easiest to get wrong. Simple, because it is one flat rate with no brackets, no standard
     deduction and no personal exemption: your compensation is multiplied by 3.07% and that is the
@@ -361,7 +379,7 @@
     and other employer benefit deductions.</p>
   </div>
 
-  <h2>Pennsylvania take-home pay by salary</h2>
+  <h2 id="by-salary">Pennsylvania take-home pay by salary</h2>
   <p class="prose">Single filer, no retirement contribution, 2026 state and federal rates, local
   earned income tax excluded. Because the state rate is flat and nothing is deducted first, the
   Pennsylvania column is exactly 3.07% of the first column, on every line.</p>
@@ -692,7 +710,7 @@
 
   <div class="prose">
 
-    <h2>Pennsylvania hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Pennsylvania hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask your hours instead of assuming 2,080</h3>
     <p>Most hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1024,7 +1042,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Pennsylvania</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Pennsylvania</h2>
 
   <h3>One rate, no brackets, for everyone</h3>
   <p>Pennsylvania applies a single rate of 3.07% to personal income. There is no bracket structure
@@ -1102,7 +1120,7 @@
   headline rate and the real rate are the same number. It is one of the very few places where the
   advertised rate tells you the truth without arithmetic.</p>
 
-  <h2>Common mistakes people make</h2>
+  <h2 id="common-mistakes">Common mistakes people make</h2>
 
   <h3>Assuming a 401(k) cuts your state tax the way it cuts your federal tax</h3>
   <p>It is the single most expensive misunderstanding on this page. Payroll software gets it right,
@@ -1135,7 +1153,7 @@
   tax varies by municipality. Treat this as an accurate model of the federal and state layers, and
   read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>A single filer earning <span class="num">$75,000</span> in Pennsylvania in 2026, with no retirement
   contribution and outside Philadelphia:</p>
   <ul>
@@ -1156,32 +1174,65 @@
   <p>Add a 1% local earned income tax and the same worker pays <span class="num">$750</span> more, taking the
   effective rate to about <span class="num">22.0%</span>.</p>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the Pennsylvania income tax rate in 2026?</h3>
-    <p>A flat 3.07%. Pennsylvania has no brackets and no standard deduction, so the rate applies to your compensation from the first dollar. The figure comes from the state's own 2026 form, REV-413 (I), whose worksheet reads “Multiply Line 1 by 3.07 percent (0.0307)”.</p>
 
-    <h3>Does a 401(k) contribution lower my Pennsylvania tax?</h3>
-    <p>No. This is the rule that catches most people out. Pennsylvania treats an elective deferral as compensation at the moment it is made, so a 401(k) contribution reduces your federal tax but not your state tax. On $75,000 with 6% going into a 401(k), you save on federal tax but the state still takes $2,302.50 — $138.15 more than the same worker would pay in a state that follows the federal treatment. Your health insurance premiums under a Section 125 cafeteria plan are a different matter: those Pennsylvania does exclude.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the Pennsylvania income tax rate in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>A flat 3.07%. Pennsylvania has no brackets and no standard deduction, so the rate applies to your compensation from the first dollar. The figure comes from the state's own 2026 form, REV-413 (I), whose worksheet reads “Multiply Line 1 by 3.07 percent (0.0307)”.</p>
+        </div>
+      </details>
 
-    <h3>Does Pennsylvania have a standard deduction?</h3>
-    <p>No, and it has no personal exemption either. Line 1 of the state's estimating worksheet is “expected PA-taxable income” and is multiplied by 3.07% directly. Low earners are relieved through the Special Tax Forgiveness Credit instead, which is a credit claimed on the return rather than an amount subtracted from wages, so no withholding calculator can show it.</p>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my Pennsylvania tax?</h3></summary>
+        <div class="faq-r">
+          <p>No. This is the rule that catches most people out. Pennsylvania treats an elective deferral as compensation at the moment it is made, so a 401(k) contribution reduces your federal tax but not your state tax. On $75,000 with 6% going into a 401(k), you save on federal tax but the state still takes $2,302.50 — $138.15 more than the same worker would pay in a state that follows the federal treatment. Your health insurance premiums under a Section 125 cafeteria plan are a different matter: those Pennsylvania does exclude.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in Pennsylvania?</h3>
-    <p>About $59,238 a year, or $4,936.46 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare, $2,302.50 of Pennsylvania income tax and $52.50 of employee unemployment contribution — an effective rate of 21.0%. Local earned income tax is not included; see the question below.</p>
+      <details class="faq-item">
+        <summary><h3>Does Pennsylvania have a standard deduction?</h3></summary>
+        <div class="faq-r">
+          <p>No, and it has no personal exemption either. Line 1 of the state's estimating worksheet is “expected PA-taxable income” and is multiplied by 3.07% directly. Low earners are relieved through the Special Tax Forgiveness Credit instead, which is a credit claimed on the return rather than an amount subtracted from wages, so no withholding calculator can show it.</p>
+        </div>
+      </details>
 
-    <h3>What is $20 an hour after taxes in Pennsylvania?</h3>
-    <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,299 after tax, which works out at $16.49 an hour in real terms. Every hour you work is taxed at the same 3.07% by the state, because the rate is flat and there is no deduction to use up first.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Pennsylvania?</h3></summary>
+        <div class="faq-r">
+          <p>About $59,238 a year, or $4,936.46 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare, $2,302.50 of Pennsylvania income tax and $52.50 of employee unemployment contribution — an effective rate of 21.0%. Local earned income tax is not included; see the question below.</p>
+        </div>
+      </details>
 
-    <h3>Is Pennsylvania unemployment tax taken out of my paycheck?</h3>
-    <p>Yes, and Pennsylvania is unusual in this. In most states unemployment insurance is paid only by the employer. Pennsylvania also withholds an employee contribution of 0.07% of gross wages — 70 cents per $1,000. It has no wage cap, so it follows your whole salary. On $75,000 that is $52.50 a year.</p>
+      <details class="faq-item">
+        <summary><h3>What is $20 an hour after taxes in Pennsylvania?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,299 after tax, which works out at $16.49 an hour in real terms. Every hour you work is taxed at the same 3.07% by the state, because the rate is flat and there is no deduction to use up first.</p>
+        </div>
+      </details>
 
-    <h3>Why is my Pennsylvania paycheck smaller than this calculator says?</h3>
-    <p>Almost always local tax. Pennsylvania municipalities and school districts levy an Earned Income Tax, commonly 1% but higher in many places, and Philadelphia's is far higher again. This calculator models the state layer only and says so. Health insurance premiums, other benefit deductions and W-4 settings account for most of the rest.</p>
+      <details class="faq-item">
+        <summary><h3>Is Pennsylvania unemployment tax taken out of my paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>Yes, and Pennsylvania is unusual in this. In most states unemployment insurance is paid only by the employer. Pennsylvania also withholds an employee contribution of 0.07% of gross wages — 70 cents per $1,000. It has no wage cap, so it follows your whole salary. On $75,000 that is $52.50 a year.</p>
+        </div>
+      </details>
 
-    <h3>How much is Philadelphia's wage tax in 2026?</h3>
-    <p>Effective July 1, 2026 the City of Philadelphia withholds 3.735% from residents and 3.425% from non-residents who work in the city, per the city's own rate table. That is more than the state takes: on a $60,000 salary the city's $2,241.00 exceeds Pennsylvania's $1,842.00 by $399.00. A Philadelphia paycheck is not a Pennsylvania paycheck, and this calculator does not model the city tax.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>Why is my Pennsylvania paycheck smaller than this calculator says?</h3></summary>
+        <div class="faq-r">
+          <p>Almost always local tax. Pennsylvania municipalities and school districts levy an Earned Income Tax, commonly 1% but higher in many places, and Philadelphia's is far higher again. This calculator models the state layer only and says so. Health insurance premiums, other benefit deductions and W-4 settings account for most of the rest.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>How much is Philadelphia's wage tax in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>Effective July 1, 2026 the City of Philadelphia withholds 3.735% from residents and 3.425% from non-residents who work in the city, per the city's own rate table. That is more than the state takes: on a $60,000 salary the city's $2,241.00 exceeds Pennsylvania's $1,842.00 by $399.00. A Philadelphia paycheck is not a Pennsylvania paycheck, and this calculator does not model the city tax.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with neighboring states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates, state layer only:</p>
@@ -1196,7 +1247,7 @@
   the gap for anyone saving for retirement, and local tax, which widens it again.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Pennsylvania ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1218,7 +1269,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/new-york/">New York paycheck calculator</a> &mdash; the neighbor
@@ -1316,6 +1367,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,936.46</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1355,8 +1410,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1366,9 +1421,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1421,23 +1476,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1447,6 +1502,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

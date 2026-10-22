@@ -302,18 +302,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,872.17</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-4"></i><i class="stack-seg seg-keep sw-78"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$260.54</span><span class="stack-pct num">4%</span></li></ul><p class="result-note">You keep <strong class="num">78%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Alabama does not tax your paycheck at a single rate, and it does not start from the federal standard deduction. The Department of Revenue&rsquo;s withholding formula tells your employer to turn your pay into a yearly figure, then subtract four things: a standard deduction that gets smaller as your pay rises (<span class="num">$3,000</span> for a single filer, <span class="num">$2,500</span> at <span class="num">$75,000</span>), the federal income tax withheld from your pay, a personal exemption (<span class="num">$1,500</span> if you claim S, <span class="num">$3,000</span> for M or H), and a set amount for each dependent.
     Three rates are applied to what is left, and the employer divides the yearly amount by the number of pay periods.</p>
 
@@ -346,7 +364,7 @@
     <p>What the calculator deliberately leaves out: dependents, the &ldquo;0&rdquo; and &ldquo;MS&rdquo; letters on Form A-4, extra withholding, the 5% rate employers may use on bonuses, severance pay, the 30-day rule for out-of-state workers, the overtime premium deduction on your Alabama return, local occupational taxes, and health insurance premiums and other employer benefit deductions.</p>
   </div>
 
-  <h2>Alabama take-home pay by salary</h2>
+  <h2 id="by-salary">Alabama take-home pay by salary</h2>
   <p class="prose">Single filer, no dependents, no retirement contribution, 2026 state and federal rates. The
   AL state tax + programs column is Alabama income tax withholding; we found no Alabama payroll program to add.</p>
 
@@ -726,7 +744,7 @@
 
   <div class="prose">
 
-    <h2>Alabama hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Alabama hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask for your hours instead of assuming 2,080</h3>
     <p>Many hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1056,7 +1074,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Alabama</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Alabama</h2>
 
   <h3>Your federal income tax lowers your Alabama wages</h3>
   <p>Employers subtract the federal income tax withheld from your pay before applying Alabama&rsquo;s rates, and the booklet sets no cap on it. A single filer on <span class="num">$75,000</span> has about <span class="num">$7,670.00</span> of federal income tax in this calculator, so the Alabama base is <span class="num">$63,330</span> rather than <span class="num">$71,000</span>.
@@ -1091,7 +1109,7 @@
   stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
   extra 0.9% on wages above <span class="num">$200,000</span>. On <span class="num">$250,000</span>, Social Security and Medicare take <span class="num">$15,514.00</span> in total.</p>
 
-  <h2>Common mistakes</h2>
+  <h2 id="common-mistakes">Common mistakes</h2>
 
   <h3>Forgetting to subtract federal tax</h3>
   <p>Applying Alabama&rsquo;s rates to pay minus the standard deduction and exemption overstates Alabama withholding by <span class="num">$383.50</span> on <span class="num">$75,000</span>: <span class="num">$3,510.00</span> instead of <span class="num">$3,126.50</span>.</p>
@@ -1113,7 +1131,7 @@
   deductions come out before tax and are not modeled here, and the letter and dependents on your Form A-4 may differ from the
   ones we assume. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>Amounts are shown to the cent, so adding the rounded lines can differ from the total by a cent.</p>
   <p>A single filer earning <span class="num">$75,000</span> in Alabama in 2026, claiming S with no dependents and no retirement
   contribution:</p>
@@ -1134,47 +1152,100 @@
     <li>Effective tax rate: <span class="num">22.0%</span></li>
   </ul>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the Alabama income tax withholding rate in 2026?</h3>
-    <p>Alabama&rsquo;s withholding formula has three rates, <span class="num">2%</span>, <span class="num">4%</span> and <span class="num">5%</span>. The first two apply only to the first $3,000 of what is left after your employer subtracts the federal income tax withheld, a standard deduction and a personal exemption (the first $6,000 if you claim the married exemption). Everything above that is taxed at <span class="num">5%</span>. On a single filer&rsquo;s $75,000 salary, Alabama withholds $3,126.50 a year.</p>
 
-    <h3>How much Alabama tax is withheld on a $75,000 salary?</h3>
-    <p>For a single filer, Alabama withholds $3,126.50 a year, which is $260.54 a month. The base is $75,000 minus $2,500 of standard deduction, minus $7,670.00 of federal tax, minus a $1,500 exemption = $63,330. Applying the rates to that gives $3,126.50. A married filer claiming the married exemption has $3,038.00 withheld, and a head of household has $3,147.60 withheld.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the Alabama income tax withholding rate in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>Alabama&rsquo;s withholding formula has three rates, <span class="num">2%</span>, <span class="num">4%</span> and <span class="num">5%</span>. The first two apply only to the first $3,000 of what is left after your employer subtracts the federal income tax withheld, a standard deduction and a personal exemption (the first $6,000 if you claim the married exemption). Everything above that is taxed at <span class="num">5%</span>. On a single filer&rsquo;s $75,000 salary, Alabama withholds $3,126.50 a year.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in Alabama?</h3>
-    <p>About $58,466 a year, or $4,872.17 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $3,126.50 of Alabama income tax &mdash; an effective rate of 22.0%. We found no other state payroll deduction, so there is no other Alabama line.</p>
+      <details class="faq-item">
+        <summary><h3>How much Alabama tax is withheld on a $75,000 salary?</h3></summary>
+        <div class="faq-r">
+          <p>For a single filer, Alabama withholds $3,126.50 a year, which is $260.54 a month. The base is $75,000 minus $2,500 of standard deduction, minus $7,670.00 of federal tax, minus a $1,500 exemption = $63,330. Applying the rates to that gives $3,126.50. A married filer claiming the married exemption has $3,038.00 withheld, and a head of household has $3,147.60 withheld.</p>
+        </div>
+      </details>
 
-    <h3>How much is $20, $25 or $30 an hour after taxes in Alabama?</h3>
-    <p>At 40 hours a week, $20 an hour leaves about $33,906 a year, or $16.30 an hour. $25 an hour leaves about $41,805, or $20.10 an hour. $30 an hour leaves about $49,704, or $23.90 an hour. Those are single-filer figures after federal tax, FICA and Alabama income tax withholding, with no retirement contribution.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Alabama?</h3></summary>
+        <div class="faq-r">
+          <p>About $58,466 a year, or $4,872.17 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $3,126.50 of Alabama income tax &mdash; an effective rate of 22.0%. We found no other state payroll deduction, so there is no other Alabama line.</p>
+        </div>
+      </details>
 
-    <h3>Does Alabama subtract my federal income tax from my pay?</h3>
-    <p>In the withholding formula, yes. The Department of Revenue&rsquo;s formula has a line for the employee&rsquo;s annual federal withholding tax, &ldquo;actual amount,&rdquo; and your employer takes it off your wages before applying the three rates. This calculator’s federal income tax estimate is $7,670.00 on $75,000, so the Alabama base is $63,330 instead of $71,000. Federal tax here does not include Social Security or Medicare. We read the withholding formula, not the return instructions, so this page describes how an employer withholds, not how your final Alabama return is figured.</p>
+      <details class="faq-item">
+        <summary><h3>How much is $20, $25 or $30 an hour after taxes in Alabama?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour leaves about $33,906 a year, or $16.30 an hour. $25 an hour leaves about $41,805, or $20.10 an hour. $30 an hour leaves about $49,704, or $23.90 an hour. Those are single-filer figures after federal tax, FICA and Alabama income tax withholding, with no retirement contribution.</p>
+        </div>
+      </details>
 
-    <h3>Why does Alabama&rsquo;s standard deduction shrink as I earn more?</h3>
-    <p>Because the Department of Revenue&rsquo;s schedule says so. A single filer gets $3,000 up to $25,999 of yearly pay. Above that it falls by $25 for every $500 of pay until it reaches $2,500 at $35,500. A married filer goes from $8,500 to $5,000 and a head of family from $5,200 to $2,500 over the same range. At $30,000 a single filer&rsquo;s deduction is $2,775.</p>
+      <details class="faq-item">
+        <summary><h3>Does Alabama subtract my federal income tax from my pay?</h3></summary>
+        <div class="faq-r">
+          <p>In the withholding formula, yes. The Department of Revenue&rsquo;s formula has a line for the employee&rsquo;s annual federal withholding tax, &ldquo;actual amount,&rdquo; and your employer takes it off your wages before applying the three rates. This calculator’s federal income tax estimate is $7,670.00 on $75,000, so the Alabama base is $63,330 instead of $71,000. Federal tax here does not include Social Security or Medicare. We read the withholding formula, not the return instructions, so this page describes how an employer withholds, not how your final Alabama return is figured.</p>
+        </div>
+      </details>
 
-    <h3>What do the letters on Alabama Form A-4 mean?</h3>
-    <p>They set your exemption. &ldquo;0&rdquo; claims none and has the most withheld. &ldquo;S&rdquo; is single, and &ldquo;MS&rdquo; is married filing separately: both are worth $1,500. &ldquo;M&rdquo; is married, claiming yourself and your spouse, and &ldquo;H&rdquo; is head of family for a single person with dependents: both are worth $3,000. A number after the letter counts your dependents other than a spouse. This calculator uses S for a single filer, M for a married filer and H for a head of household, always with no dependents. The booklet says that if one spouse claims M, the other must claim 0.</p>
+      <details class="faq-item">
+        <summary><h3>Why does Alabama&rsquo;s standard deduction shrink as I earn more?</h3></summary>
+        <div class="faq-r">
+          <p>Because the Department of Revenue&rsquo;s schedule says so. A single filer gets $3,000 up to $25,999 of yearly pay. Above that it falls by $25 for every $500 of pay until it reaches $2,500 at $35,500. A married filer goes from $8,500 to $5,000 and a head of family from $5,200 to $2,500 over the same range. At $30,000 a single filer&rsquo;s deduction is $2,775.</p>
+        </div>
+      </details>
 
-    <h3>Do dependents lower Alabama withholding?</h3>
-    <p>Yes. The formula subtracts $1,000 for each dependent other than a spouse when your pay is $50,000 a year or less, $500 when it is up to $100,000, and $300 above that. At $75,000 one dependent takes $500 off the base, which is about $25 less Alabama tax at the <span class="num">5%</span> rate. The calculator does not ask about dependents, so it leaves this out.</p>
+      <details class="faq-item">
+        <summary><h3>What do the letters on Alabama Form A-4 mean?</h3></summary>
+        <div class="faq-r">
+          <p>They set your exemption. &ldquo;0&rdquo; claims none and has the most withheld. &ldquo;S&rdquo; is single, and &ldquo;MS&rdquo; is married filing separately: both are worth $1,500. &ldquo;M&rdquo; is married, claiming yourself and your spouse, and &ldquo;H&rdquo; is head of family for a single person with dependents: both are worth $3,000. A number after the letter counts your dependents other than a spouse. This calculator uses S for a single filer, M for a married filer and H for a head of household, always with no dependents. The booklet says that if one spouse claims M, the other must claim 0.</p>
+        </div>
+      </details>
 
-    <h3>Is there a local income tax in Alabama?</h3>
-    <p>We found no local income tax line in the Department of Revenue&rsquo;s withholding booklet, but it does say that local occupational taxes exist: they are not administered by the Department of Revenue, and for details you must contact the city or county that levies one. The City of Birmingham, for example, lists an occupational tax on the Tax and License Division page of its website. We did not find a rate on an official page, so this calculator adds no local line.</p>
+      <details class="faq-item">
+        <summary><h3>Do dependents lower Alabama withholding?</h3></summary>
+        <div class="faq-r">
+          <p>Yes. The formula subtracts $1,000 for each dependent other than a spouse when your pay is $50,000 a year or less, $500 when it is up to $100,000, and $300 above that. At $75,000 one dependent takes $500 off the base, which is about $25 less Alabama tax at the <span class="num">5%</span> rate. The calculator does not ask about dependents, so it leaves this out.</p>
+        </div>
+      </details>
 
-    <h3>Are there other deductions from an Alabama paycheck?</h3>
-    <p>We found none. The Department of Workforce says the employer is taxed on the first $8,000 paid to each worker for unemployment insurance, and its pages describe no deduction from employee wages. We found no state disability insurance or paid family leave program run through payroll in the pages we read. That is not proof that none exists, only what we found.</p>
+      <details class="faq-item">
+        <summary><h3>Is there a local income tax in Alabama?</h3></summary>
+        <div class="faq-r">
+          <p>We found no local income tax line in the Department of Revenue&rsquo;s withholding booklet, but it does say that local occupational taxes exist: they are not administered by the Department of Revenue, and for details you must contact the city or county that levies one. The City of Birmingham, for example, lists an occupational tax on the Tax and License Division page of its website. We did not find a rate on an official page, so this calculator adds no local line.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my Alabama withholding?</h3>
-    <p>Yes. The Department of Revenue&rsquo;s booklet lists 401(k) contributions among the amounts excluded from the wages used for withholding, and the calculator treats a traditional 401(k) contribution that way for federal tax too. On $75,000 with 6% going into a 401(k), Alabama income tax withholding falls by $175.50 a year, even though the lower federal tax also shrinks the subtraction.</p>
+      <details class="faq-item">
+        <summary><h3>Are there other deductions from an Alabama paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>We found none. The Department of Workforce says the employer is taxed on the first $8,000 paid to each worker for unemployment insurance, and its pages describe no deduction from employee wages. We found no state disability insurance or paid family leave program run through payroll in the pages we read. That is not proof that none exists, only what we found.</p>
+        </div>
+      </details>
 
-    <h3>How are bonuses withheld in Alabama?</h3>
-    <p>The Department of Revenue&rsquo;s booklet says employers may withhold state income tax from bonuses and supplemental wage payments at a rate of 5%. On a $5,000 bonus that is $250 of Alabama withholding. The calculator does not model bonuses.</p>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my Alabama withholding?</h3></summary>
+        <div class="faq-r">
+          <p>Yes. The Department of Revenue&rsquo;s booklet lists 401(k) contributions among the amounts excluded from the wages used for withholding, and the calculator treats a traditional 401(k) contribution that way for federal tax too. On $75,000 with 6% going into a 401(k), Alabama income tax withholding falls by $175.50 a year, even though the lower federal tax also shrinks the subtraction.</p>
+        </div>
+      </details>
 
-    <h3>Why is my Alabama paycheck different from this calculator?</h3>
-    <p>Common reasons include: you claimed a different letter or number of dependents on Form A-4; you asked for an extra amount to be withheld; your employer uses the printed tables instead of the formula; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; a local occupational tax applies to you; or part of your pay is a bonus. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>How are bonuses withheld in Alabama?</h3></summary>
+        <div class="faq-r">
+          <p>The Department of Revenue&rsquo;s booklet says employers may withhold state income tax from bonuses and supplemental wage payments at a rate of 5%. On a $5,000 bonus that is $250 of Alabama withholding. The calculator does not model bonuses.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Why is my Alabama paycheck different from this calculator?</h3></summary>
+        <div class="faq-r">
+          <p>Common reasons include: you claimed a different letter or number of dependents on Form A-4; you asked for an extra amount to be withheld; your employer uses the printed tables instead of the formula; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; a local occupational tax applies to you; or part of your pay is a bonus. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates. Alabama borders Florida, Georgia, Mississippi and Tennessee, and we publish all four.
@@ -1204,7 +1275,7 @@
   <p>The table rounds take-home pay to the dollar; the differences below use the exact amounts. Compared with an Alabama worker on the same salary, a <a href="/paycheck-calculator/florida/">Florida</a> worker keeps <span class="num">$3,126.50</span> more and a <a href="/paycheck-calculator/tennessee/">Tennessee</a> worker keeps <span class="num">$3,126.50</span> more, because neither taxes wages. A <a href="/paycheck-calculator/mississippi/">Mississippi</a> worker keeps <span class="num">$858.50</span> more, and a <a href="/paycheck-calculator/georgia/">Georgia</a> worker keeps <span class="num">$132.50</span> more. A worker who lives in one of those states and commutes into Alabama is a different case that this calculator does not model: it assumes an Alabama resident working in Alabama.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Alabama ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1229,7 +1300,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/georgia/">Georgia paycheck calculator</a> &mdash; the neighbor to the east, with a flat 4.99% rate.</li>
@@ -1323,6 +1394,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,872.17</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1362,8 +1437,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1373,9 +1448,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1428,23 +1503,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1454,6 +1529,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

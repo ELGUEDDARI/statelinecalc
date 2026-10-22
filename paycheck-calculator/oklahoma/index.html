@@ -301,18 +301,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,896.92</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-4"></i><i class="stack-seg seg-keep sw-78"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$235.79</span><span class="stack-pct num">4%</span></li></ul><p class="result-note">You keep <strong class="num">78%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Oklahoma&rsquo;s withholding formula has no standard deduction line of its own. The Oklahoma Tax Commission&rsquo;s withholding tables tell your employer to turn your pay into a yearly figure, take <span class="num">$1,000</span> off it for each withholding allowance you claimed on Form OK-W-4, and then read the result off a percentage table.
     The first tier of that table is taxed at <span class="num">0%</span>, and it is large enough to cover the standard deduction. The employer then divides the yearly amount by the number of pay periods.</p>
 
@@ -345,7 +363,7 @@
     <p>What the calculator deliberately leaves out: dependents and additional allowances, extra withholding, the &ldquo;Exempt&rdquo; lines on Form OK-W-4, the military income deduction, bonuses, nonresidents, local taxes, and health insurance premiums and other employer benefit deductions.</p>
   </div>
 
-  <h2>Oklahoma take-home pay by salary</h2>
+  <h2 id="by-salary">Oklahoma take-home pay by salary</h2>
   <p class="prose">Single filer, one allowance, no retirement contribution, 2026 state and federal rates. The
   OK state tax + programs column is Oklahoma income tax withholding; we found no Oklahoma payroll program to add.</p>
 
@@ -725,7 +743,7 @@
 
   <div class="prose">
 
-    <h2>Oklahoma hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Oklahoma hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask for your hours instead of assuming 2,080</h3>
     <p>Many hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1053,7 +1071,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Oklahoma</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Oklahoma</h2>
 
   <h3>The first $10,100 of your base is not taxed</h3>
   <p>A single filer&rsquo;s zero tier ends at <span class="num">$10,100</span> of yearly pay after allowances, and a married filer&rsquo;s at <span class="num">$20,200</span>. With one allowance, a single filer therefore has no Oklahoma tax withheld on pay up to <span class="num">$11,100</span> a year. At <span class="num">$30,000</span>, Oklahoma withholds <span class="num">$804.50</span> a year.
@@ -1087,7 +1105,7 @@
   stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
   extra 0.9% on wages above <span class="num">$200,000</span>. On <span class="num">$250,000</span>, Social Security and Medicare take <span class="num">$15,514.00</span> in total.</p>
 
-  <h2>Common mistakes</h2>
+  <h2 id="common-mistakes">Common mistakes</h2>
 
   <h3>Subtracting the standard deduction as well</h3>
   <p>The zero tier already includes the <span class="num">$6,350</span> standard deduction. Subtracting it again before applying the tiers understates Oklahoma withholding by <span class="num">$285.75</span> on <span class="num">$75,000</span>: <span class="num">$2,543.75</span> instead of <span class="num">$2,829.50</span>.</p>
@@ -1109,7 +1127,7 @@
   deductions come out before tax and are not modeled here, and the allowances on your Form OK-W-4 may differ from the
   ones we assume. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>Amounts are shown to the cent, so adding the rounded lines can differ from the total by a cent.</p>
   <p>A single filer earning <span class="num">$75,000</span> in Oklahoma in 2026, claiming one allowance and no retirement
   contribution:</p>
@@ -1129,44 +1147,93 @@
     <li>Effective tax rate: <span class="num">21.6%</span></li>
   </ul>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the Oklahoma income tax withholding rate in 2026?</h3>
-    <p>Oklahoma&rsquo;s withholding formula has four tiers, <span class="num">0%</span>, <span class="num">2.5%</span>, <span class="num">3.5%</span> and <span class="num">4.5%</span>. After your employer takes $1,000 off your yearly pay for each allowance, the first $10,100 is not taxed ($20,200 on the married table), the next $1,150 is taxed at <span class="num">2.5%</span>, the next $2,300 at <span class="num">3.5%</span>, and everything above $13,550 at <span class="num">4.5%</span>. On a single filer&rsquo;s $75,000 salary, Oklahoma withholds $2,829.50 a year.</p>
 
-    <h3>How much Oklahoma tax is withheld on a $75,000 salary?</h3>
-    <p>For a single filer claiming one allowance, Oklahoma withholds $2,829.50 a year, which is $235.79 a month. The base is $75,000 minus a $1,000 allowance = $74,000. Applying the four tiers to that gives $2,829.50. A married filer claiming two allowances has $2,284.00 withheld, and a head of household, who uses the single table, has $2,829.50 withheld.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the Oklahoma income tax withholding rate in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>Oklahoma&rsquo;s withholding formula has four tiers, <span class="num">0%</span>, <span class="num">2.5%</span>, <span class="num">3.5%</span> and <span class="num">4.5%</span>. After your employer takes $1,000 off your yearly pay for each allowance, the first $10,100 is not taxed ($20,200 on the married table), the next $1,150 is taxed at <span class="num">2.5%</span>, the next $2,300 at <span class="num">3.5%</span>, and everything above $13,550 at <span class="num">4.5%</span>. On a single filer&rsquo;s $75,000 salary, Oklahoma withholds $2,829.50 a year.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in Oklahoma?</h3>
-    <p>About $58,763 a year, or $4,896.92 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $2,829.50 of Oklahoma income tax &mdash; an effective rate of 21.6%. We found no other state payroll deduction, so this calculator shows no other Oklahoma line.</p>
+      <details class="faq-item">
+        <summary><h3>How much Oklahoma tax is withheld on a $75,000 salary?</h3></summary>
+        <div class="faq-r">
+          <p>For a single filer claiming one allowance, Oklahoma withholds $2,829.50 a year, which is $235.79 a month. The base is $75,000 minus a $1,000 allowance = $74,000. Applying the four tiers to that gives $2,829.50. A married filer claiming two allowances has $2,284.00 withheld, and a head of household, who uses the single table, has $2,829.50 withheld.</p>
+        </div>
+      </details>
 
-    <h3>How much is $20, $25 or $30 an hour after taxes in Oklahoma?</h3>
-    <p>At 40 hours a week, $20 an hour leaves about $34,279 a year, or $16.48 an hour. $25 an hour leaves about $42,168, or $20.27 an hour. $30 an hour leaves about $50,056, or $24.07 an hour. Those are single-filer figures after federal tax, FICA and Oklahoma income tax withholding, with no retirement contribution.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Oklahoma?</h3></summary>
+        <div class="faq-r">
+          <p>About $58,763 a year, or $4,896.92 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $2,829.50 of Oklahoma income tax &mdash; an effective rate of 21.6%. We found no other state payroll deduction, so this calculator shows no other Oklahoma line.</p>
+        </div>
+      </details>
 
-    <h3>Why is nothing withheld on the first $10,100 in Oklahoma?</h3>
-    <p>Because the first tier of the withholding table is taxed at <span class="num">0%</span>. On the single table it runs to $10,100 of yearly pay left after allowances, so a single filer with one allowance has nothing withheld on pay up to $11,100 a year. The number is the sum of two figures we read: the $3,750 zero-rate bracket in the 2026 tax law and the $6,350 standard deduction on Form OK-W-4. On the married table the tier is $20,200, which is $7,500 plus $12,700. We are describing how the numbers add up, not why the Tax Commission built the table that way.</p>
+      <details class="faq-item">
+        <summary><h3>How much is $20, $25 or $30 an hour after taxes in Oklahoma?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour leaves about $34,279 a year, or $16.48 an hour. $25 an hour leaves about $42,168, or $20.27 an hour. $30 an hour leaves about $50,056, or $24.07 an hour. Those are single-filer figures after federal tax, FICA and Oklahoma income tax withholding, with no retirement contribution.</p>
+        </div>
+      </details>
 
-    <h3>What is an allowance on Oklahoma Form OK-W-4?</h3>
-    <p>It is a number you give your employer that lowers the pay Oklahoma taxes. Each one is worth $1,000 a year: the Tax Commission&rsquo;s tables say the amount is the &ldquo;personal exemption amount of $1,000.00 divided by the number of payroll periods in the calendar year.&rdquo; You claim 1 for yourself, 1 for a spouse who does not work (0 if the spouse works), 1 for each dependent, and more if you itemize or have other state deductions or credits. This calculator counts 1 for a single filer and for a head of household, and 2 for a married filer whose spouse does not work.</p>
+      <details class="faq-item">
+        <summary><h3>Why is nothing withheld on the first $10,100 in Oklahoma?</h3></summary>
+        <div class="faq-r">
+          <p>Because the first tier of the withholding table is taxed at <span class="num">0%</span>. On the single table it runs to $10,100 of yearly pay left after allowances, so a single filer with one allowance has nothing withheld on pay up to $11,100 a year. The number is the sum of two figures we read: the $3,750 zero-rate bracket in the 2026 tax law and the $6,350 standard deduction on Form OK-W-4. On the married table the tier is $20,200, which is $7,500 plus $12,700. We are describing how the numbers add up, not why the Tax Commission built the table that way.</p>
+        </div>
+      </details>
 
-    <h3>What does &ldquo;Married, but withhold at higher Single rate&rdquo; mean in Oklahoma?</h3>
-    <p>It is the third filing status on Form OK-W-4, next to Single and Married. The Tax Commission&rsquo;s tables say that if an employee chooses it, the employer uses the Single Persons table. The form has no head of household choice and the tables have only a single and a married version, so this calculator gives a head of household the single table and one allowance. On $75,000 that withholds $2,829.50, the same as for a single filer.</p>
+      <details class="faq-item">
+        <summary><h3>What is an allowance on Oklahoma Form OK-W-4?</h3></summary>
+        <div class="faq-r">
+          <p>It is a number you give your employer that lowers the pay Oklahoma taxes. Each one is worth $1,000 a year: the Tax Commission&rsquo;s tables say the amount is the &ldquo;personal exemption amount of $1,000.00 divided by the number of payroll periods in the calendar year.&rdquo; You claim 1 for yourself, 1 for a spouse who does not work (0 if the spouse works), 1 for each dependent, and more if you itemize or have other state deductions or credits. This calculator counts 1 for a single filer and for a head of household, and 2 for a married filer whose spouse does not work.</p>
+        </div>
+      </details>
 
-    <h3>Did Oklahoma cut its income tax rates for 2026?</h3>
-    <p>Yes. The Tax Commission&rsquo;s 2025 Tax Legislation Summary lists an &ldquo;individual income tax rate reduction, effective for tax year 2026 and subsequent tax years&rdquo; in HB 2764, and prints the 2026 brackets this calculator uses: <span class="num">0%</span>, <span class="num">2.5%</span>, <span class="num">3.5%</span> and <span class="num">4.5%</span>. The law also lets the State Board of Equalization trigger a further <span class="num">0.25%</span> cut across all brackets when revenue conditions are met. The Legislature&rsquo;s revenue impact statement for the bill says the first tax year such a cut could take effect is 2028, so none can change 2026 withholding. That statement describes the committee version of the bill, so we will re-read the sources in January 2027.</p>
+      <details class="faq-item">
+        <summary><h3>What does &ldquo;Married, but withhold at higher Single rate&rdquo; mean in Oklahoma?</h3></summary>
+        <div class="faq-r">
+          <p>It is the third filing status on Form OK-W-4, next to Single and Married. The Tax Commission&rsquo;s tables say that if an employee chooses it, the employer uses the Single Persons table. The form has no head of household choice and the tables have only a single and a married version, so this calculator gives a head of household the single table and one allowance. On $75,000 that withholds $2,829.50, the same as for a single filer.</p>
+        </div>
+      </details>
 
-    <h3>Is there a local income tax in Oklahoma?</h3>
-    <p>We found none. The Oklahoma Tax Commission&rsquo;s withholding tables and its withholding page cover only state withholding, and we did not find a local income tax on wages in the agency pages we read. That is not proof that none exists, so if you work in a city that you think taxes wages, check your pay stub. This calculator adds no local line.</p>
+      <details class="faq-item">
+        <summary><h3>Did Oklahoma cut its income tax rates for 2026?</h3></summary>
+        <div class="faq-r">
+          <p>Yes. The Tax Commission&rsquo;s 2025 Tax Legislation Summary lists an &ldquo;individual income tax rate reduction, effective for tax year 2026 and subsequent tax years&rdquo; in HB 2764, and prints the 2026 brackets this calculator uses: <span class="num">0%</span>, <span class="num">2.5%</span>, <span class="num">3.5%</span> and <span class="num">4.5%</span>. The law also lets the State Board of Equalization trigger a further <span class="num">0.25%</span> cut across all brackets when revenue conditions are met. The Legislature&rsquo;s revenue impact statement for the bill says the first tax year such a cut could take effect is 2028, so none can change 2026 withholding. That statement describes the committee version of the bill, so we will re-read the sources in January 2027.</p>
+        </div>
+      </details>
 
-    <h3>Are there other deductions from an Oklahoma paycheck?</h3>
-    <p>We found none. The Oklahoma Employment Security Commission says most Oklahoma employers are required to pay a tax to the state Unemployment Insurance Trust Fund, and the pages we read describe no deduction from employee wages. We also found no state disability insurance or paid family leave program run through payroll. That is not proof that none exists, only what we found.</p>
+      <details class="faq-item">
+        <summary><h3>Is there a local income tax in Oklahoma?</h3></summary>
+        <div class="faq-r">
+          <p>We found none. The Oklahoma Tax Commission&rsquo;s withholding tables and its withholding page cover only state withholding, and we did not find a local income tax on wages in the agency pages we read. That is not proof that none exists, so if you work in a city that you think taxes wages, check your pay stub. This calculator adds no local line.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my Oklahoma withholding?</h3>
-    <p>In this calculator, yes. The Tax Commission&rsquo;s withholding tables do not mention 401(k) contributions, so treating them as lowering the wages Oklahoma taxes is our modeling choice, the same one we use for federal tax and in every other state here. On $75,000 with 6% going into a 401(k), Oklahoma income tax withholding falls by $202.50 a year. Ask your payroll department how your employer treats it.</p>
+      <details class="faq-item">
+        <summary><h3>Are there other deductions from an Oklahoma paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>We found none. The Oklahoma Employment Security Commission says most Oklahoma employers are required to pay a tax to the state Unemployment Insurance Trust Fund, and the pages we read describe no deduction from employee wages. We also found no state disability insurance or paid family leave program run through payroll. That is not proof that none exists, only what we found.</p>
+        </div>
+      </details>
 
-    <h3>Why is my Oklahoma paycheck different from this calculator?</h3>
-    <p>Common reasons include: you claimed a different number of allowances on Form OK-W-4; you asked for an extra amount to be withheld, or wrote &ldquo;Exempt&rdquo; on the form; your employer uses the printed tables, which round each paycheck&rsquo;s withholding to the whole dollar, instead of the formula; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; or part of your pay is a bonus. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my Oklahoma withholding?</h3></summary>
+        <div class="faq-r">
+          <p>In this calculator, yes. The Tax Commission&rsquo;s withholding tables do not mention 401(k) contributions, so treating them as lowering the wages Oklahoma taxes is our modeling choice, the same one we use for federal tax and in every other state here. On $75,000 with 6% going into a 401(k), Oklahoma income tax withholding falls by $202.50 a year. Ask your payroll department how your employer treats it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Why is my Oklahoma paycheck different from this calculator?</h3></summary>
+        <div class="faq-r">
+          <p>Common reasons include: you claimed a different number of allowances on Form OK-W-4; you asked for an extra amount to be withheld, or wrote &ldquo;Exempt&rdquo; on the form; your employer uses the printed tables, which round each paycheck&rsquo;s withholding to the whole dollar, instead of the formula; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; or part of your pay is a bonus. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates. Oklahoma borders six states, and we have calculators for all six: Texas, Arkansas, Colorado, New Mexico, Missouri and Kansas. Missouri&rsquo;s row leaves out the Kansas City and St. Louis earnings taxes.
@@ -1198,7 +1265,7 @@
   <p>The table rounds take-home pay to the dollar; the differences below use the exact amounts. Compared with an Oklahoma worker on the same salary, a <a href="/paycheck-calculator/texas/">Texas</a> worker keeps <span class="num">$2,829.50</span> more, because, as the Texas page documents, Texas levies no state tax on wages. An <a href="/paycheck-calculator/arkansas/">Arkansas</a> worker keeps <span class="num">$451.83</span> more, a <a href="/paycheck-calculator/new-mexico/">New Mexico</a> worker keeps <span class="num">$90.95</span> more, a <a href="/paycheck-calculator/missouri/">Missouri</a> worker keeps <span class="num">$241.83</span> more, a <a href="/paycheck-calculator/kansas/">Kansas</a> worker keeps <span class="num">$555.81</span> less, and a <a href="/paycheck-calculator/colorado/">Colorado</a> worker keeps <span class="num">$558.50</span> less. A worker who lives in one of those states and commutes into Oklahoma is a different case that this calculator does not model: it assumes an Oklahoma resident working in Oklahoma.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Oklahoma ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1223,7 +1290,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/texas/">Texas paycheck calculator</a> &mdash; the neighbor to the south; that page documents why it levies no state tax on wages.</li>
@@ -1319,6 +1386,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,896.92</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1358,8 +1429,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1369,9 +1440,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1424,23 +1495,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1450,6 +1521,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

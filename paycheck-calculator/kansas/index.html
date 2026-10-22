@@ -303,18 +303,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,850.60</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-4"></i><i class="stack-seg seg-keep sw-78"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$282.11</span><span class="stack-pct num">4%</span></li></ul><p class="result-note">You keep <strong class="num">78%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>The Kansas Department of Revenue publishes a withholding formula, and this calculator follows it. Your pay is converted to a yearly amount. The withholding allowance comes off (<span class="num">$9,160</span> for a single filer, <span class="num">$18,320</span> for a married filer whose spouse has no income). The rest is taxed through a table with a <span class="num">0%</span> step, a <span class="num">5.2%</span> step and a <span class="num">5.58%</span> step, and the yearly result is divided by the number of pay periods. Kansas prints two tables, one for single filers and one for married filers, and the married table has wider steps.</p>
 
     <p>The calculator applies these deductions in this order:</p>
@@ -346,7 +364,7 @@
     <p>What the calculator deliberately leaves out: dependents on Form K-4, a spouse who works, the extra withholding and exemption lines on the K-4, bonuses, rounding each check to the whole dollar, work in another state, and health insurance premiums and other employer benefit deductions.</p>
   </div>
 
-  <h2>Kansas take-home pay by salary</h2>
+  <h2 id="by-salary">Kansas take-home pay by salary</h2>
   <p class="prose">Single filer, no retirement contribution, 2026 federal and Kansas rates. The
   KS state tax column is Kansas income tax withholding; we found no Kansas payroll program to add.</p>
 
@@ -745,7 +763,7 @@
     <h3>Kansas City, Missouri has its own tax</h3>
     <p>Kansas City, Missouri charges a <span class="num">1%</span> earnings tax. The city&rsquo;s guide for employers outside the city, who may withhold the tax voluntarily, says that once they register they must withhold it on the part of a nonresident&rsquo;s pay earned in the city. If all of a <span class="num">$75,000</span> salary were earned there, the tax would be <span class="num">$750.00</span> a year, or <span class="num">$62.50</span> a month, which would bring a single filer&rsquo;s take-home pay from <span class="num">$58,207</span> to about <span class="num">$57,457</span>. This calculator does not add it, because it cannot know where you work. The <a href="/paycheck-calculator/missouri/">Missouri calculator</a> explains the city taxes in detail.</p>
 
-    <h2>Kansas hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Kansas hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask for your hours instead of assuming 2,080</h3>
     <p>Many hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1075,7 +1093,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Kansas</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Kansas</h2>
 
   <h3>The first $3,605 of what is left is not taxed</h3>
   <p>The table starts with a <span class="num">0%</span> step. With the <span class="num">$9,160</span> allowance, a single filer&rsquo;s yearly pay has to pass <span class="num">$12,765</span> before Kansas withholds anything. At <span class="num">$17,000</span>, Kansas withholds <span class="num">$220.22</span>; at <span class="num">$30,000</span>, it withholds <span class="num">$896.22</span> a year.</p>
@@ -1113,7 +1131,7 @@
   stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
   extra 0.9% on wages above <span class="num">$200,000</span>. On <span class="num">$250,000</span>, Social Security and Medicare take <span class="num">$15,514.00</span> in total.</p>
 
-  <h2>Common mistakes</h2>
+  <h2 id="common-mistakes">Common mistakes</h2>
 
   <h3>Forgetting the allowance</h3>
   <p>Applying the table to the full <span class="num">$75,000</span> instead of <span class="num">$65,840</span> overstates Kansas withholding by <span class="num">$511.13</span>: <span class="num">$3,896.44</span> instead of <span class="num">$3,385.31</span>. That is also what an employer withholds if you never turn in a K-4.</p>
@@ -1135,7 +1153,7 @@
   deductions come out before tax and are not modeled here, and the allowances you claimed on your Form K-4 may differ from the
   one we assume. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>Amounts are shown to the cent, so adding the rounded lines can differ from the total by a cent.</p>
   <p>A single filer earning <span class="num">$75,000</span> in Kansas in 2026, with one allowance and no retirement
   contribution, under the Department&rsquo;s formula:</p>
@@ -1157,53 +1175,114 @@
     <li>Effective tax rate: <span class="num">22.4%</span></li>
   </ul>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the Kansas income tax withholding rate?</h3>
-    <p>Kansas&rsquo;s withholding table has two rates, <span class="num">5.2%</span> and <span class="num">5.58%</span>, and a first step at <span class="num">0%</span>. For a single filer, nothing is withheld on the first $3,605 of what is left after the allowance, <span class="num">5.2%</span> is withheld on the next $23,000, and <span class="num">5.58%</span> on everything above $26,605. A married filer whose spouse has no income gets a wider <span class="num">0%</span> step, up to $8,240, and the <span class="num">5.58%</span> rate starts above $54,240. &ldquo;What is left&rdquo; means your yearly pay minus the withholding allowance from your Form K-4, which is $9,160 for a single filer. On $75,000, Kansas withholds $3,385.31 a year.</p>
 
-    <h3>How much Kansas tax is withheld on a $75,000 salary?</h3>
-    <p>For a single filer with one allowance, Kansas withholds $3,385.31 a year, which is $282.11 a month or $130.20 on a biweekly check. Taxable pay is $75,000 minus the $9,160 allowance, or $65,840. The first $3,605 of it is not taxed, the next $23,000 produces $1,196.00, and the other $39,235 is taxed at 5.58%. A married filer whose spouse has no income, with an $18,320 allowance and the married table, has $2,528.15 withheld, and a head of household has $3,255.86 withheld. Kansas lets employers round each check to the whole dollar, so a real paycheck can be off by up to 50 cents from these yearly figures divided by your number of pay periods.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the Kansas income tax withholding rate?</h3></summary>
+        <div class="faq-r">
+          <p>Kansas&rsquo;s withholding table has two rates, <span class="num">5.2%</span> and <span class="num">5.58%</span>, and a first step at <span class="num">0%</span>. For a single filer, nothing is withheld on the first $3,605 of what is left after the allowance, <span class="num">5.2%</span> is withheld on the next $23,000, and <span class="num">5.58%</span> on everything above $26,605. A married filer whose spouse has no income gets a wider <span class="num">0%</span> step, up to $8,240, and the <span class="num">5.58%</span> rate starts above $54,240. &ldquo;What is left&rdquo; means your yearly pay minus the withholding allowance from your Form K-4, which is $9,160 for a single filer. On $75,000, Kansas withholds $3,385.31 a year.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in Kansas?</h3>
-    <p>About $58,207 a year, or $4,850.60 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $3,385.31 of Kansas income tax, an effective rate of 22.4%. We found no Kansas city or county income tax in the withholding guide, so there is no local line.</p>
+      <details class="faq-item">
+        <summary><h3>How much Kansas tax is withheld on a $75,000 salary?</h3></summary>
+        <div class="faq-r">
+          <p>For a single filer with one allowance, Kansas withholds $3,385.31 a year, which is $282.11 a month or $130.20 on a biweekly check. Taxable pay is $75,000 minus the $9,160 allowance, or $65,840. The first $3,605 of it is not taxed, the next $23,000 produces $1,196.00, and the other $39,235 is taxed at 5.58%. A married filer whose spouse has no income, with an $18,320 allowance and the married table, has $2,528.15 withheld, and a head of household has $3,255.86 withheld. Kansas lets employers round each check to the whole dollar, so a real paycheck can be off by up to 50 cents from these yearly figures divided by your number of pay periods.</p>
+        </div>
+      </details>
 
-    <h3>How much is $20, $25 or $30 an hour after taxes in Kansas?</h3>
-    <p>At 40 hours a week, $20 an hour leaves about $34,084 a year, or $16.39 an hour. $25 an hour leaves about $41,860, or $20.13 an hour. $30 an hour leaves about $49,636, or $23.86 an hour. Those are single-filer figures after federal tax, FICA and Kansas income tax withholding, with no retirement contribution.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Kansas?</h3></summary>
+        <div class="faq-r">
+          <p>About $58,207 a year, or $4,850.60 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $3,385.31 of Kansas income tax, an effective rate of 22.4%. We found no Kansas city or county income tax in the withholding guide, so there is no local line.</p>
+        </div>
+      </details>
 
-    <h3>What is the Kansas withholding allowance?</h3>
-    <p>It is the amount your employer subtracts from your pay before applying the Kansas table. The Department of Revenue&rsquo;s guide says it is your personal exemption amount divided by the number of pay periods in the year: $9,160 for a single filer, a head of household or a married person filing separately, and $18,320 for married filing jointly. A head of household may claim an additional $2,320 allowance, and every dependent adds $2,320. Your actual Kansas tax is figured on your return, where the standard deduction and your real exemptions apply.</p>
+      <details class="faq-item">
+        <summary><h3>How much is $20, $25 or $30 an hour after taxes in Kansas?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour leaves about $34,084 a year, or $16.39 an hour. $25 an hour leaves about $41,860, or $20.13 an hour. $30 an hour leaves about $49,636, or $23.86 an hour. Those are single-filer figures after federal tax, FICA and Kansas income tax withholding, with no retirement contribution.</p>
+        </div>
+      </details>
 
-    <h3>Which box do I check on the Kansas K-4 if I am married?</h3>
-    <p>It depends on your spouse&rsquo;s income. Line A of Form K-4 says to mark &ldquo;Single&rdquo; if you are married and your spouse has income, and &ldquo;Joint&rdquo; if you are married and your spouse does not have income. &ldquo;Joint&rdquo; selects the wider married table, and lets you enter 1 on line B and 1 on line C: two allowances, $18,320 in all. On $75,000 the difference is $857.16 of Kansas tax a year. This calculator uses &ldquo;Joint&rdquo; for &ldquo;Married filing jointly,&rdquo; so it assumes a spouse with no income. If your spouse works, pick &ldquo;Single&rdquo; to see the single-filer result.</p>
+      <details class="faq-item">
+        <summary><h3>What is the Kansas withholding allowance?</h3></summary>
+        <div class="faq-r">
+          <p>It is the amount your employer subtracts from your pay before applying the Kansas table. The Department of Revenue&rsquo;s guide says it is your personal exemption amount divided by the number of pay periods in the year: $9,160 for a single filer, a head of household or a married person filing separately, and $18,320 for married filing jointly. A head of household may claim an additional $2,320 allowance, and every dependent adds $2,320. Your actual Kansas tax is figured on your return, where the standard deduction and your real exemptions apply.</p>
+        </div>
+      </details>
 
-    <h3>How does head of household work on the Kansas K-4?</h3>
-    <p>The Department&rsquo;s guide says a head of household may claim an additional withholding allowance of $2,320, and its Notice 25-07 says the same of the statute: one additional $2,320 exemption. So this calculator takes $11,480 off for a head of household ($9,160 plus $2,320) and uses the single filer&rsquo;s table, as the Department&rsquo;s tables do. Line D of Form K-4, though, says to enter &ldquo;2&rdquo; if you will file as head of household. In the single filer&rsquo;s printed wage-bracket table the first allowance is worth $9,160 and each one after it $2,320, so a head of household who enters 1 on line B and 2 on line D would have $13,800 taken off. The documents disagree. We followed the statute and the guide&rsquo;s text, which withhold more. On $75,000 the K-4 reading would withhold $129.46 a year less, so a head of household who follows the K-4 may see more take-home pay than this page shows.</p>
+      <details class="faq-item">
+        <summary><h3>Which box do I check on the Kansas K-4 if I am married?</h3></summary>
+        <div class="faq-r">
+          <p>It depends on your spouse&rsquo;s income. Line A of Form K-4 says to mark &ldquo;Single&rdquo; if you are married and your spouse has income, and &ldquo;Joint&rdquo; if you are married and your spouse does not have income. &ldquo;Joint&rdquo; selects the wider married table, and lets you enter 1 on line B and 1 on line C: two allowances, $18,320 in all. On $75,000 the difference is $857.16 of Kansas tax a year. This calculator uses &ldquo;Joint&rdquo; for &ldquo;Married filing jointly,&rdquo; so it assumes a spouse with no income. If your spouse works, pick &ldquo;Single&rdquo; to see the single-filer result.</p>
+        </div>
+      </details>
 
-    <h3>Is there a Kansas state disability or paid leave deduction?</h3>
-    <p>We found none. The Department of Revenue&rsquo;s guide and Form K-4 do not describe a state payroll program that an employee pays for. Kansas law (K.S.A. 44-710) also says an employer&rsquo;s unemployment contributions &ldquo;shall not be deducted, in whole or in part, from the wages of individuals in such employer&rsquo;s employ,&rdquo; so that cost falls on your employer. That is what we read, not proof that nothing else exists, and your pay stub is the final word.</p>
+      <details class="faq-item">
+        <summary><h3>How does head of household work on the Kansas K-4?</h3></summary>
+        <div class="faq-r">
+          <p>The Department&rsquo;s guide says a head of household may claim an additional withholding allowance of $2,320, and its Notice 25-07 says the same of the statute: one additional $2,320 exemption. So this calculator takes $11,480 off for a head of household ($9,160 plus $2,320) and uses the single filer&rsquo;s table, as the Department&rsquo;s tables do. Line D of Form K-4, though, says to enter &ldquo;2&rdquo; if you will file as head of household. In the single filer&rsquo;s printed wage-bracket table the first allowance is worth $9,160 and each one after it $2,320, so a head of household who enters 1 on line B and 2 on line D would have $13,800 taken off. The documents disagree. We followed the statute and the guide&rsquo;s text, which withhold more. On $75,000 the K-4 reading would withhold $129.46 a year less, so a head of household who follows the K-4 may see more take-home pay than this page shows.</p>
+        </div>
+      </details>
 
-    <h3>Do Kansas cities or counties tax my paycheck?</h3>
-    <p>The Kansas withholding guide describes state withholding only, and we found no Kansas city or county income tax on wages in it. That is not proof that none exists. One city outside Kansas matters to Kansans who work there. Kansas City, Missouri charges a 1% earnings tax, and its guide for employers outside the city says that an employer registered with the city must withhold it on the part of a nonresident&rsquo;s pay earned within the city. If all of a $75,000 salary were earned there, that would be $750.00 a year. This calculator does not include it, because it cannot know where you work.</p>
+      <details class="faq-item">
+        <summary><h3>Is there a Kansas state disability or paid leave deduction?</h3></summary>
+        <div class="faq-r">
+          <p>We found none. The Department of Revenue&rsquo;s guide and Form K-4 do not describe a state payroll program that an employee pays for. Kansas law (K.S.A. 44-710) also says an employer&rsquo;s unemployment contributions &ldquo;shall not be deducted, in whole or in part, from the wages of individuals in such employer&rsquo;s employ,&rdquo; so that cost falls on your employer. That is what we read, not proof that nothing else exists, and your pay stub is the final word.</p>
+        </div>
+      </details>
 
-    <h3>I live in Kansas and work in Missouri, or the reverse. Which state withholds?</h3>
-    <p>The Department&rsquo;s guide says that for a Kansas resident who works outside Kansas, the employer withholds the Kansas amount less what the other state requires. Its example is a Kansas resident working in Missouri: Kansas tax of $250 on the wages, Missouri withholding of $130, and the $120 difference withheld for Kansas. If the other state&rsquo;s withholding is the larger, no Kansas tax is withheld. For a nonresident who works full time in Kansas, the employer withholds Kansas tax on all the wages as if the employee were a Kansas resident. This calculator assumes you live and work in Kansas and does not model either case.</p>
+      <details class="faq-item">
+        <summary><h3>Do Kansas cities or counties tax my paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>The Kansas withholding guide describes state withholding only, and we found no Kansas city or county income tax on wages in it. That is not proof that none exists. One city outside Kansas matters to Kansans who work there. Kansas City, Missouri charges a 1% earnings tax, and its guide for employers outside the city says that an employer registered with the city must withhold it on the part of a nonresident&rsquo;s pay earned within the city. If all of a $75,000 salary were earned there, that would be $750.00 a year. This calculator does not include it, because it cannot know where you work.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my Kansas withholding?</h3>
-    <p>In this calculator, yes. The guide says Kansas withholding on deferred compensation plans follows the federal rules and that contributions to such a plan are generally not subject to withholding, so we start from pay after a traditional 401(k) contribution, the same choice we make in every other state here. On $75,000 with 6% going into a 401(k), Kansas income tax withholding falls by $251.10 a year.</p>
+      <details class="faq-item">
+        <summary><h3>I live in Kansas and work in Missouri, or the reverse. Which state withholds?</h3></summary>
+        <div class="faq-r">
+          <p>The Department&rsquo;s guide says that for a Kansas resident who works outside Kansas, the employer withholds the Kansas amount less what the other state requires. Its example is a Kansas resident working in Missouri: Kansas tax of $250 on the wages, Missouri withholding of $130, and the $120 difference withheld for Kansas. If the other state&rsquo;s withholding is the larger, no Kansas tax is withheld. For a nonresident who works full time in Kansas, the employer withholds Kansas tax on all the wages as if the employee were a Kansas resident. This calculator assumes you live and work in Kansas and does not model either case.</p>
+        </div>
+      </details>
 
-    <h3>How does Kansas withhold tax on a bonus?</h3>
-    <p>The Department&rsquo;s guide says Kansas withholding on a supplemental wage payment follows the method your employer uses for federal tax. If the bonus is added to your regular wages and the total is run through the tables, Kansas does the same. If the bonus is stated separately and federal tax is figured as a flat percentage of it, Kansas withholds 5% of the gross payment: $50 on a $1,000 bonus, the guide&rsquo;s own example. This calculator does not model bonuses, so ask your employer which method it uses.</p>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my Kansas withholding?</h3></summary>
+        <div class="faq-r">
+          <p>In this calculator, yes. The guide says Kansas withholding on deferred compensation plans follows the federal rules and that contributions to such a plan are generally not subject to withholding, so we start from pay after a traditional 401(k) contribution, the same choice we make in every other state here. On $75,000 with 6% going into a 401(k), Kansas income tax withholding falls by $251.10 a year.</p>
+        </div>
+      </details>
 
-    <h3>Why is my Kansas paycheck different from this calculator?</h3>
-    <p>Common reasons: you claimed a different number of allowances on your K-4, such as one for each dependent, or asked for extra withholding on line 5; your employer rounds each check to the whole dollar; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; or part of your pay is a bonus. If you never gave your employer a K-4, it must withhold at the single rate with no allowances, which on $75,000 is $3,896.44 a year, $511.13 more than the figure above. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+      <details class="faq-item">
+        <summary><h3>How does Kansas withhold tax on a bonus?</h3></summary>
+        <div class="faq-r">
+          <p>The Department&rsquo;s guide says Kansas withholding on a supplemental wage payment follows the method your employer uses for federal tax. If the bonus is added to your regular wages and the total is run through the tables, Kansas does the same. If the bonus is stated separately and federal tax is figured as a flat percentage of it, Kansas withholds 5% of the gross payment: $50 on a $1,000 bonus, the guide&rsquo;s own example. This calculator does not model bonuses, so ask your employer which method it uses.</p>
+        </div>
+      </details>
 
-    <h3>How current is the Kansas formula on this page?</h3>
-    <p>It comes from the Department of Revenue&rsquo;s Withholding Tax Guide, KW-100, whose cover reads &ldquo;Rev. 10-24&rdquo; and whose cover says the rates are for wages paid on or after July 1, 2024. We read the copy that the Internet Archive saved on October 9, 2026, and link to it. The Department&rsquo;s Notice 25-06 says there will be no rate reduction for tax year 2026. We did not find a 2026 withholding notice, but the Department&rsquo;s own site did not answer our requests, so we cannot rule one out.</p>
+      <details class="faq-item">
+        <summary><h3>Why is my Kansas paycheck different from this calculator?</h3></summary>
+        <div class="faq-r">
+          <p>Common reasons: you claimed a different number of allowances on your K-4, such as one for each dependent, or asked for extra withholding on line 5; your employer rounds each check to the whole dollar; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; or part of your pay is a bonus. If you never gave your employer a K-4, it must withhold at the single rate with no allowances, which on $75,000 is $3,896.44 a year, $511.13 more than the figure above. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+        </div>
+      </details>
 
-    <h3>Could Kansas cut its income tax rates?</h3>
-    <p>Kansas law provides for future cuts that depend on state revenue. According to the Department&rsquo;s Notice 25-06, a 2025 law (Senate Bill 269) lets the rates fall toward 4% in steps when general fund collections exceed an inflation-adjusted base and the rainy-day fund is large enough. The notice reports that the 2025 test was not met, so no cut applies for 2026. If a cut ever applies, this page&rsquo;s rates would need to change, and we would update them from the Department&rsquo;s new tables.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>How current is the Kansas formula on this page?</h3></summary>
+        <div class="faq-r">
+          <p>It comes from the Department of Revenue&rsquo;s Withholding Tax Guide, KW-100, whose cover reads &ldquo;Rev. 10-24&rdquo; and whose cover says the rates are for wages paid on or after July 1, 2024. We read the copy that the Internet Archive saved on October 9, 2026, and link to it. The Department&rsquo;s Notice 25-06 says there will be no rate reduction for tax year 2026. We did not find a 2026 withholding notice, but the Department&rsquo;s own site did not answer our requests, so we cannot rule one out.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Could Kansas cut its income tax rates?</h3></summary>
+        <div class="faq-r">
+          <p>Kansas law provides for future cuts that depend on state revenue. According to the Department&rsquo;s Notice 25-06, a 2025 law (Senate Bill 269) lets the rates fall toward 4% in steps when general fund collections exceed an inflation-adjusted base and the rainy-day fund is large enough. The notice reports that the 2025 test was not met, so no cut applies for 2026. If a cut ever applies, this page&rsquo;s rates would need to change, and we would update them from the Department&rsquo;s new tables.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates. Kansas borders four states: Nebraska, Missouri, Oklahoma and Colorado. We have a calculator for all four.
@@ -1233,7 +1312,7 @@
   <p>The table rounds take-home pay to the dollar; the differences in this paragraph use the exact amounts. Compared with a Kansas worker on the same salary, a <a href="/paycheck-calculator/nebraska/">Nebraska</a> worker keeps <span class="num">$852.36</span> more, a <a href="/paycheck-calculator/missouri/">Missouri</a> worker keeps <span class="num">$797.65</span> more, an <a href="/paycheck-calculator/oklahoma/">Oklahoma</a> worker keeps <span class="num">$555.81</span> more, and a <a href="/paycheck-calculator/colorado/">Colorado</a> worker keeps <span class="num">$2.69</span> less. A worker who lives in one of those states and commutes into Kansas, or the reverse, is a different case that this calculator does not model: it assumes a Kansas resident working in Kansas.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Kansas ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1254,7 +1333,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/nebraska/">Nebraska paycheck calculator</a> &mdash; the neighbor to the north.</li>
@@ -1348,6 +1427,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,850.60</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1387,8 +1470,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1398,9 +1481,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1453,23 +1536,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1479,6 +1562,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

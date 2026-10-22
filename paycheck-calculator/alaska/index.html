@@ -348,13 +348,31 @@
     </div>
     <button type="submit" class="btn btn-primary">Calculate</button>
   </form>
-  <div class="result" data-paycheck-result aria-live="polite"></div>
+  <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$50,119.00</span> <span class="result-unit">per year</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-8"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-keep sw-84"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$5,020.00</span><span class="stack-pct num">8%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$4,590.00</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$271.00</span><span class="stack-pct num">&lt;1%</span></li></ul><p class="result-note">You keep <strong class="num">84%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
   <p class="caption">Everything is calculated in your browser. Nothing you type is sent to us or stored.</p>
+
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
 
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Alaska has no state income tax, so most of what leaves your paycheck is federal. But it is
     not a three-line paycheck the way Texas or Tennessee is. Four deductions apply here:</p>
     <ul>
@@ -386,7 +404,7 @@
     tax was. The Department of Revenue's own tax-types page confirms the practical result in one
     sentence: no individual income tax, no state withholding required.</p>
 
-    <h2>Alaska take-home pay by salary</h2>
+    <h2 id="by-salary">Alaska take-home pay by salary</h2>
     <p>Single filer, standard deduction, 2026 rates, no 401(k) contribution. The State tax column
     is the 0.50% unemployment insurance share described above &mdash; every figure comes from the
     same arithmetic the calculator above runs.</p>
@@ -428,7 +446,7 @@
       </table>
     </div>
 
-    <h2>Alaska hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Alaska hourly paycheck: what your rate is worth after tax</h2>
     <p>At 40 hours a week for 52 weeks. The gross hourly rate is the same everywhere; what
     survives tax is not.</p>
     <div class="table-scroll">
@@ -506,7 +524,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-    <h2>Key facts that affect your take-home pay in Alaska</h2>
+    <h2 id="key-facts">Key facts that affect your take-home pay in Alaska</h2>
     <ul>
       <li><strong>No state income tax, and no local income tax found.</strong> Alaska's own tax
       division says its individual income tax was repealed; we have found no local government
@@ -520,7 +538,7 @@
       federal tax; there is no state income tax here for it to lower.</li>
     </ul>
 
-    <h2>Common mistakes people make</h2>
+    <h2 id="common-mistakes">Common mistakes people make</h2>
     <ul>
       <li><strong>Assuming Alaska takes nothing out at the state level, like Texas.</strong> It
       takes very little &mdash; at most $271.00 a year &mdash; but it is not zero.</li>
@@ -531,7 +549,7 @@
       $60,000 the gap is $271 a year, entirely from this one line.</li>
     </ul>
 
-    <h2>Example calculation</h2>
+    <h2 id="example">Example calculation</h2>
     <p>A single filer on <strong>$60,000</strong> in Alaska, 2026, no 401(k):</p>
     <ul>
       <li>Gross pay: <span class="num">$60,000.00</span></li>
@@ -567,24 +585,54 @@
 
     <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
-    <h2>Frequently asked questions</h2>
+    <h2 id="faq">Frequently asked questions</h2>
     <div class="faq">
-      <h3>Does Alaska have a state income tax?</h3>
-      <p>No. The Alaska Department of Revenue's own "Personal Income" page states it directly: “The State of Alaska currently does not have an individual income tax, therefore no employee withholding for state income tax is required.” Alaska repealed its individual income tax retroactive to January 1, 1980, and the statute that once taxed individuals, AS 43.20.011, now taxes only corporations. On $60,000 you keep about $50,119 a year.</p>
-      <h3>What is taken out of an Alaska paycheck?</h3>
-      <p>Federal income tax, Social Security at 6.2%, Medicare at 1.45% — and one thing no other state on this site charges the employee: a small share of unemployment insurance, 0.50% of gross pay up to $54,200 of wages, capped at $271 a year. There is no state income tax, and we have not found a local income tax either — see the FAQ below on Alaska's municipalities for the caveat on that.</p>
-      <h3>Why does Alaska take unemployment insurance out of an employee's pay?</h3>
-      <p>Because it structures the tax that way by law. Every other state this site publishes — Texas, Tennessee, Washington and 16 more — collects unemployment insurance entirely from the employer, and none of it ever reaches the paycheck. Alaska's own labor department publishes both halves side by side: an employer rate and a separate employee rate, and “The Total Rate = Employer Rate + Employee Rate.” The employee only ever pays their own 0.50% share, never the combined total.</p>
-      <h3>How much is $60,000 after taxes in Alaska?</h3>
-      <p>About $50,119 a year, or $4,176.58 a month, for a single filer taking the standard deduction in 2026 with no 401(k) contribution. That includes $271.00 of state unemployment insurance, the maximum for anyone earning at or above the $54,200 wage base. The same salary in Tennessee, which charges the employee nothing at state level, leaves $50,390 — $271 more.</p>
-      <h3>Is Alaska really a "no income tax" state like Texas or Nevada?</h3>
-      <p>For income tax specifically, yes — the rate is zero in all three, and Texas and Nevada have no local income tax either. We have not found one in Alaska, though we cannot confirm that for all 165 of its municipalities (see the FAQ below). Where Alaska differs from the other two is a separate line unrelated to income tax: the employee-paid unemployment insurance share described above. It is a small amount (at most $271.00 a year) but it means an Alaska paycheck is not, dollar for dollar, identical to a Texas one at the same gross pay — unlike Texas, Tennessee and Nevada, which come out identical to the cent.</p>
-      <h3>Do any Alaska cities or boroughs levy their own income tax on wages?</h3>
-      <p>We have not found one, but we have not been able to confirm it for every one of Alaska's 165 boroughs and cities against a single official statewide list. Alaska's local governments are widely described as funding themselves mainly through sales tax and property tax rather than a wage tax; if you work for a specific municipality and want certainty, check with that local government directly.</p>
+
+      <details class="faq-item" open>
+        <summary><h3>Does Alaska have a state income tax?</h3></summary>
+        <div class="faq-r">
+          <p>No. The Alaska Department of Revenue's own "Personal Income" page states it directly: “The State of Alaska currently does not have an individual income tax, therefore no employee withholding for state income tax is required.” Alaska repealed its individual income tax retroactive to January 1, 1980, and the statute that once taxed individuals, AS 43.20.011, now taxes only corporations. On $60,000 you keep about $50,119 a year.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>What is taken out of an Alaska paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>Federal income tax, Social Security at 6.2%, Medicare at 1.45% — and one thing no other state on this site charges the employee: a small share of unemployment insurance, 0.50% of gross pay up to $54,200 of wages, capped at $271 a year. There is no state income tax, and we have not found a local income tax either — see the FAQ below on Alaska's municipalities for the caveat on that.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Why does Alaska take unemployment insurance out of an employee's pay?</h3></summary>
+        <div class="faq-r">
+          <p>Because it structures the tax that way by law. Every other state this site publishes — Texas, Tennessee, Washington and 16 more — collects unemployment insurance entirely from the employer, and none of it ever reaches the paycheck. Alaska's own labor department publishes both halves side by side: an employer rate and a separate employee rate, and “The Total Rate = Employer Rate + Employee Rate.” The employee only ever pays their own 0.50% share, never the combined total.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>How much is $60,000 after taxes in Alaska?</h3></summary>
+        <div class="faq-r">
+          <p>About $50,119 a year, or $4,176.58 a month, for a single filer taking the standard deduction in 2026 with no 401(k) contribution. That includes $271.00 of state unemployment insurance, the maximum for anyone earning at or above the $54,200 wage base. The same salary in Tennessee, which charges the employee nothing at state level, leaves $50,390 — $271 more.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Is Alaska really a "no income tax" state like Texas or Nevada?</h3></summary>
+        <div class="faq-r">
+          <p>For income tax specifically, yes — the rate is zero in all three, and Texas and Nevada have no local income tax either. We have not found one in Alaska, though we cannot confirm that for all 165 of its municipalities (see the FAQ below). Where Alaska differs from the other two is a separate line unrelated to income tax: the employee-paid unemployment insurance share described above. It is a small amount (at most $271.00 a year) but it means an Alaska paycheck is not, dollar for dollar, identical to a Texas one at the same gross pay — unlike Texas, Tennessee and Nevada, which come out identical to the cent.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Do any Alaska cities or boroughs levy their own income tax on wages?</h3></summary>
+        <div class="faq-r">
+          <p>We have not found one, but we have not been able to confirm it for every one of Alaska's 165 boroughs and cities against a single official statewide list. Alaska's local governments are widely described as funding themselves mainly through sales tax and property tax rather than a wage tax; if you work for a specific municipality and want certainty, check with that local government directly.</p>
+        </div>
+      </details>
     </div>
 
     <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Alaska ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -600,7 +648,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-    <ul>
+    <ul class="related">
       <li><a href="/paycheck-calculator/">Paycheck calculators for every state we publish</a></li>
       <li><a href="/paycheck-calculator/tennessee/">Tennessee paycheck calculator</a> &mdash;
       another no-income-tax state, but with nothing withheld at all</li>
@@ -690,6 +738,10 @@
   Department of Labor and Workforce Development.</p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$50,119.00</span><span class="result-bar-meta" data-bar-unit>Take-home pay per year</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -729,8 +781,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -740,9 +792,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -795,23 +847,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -821,6 +873,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

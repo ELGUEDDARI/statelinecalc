@@ -386,12 +386,30 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$5,132.71</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-keep sw-82"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$0.00</span><span class="stack-pct num">0%</span></li></ul><p class="result-note">You keep <strong class="num">82%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
+
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
 
   <!-- Ad slot A -->
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
@@ -399,7 +417,7 @@
   <div class="prose">
 
     <!-- 4. How it works + sources -->
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>A Texas paycheck has no state line on it at all. There is no state income tax to withhold,
     no city or county income tax underneath it, and &mdash; unlike Washington, the other large
     state that taxes no wages &mdash; no state payroll program deducted from your pay. What is
@@ -432,7 +450,7 @@
   </div>
 
   <!-- 5. The 30-row table: the crawlable version of the calculator -->
-  <h2>Texas take-home pay by salary</h2>
+  <h2 id="by-salary">Texas take-home pay by salary</h2>
   <p class="prose">Single filer, standard deduction, no retirement contribution, 2026 rates.
   Use it to place yourself without typing anything. The state column is zero on every row, and
   that is the point.</p>
@@ -730,7 +748,7 @@
 
 
   <!-- 5b. Paie horaire : la moitie du creneau que les pages "salary" ignorent -->
-  <h2>Texas hourly paycheck: what your rate is worth after tax</h2>
+  <h2 id="hourly">Texas hourly paycheck: what your rate is worth after tax</h2>
 
   <div class="prose">
     <p>Many of the people asking this question are paid by the hour, not by the year. The
@@ -1102,7 +1120,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Texas</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Texas</h2>
 
   <h3>The income tax ban is constitutional, not just a policy</h3>
   <p>Most no-income-tax states simply have not passed one. Texas has gone further and put the
@@ -1163,7 +1181,7 @@
   withhold the same thing from your pay, which is nothing.</p>
 
   <!-- 7. Common mistakes -->
-  <h2>Common mistakes people make</h2>
+  <h2 id="common-mistakes">Common mistakes people make</h2>
 
   <h3>Reading the paycheck as the whole picture</h3>
   <p>The most expensive mistake on this page. Texas funds itself through property and sales taxes
@@ -1191,7 +1209,7 @@
   a few percent is normal. See the <a href="/disclaimer/">disclaimer</a>.</p>
 
   <!-- 8. Worked example -->
-    <h2>Example calculation</h2>
+    <h2 id="example">Example calculation</h2>
     <p>A single filer earning <span class="num">$75,000</span> a year in Houston, taking the
     standard deduction, with no 401(k) contribution:</p>
 
@@ -1220,58 +1238,90 @@
 
     <!-- 9. FAQ -->
     <div class="faq">
-      <h2>Frequently asked questions</h2>
+      <h2 id="faq">Frequently asked questions</h2>
 
-      <h3>What is $20 an hour after taxes in Texas?</h3>
-      <p>About $35,606 a year, or $2,967.13 a month, at 40 hours a week for a single filer in
+      <details class="faq-item" open>
+        <summary><h3>What is $20 an hour after taxes in Texas?</h3></summary>
+        <div class="faq-r">
+          <p>About $35,606 a year, or $2,967.13 a month, at 40 hours a week for a single filer in
       2026. That is a real take-home rate of $17.12 an hour, an effective rate of 14.4 percent.
       Texas withholds nothing at state level, so all of it is federal.</p>
+        </div>
+      </details>
 
-      <h3>Does Texas have a state income tax?</h3>
-      <p>No, and it is written into the state constitution rather than left to the legislature.
+      <details class="faq-item">
+        <summary><h3>Does Texas have a state income tax?</h3></summary>
+        <div class="faq-r">
+          <p>No, and it is written into the state constitution rather than left to the legislature.
       Article 8, Section 24-a, added on November 5, 2019, states that the legislature may not
       impose a tax on the net incomes of individuals, including an individual&rsquo;s share of
       partnership and unincorporated association income. Nothing at state level is withheld from
       a Texas paycheck.</p>
+        </div>
+      </details>
 
-      <h3>What is take-home pay on a $75,000 salary in Texas?</h3>
-      <p>About <span class="num">$61,593</span> a year, or roughly <span class="num">$5,133</span>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Texas?</h3></summary>
+        <div class="faq-r">
+          <p>About <span class="num">$61,593</span> a year, or roughly <span class="num">$5,133</span>
       a month, for a single filer taking the standard deduction in 2026. Total withholding is
       <span class="num">$13,407.50</span>, an effective rate of 17.9 percent, and every dollar of
       it is federal.</p>
+        </div>
+      </details>
 
-      <h3>Does Texas tax capital gains?</h3>
-      <p>No. Article 8, Section 24-b of the Texas Constitution, added on November 4, 2025,
+      <details class="faq-item">
+        <summary><h3>Does Texas tax capital gains?</h3></summary>
+        <div class="faq-r">
+          <p>No. Article 8, Section 24-b of the Texas Constitution, added on November 4, 2025,
       prohibits a tax on the realized or unrealized capital gains of an individual, family,
       estate or trust. That is a real difference from
       <a href="/paycheck-calculator/washington/">Washington</a>, which has no income tax on wages
       but does levy a capital gains tax. The ban does not affect property tax, sales tax or use
       tax, which the section names explicitly.</p>
+        </div>
+      </details>
 
-      <h3>Is anything at all withheld from a Texas paycheck at state level?</h3>
-      <p>No. Texas unemployment insurance is paid entirely by the employer: Texas Labor Code
+      <details class="faq-item">
+        <summary><h3>Is anything at all withheld from a Texas paycheck at state level?</h3></summary>
+        <div class="faq-r">
+          <p>No. Texas unemployment insurance is paid entirely by the employer: Texas Labor Code
       Section 204.003 states that an employer may not deduct any part of a contribution from the
       wages of an individual in the employer&rsquo;s employ. Texas has no state disability
       insurance and no paid family leave premium, so a Texas paystub shows federal income tax,
       Social Security and Medicare and nothing else from the state.</p>
+        </div>
+      </details>
 
-      <h3>Is take-home pay higher in Texas than in Washington?</h3>
-      <p>Yes, slightly. Neither state taxes wage income, but Washington withholds Paid Family and
+      <details class="faq-item">
+        <summary><h3>Is take-home pay higher in Texas than in Washington?</h3></summary>
+        <div class="faq-r">
+          <p>Yes, slightly. Neither state taxes wage income, but Washington withholds Paid Family and
       Medical Leave and WA Cares from every check. On a $75,000 salary that is about
       <span class="num">$1,040</span> a year, so a Texas worker keeps roughly
       <span class="num">$61,593</span> against <span class="num">$60,552</span> in Washington.</p>
+        </div>
+      </details>
 
-      <h3>Why is my Texas paycheck smaller than the calculator says?</h3>
-      <p>Almost always because of things that are personal to you rather than to Texas: health
+      <details class="faq-item">
+        <summary><h3>Why is my Texas paycheck smaller than the calculator says?</h3></summary>
+        <div class="faq-r">
+          <p>Almost always because of things that are personal to you rather than to Texas: health
       insurance premiums, a 401(k) contribution, extra withholding on your W-4, or a second job.
       The calculator models one job, the standard deduction and wages only.</p>
+        </div>
+      </details>
 
-      <h3>Do I pay Texas tax if I live in Texas and work in another state?</h3>
-      <p>Texas has no income tax to owe, but the state where you physically perform the work
+      <details class="faq-item">
+        <summary><h3>Do I pay Texas tax if I live in Texas and work in another state?</h3></summary>
+        <div class="faq-r">
+          <p>Texas has no income tax to owe, but the state where you physically perform the work
       generally can tax that income. If you commute across a state line, or work remotely for
       part of the year from a state that taxes income, that state&rsquo;s rules apply to the days
       worked there. This is exactly the situation where an hour with a professional is worth
       more than any calculator.</p>
+        </div>
+      </details>
     </div>
 
     <!-- 10a. Neighboring states -->
@@ -1299,7 +1349,7 @@
     <a href="/paycheck-calculator/">state index</a>.</p>
 
     <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Texas ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1321,7 +1371,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-    <ul>
+    <ul class="related">
       <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
       index, including which states have no income tax at all.</li>
       <li><a href="/salary-to-hourly-calculator/texas/">Texas salary to hourly</a> &mdash; what an annual salary is worth per hour in Texas, after tax and not just before.</li>
@@ -1426,6 +1476,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$5,132.71</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1465,8 +1519,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1476,9 +1530,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1531,23 +1585,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1557,6 +1611,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

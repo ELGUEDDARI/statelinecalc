@@ -307,18 +307,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,899.88</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-4"></i><i class="stack-seg seg-keep sw-78"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$232.82</span><span class="stack-pct num">4%</span></li></ul><p class="result-note">You keep <strong class="num">78%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>The South Carolina Department of Revenue publishes a withholding formula, and this calculator follows it. Your pay is converted to a yearly amount. Two deductions come off: <span class="num">$5,000</span> for each withholding allowance you claim (<span class="num">$10,000</span> for a single filer with two, <span class="num">$15,000</span> for a married or head-of-household filer with three), and a standard deduction of <span class="num">10%</span> of your pay, up to <span class="num">$7,500</span>. The rest is taxed through one table with a <span class="num">0%</span> step, then <span class="num">3%</span> and <span class="num">6%</span>, and the yearly result is divided by the number of pay periods. The table is the same for every filing status; only the number of allowances changes.</p>
 
     <p>The calculator applies these deductions in this order:</p>
@@ -349,7 +367,7 @@
     <p>What the calculator deliberately leaves out: dependents on Form SC W-4, a second job or a spouse who works, the &ldquo;higher Single rate&rdquo; box, extra withholding and the &ldquo;Exempt&rdquo; line, bonuses, rounding by your employer, work in another state, and health insurance premiums and other employer benefit deductions.</p>
   </div>
 
-  <h2>South Carolina take-home pay by salary</h2>
+  <h2 id="by-salary">South Carolina take-home pay by salary</h2>
   <p class="prose">Single filer, no retirement contribution, 2026 federal rates and the South Carolina withholding formula. The
   SC state tax column is South Carolina income tax withholding; we found no required South Carolina payroll deduction to add.</p>
 
@@ -800,7 +818,7 @@
     <h3>We found no local income tax on wages</h3>
     <p>The formula, the tables and the W-4 describe state withholding only. We found no South Carolina city or county income tax on wages in them, which is not proof that none exists. This calculator adds no local line for South Carolina.</p>
 
-    <h2>South Carolina hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">South Carolina hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask for your hours instead of assuming 2,080</h3>
     <p>Many hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1128,7 +1146,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in South Carolina</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in South Carolina</h2>
 
   <h3>The first $3,640 of what is left is not taxed</h3>
   <p>The table starts with a <span class="num">0%</span> step. With <span class="num">$10,000</span> of allowances and the <span class="num">10%</span> standard deduction, a single filer&rsquo;s yearly pay has to pass about <span class="num">$15,156</span> before South Carolina withholds anything. At <span class="num">$17,000</span>, South Carolina withholds <span class="num">$49.80</span>; at <span class="num">$30,000</span>, it withholds <span class="num">$400.80</span> a year.</p>
@@ -1165,7 +1183,7 @@
   stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
   extra 0.9% on wages above <span class="num">$200,000</span>. On <span class="num">$250,000</span>, Social Security and Medicare take <span class="num">$15,514.00</span> in total.</p>
 
-  <h2>Common mistakes</h2>
+  <h2 id="common-mistakes">Common mistakes</h2>
 
   <h3>Forgetting the standard deduction</h3>
   <p>Subtracting only the allowances and applying the table to <span class="num">$65,000</span> overstates South Carolina withholding by <span class="num">$450.00</span>: <span class="num">$3,243.90</span> instead of <span class="num">$2,793.90</span>. The <span class="num">10%</span> standard deduction is part of the formula for anyone who claims at least one allowance.</p>
@@ -1187,7 +1205,7 @@
   deductions come out before tax and are not modeled here, and the allowances you claimed on your Form SC W-4 may differ from the
   ones we assume. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>Amounts are shown to the cent, so adding the rounded lines can differ from the total by a cent.</p>
   <p>A single filer earning <span class="num">$75,000</span> in South Carolina in 2026, with two allowances and no retirement
   contribution, under the Department&rsquo;s formula:</p>
@@ -1211,65 +1229,142 @@
     <li>Effective tax rate: <span class="num">21.6%</span></li>
   </ul>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the South Carolina income tax withholding rate?</h3>
-    <p>South Carolina&rsquo;s withholding formula has a <span class="num">0%</span> step and then two rates, <span class="num">3%</span> and <span class="num">6%</span>. Nothing is withheld on the first $3,640 of what is left after the deductions, <span class="num">3%</span> is withheld on the next $14,590, and <span class="num">6%</span> on everything above $18,230. &ldquo;What is left&rdquo; means your yearly pay minus $5,000 for each allowance on your SC W-4, minus a standard deduction of <span class="num">10%</span> of your pay, up to $7,500. On $75,000, a single filer has $2,793.90 withheld a year.</p>
 
-    <h3>How much South Carolina tax is withheld on a $75,000 salary?</h3>
-    <p>For a single filer with two allowances, South Carolina withholds $2,793.90 a year, which is $232.82 a month or $107.46 on a biweekly check. Taxable pay is $75,000 minus $10,000 of allowances and a $7,500 standard deduction, or $57,500. The first $3,640 of it is not taxed, the next $14,590 produces $437.70, and the remaining $39,270 is taxed at 6%. A married filer with three allowances has $2,493.90 withheld, and so does a head of household with three allowances.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the South Carolina income tax withholding rate?</h3></summary>
+        <div class="faq-r">
+          <p>South Carolina&rsquo;s withholding formula has a <span class="num">0%</span> step and then two rates, <span class="num">3%</span> and <span class="num">6%</span>. Nothing is withheld on the first $3,640 of what is left after the deductions, <span class="num">3%</span> is withheld on the next $14,590, and <span class="num">6%</span> on everything above $18,230. &ldquo;What is left&rdquo; means your yearly pay minus $5,000 for each allowance on your SC W-4, minus a standard deduction of <span class="num">10%</span> of your pay, up to $7,500. On $75,000, a single filer has $2,793.90 withheld a year.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in South Carolina?</h3>
-    <p>About $58,799 a year, or $4,899.88 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $2,793.90 of South Carolina income tax, an effective rate of 21.6%. We found no South Carolina city or county income tax in the withholding materials, so there is no local line.</p>
+      <details class="faq-item">
+        <summary><h3>How much South Carolina tax is withheld on a $75,000 salary?</h3></summary>
+        <div class="faq-r">
+          <p>For a single filer with two allowances, South Carolina withholds $2,793.90 a year, which is $232.82 a month or $107.46 on a biweekly check. Taxable pay is $75,000 minus $10,000 of allowances and a $7,500 standard deduction, or $57,500. The first $3,640 of it is not taxed, the next $14,590 produces $437.70, and the remaining $39,270 is taxed at 6%. A married filer with three allowances has $2,493.90 withheld, and so does a head of household with three allowances.</p>
+        </div>
+      </details>
 
-    <h3>How much is $20, $25 or $30 an hour after taxes in South Carolina?</h3>
-    <p>At 40 hours a week, $20 an hour leaves about $34,615 a year, or $16.64 an hour. $25 an hour leaves about $42,410, or $20.39 an hour. $30 an hour leaves about $50,205, or $24.14 an hour. Those are single-filer figures after federal tax, FICA and South Carolina income tax withholding, with no retirement contribution.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in South Carolina?</h3></summary>
+        <div class="faq-r">
+          <p>About $58,799 a year, or $4,899.88 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $2,793.90 of South Carolina income tax, an effective rate of 21.6%. We found no South Carolina city or county income tax in the withholding materials, so there is no local line.</p>
+        </div>
+      </details>
 
-    <h3>What is the South Carolina standard deduction on withholding?</h3>
-    <p>The Department of Revenue&rsquo;s formula takes off <span class="num">10%</span> of gross wages, up to $7,500 in total, if you claim one or more allowances. If you claim none, you get no standard deduction. The cap is reached at $75,000 of pay, so on $75,000 the deduction is $7,500, and on $250,000 it is still $7,500. This is a withholding rule, not the deduction on your tax return, which is a different amount (see the Act 110 questions below).</p>
+      <details class="faq-item">
+        <summary><h3>How much is $20, $25 or $30 an hour after taxes in South Carolina?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour leaves about $34,615 a year, or $16.64 an hour. $25 an hour leaves about $42,410, or $20.39 an hour. $30 an hour leaves about $50,205, or $24.14 an hour. Those are single-filer figures after federal tax, FICA and South Carolina income tax withholding, with no retirement contribution.</p>
+        </div>
+      </details>
 
-    <h3>What is a South Carolina withholding allowance?</h3>
-    <p>It is $5,000 that your employer subtracts from your yearly pay before applying the table. The number you claim comes from the worksheet on Form SC W-4: one for yourself, one if you will file as married filing jointly, one if you will file as head of household, one if you are single (or married filing separately) with only one job, or married filing jointly with only one job and a spouse who does not work, and one for each dependent you will claim on your federal return, plus one for each dependent who is under six at the end of the year. Your actual South Carolina tax is figured on your return, where the deductions and credits you actually qualify for apply.</p>
+      <details class="faq-item">
+        <summary><h3>What is the South Carolina standard deduction on withholding?</h3></summary>
+        <div class="faq-r">
+          <p>The Department of Revenue&rsquo;s formula takes off <span class="num">10%</span> of gross wages, up to $7,500 in total, if you claim one or more allowances. If you claim none, you get no standard deduction. The cap is reached at $75,000 of pay, so on $75,000 the deduction is $7,500, and on $250,000 it is still $7,500. This is a withholding rule, not the deduction on your tax return, which is a different amount (see the Act 110 questions below).</p>
+        </div>
+      </details>
 
-    <h3>How many allowances do I claim on the South Carolina W-4 if I am married?</h3>
-    <p>On the worksheet, if you are married and file jointly, you get one for yourself (line A), one for filing jointly (line B), and one more (line D) if you have only one job and your spouse does not work, or if your spouse&rsquo;s wages are $1,500 or less. That is three allowances, $15,000 in all, and this calculator uses that case for &ldquo;Married filing jointly.&rdquo; If both of you work, line D stays empty and you have two allowances. On $75,000, that would withhold $300.00 more South Carolina tax a year than this calculator shows. The form also has a box for &ldquo;Married, but withhold at higher Single rate,&rdquo; which we do not model.</p>
+      <details class="faq-item">
+        <summary><h3>What is a South Carolina withholding allowance?</h3></summary>
+        <div class="faq-r">
+          <p>It is $5,000 that your employer subtracts from your yearly pay before applying the table. The number you claim comes from the worksheet on Form SC W-4: one for yourself, one if you will file as married filing jointly, one if you will file as head of household, one if you are single (or married filing separately) with only one job, or married filing jointly with only one job and a spouse who does not work, and one for each dependent you will claim on your federal return, plus one for each dependent who is under six at the end of the year. Your actual South Carolina tax is figured on your return, where the deductions and credits you actually qualify for apply.</p>
+        </div>
+      </details>
 
-    <h3>How does head of household work on the South Carolina W-4?</h3>
-    <p>The worksheet adds one allowance on line C if you will file as head of household. With the one for yourself on line A and the one on line D for a single job, that is three allowances, $15,000 in all. Line D does not mention head of household by name; we read it as covering an unmarried filer with one job, and that is our reading, not a statement from the Department. The formula itself does not change with your status: there is one rate table for everyone, and only the number of allowances differs. On $75,000 that gives $2,493.90 of South Carolina withholding, and take-home pay of $61,021 after the lower federal tax.</p>
+      <details class="faq-item">
+        <summary><h3>How many allowances do I claim on the South Carolina W-4 if I am married?</h3></summary>
+        <div class="faq-r">
+          <p>On the worksheet, if you are married and file jointly, you get one for yourself (line A), one for filing jointly (line B), and one more (line D) if you have only one job and your spouse does not work, or if your spouse&rsquo;s wages are $1,500 or less. That is three allowances, $15,000 in all, and this calculator uses that case for &ldquo;Married filing jointly.&rdquo; If both of you work, line D stays empty and you have two allowances. On $75,000, that would withhold $300.00 more South Carolina tax a year than this calculator shows. The form also has a box for &ldquo;Married, but withhold at higher Single rate,&rdquo; which we do not model.</p>
+        </div>
+      </details>
 
-    <h3>What changed in South Carolina income tax for 2026 under Act 110?</h3>
-    <p>The Governor signed Act 110 of 2026 on March 30, 2026. According to the Department of Revenue&rsquo;s Information Letter #26-20, dated August 31, 2026, it replaces three brackets with two for tax years beginning after 2025: <span class="num">1.99%</span> of taxable income up to $29,999, and <span class="num">5.21%</span> times taxable income, then minus $966, from $30,000. It also decouples South Carolina from certain federal deductions, including the standard and itemized deductions, so a South Carolina return now starts from federal adjusted gross income, and it creates a new South Carolina Income Adjusted Deduction that shrinks as income rises. These are rules for your return. They are not what your employer uses to withhold from each check.</p>
+      <details class="faq-item">
+        <summary><h3>How does head of household work on the South Carolina W-4?</h3></summary>
+        <div class="faq-r">
+          <p>The worksheet adds one allowance on line C if you will file as head of household. With the one for yourself on line A and the one on line D for a single job, that is three allowances, $15,000 in all. Line D does not mention head of household by name; we read it as covering an unmarried filer with one job, and that is our reading, not a statement from the Department. The formula itself does not change with your status: there is one rate table for everyone, and only the number of allowances differs. On $75,000 that gives $2,493.90 of South Carolina withholding, and take-home pay of $61,021 after the lower federal tax.</p>
+        </div>
+      </details>
 
-    <h3>Has South Carolina changed its withholding tables for Act 110?</h3>
-    <p>Not as of October 20, 2026, as far as the Department&rsquo;s own pages show. The Information Letter lists &ldquo;Adjusts withholding tables to reflect tax changes&rdquo; among the changes, and says the Department &ldquo;will consult with the Revenue and Fiscal Affairs Office to adjust the income tax withholding tables to reflect the income tax changes.&rdquo; The withholding formula and tables on the Department&rsquo;s site still read &ldquo;2026,&rdquo; with revision dates of November 2025 and October 2025, and the formula still prints a top rate of 6.0%. This calculator follows those published documents. If the Department posts an adjusted formula, we will update this page from it.</p>
+      <details class="faq-item">
+        <summary><h3>What changed in South Carolina income tax for 2026 under Act 110?</h3></summary>
+        <div class="faq-r">
+          <p>The Governor signed Act 110 of 2026 on March 30, 2026. According to the Department of Revenue&rsquo;s Information Letter #26-20, dated August 31, 2026, it replaces three brackets with two for tax years beginning after 2025: <span class="num">1.99%</span> of taxable income up to $29,999, and <span class="num">5.21%</span> times taxable income, then minus $966, from $30,000. It also decouples South Carolina from certain federal deductions, including the standard and itemized deductions, so a South Carolina return now starts from federal adjusted gross income, and it creates a new South Carolina Income Adjusted Deduction that shrinks as income rises. These are rules for your return. They are not what your employer uses to withhold from each check.</p>
+        </div>
+      </details>
 
-    <h3>Will my South Carolina withholding match my final tax for 2026?</h3>
-    <p>Withholding is an estimate, and for 2026 the two follow different rules. The formula your employer applies uses allowances, a 10% standard deduction and a top rate of 6%. Your return uses the Act 110 rates and a deduction that depends on your income. We do not calculate the return, and we cannot say which way the difference will go for you. If you want your withholding to be closer to what you expect to owe, the SC W-4 lets you change your allowances or add an extra amount to withhold from each paycheck on line 6.</p>
+      <details class="faq-item">
+        <summary><h3>Has South Carolina changed its withholding tables for Act 110?</h3></summary>
+        <div class="faq-r">
+          <p>Not as of October 20, 2026, as far as the Department&rsquo;s own pages show. The Information Letter lists &ldquo;Adjusts withholding tables to reflect tax changes&rdquo; among the changes, and says the Department &ldquo;will consult with the Revenue and Fiscal Affairs Office to adjust the income tax withholding tables to reflect the income tax changes.&rdquo; The withholding formula and tables on the Department&rsquo;s site still read &ldquo;2026,&rdquo; with revision dates of November 2025 and October 2025, and the formula still prints a top rate of 6.0%. This calculator follows those published documents. If the Department posts an adjusted formula, we will update this page from it.</p>
+        </div>
+      </details>
 
-    <h3>Is there a South Carolina state disability or paid family leave deduction?</h3>
-    <p>We found none that is required. The South Carolina Department of Revenue&rsquo;s withholding formula, tables and Form SC W-4 describe income tax withholding only, and we found no state payroll deduction that an employer must take from your check. That is what we read in those documents, not proof that nothing else exists, and your pay stub is the final word. If your employer offers insurance and deducts a premium, it will show on your stub, and this calculator does not include it.</p>
+      <details class="faq-item">
+        <summary><h3>Will my South Carolina withholding match my final tax for 2026?</h3></summary>
+        <div class="faq-r">
+          <p>Withholding is an estimate, and for 2026 the two follow different rules. The formula your employer applies uses allowances, a 10% standard deduction and a top rate of 6%. Your return uses the Act 110 rates and a deduction that depends on your income. We do not calculate the return, and we cannot say which way the difference will go for you. If you want your withholding to be closer to what you expect to owe, the SC W-4 lets you change your allowances or add an extra amount to withhold from each paycheck on line 6.</p>
+        </div>
+      </details>
 
-    <h3>Who pays South Carolina unemployment insurance?</h3>
-    <p>The employer. Section 41-31-310 of the South Carolina Code of Laws says contributions &ldquo;shall become due and be paid by each employer to the department for the fund&rdquo; and &ldquo;shall not be deducted, in whole or in part, from the wages of the employer&rsquo;s employees.&rdquo; So there is no unemployment line to subtract from your pay, and this calculator has none.</p>
+      <details class="faq-item">
+        <summary><h3>Is there a South Carolina state disability or paid family leave deduction?</h3></summary>
+        <div class="faq-r">
+          <p>We found none that is required. The South Carolina Department of Revenue&rsquo;s withholding formula, tables and Form SC W-4 describe income tax withholding only, and we found no state payroll deduction that an employer must take from your check. That is what we read in those documents, not proof that nothing else exists, and your pay stub is the final word. If your employer offers insurance and deducts a premium, it will show on your stub, and this calculator does not include it.</p>
+        </div>
+      </details>
 
-    <h3>Do South Carolina cities or counties tax my paycheck?</h3>
-    <p>The South Carolina withholding formula, tables and W-4 describe state withholding only, and we found no South Carolina city or county income tax on wages in them. That is not proof that none exists. This calculator adds no local line for South Carolina.</p>
+      <details class="faq-item">
+        <summary><h3>Who pays South Carolina unemployment insurance?</h3></summary>
+        <div class="faq-r">
+          <p>The employer. Section 41-31-310 of the South Carolina Code of Laws says contributions &ldquo;shall become due and be paid by each employer to the department for the fund&rdquo; and &ldquo;shall not be deducted, in whole or in part, from the wages of the employer&rsquo;s employees.&rdquo; So there is no unemployment line to subtract from your pay, and this calculator has none.</p>
+        </div>
+      </details>
 
-    <h3>I live in South Carolina and work in North Carolina or Georgia, or the reverse. Which state withholds?</h3>
-    <p>This calculator assumes you live and work in South Carolina and does not model working across a state line. The formula we read is the one for South Carolina wages. We did not read the rules for people who live in one state and work in another, so we do not state them here. North Carolina and Georgia, the two neighbors, have their own calculators: see the <a href="/paycheck-calculator/north-carolina/">North Carolina</a> and <a href="/paycheck-calculator/georgia/">Georgia</a> pages.</p>
+      <details class="faq-item">
+        <summary><h3>Do South Carolina cities or counties tax my paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>The South Carolina withholding formula, tables and W-4 describe state withholding only, and we found no South Carolina city or county income tax on wages in them. That is not proof that none exists. This calculator adds no local line for South Carolina.</p>
+        </div>
+      </details>
 
-    <h3>Can I claim exempt from South Carolina withholding?</h3>
-    <p>The Form SC W-4 allows it in two cases. One is that you had a right to a refund of all South Carolina income tax withheld for 2025 because you had no tax liability, and you expect the same for 2026. The other is for a military servicemember, or the spouse of one, who elects to use another state as the state of domicile. You write &ldquo;Exempt&rdquo; on line 7, and the exemption expires on December 31, 2026 unless you give your employer a new form. This calculator does not model exemption.</p>
+      <details class="faq-item">
+        <summary><h3>I live in South Carolina and work in North Carolina or Georgia, or the reverse. Which state withholds?</h3></summary>
+        <div class="faq-r">
+          <p>This calculator assumes you live and work in South Carolina and does not model working across a state line. The formula we read is the one for South Carolina wages. We did not read the rules for people who live in one state and work in another, so we do not state them here. North Carolina and Georgia, the two neighbors, have their own calculators: see the <a href="/paycheck-calculator/north-carolina/">North Carolina</a> and <a href="/paycheck-calculator/georgia/">Georgia</a> pages.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my South Carolina withholding?</h3>
-    <p>In this calculator, yes. The formula says &ldquo;gross wages&rdquo; and does not give a separate rule for 401(k) contributions, so we start from pay after a traditional 401(k) contribution, the same choice we make in most states here. That also lowers the 10% standard deduction a little, because it is a share of the lower pay. On $75,000 with 6% going into a 401(k), South Carolina income tax withholding falls by $243.00 a year.</p>
+      <details class="faq-item">
+        <summary><h3>Can I claim exempt from South Carolina withholding?</h3></summary>
+        <div class="faq-r">
+          <p>The Form SC W-4 allows it in two cases. One is that you had a right to a refund of all South Carolina income tax withheld for 2025 because you had no tax liability, and you expect the same for 2026. The other is for a military servicemember, or the spouse of one, who elects to use another state as the state of domicile. You write &ldquo;Exempt&rdquo; on line 7, and the exemption expires on December 31, 2026 unless you give your employer a new form. This calculator does not model exemption.</p>
+        </div>
+      </details>
 
-    <h3>Why is my South Carolina paycheck different from this calculator?</h3>
-    <p>Common reasons: you claimed a different number of allowances on your SC W-4, such as one for each dependent, or none at all; you asked for extra withholding; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; part of your pay is a bonus; or your employer rounds each paycheck. The printed tables show whole dollars, and we found they round up. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my South Carolina withholding?</h3></summary>
+        <div class="faq-r">
+          <p>In this calculator, yes. The formula says &ldquo;gross wages&rdquo; and does not give a separate rule for 401(k) contributions, so we start from pay after a traditional 401(k) contribution, the same choice we make in most states here. That also lowers the 10% standard deduction a little, because it is a share of the lower pay. On $75,000 with 6% going into a 401(k), South Carolina income tax withholding falls by $243.00 a year.</p>
+        </div>
+      </details>
 
-    <h3>How current is the South Carolina formula on this page?</h3>
-    <p>It comes from the Department of Revenue&rsquo;s 2026 withholding formula, form WH-1603F, revision date November 4, 2025, and the 2026 Withholding Tax Tables, WH-1603, revision date October 30, 2025. We read both on the Department&rsquo;s own site on October 20, 2026. The SC W-4 we read is the 2026 form, revision date December 5, 2025. The Department&rsquo;s August 31, 2026 Information Letter on Act 110 says the withholding tables will be adjusted, and we found no adjusted version. If the Department posts new tables, we update this page from them.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>Why is my South Carolina paycheck different from this calculator?</h3></summary>
+        <div class="faq-r">
+          <p>Common reasons: you claimed a different number of allowances on your SC W-4, such as one for each dependent, or none at all; you asked for extra withholding; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; part of your pay is a bonus; or your employer rounds each paycheck. The printed tables show whole dollars, and we found they round up. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>How current is the South Carolina formula on this page?</h3></summary>
+        <div class="faq-r">
+          <p>It comes from the Department of Revenue&rsquo;s 2026 withholding formula, form WH-1603F, revision date November 4, 2025, and the 2026 Withholding Tax Tables, WH-1603, revision date October 30, 2025. We read both on the Department&rsquo;s own site on October 20, 2026. The SC W-4 we read is the 2026 form, revision date December 5, 2025. The Department&rsquo;s August 31, 2026 Information Letter on Act 110 says the withholding tables will be adjusted, and we found no adjusted version. If the Department posts new tables, we update this page from them.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates. South Carolina borders two states, North Carolina and Georgia, and we have a calculator for both.
@@ -1297,7 +1392,7 @@
   <p>The table rounds take-home pay to the dollar; the differences in this paragraph use the exact amounts. Compared with a South Carolina worker on the same salary, a <a href="/paycheck-calculator/georgia/">Georgia</a> worker keeps about <span class="num">$200</span> less and a <a href="/paycheck-calculator/north-carolina/">North Carolina</a> worker keeps about <span class="num">$310</span> more. A worker who lives in one of those states and commutes into South Carolina, or the reverse, is a different case that this calculator does not model: it assumes a South Carolina resident working in South Carolina.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the South Carolina ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1322,7 +1417,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/north-carolina/">North Carolina paycheck calculator</a> &mdash; the neighbor to the north.</li>
@@ -1414,6 +1509,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,899.88</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1453,8 +1552,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1464,9 +1563,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1519,23 +1618,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1545,6 +1644,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

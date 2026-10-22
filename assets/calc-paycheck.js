@@ -397,6 +397,82 @@
     return bands[bands.length - 1][1];
   }
 
+  /* ---- DESIGN 1 (22/10/2026) : le resultat COMPACT --------------------------
+     Sur telephone le bloc resultat faisait 1 011 px : le visiteur defilait plus
+     d'un ecran DANS la carte pour atteindre ses boutons. Il se compose
+     desormais de deux etages : ce qui se lit d'un coup d'oeil (le montant, une
+     barre empilee Federal / FICA / State, trois chiffres), puis, dans un
+     <details> ferme sur telephone, tout le detail d'avant (anneau, barres,
+     lignes, PDF). Les chiffres du detail restent dans le HTML.
+     La couleur n'est jamais seule : chaque segment de la barre a son nom, son
+     montant et son pourcentage ecrits dans la legende.
+     Les largeurs de barre sont des CLASSES (.sw-0 a .sw-100) : la CSP interdit
+     style="" et ainsi le meme HTML sert au serveur (valeur par defaut, sans
+     JavaScript) et au navigateur. */
+  /* Part entiere de chacun, puis les points manquants aux plus grandes
+     decimales : la somme fait 100 (cf. render, meme methode). */
+  function repartirPct(valeurs, total) {
+    var n = valeurs.length;
+    if (!(total > 0) || !n) { return valeurs.map(function () { return 0; }); }
+    var bruts = valeurs.map(function (v) { return (v / total) * 100; });
+    var bas = bruts.map(function (x) { return Math.floor(x); });
+    var somme = bas.reduce(function (x, y) { return x + y; }, 0);
+    var reste = Math.max(0, Math.min(n, 100 - somme));
+    var ordre = bruts.map(function (x, i) { return { i: i, frac: x - Math.floor(x) }; })
+                     .sort(function (u, v) { return v.frac - u.frac; });
+    for (var k = 0; k < reste; k++) { bas[ordre[k].i]++; }
+    return bas;
+  }
+  var LEGENDE = [["fed", "Federal"], ["fica", "FICA"], ["state", "State"]];
+  function seg(cle, p) { return p > 0 ? '<i class="stack-seg seg-' + cle + ' sw-' + p + '"></i>' : ""; }
+  function resultatCompact(a, hoursPerWeek, display, label) {
+    var div = periodsPerYear(display, hoursPerWeek);
+    var v = function (n) { return usd.format(n / div); };
+    var unite = String(label).toLowerCase();
+    var autres = 0, local = false;
+    (a.programmes || []).forEach(function (pg) { autres += pg.amount; if (pg.county) local = true; });
+    var etat = a.stateTax + a.paidLeave + a.waCares + autres;
+    var montants = [a.federal, a.socialSecurity + a.medicare, etat];
+    var p = repartirPct(montants.concat([a.net, a.pretax]), a.gross);
+    var html =
+      '<p class="result-label">Your take-home pay</p>' +
+      '<p class="result-head num"><span data-anime>' + v(a.net) + "</span> " +
+      '<span class="result-unit">' + unite + "</span></p>" +
+      '<div class="stack" aria-hidden="true">' +
+        seg("fed", p[0]) + seg("fica", p[1]) + seg("state", p[2]) + seg("keep", p[3]) + seg("defer", p[4]) +
+      "</div>" +
+      '<ul class="stack-legend">' +
+        LEGENDE.map(function (l, i) {
+          /* « State & local » des qu'une ligne locale (comte, ville) est comptee avec l'Etat,
+             comme dans le detail ; « <1% » plutot que « 0% » a cote d'un montant non nul. */
+          var nom = (l[0] === "state" && local) ? "State &amp; local" : l[1];
+          var part = (p[i] === 0 && montants[i] > 0) ? "&lt;1%" : p[i] + "%";
+          return '<li class="leg-' + l[0] + '"><span class="stack-nom">' + nom + "</span>" +
+                 '<span class="stack-montant num">' + v(montants[i]) + "</span>" +
+                 '<span class="stack-pct num">' + part + "</span></li>";
+        }).join("") +
+      "</ul>" +
+      '<p class="result-note">You keep <strong class="num">' + p[3] + "%</strong> of your gross pay." +
+      (p[4] > 0 ? " Another " + p[4] + "% goes into your 401(k), and that money is still yours." : "") + "</p>";
+    return { html: html, amount: v(a.net), unit: unite };
+  }
+  /* Etat vide ou saisie refusee : jamais une carte blanche. La carte garde sa
+     forme (montant, barre, trois lignes) avec des tirets, et dit quoi faire. */
+  function resultatVide(message) {
+    return '<p class="result-label">Your take-home pay</p>' +
+      '<p class="result-head num">&mdash;</p>' +
+      '<div class="stack stack-vide" aria-hidden="true"></div>' +
+      '<ul class="stack-legend">' +
+        LEGENDE.map(function (l) {
+          return '<li class="leg-' + l[0] + '"><span class="stack-nom">' + l[1] + "</span>" +
+                 '<span class="stack-montant num">&mdash;</span></li>';
+        }).join("") +
+      "</ul>" +
+      '<p class="result-empty">' + message + "</p>";
+  }
+  var MSG_VIDE = "Enter your gross pay above to see your take-home pay.";
+  var MSG_REFUSE = "Correct the amount above to see your take-home pay.";
+
   /* ---------------------------------------------------------------------
      Wiring. Bails out silently if the page has no calculator, so the same
      script can be included site-wide.
@@ -405,7 +481,17 @@
     var form = document.querySelector("[data-paycheck-form]");
     var out = document.querySelector("[data-paycheck-result]");
     if (!form || !out) return;
+    /* La barre collante (mobile) : « Take-home $X par mois » + « Edit ». Sa
+       place est reservee dans le flux par le HTML ; ici on ne change que du texte. */
+    var barre = document.querySelector("[data-result-bar]");
+    var barreMontant = barre ? barre.querySelector("[data-bar-amount]") : null;
+    var barreUnite = barre ? barre.querySelector("[data-bar-unit]") : null;
+    function majBarre(montant, legende) {
+      if (barreMontant) barreMontant.textContent = montant;
+      if (barreUnite) barreUnite.textContent = legende;
+    }
     if (typeof RATES_2026 === "undefined") {
+      majBarre("—", "Tax data not loaded");
       out.innerHTML = MSG_DONNEES;
       form.addEventListener("submit", function (e) { e.preventDefault(); });
       return;
@@ -489,11 +575,13 @@
       if (blocChamp) blocChamp.classList.add("is-invalid");
       if (msgErreur) { msgErreur.textContent = message; }
       champSalaire.setAttribute("aria-invalid", "true");
+      var vide = typeof champSalaire.value === "string" && /^\s*$/.test(champSalaire.value);
+      majBarre("—", "Enter your pay above");
+      out.innerHTML = resultatVide(vide ? MSG_VIDE : MSG_REFUSE);
       if (msgErreur) {
         var ids = (descriptionInitiale ? descriptionInitiale + " " : "") + msgErreur.id;
         champSalaire.setAttribute("aria-describedby", ids);
       }
-      out.innerHTML = "";
     }
     function marquerValide() {
       if (blocChamp) blocChamp.classList.remove("is-invalid");
@@ -605,11 +693,16 @@
       animation = requestAnimationFrame(pas);
     }
 
+    /* Le premier rendu (au chargement) ne compte pas depuis zero : le HTML porte deja
+       le meme montant (lib/mobile.js), le faire repartir de 0 serait un clignotement. */
+    var premierRendu = true;
     function render() {
+      var sansAnimation = premierRendu;
+      premierRendu = false;
       syncHours();
       var input = read();
       if (!input) return;
-      if (!donneesDisponibles(input.state)) { out.innerHTML = MSG_DONNEES; return; }
+      if (!donneesDisponibles(input.state)) { majBarre("—", "Tax data not loaded"); out.innerHTML = MSG_DONNEES; return; }
 
       var a = computeAnnual(input, RATES_2026);
       var div = periodsPerYear(form.elements.display.value, input.hoursPerWeek);
@@ -644,18 +737,7 @@
          Methode du plus fort reste : on prend la partie entiere de chacun, puis
          on distribue les points manquants aux parts dont la decimale etait la
          plus grande. La somme fait 100 par construction. */
-      var pcts = (function (valeurs, total) {
-        var n = valeurs.length;
-        if (!(total > 0) || !n) { return valeurs.map(function () { return 0; }); }
-        var bruts = valeurs.map(function (v) { return (v / total) * 100; });
-        var bas = bruts.map(function (x) { return Math.floor(x); });
-        var somme = bas.reduce(function (x, y) { return x + y; }, 0);
-        var reste = Math.max(0, Math.min(n, 100 - somme));
-        var ordre = bruts.map(function (x, i) { return { i: i, frac: x - Math.floor(x) }; })
-                         .sort(function (u, v) { return v.frac - u.frac; });
-        for (var k = 0; k < reste; k++) { bas[ordre[k].i]++; }
-        return bas;
-      })(segs.map(function (s) { return s.montant; }), a.gross);
+      var pcts = repartirPct(segs.map(function (s) { return s.montant; }), a.gross);
       var pctDe = function (cle) {
         for (var i = 0; i < segs.length; i++) { if (segs[i].cle === cle) return pcts[i]; }
         return 0;
@@ -691,15 +773,16 @@
                     pctDe("401k") + " percent, goes to your 401(k), which is " +
                     "deferred rather than taken." : "");
 
-      var html =
-        '<p class="result-label">Your take-home pay</p>' +
-        /* « $59,973.50 / per year » : la barre ET « per » disaient la meme
-           chose, et aucun anglophone n'ecrit les deux. On garde le libelle
-           seul, qui se lit tel quel pour chacune des six periodes : per year,
-           per month, twice a month, every two weeks, per week, per hour.
-           Corrige le 02/09/2026, sur la ligne la plus lue du site. */
-        '<p class="result-head num"><span data-anime>' + v(a.net) + "</span> " +
-        '<span class="result-unit">' + label.toLowerCase() + "</span></p>" +
+      var compact = resultatCompact(a, input.hoursPerWeek, form.elements.display.value, label);
+      majBarre(compact.amount, "Take-home pay " + compact.unit);
+      /* Le detail (anneau, barres, lignes, PDF) : ouvert sur ordinateur, ferme sur
+         telephone, et il garde son etat tant que le visiteur tape (render() recree
+         le bloc a chaque frappe). */
+      var ancien = out.querySelector(".breakdown");
+      var ouvert = ancien ? ancien.open : !!(window.matchMedia && window.matchMedia("(min-width: 768px)").matches);
+      var detail =
+        '<details class="breakdown"' + (ouvert ? " open" : "") + '><summary>See full breakdown</summary>' +
+        '<div class="breakdown-corps">' +
         '<div class="repartition">' +
           '<div class="donut-wrap">' + camembert(segs, a.gross, pctDe("net")) + "</div>" +
           '<ul class="parts">' +
@@ -731,6 +814,8 @@
         '<div class="result-actions">' +
           '<button type="button" class="btn btn-secondary" data-print-pdf>Download as PDF</button>' +
         "</div>" +
+        "</div></details>";
+      var html = compact.html + detail +
         '<p class="compare-cta"><a href="/state-comparison/?state=' + encodeURIComponent(input.state) +
         '&salary=' + Math.round(a.gross) + '">Compare ' +
         (RATES_2026.states[input.state] ? RATES_2026.states[input.state].name : input.state) +
@@ -744,7 +829,7 @@
       segs.forEach(function (s, i) { if (barres[i]) barres[i].style.width = part(s.montant).toFixed(2) + "%"; });
 
       var cible = out.querySelector("[data-anime]");
-      if (cible) animerChiffre(cible, a.net / div, function (x) { return usd.format(x); });
+      if (cible && !sansAnimation) animerChiffre(cible, a.net / div, function (x) { return usd.format(x); });
     }
 
     /* Sur un telephone, le resultat vit sous le bouton et donc SOUS l'ecran :
@@ -767,6 +852,25 @@
        chaque render(), mais le conteneur qui le porte ne change jamais. */
     out.addEventListener("click", function (e) {
       if (e.target.closest("[data-print-pdf]")) window.print();
+    });
+
+    /* « Edit » (barre collante) : l'ancre ramene au champ, puis on y pose le
+       curseur sans refaire defiler (le clavier s'ouvre, le visiteur retape). */
+    var editer = document.querySelector("[data-result-edit]");
+    if (editer) editer.addEventListener("click", function () {
+      setTimeout(function () { try { champSalaire.focus({ preventScroll: true }); } catch (e) { champSalaire.focus(); } }, 0);
+    });
+    /* A l'impression le detail doit etre ouvert : un <details> ferme n'imprime
+       pas son contenu. */
+    var rouverts = [];
+    window.addEventListener("beforeprint", function () {
+      document.querySelectorAll("details.breakdown").forEach(function (d) {
+        if (!d.open) { d.open = true; rouverts.push(d); }
+      });
+    });
+    window.addEventListener("afterprint", function () {
+      rouverts.forEach(function (d) { d.open = false; });
+      rouverts = [];
     });
 
     form.addEventListener("submit", function (e) {
@@ -792,6 +896,8 @@
     computeAnnual: computeAnnual,
     donneesDisponibles: donneesDisponibles,
     MSG_DONNEES: MSG_DONNEES,
+    resultatCompact: resultatCompact,
+    repartirPct: repartirPct,
     PERIODS: PERIODS,
     periodsPerYear: periodsPerYear
   };

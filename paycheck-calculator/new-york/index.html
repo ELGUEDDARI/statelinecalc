@@ -307,18 +307,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,812.63</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-5"></i><i class="stack-seg seg-keep sw-77"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$320.08</span><span class="stack-pct num">5%</span></li></ul><p class="result-note">You keep <strong class="num">77%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>The New York State Department of Taxation and Finance publishes withholding tables and an exact calculation method, and this calculator follows the exact method. Your pay is converted to a yearly amount. A combined deduction of <span class="num">$7,400</span> comes off for the single schedule and <span class="num">$7,950</span> for the married schedule, and each withholding allowance on Form IT-2104 takes off <span class="num">$1,000</span> more. What is left is run through the department&rsquo;s annual rate schedule, which starts at <span class="num">3.90%</span> and climbs in brackets. Above <span class="num">$1,077,550</span> of taxable pay (<span class="num">$2,155,350</span> for the married schedule), a separate &ldquo;top income tax rates method&rdquo; applies a single rate to all of it.</p>
     <p><strong>This page covers New York State only, and prices New York City and Yonkers separately.</strong> The calculator&rsquo;s result is the state-level figure. A New York City resident has a second tax withheld, and so does a Yonkers resident. We left both out of the calculator because their tax bases differ from the state&rsquo;s: the city has its own deduction and its own rate schedule, and Yonkers charges a percentage of the state amount. The section &ldquo;New York City and Yonkers&rdquo; below shows both, by salary, from the state&rsquo;s own city and Yonkers tables.</p>
 
@@ -352,7 +370,7 @@
     <p>What the calculator deliberately leaves out: New York City and Yonkers taxes, dependents and credits on Form IT-2104, a spouse who works, the &ldquo;higher single rate&rdquo; box, extra withholding, bonuses, rounding by your employer, work in another state, optional employer deductions, and health insurance premiums and other employer benefit deductions.</p>
   </div>
 
-  <h2>New York take-home pay by salary</h2>
+  <h2 id="by-salary">New York take-home pay by salary</h2>
   <p class="prose">Single filer with no allowances, no retirement contribution, 2026 federal and New York State rates, outside New York City and Yonkers. The
   NY tax column is New York State income tax withholding plus the Paid Family Leave and disability deductions at their maximums (on $75,000: $3,485.80 + $324.00 + $31.20).</p>
 
@@ -852,7 +870,7 @@
     <h3>What it means for your check</h3>
     <p>Whether your employer uses the tables or the exact method, your New York State withholding should agree with this calculator to within <span class="num">$0.14</span> per pay period, for a single filer or a married one with no allowances. If your stub shows a larger gap, the cause is almost certainly an input the calculator does not have: allowances, a New York City or Yonkers tax, a pre-tax deduction or extra withholding.</p>
 
-    <h2>New York hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">New York hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask for your hours instead of assuming 2,080</h3>
     <p>Many hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1181,7 +1199,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in New York</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in New York</h2>
 
   <h3>Nothing is withheld on the first $7,400 of a single filer&rsquo;s pay</h3>
   <p>With the <span class="num">$7,400</span> deduction and no allowances, a single filer&rsquo;s yearly pay has to pass <span class="num">$7,400</span> before New York State withholds anything. At <span class="num">$30,000</span>, it withholds <span class="num">$1,055.80</span>; at <span class="num">$50,000</span>, it withholds <span class="num">$2,135.80</span> a year. A married filer&rsquo;s threshold is <span class="num">$7,950</span>.</p>
@@ -1215,7 +1233,7 @@
   stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
   extra 0.9% on wages above <span class="num">$200,000</span>. On <span class="num">$250,000</span>, Social Security and Medicare take <span class="num">$15,514.00</span> in total, and the Paid Family Leave deduction stops at <span class="num">$411.91</span>.</p>
 
-  <h2>Common mistakes</h2>
+  <h2 id="common-mistakes">Common mistakes</h2>
 
   <h3>Forgetting the deduction</h3>
   <p>Applying the schedule to all of <span class="num">$75,000</span> means treating <span class="num">$75,000</span> as taxable pay, which overstates New York State withholding by <span class="num">$399.60</span>: <span class="num">$3,885.40</span> instead of <span class="num">$3,485.80</span>.</p>
@@ -1237,7 +1255,7 @@
   deductions come out before tax and are not modeled here, and the allowances you claimed on your Form IT-2104 may differ from the
   ones we assume. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>Amounts are shown to the cent, so adding the rounded lines can differ from the total by a cent.</p>
   <p>A single filer earning <span class="num">$75,000</span> in New York in 2026, outside New York City and Yonkers, with no allowances, no retirement
   contribution and the two payroll deductions at their maximums, under the exact calculation method:</p>
@@ -1261,65 +1279,142 @@
     <li>If you live in New York City, subtract <span class="num">$2,661.00</span> of city withholding: <span class="num">$55,090.50</span> a year</li>
   </ul>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the New York State income tax withholding rate?</h3>
-    <p>New York does not withhold at one rate. The state&rsquo;s withholding schedule climbs in brackets: <span class="num">3.90%</span> on the first $8,500 of taxable pay after the deduction and allowances, then <span class="num">4.40%</span>, <span class="num">5.15%</span> and <span class="num">5.40%</span>, the bracket for most middle incomes (taxable pay from $13,900 to $80,650, which is $21,300 to $88,050 of gross pay for a single filer with no allowances). Higher brackets start above that, one of them as high as <span class="num">11.44%</span> for taxable pay between $215,400 and $265,400, before a top income tax rates method takes over above $1,077,550. &ldquo;Taxable pay&rdquo; means your yearly pay minus $7,400 for a single filer or $7,950 for a married one, minus $1,000 for each allowance on Form IT-2104. On $75,000, a single filer has $3,485.80 withheld a year.</p>
 
-    <h3>How much New York State tax is withheld on a $75,000 salary?</h3>
-    <p>For a single filer with no allowances, New York State withholds $3,485.80 a year, which is $290.48 a month or $134.07 on a biweekly check. Taxable pay after the $7,400 deduction is $67,600. The schedule&rsquo;s bracket for $13,900 and up starts at $586.00 and adds <span class="num">5.40%</span> of the $53,700 above $13,900, or $2,899.80. A married filer has $3,456.10 withheld, and a head of household with two allowances has $3,377.80 withheld. None of these figures includes a New York City or Yonkers tax.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the New York State income tax withholding rate?</h3></summary>
+        <div class="faq-r">
+          <p>New York does not withhold at one rate. The state&rsquo;s withholding schedule climbs in brackets: <span class="num">3.90%</span> on the first $8,500 of taxable pay after the deduction and allowances, then <span class="num">4.40%</span>, <span class="num">5.15%</span> and <span class="num">5.40%</span>, the bracket for most middle incomes (taxable pay from $13,900 to $80,650, which is $21,300 to $88,050 of gross pay for a single filer with no allowances). Higher brackets start above that, one of them as high as <span class="num">11.44%</span> for taxable pay between $215,400 and $265,400, before a top income tax rates method takes over above $1,077,550. &ldquo;Taxable pay&rdquo; means your yearly pay minus $7,400 for a single filer or $7,950 for a married one, minus $1,000 for each allowance on Form IT-2104. On $75,000, a single filer has $3,485.80 withheld a year.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in New York?</h3>
-    <p>About $57,752 a year, or $4,812.63 a month, for a single filer with no retirement contribution, outside New York City and Yonkers. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, $3,485.80 of New York State income tax, $324.00 for Paid Family Leave and $31.20 for disability insurance, both at their maximum employee share, an effective rate of 23.0%. If your employer takes neither of the last two, take-home pay is about $58,107. For a New York City resident the city&rsquo;s withholding comes off too, which brings it to about $55,091.</p>
+      <details class="faq-item">
+        <summary><h3>How much New York State tax is withheld on a $75,000 salary?</h3></summary>
+        <div class="faq-r">
+          <p>For a single filer with no allowances, New York State withholds $3,485.80 a year, which is $290.48 a month or $134.07 on a biweekly check. Taxable pay after the $7,400 deduction is $67,600. The schedule&rsquo;s bracket for $13,900 and up starts at $586.00 and adds <span class="num">5.40%</span> of the $53,700 above $13,900, or $2,899.80. A married filer has $3,456.10 withheld, and a head of household with two allowances has $3,377.80 withheld. None of these figures includes a New York City or Yonkers tax.</p>
+        </div>
+      </details>
 
-    <h3>How much is $20, $25 or $30 an hour after taxes in New York?</h3>
-    <p>At 40 hours a week, $20 an hour leaves about $33,712 a year, or $16.21 an hour. $25 an hour leaves about $41,462, or $19.93 an hour. $30 an hour leaves about $49,212, or $23.66 an hour. Those are single-filer figures after federal tax, FICA, New York State income tax withholding, and the Paid Family Leave and disability deductions at their maximums, with no retirement contribution and no New York City or Yonkers tax.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in New York?</h3></summary>
+        <div class="faq-r">
+          <p>About $57,752 a year, or $4,812.63 a month, for a single filer with no retirement contribution, outside New York City and Yonkers. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, $3,485.80 of New York State income tax, $324.00 for Paid Family Leave and $31.20 for disability insurance, both at their maximum employee share, an effective rate of 23.0%. If your employer takes neither of the last two, take-home pay is about $58,107. For a New York City resident the city&rsquo;s withholding comes off too, which brings it to about $55,091.</p>
+        </div>
+      </details>
 
-    <h3>How much is $25 an hour after taxes in New York City?</h3>
-    <p>At 40 hours a week, $25 an hour is $52,000 a year. New York State, federal tax and the payroll lines leave about $41,462. New York City&rsquo;s resident withholding adds $1,696.00 a year, so a single filer with no allowances keeps about $39,766, or $19.12 an hour. The city&rsquo;s rate is not a flat percentage: it runs from <span class="num">2.05%</span> to <span class="num">4.25%</span> on pay after a $5,000 deduction.</p>
+      <details class="faq-item">
+        <summary><h3>How much is $20, $25 or $30 an hour after taxes in New York?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour leaves about $33,712 a year, or $16.21 an hour. $25 an hour leaves about $41,462, or $19.93 an hour. $30 an hour leaves about $49,212, or $23.66 an hour. Those are single-filer figures after federal tax, FICA, New York State income tax withholding, and the Paid Family Leave and disability deductions at their maximums, with no retirement contribution and no New York City or Yonkers tax.</p>
+        </div>
+      </details>
 
-    <h3>How does New York City withholding work?</h3>
-    <p>A New York City resident has a second income tax withheld, under the state&rsquo;s New York City withholding tables. For a single filer with no allowances, the city subtracts $5,000 from yearly pay and applies rates of <span class="num">2.05%</span>, <span class="num">2.80%</span>, <span class="num">3.25%</span>, <span class="num">3.95%</span>, <span class="num">4.15%</span> and <span class="num">4.25%</span>, the last on pay above $60,000. On $75,000, that is $2,661.00 a year, or $221.75 a month. This calculator does not add it. The &ldquo;New York City and Yonkers&rdquo; section below prices it for five salaries.</p>
+      <details class="faq-item">
+        <summary><h3>How much is $25 an hour after taxes in New York City?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $25 an hour is $52,000 a year. New York State, federal tax and the payroll lines leave about $41,462. New York City&rsquo;s resident withholding adds $1,696.00 a year, so a single filer with no allowances keeps about $39,766, or $19.12 an hour. The city&rsquo;s rate is not a flat percentage: it runs from <span class="num">2.05%</span> to <span class="num">4.25%</span> on pay after a $5,000 deduction.</p>
+        </div>
+      </details>
 
-    <h3>Does Yonkers have its own income tax?</h3>
-    <p>Yes, in two forms. The Yonkers withholding tables apply a resident surcharge: the amount is the New York State withholding multiplied by <span class="num">16.75%</span>. On $75,000 that is $583.87 a year on top of the state&rsquo;s $3,485.80. For employees who live outside Yonkers but earn wages there, the tables apply a nonresident earnings tax of <span class="num">0.50%</span> to wages after an exclusion that is zero once annualized pay reaches $30,000, which is $375.00 on $75,000. This calculator adds neither.</p>
+      <details class="faq-item">
+        <summary><h3>How does New York City withholding work?</h3></summary>
+        <div class="faq-r">
+          <p>A New York City resident has a second income tax withheld, under the state&rsquo;s New York City withholding tables. For a single filer with no allowances, the city subtracts $5,000 from yearly pay and applies rates of <span class="num">2.05%</span>, <span class="num">2.80%</span>, <span class="num">3.25%</span>, <span class="num">3.95%</span>, <span class="num">4.15%</span> and <span class="num">4.25%</span>, the last on pay above $60,000. On $75,000, that is $2,661.00 a year, or $221.75 a month. This calculator does not add it. The &ldquo;New York City and Yonkers&rdquo; section below prices it for five salaries.</p>
+        </div>
+      </details>
 
-    <h3>Is New York Paid Family Leave taken out of my paycheck?</h3>
-    <p>It can be. For 2026 the program&rsquo;s contribution is <span class="num">0.432%</span> of gross wages, up to a maximum of <span class="num">$411.91</span> a year, according to the state. The state&rsquo;s page describes the program as one that employees can fund through payroll deductions. We apply the maximum, $324.00 on $75,000, and the cap of $411.91 is reached at $95,349 of pay. Whether your employer takes it out of your pay is the employer&rsquo;s choice, and your pay stub will show it.</p>
+      <details class="faq-item">
+        <summary><h3>Does Yonkers have its own income tax?</h3></summary>
+        <div class="faq-r">
+          <p>Yes, in two forms. The Yonkers withholding tables apply a resident surcharge: the amount is the New York State withholding multiplied by <span class="num">16.75%</span>. On $75,000 that is $583.87 a year on top of the state&rsquo;s $3,485.80. For employees who live outside Yonkers but earn wages there, the tables apply a nonresident earnings tax of <span class="num">0.50%</span> to wages after an exclusion that is zero once annualized pay reaches $30,000, which is $375.00 on $75,000. This calculator adds neither.</p>
+        </div>
+      </details>
 
-    <h3>Is New York disability insurance deducted from my pay?</h3>
-    <p>It may be, but the employer does not have to. The Workers&rsquo; Compensation Board says &ldquo;Your employer is allowed, but not required, to take a contribution from you,&rdquo; calculated at one half of one percent of your wages and no more than 60 cents a week. We apply the maximum: 0.5% of your pay up to $6,240, which is $31.20 a year, or 60 cents a week. If your stub shows nothing for disability, your employer is not collecting it.</p>
+      <details class="faq-item">
+        <summary><h3>Is New York Paid Family Leave taken out of my paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>It can be. For 2026 the program&rsquo;s contribution is <span class="num">0.432%</span> of gross wages, up to a maximum of <span class="num">$411.91</span> a year, according to the state. The state&rsquo;s page describes the program as one that employees can fund through payroll deductions. We apply the maximum, $324.00 on $75,000, and the cap of $411.91 is reached at $95,349 of pay. Whether your employer takes it out of your pay is the employer&rsquo;s choice, and your pay stub will show it.</p>
+        </div>
+      </details>
 
-    <h3>What is a withholding allowance on New York&rsquo;s Form IT-2104?</h3>
-    <p>It is the amount your employer subtracts from your pay before applying the tax schedule, $1,000 a year for each allowance, on top of the standard deduction built into the tables. The form&rsquo;s note says single taxpayers with one job and zero dependents should enter 0, and the instructions say you may not claim an allowance for yourself or, if married, your spouse. Dependents, certain credits and itemized deductions add allowances in the worksheet. Each one lowers yearly New York State withholding by $54.00 in the 5.40% bracket.</p>
+      <details class="faq-item">
+        <summary><h3>Is New York disability insurance deducted from my pay?</h3></summary>
+        <div class="faq-r">
+          <p>It may be, but the employer does not have to. The Workers&rsquo; Compensation Board says &ldquo;Your employer is allowed, but not required, to take a contribution from you,&rdquo; calculated at one half of one percent of your wages and no more than 60 cents a week. We apply the maximum: 0.5% of your pay up to $6,240, which is $31.20 a year, or 60 cents a week. If your stub shows nothing for disability, your employer is not collecting it.</p>
+        </div>
+      </details>
 
-    <h3>How many allowances do I claim on the IT-2104 if I am married?</h3>
-    <p>If you have no dependents and expect no credits, the worksheet gives zero, because the instructions say you may not claim an allowance for yourself or your spouse. This calculator uses that case for &ldquo;Married filing jointly&rdquo; and applies the married schedule and its $7,950 deduction. The form also has a &ldquo;Married, but withhold at higher single rate&rdquo; box, and the instructions tell married couples who both work to use it or to ask for additional withholding. We do not model either. On $150,000 a couple treated as single would have $250.66 more withheld a year.</p>
+      <details class="faq-item">
+        <summary><h3>What is a withholding allowance on New York&rsquo;s Form IT-2104?</h3></summary>
+        <div class="faq-r">
+          <p>It is the amount your employer subtracts from your pay before applying the tax schedule, $1,000 a year for each allowance, on top of the standard deduction built into the tables. The form&rsquo;s note says single taxpayers with one job and zero dependents should enter 0, and the instructions say you may not claim an allowance for yourself or, if married, your spouse. Dependents, certain credits and itemized deductions add allowances in the worksheet. Each one lowers yearly New York State withholding by $54.00 in the 5.40% bracket.</p>
+        </div>
+      </details>
 
-    <h3>How does head of household work on the IT-2104?</h3>
-    <p>You mark the &ldquo;Single or Head of household&rdquo; box, which sends your employer to the single schedule. The instructions add that a head of household with only one job may also choose to claim two additional allowances on line 15 of the worksheet. This calculator uses those two allowances, $2,000 in all. On $75,000 that gives $3,377.80 of New York State withholding instead of $3,485.80, which is $108.00 less. Federal tax is lower for a head of household too, so take-home pay is $59,782.</p>
+      <details class="faq-item">
+        <summary><h3>How many allowances do I claim on the IT-2104 if I am married?</h3></summary>
+        <div class="faq-r">
+          <p>If you have no dependents and expect no credits, the worksheet gives zero, because the instructions say you may not claim an allowance for yourself or your spouse. This calculator uses that case for &ldquo;Married filing jointly&rdquo; and applies the married schedule and its $7,950 deduction. The form also has a &ldquo;Married, but withhold at higher single rate&rdquo; box, and the instructions tell married couples who both work to use it or to ask for additional withholding. We do not model either. On $150,000 a couple treated as single would have $250.66 more withheld a year.</p>
+        </div>
+      </details>
 
-    <h3>Does New York tax the paycheck of someone who works in New York but lives in another state?</h3>
-    <p>We did not read New York&rsquo;s rules for nonresidents for this page, and this calculator assumes you live and work in New York. The five states that border New York (New Jersey, Pennsylvania, Connecticut, Massachusetts and Vermont) each have their own calculator here, but those pages are not built for commuters. Check your pay stub and your IT-2104.</p>
+      <details class="faq-item">
+        <summary><h3>How does head of household work on the IT-2104?</h3></summary>
+        <div class="faq-r">
+          <p>You mark the &ldquo;Single or Head of household&rdquo; box, which sends your employer to the single schedule. The instructions add that a head of household with only one job may also choose to claim two additional allowances on line 15 of the worksheet. This calculator uses those two allowances, $2,000 in all. On $75,000 that gives $3,377.80 of New York State withholding instead of $3,485.80, which is $108.00 less. Federal tax is lower for a head of household too, so take-home pay is $59,782.</p>
+        </div>
+      </details>
 
-    <h3>Is there a New York unemployment tax on employees?</h3>
-    <p>Not in the law we read. Section 570 of New York&rsquo;s Labor Law says each liable employer shall pay contributions on all wages, and its subdivision 6 says no agreement by an employee to pay any portion of that payment is valid and no employer shall make a deduction for that purpose from an employee&rsquo;s pay. That is why this calculator has no unemployment line.</p>
+      <details class="faq-item">
+        <summary><h3>Does New York tax the paycheck of someone who works in New York but lives in another state?</h3></summary>
+        <div class="faq-r">
+          <p>We did not read New York&rsquo;s rules for nonresidents for this page, and this calculator assumes you live and work in New York. The five states that border New York (New Jersey, Pennsylvania, Connecticut, Massachusetts and Vermont) each have their own calculator here, but those pages are not built for commuters. Check your pay stub and your IT-2104.</p>
+        </div>
+      </details>
 
-    <h3>What is the MCTMT, and does it come out of my pay?</h3>
-    <p>The Department of Taxation and Finance says the metropolitan commuter transportation mobility tax is imposed on certain employers and self-employed individuals engaging in business within the Metropolitan Commuter Transportation District. We found nothing in the withholding publications that makes it a deduction from an employee&rsquo;s pay, and this calculator has no line for it.</p>
+      <details class="faq-item">
+        <summary><h3>Is there a New York unemployment tax on employees?</h3></summary>
+        <div class="faq-r">
+          <p>Not in the law we read. Section 570 of New York&rsquo;s Labor Law says each liable employer shall pay contributions on all wages, and its subdivision 6 says no agreement by an employee to pay any portion of that payment is valid and no employer shall make a deduction for that purpose from an employee&rsquo;s pay. That is why this calculator has no unemployment line.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my New York withholding?</h3>
-    <p>In this calculator, yes for the income tax, not for Paid Family Leave or disability insurance. The withholding tables start from wages and say nothing about 401(k) contributions, so we start from pay after a traditional 401(k) contribution, the same choice we make in most states here, and we apply the two payroll programs to the full wage. On $75,000 with 6% going into a 401(k), New York State withholding falls by $243.00 a year. Enter 0 if your contribution is a Roth.</p>
+      <details class="faq-item">
+        <summary><h3>What is the MCTMT, and does it come out of my pay?</h3></summary>
+        <div class="faq-r">
+          <p>The Department of Taxation and Finance says the metropolitan commuter transportation mobility tax is imposed on certain employers and self-employed individuals engaging in business within the Metropolitan Commuter Transportation District. We found nothing in the withholding publications that makes it a deduction from an employee&rsquo;s pay, and this calculator has no line for it.</p>
+        </div>
+      </details>
 
-    <h3>How does New York withhold tax on a bonus?</h3>
-    <p>The state&rsquo;s tables say that if supplemental wages such as bonuses and commissions are paid separately and the employer withholds from regular wages, it can withhold at the New York State supplemental rate of <span class="num">11.70%</span>, or add the bonus to the regular wages for the latest pay period and subtract what was already withheld. New York City&rsquo;s supplemental rate is <span class="num">4.25%</span> and Yonkers&rsquo; resident rate is <span class="num">1.95975%</span>. This calculator does not model bonuses, so ask your employer which method it uses.</p>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my New York withholding?</h3></summary>
+        <div class="faq-r">
+          <p>In this calculator, yes for the income tax, not for Paid Family Leave or disability insurance. The withholding tables start from wages and say nothing about 401(k) contributions, so we start from pay after a traditional 401(k) contribution, the same choice we make in most states here, and we apply the two payroll programs to the full wage. On $75,000 with 6% going into a 401(k), New York State withholding falls by $243.00 a year. Enter 0 if your contribution is a Roth.</p>
+        </div>
+      </details>
 
-    <h3>Why is my New York paycheck different from this calculator?</h3>
-    <p>Common reasons: you live in New York City or Yonkers; you claimed allowances for dependents or credits; you asked for extra withholding; health insurance premiums, transit benefits and other pre-tax deductions come out before tax and are not modeled here; part of your pay is a bonus; your employer takes less, or none, of the Paid Family Leave and disability deductions; or your employer uses the printed wage-bracket tables instead of the exact calculation. In the printed tables we tested, the cells and the formula differ by no more than $0.14 per check. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+      <details class="faq-item">
+        <summary><h3>How does New York withhold tax on a bonus?</h3></summary>
+        <div class="faq-r">
+          <p>The state&rsquo;s tables say that if supplemental wages such as bonuses and commissions are paid separately and the employer withholds from regular wages, it can withhold at the New York State supplemental rate of <span class="num">11.70%</span>, or add the bonus to the regular wages for the latest pay period and subtract what was already withheld. New York City&rsquo;s supplemental rate is <span class="num">4.25%</span> and Yonkers&rsquo; resident rate is <span class="num">1.95975%</span>. This calculator does not model bonuses, so ask your employer which method it uses.</p>
+        </div>
+      </details>
 
-    <h3>How current is the New York formula on this page?</h3>
-    <p>It comes from the Department of Taxation and Finance&rsquo;s publication NYS-50-T-NYS, dated January 2026 and marked &ldquo;Effective January 1, 2026 &ndash; December 31, 2026,&rdquo; which says the 2026 rate schedules were revised for the income tax rate reductions in Chapter 59 of the Laws of 2025. We read it, the New York City and Yonkers editions and the IT-2104 instructions on the agency&rsquo;s own site on October 21, 2026. The Paid Family Leave figures come from the state&rsquo;s 2026 page and the Department of Financial Services decision dated August 29, 2025. If the agency posts new tables, we update this page from them.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>Why is my New York paycheck different from this calculator?</h3></summary>
+        <div class="faq-r">
+          <p>Common reasons: you live in New York City or Yonkers; you claimed allowances for dependents or credits; you asked for extra withholding; health insurance premiums, transit benefits and other pre-tax deductions come out before tax and are not modeled here; part of your pay is a bonus; your employer takes less, or none, of the Paid Family Leave and disability deductions; or your employer uses the printed wage-bracket tables instead of the exact calculation. In the printed tables we tested, the cells and the formula differ by no more than $0.14 per check. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>How current is the New York formula on this page?</h3></summary>
+        <div class="faq-r">
+          <p>It comes from the Department of Taxation and Finance&rsquo;s publication NYS-50-T-NYS, dated January 2026 and marked &ldquo;Effective January 1, 2026 &ndash; December 31, 2026,&rdquo; which says the 2026 rate schedules were revised for the income tax rate reductions in Chapter 59 of the Laws of 2025. We read it, the New York City and Yonkers editions and the IT-2104 instructions on the agency&rsquo;s own site on October 21, 2026. The Paid Family Leave figures come from the state&rsquo;s 2026 page and the Department of Financial Services decision dated August 29, 2025. If the agency posts new tables, we update this page from them.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates. We list the five states that border New York: New Jersey, Pennsylvania, Connecticut, Massachusetts and Vermont.
@@ -1350,7 +1445,7 @@
   <p>The table rounds take-home pay to the dollar; the differences in this paragraph use the exact amounts. Compared with a New York worker on the same salary, a <a href="/paycheck-calculator/new-jersey/">New Jersey</a> worker keeps about <span class="num">$467</span> more, a <a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a> worker keeps about <span class="num">$1,486</span> more, a <a href="/paycheck-calculator/connecticut/">Connecticut</a> worker keeps about <span class="num">$9</span> less, a <a href="/paycheck-calculator/massachusetts/">Massachusetts</a> worker keeps about <span class="num">$66</span> more and a <a href="/paycheck-calculator/vermont/">Vermont</a> worker keeps about <span class="num">$1,156</span> more. A worker who lives in one of those states and commutes into New York, or the reverse, is a different case that this calculator does not model: it assumes a New York resident working in New York, outside New York City and Yonkers.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the New York ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1380,7 +1475,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/new-jersey/">New Jersey paycheck calculator</a> &mdash; the neighbor to the south and west.</li>
@@ -1475,6 +1570,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,812.63</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1514,8 +1613,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1525,9 +1624,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1580,23 +1679,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1606,6 +1705,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

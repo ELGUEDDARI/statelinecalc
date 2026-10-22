@@ -306,18 +306,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,934.57</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-3"></i><i class="stack-seg seg-keep sw-79"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$198.14</span><span class="stack-pct num">3%</span></li></ul><p class="result-note">You keep <strong class="num">79%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Arkansas is a five-bracket state on paper, but the detail worth knowing before you trust
     any number about it is that the 2026 AR1000ES prints its rate schedule as a series of
     <strong>segments with their own base tax amount</strong>, not a simple set of continuous
@@ -367,7 +385,7 @@
     benefit deductions.</p>
   </div>
 
-  <h2>Arkansas take-home pay by salary</h2>
+  <h2 id="by-salary">Arkansas take-home pay by salary</h2>
   <p class="prose">Single filer, no retirement contribution, 2026 state and federal rates. The
   Arkansas column includes the $94,701&ndash;$97,800.99 bridge table where it applies.</p>
 
@@ -666,7 +684,7 @@
 
   <div class="prose">
 
-    <h2>Arkansas hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Arkansas hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask your hours instead of assuming 2,080</h3>
     <p>Most hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -995,7 +1013,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Arkansas</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Arkansas</h2>
 
   <h3>One schedule, every filing status</h3>
   <p>This is the fact that separates Arkansas from every progressive-tax state on this site.
@@ -1047,7 +1065,7 @@
   year for high earners &mdash; the paycheck after you cross the Social Security wage base is
   visibly larger.</p>
 
-  <h2>Common mistakes people make</h2>
+  <h2 id="common-mistakes">Common mistakes people make</h2>
 
   <h3>Assuming Arkansas brackets double for a joint return</h3>
   <p>They do not. Every other progressive-tax state on this site widens its brackets when you
@@ -1067,7 +1085,7 @@
   first, and a second job changes the federal picture. Read
   <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>A single filer earning <span class="num">$75,000</span> in Arkansas in 2026, with no retirement
   contribution:</p>
   <ul>
@@ -1087,41 +1105,86 @@
     <li>Effective tax rate: <span class="num">21.0%</span></li>
   </ul>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the Arkansas income tax rate in 2026?</h3>
-    <p>Five brackets from 0% to 3.9%: 0% on the first $5,600 of taxable income, 2.0% to $11,200, 3.0% to $16,000, 3.4% to $26,400, and 3.9% above that. A separate bridge table between $94,701 and $97,800.99 raises the effective rate to roughly 14% across that narrow band before it settles back to 3.9%. The 2026 AR1000ES Tax Rate Schedule is where all of this is published.</p>
 
-    <h3>Does the Arkansas tax rate depend on filing status?</h3>
-    <p>No, and that is unusual - most states widen their brackets for a joint return. Arkansas computes each spouse's tax on the exact same schedule a single filer uses, whether the return is filed jointly or not. What does change with filing status is the standard deduction ($2470 single or head of household, $4940 filing jointly) and the tax credit ($29 single, $58 joint or head of household).</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the Arkansas income tax rate in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>Five brackets from 0% to 3.9%: 0% on the first $5,600 of taxable income, 2.0% to $11,200, 3.0% to $16,000, 3.4% to $26,400, and 3.9% above that. A separate bridge table between $94,701 and $97,800.99 raises the effective rate to roughly 14% across that narrow band before it settles back to 3.9%. The 2026 AR1000ES Tax Rate Schedule is where all of this is published.</p>
+        </div>
+      </details>
 
-    <h3>Does Arkansas have a standard deduction?</h3>
-    <p>Yes, a flat $2470 per taxpayer - $4940 on a joint return, since the AR1000ES worksheet counts two taxpayers. It does not change with income, unlike the sliding deductions used in <a href="/paycheck-calculator/wisconsin/">Wisconsin</a>.</p>
+      <details class="faq-item">
+        <summary><h3>Does the Arkansas tax rate depend on filing status?</h3></summary>
+        <div class="faq-r">
+          <p>No, and that is unusual - most states widen their brackets for a joint return. Arkansas computes each spouse's tax on the exact same schedule a single filer uses, whether the return is filed jointly or not. What does change with filing status is the standard deduction ($2470 single or head of household, $4940 filing jointly) and the tax credit ($29 single, $58 joint or head of household).</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in Arkansas?</h3>
-    <p>About $59,215 a year, or $4,934.57 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and $2,377.67 of Arkansas income tax - an effective rate of 21.0%.</p>
+      <details class="faq-item">
+        <summary><h3>Does Arkansas have a standard deduction?</h3></summary>
+        <div class="faq-r">
+          <p>Yes, a flat $2470 per taxpayer - $4940 on a joint return, since the AR1000ES worksheet counts two taxpayers. It does not change with income, unlike the sliding deductions used in <a href="/paycheck-calculator/wisconsin/">Wisconsin</a>.</p>
+        </div>
+      </details>
 
-    <h3>Why does Arkansas tax jump around $95,000 to $98,000?</h3>
-    <p>A bridge table. Between $94,701 and $97,800.99 of taxable income, the AR1000ES prints 31 separate rows, $100 apart, where tax rises about $14 per $100 of income - a marginal rate near 14%, far above the 3.9% top bracket. It runs from $3296 of tax at the low end to $3713 at the high end, then the ordinary 3.9% rate resumes. The effect does not fade afterward: recomputing Arkansas tax as one continuous set of brackets, without this bridge, understates the tax by $329 at $100,000 of taxable income and every dollar above it. This calculator reproduces the bridge table exactly rather than approximating it.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Arkansas?</h3></summary>
+        <div class="faq-r">
+          <p>About $59,215 a year, or $4,934.57 a month, for a single filer with no retirement contribution. That is after $7,670 of federal income tax, $5,738 of Social Security and Medicare and $2,377.67 of Arkansas income tax - an effective rate of 21.0%.</p>
+        </div>
+      </details>
 
-    <h3>Does Arkansas have a personal tax credit?</h3>
-    <p>Yes - and it is a credit, subtracted from the tax bill, not a deduction subtracted from income. The AR1000ES lists $29 for a single filer and $58 filing jointly or as head of household, with another $29 for each dependent, which this calculator does not ask about. Unlike some states, this credit does not shrink as income rises.</p>
+      <details class="faq-item">
+        <summary><h3>Why does Arkansas tax jump around $95,000 to $98,000?</h3></summary>
+        <div class="faq-r">
+          <p>A bridge table. Between $94,701 and $97,800.99 of taxable income, the AR1000ES prints 31 separate rows, $100 apart, where tax rises about $14 per $100 of income - a marginal rate near 14%, far above the 3.9% top bracket. It runs from $3296 of tax at the low end to $3713 at the high end, then the ordinary 3.9% rate resumes. The effect does not fade afterward: recomputing Arkansas tax as one continuous set of brackets, without this bridge, understates the tax by $329 at $100,000 of taxable income and every dollar above it. This calculator reproduces the bridge table exactly rather than approximating it.</p>
+        </div>
+      </details>
 
-    <h3>Do Arkansas employees pay for unemployment insurance?</h3>
-    <p>No. The Arkansas Division of Workforce Services says so directly: “No, deductions are not made from your paycheck.” Employers pay a quarterly payroll tax instead, on the first $7,000 of each employee's wages. There is no state disability or paid family leave deduction either, so Arkansas income tax is the only state-level line on an Arkansas pay stub.</p>
+      <details class="faq-item">
+        <summary><h3>Does Arkansas have a personal tax credit?</h3></summary>
+        <div class="faq-r">
+          <p>Yes - and it is a credit, subtracted from the tax bill, not a deduction subtracted from income. The AR1000ES lists $29 for a single filer and $58 filing jointly or as head of household, with another $29 for each dependent, which this calculator does not ask about. Unlike some states, this credit does not shrink as income rises.</p>
+        </div>
+      </details>
 
-    <h3>Does Arkansas have city or county income tax?</h3>
-    <p>No. Arkansas Code Section 26-73-103 is explicit: "A county, municipality, or other local government shall not levy a tax on income." Cities and counties can levy sales and property taxes, but never a tax on wages or earnings.</p>
+      <details class="faq-item">
+        <summary><h3>Do Arkansas employees pay for unemployment insurance?</h3></summary>
+        <div class="faq-r">
+          <p>No. The Arkansas Division of Workforce Services says so directly: “No, deductions are not made from your paycheck.” Employers pay a quarterly payroll tax instead, on the first $7,000 of each employee's wages. There is no state disability or paid family leave deduction either, so Arkansas income tax is the only state-level line on an Arkansas pay stub.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my Arkansas tax?</h3>
-    <p>Yes. Arkansas taxes pay after pre-tax retirement contributions come out, the same base the IRS uses, so a 401(k) deferral lowers both your federal and your Arkansas tax. On $75,000 with 6% going into a 401(k), Arkansas tax falls by $175.50 a year.</p>
+      <details class="faq-item">
+        <summary><h3>Does Arkansas have city or county income tax?</h3></summary>
+        <div class="faq-r">
+          <p>No. Arkansas Code Section 26-73-103 is explicit: "A county, municipality, or other local government shall not levy a tax on income." Cities and counties can levy sales and property taxes, but never a tax on wages or earnings.</p>
+        </div>
+      </details>
 
-    <h3>What is $20 an hour after taxes in Arkansas?</h3>
-    <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,531 after tax, which works out at $16.60 an hour in real terms. Arkansas takes $1,075.07 of that in state income tax.</p>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my Arkansas tax?</h3></summary>
+        <div class="faq-r">
+          <p>Yes. Arkansas taxes pay after pre-tax retirement contributions come out, the same base the IRS uses, so a 401(k) deferral lowers both your federal and your Arkansas tax. On $75,000 with 6% going into a 401(k), Arkansas tax falls by $175.50 a year.</p>
+        </div>
+      </details>
 
-    <h3>Why is my Arkansas paycheck smaller than this calculator says?</h3>
-    <p>The usual reasons - health insurance premiums and other pre-tax deductions come out before tax and are not modeled here, and your employer withholds using its own AR4EC exemption certificate on file, not your actual year-end tax liability. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>What is $20 an hour after taxes in Arkansas?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour is $41,600 a year gross and about $34,531 after tax, which works out at $16.60 an hour in real terms. Arkansas takes $1,075.07 of that in state income tax.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Why is my Arkansas paycheck smaller than this calculator says?</h3></summary>
+        <div class="faq-r">
+          <p>The usual reasons - health insurance premiums and other pre-tax deductions come out before tax and are not modeled here, and your employer withholds using its own AR4EC exemption certificate on file, not your actual year-end tax liability. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates, state layer only:</p>
@@ -1141,7 +1204,7 @@
   Nebraska&rsquo;s 4.55%.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Arkansas ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1158,7 +1221,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/texas/">Texas paycheck calculator</a> &mdash; a
@@ -1251,6 +1314,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,934.57</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1290,8 +1357,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1301,9 +1368,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1356,23 +1423,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1382,6 +1449,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

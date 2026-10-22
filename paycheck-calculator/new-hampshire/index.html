@@ -347,13 +347,31 @@
     </div>
     <button type="submit" class="btn btn-primary">Calculate</button>
   </form>
-  <div class="result" data-paycheck-result aria-live="polite"></div>
+  <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$50,390.00</span> <span class="result-unit">per year</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-8"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-keep sw-84"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$5,020.00</span><span class="stack-pct num">8%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$4,590.00</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$0.00</span><span class="stack-pct num">0%</span></li></ul><p class="result-note">You keep <strong class="num">84%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
   <p class="caption">Everything is calculated in your browser. Nothing you type is sent to us or stored.</p>
+
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
 
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>New Hampshire is one of the simplest paychecks in the country to work out, because there
     is no state or local layer to add. Whatever the federal government and FICA leave you is
     what reaches your account. Three deductions, and that is the whole list:</p>
@@ -390,7 +408,7 @@
     personal income &mdash; wages were never in scope, and the one tax that touched investment
     income is gone.</p>
 
-    <h2>New Hampshire take-home pay by salary</h2>
+    <h2 id="by-salary">New Hampshire take-home pay by salary</h2>
     <p>Single filer, standard deduction, 2026 rates, no 401(k) contribution. Every figure comes
     from the same arithmetic the calculator above runs.</p>
     <div class="table-scroll">
@@ -431,7 +449,7 @@
       </table>
     </div>
 
-    <h2>New Hampshire hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">New Hampshire hourly paycheck: what your rate is worth after tax</h2>
     <p>At 40 hours a week for 52 weeks. The gross hourly rate is the same everywhere; what
     survives tax is not.</p>
     <div class="table-scroll">
@@ -509,7 +527,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-    <h2>Key facts that affect your take-home pay in New Hampshire</h2>
+    <h2 id="key-facts">Key facts that affect your take-home pay in New Hampshire</h2>
     <ul>
       <li><strong>No tax on wages, and none on investment income either, as of 2025.</strong> The
       Interest and Dividends Tax, which never touched a paycheck, is fully repealed for taxable
@@ -523,7 +541,7 @@
       is withheld from wages.</li>
     </ul>
 
-    <h2>Common mistakes people make</h2>
+    <h2 id="common-mistakes">Common mistakes people make</h2>
     <ul>
       <li><strong>Assuming a no-tax state means nothing is withheld.</strong> True in New
       Hampshire, not true in Washington or Alaska. Check the state, not the label.</li>
@@ -535,7 +553,7 @@
       in the salary line.</li>
     </ul>
 
-    <h2>Example calculation</h2>
+    <h2 id="example">Example calculation</h2>
     <p>A single filer on <strong>$60,000</strong> in New Hampshire, 2026, no 401(k):</p>
     <ul>
       <li>Gross pay: <span class="num">$60,000.00</span></li>
@@ -576,24 +594,54 @@
 
     <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
-    <h2>Frequently asked questions</h2>
+    <h2 id="faq">Frequently asked questions</h2>
     <div class="faq">
-      <h3>Does New Hampshire have a state income tax?</h3>
-      <p>No. New Hampshire does not tax an individual&rsquo;s reported W-2 wages, and since 2025 it does not tax anything else either. Until 2024 the state ran a separate 3% tax on interest and dividend income &mdash; never on wages &mdash; and that tax was fully repealed for taxable periods beginning after December 31, 2024. On $60,000 you keep about $50,390 a year.</p>
-      <h3>Wasn't there a New Hampshire tax on interest and dividends?</h3>
-      <p>Yes, but it is gone. The Interest and Dividends Tax was 5% before the end of 2023, cut to 4% for periods ending on or after December 31, 2023, then 3% for periods ending on or after December 31, 2024, and repealed outright for taxable periods beginning after that date. It only ever applied to interest and dividend income above a threshold, never to wages, so it never touched a paycheck &mdash; but as of 2025 it does not touch anything at all.</p>
-      <h3>What is taken out of a New Hampshire paycheck?</h3>
-      <p>Federal income tax, Social Security at 6.2% and Medicare at 1.45% &mdash; nothing at state or local level. Unemployment insurance is paid entirely by the employer, so it never reaches an employee's pay stub. That is not true of every state without a wage tax: Washington still takes Paid Family and Medical Leave and WA Cares out of every check, and Alaska withholds a share of unemployment insurance from wages. New Hampshire takes nothing beyond the federal and FICA lines.</p>
-      <h3>How much unemployment insurance do New Hampshire employers pay?</h3>
-      <p>New employers start at 2.7% of the first $14,000 paid to each employee each year, before any Fund Balance Reduction in effect that quarter; established employers move to an experience-rated figure. None of it is withheld from wages: it is the employer's cost alone, and it never appears on a pay stub.</p>
-      <h3>How much is $60,000 after taxes in New Hampshire?</h3>
-      <p>About $50,390 a year, or $4,199.17 a month, for a single filer taking the standard deduction in 2026 with no 401(k) contribution. That is an effective rate of 16.0%, all of it federal and FICA. The same salary in Pennsylvania, which does tax wages, leaves $48,506.</p>
-      <h3>Do New Hampshire cities or towns tax wages?</h3>
-      <p>No. There is no municipal or county income tax anywhere in New Hampshire. The absence of a state wage tax leaves nothing for a town or city to add a local rate on top of.</p>
+
+      <details class="faq-item" open>
+        <summary><h3>Does New Hampshire have a state income tax?</h3></summary>
+        <div class="faq-r">
+          <p>No. New Hampshire does not tax an individual&rsquo;s reported W-2 wages, and since 2025 it does not tax anything else either. Until 2024 the state ran a separate 3% tax on interest and dividend income &mdash; never on wages &mdash; and that tax was fully repealed for taxable periods beginning after December 31, 2024. On $60,000 you keep about $50,390 a year.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Wasn't there a New Hampshire tax on interest and dividends?</h3></summary>
+        <div class="faq-r">
+          <p>Yes, but it is gone. The Interest and Dividends Tax was 5% before the end of 2023, cut to 4% for periods ending on or after December 31, 2023, then 3% for periods ending on or after December 31, 2024, and repealed outright for taxable periods beginning after that date. It only ever applied to interest and dividend income above a threshold, never to wages, so it never touched a paycheck &mdash; but as of 2025 it does not touch anything at all.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>What is taken out of a New Hampshire paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>Federal income tax, Social Security at 6.2% and Medicare at 1.45% &mdash; nothing at state or local level. Unemployment insurance is paid entirely by the employer, so it never reaches an employee's pay stub. That is not true of every state without a wage tax: Washington still takes Paid Family and Medical Leave and WA Cares out of every check, and Alaska withholds a share of unemployment insurance from wages. New Hampshire takes nothing beyond the federal and FICA lines.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>How much unemployment insurance do New Hampshire employers pay?</h3></summary>
+        <div class="faq-r">
+          <p>New employers start at 2.7% of the first $14,000 paid to each employee each year, before any Fund Balance Reduction in effect that quarter; established employers move to an experience-rated figure. None of it is withheld from wages: it is the employer's cost alone, and it never appears on a pay stub.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>How much is $60,000 after taxes in New Hampshire?</h3></summary>
+        <div class="faq-r">
+          <p>About $50,390 a year, or $4,199.17 a month, for a single filer taking the standard deduction in 2026 with no 401(k) contribution. That is an effective rate of 16.0%, all of it federal and FICA. The same salary in Pennsylvania, which does tax wages, leaves $48,506.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Do New Hampshire cities or towns tax wages?</h3></summary>
+        <div class="faq-r">
+          <p>No. There is no municipal or county income tax anywhere in New Hampshire. The absence of a state wage tax leaves nothing for a town or city to add a local rate on top of.</p>
+        </div>
+      </details>
     </div>
 
     <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">The federal figures on this page &mdash; the brackets, the standard deduction and FICA &mdash; are read from the official documents below. The New Hampshire figures are read from the state&rsquo;s own law and withholding guides, which we quote and date on our <a href="/methodology/">methodology page</a>: New Hampshire does publish its own document, but revenue.nh.gov and nhes.nh.gov refuse automated requests with HTTP 403, though both documents were read from their Internet Archive snapshots, so we have no link from this machine that we have verified ourselves. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The federal documents these figures are read from</h3>
@@ -607,7 +655,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-    <ul>
+    <ul class="related">
       <li><a href="/paycheck-calculator/">Paycheck calculators for every state we publish</a></li>
       <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania paycheck calculator</a>
       &mdash; the nearest state on this site that does tax wages</li>
@@ -698,6 +746,10 @@
   after December 31, 2024.</p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$50,390.00</span><span class="result-bar-meta" data-bar-unit>Take-home pay per year</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -737,8 +789,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -748,9 +800,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -803,23 +855,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -829,6 +881,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

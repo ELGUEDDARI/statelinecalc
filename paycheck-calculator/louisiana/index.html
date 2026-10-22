@@ -299,18 +299,36 @@
       <button type="submit" class="btn btn-primary">Calculate</button>
     </form>
 
-    <div class="result" data-paycheck-result aria-live="polite"></div>
+    <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$4,972.74</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-state sw-2"></i><i class="stack-seg seg-keep sw-80"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$159.97</span><span class="stack-pct num">2%</span></li></ul><p class="result-note">You keep <strong class="num">80%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
 
     <p class="caption u-mt-3">
       Everything is calculated in your browser. Nothing you type is sent to us or stored.
     </p>
   </section>
 
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
+
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
 
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Louisiana&rsquo;s withholding formula is short. The Louisiana Department of Revenue describes it as calculating the tax on the total wage amount, then subtracting the tax calculated on the standard deduction the employee claims for withholding. In plain terms, your employer takes the standard deduction off your pay and withholds <span class="num">3.09%</span> of what is left. Pay that falls below the deduction has nothing withheld, because the Department tells employers to treat a negative figure as zero.</p>
 
     <p>The calculator applies these deductions in this order:</p>
@@ -342,7 +360,7 @@
     <p>What the calculator deliberately leaves out: the &ldquo;0&rdquo; choice on Form L-4, extra withholding, bonuses, nonresidents, and health insurance premiums and other employer benefit deductions.</p>
   </div>
 
-  <h2>Louisiana take-home pay by salary</h2>
+  <h2 id="by-salary">Louisiana take-home pay by salary</h2>
   <p class="prose">Single filer, standard deduction code 1, no retirement contribution, 2026 state and federal rates. The
   LA state tax column is Louisiana income tax withholding; we found no Louisiana payroll program to add.</p>
 
@@ -698,7 +716,7 @@
 
   <div class="prose">
 
-    <h2>Louisiana hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Louisiana hourly paycheck: what your rate is worth after tax</h2>
 
     <h3>Why we ask for your hours instead of assuming 2,080</h3>
     <p>Many hourly calculators multiply your rate by 2,080 and call it a year. That is 40 hours a
@@ -1025,7 +1043,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-  <h2>Key facts that affect your take-home pay in Louisiana</h2>
+  <h2 id="key-facts">Key facts that affect your take-home pay in Louisiana</h2>
 
   <h3>Louisiana withholds 3.09%, but the tax on your return is 3%</h3>
   <p>The Department of Revenue says the withholding tables use <span class="num">3.09%</span> rather than the <span class="num">3%</span> income tax rate to provide a cushion, and that the cushion reduces the chances of a balance due with your return. Any amount withheld in excess of your tax liability is refundable. For a single filer on <span class="num">$75,000</span>, the cushion is <span class="num">$55.91</span> a year: <span class="num">$1,919.66</span> withheld against <span class="num">$1,863.75</span> at a flat 3%. This calculator shows the withholding, because that is what leaves your paycheck.</p>
@@ -1056,7 +1074,7 @@
   stops for the rest of the year. Medicare has no ceiling at all: 1.45% on every dollar, plus an
   extra 0.9% on wages above <span class="num">$200,000</span>. On <span class="num">$250,000</span>, Social Security and Medicare take <span class="num">$15,514.00</span> in total.</p>
 
-  <h2>Common mistakes</h2>
+  <h2 id="common-mistakes">Common mistakes</h2>
 
   <h3>Using 3% instead of 3.09%</h3>
   <p>The flat 3% is the rate on your return, not the rate your employer withholds. Applying 3% to the base understates Louisiana withholding by <span class="num">$55.91</span> on <span class="num">$75,000</span>: <span class="num">$1,863.75</span> instead of <span class="num">$1,919.66</span>.</p>
@@ -1078,7 +1096,7 @@
   deductions come out before tax and are not modeled here, and the code on your Form L-4 may differ from the
   one we assume. Read <a href="/disclaimer/">why your pay stub will differ</a> for the rest.</p>
 
-  <h2>Example calculation</h2>
+  <h2 id="example">Example calculation</h2>
   <p>Amounts are shown to the cent, so adding the rounded lines can differ from the total by a cent.</p>
   <p>A single filer earning <span class="num">$75,000</span> in Louisiana in 2026, entering 1 on Form L-4 and no retirement
   contribution:</p>
@@ -1097,38 +1115,79 @@
     <li>Effective tax rate: <span class="num">20.4%</span></li>
   </ul>
 
-  <h2>Frequently asked questions</h2>
+  <h2 id="faq">Frequently asked questions</h2>
   <div class="faq">
-    <h3>What is the Louisiana income tax withholding rate in 2026?</h3>
-    <p>Louisiana&rsquo;s withholding formula uses one rate, <span class="num">3.09%</span>, for every filing status. Your employer subtracts a standard deduction from your yearly pay ($12,875 for a single filer, $25,750 for a married filer or head of household) and withholds <span class="num">3.09%</span> of what is left. On a single filer&rsquo;s $75,000 salary, Louisiana withholds $1,919.66 a year.</p>
 
-    <h3>How much Louisiana tax is withheld on a $75,000 salary?</h3>
-    <p>For a single filer, Louisiana withholds $1,919.66 a year, which is $159.97 a month. The base is $75,000 minus the $12,875 standard deduction = $62,125, and $62,125 &times; 3.09% = $1,919.66. A married filer has $1,521.83 withheld on the same salary, and so does a head of household, because both use the $25,750 deduction.</p>
+      <details class="faq-item" open>
+        <summary><h3>What is the Louisiana income tax withholding rate in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>Louisiana&rsquo;s withholding formula uses one rate, <span class="num">3.09%</span>, for every filing status. Your employer subtracts a standard deduction from your yearly pay ($12,875 for a single filer, $25,750 for a married filer or head of household) and withholds <span class="num">3.09%</span> of what is left. On a single filer&rsquo;s $75,000 salary, Louisiana withholds $1,919.66 a year.</p>
+        </div>
+      </details>
 
-    <h3>What is take-home pay on a $75,000 salary in Louisiana?</h3>
-    <p>About $59,673 a year, or $4,972.74 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $1,919.66 of Louisiana income tax &mdash; an effective rate of 20.4%. We found no other state payroll deduction, so this calculator shows no other Louisiana line.</p>
+      <details class="faq-item">
+        <summary><h3>How much Louisiana tax is withheld on a $75,000 salary?</h3></summary>
+        <div class="faq-r">
+          <p>For a single filer, Louisiana withholds $1,919.66 a year, which is $159.97 a month. The base is $75,000 minus the $12,875 standard deduction = $62,125, and $62,125 &times; 3.09% = $1,919.66. A married filer has $1,521.83 withheld on the same salary, and so does a head of household, because both use the $25,750 deduction.</p>
+        </div>
+      </details>
 
-    <h3>How much is $20, $25 or $30 an hour after taxes in Louisiana?</h3>
-    <p>At 40 hours a week, $20 an hour leaves about $34,718 a year, or $16.69 an hour. $25 an hour leaves about $42,753, or $20.55 an hour. $30 an hour leaves about $50,788, or $24.42 an hour. Those are single-filer figures after federal tax, FICA and Louisiana income tax withholding, with no retirement contribution.</p>
+      <details class="faq-item">
+        <summary><h3>What is take-home pay on a $75,000 salary in Louisiana?</h3></summary>
+        <div class="faq-r">
+          <p>About $59,673 a year, or $4,972.74 a month, for a single filer with no retirement contribution. That is after $7,670.00 of federal income tax, $5,738 of Social Security and Medicare, and $1,919.66 of Louisiana income tax &mdash; an effective rate of 20.4%. We found no other state payroll deduction, so this calculator shows no other Louisiana line.</p>
+        </div>
+      </details>
 
-    <h3>Why does Louisiana withhold 3.09% when the income tax rate is 3%?</h3>
-    <p>The Louisiana Department of Revenue explains it on its own website: the withholding tables use 3.09% &ldquo;rather than the 3% income tax rate to provide a cushion,&rdquo; which &ldquo;reduces the chances that the taxpayer will have a balance due with their return.&rdquo; The Department adds that any amount withheld in excess of the tax liability is refundable. On $75,000, the extra comes to $55.91 a year for a single filer: $1,919.66 withheld against $1,863.75 at a flat 3%.</p>
+      <details class="faq-item">
+        <summary><h3>How much is $20, $25 or $30 an hour after taxes in Louisiana?</h3></summary>
+        <div class="faq-r">
+          <p>At 40 hours a week, $20 an hour leaves about $34,718 a year, or $16.69 an hour. $25 an hour leaves about $42,753, or $20.55 an hour. $30 an hour leaves about $50,788, or $24.42 an hour. Those are single-filer figures after federal tax, FICA and Louisiana income tax withholding, with no retirement contribution.</p>
+        </div>
+      </details>
 
-    <h3>What do 0, 1 and 2 mean on Louisiana Form L-4?</h3>
-    <p>Block A of Form R-1300 (L-4) asks for a standard deduction code. Enter 1 if you are single or married filing separately, and 2 if you are married filing jointly, a head of household or a qualifying surviving spouse. Enter 0 to claim no standard deduction, and your employer withholds 3.09% of your whole pay. The form says you may enter 0 if you are married and have a working spouse or more than one job, to avoid having too little tax withheld. This calculator uses 1 for a single filer and 2 for a married filer and a head of household. It does not model 0.</p>
+      <details class="faq-item">
+        <summary><h3>Why does Louisiana withhold 3.09% when the income tax rate is 3%?</h3></summary>
+        <div class="faq-r">
+          <p>The Louisiana Department of Revenue explains it on its own website: the withholding tables use 3.09% &ldquo;rather than the 3% income tax rate to provide a cushion,&rdquo; which &ldquo;reduces the chances that the taxpayer will have a balance due with their return.&rdquo; The Department adds that any amount withheld in excess of the tax liability is refundable. On $75,000, the extra comes to $55.91 a year for a single filer: $1,919.66 withheld against $1,863.75 at a flat 3%.</p>
+        </div>
+      </details>
 
-    <h3>Is there a local income tax in Louisiana?</h3>
-    <p>The Louisiana Constitution bars parishes and cities from levying one. Article VII, Section 4(C) reads: &ldquo;A political subdivision of the state shall not levy a severance tax, income tax, inheritance tax, or tax on motor fuel.&rdquo; We found no local income tax on a Louisiana paycheck, and this calculator adds no local line.</p>
+      <details class="faq-item">
+        <summary><h3>What do 0, 1 and 2 mean on Louisiana Form L-4?</h3></summary>
+        <div class="faq-r">
+          <p>Block A of Form R-1300 (L-4) asks for a standard deduction code. Enter 1 if you are single or married filing separately, and 2 if you are married filing jointly, a head of household or a qualifying surviving spouse. Enter 0 to claim no standard deduction, and your employer withholds 3.09% of your whole pay. The form says you may enter 0 if you are married and have a working spouse or more than one job, to avoid having too little tax withheld. This calculator uses 1 for a single filer and 2 for a married filer and a head of household. It does not model 0.</p>
+        </div>
+      </details>
 
-    <h3>Are there other deductions from a Louisiana paycheck?</h3>
-    <p>We found none. Louisiana Revised Statute 23:1531 says unemployment contributions are paid by each employer and &ldquo;shall not be deducted, in whole or in part, from the wages&rdquo; of its employees. We also found no state disability insurance or paid family leave program run through payroll. That is not proof that none exists, only what we found.</p>
+      <details class="faq-item">
+        <summary><h3>Is there a local income tax in Louisiana?</h3></summary>
+        <div class="faq-r">
+          <p>The Louisiana Constitution bars parishes and cities from levying one. Article VII, Section 4(C) reads: &ldquo;A political subdivision of the state shall not levy a severance tax, income tax, inheritance tax, or tax on motor fuel.&rdquo; We found no local income tax on a Louisiana paycheck, and this calculator adds no local line.</p>
+        </div>
+      </details>
 
-    <h3>Does a 401(k) contribution lower my Louisiana withholding?</h3>
-    <p>In this calculator, yes. The Department of Revenue&rsquo;s withholding formula does not mention 401(k) contributions, so treating them as lowering the wages Louisiana taxes is our modeling choice, the same one we use for federal tax and in every other state here. On $75,000 with 6% going into a 401(k), Louisiana income tax withholding falls by $139.05 a year. Ask your payroll department how your employer treats it.</p>
+      <details class="faq-item">
+        <summary><h3>Are there other deductions from a Louisiana paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>We found none. Louisiana Revised Statute 23:1531 says unemployment contributions are paid by each employer and &ldquo;shall not be deducted, in whole or in part, from the wages&rdquo; of its employees. We also found no state disability insurance or paid family leave program run through payroll. That is not proof that none exists, only what we found.</p>
+        </div>
+      </details>
 
-    <h3>Why is my Louisiana paycheck different from this calculator?</h3>
-    <p>Common reasons: you entered a different code in Block A of Form L-4 (0 withholds more, 2 withholds less); you asked for an extra amount to be withheld; your employer uses the printed wage-bracket tables, which give one amount for each pay range, instead of the formula; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; or part of your pay is a bonus. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
-  </div>
+      <details class="faq-item">
+        <summary><h3>Does a 401(k) contribution lower my Louisiana withholding?</h3></summary>
+        <div class="faq-r">
+          <p>In this calculator, yes. The Department of Revenue&rsquo;s withholding formula does not mention 401(k) contributions, so treating them as lowering the wages Louisiana taxes is our modeling choice, the same one we use for federal tax and in every other state here. On $75,000 with 6% going into a 401(k), Louisiana income tax withholding falls by $139.05 a year. Ask your payroll department how your employer treats it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Why is my Louisiana paycheck different from this calculator?</h3></summary>
+        <div class="faq-r">
+          <p>Common reasons: you entered a different code in Block A of Form L-4 (0 withholds more, 2 withholds less); you asked for an extra amount to be withheld; your employer uses the printed wage-bracket tables, which give one amount for each pay range, instead of the formula; health insurance premiums and other pre-tax deductions come out before tax and are not modeled here; or part of your pay is a bonus. Withholding is only an estimate of what you will owe, and the final amount is settled when you file.</p>
+        </div>
+      </details>
+    </div>
 
   <h2>Compare with other states</h2>
   <p>The same <span class="num">$75,000</span> salary, single filer, 2026 rates. Louisiana borders three states, Texas, Arkansas and Mississippi, and we have a calculator for each of them.
@@ -1157,7 +1216,7 @@
   <p>The table rounds take-home pay to the dollar; the differences in this paragraph use the exact amounts. Compared with a Louisiana worker on the same salary, a <a href="/paycheck-calculator/texas/">Texas</a> worker keeps <span class="num">$1,919.66</span> more, because, as the Texas page documents, Texas levies no state tax on wages. An <a href="/paycheck-calculator/arkansas/">Arkansas</a> worker keeps <span class="num">$458.01</span> less, and a <a href="/paycheck-calculator/mississippi/">Mississippi</a> worker keeps <span class="num">$348.34</span> less. A worker who lives in one of those states and commutes into Louisiana is a different case that this calculator does not model: it assumes a Louisiana resident working in Louisiana.</p>
 
   <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">Every figure on this page is read from an official document and dated, not taken from another calculator &mdash; the federal ones from the IRS and the Social Security Administration, the Louisiana ones from the state&rsquo;s own documents below. Each one carries the date we last checked that it still answers. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The documents these figures are read from</h3>
@@ -1184,7 +1243,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-  <ul>
+  <ul class="related">
     <li><a href="/paycheck-calculator/">Paycheck calculators by state</a> &mdash; the full
     index, including which states have no income tax at all.</li>
     <li><a href="/paycheck-calculator/texas/">Texas paycheck calculator</a> &mdash; the neighbor to the west; that page documents why it levies no state tax on wages.</li>
@@ -1277,6 +1336,10 @@
   </p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$4,972.74</span><span class="result-bar-meta" data-bar-unit>Take-home pay per month</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -1316,8 +1379,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -1327,9 +1390,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -1382,23 +1445,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -1408,6 +1471,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <script src="/data/rates-2026.min.js" defer></script>

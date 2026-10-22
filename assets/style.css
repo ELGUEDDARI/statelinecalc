@@ -853,13 +853,25 @@ main a.btn { text-decoration: none; }
      passer devant elle. Sur les pages « salary to hourly » la liste « ce qu'il
      faut avoir » est deja hors du <section> ; sur les autres elle est dedans :
      dans les deux cas elle devient un frere. */
+  /* DESIGN 1 (22/10/2026) : le flex passe d'un cran vers le haut. <main> devient la
+     colonne flex et .col-contenu est dissous (display: contents), pour que la barre
+     de resultat collante — enfant DIRECT de <main>, sinon position: sticky ne tient
+     que dans son parent — puisse se glisser entre le resultat et le reste. Ordres :
+     0 fil + H1, 1 calculateur, 2 barre collante, 3 table des matieres, 4 reponse,
+     5 le reste, 6 colonne laterale. Le DOM, lui, ne bouge pas. */
   .col-contenu { display: flex; flex-direction: column; }
-  .col-contenu > * { order: 3; }
+  /* Seulement les pages qui portent la barre (pages d'Etat) : les autres pages main.wrap
+     (accueil, about, privacy...) gardent leur bloc normal. Sans :has(), repli : colonne
+     flex d'avant, la barre se retrouve en fin de <main> (rien ne casse). */
+  main.wrap:has(> .result-bar) { display: flex; flex-direction: column; }
+  main.wrap:has(> .result-bar) > .col-contenu { display: contents; }
+  .col-contenu > * { order: 5; }
   .col-contenu > .crumbs, .col-contenu > h1 { order: 0; }
+  main.wrap > .colonne { order: 6; }
   section[aria-labelledby="calc-h"] { display: contents; }
   section[aria-labelledby="calc-h"] > * { order: 1; }
   .col-contenu > .answer, .col-contenu > .box-neutre,
-  section[aria-labelledby="calc-h"] > .box-neutre { order: 2; }
+  section[aria-labelledby="calc-h"] > .box-neutre { order: 4; }
   /* Le raccourci « Calculate my pay » n'a plus d'objet : le calculateur EST en
      haut. Cache sur mobile seulement ; il reste dans le HTML. */
   .answer-jump { display: none; }
@@ -935,3 +947,283 @@ main a.btn { text-decoration: none; }
   }
   .col-contenu > .result + .caption { margin-top: var(--s-3); }
 }
+
+/* =========================================================================
+   DESIGN 1 (22/10/2026) : resultat compact, barre collante, table des matieres,
+   FAQ / pied de page en accordeon, puces. Mobile d'abord ; ordinateur INCHANGE.
+
+   Regle qui traverse tout le bloc : un <details> natif, zero JavaScript pour
+   l'ouvrir ou le fermer, et TOUT le texte reste dans le HTML (un <details> ferme
+   est lu par les moteurs et les IA ; sur ordinateur il est force ouvert).
+   Sur ordinateur les <details> FAQ / pied de page restent ouverts grace a
+   ::details-content ; un navigateur qui ne le connait pas garde l'accordeon, qui
+   fonctionne : c'est le @supports, jamais l'inverse.
+   ========================================================================= */
+
+/* Largeurs de la barre empilee, en pourcents entiers. Des CLASSES plutot que
+   style="" (interdit par la CSP) : le meme HTML sert au serveur, sans JavaScript. */
+.sw-0 { width: 0%; }
+.sw-1 { width: 1%; }
+.sw-2 { width: 2%; }
+.sw-3 { width: 3%; }
+.sw-4 { width: 4%; }
+.sw-5 { width: 5%; }
+.sw-6 { width: 6%; }
+.sw-7 { width: 7%; }
+.sw-8 { width: 8%; }
+.sw-9 { width: 9%; }
+.sw-10 { width: 10%; }
+.sw-11 { width: 11%; }
+.sw-12 { width: 12%; }
+.sw-13 { width: 13%; }
+.sw-14 { width: 14%; }
+.sw-15 { width: 15%; }
+.sw-16 { width: 16%; }
+.sw-17 { width: 17%; }
+.sw-18 { width: 18%; }
+.sw-19 { width: 19%; }
+.sw-20 { width: 20%; }
+.sw-21 { width: 21%; }
+.sw-22 { width: 22%; }
+.sw-23 { width: 23%; }
+.sw-24 { width: 24%; }
+.sw-25 { width: 25%; }
+.sw-26 { width: 26%; }
+.sw-27 { width: 27%; }
+.sw-28 { width: 28%; }
+.sw-29 { width: 29%; }
+.sw-30 { width: 30%; }
+.sw-31 { width: 31%; }
+.sw-32 { width: 32%; }
+.sw-33 { width: 33%; }
+.sw-34 { width: 34%; }
+.sw-35 { width: 35%; }
+.sw-36 { width: 36%; }
+.sw-37 { width: 37%; }
+.sw-38 { width: 38%; }
+.sw-39 { width: 39%; }
+.sw-40 { width: 40%; }
+.sw-41 { width: 41%; }
+.sw-42 { width: 42%; }
+.sw-43 { width: 43%; }
+.sw-44 { width: 44%; }
+.sw-45 { width: 45%; }
+.sw-46 { width: 46%; }
+.sw-47 { width: 47%; }
+.sw-48 { width: 48%; }
+.sw-49 { width: 49%; }
+.sw-50 { width: 50%; }
+.sw-51 { width: 51%; }
+.sw-52 { width: 52%; }
+.sw-53 { width: 53%; }
+.sw-54 { width: 54%; }
+.sw-55 { width: 55%; }
+.sw-56 { width: 56%; }
+.sw-57 { width: 57%; }
+.sw-58 { width: 58%; }
+.sw-59 { width: 59%; }
+.sw-60 { width: 60%; }
+.sw-61 { width: 61%; }
+.sw-62 { width: 62%; }
+.sw-63 { width: 63%; }
+.sw-64 { width: 64%; }
+.sw-65 { width: 65%; }
+.sw-66 { width: 66%; }
+.sw-67 { width: 67%; }
+.sw-68 { width: 68%; }
+.sw-69 { width: 69%; }
+.sw-70 { width: 70%; }
+.sw-71 { width: 71%; }
+.sw-72 { width: 72%; }
+.sw-73 { width: 73%; }
+.sw-74 { width: 74%; }
+.sw-75 { width: 75%; }
+.sw-76 { width: 76%; }
+.sw-77 { width: 77%; }
+.sw-78 { width: 78%; }
+.sw-79 { width: 79%; }
+.sw-80 { width: 80%; }
+.sw-81 { width: 81%; }
+.sw-82 { width: 82%; }
+.sw-83 { width: 83%; }
+.sw-84 { width: 84%; }
+.sw-85 { width: 85%; }
+.sw-86 { width: 86%; }
+.sw-87 { width: 87%; }
+.sw-88 { width: 88%; }
+.sw-89 { width: 89%; }
+.sw-90 { width: 90%; }
+.sw-91 { width: 91%; }
+.sw-92 { width: 92%; }
+.sw-93 { width: 93%; }
+.sw-94 { width: 94%; }
+.sw-95 { width: 95%; }
+.sw-96 { width: 96%; }
+.sw-97 { width: 97%; }
+.sw-98 { width: 98%; }
+.sw-99 { width: 99%; }
+.sw-100 { width: 100%; }
+
+/* ---- resultat compact : montant + barre empilee + legende ------------------- */
+.stack { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: #E2E8F0; }
+.stack-seg { display: block; height: 100%; }
+.seg-fed   { background: #B22234; }
+.seg-fica  { background: #D97706; }
+.seg-state { background: #0A2A5E; }
+.seg-keep  { background: #047857; }
+.seg-defer { background: #5B6B85; }
+.stack-legend {
+  list-style: none; margin: var(--s-3) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-2);
+}
+.stack-legend li { display: grid; gap: 0; min-width: 0; line-height: 1.35; }
+.stack-nom { font-size: 14px; color: var(--text-secondary); }
+.stack-nom::before {
+  content: ""; display: inline-block; width: 10px; height: 10px;
+  border-radius: 2px; margin-right: 6px; background: var(--text-muted);
+}
+.leg-fed   .stack-nom::before { background: #B22234; }
+.leg-fica  .stack-nom::before { background: #D97706; }
+.leg-state .stack-nom::before { background: #0A2A5E; }
+.stack-montant { font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
+.stack-pct { font-size: 14px; color: var(--text-muted); }
+.result-note { font-size: 14px; color: var(--text-secondary); margin: var(--s-3) 0 0; line-height: 1.45; }
+.result-note strong { color: var(--success); }
+/* Etat vide / saisie refusee : la carte garde sa forme et dit quoi faire. */
+.result-empty { margin: var(--s-3) 0 0; font-weight: 600; color: var(--text-primary); }
+.stack-vide { background: #E2E8F0; }
+@media (max-width: 359px) { .stack-montant { font-size: 14px; } }
+
+/* ---- le detail du resultat (anneau, barres, lignes, PDF) -------------------- */
+.breakdown > summary { list-style: none; cursor: pointer; }
+.breakdown > summary::-webkit-details-marker { display: none; }
+
+/* ---- barre collante et table des matieres : mobile seulement --------------- */
+.result-bar { display: none; }
+.toc { display: none; }
+
+/* Ordinateur : l'anneau, les barres et les lignes sont deja la ; le compact et la
+   bascule n'ont pas lieu d'etre. Le detail est ouvert par le script a la creation. */
+@media (min-width: 768px) {
+  .stack, .stack-legend, .result-note { display: none; }
+  .breakdown > summary { display: none; }
+}
+
+@media (max-width: 767px) {
+  /* Limite aux blocs du calculateur (data-paycheck-result) : le comparateur d Etats
+     reutilise .result et garde sa mise en page. */
+  .result[data-paycheck-result] { min-height: 0; padding: var(--s-4); }
+  [data-paycheck-result] .result-label { margin: 0; }
+  [data-paycheck-result] .result-head { font-size: 34px; margin: var(--s-1) 0 var(--s-3); }
+  [data-paycheck-result] .result-unit { font-size: 18px; }
+  [data-paycheck-result] .compare-cta { margin: 0; }
+  /* Etat vide : le message occupe la place du detail + du lien « Compare », pour que la
+     carte garde sa hauteur (331 px a 390) et que rien ne saute sous elle. */
+  .result-empty { min-height: 138px; display: flex; align-items: center; }
+
+  .breakdown > summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    min-height: 48px; margin-top: var(--s-2);
+    border-top: 1px solid var(--border-subtle);
+    color: var(--accent); font-weight: 600;
+  }
+  .breakdown > summary::after, .toc > summary::after, .faq-item > summary::after, .pied-col > summary::after {
+    content: ""; flex: none; width: 9px; height: 9px; margin: 0 var(--s-1) 3px var(--s-3);
+    border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+  }
+  .breakdown[open] > summary::after, .toc[open] > summary::after,
+  .faq-item[open] > summary::after, .pied-col[open] > summary::after {
+    transform: rotate(-135deg); margin-bottom: -3px;
+  }
+  .breakdown > summary:focus-visible, .toc > summary:focus-visible,
+  .faq-item > summary:focus-visible, .pied-col > summary:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .breakdown-corps .repartition { margin-top: var(--s-4); }
+
+  /* La barre : 52 px, collee en haut une fois le resultat depasse. Sa place est
+     reservee DANS le flux (elle n'est pas fixed) : CLS 0. */
+  .result-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    order: 2; position: sticky; top: 0; z-index: 20;
+    min-height: 52px; margin: var(--s-3) calc(var(--s-4) * -1) 0; padding: var(--s-1) var(--s-4);
+    background: var(--dark); color: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(10, 42, 94, .25);
+  }
+  .result-bar-text { display: grid; margin: 0; min-width: 0; line-height: 1.25; }
+  .result-bar-amount { font-size: 20px; font-weight: 700; overflow-wrap: anywhere; }
+  .result-bar-meta { font-size: 14px; color: #DCE6F5; }
+  .result-bar-edit {
+    flex: none; display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; min-width: 72px; padding: 0 var(--s-4);
+    color: #FFFFFF; font-weight: 600; text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, .7); border-radius: var(--radius-md);
+  }
+  .result-bar-edit:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  #salary { scroll-margin-top: 112px; }
+
+  /* ---- table des matieres repliable ---- */
+  .toc {
+    display: block; order: 3; margin-top: var(--s-3);
+    background: var(--surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+  }
+  .toc > summary {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 48px; padding: 0 var(--s-4); list-style: none; cursor: pointer; font-weight: 600;
+  }
+  .toc > summary::-webkit-details-marker { display: none; }
+  .toc-liste { list-style: none; margin: 0; padding: 0 var(--s-4) var(--s-2); }
+  .toc-liste a { display: flex; align-items: center; min-height: 44px; text-decoration: none; }
+  .toc-liste li + li { border-top: 1px solid var(--border-subtle); }
+  h2[id] { scroll-margin-top: 72px; }
+
+  /* ---- FAQ : une question par <details> ---- */
+  .faq-item { border-bottom: 1px solid var(--border-subtle); }
+  .faq-item > summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    min-height: 56px; padding: var(--s-2) 0; list-style: none; cursor: pointer;
+  }
+  .faq-item > summary h3 { margin: 0; font-size: 17px; line-height: 1.35; }
+  .faq-r { padding-bottom: var(--s-2); }
+  .faq-r > :last-child { margin-bottom: var(--s-3); }
+
+  /* ---- pied de page en accordeon ---- */
+  .pied-cols { grid-template-columns: 1fr; gap: 0; }
+  .pied-col { border-top: 1px solid rgba(255, 255, 255, .18); }
+  .pied-col > summary {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 52px; cursor: pointer; color: #FFFFFF;
+  }
+  .pied-col > summary .pied-titre { margin: 0; }
+  .pied-col > ul { padding-bottom: var(--s-3); }
+
+  /* ---- puces : deux colonnes, cibles >= 44 px ---- */
+  .linkgrid { grid-template-columns: 1fr 1fr; gap: var(--s-2); }
+  .colonne ul { gap: var(--s-2) var(--s-3); }
+  .linkgrid a, .colonne li a {
+    padding: 0 var(--s-3); background: var(--surface);
+    border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+    text-decoration: none; font-size: 15px;
+  }
+  .related { list-style: none; margin: 0 0 var(--s-4); padding: 0; display: grid; gap: var(--s-2); }
+  .related li {
+    background: var(--surface); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md); padding: var(--s-1) var(--s-3); font-size: 15px; line-height: 1.5;
+  }
+  .related li a { display: inline-block; padding: var(--s-3) 0; font-weight: 600; text-decoration: none; }
+}
+
+/* ---- toutes largeurs : le marqueur natif des <summary> FAQ / pied de page ---- */
+.faq-item > summary, .pied-col > summary { list-style: none; }
+.faq-item > summary::-webkit-details-marker, .pied-col > summary::-webkit-details-marker { display: none; }
+/* Ordinateur : FAQ et pied de page restent ouverts, identiques a avant. */
+@media (min-width: 768px) {
+  .faq-item > summary { display: block; }
+  @supports selector(::details-content) {
+    .faq-item > summary, .pied-col > summary { pointer-events: none; cursor: default; }
+    .faq-item::details-content, .pied-col::details-content { content-visibility: visible; display: block; }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }

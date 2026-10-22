@@ -348,13 +348,31 @@
     </div>
     <button type="submit" class="btn btn-primary">Calculate</button>
   </form>
-  <div class="result" data-paycheck-result aria-live="polite"></div>
+  <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/lib/mobile.js, ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$50,390.00</span> <span class="result-unit">per year</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-8"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-keep sw-84"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$5,020.00</span><span class="stack-pct num">8%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$4,590.00</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$0.00</span><span class="stack-pct num">0%</span></li></ul><p class="result-note">You keep <strong class="num">84%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+    </div>
   <p class="caption">Everything is calculated in your browser. Nothing you type is sent to us or stored.</p>
+
+  <details class="toc">
+    <summary>On this page</summary>
+    <ol class="toc-liste">
+      <li><a href="#how-it-works">How this calculator works</a></li>
+      <li><a href="#by-salary">Take-home pay by salary</a></li>
+      <li><a href="#hourly">Hourly paycheck</a></li>
+      <li><a href="#key-facts">Key facts</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#example">Example calculation</a></li>
+      <li><a href="#faq">Frequently asked questions</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ol>
+  </details>
 
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
   <div class="prose">
-    <h2>How this calculator works</h2>
+    <h2 id="how-it-works">How this calculator works</h2>
     <p>Tennessee is the simplest paycheck in the country to work out, because there is no state
     layer to work out. Whatever the federal government and FICA leave you is what reaches your
     account. Three deductions, and that is the whole list:</p>
@@ -404,7 +422,7 @@
     Department of Revenue now lists the Hall income tax under <em>Archived Taxes</em>, beside the
     gift tax and the inheritance tax.</p>
 
-    <h2>Tennessee take-home pay by salary</h2>
+    <h2 id="by-salary">Tennessee take-home pay by salary</h2>
     <p>Single filer, standard deduction, 2026 rates, no 401(k) contribution. Every figure comes
     from the same arithmetic the calculator above runs.</p>
     <div class="table-scroll">
@@ -445,7 +463,7 @@
       </table>
     </div>
 
-    <h2>Tennessee hourly paycheck: what your rate is worth after tax</h2>
+    <h2 id="hourly">Tennessee hourly paycheck: what your rate is worth after tax</h2>
     <p>At 40 hours a week for 52 weeks. The gross hourly rate is the same everywhere; what
     survives tax is not.</p>
     <div class="table-scroll">
@@ -523,7 +541,7 @@
   <a href="/disclaimer/">why your pay stub will differ</a> for the details.</p>
   <!-- LIMITES:fin -->
 
-    <h2>Key facts that affect your take-home pay in Tennessee</h2>
+    <h2 id="key-facts">Key facts that affect your take-home pay in Tennessee</h2>
     <ul>
       <li><strong>No state income tax on wages, and no local one either.</strong> Unlike
       <a href="/paycheck-calculator/ohio/">Ohio</a> or
@@ -537,7 +555,7 @@
       Labor files it under employers, not employees, so it never reaches your payslip.</li>
     </ul>
 
-    <h2>Common mistakes people make</h2>
+    <h2 id="common-mistakes">Common mistakes people make</h2>
     <ul>
       <li><strong>Assuming the Hall tax used to come out of wages.</strong> It did not. It taxed
       interest and dividends. Someone looking back at a 2019 payslip will find no state line on
@@ -549,7 +567,7 @@
       the salary line.</li>
     </ul>
 
-    <h2>Example calculation</h2>
+    <h2 id="example">Example calculation</h2>
     <p>A single filer on <strong>$60,000</strong> in Tennessee, 2026, no 401(k):</p>
     <ul>
       <li>Gross pay: <span class="num">$60,000.00</span></li>
@@ -583,24 +601,54 @@
 
     <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
-    <h2>Frequently asked questions</h2>
+    <h2 id="faq">Frequently asked questions</h2>
     <div class="faq">
-      <h3>Does Tennessee have a state income tax?</h3>
-      <p>No. Tennessee levies no income tax on wages, and it never has. The state's only individual income tax was the Hall income tax, which applied to interest and dividends rather than to salaries, and its rate has been zero percent since tax years beginning January 1, 2021. Public Chapter 181 of 2017 set that out in steps: 4% in 2017, 3% in 2018, 2% in 2019, 1% in 2020, then zero. On $60,000 you keep about $50,390 a year.</p>
-      <h3>What is taken out of a Tennessee paycheck?</h3>
-      <p>Federal income tax, Social Security at 6.2% and Medicare at 1.45% — and nothing else at state level. Tennessee has no state withholding, and unemployment insurance is paid by the employer rather than deducted from the employee, so a Tennessee payslip has no state line on it at all. That is not true of every state without an income tax: Washington still takes Paid Family and Medical Leave and WA Cares out of every check.</p>
-      <h3>Was the Hall income tax ever taken out of wages?</h3>
-      <p>No, and this is the part people get wrong. The Hall income tax applied to income from interest on bonds and dividends from stocks, not to earned income. A Tennessee worker paid no state tax on a salary even in the years the Hall tax was in force. What ended in 2021 was a tax on investment income.</p>
-      <h3>How much is $60,000 after taxes in Tennessee?</h3>
-      <p>About $50,390 a year, or $4,199.17 a month, for a single filer taking the standard deduction in 2026 with no 401(k) contribution. That is an effective rate of 16.0%, all of it federal and FICA. The same salary in Georgia leaves $48,145 and in Illinois $47,565.</p>
-      <h3>Is take-home pay in Tennessee the same as in Texas or Florida?</h3>
-      <p>Yes, to the cent, for the same gross pay and the same filing status. None of the three withholds anything at state level, so what the federal government and FICA leave is what you keep. The difference between those states is in what they charge elsewhere — sales tax, property tax and business taxes — none of which comes out of a paycheck.</p>
-      <h3>Do any Tennessee cities levy their own income tax?</h3>
-      <p>No. Some states let cities tax wages on top of the state — Ohio and Michigan both do, and Detroit takes 2.4% from residents — but Tennessee has no local income tax, so there is no city layer to add to the figures on this page.</p>
+
+      <details class="faq-item" open>
+        <summary><h3>Does Tennessee have a state income tax?</h3></summary>
+        <div class="faq-r">
+          <p>No. Tennessee levies no income tax on wages, and it never has. The state's only individual income tax was the Hall income tax, which applied to interest and dividends rather than to salaries, and its rate has been zero percent since tax years beginning January 1, 2021. Public Chapter 181 of 2017 set that out in steps: 4% in 2017, 3% in 2018, 2% in 2019, 1% in 2020, then zero. On $60,000 you keep about $50,390 a year.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>What is taken out of a Tennessee paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>Federal income tax, Social Security at 6.2% and Medicare at 1.45% — and nothing else at state level. Tennessee has no state withholding, and unemployment insurance is paid by the employer rather than deducted from the employee, so a Tennessee payslip has no state line on it at all. That is not true of every state without an income tax: Washington still takes Paid Family and Medical Leave and WA Cares out of every check.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Was the Hall income tax ever taken out of wages?</h3></summary>
+        <div class="faq-r">
+          <p>No, and this is the part people get wrong. The Hall income tax applied to income from interest on bonds and dividends from stocks, not to earned income. A Tennessee worker paid no state tax on a salary even in the years the Hall tax was in force. What ended in 2021 was a tax on investment income.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>How much is $60,000 after taxes in Tennessee?</h3></summary>
+        <div class="faq-r">
+          <p>About $50,390 a year, or $4,199.17 a month, for a single filer taking the standard deduction in 2026 with no 401(k) contribution. That is an effective rate of 16.0%, all of it federal and FICA. The same salary in Georgia leaves $48,145 and in Illinois $47,565.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Is take-home pay in Tennessee the same as in Texas or Florida?</h3></summary>
+        <div class="faq-r">
+          <p>Yes, to the cent, for the same gross pay and the same filing status. None of the three withholds anything at state level, so what the federal government and FICA leave is what you keep. The difference between those states is in what they charge elsewhere — sales tax, property tax and business taxes — none of which comes out of a paycheck.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><h3>Do any Tennessee cities levy their own income tax?</h3></summary>
+        <div class="faq-r">
+          <p>No. Some states let cities tax wages on top of the state — Ohio and Michigan both do, and Detroit takes 2.4% from residents — but Tennessee has no local income tax, so there is no city layer to add to the figures on this page.</p>
+        </div>
+      </details>
     </div>
 
     <!-- SOURCES:debut - genere par .tooling/lib/sources.js, ne pas editer a la main -->
-  <h2>Sources</h2>
+  <h2 id="sources">Sources</h2>
   <p class="prose">The federal figures on this page &mdash; the brackets, the standard deduction and FICA &mdash; are read from the official documents below. The Tennessee figures are read from the state&rsquo;s own law and withholding guides, which we quote and date on our <a href="/methodology/">methodology page</a>: Tennessee does publish its own document, but tn.gov answers an automated request with HTTP 403, so we have no link from this machine that we have verified ourselves. If one of our numbers disagrees with one of theirs, they are right and we have a defect to fix &mdash; <a href="/contact/">tell us</a>.</p>
 
   <h3>The federal documents these figures are read from</h3>
@@ -614,7 +662,7 @@
   <!-- SOURCES:fin -->
 
   <h2>Related reading</h2>
-    <ul>
+    <ul class="related">
       <li><a href="/paycheck-calculator/">Paycheck calculators for every state we publish</a></li>
       <li><a href="/paycheck-calculator/texas/">Texas paycheck calculator</a> &mdash; the other
       state where the figures come out the same</li>
@@ -703,6 +751,10 @@
   &sect;&nbsp;67-2-102 as amended by Public Chapter 181 of 2017.</p>
 
 </div>
+<div class="result-bar" data-result-bar>
+  <p class="result-bar-text"><span class="result-bar-amount num" data-bar-amount>$50,390.00</span><span class="result-bar-meta" data-bar-unit>Take-home pay per year</span></p>
+  <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
+</div>
 <aside class="colonne" aria-label="Related calculators">
     <section class="col-bloc">
       <h2 class="col-titre">Other states</h2>
@@ -742,8 +794,8 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="pied-cols">
-      <div class="pied-col">
-        <h2 class="pied-titre">Calculators</h2>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
@@ -753,9 +805,9 @@
           <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
           <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">States</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
         <ul>
           <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
           <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
@@ -808,23 +860,23 @@
           <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
           <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Resources</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
         <ul>
           <li><a href="/methodology/">Methodology</a></li>
           <li><a href="/about/">About</a></li>
           <li><a href="/contact/">Contact</a></li>
         </ul>
-      </div>
-      <div class="pied-col">
-        <h2 class="pied-titre">Legal</h2>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
         <ul>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
           <li><a href="/disclaimer/">Disclaimer</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <div class="pied-bas">
       <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
@@ -834,6 +886,7 @@
       <a href="/disclaimer/">Estimates only, not tax advice</a></p>
     </div>
   </div>
+  <script src="/assets/accordeon.js" defer></script>
 </footer>
 
 <!-- ⛔ rates-2026.min.js AVANT calc-paycheck.js. Oubli du 05/09/2026 : sans lui le
