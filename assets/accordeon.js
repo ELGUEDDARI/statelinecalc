@@ -36,7 +36,33 @@
     var s = e.target.closest("details.faq-item > summary, details.pied-col > summary");
     if (s) e.preventDefault();
   });
+  /* Table des matieres des pages main.layout-2col : colonne collante, donc ouverte, a partir de 1100 px. */
+  var mqToc = window.matchMedia("(min-width: 1100px)");
+  function appliquerToc() {
+    var d = document.querySelector("main.layout-2col .col-contenu > details.toc");
+    if (!d) return;
+    var s = d.firstElementChild;
+    if (mqToc.matches) {
+      if (!d.hasAttribute("data-etat-mobile")) d.setAttribute("data-etat-mobile", d.open ? "1" : "0");
+      d.open = true;
+      if (s) { s.setAttribute("tabindex", "-1"); s.setAttribute("aria-disabled", "true"); }
+    } else {
+      if (d.hasAttribute("data-etat-mobile")) {
+        d.open = d.getAttribute("data-etat-mobile") === "1";
+        d.removeAttribute("data-etat-mobile");
+      }
+      if (s) { s.removeAttribute("tabindex"); s.removeAttribute("aria-disabled"); }
+    }
+  }
+  document.addEventListener("click", function (e) {
+    if (!mqToc.matches || !e.target.closest) return;
+    var s = e.target.closest("main.layout-2col details.toc > summary");
+    if (s) e.preventDefault();
+  });
   appliquer();
+  appliquerToc();
+  if (mqToc.addEventListener) mqToc.addEventListener("change", appliquerToc);
+  else if (mqToc.addListener) mqToc.addListener(appliquerToc);
   if (mq.addEventListener) mq.addEventListener("change", appliquer);
   else if (mq.addListener) mq.addListener(appliquer);
 })();

@@ -779,7 +779,13 @@
          telephone, et il garde son etat tant que le visiteur tape (render() recree
          le bloc a chaque frappe). */
       var ancien = out.querySelector(".breakdown");
-      var ouvert = ancien ? ancien.open : !!(window.matchMedia && window.matchMedia("(min-width: 768px)").matches);
+      /* Mise en page 2 colonnes (main.layout-2col, >= 1100 px) : le resultat est compact a droite du
+         formulaire, le detail reste ferme jusqu'a ce que le visiteur l'ouvre. */
+      var deuxCol = !!(document.querySelector("main.layout-2col") && window.matchMedia && window.matchMedia("(min-width: 1100px)").matches);
+      var ouvert = ancien ? ancien.open : (!deuxCol && !!(window.matchMedia && window.matchMedia("(min-width: 768px)").matches));
+      var actionsPdf = '<div class="result-actions">' +
+          '<button type="button" class="btn btn-secondary" data-print-pdf>Download as PDF</button>' +
+        "</div>";
       var detail =
         '<details class="breakdown"' + (ouvert ? " open" : "") + '><summary>See full breakdown</summary>' +
         '<div class="breakdown-corps">' +
@@ -811,15 +817,16 @@
            nulle part. Le lien passe le salaire ANNUEL BRUT deja tape — pas la
            periode affichee — pour que le comparateur reparte du meme chiffre
            sans que le visiteur le retape. */
-        '<div class="result-actions">' +
-          '<button type="button" class="btn btn-secondary" data-print-pdf>Download as PDF</button>' +
-        "</div>" +
+        (deuxCol ? "" : actionsPdf) +
         "</div></details>";
-      var html = compact.html + detail +
+      var lienComparer =
         '<p class="compare-cta"><a href="/state-comparison/?state=' + encodeURIComponent(input.state) +
         '&salary=' + Math.round(a.gross) + '">Compare ' +
         (RATES_2026.states[input.state] ? RATES_2026.states[input.state].name : input.state) +
         ' with another state &rarr;</a></p>';
+      /* Pages 2 colonnes : le bouton PDF reste visible hors du detail ferme, sur la meme ligne que le lien. */
+      var html = compact.html + detail +
+        (deuxCol ? '<div class="result-pied">' + lienComparer + actionsPdf + "</div>" : lienComparer);
 
       out.innerHTML = html;
 
@@ -878,9 +885,19 @@
       render();
       montrerLeResultat();
     });
-    form.addEventListener("input", render);
-    form.addEventListener("change", render);
-    render();   // the block is never empty, so it never grows on first use
+    /* Le « change » d'un champ texte arrive au blur, c'est-a-dire au mousedown sur « See full
+       breakdown » : sans garde, render() remplacait le <details> entre mousedown et mouseup et le
+       premier clic etait perdu. Si rien n'a change depuis le dernier rendu, on ne refait rien. */
+    var derniereSignature = null;
+    function signature() {
+      var t = [];
+      for (var i = 0; i < form.elements.length; i++) { t.push(form.elements[i].value); }
+      return t.join("|");
+    }
+    function rendre() { derniereSignature = signature(); render(); }
+    form.addEventListener("input", rendre);
+    form.addEventListener("change", function () { if (signature() !== derniereSignature) rendre(); });
+    rendre();   // the block is never empty, so it never grows on first use
   }
 
   if (document.readyState === "loading") {

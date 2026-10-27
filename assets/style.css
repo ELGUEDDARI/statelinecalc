@@ -1227,3 +1227,144 @@ main a.btn { text-decoration: none; }
 }
 
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* ======================================================================
+   DESKTOP 2 COLONNES - 27/10/2026 (pages qui portent main.layout-2col :
+   Georgia et Texas pour l'instant ; les autres pages d'Etat gardent la mise en
+   page precedente tant que leur HTML n'a pas la classe).
+   Objectif : formulaire (gauche) + RESULTAT compact (droite) visibles ensemble
+   a 1440x900 sans defiler ; encadre de reponse resserre ; date + sources sur une
+   ligne sous le H1 ; colonne de droite = table des matieres collante, les liens
+   d'Etats passent en chips en bas. RIEN n'est retire du HTML : tout ce qui est
+   masque l'est deja sur mobile (aide des champs) ou est un simple lien d'ancre.
+   Sous 1100 px : aucune de ces regles ne s'applique. */
+.verif { margin: 0 0 var(--s-3); font-size: 14px; line-height: 1.45; color: var(--text-secondary); }
+.verif a { font-weight: 600; }
+
+@media (min-width: 1100px) {
+  main.layout-2col { padding-block: var(--s-6); margin-block: var(--s-4); }
+  main.layout-2col > .col-contenu { display: contents; }
+  main.layout-2col .col-contenu > * { grid-column: 1; min-width: 0; }
+  main.layout-2col .col-contenu > .crumbs,
+  main.layout-2col .col-contenu > h1,
+  main.layout-2col .col-contenu > .verif,
+  main.layout-2col .col-contenu > .answer,
+  main.layout-2col .col-contenu > section[aria-labelledby="calc-h"] { grid-column: 1 / -1; }
+
+  main.layout-2col .crumbs { margin-bottom: var(--s-2); }
+  main.layout-2col h1 { margin-bottom: var(--s-1); }
+  main.layout-2col .answer {
+    padding: var(--s-2) var(--s-4); margin-bottom: var(--s-4);
+    font-size: 15px; line-height: 1.5;
+  }
+  main.layout-2col .answer p { margin-bottom: 0; }
+  main.layout-2col .answer-jump { display: none; }
+
+  /* Le calculateur : titre sur toute la largeur, formulaire a gauche, resultat a droite. */
+  main.layout-2col section[aria-labelledby="calc-h"] {
+    display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    column-gap: var(--s-6); align-items: start;
+  }
+  main.layout-2col #calc-h { grid-column: 1 / -1; grid-row: 1; font-size: 20px; margin: 0 0 var(--s-2); }
+  main.layout-2col form.calc { grid-column: 1; grid-row: 2; padding: var(--s-3) var(--s-4); }
+  main.layout-2col .calc .field { margin-bottom: var(--s-3); }
+  main.layout-2col .calc .field label { margin-bottom: var(--s-1); font-size: 15px; }
+  main.layout-2col .calc .field input, main.layout-2col .calc .field select { min-height: 44px; }
+  main.layout-2col .calc .row { gap: 0 var(--s-3); }
+  main.layout-2col .calc .btn-primary { min-height: 44px; }
+  /* L'aide des champs secondaires passe en texte pour lecteurs d'ecran (comme sur mobile) ;
+     celle du montant reste visible. Le texte reste dans le HTML. */
+  main.layout-2col .calc .row .field .help {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+    clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+  }
+
+  main.layout-2col .result[data-paycheck-result] {
+    grid-column: 2; grid-row: 2; margin-top: 0; min-height: 330px;
+    padding: var(--s-4) var(--s-6);
+    position: sticky; top: var(--s-4);
+  }
+  main.layout-2col [data-paycheck-result] .result-head { font-size: 36px; margin: var(--s-1) 0 var(--s-3); }
+  main.layout-2col .stack { display: flex; }
+  main.layout-2col .stack-legend { display: grid; }
+  main.layout-2col .result-note { display: block; }
+  main.layout-2col .breakdown > summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    min-height: 44px; margin-top: var(--s-2);
+    border-top: 1px solid var(--border-subtle);
+    color: var(--accent); font-weight: 600; cursor: pointer;
+  }
+  main.layout-2col .breakdown > summary::after {
+    content: ""; flex: none; width: 9px; height: 9px; margin: 0 var(--s-1) 3px var(--s-3);
+    border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+  }
+  main.layout-2col .breakdown[open] > summary::after { transform: rotate(-135deg); margin-bottom: -3px; }
+  main.layout-2col .breakdown > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* Ouvert, le detail defile dans la carte (hauteur plafonnee a max(240 px, 100vh - 600px)) : sur un ecran tres bas (< ~840 px) la carte peut depasser le bas de l'ecran, le visiteur defile alors la page. */
+  main.layout-2col .breakdown-corps { max-height: calc(100vh - 600px); min-height: 240px; overflow-y: auto; }
+  main.layout-2col .breakdown-corps .repartition { margin-top: var(--s-3); gap: var(--s-4); }
+  main.layout-2col .compare-cta { margin-top: var(--s-2); }
+  main.layout-2col section[aria-labelledby="calc-h"] > .caption { grid-column: 1 / -1; grid-row: 3; margin: var(--s-3) 0 0; }
+  /* « What you need before you calculate » : redondant avec les libelles des champs,
+     donc relegue sous le calculateur, plus discret. Le texte reste, visible. */
+  main.layout-2col section[aria-labelledby="calc-h"] > .box-neutre {
+    grid-column: 1 / -1; grid-row: 4; margin-top: var(--s-4);
+    padding: var(--s-3) var(--s-4); font-size: 15px;
+  }
+  main.layout-2col .box-neutre h3 { font-size: 16px; margin-bottom: var(--s-2); }
+  main.layout-2col .box-neutre ul { margin-top: 0; padding-left: var(--s-6); columns: 2; column-gap: var(--s-8); }
+  main.layout-2col .box-neutre li { break-inside: avoid; }
+
+  /* Colonne de droite sous le calculateur : table des matieres collante. */
+  main.layout-2col .col-contenu > .toc {
+    display: block; grid-column: 2; grid-row: 6 / span 14; align-self: start;
+    position: sticky; top: var(--s-4);
+    margin-top: var(--s-4); padding: 0;
+  }
+  main.layout-2col .toc > summary {
+    display: block; list-style: none; pointer-events: none; cursor: default;
+    margin: 0 0 var(--s-2); padding: 0 0 var(--s-2);
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted);
+  }
+  main.layout-2col .toc > summary::-webkit-details-marker { display: none; }
+  @supports selector(::details-content) {
+    main.layout-2col .toc::details-content { content-visibility: visible; display: block; }
+  }
+  main.layout-2col .toc-liste { list-style: none; margin: 0; padding: 0; }
+  main.layout-2col .toc-liste a { display: block; padding: var(--s-2) 0; font-size: 15px; text-decoration: none; }
+  main.layout-2col .toc-liste a:hover { text-decoration: underline; }
+
+  /* Les liens d'Etats et d'outils : en bas de page, en chips, dans la colonne de GAUCHE seulement.
+     Chrome limite le sticky de la TOC au conteneur de grille entier, pas a sa zone : si ce bloc
+     occupait aussi la colonne de droite, la TOC viendrait se coller par-dessus (defaut releve
+     par le controleur le 27/10, verif-chevauchement-toc.js). */
+  main.layout-2col > .colonne {
+    grid-column: 1; grid-row: auto; position: static; margin-top: var(--s-8);
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6) var(--s-8);
+  }
+  main.layout-2col .colonne > .col-bloc:first-child { grid-column: 1 / -1; }
+  main.layout-2col .col-bloc + .col-bloc { margin-top: 0; }
+  main.layout-2col .colonne ul { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  main.layout-2col .colonne li a {
+    display: inline-block; padding: var(--s-1) var(--s-3);
+    border: 1px solid var(--border-subtle); border-radius: 999px; background: var(--surface-sunken);
+  }
+}
+@media (min-width: 1100px) {
+  main.layout-2col h2[id] { scroll-margin-top: var(--s-6); }
+}
+@media (min-width: 1100px) {
+  /* Le message d'erreur du montant (2 lignes) prend la place de la ligne d'aide : les deux
+     reservent la meme hauteur, donc le formulaire ne grandit pas et le resultat ne bouge pas. */
+  main.layout-2col .calc > .field:first-child .help { min-height: 50px; margin-top: var(--s-1); }
+  main.layout-2col .calc > .field:first-child.is-invalid .help { display: none; }
+  main.layout-2col .calc > .field:first-child .error { min-height: 48px; margin-top: var(--s-1); align-items: flex-start; }
+}
+@media (min-width: 1100px) {
+  main.layout-2col .result-pied { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-2) var(--s-3); margin-top: var(--s-2); }
+  main.layout-2col .result-pied .compare-cta { margin: 0; }
+  main.layout-2col .result-pied .result-actions { margin: 0; }
+  main.layout-2col .result-pied .btn { min-height: 40px; padding-inline: var(--s-4); }
+}

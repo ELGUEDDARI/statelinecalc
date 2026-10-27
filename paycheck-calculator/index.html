@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script src="/assets/analytics.js" defer></script>
-<title>Paycheck Calculator by State — 2026 Take-Home Pay</title>
-<meta name="description" content="Free 2026 paycheck calculators for all 50 US states. See take-home pay after federal tax, Social Security, Medicare and state withholding.">
+<title>Paycheck Calculator by State, 2026: Take-Home Pay After Tax</title>
+<meta name="description" content="Free 2026 paycheck calculator for all 50 states. Enter your pay, pick your state, see take-home pay after federal tax, FICA and state tax.">
 <link rel="canonical" href="https://statelinecalc.com/paycheck-calculator/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -15,11 +15,12 @@
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0F172A">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/national.css">
 
-<meta property="og:title" content="Paycheck Calculator by State — 2026 Take-Home Pay">
+<meta property="og:title" content="Paycheck Calculator by State, 2026: Take-Home Pay After Tax">
 <meta property="og:site_name" content="StateLine Calc">
 <meta name="application-name" content="StateLine Calc">
-<meta property="og:description" content="Free 2026 paycheck calculators for every US state. Take-home pay after federal tax, FICA and state withholding, with every rate sourced and dated.">
+<meta property="og:description" content="Pick your state, enter your pay, and see what reaches your bank account after federal tax, FICA and state withholding. Every rate sourced and dated.">
 <meta property="og:url" content="https://statelinecalc.com/paycheck-calculator/">
 <meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -32,104 +33,22 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "CollectionPage",
+      "@type": "WebApplication",
       "name": "Paycheck Calculator by State",
       "url": "https://statelinecalc.com/paycheck-calculator/",
-      "description": "Free 2026 take-home pay calculators for US states, with every rate published alongside its official source and the date it was checked.",
       "datePublished": "2026-08-27",
-      "dateModified": "2026-10-21",
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "StateLine Calc",
-        "url": "https://statelinecalc.com/"
-      },
-      "publisher": {
-        "@id": "https://statelinecalc.com/#organization"
-      }
-    },
-    {
-      "@type": "ItemList",
-      "name": "Paycheck calculators available now",
-      "itemListOrder": "https://schema.org/ItemListOrderAscending",
-      "numberOfItems": 10,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Nevada Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/nevada/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Florida Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/florida/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Illinois Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/illinois/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "Georgia Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/georgia/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "name": "Pennsylvania Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/pennsylvania/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "name": "Texas Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/texas/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 7,
-          "name": "Washington Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/washington/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 8,
-          "name": "Michigan Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/michigan/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 9,
-          "name": "Utah Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/utah/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 10,
-          "name": "Ohio Paycheck Calculator",
-          "url": "https://statelinecalc.com/paycheck-calculator/ohio/"
-        }
-      ]
+      "dateModified": "2026-10-27",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Calculates 2026 take-home pay in any of the 50 US states after federal income tax, Social Security, Medicare and state withholding.",
+      "publisher": { "@id": "https://statelinecalc.com/#organization" }
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://statelinecalc.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Paycheck Calculator",
-          "item": "https://statelinecalc.com/paycheck-calculator/"
-        }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://statelinecalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Paycheck Calculator", "item": "https://statelinecalc.com/paycheck-calculator/" }
       ]
     },
     {
@@ -140,7 +59,7 @@
           "name": "How much of my paycheck goes to taxes?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For a single filer on an average US salary, total withholding usually lands between about 18 and 30 percent of gross pay. The federal portion and FICA are the same everywhere; the spread comes almost entirely from the state."
+            "text": "On a $75,000 salary, a single filer loses about 18 to 25 percent of gross pay to federal income tax, FICA and state tax, depending on the state (see the table above). Higher salaries lose a larger share. The federal portion and FICA are the same everywhere; the spread comes almost entirely from the state."
           }
         },
         {
@@ -148,7 +67,7 @@
           "name": "Which states have no income tax in 2026?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington and Wyoming — nine in total. None of them tax wages."
+            "text": "Washington, Nevada, Texas, Tennessee, Florida, Alaska, Wyoming, New Hampshire, and South Dakota — nine in total. None of them tax wages."
           }
         },
         {
@@ -156,7 +75,7 @@
           "name": "Does living in a no-income-tax state mean nothing comes out of my paycheck?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Federal income tax, Social Security and Medicare are withheld in every state, and several no-income-tax states run payroll programs of their own. Washington withholds Paid Family and Medical Leave and WA Cares from every check."
+            "text": "No. Federal income tax, Social Security and Medicare are withheld in every state, and some no-income-tax states run payroll programs of their own. Washington withholds Paid Family and Medical Leave and WA Cares from every check, and Alaska withholds unemployment insurance from employees."
           }
         },
         {
@@ -164,7 +83,7 @@
           "name": "Which state taxes my pay if I live in one state and work in another?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Usually both have a claim. The state where you work taxes the income earned there; your home state taxes your worldwide income and then credits the tax you already paid elsewhere. Some neighboring states have reciprocity agreements that let you be taxed only at home. This is the case where a simple calculator is least reliable and a professional is genuinely worth paying."
+            "text": "Usually both have a claim. The state where you work taxes the income earned there; your home state taxes your worldwide income and then credits the tax you already paid elsewhere. Some neighboring states have reciprocity agreements that let you be taxed only at home. This is the case where a simple calculator is least reliable and a professional is genuinely worth paying for."
           }
         },
         {
@@ -172,7 +91,7 @@
           "name": "Why does my real pay stub differ from the calculator?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Withholding is a running estimate your employer makes from your W-4; our figure estimates liability on a simplified wage situation. Pre-tax 401(k), HSA and health premiums, tax credits, itemized deductions, a second job and local taxes all move the real number. Treat a few percent of difference as normal, and see the disclaimer for the full list."
+            "text": "Withholding is a running estimate your employer makes from your W-4; our figure is a simplified estimate of what you owe on wages alone. Pre-tax 401(k), HSA and health premiums, tax credits, itemized deductions, a second job and local taxes all move the real number. A difference of a few percent is normal. See the disclaimer for the full list."
           }
         },
         {
@@ -180,13 +99,10 @@
           "name": "Are these calculators free, and is there a catch?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Free, with no sign-up and no email capture. Salary figures you type are processed in your browser and never sent anywhere — see the privacy policy for what our analytics do and do not collect."
+            "text": "Free, with no sign-up and no email capture. The pay you type is processed in your browser and never sent anywhere — see the privacy policy for what our analytics do and do not collect."
           }
         }
-      ],
-      "publisher": {
-        "@id": "https://statelinecalc.com/#organization"
-      }
+      ]
     },
     {
       "@type": "Organization",
@@ -194,26 +110,11 @@
       "name": "StateLine Calc",
       "alternateName": "StateLineCalc",
       "url": "https://statelinecalc.com/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://statelinecalc.com/assets/icon-512.png",
-        "width": 512,
-        "height": 512
-      },
+      "logo": { "@type": "ImageObject", "url": "https://statelinecalc.com/assets/icon-512.png", "width": 512, "height": 512 },
       "description": "StateLine Calc publishes free US paycheck and take-home pay calculators, state by state, for tax year 2026. Every rate is read from the agency that sets it and published with the date it was checked. Figures typed into a calculator never leave the visitor's browser.",
       "foundingDate": "2026-08-22",
-      "knowsAbout": [
-        "US payroll taxes",
-        "State income tax",
-        "Take-home pay",
-        "Federal income tax brackets",
-        "FICA",
-        "Salary to hourly conversion"
-      ],
-      "areaServed": {
-        "@type": "Country",
-        "name": "United States"
-      }
+      "knowsAbout": ["US payroll taxes", "State income tax", "Take-home pay", "Federal income tax brackets", "FICA", "Salary to hourly conversion"],
+      "areaServed": { "@type": "Country", "name": "United States" }
     }
   ]
 }
@@ -318,258 +219,355 @@
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap nat">
 <div class="col-contenu">
 
 <nav class="crumbs" aria-label="Breadcrumb">
   <ol>
     <li><a href="/">Home</a></li>
-    <li>Paycheck Calculator</li>
+    <li aria-current="page">Paycheck Calculator</li>
   </ol>
 </nav>
 
 <h1>Paycheck Calculator by State, 2026</h1>
 
+<p class="verif">Federal rates verified <time datetime="2026-08-22">August 22, 2026</time> against the IRS and the Social Security Administration. State rates come from each state&rsquo;s tax agency and are dated on its page. <a href="/methodology/">See the sources</a></p>
+
 <div class="answer">
-  <p>Pick your state and see what actually reaches your bank account. Every calculator applies the
-  2026 federal brackets, Social Security at 6.2&nbsp;percent up to $184,500, Medicare at
-  1.45&nbsp;percent, and whatever your own state withholds on top. Free, no sign-up, and nothing
-  you type leaves your browser.</p>
+  <p>Choose your state, enter your pay, and see your 2026 take-home pay after federal income tax,
+  Social Security, Medicare and state withholding. It runs the same rates as our 50 state pages, each
+  read from the agency that sets it. Nothing you type leaves your browser.</p>
 </div>
+
+<section class="nat-calc" aria-labelledby="calc-h">
+  <h2 id="calc-h" class="nat-h">Calculate your take-home pay</h2>
+  <div class="nat-grid">
+    <form class="calc" data-paycheck-form novalidate>
+      <div class="field">
+        <label for="state">State you work in</label>
+        <select id="state" name="state">
+          <option value="alabama">Alabama</option>
+          <option value="alaska">Alaska</option>
+          <option value="arizona">Arizona</option>
+          <option value="arkansas">Arkansas</option>
+          <option value="california">California</option>
+          <option value="colorado">Colorado</option>
+          <option value="connecticut">Connecticut</option>
+          <option value="delaware">Delaware</option>
+          <option value="florida">Florida</option>
+          <option value="georgia">Georgia</option>
+          <option value="hawaii">Hawaii</option>
+          <option value="idaho">Idaho</option>
+          <option value="illinois">Illinois</option>
+          <option value="indiana">Indiana</option>
+          <option value="iowa">Iowa</option>
+          <option value="kansas">Kansas</option>
+          <option value="kentucky">Kentucky</option>
+          <option value="louisiana">Louisiana</option>
+          <option value="maine">Maine</option>
+          <option value="maryland">Maryland</option>
+          <option value="massachusetts">Massachusetts</option>
+          <option value="michigan">Michigan</option>
+          <option value="minnesota">Minnesota</option>
+          <option value="mississippi">Mississippi</option>
+          <option value="missouri">Missouri</option>
+          <option value="montana">Montana</option>
+          <option value="nebraska">Nebraska</option>
+          <option value="nevada">Nevada</option>
+          <option value="new-hampshire">New Hampshire</option>
+          <option value="new-jersey">New Jersey</option>
+          <option value="new-mexico">New Mexico</option>
+          <option value="new-york">New York</option>
+          <option value="north-carolina">North Carolina</option>
+          <option value="north-dakota">North Dakota</option>
+          <option value="ohio">Ohio</option>
+          <option value="oklahoma">Oklahoma</option>
+          <option value="oregon">Oregon</option>
+          <option value="pennsylvania">Pennsylvania</option>
+          <option value="rhode-island">Rhode Island</option>
+          <option value="south-carolina">South Carolina</option>
+          <option value="south-dakota">South Dakota</option>
+          <option value="tennessee">Tennessee</option>
+          <option value="texas" selected>Texas</option>
+          <option value="utah">Utah</option>
+          <option value="vermont">Vermont</option>
+          <option value="virginia">Virginia</option>
+          <option value="washington">Washington</option>
+          <option value="west-virginia">West Virginia</option>
+          <option value="wisconsin">Wisconsin</option>
+          <option value="wyoming">Wyoming</option>
+        </select>
+      </div>
+
+      <div class="row row-pay">
+        <div class="field">
+          <label for="salary">Your pay before tax</label>
+          <input type="text" id="salary" name="salary" inputmode="decimal" value="75000" autocomplete="off">
+          <span class="error" role="alert">Enter an amount greater than zero.</span>
+        </div>
+        <div class="field">
+          <label for="period">Paid</label>
+          <select id="period" name="period">
+            <option value="annual" selected>Per year</option>
+            <option value="hourly">Per hour</option>
+            <option value="monthly">Per month</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field" data-hours-field hidden>
+        <label for="hours">Hours per week</label>
+        <input type="text" id="hours" name="hours" inputmode="decimal" value="40" autocomplete="off">
+      </div>
+
+      <div class="field" data-county-field hidden>
+        <label for="county" data-county-label>Your county</label>
+        <select id="county" name="county"></select>
+      </div>
+
+      <details class="nat-more">
+        <summary>More options (filing, 401(k))</summary>
+        <div class="field">
+          <label for="filing">Filing status</label>
+          <select id="filing" name="filing">
+            <option value="single" selected>Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="retirement">401(k) contribution (% of pay)</label>
+          <input type="text" id="retirement" name="retirement" inputmode="decimal" value="0">
+        </div>
+        <div class="field">
+          <label for="display">Show results</label>
+          <select id="display" name="display">
+            <option value="monthly" selected>Per month</option>
+            <option value="hourly">Per hour</option>
+            <option value="annual">Per year</option>
+            <option value="semimonthly">Twice a month</option>
+            <option value="biweekly">Every two weeks</option>
+            <option value="weekly">Per week</option>
+          </select>
+        </div>
+      </details>
+
+      <button type="submit" class="btn btn-primary">Calculate</button>
+    </form>
+
+    <div class="nat-out">
+      <div class="result" data-paycheck-result aria-live="polite">
+      <!-- RESULT-STATIQUE:debut - genere par .tooling/ops/build-national.js (moteur du navigateur), ne pas editer a la main -->
+<p class="result-label">Your take-home pay</p><p class="result-head num"><span data-anime>$5,132.71</span> <span class="result-unit">per month</span></p><div class="stack" aria-hidden="true"><i class="stack-seg seg-fed sw-10"></i><i class="stack-seg seg-fica sw-8"></i><i class="stack-seg seg-keep sw-82"></i></div><ul class="stack-legend"><li class="leg-fed"><span class="stack-nom">Federal</span><span class="stack-montant num">$639.17</span><span class="stack-pct num">10%</span></li><li class="leg-fica"><span class="stack-nom">FICA</span><span class="stack-montant num">$478.13</span><span class="stack-pct num">8%</span></li><li class="leg-state"><span class="stack-nom">State</span><span class="stack-montant num">$0.00</span><span class="stack-pct num">0%</span></li></ul><p class="result-note">You keep <strong class="num">82%</strong> of your gross pay.</p>
+      <!-- RESULT-STATIQUE:fin -->
+      </div>
+      <p class="nat-link"><a href="/paycheck-calculator/texas/" data-state-link>See the full Texas paycheck calculator &rarr;</a></p>
+    </div>
+  </div>
+  <p class="caption">Starts as a single filer with the standard deduction, wages only. Everything is calculated in your browser; nothing you type is sent to us or stored.</p>
+</section>
+
+<template data-county-for="indiana" data-county-title="Your Indiana county on January 1"><option value="adams">Adams (1.6%)</option><option value="allen">Allen (1.59%)</option><option value="bartholomew">Bartholomew (1.75%)</option><option value="benton">Benton (1.79%)</option><option value="blackford">Blackford (2.5%)</option><option value="boone">Boone (1.71%)</option><option value="brown">Brown (2.5234%)</option><option value="carroll">Carroll (2.4733%)</option><option value="cass">Cass (2.95%)</option><option value="clark">Clark (2%)</option><option value="clay">Clay (2.35%)</option><option value="clinton">Clinton (2.65%)</option><option value="crawford">Crawford (1.65%)</option><option value="daviess">Daviess (1.5%)</option><option value="dearborn">Dearborn (1.4%)</option><option value="decatur">Decatur (2.45%)</option><option value="dekalb">DeKalb (2.13%)</option><option value="delaware">Delaware (1.5%)</option><option value="dubois">Dubois (1.2%)</option><option value="elkhart">Elkhart (2%)</option><option value="fayette">Fayette (2.82%)</option><option value="floyd">Floyd (1.89%)</option><option value="fountain">Fountain (2.1%)</option><option value="franklin">Franklin (1.7%)</option><option value="fulton">Fulton (2.88%)</option><option value="gibson">Gibson (1.3%)</option><option value="grant">Grant (2.75%)</option><option value="greene">Greene (2.35%)</option><option value="hamilton">Hamilton (1.1%)</option><option value="hancock">Hancock (1.94%)</option><option value="harrison">Harrison (1%)</option><option value="hendricks">Hendricks (1.7%)</option><option value="henry">Henry (2.02%)</option><option value="howard">Howard (2.35%)</option><option value="huntington">Huntington (1.95%)</option><option value="jackson">Jackson (2.1%)</option><option value="jasper">Jasper (2.864%)</option><option value="jay">Jay (2.5%)</option><option value="jefferson">Jefferson (1.03%)</option><option value="jennings">Jennings (2.5%)</option><option value="johnson">Johnson (1.4%)</option><option value="knox">Knox (1.7%)</option><option value="kosciusko">Kosciusko (1%)</option><option value="lagrange">LaGrange (1.65%)</option><option value="lake">Lake (1.5%)</option><option value="laporte">LaPorte (1.45%)</option><option value="lawrence">Lawrence (1.75%)</option><option value="madison">Madison (2.25%)</option><option value="marion" selected>Marion (2.02%)</option><option value="marshall">Marshall (1.25%)</option><option value="martin">Martin (2.5%)</option><option value="miami">Miami (2.54%)</option><option value="monroe">Monroe (2.14%)</option><option value="montgomery">Montgomery (2.65%)</option><option value="morgan">Morgan (2.72%)</option><option value="newton">Newton (1%)</option><option value="noble">Noble (1.75%)</option><option value="ohio">Ohio (2%)</option><option value="orange">Orange (1.75%)</option><option value="owen">Owen (2.5%)</option><option value="parke">Parke (2.65%)</option><option value="perry">Perry (1.4%)</option><option value="pike">Pike (1.2%)</option><option value="porter">Porter (0.5%)</option><option value="posey">Posey (1.45%)</option><option value="pulaski">Pulaski (2.85%)</option><option value="putnam">Putnam (2.3%)</option><option value="randolph">Randolph (3%)</option><option value="ripley">Ripley (2.38%)</option><option value="rush">Rush (2.15%)</option><option value="scott">Scott (2.16%)</option><option value="shelby">Shelby (1.7%)</option><option value="spencer">Spencer (0.8%)</option><option value="st-joseph">St. Joseph (1.75%)</option><option value="starke">Starke (1.71%)</option><option value="steuben">Steuben (1.99%)</option><option value="sullivan">Sullivan (1.7%)</option><option value="switzerland">Switzerland (1.45%)</option><option value="tippecanoe">Tippecanoe (1.28%)</option><option value="tipton">Tipton (2.6%)</option><option value="union">Union (2.75%)</option><option value="vanderburgh">Vanderburgh (1.25%)</option><option value="vermillion">Vermillion (1.5%)</option><option value="vigo">Vigo (2%)</option><option value="wabash">Wabash (2.9%)</option><option value="warren">Warren (2.12%)</option><option value="warrick">Warrick (1%)</option><option value="washington">Washington (2%)</option><option value="wayne">Wayne (1.25%)</option><option value="wells">Wells (2.1%)</option><option value="white">White (2.32%)</option><option value="whitley">Whitley (1.6829%)</option></template>
+<template data-county-for="maryland" data-county-title="Your Maryland county"><option value="allegany">Allegany County (3.20%)</option><option value="anne-arundel">Anne Arundel County (2.70%&ndash;3.20%)</option><option value="baltimore">Baltimore County (3.20%)</option><option value="baltimore-city">Baltimore City (3.20%)</option><option value="calvert">Calvert County (3.20%)</option><option value="caroline">Caroline County (3.20%)</option><option value="carroll">Carroll County (3.03%)</option><option value="cecil">Cecil County (2.74%)</option><option value="charles">Charles County (3.03%)</option><option value="dorchester">Dorchester County (3.30%)</option><option value="frederick">Frederick County (2.25%&ndash;3.20%)</option><option value="garrett">Garrett County (2.65%)</option><option value="harford">Harford County (3.06%)</option><option value="howard">Howard County (3.20%)</option><option value="kent">Kent County (3.30%)</option><option value="montgomery" selected>Montgomery County (3.20%)</option><option value="prince-georges">Prince George's County (3.20%)</option><option value="queen-annes">Queen Anne's County (3.20%)</option><option value="somerset">Somerset County (3.20%)</option><option value="st-marys">St. Mary's County (3.20%)</option><option value="talbot">Talbot County (2.40%)</option><option value="washington">Washington County (2.95%)</option><option value="wicomico">Wicomico County (3.20%)</option><option value="worcester">Worcester County (2.25%)</option></template>
 
 <div class="prose">
 
-<h2>Calculators available now</h2>
+<h2 id="by-state">Take-home pay in all 50 states</h2>
+
+<p>Annual take-home pay for a single filer in 2026, with the standard deduction and no 401(k), at
+five salaries. On $75,000 the range runs from <strong>$61,593</strong> (Florida, Nevada and other states that withhold nothing at state level) to <strong>$55,995</strong> in Oregon. Click a state for its own
+calculator and its full table.</p>
+
+<div class="table-box" tabindex="0" role="region" aria-label="Annual take-home pay by state, five salaries">
+<table class="tbl-etats">
+  <caption class="visually-hidden">Annual take-home pay by state for a single filer, 2026</caption>
+  <thead>
+    <tr><th scope="col">State</th><th scope="col">$40,000</th><th scope="col">$60,000</th><th scope="col">$75,000</th><th scope="col">$100,000</th><th scope="col">$150,000</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row"><a href="/paycheck-calculator/alabama/">Alabama</a></th><td class="num">$32,691</td><td class="num">$47,881</td><td class="num">$58,466</td><td class="num">$75,079</td><td class="num">$107,768</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/alaska/">Alaska</a></th><td class="num">$34,120</td><td class="num">$50,119</td><td class="num">$61,322</td><td class="num">$78,909</td><td class="num">$113,520</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/arizona/">Arizona</a></th><td class="num">$33,520</td><td class="num">$49,190</td><td class="num">$60,093</td><td class="num">$77,180</td><td class="num">$110,791</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/arkansas/">Arkansas</a></th><td class="num">$33,307</td><td class="num">$48,597</td><td class="num">$59,215</td><td class="num">$75,524</td><td class="num">$108,157</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/california/">California</a></th><td class="num">$33,159</td><td class="num">$47,807</td><td class="num">$57,565</td><td class="num">$72,320</td><td class="num">$101,166</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/colorado/">Colorado</a></th><td class="num">$32,626</td><td class="num">$47,728</td><td class="num">$58,205</td><td class="num">$74,582</td><td class="num">$106,773</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/connecticut/">Connecticut</a></th><td class="num">$32,928</td><td class="num">$47,773</td><td class="num">$57,743</td><td class="num">$73,705</td><td class="num">$104,816</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/delaware/">Delaware</a></th><td class="num">$32,617</td><td class="num">$47,497</td><td class="num">$57,684</td><td class="num">$73,521</td><td class="num">$104,632</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/florida/">Florida</a></th><td class="num">$34,320</td><td class="num">$50,390</td><td class="num">$61,593</td><td class="num">$79,180</td><td class="num">$113,791</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/georgia/">Georgia</a></th><td class="num">$33,073</td><td class="num">$48,145</td><td class="num">$58,599</td><td class="num">$74,939</td><td class="num">$107,055</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/hawaii/">Hawaii</a></th><td class="num">$32,917</td><td class="num">$47,547</td><td class="num">$57,609</td><td class="num">$73,297</td><td class="num">$104,057</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/idaho/">Idaho</a></th><td class="num">$33,053</td><td class="num">$48,063</td><td class="num">$58,471</td><td class="num">$74,733</td><td class="num">$106,694</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/illinois/">Illinois</a></th><td class="num">$32,485</td><td class="num">$47,565</td><td class="num">$58,025</td><td class="num">$74,375</td><td class="num">$106,511</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/indiana/">Indiana</a></th><td class="num">$32,382</td><td class="num">$47,458</td><td class="num">$57,915</td><td class="num">$74,260</td><td class="num">$106,386</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/iowa/">Iowa</a></th><td class="num">$33,334</td><td class="num">$48,644</td><td class="num">$59,277</td><td class="num">$75,914</td><td class="num">$108,625</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/kansas/">Kansas</a></th><td class="num">$32,888</td><td class="num">$47,842</td><td class="num">$58,207</td><td class="num">$74,400</td><td class="num">$106,221</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/kentucky/">Kentucky</a></th><td class="num">$33,038</td><td class="num">$48,408</td><td class="num">$59,085</td><td class="num">$75,798</td><td class="num">$108,659</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/louisiana/">Louisiana</a></th><td class="num">$33,482</td><td class="num">$48,934</td><td class="num">$59,673</td><td class="num">$76,488</td><td class="num">$109,554</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/maine/">Maine</a></th><td class="num">$32,853</td><td class="num">$47,525</td><td class="num">$57,640</td><td class="num">$73,347</td><td class="num">$103,548</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/maryland/">Maryland</a></th><td class="num">$31,665</td><td class="num">$46,145</td><td class="num">$56,155</td><td class="num">$71,755</td><td class="num">$101,966</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/massachusetts/">Massachusetts</a></th><td class="num">$32,456</td><td class="num">$47,434</td><td class="num">$57,818</td><td class="num">$74,040</td><td class="num">$105,921</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/michigan/">Michigan</a></th><td class="num">$32,871</td><td class="num">$48,091</td><td class="num">$58,656</td><td class="num">$75,181</td><td class="num">$107,667</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/minnesota/">Minnesota</a></th><td class="num">$32,823</td><td class="num">$47,569</td><td class="num">$57,686</td><td class="num">$73,463</td><td class="num">$104,189</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/mississippi/">Mississippi</a></th><td class="num">$33,452</td><td class="num">$48,722</td><td class="num">$59,325</td><td class="num">$75,912</td><td class="num">$108,523</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/missouri/">Missouri</a></th><td class="num">$33,377</td><td class="num">$48,507</td><td class="num">$59,005</td><td class="num">$75,417</td><td class="num">$107,678</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/montana/">Montana</a></th><td class="num">$33,197</td><td class="num">$48,327</td><td class="num">$58,716</td><td class="num">$74,891</td><td class="num">$106,677</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/nebraska/">Nebraska</a></th><td class="num">$33,380</td><td class="num">$48,540</td><td class="num">$59,060</td><td class="num">$75,510</td><td class="num">$107,846</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/nevada/">Nevada</a></th><td class="num">$34,320</td><td class="num">$50,390</td><td class="num">$61,593</td><td class="num">$79,180</td><td class="num">$113,791</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/new-hampshire/">New Hampshire</a></th><td class="num">$34,320</td><td class="num">$50,390</td><td class="num">$61,593</td><td class="num">$79,180</td><td class="num">$113,791</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/new-jersey/">New Jersey</a></th><td class="num">$33,226</td><td class="num">$47,994</td><td class="num">$58,218</td><td class="num">$73,960</td><td class="num">$104,861</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/new-mexico/">New Mexico</a></th><td class="num">$33,221</td><td class="num">$48,357</td><td class="num">$58,854</td><td class="num">$75,216</td><td class="num">$107,377</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/new-york/">New York</a></th><td class="num">$32,520</td><td class="num">$47,424</td><td class="num">$57,752</td><td class="num">$73,842</td><td class="num">$104,810</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/north-carolina/">North Carolina</a></th><td class="num">$33,233</td><td class="num">$48,505</td><td class="num">$59,109</td><td class="num">$75,699</td><td class="num">$108,315</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/north-dakota/">North Dakota</a></th><td class="num">$34,320</td><td class="num">$50,344</td><td class="num">$61,254</td><td class="num">$78,354</td><td class="num">$111,990</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/ohio/">Ohio</a></th><td class="num">$33,670</td><td class="num">$49,184</td><td class="num">$59,974</td><td class="num">$76,867</td><td class="num">$110,103</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/oklahoma/">Oklahoma</a></th><td class="num">$33,066</td><td class="num">$48,236</td><td class="num">$58,763</td><td class="num">$75,226</td><td class="num">$107,587</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/oregon/">Oregon</a></th><td class="num">$31,588</td><td class="num">$45,978</td><td class="num">$55,995</td><td class="num">$71,314</td><td class="num">$99,917</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></th><td class="num">$33,064</td><td class="num">$48,506</td><td class="num">$59,238</td><td class="num">$76,040</td><td class="num">$109,081</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/rhode-island/">Rhode Island</a></th><td class="num">$32,418</td><td class="num">$47,518</td><td class="num">$57,993</td><td class="num">$74,198</td><td class="num">$106,434</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/south-carolina/">South Carolina</a></th><td class="num">$33,416</td><td class="num">$48,406</td><td class="num">$58,799</td><td class="num">$74,886</td><td class="num">$106,497</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/south-dakota/">South Dakota</a></th><td class="num">$34,320</td><td class="num">$50,390</td><td class="num">$61,593</td><td class="num">$79,180</td><td class="num">$113,791</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/tennessee/">Tennessee</a></th><td class="num">$34,320</td><td class="num">$50,390</td><td class="num">$61,593</td><td class="num">$79,180</td><td class="num">$113,791</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/texas/">Texas</a></th><td class="num">$34,320</td><td class="num">$50,390</td><td class="num">$61,593</td><td class="num">$79,180</td><td class="num">$113,791</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/utah/">Utah</a></th><td class="num">$32,627</td><td class="num">$47,720</td><td class="num">$58,255</td><td class="num">$74,730</td><td class="num">$107,116</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/vermont/">Vermont</a></th><td class="num">$33,292</td><td class="num">$48,692</td><td class="num">$58,907</td><td class="num">$74,845</td><td class="num">$105,978</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/virginia/">Virginia</a></th><td class="num">$32,834</td><td class="num">$47,754</td><td class="num">$58,094</td><td class="num">$74,244</td><td class="num">$105,980</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/washington/">Washington</a></th><td class="num">$33,765</td><td class="num">$49,558</td><td class="num">$60,552</td><td class="num">$77,793</td><td class="num">$111,710</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/west-virginia/">West Virginia</a></th><td class="num">$33,153</td><td class="num">$48,332</td><td class="num">$58,847</td><td class="num">$75,290</td><td class="num">$107,611</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></th><td class="num">$33,236</td><td class="num">$48,320</td><td class="num">$58,649</td><td class="num">$74,752</td><td class="num">$106,482</td></tr>
+    <tr><th scope="row"><a href="/paycheck-calculator/wyoming/">Wyoming</a></th><td class="num">$34,320</td><td class="num">$50,390</td><td class="num">$61,593</td><td class="num">$79,180</td><td class="num">$113,791</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="caption">Indiana and Maryland include their county income tax, shown at the Marion and Montgomery County rates; the rate in your county can differ. See the <a href="/75000-salary-take-home-pay-by-state/">$75,000 ranking</a> for the breakdown behind one salary.</p>
+
+<h2 id="how-it-works">How this calculator works</h2>
 
 <ul>
-  <li><strong><a href="/paycheck-calculator/nevada/">Nevada paycheck calculator</a></strong>
-  &mdash; nothing at all is withheld at state level. The constitution forbids taxing wages, and
-  there is no payroll program either.</li>
-  <li><strong><a href="/paycheck-calculator/florida/">Florida paycheck calculator</a></strong>
-  &mdash; nothing at state level either. Its constitution sets a ceiling on taxing personal
-  income rather than banning it outright, which is a real difference from Texas even though the
-  paycheck is identical.</li>
-  <li><strong><a href="/paycheck-calculator/illinois/">Illinois paycheck calculator</a></strong>
-  &mdash; a flat 4.95% since 2017, but what you subtract first is a personal exemption counted
-  per person, not a standard deduction, and it is withdrawn entirely above $250,000 rather than
-  tapered.</li>
-  <li><strong><a href="/paycheck-calculator/georgia/">Georgia paycheck calculator</a></strong>
-  &mdash; the first state here that does tax wages: a flat 4.99% in 2026, after a $15,000
-  standard deduction. Georgia also broke with the federal rules on tips and overtime this
-  year.</li>
-  <li><strong><a href="/paycheck-calculator/texas/">Texas paycheck calculator</a></strong>
-  &mdash; nothing is withheld at state level either, and the ban is constitutional: the
-  legislature is barred from taxing net income, and since November 2025 from taxing capital
-  gains as well.</li>
-  <li><strong><a href="/paycheck-calculator/pennsylvania/">Pennsylvania paycheck calculator</a></strong>
-  &mdash; a flat 3.07% with no standard deduction and no personal exemption, so the rate bites
-  from the first dollar. Pennsylvania also withholds unemployment from the employee, and it is
-  the one state here where a 401(k) contribution does not reduce your state tax.</li>
-  <li><strong><a href="/paycheck-calculator/washington/">Washington paycheck calculator</a></strong>
-  &mdash; no state income tax, but Paid Family and Medical Leave and WA Cares still come out of
-  every check.</li>
-  <li><strong><a href="/paycheck-calculator/michigan/">Michigan paycheck calculator</a></strong>
-  &mdash; a flat 4.25% above a $5,900 personal exemption for each exemption claimed, so the share
-  Michigan actually takes stays below its headline rate. A number of Michigan cities add their
-  own tax on top; Detroit takes 2.4% from residents.</li>
-  <li><strong><a href="/paycheck-calculator/utah/">Utah paycheck calculator</a></strong>
-  &mdash; a flat 4.45% in 2026, down from 4.5%, applied to your whole wage: Utah has no standard
-  deduction and no personal exemption. Relief arrives afterwards as a $485 taxpayer credit that
-  fades by 1.3 cents per dollar earned above $9,348 and disappears at $46,656, so Utah only
-  becomes a true flat tax above that line.</li>
-  <li><strong><a href="/paycheck-calculator/ohio/">Ohio paycheck calculator</a></strong>
-  &mdash; one of the lowest state income taxes published here, and the oddest shape. Nothing is owed on
-  the first $26,050 of taxable income, and then $332 <em>plus</em> 2.75% of the excess &mdash; so
-  the dollar that crosses the line costs $332 at once. The personal exemption shrinks as you earn
-  more. City and school district income taxes, which most Ohioans pay, come on top.</li>
+  <li><strong>Federal tax:</strong> the 2026 brackets after the standard deduction ($16,100 single, $32,200 married filing jointly, $24,150 head of household). The same everywhere.</li>
+  <li><strong>FICA:</strong> Social Security at 6.2% up to $184,500 of wages, Medicare at 1.45% with no ceiling.</li>
+  <li><strong>State tax:</strong> that state&rsquo;s own rate, deduction and payroll programs, read from its tax agency. Local taxes are not included, except the Indiana and Maryland county tax.</li>
+</ul>
+<p>Every rate sits next to its official source and the date we read it, on the
+<a href="/methodology/">methodology page</a>. The calculator assumes one job and the standard
+deduction, and starts as a single filer: open &ldquo;More options&rdquo; to choose married filing jointly or head of household. It does not model credits, itemized deductions, a second job or pre-tax premiums beyond the 401(k) field.</p>
+
+<h2 id="key-facts">Key facts</h2>
+
+<ul>
+  <li><strong>Nine states do not tax wages:</strong> Washington, Nevada, Texas, Tennessee, Florida, Alaska, Wyoming, New Hampshire, and South Dakota. Federal tax and FICA still come out there, and Washington adds Paid Family and Medical Leave and WA Cares.</li>
+  <li><strong>The state is the difference.</strong> Two people on the same salary can end up thousands of dollars apart, because states differ in rate, deduction and what they withhold on top.</li>
+  <li><strong>Paid by the hour?</strong> Change &ldquo;Paid&rdquo; to &ldquo;Per hour&rdquo;; we ask for your real weekly hours rather than assuming 2,080 a year. For a rate-first view, see <a href="/25-an-hour-is-how-much-a-year/">what $25 an hour adds up to in a year</a> or the <a href="/salary-to-hourly-calculator/">salary to hourly calculator</a>.</li>
+  <li><strong>Two states side by side?</strong> The <a href="/state-comparison/">state comparison</a> shows the difference in dollars.</li>
 </ul>
 
-<p class="caption">All 50 states are live. Each page needed its own rates read from that state&rsquo;s
-own agency, so they arrived one at a time rather than fifty at once. The full list of states is
-further down this page.</p>
-
-<p>Paid by the hour rather than by the year? Start from your rate instead:
-<a href="/25-an-hour-is-how-much-a-year/">$25 an hour is how much a year</a> works the conversion
-the other way and then shows what survives tax in each state, and the
-<a href="/salary-to-hourly-calculator/">salary to hourly calculator</a> does the reverse for an
-annual figure.</p>
-
-<h2>What a paycheck calculator actually tells you</h2>
-
-<p>Gross pay is the number in your offer letter. Net pay is the number that reaches your account,
-and between the two sit four or five separate deductions that are calculated in different ways,
-from different bases, with different ceilings. A paycheck calculator does that arithmetic in the
-right order so you do not have to.</p>
-
-<h3>The federal part, identical in all 50 states</h3>
-<p>Federal income tax is charged on your income <em>after</em> the standard deduction &mdash;
-$16,100 for a single filer in 2026, $32,200 for a married couple filing jointly. It then runs
-through graduated bands: 10&nbsp;percent on the first slice, then 12, 22, 24, 32, 35 and
-37&nbsp;percent, each rate applying only to the dollars inside its band. Being &ldquo;in the
-22&nbsp;percent bracket&rdquo; never means paying 22&nbsp;percent of your salary.</p>
-
-<h3>FICA, also identical everywhere</h3>
-<p>Social Security takes 6.2&nbsp;percent of <em>gross</em> wages, not of taxable income, and stops
-once you have earned $184,500 in 2026. Medicare takes 1.45&nbsp;percent of gross wages with no
-ceiling at all, plus an extra 0.9&nbsp;percent on wages above $200,000. Together they are the
-reason a low earner&rsquo;s effective rate is higher than a naive look at the tax brackets
-suggests.</p>
-
-<h3>The state part, which is the whole point of this site</h3>
-<p>This is where two people on the same salary end up thousands of dollars apart. A state may take
-nothing, a single flat percentage, or a graduated set of brackets with its own deductions and
-exemptions that look nothing like the federal ones. A handful of states also run payroll programs
-&mdash; paid family leave, long-term care, disability insurance &mdash; that are withheld
-separately from income tax and are easy to overlook.</p>
-
-<h2>The three kinds of state</h2>
-
-<h3>States with no income tax</h3>
-<p>Nine states levy no personal income tax on wages: <strong>Alaska, Florida, Nevada, New
-Hampshire, South Dakota, Tennessee, Texas, Washington and Wyoming</strong>. New Hampshire was the
-most recent addition to the full list, having completed the phase-out of its tax on interest and
-dividends on January&nbsp;1, 2025. Washington taxes certain capital gains but not wages.</p>
-
-<div class="callout">
-  <p><strong>No income tax does not mean nothing is withheld.</strong> Federal tax and FICA still
-  come out everywhere, and several of these states run their own payroll programs. In Washington,
-  Paid Family and Medical Leave plus WA Cares take roughly 1.4&nbsp;percent of gross pay off the
-  top before you get to anything else.</p>
-</div>
-
-<h3>States with a single flat rate</h3>
-<p>A growing group of states charge one percentage on all taxable income rather than graduated
-bands. The arithmetic is simple, but the base is not always: some flat-rate states start from
-federal adjusted gross income, some from federal taxable income, and some apply their own personal
-exemption first. Two states with the same headline rate can produce different withholding.</p>
-
-<h3>States with graduated brackets</h3>
-<p>Most states use graduated brackets like the federal system, and this is where the detail
-matters most. Bracket thresholds vary enormously &mdash; a top rate that kicks in at $10,000 of
-income behaves like a flat tax for almost everyone, while one that starts above $1&nbsp;million
-affects almost no one. Standard deductions, personal exemptions and the treatment of retirement
-income all differ by state as well.</p>
-
-<h2>How to use these calculators</h2>
-
-<ol>
-  <li><strong>Enter annual gross pay</strong>, before any deductions. If you are paid hourly,
-  multiply your rate by the hours you actually work in a year rather than assuming 2,080.</li>
-  <li><strong>Pick your filing status.</strong> Single and married filing jointly produce very
-  different results, because both the standard deduction and the bracket thresholds move.</li>
-  <li><strong>Read the breakdown, not just the total.</strong> Every page itemizes each deduction
-  so you can see which one is actually taking the money.</li>
-  <li><strong>Compare against the table.</strong> Each page publishes a full table of results
-  across salary levels, so you can see where you sit and what a raise would really be worth.</li>
-</ol>
-
-<h2>What these calculators do not model</h2>
-
-<p>They assume a straightforward situation: one job, the standard deduction, wage income only. They
-do not include 401(k) or HSA contributions, employer health premiums, tax credits, itemized
-deductions, a second job, self-employment income, or local city taxes. Our
-<a href="/methodology/">methodology page</a> lists the full set of assumptions and every source we
-read, with the date we read it.</p>
-
-<h2>All 50 states</h2>
-
-<p>Every state below has its own calculator. Rates are read from each state&rsquo;s own agency and
-re-read every January.</p>
-
-<ul class="linkgrid">
-    <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
-    <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
-    <li><a href="/paycheck-calculator/arizona/">Arizona</a></li>
-    <li><a href="/paycheck-calculator/arkansas/">Arkansas</a></li>
-    <li><a href="/paycheck-calculator/california/">California</a></li>
-    <li><a href="/paycheck-calculator/colorado/">Colorado</a></li>
-    <li><a href="/paycheck-calculator/connecticut/">Connecticut</a></li>
-    <li><a href="/paycheck-calculator/delaware/">Delaware</a></li>
-    <li><a href="/paycheck-calculator/florida/">Florida</a></li>
-    <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
-    <li><a href="/paycheck-calculator/hawaii/">Hawaii</a></li>
-    <li><a href="/paycheck-calculator/idaho/">Idaho</a></li>
-    <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
-    <li><a href="/paycheck-calculator/indiana/">Indiana</a></li>
-    <li><a href="/paycheck-calculator/iowa/">Iowa</a></li>
-    <li><a href="/paycheck-calculator/kansas/">Kansas</a></li>
-    <li><a href="/paycheck-calculator/kentucky/">Kentucky</a></li>
-    <li><a href="/paycheck-calculator/louisiana/">Louisiana</a></li>
-    <li><a href="/paycheck-calculator/maine/">Maine</a></li>
-    <li><a href="/paycheck-calculator/maryland/">Maryland</a></li>
-    <li><a href="/paycheck-calculator/massachusetts/">Massachusetts</a></li>
-    <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
-    <li><a href="/paycheck-calculator/minnesota/">Minnesota</a></li>
-    <li><a href="/paycheck-calculator/mississippi/">Mississippi</a></li>
-    <li><a href="/paycheck-calculator/missouri/">Missouri</a></li>
-    <li><a href="/paycheck-calculator/montana/">Montana</a></li>
-    <li><a href="/paycheck-calculator/nebraska/">Nebraska</a></li>
-    <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
-    <li><a href="/paycheck-calculator/new-hampshire/">New Hampshire</a></li>
-    <li><a href="/paycheck-calculator/new-jersey/">New Jersey</a></li>
-    <li><a href="/paycheck-calculator/new-mexico/">New Mexico</a></li>
-    <li><a href="/paycheck-calculator/new-york/">New York</a></li>
-    <li><a href="/paycheck-calculator/north-carolina/">North Carolina</a></li>
-    <li><a href="/paycheck-calculator/north-dakota/">North Dakota</a></li>
-    <li><a href="/paycheck-calculator/ohio/">Ohio</a></li>
-    <li><a href="/paycheck-calculator/oklahoma/">Oklahoma</a></li>
-    <li><a href="/paycheck-calculator/oregon/">Oregon</a></li>
-    <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
-    <li><a href="/paycheck-calculator/rhode-island/">Rhode Island</a></li>
-    <li><a href="/paycheck-calculator/south-carolina/">South Carolina</a></li>
-    <li><a href="/paycheck-calculator/south-dakota/">South Dakota</a></li>
-    <li><a href="/paycheck-calculator/tennessee/">Tennessee</a></li>
-    <li><a href="/paycheck-calculator/texas/">Texas</a></li>
-    <li><a href="/paycheck-calculator/utah/">Utah</a></li>
-    <li><a href="/paycheck-calculator/vermont/">Vermont</a></li>
-    <li><a href="/paycheck-calculator/virginia/">Virginia</a></li>
-    <li><a href="/paycheck-calculator/washington/">Washington</a></li>
-    <li><a href="/paycheck-calculator/west-virginia/">West Virginia</a></li>
-    <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
-    <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
-  </ul>
-
-
-<h2>Frequently asked questions</h2>
+<h2 id="faq">Frequently asked questions</h2>
 
 <div class="faq">
 
-<h3>How much of my paycheck goes to taxes?</h3>
-<p>For a single filer on an average US salary, total withholding usually lands between about 18 and
-30&nbsp;percent of gross pay. The federal portion and FICA are the same everywhere; the spread
-comes almost entirely from the state.</p>
+      <details class="faq-item" open>
+        <summary><h3>How much of my paycheck goes to taxes?</h3></summary>
+        <div class="faq-r">
+          <p>On a $75,000 salary, a single filer loses about 18 to 25 percent of gross pay to federal income tax, FICA and state tax, depending on the state (see the table above). Higher salaries lose a larger share. The federal portion and FICA are the same everywhere; the spread comes almost entirely from the state.</p>
+        </div>
+      </details>
 
-<h3>Which states have no income tax in 2026?</h3>
-<p>Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington and Wyoming
-&mdash; nine in total. None of them tax wages.</p>
+      <details class="faq-item">
+        <summary><h3>Which states have no income tax in 2026?</h3></summary>
+        <div class="faq-r">
+          <p>Washington, Nevada, Texas, Tennessee, Florida, Alaska, Wyoming, New Hampshire, and South Dakota &mdash; nine in total. None of them tax wages.</p>
+        </div>
+      </details>
 
-<h3>Does living in a no-income-tax state mean nothing comes out of my paycheck?</h3>
-<p>No. Federal income tax, Social Security and Medicare are withheld in every state, and several
-no-income-tax states run payroll programs of their own. Washington withholds Paid Family and
-Medical Leave and WA Cares from every check.</p>
+      <details class="faq-item">
+        <summary><h3>Does living in a no-income-tax state mean nothing comes out of my paycheck?</h3></summary>
+        <div class="faq-r">
+          <p>No. Federal income tax, Social Security and Medicare are withheld in every state, and some no-income-tax states run payroll programs of their own. Washington withholds Paid Family and Medical Leave and WA Cares from every check, and Alaska withholds unemployment insurance from employees.</p>
+        </div>
+      </details>
 
-<h3>Which state taxes my pay if I live in one state and work in another?</h3>
-<p>Usually both have a claim. The state where you work taxes the income earned there; your home
-state taxes your worldwide income and then credits the tax you already paid elsewhere. Some
-neighboring states have reciprocity agreements that let you be taxed only at home. This is the
-case where a simple calculator is least reliable and a professional is genuinely worth paying.</p>
+      <details class="faq-item">
+        <summary><h3>Which state taxes my pay if I live in one state and work in another?</h3></summary>
+        <div class="faq-r">
+          <p>Usually both have a claim. The state where you work taxes the income earned there; your home state taxes your worldwide income and then credits the tax you already paid elsewhere. Some neighboring states have reciprocity agreements that let you be taxed only at home. This is the case where a simple calculator is least reliable and a professional is genuinely worth paying for.</p>
+        </div>
+      </details>
 
-<h3>Why does my real pay stub differ from the calculator?</h3>
-<p>Withholding is a running estimate your employer makes from your W-4; our figure estimates
-liability on a simplified wage situation. Pre-tax 401(k), HSA and health premiums, tax credits,
-itemized deductions, a second job and local taxes all move the real number. Treat a few percent of
-difference as normal, and see the <a href="/disclaimer/">disclaimer</a> for the full list.</p>
+      <details class="faq-item">
+        <summary><h3>Why does my real pay stub differ from the calculator?</h3></summary>
+        <div class="faq-r">
+          <p>Withholding is a running estimate your employer makes from your W-4; our figure is a simplified estimate of what you owe on wages alone. Pre-tax 401(k), HSA and health premiums, tax credits, itemized deductions, a second job and local taxes all move the real number. A difference of a few percent is normal. See the <a href="/disclaimer/">disclaimer</a> for the full list.</p>
+        </div>
+      </details>
 
-<h3>Are these calculators free, and is there a catch?</h3>
-<p>Free, with no sign-up and no email capture. Salary figures you type are processed in your
-browser and never sent anywhere &mdash; see the <a href="/privacy/">privacy policy</a> for what our
-analytics do and do not collect.</p>
+      <details class="faq-item">
+        <summary><h3>Are these calculators free, and is there a catch?</h3></summary>
+        <div class="faq-r">
+          <p>Free, with no sign-up and no email capture. The pay you type is processed in your browser and never sent anywhere &mdash; see the <a href="/privacy/">privacy policy</a> for what our analytics do and do not collect.</p>
+        </div>
+      </details>
+</div>
+
+<h2 id="states">Pick your state</h2>
+
+<ul class="chips">
+  <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
+  <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
+  <li><a href="/paycheck-calculator/arizona/">Arizona</a></li>
+  <li><a href="/paycheck-calculator/arkansas/">Arkansas</a></li>
+  <li><a href="/paycheck-calculator/california/">California</a></li>
+  <li><a href="/paycheck-calculator/colorado/">Colorado</a></li>
+  <li><a href="/paycheck-calculator/connecticut/">Connecticut</a></li>
+  <li><a href="/paycheck-calculator/delaware/">Delaware</a></li>
+  <li><a href="/paycheck-calculator/florida/">Florida</a></li>
+  <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
+  <li><a href="/paycheck-calculator/hawaii/">Hawaii</a></li>
+  <li><a href="/paycheck-calculator/idaho/">Idaho</a></li>
+  <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
+  <li><a href="/paycheck-calculator/indiana/">Indiana</a></li>
+  <li><a href="/paycheck-calculator/iowa/">Iowa</a></li>
+  <li><a href="/paycheck-calculator/kansas/">Kansas</a></li>
+  <li><a href="/paycheck-calculator/kentucky/">Kentucky</a></li>
+  <li><a href="/paycheck-calculator/louisiana/">Louisiana</a></li>
+  <li><a href="/paycheck-calculator/maine/">Maine</a></li>
+  <li><a href="/paycheck-calculator/maryland/">Maryland</a></li>
+  <li><a href="/paycheck-calculator/massachusetts/">Massachusetts</a></li>
+  <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
+  <li><a href="/paycheck-calculator/minnesota/">Minnesota</a></li>
+  <li><a href="/paycheck-calculator/mississippi/">Mississippi</a></li>
+  <li><a href="/paycheck-calculator/missouri/">Missouri</a></li>
+  <li><a href="/paycheck-calculator/montana/">Montana</a></li>
+  <li><a href="/paycheck-calculator/nebraska/">Nebraska</a></li>
+  <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
+  <li><a href="/paycheck-calculator/new-hampshire/">New Hampshire</a></li>
+  <li><a href="/paycheck-calculator/new-jersey/">New Jersey</a></li>
+  <li><a href="/paycheck-calculator/new-mexico/">New Mexico</a></li>
+  <li><a href="/paycheck-calculator/new-york/">New York</a></li>
+  <li><a href="/paycheck-calculator/north-carolina/">North Carolina</a></li>
+  <li><a href="/paycheck-calculator/north-dakota/">North Dakota</a></li>
+  <li><a href="/paycheck-calculator/ohio/">Ohio</a></li>
+  <li><a href="/paycheck-calculator/oklahoma/">Oklahoma</a></li>
+  <li><a href="/paycheck-calculator/oregon/">Oregon</a></li>
+  <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
+  <li><a href="/paycheck-calculator/rhode-island/">Rhode Island</a></li>
+  <li><a href="/paycheck-calculator/south-carolina/">South Carolina</a></li>
+  <li><a href="/paycheck-calculator/south-dakota/">South Dakota</a></li>
+  <li><a href="/paycheck-calculator/tennessee/">Tennessee</a></li>
+  <li><a href="/paycheck-calculator/texas/">Texas</a></li>
+  <li><a href="/paycheck-calculator/utah/">Utah</a></li>
+  <li><a href="/paycheck-calculator/vermont/">Vermont</a></li>
+  <li><a href="/paycheck-calculator/virginia/">Virginia</a></li>
+  <li><a href="/paycheck-calculator/washington/">Washington</a></li>
+  <li><a href="/paycheck-calculator/west-virginia/">West Virginia</a></li>
+  <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
+  <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
+</ul>
 
 </div>
 
-</div>
-
-<p class="dates">Published <time datetime="2026-08-27">August 27, 2026</time>. Last updated <time datetime="2026-10-21">October 21, 2026</time>. Federal rate data verified
+<p class="dates">Published <time datetime="2026-08-27">August 27, 2026</time>. Last updated <time datetime="2026-10-27">October 27, 2026</time>. Federal rate data verified
 August 22, 2026; next scheduled review January 15, 2027.</p>
 
 <p class="disclaimer">
@@ -578,40 +576,6 @@ August 22, 2026; next scheduled review January 15, 2027.</p>
 </p>
 
 </div>
-<aside class="colonne" aria-label="Related calculators">
-    <section class="col-bloc">
-      <h2 class="col-titre">Other states</h2>
-      <ul>
-        <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
-        <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
-        <li><a href="/paycheck-calculator/arizona/">Arizona</a></li>
-        <li><a href="/paycheck-calculator/arkansas/">Arkansas</a></li>
-        <li><a href="/paycheck-calculator/california/">California</a></li>
-        <li><a href="/paycheck-calculator/colorado/">Colorado</a></li>
-        <li><a href="/paycheck-calculator/connecticut/">Connecticut</a></li>
-        <li><a href="/paycheck-calculator/delaware/">Delaware</a></li>
-      </ul>
-    </section>
-    <section class="col-bloc">
-      <h2 class="col-titre">More calculators</h2>
-      <ul>
-        <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
-        <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
-        <li><a href="/state-comparison/">Compare two states</a></li>
-        <li><a href="/75000-salary-take-home-pay-by-state/">$75,000 by state</a></li>
-        <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour a year</a></li>
-        <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
-        <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
-      </ul>
-    </section>
-    <section class="col-bloc col-note">
-      <h2 class="col-titre">How these figures are made</h2>
-      <p>Every rate is read from the agency that sets it, and published with the
-      date it was checked. Nothing you type leaves your browser.</p>
-      <a href="/methodology/">Read the methodology &rarr;</a>
-    </section>
-</aside>
-
 </main>
 
 <footer class="site-footer">
@@ -711,6 +675,9 @@ August 22, 2026; next scheduled review January 15, 2027.</p>
   </div>
   <script src="/assets/accordeon.js" defer></script>
 </footer>
+<script src="/data/rates-2026.min.js" defer></script>
+<script src="/assets/calc-paycheck.js" defer></script>
+<script src="/assets/national.js" defer></script>
 
 </body>
 </html>
