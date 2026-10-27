@@ -1239,7 +1239,7 @@ main a.btn { text-decoration: none; }
    masque l'est deja sur mobile (aide des champs) ou est un simple lien d'ancre.
    Sous 1100 px : aucune de ces regles ne s'applique. */
 .verif { margin: 0 0 var(--s-3); font-size: 14px; line-height: 1.45; color: var(--text-secondary); }
-.verif a { font-weight: 600; }
+.verif a { font-weight: 600; white-space: nowrap; }
 
 @media (min-width: 1100px) {
   main.layout-2col { padding-block: var(--s-6); margin-block: var(--s-4); }
@@ -1367,4 +1367,39 @@ main a.btn { text-decoration: none; }
   main.layout-2col .result-pied .compare-cta { margin: 0; }
   main.layout-2col .result-pied .result-actions { margin: 0; }
   main.layout-2col .result-pied .btn { min-height: 40px; padding-inline: var(--s-4); }
+}
+
+/* ======================================================================
+   DESKTOP 2 COLONNES, variante « plate » (27/10/2026) : les cinq pages sans impot d'Etat
+   (Alaska, New Hampshire, South Dakota, Tennessee, Wyoming) n'ont pas de <section
+   aria-labelledby="calc-h"> : titre, formulaire, resultat et legende sont des enfants directs de
+   .col-contenu. Elles portent main.layout-2col.layout-flat. Meme rendu que les autres pages :
+   trois colonnes de grille (formulaire = 53,5 % de la largeur, resultat = le reste moins la
+   colonne de 260 px, TOC = 260 px) et des lignes explicites. Sous 1100 px : rien. */
+@media (min-width: 1100px) {
+  main.layout-2col.layout-flat {
+    grid-template-columns: calc((100% - var(--s-6)) * .535) minmax(0, 1fr) 260px;
+    column-gap: var(--s-6);
+  }
+  main.layout-2col.layout-flat .col-contenu > * { grid-column: 1 / span 2; }
+  main.layout-2col.layout-flat .col-contenu > .crumbs,
+  main.layout-2col.layout-flat .col-contenu > h1,
+  main.layout-2col.layout-flat .col-contenu > .verif,
+  main.layout-2col.layout-flat .col-contenu > .answer { grid-column: 1 / -1; }
+  main.layout-2col.layout-flat .col-contenu > #calc-h {
+    grid-column: 1 / -1; grid-row: 5; font-size: 20px; margin: 0 0 var(--s-2);
+  }
+  main.layout-2col.layout-flat .col-contenu > form.calc { grid-column: 1; grid-row: 6; padding: var(--s-3) var(--s-4); }
+  main.layout-2col.layout-flat .col-contenu > .result[data-paycheck-result] {
+    grid-column: 2 / -1; grid-row: 6; margin-top: 0; min-height: 330px;
+    padding: var(--s-4) var(--s-6);
+    position: static;   /* sticky borne au conteneur de grille entier ici : il glisserait sur la TOC (releve par verif-chevauchement-toc.js) */
+  }
+  main.layout-2col.layout-flat .col-contenu > .result + .caption { grid-column: 1 / -1; grid-row: 7; margin: var(--s-3) 0 0; }
+  main.layout-2col.layout-flat .col-contenu > .box-neutre {
+    grid-column: 1 / -1; grid-row: 8; margin-top: var(--s-4);
+    padding: var(--s-3) var(--s-4); font-size: 15px;
+  }
+  main.layout-2col.layout-flat .col-contenu > .toc { grid-column: 3; grid-row: 9 / span 14; }
+  main.layout-2col.layout-flat > .colonne { grid-column: 1 / span 2; }
 }

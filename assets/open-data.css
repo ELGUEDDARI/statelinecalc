@@ -1,0 +1,67 @@
+/* statelinecalc.com - pages /open-data/ et /corrections/ (27/10/2026)
+   Fichier a part pour ne pas toucher assets/style.css. Aucun attribut style en ligne (CSP).
+   Couleurs = jetons de style.css, contrastes inchanges. Une regle par classe utilisee
+   (audit-silencieux). Le defilement est DANS les cadres, jamais dans la page. */
+
+/* Pas de colonne laterale : le contenu prend toute la largeur de l'enveloppe. */
+main.wrap.od { min-width: 0; }
+@media (min-width: 1100px) {
+  main.wrap.od { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Fiche d'identite du jeu : 5 repères en ligne, qui passent a la ligne sur mobile. */
+.od-facts { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6); margin: var(--s-4) 0 0; padding: var(--s-3) var(--s-4);
+  background: var(--surface-sunken); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); }
+.od-facts > div { min-width: 0; }
+.od-facts dt { font-size: 14px; color: var(--text-muted); }
+.od-facts dd { margin: 0; font-weight: 600; color: var(--text-primary); }
+
+/* Les deux fichiers : une colonne sur mobile, deux sur ordinateur. */
+.od-cards { display: grid; gap: var(--s-4); }
+@media (min-width: 768px) { .od-cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.od-card { min-width: 0; padding: var(--s-4); background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--radius-md); }
+.od-card h3 { margin-top: 0; }
+.od-card p { margin: 0 0 var(--s-3); }
+.od-card .btn { min-height: 44px; display: inline-flex; align-items: center; }
+.od-meta { font-size: 14px; color: var(--text-secondary); }
+.od-hash { font-size: 13px; color: var(--text-muted); margin-bottom: 0; }
+.od-hash code { display: block; margin-top: var(--s-1); overflow-wrap: anywhere; font-family: var(--font-mono); color: var(--text-secondary); }
+
+/* Tableaux : defilent dans leur cadre, en-tete fige. */
+.od-box { overflow: auto; max-height: 520px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface); margin: var(--s-3) 0; }
+.od-box:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.od-table { min-width: 520px; font-size: 14px; }
+.od-table thead th { position: sticky; top: 0; z-index: 1; }
+.od-table th, .od-table td { padding: var(--s-2) var(--s-3); vertical-align: top; }
+.od-table tbody th { text-align: left; font-weight: 600; background: var(--surface); }
+.od-table tbody tr:nth-child(even) th, .od-table tbody tr:nth-child(even) td { background: var(--surface-sunken); }
+.od-prev td { white-space: nowrap; }
+.od-prev td.od-left { white-space: normal; text-align: left; min-width: 220px; }
+.od-dict { min-width: 0; }
+.od-dict td { text-align: left; }
+.od-dict code { font-family: var(--font-mono); font-size: 13px; }
+
+/* Blocs a copier : defilent dans leur cadre. */
+.od-pre { margin: var(--s-2) 0 var(--s-4); padding: var(--s-3) var(--s-4); overflow-x: auto; background: var(--surface-sunken);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-md); font-size: 14px; line-height: 1.5; }
+.od-pre code { font-family: var(--font-mono); color: var(--text-primary); white-space: pre; }
+
+.od-list { margin: 0 0 var(--s-4); padding-left: var(--s-6); }
+.od-list li { margin-bottom: var(--s-2); }
+
+/* Journal des corrections : une fiche par entree. */
+.od-entry { margin: 0 0 var(--s-4); padding: var(--s-4); background: var(--surface); border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--accent); border-radius: var(--radius-md); }
+.od-entry h3 { margin: 0 0 var(--s-3); font-size: 17px; }
+.od-entry p { margin: 0 0 var(--s-2); }
+.od-entry dl { margin: 0; }
+.od-entry dt { font-size: 14px; font-weight: 600; color: var(--text-muted); margin-top: var(--s-3); }
+.od-entry dt:first-child { margin-top: 0; }
+.od-entry dd { margin: 0; }
+.od-entry code { font-family: var(--font-mono); font-size: 14px; }
+
+/* Enveloppe nommee (min-width: 0 empeche un enfant de grille de forcer la largeur de la page). */
+.od { min-width: 0; }
+
+/* En-tetes de colonnes de texte alignes a gauche (th est a droite par defaut dans style.css). */
+.od-dict thead th, .od-prev thead th:nth-child(2) { text-align: left; }

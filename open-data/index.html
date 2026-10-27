@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.google-analytics.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="/assets/analytics.js" defer></script>
+<title>Open Data: 2026 Payroll Withholding by State (CSV)</title>
+<meta name="description" content="Free CSV data sets, CC BY 4.0: what each US state withholds from employee pay besides income tax, plus 2026 take-home pay at five salaries. Every rate sourced.">
+<link rel="canonical" href="https://statelinecalc.com/open-data/">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0F172A">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/open-data.css">
+
+<meta property="og:title" content="Open Data: 2026 Payroll Withholding by State (CSV)">
+<meta property="og:site_name" content="StateLine Calc">
+<meta name="application-name" content="StateLine Calc">
+<meta property="og:description" content="Two free CSV data sets under CC BY 4.0: payroll withholding by state and take-home pay at five salaries, with official sources and dates.">
+<meta property="og:url" content="https://statelinecalc.com/open-data/">
+<meta property="og:image" content="https://statelinecalc.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://statelinecalc.com/open-data/#page",
+      "name": "Open data: payroll withholding by state, 2026",
+      "url": "https://statelinecalc.com/open-data/",
+      "datePublished": "2026-10-27",
+      "dateModified": "2026-10-27",
+      "inLanguage": "en-US",
+      "description": "Two open CSV data sets (CC BY 4.0) on what US employees have withheld from their pay, state by state, for tax year 2026.",
+      "hasPart": [
+        {
+          "@id": "https://statelinecalc.com/open-data/#withholding"
+        },
+        {
+          "@id": "https://statelinecalc.com/open-data/#net-pay"
+        }
+      ],
+      "publisher": {
+        "@id": "https://statelinecalc.com/#organization"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://statelinecalc.com/open-data/#withholding",
+      "name": "Employee payroll withholding by U.S. state, tax year 2026",
+      "description": "Employee-paid payroll withholding other than income tax in all 50 US states for tax year 2026: Social Security, Medicare, paid family and medical leave, disability, long-term care, transit and employee-paid unemployment insurance, each with its rate, wage cap and official source. 60 rows.",
+      "url": "https://statelinecalc.com/open-data/",
+      "identifier": "statelinecalc-withholding-2026.1",
+      "version": "2026.1",
+      "datePublished": "2026-10-27",
+      "dateModified": "2026-10-27",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "isAccessibleForFree": true,
+      "inLanguage": "en-US",
+      "keywords": [
+        "payroll withholding",
+        "FICA",
+        "paid family leave",
+        "state disability insurance",
+        "WA Cares",
+        "employee payroll taxes",
+        "United States",
+        "2026"
+      ],
+      "temporalCoverage": "2026",
+      "spatialCoverage": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "creator": {
+        "@id": "https://statelinecalc.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://statelinecalc.com/#organization"
+      },
+      "citation": "StateLine Calc. (2026). Employee payroll withholding by U.S. state, tax year 2026 (Version 2026.1) [Data set]. https://statelinecalc.com/open-data/",
+      "variableMeasured": [
+        {
+          "@type": "PropertyValue",
+          "name": "scope"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "state"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "state_abbr"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "program"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "category"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "in_calculator_net"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "rate_percent"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "wage_cap_usd_per_year"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "flat_amount_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "flat_basis"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "max_per_year_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "source_url"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "source_checked_on"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "state_page_url"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "notes"
+        }
+      ],
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "text/csv",
+          "contentUrl": "https://statelinecalc.com/data/employee-payroll-withholding-by-state-2026.csv",
+          "contentSize": "16115 B",
+          "sha256": "9fe6b3177774a2291dcbfb85d686ded88d96fb14a7a98525d596c157d45e27c8"
+        }
+      ],
+      "size": "60 rows"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://statelinecalc.com/open-data/#net-pay",
+      "name": "Take-home pay by U.S. state at five salaries, tax year 2026",
+      "description": "Annual take-home pay for a single filer at five salaries ($40,000 to $150,000) in all 50 US states for tax year 2026, with federal income tax, Social Security, Medicare, state income tax and state payroll programs shown separately. 250 rows.",
+      "url": "https://statelinecalc.com/open-data/",
+      "identifier": "statelinecalc-net-pay-2026.1",
+      "version": "2026.1",
+      "datePublished": "2026-10-27",
+      "dateModified": "2026-10-27",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "isAccessibleForFree": true,
+      "inLanguage": "en-US",
+      "keywords": [
+        "take-home pay",
+        "net pay by state",
+        "paycheck",
+        "income tax by state",
+        "United States",
+        "2026"
+      ],
+      "temporalCoverage": "2026",
+      "spatialCoverage": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "creator": {
+        "@id": "https://statelinecalc.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://statelinecalc.com/#organization"
+      },
+      "citation": "StateLine Calc. (2026). Take-home pay by U.S. state at five salaries, tax year 2026 (Version 2026.1) [Data set]. https://statelinecalc.com/open-data/",
+      "variableMeasured": [
+        {
+          "@type": "PropertyValue",
+          "name": "state"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "state_abbr"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "gross_salary_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "filing_status"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "federal_income_tax_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "social_security_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "medicare_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "state_income_tax_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "county_income_tax_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "state_payroll_programs_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "total_withheld_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "net_annual_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "net_monthly_usd"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "state_page_url"
+        }
+      ],
+      "distribution": [
+        {
+          "@type": "DataDownload",
+          "encodingFormat": "text/csv",
+          "contentUrl": "https://statelinecalc.com/data/net-pay-by-state-2026.csv",
+          "contentSize": "37822 B",
+          "sha256": "4cf635e7902b1c6eed21919b84a3dc26e3f266734568dc4332b0eb19ce9c02ce"
+        }
+      ],
+      "size": "250 rows"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://statelinecalc.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Open data",
+          "item": "https://statelinecalc.com/open-data/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://statelinecalc.com/#organization",
+      "name": "StateLine Calc",
+      "alternateName": "StateLineCalc",
+      "url": "https://statelinecalc.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://statelinecalc.com/assets/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "StateLine Calc publishes free US paycheck and take-home pay calculators, state by state, for tax year 2026. Every rate is read from the agency that sets it and published with the date it was checked. Figures typed into a calculator never leave the visitor's browser.",
+      "foundingDate": "2026-08-22",
+      "knowsAbout": [
+        "US payroll taxes",
+        "State income tax",
+        "Take-home pay",
+        "Federal income tax brackets",
+        "FICA",
+        "Salary to hourly conversion"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><svg class="brand-mark" width="22" height="22" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#FFFFFF"/><rect x="30" y="10" width="4" height="44" rx="2" fill="#2563EB"/><rect x="12" y="34" width="12" height="20" rx="2" fill="#0A2A5E"/><rect x="40" y="22" width="12" height="32" rx="2" fill="#0A2A5E"/></svg>StateLine Calc</a>
+    <div class="site-nav-group">
+      <nav class="site-nav" aria-label="Main">
+        <div class="nav-item nav-item-deroule">
+          <a href="/paycheck-calculator/">Paycheck<span class="nav-chevron" aria-hidden="true">&#9662;</span></a>
+          <div class="nav-panneau">
+            <p class="nav-panneau-titre">Paycheck by state</p>
+            <ul>
+              <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
+              <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
+              <li><a href="/paycheck-calculator/arizona/">Arizona</a></li>
+              <li><a href="/paycheck-calculator/arkansas/">Arkansas</a></li>
+              <li><a href="/paycheck-calculator/california/">California</a></li>
+              <li><a href="/paycheck-calculator/colorado/">Colorado</a></li>
+              <li><a href="/paycheck-calculator/connecticut/">Connecticut</a></li>
+              <li><a href="/paycheck-calculator/delaware/">Delaware</a></li>
+              <li><a href="/paycheck-calculator/florida/">Florida</a></li>
+              <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
+              <li><a href="/paycheck-calculator/hawaii/">Hawaii</a></li>
+              <li><a href="/paycheck-calculator/idaho/">Idaho</a></li>
+              <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
+              <li><a href="/paycheck-calculator/indiana/">Indiana</a></li>
+              <li><a href="/paycheck-calculator/iowa/">Iowa</a></li>
+              <li><a href="/paycheck-calculator/kansas/">Kansas</a></li>
+              <li><a href="/paycheck-calculator/kentucky/">Kentucky</a></li>
+              <li><a href="/paycheck-calculator/louisiana/">Louisiana</a></li>
+              <li><a href="/paycheck-calculator/maine/">Maine</a></li>
+              <li><a href="/paycheck-calculator/maryland/">Maryland</a></li>
+              <li><a href="/paycheck-calculator/massachusetts/">Massachusetts</a></li>
+              <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
+              <li><a href="/paycheck-calculator/minnesota/">Minnesota</a></li>
+              <li><a href="/paycheck-calculator/mississippi/">Mississippi</a></li>
+              <li><a href="/paycheck-calculator/missouri/">Missouri</a></li>
+              <li><a href="/paycheck-calculator/montana/">Montana</a></li>
+              <li><a href="/paycheck-calculator/nebraska/">Nebraska</a></li>
+              <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
+              <li><a href="/paycheck-calculator/new-hampshire/">New Hampshire</a></li>
+              <li><a href="/paycheck-calculator/new-jersey/">New Jersey</a></li>
+              <li><a href="/paycheck-calculator/new-mexico/">New Mexico</a></li>
+              <li><a href="/paycheck-calculator/new-york/">New York</a></li>
+              <li><a href="/paycheck-calculator/north-carolina/">North Carolina</a></li>
+              <li><a href="/paycheck-calculator/north-dakota/">North Dakota</a></li>
+              <li><a href="/paycheck-calculator/ohio/">Ohio</a></li>
+              <li><a href="/paycheck-calculator/oklahoma/">Oklahoma</a></li>
+              <li><a href="/paycheck-calculator/oregon/">Oregon</a></li>
+              <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
+              <li><a href="/paycheck-calculator/rhode-island/">Rhode Island</a></li>
+              <li><a href="/paycheck-calculator/south-carolina/">South Carolina</a></li>
+              <li><a href="/paycheck-calculator/south-dakota/">South Dakota</a></li>
+              <li><a href="/paycheck-calculator/tennessee/">Tennessee</a></li>
+              <li><a href="/paycheck-calculator/texas/">Texas</a></li>
+              <li><a href="/paycheck-calculator/utah/">Utah</a></li>
+              <li><a href="/paycheck-calculator/vermont/">Vermont</a></li>
+              <li><a href="/paycheck-calculator/virginia/">Virginia</a></li>
+              <li><a href="/paycheck-calculator/washington/">Washington</a></li>
+              <li><a href="/paycheck-calculator/west-virginia/">West Virginia</a></li>
+              <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
+              <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
+            </ul>
+            <a class="nav-panneau-tout" href="/paycheck-calculator/">See all &rarr;</a>
+          </div>
+        </div>
+        <div class="nav-item nav-item-deroule">
+          <a href="/salary-to-hourly-calculator/">Salary&nbsp;to&nbsp;Hourly<span class="nav-chevron" aria-hidden="true">&#9662;</span></a>
+          <div class="nav-panneau">
+            <p class="nav-panneau-titre">Salary&nbsp;to&nbsp;Hourly by state</p>
+            <ul>
+              <li><a href="/salary-to-hourly-calculator/florida/">Florida</a></li>
+              <li><a href="/salary-to-hourly-calculator/georgia/">Georgia</a></li>
+              <li><a href="/salary-to-hourly-calculator/illinois/">Illinois</a></li>
+              <li><a href="/salary-to-hourly-calculator/michigan/">Michigan</a></li>
+              <li><a href="/salary-to-hourly-calculator/nevada/">Nevada</a></li>
+              <li><a href="/salary-to-hourly-calculator/pennsylvania/">Pennsylvania</a></li>
+              <li><a href="/salary-to-hourly-calculator/texas/">Texas</a></li>
+              <li><a href="/salary-to-hourly-calculator/washington/">Washington</a></li>
+            </ul>
+            <a class="nav-panneau-tout" href="/salary-to-hourly-calculator/">See all &rarr;</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="/methodology/">Methodology</a></div>
+      </nav>
+      <a class="btn btn-header" href="/paycheck-calculator/">All states</a>
+    </div>
+    <details class="menu-mobile">
+      <summary>Menu</summary>
+      <nav class="menu-mobile-liste" aria-label="Main menu">
+          <a href="/paycheck-calculator/">Paycheck</a>
+          <a href="/salary-to-hourly-calculator/">Salary&nbsp;to&nbsp;Hourly</a>
+          <a href="/methodology/">Methodology</a>
+          <a href="/paycheck-calculator/">All states</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main class="wrap od">
+<div class="col-contenu">
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li aria-current="page">Open data</li>
+  </ol>
+</nav>
+
+<h1>Open Data: Payroll Withholding by State, 2026</h1>
+
+<div class="answer">
+  <p>Two free CSV files for tax year 2026. One lists what each state takes from an employee&rsquo;s pay
+  <em>besides</em> income tax. The other gives take-home pay at five salaries in all 50 states.
+  Both are licensed CC BY 4.0, built from the same rates as our calculators, and every rate links to an
+  official source.</p>
+</div>
+
+<dl class="od-facts">
+  <div><dt>Version</dt><dd>2026.1</dd></div>
+  <div><dt>Tax year</dt><dd>2026</dd></div>
+  <div><dt>Coverage</dt><dd>50 states</dd></div>
+  <div><dt>License</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/" rel="license">CC BY 4.0</a></dd></div>
+  <div><dt>Updated</dt><dd><time datetime="2026-10-27">October 27, 2026</time></dd></div>
+</dl>
+
+<h2 id="download">Download</h2>
+
+<div class="od-cards">
+  <section class="od-card" aria-labelledby="f1-h">
+    <h3 id="f1-h">1. Payroll withholding by state</h3>
+    <p>Social Security, Medicare, paid leave, disability, long-term care, transit and employee-paid
+    unemployment insurance. Rate, wage cap, yearly maximum and source for each.</p>
+    <p class="od-meta">60 rows &middot; CSV, UTF-8 &middot; 15.7 KB</p>
+    <p><a class="btn btn-primary" href="/data/employee-payroll-withholding-by-state-2026.csv" download>Download CSV</a></p>
+    <p class="od-hash"><span>SHA-256</span> <code>9fe6b3177774a2291dcbfb85d686ded88d96fb14a7a98525d596c157d45e27c8</code></p>
+  </section>
+  <section class="od-card" aria-labelledby="f2-h">
+    <h3 id="f2-h">2. Take-home pay by state</h3>
+    <p>A single filer at $40,000, $60,000, $75,000, $100,000 and $150,000. Federal tax, FICA, state tax and
+    state programs shown separately.</p>
+    <p class="od-meta">250 rows &middot; CSV, UTF-8 &middot; 36.9 KB</p>
+    <p><a class="btn btn-primary" href="/data/net-pay-by-state-2026.csv" download>Download CSV</a></p>
+    <p class="od-hash"><span>SHA-256</span> <code>4cf635e7902b1c6eed21919b84a3dc26e3f266734568dc4332b0eb19ce9c02ce</code></p>
+  </section>
+</div>
+
+<h2 id="what">What is in file 1</h2>
+
+<p>Most state tax tables stop at income tax. File 1 covers the rest of the paycheck. 14 states
+have at least one employee-paid program in our calculators, 20 programs in all. 34 states show
+<em>None modeled</em> and link to the state page with its sources. Hawaii and New Mexico list items our calculators do not subtract (see the note under the table).</p>
+
+<div class="od-box" tabindex="0" role="region" aria-label="Preview of file 1, scrollable">
+<table class="od-table od-prev">
+  <caption class="visually-hidden">Employee-paid state payroll programs in file 1, tax year 2026</caption>
+  <thead><tr><th scope="col">State</th><th scope="col">Program</th><th scope="col">Rate</th><th scope="col">Wage cap</th><th scope="col">Most per year</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Alaska</th><td class="od-left">AK Unemployment Insurance</td><td>0.5%</td><td>$54,200</td><td>$271.00</td></tr>
+    <tr><th scope="row">California</th><td class="od-left">California State Disability Insurance</td><td>1.3%</td><td>none</td><td>&mdash;</td></tr>
+    <tr><th scope="row">Colorado</th><td class="od-left">CO FAMLI</td><td>0.44%</td><td>$184,500</td><td>$811.80</td></tr>
+    <tr><th scope="row">Connecticut</th><td class="od-left">CT Paid Leave</td><td>0.5%</td><td>$184,500</td><td>$922.50</td></tr>
+    <tr><th scope="row">Delaware</th><td class="od-left">DE paid leave</td><td>0.4%</td><td>$184,500</td><td>$738.00</td></tr>
+    <tr><th scope="row">Maine</th><td class="od-left">Maine Paid Family &amp; Medical Leave</td><td>0.5%</td><td>$184,500</td><td>$922.50</td></tr>
+    <tr><th scope="row">Massachusetts</th><td class="od-left">MA paid family and medical leave</td><td>0.46%</td><td>$184,500</td><td>$848.70</td></tr>
+    <tr><th scope="row">Minnesota</th><td class="od-left">MN paid leave</td><td>0.44%</td><td>$184,500</td><td>$811.80</td></tr>
+    <tr><th scope="row">New Jersey</th><td class="od-left">NJ unemployment and workforce</td><td>0.425%</td><td>$44,800</td><td>$190.40</td></tr>
+    <tr><th scope="row">New Jersey</th><td class="od-left">NJ disability insurance</td><td>0.19%</td><td>$171,100</td><td>$325.09</td></tr>
+    <tr><th scope="row">New Jersey</th><td class="od-left">NJ family leave insurance</td><td>0.23%</td><td>$171,100</td><td>$393.53</td></tr>
+    <tr><th scope="row">New York</th><td class="od-left">New York Paid Family Leave</td><td>0.432%</td><td>$95,349</td><td>$411.91</td></tr>
+    <tr><th scope="row">New York</th><td class="od-left">New York Disability Insurance</td><td>0.5%</td><td>$6,240</td><td>$31.20</td></tr>
+    <tr><th scope="row">Oregon</th><td class="od-left">OR statewide transit tax</td><td>0.1%</td><td>none</td><td>&mdash;</td></tr>
+    <tr><th scope="row">Oregon</th><td class="od-left">Paid Leave Oregon</td><td>0.6%</td><td>$184,500</td><td>$1,107.00</td></tr>
+    <tr><th scope="row">Oregon</th><td class="od-left">OR Workers' Benefit Fund</td><td>$0.009 per hour worked</td><td>none</td><td>$18.72</td></tr>
+    <tr><th scope="row">Pennsylvania</th><td class="od-left">PA Unemployment</td><td>0.07%</td><td>none</td><td>&mdash;</td></tr>
+    <tr><th scope="row">Rhode Island</th><td class="od-left">RI TDI/TCI</td><td>1.1%</td><td>$100,000</td><td>$1,100.00</td></tr>
+    <tr><th scope="row">Washington</th><td class="od-left">Paid Family and Medical Leave (employee share)</td><td>0.807159%</td><td>$184,500</td><td>$1,489.21</td></tr>
+    <tr><th scope="row">Washington</th><td class="od-left">WA Cares Fund (long-term care)</td><td>0.58%</td><td>none</td><td>&mdash;</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="micro">Optional items an employer <em>may</em> withhold (Hawaii) and a small fixed fee we do not
+model (New Mexico) are in the file with <code>in_calculator_net</code> set to <code>no</code>.</p>
+
+<h2 id="dictionary">Column dictionary</h2>
+
+<h3>File 1: payroll withholding</h3>
+<div class="od-box" tabindex="0" role="region" aria-label="Column dictionary, scrollable">
+<table class="od-table od-dict">
+  <thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>scope</code></th><td>federal (same in every state) or state.</td></tr>
+    <tr><th scope="row"><code>state, state_abbr</code></th><td>State name and postal abbreviation. Federal rows use All states and US.</td></tr>
+    <tr><th scope="row"><code>program</code></th><td>The withholding. One row per program per state. None modeled means the calculator withholds no employee-paid state payroll program there.</td></tr>
+    <tr><th scope="row"><code>category</code></th><td>unemployment, disability, paid_family_medical_leave, long_term_care, transit, workers_benefit, social_security, medicare, other.</td></tr>
+    <tr><th scope="row"><code>in_calculator_net</code></th><td>yes if our calculator subtracts it from take-home pay. no for optional or unmodeled items we list for completeness.</td></tr>
+    <tr><th scope="row"><code>rate_percent</code></th><td>Employee rate as a percent of wages (0.807159 means 0.807159%). For optional items, the most an employer may withhold.</td></tr>
+    <tr><th scope="row"><code>wage_cap_usd_per_year</code></th><td>Wages above this amount are not subject to the charge. Empty means no cap.</td></tr>
+    <tr><th scope="row"><code>flat_amount_usd, flat_basis</code></th><td>For programs charged as a fixed amount rather than a rate, the amount and what it is charged per.</td></tr>
+    <tr><th scope="row"><code>max_per_year_usd</code></th><td>The most one employee pays in a year, where a cap or a fixed amount makes it knowable. Empty where there is no cap.</td></tr>
+    <tr><th scope="row"><code>source_url</code></th><td>The official document that carries the rate.</td></tr>
+    <tr><th scope="row"><code>source_checked_on</code></th><td>The date we last confirmed the link loaded and still showed the figure.</td></tr>
+    <tr><th scope="row"><code>state_page_url</code></th><td>Our calculator page for the state, which names every source it uses. Federal rows point to the methodology page.</td></tr>
+    <tr><th scope="row"><code>notes</code></th><td>Context a reader needs to use the row correctly.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>File 2: take-home pay</h3>
+<div class="od-box" tabindex="0" role="region" aria-label="Column dictionary, scrollable">
+<table class="od-table od-dict">
+  <thead><tr><th scope="col">Column</th><th scope="col">Meaning</th></tr></thead>
+  <tbody>
+    <tr><th scope="row"><code>state, state_abbr</code></th><td>State name and postal abbreviation.</td></tr>
+    <tr><th scope="row"><code>gross_salary_usd</code></th><td>Annual pay before tax: 40,000, 60,000, 75,000, 100,000 or 150,000.</td></tr>
+    <tr><th scope="row"><code>filing_status</code></th><td>Always single.</td></tr>
+    <tr><th scope="row"><code>federal_income_tax_usd</code></th><td>Federal income tax after the 2026 standard deduction.</td></tr>
+    <tr><th scope="row"><code>social_security_usd, medicare_usd</code></th><td>Federal payroll taxes (FICA), employee share.</td></tr>
+    <tr><th scope="row"><code>state_income_tax_usd</code></th><td>State income tax withholding. Zero in the nine states with no wage tax.</td></tr>
+    <tr><th scope="row"><code>county_income_tax_usd</code></th><td>County income tax. Only Indiana and Maryland; the state's default county is used.</td></tr>
+    <tr><th scope="row"><code>state_payroll_programs_usd</code></th><td>Sum of the employee-paid programs in file 1 that are marked in_calculator_net = yes.</td></tr>
+    <tr><th scope="row"><code>total_withheld_usd</code></th><td>All of the above, added together.</td></tr>
+    <tr><th scope="row"><code>net_annual_usd, net_monthly_usd</code></th><td>Take-home pay per year and per month (annual divided by 12).</td></tr>
+    <tr><th scope="row"><code>state_page_url</code></th><td>Our calculator page for the state.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="cite">How to cite</h2>
+
+<h3>Plain text</h3>
+<pre class="od-pre"><code>StateLine Calc. (2026). Employee payroll withholding by U.S. state, tax year 2026 (Version 2026.1) [Data set]. https://statelinecalc.com/open-data/</code></pre>
+
+<h3>BibTeX</h3>
+<pre class="od-pre"><code>@misc{statelinecalc_withholding_2026,
+  author    = {{StateLine Calc}},
+  title     = {Employee payroll withholding by {U.S.} state, tax year 2026},
+  year      = {2026},
+  version   = {2026.1},
+  publisher = {StateLine Calc},
+  url       = {https://statelinecalc.com/open-data/},
+  note      = {Data set, CC BY 4.0}
+}</code></pre>
+
+<p>For file 2, use the title <em>Take-home pay by U.S. state at five salaries, tax year 2026</em> and the same
+address. Add the date you accessed the file.</p>
+
+<h2 id="license">License and credit</h2>
+
+<p>CC BY 4.0: copy, share, and adapt the data, including for commercial use, as long as you give credit.
+A credit line you can paste:</p>
+<pre class="od-pre"><code>Source: StateLine Calc, statelinecalc.com/open-data/ (CC BY 4.0)</code></pre>
+
+<h2 id="limits">Limits you should know</h2>
+
+<ul class="od-list">
+  <li>Take-home pay is for a <strong>single filer</strong> with no 401(k) and the standard deduction.</li>
+  <li>Local income taxes are not included, except the default county in Indiana and Maryland.</li>
+  <li>Employer-paid taxes are not included. Where a state lets employers choose how much to withhold, the
+  file uses the maximum and says so in <code>notes</code>.</li>
+  <li><em>None modeled</em> describes our calculator, not the law. Check the state page.</li>
+  <li>Rates are for 2026. Federal rates were verified <time datetime="2026-08-22">August 22, 2026</time>; each source link carries its own check date in the file, between <time datetime="2026-09-30">September 30, 2026</time> and <time datetime="2026-10-27">October 27, 2026</time>.</li>
+</ul>
+
+<h2 id="updates">Versions and corrections</h2>
+
+<p>We re-verify every rate each January; the next review is <time datetime="2027-01-15">January 15, 2027</time>. If a figure is wrong,
+the file and its version number change and the change is written up on the
+<a href="/corrections/">corrections page</a>. Method and sources:
+<a href="/methodology/">methodology</a>. To report a problem,
+<a href="/contact/">contact us</a>.</p>
+
+<p class="dates">Published <time datetime="2026-10-27">October 27, 2026</time>. Last updated <time datetime="2026-10-27">October 27, 2026</time>.</p>
+
+<p class="disclaimer">
+  StateLine Calc provides general information for educational purposes only. It is not financial,
+  tax or legal advice. Figures are estimates based on published rates.
+</p>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="pied-cols">
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Calculators</h2></summary>
+        <ul>
+          <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
+          <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
+          <li><a href="/state-comparison/">Compare two states</a></li>
+          <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour a year</a></li>
+          <li><a href="/27-an-hour-is-how-much-a-year/">$27 an hour a year</a></li>
+          <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
+          <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
+        </ul>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">States</h2></summary>
+        <ul>
+          <li><a href="/paycheck-calculator/alabama/">Alabama</a></li>
+          <li><a href="/paycheck-calculator/alaska/">Alaska</a></li>
+          <li><a href="/paycheck-calculator/arizona/">Arizona</a></li>
+          <li><a href="/paycheck-calculator/arkansas/">Arkansas</a></li>
+          <li><a href="/paycheck-calculator/california/">California</a></li>
+          <li><a href="/paycheck-calculator/colorado/">Colorado</a></li>
+          <li><a href="/paycheck-calculator/connecticut/">Connecticut</a></li>
+          <li><a href="/paycheck-calculator/delaware/">Delaware</a></li>
+          <li><a href="/paycheck-calculator/florida/">Florida</a></li>
+          <li><a href="/paycheck-calculator/georgia/">Georgia</a></li>
+          <li><a href="/paycheck-calculator/hawaii/">Hawaii</a></li>
+          <li><a href="/paycheck-calculator/idaho/">Idaho</a></li>
+          <li><a href="/paycheck-calculator/illinois/">Illinois</a></li>
+          <li><a href="/paycheck-calculator/indiana/">Indiana</a></li>
+          <li><a href="/paycheck-calculator/iowa/">Iowa</a></li>
+          <li><a href="/paycheck-calculator/kansas/">Kansas</a></li>
+          <li><a href="/paycheck-calculator/kentucky/">Kentucky</a></li>
+          <li><a href="/paycheck-calculator/louisiana/">Louisiana</a></li>
+          <li><a href="/paycheck-calculator/maine/">Maine</a></li>
+          <li><a href="/paycheck-calculator/maryland/">Maryland</a></li>
+          <li><a href="/paycheck-calculator/massachusetts/">Massachusetts</a></li>
+          <li><a href="/paycheck-calculator/michigan/">Michigan</a></li>
+          <li><a href="/paycheck-calculator/minnesota/">Minnesota</a></li>
+          <li><a href="/paycheck-calculator/mississippi/">Mississippi</a></li>
+          <li><a href="/paycheck-calculator/missouri/">Missouri</a></li>
+          <li><a href="/paycheck-calculator/montana/">Montana</a></li>
+          <li><a href="/paycheck-calculator/nebraska/">Nebraska</a></li>
+          <li><a href="/paycheck-calculator/nevada/">Nevada</a></li>
+          <li><a href="/paycheck-calculator/new-hampshire/">New Hampshire</a></li>
+          <li><a href="/paycheck-calculator/new-jersey/">New Jersey</a></li>
+          <li><a href="/paycheck-calculator/new-mexico/">New Mexico</a></li>
+          <li><a href="/paycheck-calculator/new-york/">New York</a></li>
+          <li><a href="/paycheck-calculator/north-carolina/">North Carolina</a></li>
+          <li><a href="/paycheck-calculator/north-dakota/">North Dakota</a></li>
+          <li><a href="/paycheck-calculator/ohio/">Ohio</a></li>
+          <li><a href="/paycheck-calculator/oklahoma/">Oklahoma</a></li>
+          <li><a href="/paycheck-calculator/oregon/">Oregon</a></li>
+          <li><a href="/paycheck-calculator/pennsylvania/">Pennsylvania</a></li>
+          <li><a href="/paycheck-calculator/rhode-island/">Rhode Island</a></li>
+          <li><a href="/paycheck-calculator/south-carolina/">South Carolina</a></li>
+          <li><a href="/paycheck-calculator/south-dakota/">South Dakota</a></li>
+          <li><a href="/paycheck-calculator/tennessee/">Tennessee</a></li>
+          <li><a href="/paycheck-calculator/texas/">Texas</a></li>
+          <li><a href="/paycheck-calculator/utah/">Utah</a></li>
+          <li><a href="/paycheck-calculator/vermont/">Vermont</a></li>
+          <li><a href="/paycheck-calculator/virginia/">Virginia</a></li>
+          <li><a href="/paycheck-calculator/washington/">Washington</a></li>
+          <li><a href="/paycheck-calculator/west-virginia/">West Virginia</a></li>
+          <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
+          <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
+        </ul>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Resources</h2></summary>
+        <ul>
+          <li><a href="/methodology/">Methodology</a></li>
+          <li><a href="/open-data/">Open data</a></li>
+          <li><a href="/corrections/">Corrections</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </details>
+      <details class="pied-col">
+        <summary><h2 class="pied-titre">Legal</h2></summary>
+        <ul>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/terms/">Terms</a></li>
+          <li><a href="/disclaimer/">Disclaimer</a></li>
+        </ul>
+      </details>
+    </div>
+    <div class="pied-bas">
+      <p class="u-m-0"><strong>StateLine Calc</strong> &mdash; free money calculators for US
+      states. No sign-up, no account, and nothing you type leaves your browser.</p>
+      <p class="micro u-on-dark u-mt-3">&copy; 2026 StateLine Calc &middot;
+      <a href="/">Home</a> &middot;
+      <a href="/disclaimer/">Estimates only, not tax advice</a></p>
+    </div>
+  </div>
+  <script src="/assets/accordeon.js" defer></script>
+</footer>
+
+</body>
+</html>
