@@ -62,6 +62,9 @@
   /* VAGUE 0 (27/10/2026) : un lien d'ancre (puce, #states) vers un contenu replie ouvre le repli. */
   function ouvrirCible() {
     var id = decodeURIComponent((location.hash || "").slice(1));
+    /* Repli du texte de fond (pilote 28/10) : le H2 reste dehors, son <details class="fold-fond"> porte data-ancre="<id du H2>". Le H2 ne bouge pas, rien a defiler. */
+    var fonds = id ? document.querySelectorAll("details.fold-fond[data-ancre]") : [];
+    for (var j = 0; j < fonds.length; j++) if (fonds[j].getAttribute("data-ancre") === id) fonds[j].open = true;
     var el = id && document.getElementById(id);
     if (!el || !el.closest) return;
     var d = el.closest("details.fold"), ouvert = false;

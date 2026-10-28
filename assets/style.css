@@ -1527,3 +1527,17 @@ main a.btn { text-decoration: none; }
 
 /* Repli des sections (menu d'Etats, colonne laterale) : marqueur de gabarit, sans effet de mise en page. */
 .fold-sec { min-width: 0; }
+
+/* PILOTE repli du texte de fond (28/10/2026), pages dont le HTML porte <details class="fold fold-fond"> (Georgia seule pour l'instant).
+   Le H2 et le chapo restent visibles ; le reste de la section est dans le <details>. Sur ordinateur le
+   details est ouvert par accordeon.js et son summary est masque : la page est identique a l'avant. */
+@media (min-width: 768px) {
+  .fold-fond > summary { display: none; }
+}
+@media (max-width: 767px) {
+  /* Pas de carte autour du texte deplie : il garde la largeur de la page (un cadre le retrecirait et ajouterait des lignes). Seul le bouton est une carte. */
+  .fold-fond { margin: var(--s-3) 0 var(--s-4); background: none; border: 0; border-radius: 0; }
+  .fold-fond > summary { background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 12px; }
+  .fold-fond > .fold-body { padding: var(--s-3) 0 0; }
+  .fold-fond > summary .fold-lab { font-size: 16px; font-weight: 600; line-height: 1.35; color: var(--accent); }
+}
