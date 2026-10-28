@@ -1344,7 +1344,7 @@ main a.btn { text-decoration: none; }
     grid-column: 1; grid-row: auto; position: static; margin-top: var(--s-8);
     display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6) var(--s-8);
   }
-  main.layout-2col .colonne > .col-bloc:first-child { grid-column: 1 / -1; }
+  main.layout-2col .colonne .col-bloc:first-child { grid-column: 1 / -1; }
   main.layout-2col .col-bloc + .col-bloc { margin-top: 0; }
   main.layout-2col .colonne ul { display: flex; flex-wrap: wrap; gap: var(--s-2); }
   main.layout-2col .colonne li a {
@@ -1403,3 +1403,127 @@ main a.btn { text-decoration: none; }
   main.layout-2col.layout-flat .col-contenu > .toc { grid-column: 3; grid-row: 9 / span 14; }
   main.layout-2col.layout-flat > .colonne { grid-column: 1 / span 2; }
 }
+
+/* ======================================================================
+   MOBILE VAGUE 0 (27/10/2026) : menu d'Etats replie, colonne laterale repliee, barre de puces,
+   tables a 8 lignes. Genere par lib/pli.js. REGLE : aucun mot retire du HTML ; sur ordinateur
+   (>= 768 px) tout reste ouvert / visible (accordeon.js + ::details-content). Zero style en ligne. */
+.chipnav { display: none; }
+.tbl-toggle { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.tbl-more { display: none; }
+.fold > summary { list-style: none; cursor: pointer; }
+.fold > summary::-webkit-details-marker { display: none; }
+
+@media (min-width: 768px) {
+  .tbl-toggle { display: none; }            /* sinon un arret de tabulation invisible */
+  .fold > summary { display: block; }
+  .fold-states > summary, .fold-aside > summary { display: none; }
+  /* La colonne laterale garde sa mise en page d'avant : les enveloppes disparaissent de la grille. */
+  .fold-aside, .fold-aside > .fold-body { display: contents; }
+  @supports selector(::details-content) {
+    .fold > summary { pointer-events: none; cursor: default; }
+    .fold::details-content { content-visibility: visible; display: block; }
+    .fold-aside::details-content { display: contents; }
+  }
+}
+
+@media (max-width: 767px) {
+  /* barre de puces : remplace la table des matieres (qui reste dans le HTML) */
+  .toc { display: none; }
+  .chipnav {
+    display: flex; order: 3; gap: var(--s-2); overflow-x: auto; overscroll-behavior-x: contain;
+    margin: var(--s-3) calc(var(--s-4) * -1) 0; padding: var(--s-1) var(--s-4);
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent);
+            mask-image: linear-gradient(90deg, #000 calc(100% - 24px), transparent);
+  }
+  .chipnav::-webkit-scrollbar { display: none; }
+  .chipnav a {
+    flex: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--s-4);
+    background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 999px;
+    color: var(--accent); font-size: 15px; font-weight: 600; text-decoration: none; white-space: nowrap;
+  }
+  .chipnav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* cartes repliables */
+  .fold {
+    background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 12px;
+    margin: 0 0 var(--s-2);
+  }
+  .fold > summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    min-height: 56px; padding: var(--s-2) var(--s-4);
+  }
+  .fold > summary .fold-h2 { font-size: 19px; font-weight: 700; line-height: 1.35; color: var(--text-primary); }
+  .fold > summary::after {
+    content: ""; flex: none; width: 9px; height: 9px; margin: 0 var(--s-1) 3px var(--s-3);
+    border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent);
+    transform: rotate(45deg);
+  }
+  .fold[open] > summary::after { transform: rotate(-135deg); margin-bottom: -3px; }
+  .fold > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .fold-body { padding: 0 var(--s-4) var(--s-2); }
+  .fold-body > :first-child { margin-top: 0; }
+  .fold-body > :last-child { margin-bottom: var(--s-3); }
+  .fold-sub { margin-left: auto; font-size: 14px; color: var(--text-muted); }
+  /* Menu d'Etats : les titres internes doublent celui du summary -> masques a l'oeil, restent dans le HTML. */
+  .fold-states .bloc-carte { margin: 0; }
+  .fold-states .bloc-carte > h2, .fold-states .fold-body > h2 {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+  }
+  .fold-aside .colonne, .fold-aside .col-bloc:first-child { margin-top: 0; }
+  main.wrap > .colonne { margin-top: var(--s-4); }
+  /* Menu ouvert : la liste des 50 d'abord, la carte ensuite. */
+  .fold-states .fold-body { display: flex; flex-direction: column; }
+  .fold-states .fold-body > .linkgrid { order: 1; }
+  .fold-states .fold-body > .bloc-carte { order: 2; margin-top: var(--s-4); }
+  .fold-states .fold-body > .caption { order: 0; margin: 0 0 var(--s-3); }
+
+  /* tableaux : 8 lignes, colonnes utiles, tout le reste derriere une bascule (case a cocher, CSS pur ; selecteurs ADJACENTS : une case ne commande que sa propre table) */
+  .tbl-more {
+    display: flex; align-items: center; justify-content: center; min-height: 48px; margin: var(--s-2) 0 var(--s-4);
+    background: var(--surface); border: 1px solid var(--accent); border-radius: var(--radius-md);
+    color: var(--accent); font-weight: 600; font-size: 16px; cursor: pointer; text-align: center; padding: 0 var(--s-3);
+  }
+  .tbl-more .t-close { display: none; }
+  .tbl-toggle:checked + .tbl-fold + .tbl-more .t-open { display: none; }
+  .tbl-toggle:checked + .tbl-fold + .tbl-more .t-close { display: inline; }
+  .tbl-toggle:focus-visible + .tbl-fold + .tbl-more { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .tbl-toggle:not(:checked) + .tbl-fold .r-more,
+  .tbl-toggle:not(:checked) + .tbl-fold .c-more { display: none; }
+  .tbl-toggle:not(:checked) + .tbl-fold table { min-width: 0; }
+  .tbl-fold th, .tbl-fold td { padding: var(--s-3) var(--s-2); }
+  /* Deployee : la 1re colonne reste visible pendant le defilement + indice d'ombre aux bords. */
+  .tbl-toggle:checked + .tbl-fold :is(th, td):first-child {
+    position: sticky; left: 0; z-index: 1; box-shadow: 1px 0 0 var(--border-subtle);
+  }
+  .tbl-toggle:checked + .tbl-fold tbody :is(th, td):first-child { background-color: #FFFFFF; }
+  .tbl-toggle:checked + .tbl-fold {
+    background:
+      linear-gradient(to right, #FFFFFF 30%, rgba(255,255,255,0)) 0 0 / 32px 100% no-repeat local,
+      linear-gradient(to left, #FFFFFF 30%, rgba(255,255,255,0)) 100% 0 / 32px 100% no-repeat local,
+      radial-gradient(farthest-side at 0 50%, rgba(15,37,71,.28), rgba(15,37,71,0)) 0 0 / 12px 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, rgba(15,37,71,.28), rgba(15,37,71,0)) 100% 0 / 12px 100% no-repeat scroll;
+  }
+  /* Repli : 3 colonnes tiennent dans la carte, y compris a 320 px. */
+  .tbl-toggle:not(:checked) + .tbl-fold th, .tbl-toggle:not(:checked) + .tbl-fold td { padding-inline: 6px; }
+  .tbl-toggle:not(:checked) + .tbl-fold thead th { font-size: 14px; }
+  /* Une ancre ne se cache pas sous la barre collante. */
+  .tbl-fold, .fold-states { scroll-margin-top: 72px; }
+}
+
+@media (max-width: 767px) {
+  /* Rythme : moins de blanc entre les sections ; toute table : colonnes serrees. */
+  h2 { margin-top: var(--s-8); margin-bottom: var(--s-3); }
+  .table-scroll th, .table-scroll td { padding: 10px var(--s-2); }
+}
+
+@media (min-width: 1100px) {
+  /* Dans la grille du contenu, les marges de la carte ne fusionnaient pas ; elles ne doivent pas fusionner a travers le repli non plus. */
+  .fold-states .fold-body, .fold-states .bloc-carte { display: flow-root; }
+  .fold-states .fold-body > h2 { margin-top: calc(var(--s-12) * 2); }
+}
+
+/* Repli des sections (menu d'Etats, colonne laterale) : marqueur de gabarit, sans effet de mise en page. */
+.fold-sec { min-width: 0; }

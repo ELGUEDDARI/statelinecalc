@@ -11,7 +11,7 @@
   if (!window.matchMedia) return;
   var mq = window.matchMedia("(min-width: 768px)");
   function appliquer() {
-    var liste = document.querySelectorAll("details.faq-item, details.pied-col");
+    var liste = document.querySelectorAll("details.faq-item, details.pied-col, details.fold");
     for (var i = 0; i < liste.length; i++) {
       var d = liste[i], s = d.firstElementChild;
       if (!s || s.tagName !== "SUMMARY") continue;
@@ -33,7 +33,7 @@
   /* Sur ordinateur un clic (ou Entree/Espace) sur le summary ne doit rien refermer. */
   document.addEventListener("click", function (e) {
     if (!mq.matches || !e.target.closest) return;
-    var s = e.target.closest("details.faq-item > summary, details.pied-col > summary");
+    var s = e.target.closest("details.faq-item > summary, details.pied-col > summary, details.fold > summary");
     if (s) e.preventDefault();
   });
   /* Table des matieres des pages main.layout-2col : colonne collante, donc ouverte, a partir de 1100 px. */
@@ -59,8 +59,19 @@
     var s = e.target.closest("main.layout-2col details.toc > summary");
     if (s) e.preventDefault();
   });
+  /* VAGUE 0 (27/10/2026) : un lien d'ancre (puce, #states) vers un contenu replie ouvre le repli. */
+  function ouvrirCible() {
+    var id = decodeURIComponent((location.hash || "").slice(1));
+    var el = id && document.getElementById(id);
+    if (!el || !el.closest) return;
+    var d = el.closest("details.fold"), ouvert = false;
+    while (d) { if (!d.open) { d.open = true; ouvert = true; } d = d.parentElement && d.parentElement.closest("details.fold"); }
+    if (ouvert && el.scrollIntoView) el.scrollIntoView();
+  }
+  window.addEventListener("hashchange", ouvrirCible);
   appliquer();
   appliquerToc();
+  ouvrirCible();
   if (mqToc.addEventListener) mqToc.addEventListener("change", appliquerToc);
   else if (mqToc.addListener) mqToc.addListener(appliquerToc);
   if (mq.addEventListener) mq.addEventListener("change", appliquer);

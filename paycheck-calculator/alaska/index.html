@@ -358,6 +358,8 @@
     </div>
   <p class="caption">Everything is calculated in your browser. Nothing you type is sent to us or stored.</p>
 
+  <nav class="chipnav" aria-label="On this page"><a href="#by-salary">Salary table</a><a href="#hourly">Hourly</a><a href="#key-facts">Key facts</a><a href="#common-mistakes">Mistakes</a><a href="#example">Example</a><a href="#faq">FAQ</a><a href="#sources">Sources</a><a href="#states">Other states</a></nav>
+
   <details class="toc">
     <summary>On this page</summary>
     <ol class="toc-liste">
@@ -411,84 +413,88 @@
     <p>Single filer, standard deduction, 2026 rates, no 401(k) contribution. The State tax column
     is the 0.50% unemployment insurance share described above &mdash; every figure comes from the
     same arithmetic the calculator above runs.</p>
-    <div class="table-scroll">
+    <input type="checkbox" id="tf-1" class="tbl-toggle" aria-controls="tf-1-t">
+  <div class="table-scroll tbl-fold" id="tf-1-t">
       <table>
-        <thead><tr><th>Gross salary</th><th>Federal tax</th><th>Social Security + Medicare</th><th>State tax</th><th>Take-home pay</th><th>Per month</th><th>Effective rate</th></tr></thead>
+        <thead><tr><th>Gross salary</th><th class="c-more">Federal tax</th><th class="c-more">Social Security + Medicare</th><th class="c-more">State tax</th><th>Take-home pay</th><th>Per month</th><th class="c-more">Effective rate</th></tr></thead>
         <tbody>
-          <tr><td class="num">$25,000</td><td class="num">$890</td><td class="num">$1,913</td><td class="num">$125.00</td><td class="num"><strong>$22,073</strong></td><td class="num">$1,839</td><td class="num">11.7%</td></tr>
-          <tr><td class="num">$30,000</td><td class="num">$1,420</td><td class="num">$2,295</td><td class="num">$150.00</td><td class="num"><strong>$26,135</strong></td><td class="num">$2,178</td><td class="num">12.9%</td></tr>
-          <tr><td class="num">$35,000</td><td class="num">$2,020</td><td class="num">$2,678</td><td class="num">$175.00</td><td class="num"><strong>$30,128</strong></td><td class="num">$2,511</td><td class="num">13.9%</td></tr>
-          <tr><td class="num">$40,000</td><td class="num">$2,620</td><td class="num">$3,060</td><td class="num">$200.00</td><td class="num"><strong>$34,120</strong></td><td class="num">$2,843</td><td class="num">14.7%</td></tr>
-          <tr><td class="num">$45,000</td><td class="num">$3,220</td><td class="num">$3,443</td><td class="num">$225.00</td><td class="num"><strong>$38,113</strong></td><td class="num">$3,176</td><td class="num">15.3%</td></tr>
-          <tr><td class="num">$50,000</td><td class="num">$3,820</td><td class="num">$3,825</td><td class="num">$250.00</td><td class="num"><strong>$42,105</strong></td><td class="num">$3,509</td><td class="num">15.8%</td></tr>
-          <tr><td class="num">$55,000</td><td class="num">$4,420</td><td class="num">$4,208</td><td class="num">$271.00</td><td class="num"><strong>$46,102</strong></td><td class="num">$3,842</td><td class="num">16.2%</td></tr>
-          <tr><td class="num">$60,000</td><td class="num">$5,020</td><td class="num">$4,590</td><td class="num">$271.00</td><td class="num"><strong>$50,119</strong></td><td class="num">$4,177</td><td class="num">16.5%</td></tr>
-          <tr><td class="num">$65,000</td><td class="num">$5,620</td><td class="num">$4,973</td><td class="num">$271.00</td><td class="num"><strong>$54,137</strong></td><td class="num">$4,511</td><td class="num">16.7%</td></tr>
-          <tr><td class="num">$70,000</td><td class="num">$6,570</td><td class="num">$5,355</td><td class="num">$271.00</td><td class="num"><strong>$57,804</strong></td><td class="num">$4,817</td><td class="num">17.4%</td></tr>
-          <tr><td class="num">$75,000</td><td class="num">$7,670</td><td class="num">$5,738</td><td class="num">$271.00</td><td class="num"><strong>$61,322</strong></td><td class="num">$5,110</td><td class="num">18.2%</td></tr>
-          <tr><td class="num">$80,000</td><td class="num">$8,770</td><td class="num">$6,120</td><td class="num">$271.00</td><td class="num"><strong>$64,839</strong></td><td class="num">$5,403</td><td class="num">19.0%</td></tr>
-          <tr><td class="num">$85,000</td><td class="num">$9,870</td><td class="num">$6,503</td><td class="num">$271.00</td><td class="num"><strong>$68,357</strong></td><td class="num">$5,696</td><td class="num">19.6%</td></tr>
-          <tr><td class="num">$90,000</td><td class="num">$10,970</td><td class="num">$6,885</td><td class="num">$271.00</td><td class="num"><strong>$71,874</strong></td><td class="num">$5,990</td><td class="num">20.1%</td></tr>
-          <tr><td class="num">$95,000</td><td class="num">$12,070</td><td class="num">$7,268</td><td class="num">$271.00</td><td class="num"><strong>$75,392</strong></td><td class="num">$6,283</td><td class="num">20.6%</td></tr>
-          <tr><td class="num">$100,000</td><td class="num">$13,170</td><td class="num">$7,650</td><td class="num">$271.00</td><td class="num"><strong>$78,909</strong></td><td class="num">$6,576</td><td class="num">21.1%</td></tr>
-          <tr><td class="num">$110,000</td><td class="num">$15,370</td><td class="num">$8,415</td><td class="num">$271.00</td><td class="num"><strong>$85,944</strong></td><td class="num">$7,162</td><td class="num">21.9%</td></tr>
-          <tr><td class="num">$120,000</td><td class="num">$17,570</td><td class="num">$9,180</td><td class="num">$271.00</td><td class="num"><strong>$92,979</strong></td><td class="num">$7,748</td><td class="num">22.5%</td></tr>
-          <tr><td class="num">$125,000</td><td class="num">$18,734</td><td class="num">$9,563</td><td class="num">$271.00</td><td class="num"><strong>$96,433</strong></td><td class="num">$8,036</td><td class="num">22.9%</td></tr>
-          <tr><td class="num">$130,000</td><td class="num">$19,934</td><td class="num">$9,945</td><td class="num">$271.00</td><td class="num"><strong>$99,850</strong></td><td class="num">$8,321</td><td class="num">23.2%</td></tr>
-          <tr><td class="num">$140,000</td><td class="num">$22,334</td><td class="num">$10,710</td><td class="num">$271.00</td><td class="num"><strong>$106,685</strong></td><td class="num">$8,890</td><td class="num">23.8%</td></tr>
-          <tr><td class="num">$150,000</td><td class="num">$24,734</td><td class="num">$11,475</td><td class="num">$271.00</td><td class="num"><strong>$113,520</strong></td><td class="num">$9,460</td><td class="num">24.3%</td></tr>
-          <tr><td class="num">$160,000</td><td class="num">$27,134</td><td class="num">$12,240</td><td class="num">$271.00</td><td class="num"><strong>$120,355</strong></td><td class="num">$10,030</td><td class="num">24.8%</td></tr>
-          <tr><td class="num">$175,000</td><td class="num">$30,734</td><td class="num">$13,388</td><td class="num">$271.00</td><td class="num"><strong>$130,608</strong></td><td class="num">$10,884</td><td class="num">25.4%</td></tr>
-          <tr><td class="num">$200,000</td><td class="num">$36,734</td><td class="num">$14,339</td><td class="num">$271.00</td><td class="num"><strong>$148,656</strong></td><td class="num">$12,388</td><td class="num">25.7%</td></tr>
-          <tr><td class="num">$225,000</td><td class="num">$43,304</td><td class="num">$14,927</td><td class="num">$271.00</td><td class="num"><strong>$166,499</strong></td><td class="num">$13,875</td><td class="num">26.0%</td></tr>
-          <tr><td class="num">$250,000</td><td class="num">$51,304</td><td class="num">$15,514</td><td class="num">$271.00</td><td class="num"><strong>$182,911</strong></td><td class="num">$15,243</td><td class="num">26.8%</td></tr>
-          <tr><td class="num">$300,000</td><td class="num">$68,134</td><td class="num">$16,689</td><td class="num">$271.00</td><td class="num"><strong>$214,906</strong></td><td class="num">$17,909</td><td class="num">28.4%</td></tr>
-          <tr><td class="num">$400,000</td><td class="num">$103,134</td><td class="num">$19,039</td><td class="num">$271.00</td><td class="num"><strong>$277,556</strong></td><td class="num">$23,130</td><td class="num">30.6%</td></tr>
-          <tr><td class="num">$500,000</td><td class="num">$138,134</td><td class="num">$21,389</td><td class="num">$271.00</td><td class="num"><strong>$340,206</strong></td><td class="num">$28,350</td><td class="num">32.0%</td></tr>
+          <tr class="r-more"><td class="num">$25,000</td><td class="c-more num">$890</td><td class="c-more num">$1,913</td><td class="c-more num">$125.00</td><td class="num"><strong>$22,073</strong></td><td class="num">$1,839</td><td class="c-more num">11.7%</td></tr>
+          <tr class="r-more"><td class="num">$30,000</td><td class="c-more num">$1,420</td><td class="c-more num">$2,295</td><td class="c-more num">$150.00</td><td class="num"><strong>$26,135</strong></td><td class="num">$2,178</td><td class="c-more num">12.9%</td></tr>
+          <tr class="r-more"><td class="num">$35,000</td><td class="c-more num">$2,020</td><td class="c-more num">$2,678</td><td class="c-more num">$175.00</td><td class="num"><strong>$30,128</strong></td><td class="num">$2,511</td><td class="c-more num">13.9%</td></tr>
+          <tr><td class="num">$40,000</td><td class="c-more num">$2,620</td><td class="c-more num">$3,060</td><td class="c-more num">$200.00</td><td class="num"><strong>$34,120</strong></td><td class="num">$2,843</td><td class="c-more num">14.7%</td></tr>
+          <tr class="r-more"><td class="num">$45,000</td><td class="c-more num">$3,220</td><td class="c-more num">$3,443</td><td class="c-more num">$225.00</td><td class="num"><strong>$38,113</strong></td><td class="num">$3,176</td><td class="c-more num">15.3%</td></tr>
+          <tr><td class="num">$50,000</td><td class="c-more num">$3,820</td><td class="c-more num">$3,825</td><td class="c-more num">$250.00</td><td class="num"><strong>$42,105</strong></td><td class="num">$3,509</td><td class="c-more num">15.8%</td></tr>
+          <tr class="r-more"><td class="num">$55,000</td><td class="c-more num">$4,420</td><td class="c-more num">$4,208</td><td class="c-more num">$271.00</td><td class="num"><strong>$46,102</strong></td><td class="num">$3,842</td><td class="c-more num">16.2%</td></tr>
+          <tr><td class="num">$60,000</td><td class="c-more num">$5,020</td><td class="c-more num">$4,590</td><td class="c-more num">$271.00</td><td class="num"><strong>$50,119</strong></td><td class="num">$4,177</td><td class="c-more num">16.5%</td></tr>
+          <tr class="r-more"><td class="num">$65,000</td><td class="c-more num">$5,620</td><td class="c-more num">$4,973</td><td class="c-more num">$271.00</td><td class="num"><strong>$54,137</strong></td><td class="num">$4,511</td><td class="c-more num">16.7%</td></tr>
+          <tr><td class="num">$70,000</td><td class="c-more num">$6,570</td><td class="c-more num">$5,355</td><td class="c-more num">$271.00</td><td class="num"><strong>$57,804</strong></td><td class="num">$4,817</td><td class="c-more num">17.4%</td></tr>
+          <tr><td class="num">$75,000</td><td class="c-more num">$7,670</td><td class="c-more num">$5,738</td><td class="c-more num">$271.00</td><td class="num"><strong>$61,322</strong></td><td class="num">$5,110</td><td class="c-more num">18.2%</td></tr>
+          <tr><td class="num">$80,000</td><td class="c-more num">$8,770</td><td class="c-more num">$6,120</td><td class="c-more num">$271.00</td><td class="num"><strong>$64,839</strong></td><td class="num">$5,403</td><td class="c-more num">19.0%</td></tr>
+          <tr class="r-more"><td class="num">$85,000</td><td class="c-more num">$9,870</td><td class="c-more num">$6,503</td><td class="c-more num">$271.00</td><td class="num"><strong>$68,357</strong></td><td class="num">$5,696</td><td class="c-more num">19.6%</td></tr>
+          <tr><td class="num">$90,000</td><td class="c-more num">$10,970</td><td class="c-more num">$6,885</td><td class="c-more num">$271.00</td><td class="num"><strong>$71,874</strong></td><td class="num">$5,990</td><td class="c-more num">20.1%</td></tr>
+          <tr class="r-more"><td class="num">$95,000</td><td class="c-more num">$12,070</td><td class="c-more num">$7,268</td><td class="c-more num">$271.00</td><td class="num"><strong>$75,392</strong></td><td class="num">$6,283</td><td class="c-more num">20.6%</td></tr>
+          <tr><td class="num">$100,000</td><td class="c-more num">$13,170</td><td class="c-more num">$7,650</td><td class="c-more num">$271.00</td><td class="num"><strong>$78,909</strong></td><td class="num">$6,576</td><td class="c-more num">21.1%</td></tr>
+          <tr class="r-more"><td class="num">$110,000</td><td class="c-more num">$15,370</td><td class="c-more num">$8,415</td><td class="c-more num">$271.00</td><td class="num"><strong>$85,944</strong></td><td class="num">$7,162</td><td class="c-more num">21.9%</td></tr>
+          <tr class="r-more"><td class="num">$120,000</td><td class="c-more num">$17,570</td><td class="c-more num">$9,180</td><td class="c-more num">$271.00</td><td class="num"><strong>$92,979</strong></td><td class="num">$7,748</td><td class="c-more num">22.5%</td></tr>
+          <tr class="r-more"><td class="num">$125,000</td><td class="c-more num">$18,734</td><td class="c-more num">$9,563</td><td class="c-more num">$271.00</td><td class="num"><strong>$96,433</strong></td><td class="num">$8,036</td><td class="c-more num">22.9%</td></tr>
+          <tr class="r-more"><td class="num">$130,000</td><td class="c-more num">$19,934</td><td class="c-more num">$9,945</td><td class="c-more num">$271.00</td><td class="num"><strong>$99,850</strong></td><td class="num">$8,321</td><td class="c-more num">23.2%</td></tr>
+          <tr class="r-more"><td class="num">$140,000</td><td class="c-more num">$22,334</td><td class="c-more num">$10,710</td><td class="c-more num">$271.00</td><td class="num"><strong>$106,685</strong></td><td class="num">$8,890</td><td class="c-more num">23.8%</td></tr>
+          <tr class="r-more"><td class="num">$150,000</td><td class="c-more num">$24,734</td><td class="c-more num">$11,475</td><td class="c-more num">$271.00</td><td class="num"><strong>$113,520</strong></td><td class="num">$9,460</td><td class="c-more num">24.3%</td></tr>
+          <tr class="r-more"><td class="num">$160,000</td><td class="c-more num">$27,134</td><td class="c-more num">$12,240</td><td class="c-more num">$271.00</td><td class="num"><strong>$120,355</strong></td><td class="num">$10,030</td><td class="c-more num">24.8%</td></tr>
+          <tr class="r-more"><td class="num">$175,000</td><td class="c-more num">$30,734</td><td class="c-more num">$13,388</td><td class="c-more num">$271.00</td><td class="num"><strong>$130,608</strong></td><td class="num">$10,884</td><td class="c-more num">25.4%</td></tr>
+          <tr class="r-more"><td class="num">$200,000</td><td class="c-more num">$36,734</td><td class="c-more num">$14,339</td><td class="c-more num">$271.00</td><td class="num"><strong>$148,656</strong></td><td class="num">$12,388</td><td class="c-more num">25.7%</td></tr>
+          <tr class="r-more"><td class="num">$225,000</td><td class="c-more num">$43,304</td><td class="c-more num">$14,927</td><td class="c-more num">$271.00</td><td class="num"><strong>$166,499</strong></td><td class="num">$13,875</td><td class="c-more num">26.0%</td></tr>
+          <tr class="r-more"><td class="num">$250,000</td><td class="c-more num">$51,304</td><td class="c-more num">$15,514</td><td class="c-more num">$271.00</td><td class="num"><strong>$182,911</strong></td><td class="num">$15,243</td><td class="c-more num">26.8%</td></tr>
+          <tr class="r-more"><td class="num">$300,000</td><td class="c-more num">$68,134</td><td class="c-more num">$16,689</td><td class="c-more num">$271.00</td><td class="num"><strong>$214,906</strong></td><td class="num">$17,909</td><td class="c-more num">28.4%</td></tr>
+          <tr class="r-more"><td class="num">$400,000</td><td class="c-more num">$103,134</td><td class="c-more num">$19,039</td><td class="c-more num">$271.00</td><td class="num"><strong>$277,556</strong></td><td class="num">$23,130</td><td class="c-more num">30.6%</td></tr>
+          <tr class="r-more"><td class="num">$500,000</td><td class="c-more num">$138,134</td><td class="c-more num">$21,389</td><td class="c-more num">$271.00</td><td class="num"><strong>$340,206</strong></td><td class="num">$28,350</td><td class="c-more num">32.0%</td></tr>
         </tbody>
       </table>
     </div>
+  <label class="tbl-more" for="tf-1"><span class="t-open">Show all 30 salary levels and every column</span><span class="t-close">Show fewer rows</span></label>
 
     <h2 id="hourly">Alaska hourly paycheck: what your rate is worth after tax</h2>
     <p>At 40 hours a week for 52 weeks. The gross hourly rate is the same everywhere; what
     survives tax is not.</p>
-    <div class="table-scroll">
+    <input type="checkbox" id="tf-2" class="tbl-toggle" aria-controls="tf-2-t">
+  <div class="table-scroll tbl-fold" id="tf-2-t">
       <table>
-        <thead><tr><th>Gross hourly rate</th><th>Gross a year</th><th>Take-home a year</th><th>Real hourly rate</th></tr></thead>
+        <thead><tr><th>Gross hourly rate</th><th class="c-more">Gross a year</th><th>Take-home a year</th><th>Real hourly rate</th></tr></thead>
         <tbody>
-          <tr><td class="num">$12.00</td><td class="num">$24,960</td><td class="num">$22,040</td><td class="num"><strong>$10.60</strong></td></tr>
-          <tr><td class="num">$13.00</td><td class="num">$27,040</td><td class="num">$23,742</td><td class="num"><strong>$11.41</strong></td></tr>
-          <tr><td class="num">$14.00</td><td class="num">$29,120</td><td class="num">$25,432</td><td class="num"><strong>$12.23</strong></td></tr>
-          <tr><td class="num">$15.00</td><td class="num">$31,200</td><td class="num">$27,093</td><td class="num"><strong>$13.03</strong></td></tr>
-          <tr><td class="num">$16.00</td><td class="num">$33,280</td><td class="num">$28,754</td><td class="num"><strong>$13.82</strong></td></tr>
-          <tr><td class="num">$17.00</td><td class="num">$35,360</td><td class="num">$30,415</td><td class="num"><strong>$14.62</strong></td></tr>
-          <tr><td class="num">$18.00</td><td class="num">$37,440</td><td class="num">$32,076</td><td class="num"><strong>$15.42</strong></td></tr>
-          <tr><td class="num">$19.00</td><td class="num">$39,520</td><td class="num">$33,737</td><td class="num"><strong>$16.22</strong></td></tr>
-          <tr><td class="num">$20.00</td><td class="num">$41,600</td><td class="num">$35,398</td><td class="num"><strong>$17.02</strong></td></tr>
-          <tr><td class="num">$21.00</td><td class="num">$43,680</td><td class="num">$37,058</td><td class="num"><strong>$17.82</strong></td></tr>
-          <tr><td class="num">$22.00</td><td class="num">$45,760</td><td class="num">$38,719</td><td class="num"><strong>$18.62</strong></td></tr>
-          <tr><td class="num">$23.00</td><td class="num">$47,840</td><td class="num">$40,380</td><td class="num"><strong>$19.41</strong></td></tr>
-          <tr><td class="num">$24.00</td><td class="num">$49,920</td><td class="num">$42,041</td><td class="num"><strong>$20.21</strong></td></tr>
-          <tr><td class="num">$25.00</td><td class="num">$52,000</td><td class="num">$43,702</td><td class="num"><strong>$21.01</strong></td></tr>
-          <tr><td class="num">$26.00</td><td class="num">$54,080</td><td class="num">$45,363</td><td class="num"><strong>$21.81</strong></td></tr>
-          <tr><td class="num">$28.00</td><td class="num">$58,240</td><td class="num">$48,705</td><td class="num"><strong>$23.42</strong></td></tr>
-          <tr><td class="num">$30.00</td><td class="num">$62,400</td><td class="num">$52,047</td><td class="num"><strong>$25.02</strong></td></tr>
-          <tr><td class="num">$32.00</td><td class="num">$66,560</td><td class="num">$55,384</td><td class="num"><strong>$26.63</strong></td></tr>
-          <tr><td class="num">$35.00</td><td class="num">$72,800</td><td class="num">$59,774</td><td class="num"><strong>$28.74</strong></td></tr>
-          <tr><td class="num">$38.00</td><td class="num">$79,040</td><td class="num">$64,164</td><td class="num"><strong>$30.85</strong></td></tr>
-          <tr><td class="num">$40.00</td><td class="num">$83,200</td><td class="num">$67,090</td><td class="num"><strong>$32.25</strong></td></tr>
-          <tr><td class="num">$45.00</td><td class="num">$93,600</td><td class="num">$74,407</td><td class="num"><strong>$35.77</strong></td></tr>
-          <tr><td class="num">$50.00</td><td class="num">$104,000</td><td class="num">$81,723</td><td class="num"><strong>$39.29</strong></td></tr>
-          <tr><td class="num">$55.00</td><td class="num">$114,400</td><td class="num">$89,039</td><td class="num"><strong>$42.81</strong></td></tr>
-          <tr><td class="num">$60.00</td><td class="num">$124,800</td><td class="num">$96,296</td><td class="num"><strong>$46.30</strong></td></tr>
-          <tr><td class="num">$65.00</td><td class="num">$135,200</td><td class="num">$103,404</td><td class="num"><strong>$49.71</strong></td></tr>
-          <tr><td class="num">$70.00</td><td class="num">$145,600</td><td class="num">$110,513</td><td class="num"><strong>$53.13</strong></td></tr>
-          <tr><td class="num">$75.00</td><td class="num">$156,000</td><td class="num">$117,621</td><td class="num"><strong>$56.55</strong></td></tr>
-          <tr><td class="num">$85.00</td><td class="num">$176,800</td><td class="num">$131,838</td><td class="num"><strong>$63.38</strong></td></tr>
-          <tr><td class="num">$100.00</td><td class="num">$208,000</td><td class="num">$154,548</td><td class="num"><strong>$74.30</strong></td></tr>
+          <tr class="r-more"><td class="num">$12.00</td><td class="c-more num">$24,960</td><td class="num">$22,040</td><td class="num"><strong>$10.60</strong></td></tr>
+          <tr class="r-more"><td class="num">$13.00</td><td class="c-more num">$27,040</td><td class="num">$23,742</td><td class="num"><strong>$11.41</strong></td></tr>
+          <tr class="r-more"><td class="num">$14.00</td><td class="c-more num">$29,120</td><td class="num">$25,432</td><td class="num"><strong>$12.23</strong></td></tr>
+          <tr><td class="num">$15.00</td><td class="c-more num">$31,200</td><td class="num">$27,093</td><td class="num"><strong>$13.03</strong></td></tr>
+          <tr class="r-more"><td class="num">$16.00</td><td class="c-more num">$33,280</td><td class="num">$28,754</td><td class="num"><strong>$13.82</strong></td></tr>
+          <tr class="r-more"><td class="num">$17.00</td><td class="c-more num">$35,360</td><td class="num">$30,415</td><td class="num"><strong>$14.62</strong></td></tr>
+          <tr><td class="num">$18.00</td><td class="c-more num">$37,440</td><td class="num">$32,076</td><td class="num"><strong>$15.42</strong></td></tr>
+          <tr class="r-more"><td class="num">$19.00</td><td class="c-more num">$39,520</td><td class="num">$33,737</td><td class="num"><strong>$16.22</strong></td></tr>
+          <tr><td class="num">$20.00</td><td class="c-more num">$41,600</td><td class="num">$35,398</td><td class="num"><strong>$17.02</strong></td></tr>
+          <tr class="r-more"><td class="num">$21.00</td><td class="c-more num">$43,680</td><td class="num">$37,058</td><td class="num"><strong>$17.82</strong></td></tr>
+          <tr class="r-more"><td class="num">$22.00</td><td class="c-more num">$45,760</td><td class="num">$38,719</td><td class="num"><strong>$18.62</strong></td></tr>
+          <tr class="r-more"><td class="num">$23.00</td><td class="c-more num">$47,840</td><td class="num">$40,380</td><td class="num"><strong>$19.41</strong></td></tr>
+          <tr class="r-more"><td class="num">$24.00</td><td class="c-more num">$49,920</td><td class="num">$42,041</td><td class="num"><strong>$20.21</strong></td></tr>
+          <tr><td class="num">$25.00</td><td class="c-more num">$52,000</td><td class="num">$43,702</td><td class="num"><strong>$21.01</strong></td></tr>
+          <tr class="r-more"><td class="num">$26.00</td><td class="c-more num">$54,080</td><td class="num">$45,363</td><td class="num"><strong>$21.81</strong></td></tr>
+          <tr class="r-more"><td class="num">$28.00</td><td class="c-more num">$58,240</td><td class="num">$48,705</td><td class="num"><strong>$23.42</strong></td></tr>
+          <tr><td class="num">$30.00</td><td class="c-more num">$62,400</td><td class="num">$52,047</td><td class="num"><strong>$25.02</strong></td></tr>
+          <tr class="r-more"><td class="num">$32.00</td><td class="c-more num">$66,560</td><td class="num">$55,384</td><td class="num"><strong>$26.63</strong></td></tr>
+          <tr><td class="num">$35.00</td><td class="c-more num">$72,800</td><td class="num">$59,774</td><td class="num"><strong>$28.74</strong></td></tr>
+          <tr class="r-more"><td class="num">$38.00</td><td class="c-more num">$79,040</td><td class="num">$64,164</td><td class="num"><strong>$30.85</strong></td></tr>
+          <tr class="r-more"><td class="num">$40.00</td><td class="c-more num">$83,200</td><td class="num">$67,090</td><td class="num"><strong>$32.25</strong></td></tr>
+          <tr class="r-more"><td class="num">$45.00</td><td class="c-more num">$93,600</td><td class="num">$74,407</td><td class="num"><strong>$35.77</strong></td></tr>
+          <tr><td class="num">$50.00</td><td class="c-more num">$104,000</td><td class="num">$81,723</td><td class="num"><strong>$39.29</strong></td></tr>
+          <tr class="r-more"><td class="num">$55.00</td><td class="c-more num">$114,400</td><td class="num">$89,039</td><td class="num"><strong>$42.81</strong></td></tr>
+          <tr class="r-more"><td class="num">$60.00</td><td class="c-more num">$124,800</td><td class="num">$96,296</td><td class="num"><strong>$46.30</strong></td></tr>
+          <tr class="r-more"><td class="num">$65.00</td><td class="c-more num">$135,200</td><td class="num">$103,404</td><td class="num"><strong>$49.71</strong></td></tr>
+          <tr class="r-more"><td class="num">$70.00</td><td class="c-more num">$145,600</td><td class="num">$110,513</td><td class="num"><strong>$53.13</strong></td></tr>
+          <tr class="r-more"><td class="num">$75.00</td><td class="c-more num">$156,000</td><td class="num">$117,621</td><td class="num"><strong>$56.55</strong></td></tr>
+          <tr class="r-more"><td class="num">$85.00</td><td class="c-more num">$176,800</td><td class="num">$131,838</td><td class="num"><strong>$63.38</strong></td></tr>
+          <tr><td class="num">$100.00</td><td class="c-more num">$208,000</td><td class="num">$154,548</td><td class="num"><strong>$74.30</strong></td></tr>
         </tbody>
       </table>
     </div>
+  <label class="tbl-more" for="tf-2"><span class="t-open">Show all 30 hourly rates and every column</span><span class="t-close">Show fewer rows</span></label>
 
     <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
@@ -661,6 +667,9 @@
     </ul>
   </div>
 
+<details class="fold fold-sec fold-states" id="states">
+  <summary><span class="fold-h2">Pick your state</span><span class="fold-sub">All 50 calculators</span></summary>
+  <div class="fold-body">
 <section class="bloc-carte">
   <h2>Pick your state</h2>
   <p class="bloc-carte-intro">Every state treats income differently, and nine of them do not tax
@@ -726,6 +735,8 @@
     <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
     <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
   </ul>
+  </div>
+</details>
 
   <p class="dates">
     Published <time datetime="2026-09-17">September 17, 2026</time> &middot;
@@ -746,6 +757,9 @@
   <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
 </div>
 <aside class="colonne" aria-label="Related calculators">
+<details class="fold fold-sec fold-aside">
+  <summary><span class="fold-h2">More states and tools</span></summary>
+  <div class="fold-body">
     <section class="col-bloc">
       <h2 class="col-titre">Popular states</h2>
       <ul>
@@ -766,9 +780,9 @@
         <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
         <li><a href="/state-comparison/">Compare two states</a></li>
         <li><a href="/75000-salary-take-home-pay-by-state/">$75,000 by state</a></li>
-        <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour a year</a></li>
-        <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
-        <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
+        <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour as a salary</a></li>
+        <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour as a salary</a></li>
+        <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour as a salary</a></li>
       </ul>
     </section>
     <section class="col-bloc col-note">
@@ -777,6 +791,8 @@
       date it was checked. Nothing you type leaves your browser.</p>
       <a href="/methodology/">Read the methodology &rarr;</a>
     </section>
+</div>
+</details>
 </aside>
 
 </main>
@@ -790,10 +806,10 @@
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
           <li><a href="/state-comparison/">Compare two states</a></li>
-          <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour a year</a></li>
-          <li><a href="/27-an-hour-is-how-much-a-year/">$27 an hour a year</a></li>
-          <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
-          <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
+          <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour as a salary</a></li>
+          <li><a href="/27-an-hour-is-how-much-a-year/">$27 an hour as a salary</a></li>
+          <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour as a salary</a></li>
+          <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour as a salary</a></li>
         </ul>
       </details>
       <details class="pied-col">

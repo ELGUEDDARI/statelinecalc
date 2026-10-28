@@ -313,6 +313,8 @@
     </p>
   </section>
 
+  <nav class="chipnav" aria-label="On this page"><a href="#by-salary">Salary table</a><a href="#hourly">Hourly</a><a href="#key-facts">Key facts</a><a href="#common-mistakes">Mistakes</a><a href="#example">Example</a><a href="#faq">FAQ</a><a href="#sources">Sources</a><a href="#states">Other states</a></nav>
+
   <details class="toc">
     <summary>On this page</summary>
     <ol class="toc-liste">
@@ -378,7 +380,8 @@
   RI state tax + TDI column adds the state&rsquo;s income tax to its <span class="num">1.1%</span> disability insurance
   deduction.</p>
 
-  <div class="table-scroll">
+  <input type="checkbox" id="tf-1" class="tbl-toggle" aria-controls="tf-1-t">
+  <div class="table-scroll tbl-fold" id="tf-1-t">
     <table>
       <caption class="caption caption-left">
         2026 Rhode Island take-home pay, single filer
@@ -386,288 +389,289 @@
       <thead>
         <tr>
           <th scope="col">Gross salary</th>
-          <th scope="col">Federal tax</th>
-          <th scope="col">FICA</th>
-          <th scope="col">RI state tax + TDI</th>
+          <th scope="col" class="c-more">Federal tax</th>
+          <th scope="col" class="c-more">FICA</th>
+          <th scope="col" class="c-more">RI state tax + TDI</th>
           <th scope="col">Take-home</th>
           <th scope="col">Per month</th>
-          <th scope="col">Effective rate</th>
+          <th scope="col" class="c-more">Effective rate</th>
         </tr>
       </thead>
       <tbody>
-          <tr>
+          <tr class="r-more">
             <td class="num">$25,000</td>
-            <td class="num">$890</td>
-            <td class="num">$1,913</td>
-            <td class="num">$1,175</td>
+            <td class="c-more num">$890</td>
+            <td class="c-more num">$1,913</td>
+            <td class="c-more num">$1,175</td>
             <td class="num"><strong>$21,023</strong></td>
             <td class="num">$1,751.88</td>
-            <td class="num">15.9%</td>
+            <td class="c-more num">15.9%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$30,000</td>
-            <td class="num">$1,420</td>
-            <td class="num">$2,295</td>
-            <td class="num">$1,418</td>
+            <td class="c-more num">$1,420</td>
+            <td class="c-more num">$2,295</td>
+            <td class="c-more num">$1,418</td>
             <td class="num"><strong>$24,868</strong></td>
             <td class="num">$2,072.29</td>
-            <td class="num">17.1%</td>
+            <td class="c-more num">17.1%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$35,000</td>
-            <td class="num">$2,020</td>
-            <td class="num">$2,678</td>
-            <td class="num">$1,660</td>
+            <td class="c-more num">$2,020</td>
+            <td class="c-more num">$2,678</td>
+            <td class="c-more num">$1,660</td>
             <td class="num"><strong>$28,643</strong></td>
             <td class="num">$2,386.88</td>
-            <td class="num">18.2%</td>
+            <td class="c-more num">18.2%</td>
           </tr>
           <tr>
             <td class="num">$40,000</td>
-            <td class="num">$2,620</td>
-            <td class="num">$3,060</td>
-            <td class="num">$1,903</td>
+            <td class="c-more num">$2,620</td>
+            <td class="c-more num">$3,060</td>
+            <td class="c-more num">$1,903</td>
             <td class="num"><strong>$32,418</strong></td>
             <td class="num">$2,701.46</td>
-            <td class="num">19.0%</td>
+            <td class="c-more num">19.0%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$45,000</td>
-            <td class="num">$3,220</td>
-            <td class="num">$3,443</td>
-            <td class="num">$2,145</td>
+            <td class="c-more num">$3,220</td>
+            <td class="c-more num">$3,443</td>
+            <td class="c-more num">$2,145</td>
             <td class="num"><strong>$36,193</strong></td>
             <td class="num">$3,016.04</td>
-            <td class="num">19.6%</td>
+            <td class="c-more num">19.6%</td>
           </tr>
           <tr>
             <td class="num">$50,000</td>
-            <td class="num">$3,820</td>
-            <td class="num">$3,825</td>
-            <td class="num">$2,388</td>
+            <td class="c-more num">$3,820</td>
+            <td class="c-more num">$3,825</td>
+            <td class="c-more num">$2,388</td>
             <td class="num"><strong>$39,968</strong></td>
             <td class="num">$3,330.63</td>
-            <td class="num">20.1%</td>
+            <td class="c-more num">20.1%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$55,000</td>
-            <td class="num">$4,420</td>
-            <td class="num">$4,208</td>
-            <td class="num">$2,630</td>
+            <td class="c-more num">$4,420</td>
+            <td class="c-more num">$4,208</td>
+            <td class="c-more num">$2,630</td>
             <td class="num"><strong>$43,743</strong></td>
             <td class="num">$3,645.21</td>
-            <td class="num">20.5%</td>
+            <td class="c-more num">20.5%</td>
           </tr>
           <tr>
             <td class="num">$60,000</td>
-            <td class="num">$5,020</td>
-            <td class="num">$4,590</td>
-            <td class="num">$2,873</td>
+            <td class="c-more num">$5,020</td>
+            <td class="c-more num">$4,590</td>
+            <td class="c-more num">$2,873</td>
             <td class="num"><strong>$47,518</strong></td>
             <td class="num">$3,959.79</td>
-            <td class="num">20.8%</td>
+            <td class="c-more num">20.8%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$65,000</td>
-            <td class="num">$5,620</td>
-            <td class="num">$4,973</td>
-            <td class="num">$3,115</td>
+            <td class="c-more num">$5,620</td>
+            <td class="c-more num">$4,973</td>
+            <td class="c-more num">$3,115</td>
             <td class="num"><strong>$51,293</strong></td>
             <td class="num">$4,274.38</td>
-            <td class="num">21.1%</td>
+            <td class="c-more num">21.1%</td>
           </tr>
           <tr>
             <td class="num">$70,000</td>
-            <td class="num">$6,570</td>
-            <td class="num">$5,355</td>
-            <td class="num">$3,358</td>
+            <td class="c-more num">$6,570</td>
+            <td class="c-more num">$5,355</td>
+            <td class="c-more num">$3,358</td>
             <td class="num"><strong>$54,718</strong></td>
             <td class="num">$4,559.79</td>
-            <td class="num">21.8%</td>
+            <td class="c-more num">21.8%</td>
           </tr>
           <tr>
             <td class="num">$75,000</td>
-            <td class="num">$7,670</td>
-            <td class="num">$5,738</td>
-            <td class="num">$3,600</td>
+            <td class="c-more num">$7,670</td>
+            <td class="c-more num">$5,738</td>
+            <td class="c-more num">$3,600</td>
             <td class="num"><strong>$57,993</strong></td>
             <td class="num">$4,832.71</td>
-            <td class="num">22.7%</td>
+            <td class="c-more num">22.7%</td>
           </tr>
           <tr>
             <td class="num">$80,000</td>
-            <td class="num">$8,770</td>
-            <td class="num">$6,120</td>
-            <td class="num">$3,843</td>
+            <td class="c-more num">$8,770</td>
+            <td class="c-more num">$6,120</td>
+            <td class="c-more num">$3,843</td>
             <td class="num"><strong>$61,268</strong></td>
             <td class="num">$5,105.63</td>
-            <td class="num">23.4%</td>
+            <td class="c-more num">23.4%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$85,000</td>
-            <td class="num">$9,870</td>
-            <td class="num">$6,503</td>
-            <td class="num">$4,105</td>
+            <td class="c-more num">$9,870</td>
+            <td class="c-more num">$6,503</td>
+            <td class="c-more num">$4,105</td>
             <td class="num"><strong>$64,523</strong></td>
             <td class="num">$5,376.92</td>
-            <td class="num">24.1%</td>
+            <td class="c-more num">24.1%</td>
           </tr>
           <tr>
             <td class="num">$90,000</td>
-            <td class="num">$10,970</td>
-            <td class="num">$6,885</td>
-            <td class="num">$4,397</td>
+            <td class="c-more num">$10,970</td>
+            <td class="c-more num">$6,885</td>
+            <td class="c-more num">$4,397</td>
             <td class="num"><strong>$67,748</strong></td>
             <td class="num">$5,645.67</td>
-            <td class="num">24.7%</td>
+            <td class="c-more num">24.7%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$95,000</td>
-            <td class="num">$12,070</td>
-            <td class="num">$7,268</td>
-            <td class="num">$4,690</td>
+            <td class="c-more num">$12,070</td>
+            <td class="c-more num">$7,268</td>
+            <td class="c-more num">$4,690</td>
             <td class="num"><strong>$70,973</strong></td>
             <td class="num">$5,914.42</td>
-            <td class="num">25.3%</td>
+            <td class="c-more num">25.3%</td>
           </tr>
           <tr>
             <td class="num">$100,000</td>
-            <td class="num">$13,170</td>
-            <td class="num">$7,650</td>
-            <td class="num">$4,982</td>
+            <td class="c-more num">$13,170</td>
+            <td class="c-more num">$7,650</td>
+            <td class="c-more num">$4,982</td>
             <td class="num"><strong>$74,198</strong></td>
             <td class="num">$6,183.17</td>
-            <td class="num">25.8%</td>
+            <td class="c-more num">25.8%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$110,000</td>
-            <td class="num">$15,370</td>
-            <td class="num">$8,415</td>
-            <td class="num">$5,457</td>
+            <td class="c-more num">$15,370</td>
+            <td class="c-more num">$8,415</td>
+            <td class="c-more num">$5,457</td>
             <td class="num"><strong>$80,758</strong></td>
             <td class="num">$6,729.83</td>
-            <td class="num">26.6%</td>
+            <td class="c-more num">26.6%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$120,000</td>
-            <td class="num">$17,570</td>
-            <td class="num">$9,180</td>
-            <td class="num">$5,932</td>
+            <td class="c-more num">$17,570</td>
+            <td class="c-more num">$9,180</td>
+            <td class="c-more num">$5,932</td>
             <td class="num"><strong>$87,318</strong></td>
             <td class="num">$7,276.50</td>
-            <td class="num">27.2%</td>
+            <td class="c-more num">27.2%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$125,000</td>
-            <td class="num">$18,734</td>
-            <td class="num">$9,563</td>
-            <td class="num">$6,170</td>
+            <td class="c-more num">$18,734</td>
+            <td class="c-more num">$9,563</td>
+            <td class="c-more num">$6,170</td>
             <td class="num"><strong>$90,534</strong></td>
             <td class="num">$7,544.50</td>
-            <td class="num">27.6%</td>
+            <td class="c-more num">27.6%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$130,000</td>
-            <td class="num">$19,934</td>
-            <td class="num">$9,945</td>
-            <td class="num">$6,407</td>
+            <td class="c-more num">$19,934</td>
+            <td class="c-more num">$9,945</td>
+            <td class="c-more num">$6,407</td>
             <td class="num"><strong>$93,714</strong></td>
             <td class="num">$7,809.50</td>
-            <td class="num">27.9%</td>
+            <td class="c-more num">27.9%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$140,000</td>
-            <td class="num">$22,334</td>
-            <td class="num">$10,710</td>
-            <td class="num">$6,882</td>
+            <td class="c-more num">$22,334</td>
+            <td class="c-more num">$10,710</td>
+            <td class="c-more num">$6,882</td>
             <td class="num"><strong>$100,074</strong></td>
             <td class="num">$8,339.50</td>
-            <td class="num">28.5%</td>
+            <td class="c-more num">28.5%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$150,000</td>
-            <td class="num">$24,734</td>
-            <td class="num">$11,475</td>
-            <td class="num">$7,357</td>
+            <td class="c-more num">$24,734</td>
+            <td class="c-more num">$11,475</td>
+            <td class="c-more num">$7,357</td>
             <td class="num"><strong>$106,434</strong></td>
             <td class="num">$8,869.50</td>
-            <td class="num">29.0%</td>
+            <td class="c-more num">29.0%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$160,000</td>
-            <td class="num">$27,134</td>
-            <td class="num">$12,240</td>
-            <td class="num">$7,832</td>
+            <td class="c-more num">$27,134</td>
+            <td class="c-more num">$12,240</td>
+            <td class="c-more num">$7,832</td>
             <td class="num"><strong>$112,794</strong></td>
             <td class="num">$9,399.50</td>
-            <td class="num">29.5%</td>
+            <td class="c-more num">29.5%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$175,000</td>
-            <td class="num">$30,734</td>
-            <td class="num">$13,388</td>
-            <td class="num">$8,545</td>
+            <td class="c-more num">$30,734</td>
+            <td class="c-more num">$13,388</td>
+            <td class="c-more num">$8,545</td>
             <td class="num"><strong>$122,334</strong></td>
             <td class="num">$10,194.50</td>
-            <td class="num">30.1%</td>
+            <td class="c-more num">30.1%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$200,000</td>
-            <td class="num">$36,734</td>
-            <td class="num">$14,339</td>
-            <td class="num">$9,888</td>
+            <td class="c-more num">$36,734</td>
+            <td class="c-more num">$14,339</td>
+            <td class="c-more num">$9,888</td>
             <td class="num"><strong>$139,039</strong></td>
             <td class="num">$11,586.62</td>
-            <td class="num">30.5%</td>
+            <td class="c-more num">30.5%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$225,000</td>
-            <td class="num">$43,304</td>
-            <td class="num">$14,927</td>
-            <td class="num">$11,385</td>
+            <td class="c-more num">$43,304</td>
+            <td class="c-more num">$14,927</td>
+            <td class="c-more num">$11,385</td>
             <td class="num"><strong>$155,384</strong></td>
             <td class="num">$12,948.70</td>
-            <td class="num">30.9%</td>
+            <td class="c-more num">30.9%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$250,000</td>
-            <td class="num">$51,304</td>
-            <td class="num">$15,514</td>
-            <td class="num">$12,883</td>
+            <td class="c-more num">$51,304</td>
+            <td class="c-more num">$15,514</td>
+            <td class="c-more num">$12,883</td>
             <td class="num"><strong>$170,299</strong></td>
             <td class="num">$14,191.62</td>
-            <td class="num">31.9%</td>
+            <td class="c-more num">31.9%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$300,000</td>
-            <td class="num">$68,134</td>
-            <td class="num">$16,689</td>
-            <td class="num">$15,938</td>
+            <td class="c-more num">$68,134</td>
+            <td class="c-more num">$16,689</td>
+            <td class="c-more num">$15,938</td>
             <td class="num"><strong>$199,239</strong></td>
             <td class="num">$16,603.27</td>
-            <td class="num">33.6%</td>
+            <td class="c-more num">33.6%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$400,000</td>
-            <td class="num">$103,134</td>
-            <td class="num">$19,039</td>
-            <td class="num">$21,928</td>
+            <td class="c-more num">$103,134</td>
+            <td class="c-more num">$19,039</td>
+            <td class="c-more num">$21,928</td>
             <td class="num"><strong>$255,899</strong></td>
             <td class="num">$21,324.94</td>
-            <td class="num">36.0%</td>
+            <td class="c-more num">36.0%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$500,000</td>
-            <td class="num">$138,134</td>
-            <td class="num">$21,389</td>
-            <td class="num">$27,918</td>
+            <td class="c-more num">$138,134</td>
+            <td class="c-more num">$21,389</td>
+            <td class="c-more num">$27,918</td>
             <td class="num"><strong>$312,559</strong></td>
             <td class="num">$26,046.60</td>
-            <td class="num">37.5%</td>
+            <td class="c-more num">37.5%</td>
           </tr>
       </tbody>
     </table>
   </div>
+  <label class="tbl-more" for="tf-1"><span class="t-open">Show all 30 salary levels and every column</span><span class="t-close">Show fewer rows</span></label>
 
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
@@ -743,7 +747,8 @@
     <p>Single filer, 40 hours a week (2,080 hours a year), 2026 rates.</p>
   </div>
 
-  <div class="table-scroll">
+  <input type="checkbox" id="tf-2" class="tbl-toggle" aria-controls="tf-2-t">
+  <div class="table-scroll tbl-fold" id="tf-2-t">
     <table>
       <caption class="caption caption-left">
         2026 Rhode Island take-home pay by hourly rate, single filer, 40 hours a week
@@ -751,257 +756,258 @@
       <thead>
         <tr>
           <th scope="col">Hourly rate</th>
-          <th scope="col">Gross a year</th>
+          <th scope="col" class="c-more">Gross a year</th>
           <th scope="col">Take-home a year</th>
           <th scope="col">Per month</th>
-          <th scope="col">Real hourly rate</th>
-          <th scope="col">Effective rate</th>
+          <th scope="col" class="c-more">Real hourly rate</th>
+          <th scope="col" class="c-more">Effective rate</th>
         </tr>
       </thead>
       <tbody>
-          <tr>
+          <tr class="r-more">
             <td class="num">$12.00</td>
-            <td class="num">$24,960</td>
+            <td class="c-more num">$24,960</td>
             <td class="num"><strong>$20,992</strong></td>
             <td class="num">$1,749.29</td>
-            <td class="num">$10.09</td>
-            <td class="num">15.9%</td>
+            <td class="c-more num">$10.09</td>
+            <td class="c-more num">15.9%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$13.00</td>
-            <td class="num">$27,040</td>
+            <td class="c-more num">$27,040</td>
             <td class="num"><strong>$22,604</strong></td>
             <td class="num">$1,883.63</td>
-            <td class="num">$10.87</td>
-            <td class="num">16.4%</td>
+            <td class="c-more num">$10.87</td>
+            <td class="c-more num">16.4%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$14.00</td>
-            <td class="num">$29,120</td>
+            <td class="c-more num">$29,120</td>
             <td class="num"><strong>$24,203</strong></td>
             <td class="num">$2,016.93</td>
-            <td class="num">$11.64</td>
-            <td class="num">16.9%</td>
+            <td class="c-more num">$11.64</td>
+            <td class="c-more num">16.9%</td>
           </tr>
           <tr>
             <td class="num">$15.00</td>
-            <td class="num">$31,200</td>
+            <td class="c-more num">$31,200</td>
             <td class="num"><strong>$25,774</strong></td>
             <td class="num">$2,147.79</td>
-            <td class="num">$12.39</td>
-            <td class="num">17.4%</td>
+            <td class="c-more num">$12.39</td>
+            <td class="c-more num">17.4%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$16.00</td>
-            <td class="num">$33,280</td>
+            <td class="c-more num">$33,280</td>
             <td class="num"><strong>$27,344</strong></td>
             <td class="num">$2,278.66</td>
-            <td class="num">$13.15</td>
-            <td class="num">17.8%</td>
+            <td class="c-more num">$13.15</td>
+            <td class="c-more num">17.8%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$17.00</td>
-            <td class="num">$35,360</td>
+            <td class="c-more num">$35,360</td>
             <td class="num"><strong>$28,914</strong></td>
             <td class="num">$2,409.53</td>
-            <td class="num">$13.90</td>
-            <td class="num">18.2%</td>
+            <td class="c-more num">$13.90</td>
+            <td class="c-more num">18.2%</td>
           </tr>
           <tr>
             <td class="num">$18.00</td>
-            <td class="num">$37,440</td>
+            <td class="c-more num">$37,440</td>
             <td class="num"><strong>$30,485</strong></td>
             <td class="num">$2,540.39</td>
-            <td class="num">$14.66</td>
-            <td class="num">18.6%</td>
+            <td class="c-more num">$14.66</td>
+            <td class="c-more num">18.6%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$19.00</td>
-            <td class="num">$39,520</td>
+            <td class="c-more num">$39,520</td>
             <td class="num"><strong>$32,055</strong></td>
             <td class="num">$2,671.26</td>
-            <td class="num">$15.41</td>
-            <td class="num">18.9%</td>
+            <td class="c-more num">$15.41</td>
+            <td class="c-more num">18.9%</td>
           </tr>
           <tr>
             <td class="num">$20.00</td>
-            <td class="num">$41,600</td>
+            <td class="c-more num">$41,600</td>
             <td class="num"><strong>$33,626</strong></td>
             <td class="num">$2,802.13</td>
-            <td class="num">$16.17</td>
-            <td class="num">19.2%</td>
+            <td class="c-more num">$16.17</td>
+            <td class="c-more num">19.2%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$21.00</td>
-            <td class="num">$43,680</td>
+            <td class="c-more num">$43,680</td>
             <td class="num"><strong>$35,196</strong></td>
             <td class="num">$2,932.99</td>
-            <td class="num">$16.92</td>
-            <td class="num">19.4%</td>
+            <td class="c-more num">$16.92</td>
+            <td class="c-more num">19.4%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$22.00</td>
-            <td class="num">$45,760</td>
+            <td class="c-more num">$45,760</td>
             <td class="num"><strong>$36,766</strong></td>
             <td class="num">$3,063.86</td>
-            <td class="num">$17.68</td>
-            <td class="num">19.7%</td>
+            <td class="c-more num">$17.68</td>
+            <td class="c-more num">19.7%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$23.00</td>
-            <td class="num">$47,840</td>
+            <td class="c-more num">$47,840</td>
             <td class="num"><strong>$38,337</strong></td>
             <td class="num">$3,194.73</td>
-            <td class="num">$18.43</td>
-            <td class="num">19.9%</td>
+            <td class="c-more num">$18.43</td>
+            <td class="c-more num">19.9%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$24.00</td>
-            <td class="num">$49,920</td>
+            <td class="c-more num">$49,920</td>
             <td class="num"><strong>$39,907</strong></td>
             <td class="num">$3,325.59</td>
-            <td class="num">$19.19</td>
-            <td class="num">20.1%</td>
+            <td class="c-more num">$19.19</td>
+            <td class="c-more num">20.1%</td>
           </tr>
           <tr>
             <td class="num">$25.00</td>
-            <td class="num">$52,000</td>
+            <td class="c-more num">$52,000</td>
             <td class="num"><strong>$41,478</strong></td>
             <td class="num">$3,456.46</td>
-            <td class="num">$19.94</td>
-            <td class="num">20.2%</td>
+            <td class="c-more num">$19.94</td>
+            <td class="c-more num">20.2%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$26.00</td>
-            <td class="num">$54,080</td>
+            <td class="c-more num">$54,080</td>
             <td class="num"><strong>$43,048</strong></td>
             <td class="num">$3,587.33</td>
-            <td class="num">$20.70</td>
-            <td class="num">20.4%</td>
+            <td class="c-more num">$20.70</td>
+            <td class="c-more num">20.4%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$28.00</td>
-            <td class="num">$58,240</td>
+            <td class="c-more num">$58,240</td>
             <td class="num"><strong>$46,189</strong></td>
             <td class="num">$3,849.06</td>
-            <td class="num">$22.21</td>
-            <td class="num">20.7%</td>
+            <td class="c-more num">$22.21</td>
+            <td class="c-more num">20.7%</td>
           </tr>
           <tr>
             <td class="num">$30.00</td>
-            <td class="num">$62,400</td>
+            <td class="c-more num">$62,400</td>
             <td class="num"><strong>$49,330</strong></td>
             <td class="num">$4,110.79</td>
-            <td class="num">$23.72</td>
-            <td class="num">20.9%</td>
+            <td class="c-more num">$23.72</td>
+            <td class="c-more num">20.9%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$32.00</td>
-            <td class="num">$66,560</td>
+            <td class="c-more num">$66,560</td>
             <td class="num"><strong>$52,464</strong></td>
             <td class="num">$4,372.03</td>
-            <td class="num">$25.22</td>
-            <td class="num">21.2%</td>
+            <td class="c-more num">$25.22</td>
+            <td class="c-more num">21.2%</td>
           </tr>
           <tr>
             <td class="num">$35.00</td>
-            <td class="num">$72,800</td>
+            <td class="c-more num">$72,800</td>
             <td class="num"><strong>$56,552</strong></td>
             <td class="num">$4,712.63</td>
-            <td class="num">$27.19</td>
-            <td class="num">22.3%</td>
+            <td class="c-more num">$27.19</td>
+            <td class="c-more num">22.3%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$38.00</td>
-            <td class="num">$79,040</td>
+            <td class="c-more num">$79,040</td>
             <td class="num"><strong>$60,639</strong></td>
             <td class="num">$5,053.22</td>
-            <td class="num">$29.15</td>
-            <td class="num">23.3%</td>
+            <td class="c-more num">$29.15</td>
+            <td class="c-more num">23.3%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$40.00</td>
-            <td class="num">$83,200</td>
+            <td class="c-more num">$83,200</td>
             <td class="num"><strong>$63,362</strong></td>
             <td class="num">$5,280.17</td>
-            <td class="num">$30.46</td>
-            <td class="num">23.8%</td>
+            <td class="c-more num">$30.46</td>
+            <td class="c-more num">23.8%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$45.00</td>
-            <td class="num">$93,600</td>
+            <td class="c-more num">$93,600</td>
             <td class="num"><strong>$70,070</strong></td>
             <td class="num">$5,839.17</td>
-            <td class="num">$33.69</td>
-            <td class="num">25.1%</td>
+            <td class="c-more num">$33.69</td>
+            <td class="c-more num">25.1%</td>
           </tr>
           <tr>
             <td class="num">$50.00</td>
-            <td class="num">$104,000</td>
+            <td class="c-more num">$104,000</td>
             <td class="num"><strong>$76,822</strong></td>
             <td class="num">$6,401.83</td>
-            <td class="num">$36.93</td>
-            <td class="num">26.1%</td>
+            <td class="c-more num">$36.93</td>
+            <td class="c-more num">26.1%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$55.00</td>
-            <td class="num">$114,400</td>
+            <td class="c-more num">$114,400</td>
             <td class="num"><strong>$83,644</strong></td>
             <td class="num">$6,970.37</td>
-            <td class="num">$40.21</td>
-            <td class="num">26.9%</td>
+            <td class="c-more num">$40.21</td>
+            <td class="c-more num">26.9%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$60.00</td>
-            <td class="num">$124,800</td>
+            <td class="c-more num">$124,800</td>
             <td class="num"><strong>$90,407</strong></td>
             <td class="num">$7,533.90</td>
-            <td class="num">$43.46</td>
-            <td class="num">27.6%</td>
+            <td class="c-more num">$43.46</td>
+            <td class="c-more num">27.6%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$65.00</td>
-            <td class="num">$135,200</td>
+            <td class="c-more num">$135,200</td>
             <td class="num"><strong>$97,021</strong></td>
             <td class="num">$8,085.10</td>
-            <td class="num">$46.64</td>
-            <td class="num">28.2%</td>
+            <td class="c-more num">$46.64</td>
+            <td class="c-more num">28.2%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$70.00</td>
-            <td class="num">$145,600</td>
+            <td class="c-more num">$145,600</td>
             <td class="num"><strong>$103,636</strong></td>
             <td class="num">$8,636.30</td>
-            <td class="num">$49.82</td>
-            <td class="num">28.8%</td>
+            <td class="c-more num">$49.82</td>
+            <td class="c-more num">28.8%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$75.00</td>
-            <td class="num">$156,000</td>
+            <td class="c-more num">$156,000</td>
             <td class="num"><strong>$110,250</strong></td>
             <td class="num">$9,187.50</td>
-            <td class="num">$53.00</td>
-            <td class="num">29.3%</td>
+            <td class="c-more num">$53.00</td>
+            <td class="c-more num">29.3%</td>
           </tr>
-          <tr>
+          <tr class="r-more">
             <td class="num">$85.00</td>
-            <td class="num">$176,800</td>
+            <td class="c-more num">$176,800</td>
             <td class="num"><strong>$123,479</strong></td>
             <td class="num">$10,289.90</td>
-            <td class="num">$59.36</td>
-            <td class="num">30.2%</td>
+            <td class="c-more num">$59.36</td>
+            <td class="c-more num">30.2%</td>
           </tr>
           <tr>
             <td class="num">$100.00</td>
-            <td class="num">$208,000</td>
+            <td class="c-more num">$208,000</td>
             <td class="num"><strong>$144,452</strong></td>
             <td class="num">$12,037.68</td>
-            <td class="num">$69.45</td>
-            <td class="num">30.6%</td>
+            <td class="c-more num">$69.45</td>
+            <td class="c-more num">30.6%</td>
           </tr>
       </tbody>
     </table>
   </div>
+  <label class="tbl-more" for="tf-2"><span class="t-open">Show all 30 hourly rates and every column</span><span class="t-close">Show fewer rows</span></label>
 
   <div class="ad-slot ad-rectangle" aria-hidden="true"></div>
 
@@ -1307,6 +1313,9 @@
 
   </div>
 
+<details class="fold fold-sec fold-states" id="states">
+  <summary><span class="fold-h2">Pick your state</span><span class="fold-sub">All 50 calculators</span></summary>
+  <div class="fold-body">
 <section class="bloc-carte">
   <h2>Pick your state</h2>
   <p class="bloc-carte-intro">Every state treats income differently, and nine of them do not tax
@@ -1372,6 +1381,8 @@
     <li><a href="/paycheck-calculator/wisconsin/">Wisconsin</a></li>
     <li><a href="/paycheck-calculator/wyoming/">Wyoming</a></li>
   </ul>
+  </div>
+</details>
 
   <p class="dates">
     Published <time datetime="2026-09-30">September 30, 2026</time> &middot;
@@ -1390,6 +1401,9 @@
   <a class="result-bar-edit" href="#salary" aria-label="Edit your pay" data-result-edit>Edit</a>
 </div>
 <aside class="colonne" aria-label="Related calculators">
+<details class="fold fold-sec fold-aside">
+  <summary><span class="fold-h2">More states and tools</span></summary>
+  <div class="fold-body">
     <section class="col-bloc">
       <h2 class="col-titre">Nearby states</h2>
       <ul>
@@ -1417,9 +1431,9 @@
         <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
         <li><a href="/state-comparison/">Compare two states</a></li>
         <li><a href="/75000-salary-take-home-pay-by-state/">$75,000 by state</a></li>
-        <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour a year</a></li>
-        <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
-        <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
+        <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour as a salary</a></li>
+        <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour as a salary</a></li>
+        <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour as a salary</a></li>
       </ul>
     </section>
     <section class="col-bloc col-note">
@@ -1428,6 +1442,8 @@
       date it was checked. Nothing you type leaves your browser.</p>
       <a href="/methodology/">Read the methodology &rarr;</a>
     </section>
+</div>
+</details>
 </aside>
 
 </main>
@@ -1441,10 +1457,10 @@
           <li><a href="/paycheck-calculator/">Paycheck calculator</a></li>
           <li><a href="/salary-to-hourly-calculator/">Salary to hourly</a></li>
           <li><a href="/state-comparison/">Compare two states</a></li>
-          <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour a year</a></li>
-          <li><a href="/27-an-hour-is-how-much-a-year/">$27 an hour a year</a></li>
-          <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour a year</a></li>
-          <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour a year</a></li>
+          <li><a href="/25-an-hour-is-how-much-a-year/">$25 an hour as a salary</a></li>
+          <li><a href="/27-an-hour-is-how-much-a-year/">$27 an hour as a salary</a></li>
+          <li><a href="/30-an-hour-is-how-much-a-year/">$30 an hour as a salary</a></li>
+          <li><a href="/35-an-hour-is-how-much-a-year/">$35 an hour as a salary</a></li>
         </ul>
       </details>
       <details class="pied-col">
