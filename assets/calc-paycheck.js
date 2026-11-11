@@ -220,12 +220,23 @@
       var bt = state.incomeTax.bracketTable;
       if (bt) {
         var btSegs = (input.filingStatus in bt) ? bt[input.filingStatus] : bt.single;
+        /* Arkansas, 2026-11-11: the DFA withholding formula reads income at the
+           midrange of its $100 band below $100,001 and rounds the gross tax to
+           the dollar (state.incomeTax.bracketLookup). Absent for other states. */
+        var btLook = state.incomeTax.bracketLookup;
+        var btX = imposableEtat;
+        if (btLook && btX < btLook.exactFrom) {
+          btX = Math.floor(btX / btLook.step) * btLook.step + btLook.step / 2;
+        }
         stateTax = 0;
         for (var bi = 0; bi < btSegs.length; bi++) {
           var bs = btSegs[bi];
-          if (bs.upTo === null || imposableEtat <= bs.upTo) {
+          if (bs.upTo === null || btX <= bs.upTo) {
             stateTax = (bs.amount !== undefined) ? bs.amount
-              : Math.max(0, bs.base + bs.rate * (imposableEtat - bs.from));
+              : (bs.adj !== undefined) ? bs.rate * btX - bs.adj
+              : bs.base + bs.rate * (btX - bs.from);
+            stateTax = Math.max(0, stateTax);
+            if (btLook && btLook.roundTax) stateTax = Math.round(stateTax);
             break;
           }
         }
