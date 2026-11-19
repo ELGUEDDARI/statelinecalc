@@ -98,6 +98,7 @@ that reaches the account, which is not, and place the rate against the US median
 $24.51 an hour (Bureau of Labor Statistics, Occupational Employment and Wage Statistics,
 May 2025 data covering 155,495,730 jobs, released May 15, 2026).
 
+- [$19 an hour is how much a year?](https://statelinecalc.com/19-an-hour-is-how-much-a-year/): $39,520 a year before tax, 22% below the US median hourly wage. After tax a single filer keeps $33,934 in Texas and $31,242 in Oregon, a gap of $2,692 a year on identical pay.
 - [$25 an hour is how much a year?](https://statelinecalc.com/25-an-hour-is-how-much-a-year/): $52,000 a year before tax, 2% above the US median hourly wage. After tax a single filer keeps $43,962 in Texas and $41,533 in Illinois, a gap of $2,429 a year on identical pay.
 - [$27 an hour is how much a year?](https://statelinecalc.com/27-an-hour-is-how-much-a-year/): $56,160 a year before tax, 10% above the US median. After tax: $47,305 in Texas, $44,669 in Illinois, a gap of $2,635.
 - [$30 an hour is how much a year?](https://statelinecalc.com/30-an-hour-is-how-much-a-year/): $62,400 a year before tax, 22% above the US median. After tax: $52,318 in Texas, $49,293 in Hawaii, a gap of $3,026.
