@@ -36,7 +36,7 @@
       "name": "New York Paycheck Calculator",
       "url": "https://statelinecalc.com/paycheck-calculator/new-york/",
       "datePublished": "2026-10-21",
-      "dateModified": "2026-11-19",
+      "dateModified": "2026-11-24",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -843,6 +843,27 @@
     <h3>Bonuses in the city and in Yonkers</h3>
     <p>The tables&rsquo; flat supplemental rates are <span class="num">4.25%</span> for New York City and <span class="num">1.95975%</span> for Yonkers residents, and <span class="num">0.50%</span> for Yonkers nonresidents, next to <span class="num">11.70%</span> for the state.</p>
 
+    <!-- Salary calculator NYC (added 2026-11-24; figures from lib/paie.js and the city schedule above) -->
+    <h3 id="nyc-salary-calculator">Salary calculator NYC: take-home pay for $50,000, $75,000 and $100,000</h3>
+    <p>Here is how the city figures above turn into take-home pay. For a single filer
+    with no allowances and no retirement contribution, <span class="num">$75,000</span> a year leaves <span class="num">$55,090.50</span> after federal tax,
+    FICA, New York State withholding, the Paid Family Leave and disability deductions (we apply the maximums, which an employer may take less of or none), and <span class="num">$2,661.00</span> of New York City withholding.
+    That is <span class="num">$4,590.88</span> a month, or <span class="num">$2,118.87</span> every two weeks. The city withholding is the piece the state-level calculator at the top of the page leaves out. The table gives the same figures for $50,000 and $100,000.</p>
+
+    <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">New York City take-home pay, single filer, no allowances, 2026</caption>
+      <thead><tr><th scope="col">Pay</th><th scope="col">Take-home a year</th><th scope="col">Take-home a month</th><th scope="col">Take-home every two weeks</th></tr></thead>
+      <tbody>
+        <tr><td>$50,000 a year</td><td class="num">$38,359.00</td><td class="num">$3,196.58</td><td class="num">$1,475.35</td></tr>
+        <tr><td>$75,000 a year</td><td class="num">$55,090.50</td><td class="num">$4,590.88</td><td class="num">$2,118.87</td></tr>
+        <tr><td>$100,000 a year</td><td class="num">$70,118.34</td><td class="num">$5,843.20</td><td class="num">$2,696.86</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>The calculator at the top of the page gives the state-level result, so subtract the city amount from it as shown here.</p>
+
     <h2>The paid leave and disability deductions, and the other payroll lines</h2>
 
     <h3>New York Paid Family Leave: up to 0.432% of your pay</h3>
@@ -1578,7 +1599,7 @@
 
   <p class="dates">
     Published <time datetime="2026-10-21">October 21, 2026</time> &middot;
-    Last updated <time datetime="2026-11-19">November 19, 2026</time>.
+    Last updated <time datetime="2026-11-24">November 24, 2026</time>.
   </p>
 
   <p class="disclaimer">

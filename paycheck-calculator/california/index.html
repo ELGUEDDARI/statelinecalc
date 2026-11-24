@@ -36,7 +36,7 @@
       "name": "California Paycheck Calculator",
       "url": "https://statelinecalc.com/paycheck-calculator/california/",
       "datePublished": "2026-10-21",
-      "dateModified": "2026-10-21",
+      "dateModified": "2026-11-24",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -1151,7 +1151,31 @@
 
   <div class="prose">
 
-  <!-- LIMITES:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
+      <!-- California paycheck estimator (added 2026-11-24; figures from lib/paie.js) -->
+    <h2 id="california-paycheck-estimator">California paycheck estimator: what $75,000 leaves you after tax</h2>
+    <p>This California paycheck estimator assumes a single filer with one allowance and no 401(k)
+    contribution, using the 2026 federal figures and California&rsquo;s withholding schedule. Of a
+    <span class="num">$75,000</span> salary, <span class="num">$57,565.47</span> reaches you in a year, which is <span class="num">$4,797.12</span> a month. California income tax
+    withholding takes <span class="num">$3,052.03</span> of that <span class="num">$75,000</span>. State Disability Insurance takes
+    <span class="num">$975.00</span> more, because it is 1.3% of every dollar you earn, with no wage cap. That last point matters as
+    pay rises: unlike Social Security, the disability charge never stops at a ceiling, so it keeps growing with your salary.</p>
+
+    <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">California take-home pay, single filer, one allowance, 2026</caption>
+      <thead><tr><th scope="col">Pay</th><th scope="col">Take-home a year</th><th scope="col">Take-home a month</th><th scope="col">California income tax</th><th scope="col">State Disability Insurance</th></tr></thead>
+      <tbody>
+        <tr><td>$50,000 a year</td><td class="num">$40,561.52</td><td class="num">$3,380.13</td><td class="num">$1,143.48</td><td class="num">$650.00</td></tr>
+        <tr><td>$75,000 a year</td><td class="num">$57,565.47</td><td class="num">$4,797.12</td><td class="num">$3,052.03</td><td class="num">$975.00</td></tr>
+        <tr><td>$100,000 a year</td><td class="num">$72,319.52</td><td class="num">$6,026.63</td><td class="num">$5,560.48</td><td class="num">$1,300.00</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Your own figure depends on your filing status, allowances and pre-tax deductions, so enter them in the
+    calculator above. Withholding is an estimate: what you owe is settled when you file.</p>
+
+<!-- LIMITES:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
   <h2>What this calculator does not cover</h2>
   <p class="prose">This tool models federal income tax, Social Security, Medicare and the
   payroll programs your state actually runs &mdash; nothing more. It deliberately leaves out:</p>
@@ -1526,7 +1550,7 @@
 
   <p class="dates">
     Published <time datetime="2026-10-21">October 21, 2026</time> &middot;
-    Last updated <time datetime="2026-10-21">October 21, 2026</time>.
+    Last updated <time datetime="2026-11-24">November 24, 2026</time>.
   </p>
 
   <p class="disclaimer">

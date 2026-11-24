@@ -36,7 +36,7 @@
       "name": "New Jersey Paycheck Calculator",
       "url": "https://statelinecalc.com/paycheck-calculator/new-jersey/",
       "datePublished": "2026-10-02",
-      "dateModified": "2026-10-21",
+      "dateModified": "2026-11-24",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -1037,7 +1037,30 @@
 
   <div class="prose">
 
-  <!-- LIMITES:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
+      <!-- NJ salary calculator (added 2026-11-24; figures from lib/paie.js) -->
+    <h2 id="nj-salary-calculator">NJ salary calculator: take-home pay on $50,000, $75,000 and $100,000</h2>
+    <p>This page works as an NJ pay calculator for a single filer on Rate A claiming one allowance, with no retirement
+    contribution, using 2026 figures. On a <span class="num">$75,000</span> salary, New Jersey withholds <span class="num">$2,869.00</span> of income tax. It also takes
+    <span class="num">$505.40</span> for the unemployment and workforce, disability and family leave programs. After federal tax and FICA,
+    <span class="num">$58,218.10</span> reaches you, or <span class="num">$4,851.51</span> a month. As the table shows, income tax grows much faster than the payroll
+    contributions as your pay goes up.</p>
+
+    <div class="table-scroll">
+    <table>
+      <caption class="caption caption-left">New Jersey take-home pay, single filer, Rate A, one allowance, 2026</caption>
+      <thead><tr><th scope="col">Pay</th><th scope="col">Take-home a year</th><th scope="col">Take-home a month</th><th scope="col">New Jersey income tax</th><th scope="col">NJ payroll contributions</th></tr></thead>
+      <tbody>
+        <tr><td>$50,000 a year</td><td class="num">$40,610.60</td><td class="num">$3,384.22</td><td class="num">$1,344.00</td><td class="num">$400.40</td></tr>
+        <tr><td>$75,000 a year</td><td class="num">$58,218.10</td><td class="num">$4,851.51</td><td class="num">$2,869.00</td><td class="num">$505.40</td></tr>
+        <tr><td>$100,000 a year</td><td class="num">$73,959.60</td><td class="num">$6,163.30</td><td class="num">$4,610.00</td><td class="num">$610.40</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Married filers and heads of household use Rate B, which withholds less. Choose your filing status and
+    allowances in the calculator above to see your own number.</p>
+
+<!-- LIMITES:debut - genere par .tooling/lib/limites.js, ne pas editer a la main -->
   <h2>What this calculator does not cover</h2>
   <p class="prose">This tool models federal income tax, Social Security, Medicare and the
   payroll programs your state actually runs &mdash; nothing more. It deliberately leaves out:</p>
@@ -1422,7 +1445,7 @@
 
   <p class="dates">
     Published <time datetime="2026-10-02">October 2, 2026</time> &middot;
-    Last updated <time datetime="2026-10-21">October 21, 2026</time>.
+    Last updated <time datetime="2026-11-24">November 24, 2026</time>.
   </p>
 
   <p class="disclaimer">
